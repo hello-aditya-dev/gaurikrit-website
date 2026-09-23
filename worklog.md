@@ -473,3 +473,60 @@ Task: QA-driven assessment + new features (coverage calculator, recipe carousel,
 
 ## Commit
 - `f7f0484` pushed to `main` on https://github.com/hello-aditya-dev/gaurikrit-website
+
+---
+Task ID: CRON-ROUND-5
+Agent: main (webDevReview cron)
+Task: QA-driven assessment + new features (certifications modal, calculator compare-all mode, OG image with real fonts).
+
+## Current project status (assessment)
+- Site stable: HTTP 200, no console errors.
+- All round-1/2/3/4 features verified working.
+- No bugs found this round. Proceeded to implement 3 priority features.
+
+## Completed modifications this round
+### New features (3)
+1. **Certifications detail modal** — `src/components/common/certification-modal.tsx` + `src/data/certifications.ts`.
+   - Click any cert badge in TrustBar → opens Dialog with issuer, certificate #, issue/expiry dates, scope, "what it means", 4-point coverage list.
+   - Rich data for FSSAI, NABL, ISO 9001, GreenPro (issuer, cert number, dates, scope, covers[]).
+   - TrustBar cert pills converted to buttons (hover gold border + Info icon).
+   - Tracks `cert_view` analytics event.
+
+2. **Calculator "Compare all" mode** — `src/components/sections/coverage-calculator.tsx`.
+   - New "Compare all" toggle button (aria-pressed) in actions row.
+   - When on, result panel shows all 3 topcoat paints side by side: litres, cost, coverage.
+   - Cheapest option highlighted with gold ring + "Best value for this area" badge + Trophy icon.
+   - Tracks `calculator_compare` + `calculator_enquire` (source: "compare").
+
+3. **OG image with real brand fonts** — `src/app/opengraph-image.tsx`.
+   - Tries Playfair Display + Inter from CDN; falls back to local Liberation Serif + Sans (read via `node:fs/promises`) so Satori always has a font.
+   - Headline uses display font; gold "haldi"/"paint" in italic.
+   - Fixed the "No fonts are loaded" Satori error by adding local font fallback.
+   - Verified: HTTP 200, valid 1200×630 PNG.
+
+### New analytics events
+- `calculator_compare`, `cert_view` added to the union type.
+
+## Verification results
+- `bun run lint` → clean. `bunx tsc --noEmit` → clean.
+- HTTP 200, no console errors.
+- Cert modal: clicked FSSAI badge → modal shows "Food Safety and Standards Authority" issuer + "FSSAI 12345678901234" cert number. GreenPro shows "CII" issuer. Mobile verified.
+- Calculator compare: clicked "Compare all" → 3 paint cards render, cheapest highlighted with gold ring + "Best value for this area". Mobile verified.
+- OG image: HTTP 200, valid 1200×630 PNG (~280KB), no font errors.
+- All endpoints HTTP 200.
+
+## Unresolved issues / risks
+- Uploaded source files (Gaurikrit_Website_Master_Pack.zip, 6 WhatsApp images, Broucher-paint.pdf, Website Development.pdf) have NOT landed in /home/z/my-project/upload/ — same sync issue as the original session. Cannot extract real brand data until they arrive.
+- Real product photography still pending.
+- Real cert numbers / address / phone pending client confirmation.
+- OG image uses Liberation fonts (sandbox fallback) — upgrade to real Playfair + Inter once CDN reachable.
+
+## Priority recommendations for next phase
+1. **Incorporate real source materials** — once the uploaded zip/images/PDFs land, extract them, use the VLM skill to read the WhatsApp images, extract text from the PDFs, and update company.json/products.json/claims with real data.
+2. **Recipe print / share** — add print-friendly layout per recipe.
+3. **Sticky mini-compare on mobile** — collapsed chip instead of full bar.
+4. **Awards / certifications detail page** — already done as modal; consider a dedicated route for deep-linking.
+5. **Replace generated SVG product visuals with real WebP photography** from the WhatsApp images once available.
+
+## Commit
+- `063d49d` pushed to `main` on https://github.com/hello-aditya-dev/gaurikrit-website
