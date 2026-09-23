@@ -323,3 +323,76 @@ Task: QA-driven assessment + bug fixes + styling/feature improvements (mandatory
 
 ## Commit
 - `9765ade` pushed to `main` on https://github.com/hello-aditya-dev/gaurikrit-website
+
+---
+Task ID: CRON-ROUND-3
+Agent: main (webDevReview cron)
+Task: QA-driven assessment + new features (product comparison, shade picker, why-together section, OG image, analytics) + styling detail.
+
+## Current project status (assessment)
+- Site stable: HTTP 200, no console errors, no hydration warnings.
+- All round-1 + round-2 features verified working (12 sections, scroll-spy, back-to-top, animated counters, marquee, featured ribbon, /api/claims, sitemap, robots).
+- No bugs, no test failures, no build issues found this round.
+- Dev server healthy on port 3000.
+
+## Completed modifications this round
+### New features (5)
+1. **Dynamic OG image** — `src/app/opengraph-image.tsx`. 1200×630 PNG via `next/og` ImageResponse. Brand gold + charcoal layout: G-logo + "Gaurikrit / Haldi & Paint · Since 1998" + eyebrow + headline (with gold "haldi"/"paint" highlights) + 4 certification pills + gold seal. Auto-wired into metadata for social sharing. Renders in ~230ms. Fixed Satori `display: flex` requirement + ✓ font issue (swapped to •).
+
+2. **Product comparison** — full feature:
+   - `src/lib/compare-store.ts` — Zustand store, persisted to localStorage (`gaurikrit-compare`), max 3 products, `add/remove/toggle/clear/has/isFull` + `useCompareProducts(allProducts)` helper.
+   - `src/components/product/product-card.tsx` — added "Compare" toggle button on each card visual (bottom-right). `aria-pressed`, `aria-label`, disabled when full (max 3), gold styling when active. Card gets `ring-2 ring-primary` when selected.
+   - `src/components/product/compare-bar.tsx` — floating bottom bar (AnimatePresence). Shows selected product chips (with remove ×), empty slots, clear (Trash2), and "Compare now" CTA (disabled until 2+ selected).
+   - `src/components/product/compare-dialog.tsx` — side-by-side comparison dialog. Grid layout `[label col] + [N product cols]`. Rows: Category, Tagline, Price range, Available sizes, Highlights, Best for (usage), Verified claims (with #reference), Action (per-product Enquire CTA that dispatches inquiry event + scrolls to contact). Header has product mini-visual + name + Featured badge.
+   - `src/components/sections/products.tsx` — wired CompareBar + CompareDialog; added product_view + product_compare_add tracking; bottom spacer when compare active so bar never covers footer.
+
+3. **Shade picker** — `src/components/product/shade-picker.tsx`. 6 curated natural-pigment shades (Haldi Gold, Saffron, Terracotta, Mineral Indigo, Ash Clay, Moss Green). Live "wall preview" (h-28/32) with window-frame motif + paint-can swatch that updates on click. Swatch dots with active ring + check. Reduced-motion safe. Integrated into `product-dialog.tsx` (only for `paint-natural`).
+
+4. **"Why haldi + paint together" section** — `src/components/sections/why-together.tsx`. The brand's unique hook. 3-column grid: LEFT haldi card (gold icon, 3 checked points) + CENTER "One promise" bridge (dashed gold border, ArrowLeftRight icon, "est. 1998" mono) + RIGHT paint card (charcoal bg, gold icon, 3 checked points). Bottom: italic founder quote. Inserted between About and Products in `page.tsx`.
+
+5. **Analytics sink** — `src/lib/analytics.ts`. `track(event, payload)` logs in dev + queues on `window.__gk_analytics` for a future Plausible/PostHog swap. Never throws. Wired into:
+   - `hero_cta_click` (primary + secondary)
+   - `product_view` (on card open)
+   - `product_enquire` (dialog + compare dialog)
+   - `product_compare_add` + `product_compare_open`
+   - `claim_search` (debounced 600ms) + `claim_filter` + `claim_copy_reference`
+   - `theme_toggle`
+   - `shade_preview`
+
+### Styling detail improvements
+- Compare toggle button has gold-gradient + shadow-gold when active; muted border + backdrop-blur when idle.
+- CompareBar uses `border-primary/30 bg-background/95 shadow-gold backdrop-blur-md` for premium feel.
+- CompareDialog table uses `gap-px bg-border` hairline grid for crisp separation.
+- Why-together center bridge uses `border-2 border-dashed border-primary/40 bg-primary/5` for a distinctive "connector" look.
+- Shade picker wall preview includes a stylised window + paint-can for context.
+
+## Verification results (agent-browser)
+- `bun run lint` → clean (0 errors, 0 warnings). `bunx tsc --noEmit` → clean (src/).
+- HTTP 200, no console errors.
+- Section order confirmed: home → trust → about → **why-together** → products → features → process → claims → testimonials → faq → contact → footer.
+- "Why haldi and paint, together?" + "One promise" text present.
+- Compare flow: added 3 products (Pure Turmeric Powder, Natural Turmeric Paint, Exterior Weather Guard) → CompareBar appeared with 3 chips → "Compare now" opened CompareDialog → table contains Category, Price range, Verified claims rows → ESC closes.
+- Shade picker: opened Natural Turmeric Paint dialog → "Preview a shade" + 6 swatches present → clicked Saffron → active; clicked Terracotta → active.
+- Analytics queue confirmed: `["product_view","shade_preview","shade_preview"]`.
+- OG image: HTTP 200, valid PNG 1200×630, ~288KB, no font errors.
+- All endpoints HTTP 200: /, /robots.txt, /sitemap.xml, /api/products, /api/claims, /api/claims?category=paint&q=voc, /opengraph-image.
+- Dark mode + mobile (iPhone 14): why-together section + compare bar render correctly.
+
+## Unresolved issues / risks
+- Real product photography still pending (v1 uses generated SVG visuals).
+- Real cert numbers / address / phone pending client confirmation (see `CLIENT_INPUTS_REQUIRED.md`).
+- `metadataBase` uses placeholder `gaurikrit.example.com` — replace pre-launch.
+- Compare store is localStorage-persisted — fine for v1; for multi-device sync would need a backend.
+- OG image uses system sans-serif (no custom font load) — could upgrade to brand Playfair/Inter via `fetch()` of font binaries for a more on-brand look.
+
+## Priority recommendations for next phase
+1. **Product comparison "winner" highlight** — auto-highlight the best value/lowest VOC/highest curcumin across selected products.
+2. **Sticky mini-compare** — keep a collapsed compare chip in the corner instead of the full bar on mobile.
+3. **Awards / press strip** — add a "As featured in" logo marquee (Architectural Digest, The Better India, etc.) for credibility.
+4. **Interactive "coverage calculator"** — input wall area → get litres needed + cost estimate per paint product.
+5. **Recipe / usage carousel** for haldi products (golden milk, face mask, marinade) with step visuals.
+6. **Real OG font** — load Playfair Display + Inter as font binaries in the OG image for on-brand typography.
+7. **Replace generated SVG product visuals with real WebP photography** before public launch.
+
+## Commit
+- `41271a0` pushed to `main` on https://github.com/hello-aditya-dev/gaurikrit-website
