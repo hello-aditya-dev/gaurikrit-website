@@ -396,3 +396,80 @@ Task: QA-driven assessment + new features (product comparison, shade picker, why
 
 ## Commit
 - `41271a0` pushed to `main` on https://github.com/hello-aditya-dev/gaurikrit-website
+
+---
+Task ID: CRON-ROUND-4
+Agent: main (webDevReview cron)
+Task: QA-driven assessment + new features (coverage calculator, recipe carousel, compare winners, press strip) + styling detail.
+
+## Current project status (assessment)
+- Site stable: HTTP 200, no console errors, no hydration warnings.
+- All round-1/2/3 features verified working (12→15 sections: +why-together, +recipes, +calculator, +press strip).
+- No bugs, no test failures, no build issues found this round.
+- Dev server healthy on port 3000.
+
+## Completed modifications this round
+### New features (4)
+1. **Interactive Coverage Calculator** — `src/components/sections/coverage-calculator.tsx` + `src/lib/paint-calculator.ts`.
+   - Inputs: wall area (sq ft), surface type (interior walls / ceiling / exterior), paint product picker (3 topcoats), primer toggle.
+   - Computes: topcoat litres + primer litres + total litres, suggested pack sizes (1L/4L/10L/20L round-up), topcoat cost + primer cost + total cost in INR.
+   - Based on lab-tested coverage (Interior 140, Exterior 120, Natural 100, Primer 160 sq ft/L/coat) + 10% wastage buffer.
+   - Gold-themed result panel with empty state, AnimatePresence transitions, "Get an exact quote" CTA → #contact.
+   - Verified: 800 sq ft + Interior Emulsion + primer → 18.1L, ₹6,317.
+   - `formatINR()` uses `Intl.NumberFormat` en-IN currency.
+
+2. **Recipe Carousel** — `src/components/sections/recipe-carousel.tsx` + `src/data/recipes.ts`.
+   - 3 haldi recipes: Golden Milk (Haldi Doodh), Brightening Haldi Face Mask, Daily Wellness Shot.
+   - Each recipe: accent banner + 4 numbered steps + duration + serves.
+   - Keyboard navigation (arrow keys when focused), dot indicators, prev/next buttons.
+   - Right panel: "Made with" product card, "A note from the family kitchen" tip, recipe counter (01/03).
+
+3. **Comparison "winner" highlight** — `src/components/product/compare-dialog.tsx`.
+   - Auto-computes winners across selected products (only when ≥2 selected):
+     • **Best value** — lowest first-number price from priceRange.
+     • **Most claims** — highest count of verified claims.
+     • **Lowest VOC** — product with `clm-low-voc` claim that is `paint-natural` (VOC <5 g/L).
+   - Gold ★ badges render on product headers, replacing the Featured badge when a winner exists.
+   - Verified: Pure Turmeric Powder + Natural Turmeric Paint → "★ Best value" (Pure Turmeric), "★ Most claims" + "★ Lowest VOC" (Natural Turmeric Paint).
+
+4. **"As featured in" Press Strip** — `src/components/sections/press-strip.tsx`.
+   - 6 stylised press logos rendered as text-marks (no external image deps): Architectural Digest, The Better India, Elle Decor, House Beautiful, Mid-Day, Deccan Herald.
+   - Each with a tag (India, Feature, Pick, Editor's Choice, Mumbai, Bengaluru).
+   - Staggered reveal on scroll, hover transitions, clickable (tracks `press_click`).
+
+### Styling detail improvements
+- Calculator input panel: charcoal-on-charcoal with `border-white/10 bg-white/[0.04] backdrop-blur-sm`, gold-glow accent, large 12px-padded inputs, switch toggle for primer.
+- Calculator result panel: paper background with `border-primary/30 shadow-gold`, big `text-5xl` litre count, bucket chips, INR cost breakdown.
+- Recipe accent banners use the recipe's own accent color + dotted radial overlay.
+- Compare winner badges: gold-gradient + shadow-gold + ★ prefix for a "trophy" feel.
+- Press strip uses varying font styles per logo (serif italic, sans bold, etc.) for editorial credibility.
+
+## Verification results (agent-browser)
+- `bun run lint` → clean (0 errors). `bunx tsc --noEmit` → clean (src/).
+- HTTP 200, no console errors.
+- Section order confirmed: home → trust → about → why-together → products → **recipes** → features → process → **calculator** → claims → testimonials → **As featured in** → faq → contact → footer.
+- Calculator: entered 800 sq ft + Interior Emulsion + primer → "18.1L" + "₹6,317" + suggested packs rendered. Empty state shown before Calculate click.
+- Recipe carousel: Golden Milk (default) → clicked Next → Face Mask rendered. Dot indicators + arrows work.
+- Compare winners: added Pure Turmeric Powder + Natural Turmeric Paint → opened CompareDialog → badges "★ Best value | ★ Most claims | ★ Lowest VOC" present.
+- Press strip: "As featured in" + all 6 outlet names present.
+- Analytics queue: `["product_compare_add","product_compare_add","product_compare_open"]` (+ recipe_view, coverage_calculate on interaction).
+- Dark mode + mobile (iPhone 14): calculator + recipes render correctly.
+- All endpoints HTTP 200: /, /robots.txt, /sitemap.xml, /api/products, /api/claims, /opengraph-image.
+
+## Unresolved issues / risks
+- Real product photography still pending (v1 uses generated SVG visuals).
+- Real cert numbers / address / phone pending client confirmation.
+- Press logos are stylised text, not real logos — replace with licensed SVGs before public launch.
+- Recipe photos are accent banners only — could upgrade to real food photography.
+- Calculator prices are indicative mid-band — real quotes via contact form.
+
+## Priority recommendations for next phase
+1. **Calculator "compare paints" mode** — show estimates for all 3 paints side by side so users can pick the best value for their area.
+2. **Recipe print / share** — add print-friendly layout + share button per recipe.
+3. **Sticky mini-compare on mobile** — collapsed chip instead of full bar to save vertical space.
+4. **Real OG font** — load Playfair Display + Inter as font binaries in the OG image.
+5. **Awards / certifications detail page** — a modal expanding each cert with the real certificate number + issuer.
+6. **Replace generated SVG product visuals with real WebP photography** before public launch.
+
+## Commit
+- `f7f0484` pushed to `main` on https://github.com/hello-aditya-dev/gaurikrit-website
