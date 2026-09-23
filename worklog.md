@@ -257,3 +257,69 @@ Stage Summary:
   3. Add a sitemap.xml + robots.txt improvements.
   4. Consider a `/api/claims` endpoint + admin view for the Claims Register.
   5. Wire the Product inquiry flow end-to-end in the ContactSection (event listener is in place; verify prefill renders).
+
+---
+Task ID: CRON-ROUND-2
+Agent: main (webDevReview cron)
+Task: QA-driven assessment + bug fixes + styling/feature improvements (mandatory styling detail + new features).
+
+## Current project status (assessment)
+- Site is stable and fully functional: HTTP 200, no console errors, no hydration warnings.
+- Dev server running on port 3000 (Next.js 16 Turbopack).
+- All 12 sections render; contact form, newsletter, product dialog, claims search, FAQ, dark mode, mobile sheet, sticky footer all verified in round 1.
+- Pre-existing minor issues found this round:
+  1. TypeScript error in `product-card.tsx` (line 29: `whileInView={reduce ? false : {...}}` — `false` not assignable to `TargetAndTransition`).
+  2. `public/robots.txt` static file conflicting with a potential `robots.ts` route (caused 500 if route added).
+- No runtime errors, no test failures, no build issues.
+
+## Completed modifications this round
+### Bug fixes
+- **Fixed TS error** in `src/components/product/product-card.tsx`: changed `reduce ? false : {...}` → `reduce ? undefined : {...}` for `initial`/`whileInView` (reduced-motion safe + type-correct).
+- **Fixed robots.txt conflict**: removed `public/robots.txt`; replaced with `src/app/robots.ts` route handler. `GET /robots.txt` now returns 200 with `User-Agent: * / Allow: / / Disallow: /api/ / Sitemap: ...`.
+
+### New features
+1. **Scroll-spy nav** — `src/hooks/use-active-section.ts` (IntersectionObserver, rootMargin `-96px 0px -55% 0px`). Header highlights the active section link with gold text + persistent underline; mobile sheet highlights active item with `bg-secondary text-primary`. `aria-current="true"` for a11y.
+2. **Back-to-top floating button** — `src/components/common/back-to-top.tsx`. Appears after 600px scroll, smooth-scrolls to top, AnimatePresence enter/exit, reduced-motion aware, 44px touch target, focus-visible ring.
+3. **Animated stat counters** — `src/components/common/count-up.tsx`. Counts 0→value with easeOutExpo when scrolled into view (Framer `useInView`). Wired into TrustBar. `company.json` extended with `numericValue`/`suffix`/`decimals` per stat.
+4. **Gold MarqueeStrip** — `src/components/sections/marquee-strip.tsx` + `src/components/common/marquee.tsx`. Pure-CSS keyframe marquee (32s loop, pause-on-hover, edge mask). 10 brand phrases ("Naturally Crafted Haldi", "Low-VOC Premium Paint", …). Sits between Hero and TrustBar. Reduced-motion: static row.
+5. **Featured ribbon** — `Product` type gained optional `featured?: boolean`. `Natural Turmeric Paint` flagged `featured: true`. Card shows gold "★ Featured" ribbon + `ring-2 ring-primary/50`.
+6. **`/api/claims` endpoint** — `src/app/api/claims/route.ts`. GET with `?category=` and `?q=` filters. Returns the public claims register as JSON (headless/CMS-ready).
+7. **SEO routes** — `src/app/sitemap.ts` (15 URLs incl. section anchors + products, `lastmod` = now, weekly/monthly frequencies) + `src/app/robots.ts` (route handler).
+
+### Styling detail improvements
+- TrustBar certifications row: added "Accredited by" eyebrow label.
+- Counters use `tabular-nums` + Indian locale formatting.
+- Featured card gets a gold ring + ribbon for visual hierarchy.
+- Marquee uses edge mask gradient so items fade in/out rather than hard-cutting.
+
+## Verification results (agent-browser)
+- `bun run lint` → clean. `bunx tsc --noEmit` → clean (src/).
+- HTTP 200, no console errors, no hydration warnings.
+- Marquee track renders (`.marquee-track` present), phrases in DOM.
+- Featured ribbon renders (1 badge), featured card has `ring-2`.
+- Animated counters render final values (25+, 1.2M+, 8, 14,000+).
+- Scroll-spy: scrolled to Products → active nav = "About"; scrolled to top → "Home". Mobile menu also highlights active.
+- Back-to-top: hidden at top; visible after scroll; click → scrollY=0, button hidden, active nav resets to "Home".
+- Dark mode toggle works (`<html class="dark">`).
+- Mobile (iPhone 14): hero + marquee + mobile sheet all render; active item highlighted.
+- Contact form: filled + submitted → 201 + toast "Thanks! Our team will reach out within 24 hours." (DB row created).
+- `/api/claims?category=paint&q=voc` → 1 item. `/api/claims` → 12 items.
+- `/robots.txt` → 200, correct content. `/sitemap.xml` → 200, 15 `<url>` entries.
+
+## Unresolved issues / risks
+- Real product photography still pending (v1 uses generated SVG visuals).
+- Real cert numbers / address / phone pending client confirmation (see `CLIENT_INPUTS_REQUIRED.md`).
+- `metadataBase` uses placeholder `gaurikrit.example.com` — replace with real domain pre-launch.
+- `Linkedin` icon aliasing in footer is a cosmetic workaround (works correctly).
+
+## Priority recommendations for next phase
+1. Add a **product comparison** feature (select 2-3 products → side-by-side table of specs/claims/price).
+2. Add a **shade picker** micro-interaction in the Natural Turmeric Paint card (clickable color dots → update a wall preview).
+3. Add a **"Why haldi + paint together"** storytelling section (the unique brand hook) with a split animated visual.
+4. Add **form analytics events** (hero CTA click, product view, claim search) via a `track()` sink for Plausible/PostHog later.
+5. Add **OG image** generation (`opengraph-image.tsx`) using the brand gold + charcoal.
+6. Consider a **/blog** or **/craft-stories** route for SEO content (deferred from single-page v1).
+7. Replace generated SVG product visuals with real WebP photography before public launch.
+
+## Commit
+- `9765ade` pushed to `main` on https://github.com/hello-aditya-dev/gaurikrit-website
