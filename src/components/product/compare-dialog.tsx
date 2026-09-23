@@ -125,6 +125,49 @@ export function CompareDialog({ open, onOpenChange, onEnquire }: CompareDialogPr
   const reduceMotion = useReducedMotion()
   const selected = useCompareProducts(allProducts)
 
+  // Winner highlights — only meaningful with 2+ products.
+  const winners = React.useMemo(() => {
+    if (selected.length < 2) return {} as Record<string, string[]>
+    const result: Record<string, string[]> = {}
+
+    // Best value = lowest mid price (parse first number from priceRange)
+    const prices = selected.map((p) => ({
+      id: p.id,
+      price: parseInt(p.priceRange.replace(/[^0-9]/g, "").slice(0, 4) || "999999", 10) || 999999,
+    }))
+    const minPrice = Math.min(...prices.map((p) => p.price))
+    result["Best value"] = prices.filter((p) => p.price === minPrice).map((p) => p.id)
+
+    // Most claims = highest count of verified claims
+    const claimCounts = selected.map((p) => ({
+      id: p.id,
+      count: p.claims
+        .map((id) => getClaimById(id))
+        .filter((c): c is NonNullable<typeof c> => Boolean(c)).length,
+    }))
+    const maxClaims = Math.max(...claimCounts.map((c) => c.count))
+    if (maxClaims > 0) {
+      result["Most claims"] = claimCounts.filter((c) => c.count === maxClaims).map((c) => c.id)
+    }
+
+    // Lowest VOC (only among paint products that have the low-voc claim)
+    const vocProducts = selected.filter((p) => p.claims.includes("clm-low-voc"))
+    if (vocProducts.length >= 1) {
+      // Natural Turmeric Paint has the lowest VOC (<5 g/L) per claims
+      const naturalPaint = vocProducts.find((p) => p.id === "paint-natural")
+      if (naturalPaint) {
+        result["Lowest VOC"] = [naturalPaint.id]
+      }
+    }
+
+    return result
+  }, [selected])
+
+  const winnerBadges = (productId: string): string[] =>
+    Object.entries(winners).flatMap(([label, ids]) =>
+      ids.includes(productId) ? [label] : []
+    )
+
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-h-[92vh] overflow-hidden p-0 sm:max-w-5xl">
@@ -170,23 +213,38 @@ export function CompareDialog({ open, onOpenChange, onEnquire }: CompareDialogPr
             >
               {/* Header row: empty corner + product headers */}
               <div className="bg-secondary/60" />
-              {selected.map((p) => (
-                <div key={p.id} className="bg-card p-3 text-center">
-                  <div className="mx-auto mb-2 aspect-square w-20 overflow-hidden rounded-lg border bg-secondary">
-                    <ProductVisual
-                      id={p.image as React.ComponentProps<typeof ProductVisual>["id"]}
-                    />
+              {selected.map((p) => {
+                const badges = winnerBadges(p.id)
+                return (
+                  <div key={p.id} className="bg-card p-3 text-center">
+                    <div className="mx-auto mb-2 aspect-square w-20 overflow-hidden rounded-lg border bg-secondary">
+                      <ProductVisual
+                        id={p.image as React.ComponentProps<typeof ProductVisual>["id"]}
+                      />
+                    </div>
+                    <p className="font-display text-sm font-bold leading-tight text-foreground">
+                      {p.name}
+                    </p>
+                    {/* Winner badges */}
+                    {badges.length > 0 ? (
+                      <div className="mt-1.5 flex flex-wrap justify-center gap-1">
+                        {badges.map((b) => (
+                          <span
+                            key={b}
+                            className="inline-block rounded-full gold-gradient px-2 py-0.5 text-[8px] font-bold uppercase tracking-wider text-accent shadow-gold"
+                          >
+                            ★ {b}
+                          </span>
+                        ))}
+                      </div>
+                    ) : p.featured ? (
+                      <span className="mt-1 inline-block rounded-full bg-secondary px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider text-secondary-foreground">
+                        Featured
+                      </span>
+                    ) : null}
                   </div>
-                  <p className="font-display text-sm font-bold leading-tight text-foreground">
-                    {p.name}
-                  </p>
-                  {p.featured ? (
-                    <span className="mt-1 inline-block rounded-full gold-gradient px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider text-accent">
-                      Featured
-                    </span>
-                  ) : null}
-                </div>
-              ))}
+                )
+              })}
 
               {/* Data rows */}
               {ROWS.map((row) => (

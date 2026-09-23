@@ -24,6 +24,10 @@ export type AnalyticsEvent =
   | "newsletter_subscribe"
   | "theme_toggle"
   | "shade_preview"
+  | "recipe_view"
+  | "coverage_calculate"
+  | "calculator_enquire"
+  | "press_click"
 
 export interface AnalyticsPayload {
   [key: string]: string | number | boolean | null | undefined
