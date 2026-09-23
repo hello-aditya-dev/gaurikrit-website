@@ -4,6 +4,7 @@ import { Hero } from "@/components/sections/hero"
 import { MarqueeStrip } from "@/components/sections/marquee-strip"
 import { TrustBar } from "@/components/sections/trust-bar"
 import { About } from "@/components/sections/about"
+import { WhyTogether } from "@/components/sections/why-together"
 import { Products } from "@/components/sections/products"
 import { Features } from "@/components/sections/features"
 import { Process } from "@/components/sections/process"
@@ -23,6 +24,7 @@ export default function Home() {
         <MarqueeStrip />
         <TrustBar />
         <About />
+        <WhyTogether />
         <Products />
         <Features />
         <Process />

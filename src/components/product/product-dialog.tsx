@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils"
 import { getClaimById } from "@/lib/data"
 import type { Product } from "@/types"
 import { ProductVisual } from "@/components/product/product-visual"
+import { ShadePicker } from "@/components/product/shade-picker"
 import {
   Dialog,
   DialogContent,
@@ -16,6 +17,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
+import { track } from "@/lib/analytics"
 
 interface ProductDialogProps {
   product: Product | null
@@ -34,6 +36,11 @@ export function ProductDialog({
     onOpenChange(false)
     if (typeof window === "undefined") return
     if (product) {
+      track("product_enquire", {
+        productId: product.id,
+        productName: product.name,
+        source: "product_dialog",
+      })
       window.dispatchEvent(
         new CustomEvent("gaurikrit:inquiry", {
           detail: { productId: product.id, productName: product.name },
@@ -128,6 +135,9 @@ export function ProductDialog({
                 {product.usage}
               </p>
             </div>
+
+            {/* Shade picker — only for the Natural Turmeric Paint (signature) */}
+            {product.id === "paint-natural" ? <ShadePicker /> : null}
 
             {/* Sizes */}
             {product.sizes.length > 0 ? (

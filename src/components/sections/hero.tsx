@@ -5,6 +5,7 @@ import Link from "next/link"
 import { motion, useReducedMotion, type Variants } from "framer-motion"
 import { ChevronDown, ArrowRight, Sparkles } from "lucide-react"
 import { company } from "@/lib/data"
+import { track } from "@/lib/analytics"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 
@@ -140,7 +141,10 @@ export function Hero() {
                 size="lg"
                 className="gold-gradient h-12 rounded-full px-7 text-base font-semibold text-accent shadow-gold transition-transform hover:scale-[1.02]"
               >
-                <Link href={company.hero.primaryCta.href}>
+                <Link
+                  href={company.hero.primaryCta.href}
+                  onClick={() => track("hero_cta_click", { cta: "primary", label: company.hero.primaryCta.label })}
+                >
                   {company.hero.primaryCta.label}
                   <ArrowRight className="ml-1 h-4 w-4" />
                 </Link>
@@ -151,7 +155,10 @@ export function Hero() {
                 variant="outline"
                 className="h-12 rounded-full border-border bg-background/60 px-7 text-base font-medium text-foreground backdrop-blur transition-colors hover:border-primary hover:text-primary"
               >
-                <Link href={company.hero.secondaryCta.href}>
+                <Link
+                  href={company.hero.secondaryCta.href}
+                  onClick={() => track("hero_cta_click", { cta: "secondary", label: company.hero.secondaryCta.label })}
+                >
                   {company.hero.secondaryCta.label}
                 </Link>
               </Button>

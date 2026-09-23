@@ -6,6 +6,7 @@ import { Search, Copy, SearchX } from "lucide-react"
 import { toast } from "sonner"
 
 import { claimsData, allClaims } from "@/lib/data"
+import { track } from "@/lib/analytics"
 import type { Claim } from "@/types"
 import { cn } from "@/lib/utils"
 import {
@@ -76,6 +77,7 @@ async function copyReference(ref: string) {
       document.body.removeChild(el)
     }
     toast.success("Reference copied: " + ref)
+    track("claim_copy_reference", { reference: ref })
   } catch {
     toast.error("Could not copy reference")
   }
@@ -84,8 +86,22 @@ async function copyReference(ref: string) {
 export function ClaimsRegister() {
   const [query, setQuery] = React.useState("")
   const [category, setCategory] = React.useState("all")
+  const searchDebounce = React.useRef<ReturnType<typeof setTimeout> | null>(null)
 
   const prefersReducedMotion = useReducedMotion()
+
+  const onQueryChange = React.useCallback((value: string) => {
+    setQuery(value)
+    if (searchDebounce.current) clearTimeout(searchDebounce.current)
+    searchDebounce.current = setTimeout(() => {
+      track("claim_search", { query: value })
+    }, 600)
+  }, [])
+
+  const onCategoryChange = React.useCallback((value: string) => {
+    setCategory(value)
+    track("claim_filter", { category: value })
+  }, [])
 
   const filtered = React.useMemo(() => {
     const q = query.trim().toLowerCase()
@@ -125,13 +141,13 @@ export function ClaimsRegister() {
           <Input
             type="search"
             value={query}
-            onChange={(e) => setQuery(e.target.value)}
+            onChange={(e) => onQueryChange(e.target.value)}
             placeholder="Search by claim, reference, or source"
             aria-label="Search claims"
             className="h-11 pl-9"
           />
         </div>
-        <Select value={category} onValueChange={setCategory}>
+        <Select value={category} onValueChange={onCategoryChange}>
           <SelectTrigger
             className="h-11 w-[180px]"
             aria-label="Filter claims by category"

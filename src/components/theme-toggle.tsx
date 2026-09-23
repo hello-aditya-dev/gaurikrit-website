@@ -4,6 +4,7 @@ import * as React from 'react'
 import { Moon, Sun } from 'lucide-react'
 import { useTheme } from 'next-themes'
 import { Button } from '@/components/ui/button'
+import { track } from '@/lib/analytics'
 
 export function ThemeToggle() {
   const { theme, setTheme, resolvedTheme } = useTheme()
@@ -13,12 +14,18 @@ export function ThemeToggle() {
 
   const isDark = (resolvedTheme ?? theme) === 'dark'
 
+  const toggle = () => {
+    const next = isDark ? 'light' : 'dark'
+    setTheme(next)
+    track('theme_toggle', { theme: next })
+  }
+
   return (
     <Button
       variant="ghost"
       size="icon"
       aria-label="Toggle theme"
-      onClick={() => setTheme(isDark ? 'light' : 'dark')}
+      onClick={toggle}
       className="rounded-full"
     >
       {mounted ? (

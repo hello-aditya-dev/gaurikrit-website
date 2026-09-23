@@ -2,12 +2,14 @@
 
 import * as React from "react"
 import { motion, useReducedMotion } from "framer-motion"
-import { ArrowRight, Star } from "lucide-react"
+import { ArrowRight, Star, GitCompare } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import type { Product } from "@/types"
 import { ProductVisual } from "@/components/product/product-visual"
 import { Button } from "@/components/ui/button"
+import { useCompareStore, MAX_COMPARE } from "@/lib/compare-store"
+import { track } from "@/lib/analytics"
 
 interface ProductCardProps {
   product: Product
@@ -16,11 +18,22 @@ interface ProductCardProps {
 
 export function ProductCard({ product, onOpen }: ProductCardProps) {
   const reduce = useReducedMotion()
+  const isSelected = useCompareStore((s) => s.ids.includes(product.id))
+  const isFull = useCompareStore((s) => s.ids.length >= MAX_COMPARE)
+  const toggle = useCompareStore((s) => s.toggle)
 
   const isHaldi = product.category === "haldi"
   const chipClass = isHaldi
     ? "bg-primary text-primary-foreground"
     : "bg-accent text-accent-foreground"
+
+  const onCompareToggle = (e: React.MouseEvent) => {
+    e.stopPropagation()
+    const added = toggle(product.id)
+    if (added) {
+      track("product_compare_add", { productId: product.id, productName: product.name })
+    }
+  }
 
   return (
     <motion.article
@@ -34,7 +47,8 @@ export function ProductCard({ product, onOpen }: ProductCardProps) {
       className={cn(
         "group relative flex flex-col overflow-hidden rounded-2xl border bg-card shadow-soft",
         "transition-all duration-300 hover:-translate-y-1 hover:shadow-xl",
-        product.featured && "ring-2 ring-primary/50"
+        product.featured && "ring-2 ring-primary/50",
+        isSelected && "ring-2 ring-primary"
       )}
     >
       {/* Featured ribbon */}
@@ -58,6 +72,36 @@ export function ProductCard({ product, onOpen }: ProductCardProps) {
         >
           {product.categoryLabel}
         </span>
+
+        {/* Compare toggle */}
+        <button
+          type="button"
+          onClick={onCompareToggle}
+          disabled={!isSelected && isFull}
+          aria-pressed={isSelected}
+          aria-label={
+            isSelected
+              ? `Remove ${product.name} from comparison`
+              : `Add ${product.name} to comparison`
+          }
+          title={
+            !isSelected && isFull
+              ? `Comparison full (max ${MAX_COMPARE})`
+              : isSelected
+                ? "Remove from comparison"
+                : "Add to comparison"
+          }
+          className={cn(
+            "absolute bottom-3 right-3 z-10 inline-flex items-center gap-1 rounded-full border px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] backdrop-blur transition-all",
+            isSelected
+              ? "border-primary bg-primary text-primary-foreground shadow-gold"
+              : "border-border bg-background/80 text-foreground/80 hover:border-primary hover:text-primary",
+            !isSelected && isFull && "cursor-not-allowed opacity-50"
+          )}
+        >
+          <GitCompare className="h-3 w-3" aria-hidden="true" />
+          {isSelected ? "Comparing" : "Compare"}
+        </button>
       </div>
 
       {/* Body */}

@@ -6,18 +6,24 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion"
 import { cn } from "@/lib/utils"
 import { productsData } from "@/lib/data"
 import type { Product } from "@/types"
+import { track } from "@/lib/analytics"
 import {
   Section,
   SectionHeading,
 } from "@/components/layout/site-shell"
 import { ProductCard } from "@/components/product/product-card"
 import { ProductDialog } from "@/components/product/product-dialog"
+import { CompareBar } from "@/components/product/compare-bar"
+import { CompareDialog } from "@/components/product/compare-dialog"
+import { useCompareStore } from "@/lib/compare-store"
 
 export function Products() {
   const reduce = useReducedMotion()
   const [active, setActive] = React.useState("all")
   const [selected, setSelected] = React.useState<Product | null>(null)
   const [dialogOpen, setDialogOpen] = React.useState(false)
+  const [compareOpen, setCompareOpen] = React.useState(false)
+  const compareIds = useCompareStore((s) => s.ids)
 
   const categories = productsData.categories
   const items = React.useMemo(() => {
@@ -28,6 +34,23 @@ export function Products() {
   const handleOpen = React.useCallback((product: Product) => {
     setSelected(product)
     setDialogOpen(true)
+    track("product_view", { productId: product.id, productName: product.name })
+  }, [])
+
+  const handleEnquireFromCompare = React.useCallback((product: Product) => {
+    // mirror the ProductDialog enquire flow: dispatch inquiry event + scroll
+    if (typeof window !== "undefined") {
+      window.dispatchEvent(
+        new CustomEvent("gaurikrit:inquiry", {
+          detail: { productId: product.id, productName: product.name },
+        })
+      )
+      window.setTimeout(() => {
+        document
+          .getElementById("contact")
+          ?.scrollIntoView({ behavior: "smooth", block: "start" })
+      }, 60)
+    }
   }, [])
 
   return (
@@ -35,7 +58,7 @@ export function Products() {
       <SectionHeading
         eyebrow="Our Craft"
         title="Two crafts, one discipline."
-        description="Naturally crafted haldi and lab-tested, premium paint — explore the full Gaurikrit range."
+        description="Naturally crafted haldi and lab-tested, premium paint — explore the full Gaurikrit range. Select up to 3 to compare side by side."
       />
 
       {/* Filter tabs */}
@@ -86,7 +109,7 @@ export function Products() {
             <motion.div
               key={p.id}
               layout
-              initial={reduce ? false : { opacity: 0, scale: 0.92 }}
+              initial={reduce ? undefined : { opacity: 0, scale: 0.92 }}
               animate={reduce ? undefined : { opacity: 1, scale: 1 }}
               exit={reduce ? undefined : { opacity: 0, scale: 0.92 }}
               transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
@@ -109,6 +132,17 @@ export function Products() {
         open={dialogOpen}
         onOpenChange={setDialogOpen}
       />
+
+      {/* Comparison tray (only renders when ≥1 selected) */}
+      <CompareBar onOpenCompare={() => setCompareOpen(true)} />
+      <CompareDialog
+        open={compareOpen}
+        onOpenChange={setCompareOpen}
+        onEnquire={handleEnquireFromCompare}
+      />
+
+      {/* Spacer so the fixed compare bar never covers footer content */}
+      {compareIds.length > 0 ? <div className="h-24" aria-hidden="true" /> : null}
     </Section>
   )
 }
