@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { motion, useReducedMotion, AnimatePresence } from "framer-motion"
-import { Calculator, Ruler, PaintBucket, IndianRupee, RotateCcw, Info } from "lucide-react"
+import { Calculator, Ruler, PaintBucket, IndianRupee, RotateCcw, Info, GitCompare, Trophy } from "lucide-react"
 import {
   Section,
   SectionHeading,
@@ -38,6 +38,7 @@ export function CoverageCalculator() {
   const [selectedId, setSelectedId] = React.useState<string>("paint-interior")
   const [includePrimer, setIncludePrimer] = React.useState(true)
   const [computed, setComputed] = React.useState(false)
+  const [compareMode, setCompareMode] = React.useState(false)
 
   const areaNum = Math.max(0, Number(area) || 0)
   const spec = PAINT_SPECS.find((s) => s.id === selectedId) ?? PAINT_SPECS[0]
@@ -46,6 +47,22 @@ export function CoverageCalculator() {
     if (areaNum <= 0) return null
     return estimatePaint(areaNum, spec, includePrimer)
   }, [areaNum, spec, includePrimer])
+
+  // Compute estimates for all topcoat paints at once (compare mode).
+  const compareResults = React.useMemo(() => {
+    if (areaNum <= 0) return []
+    return PAINT_SPECS.filter((s) => s.id !== "paint-primer").map((s) => ({
+      spec: s,
+      estimate: estimatePaint(areaNum, s, includePrimer),
+    }))
+  }, [areaNum, includePrimer])
+
+  // Pick the cheapest option for the entered area (winner highlight).
+  const cheapest = compareResults.length > 0
+    ? compareResults.reduce((best, cur) =>
+        cur.estimate.totalCost < best.estimate.totalCost ? cur : best
+      )
+    : null
 
   const onCalculate = () => {
     setComputed(true)
@@ -59,12 +76,21 @@ export function CoverageCalculator() {
     })
   }
 
+  const onToggleCompare = () => {
+    const next = !compareMode
+    setCompareMode(next)
+    if (next) {
+      track("calculator_compare", { area: areaNum, includePrimer })
+    }
+  }
+
   const onReset = () => {
     setArea("500")
     setSurface("walls")
     setSelectedId("paint-interior")
     setIncludePrimer(true)
     setComputed(false)
+    setCompareMode(false)
   }
 
   return (
@@ -221,6 +247,19 @@ export function CoverageCalculator() {
             </Button>
             <Button
               type="button"
+              variant="outline"
+              onClick={onToggleCompare}
+              aria-pressed={compareMode}
+              className={cn(
+                "rounded-full border text-accent-foreground hover:bg-white/5",
+                compareMode && "border-primary bg-primary/15 text-primary"
+              )}
+            >
+              <GitCompare className="h-4 w-4" />
+              <span className="hidden sm:inline">Compare all</span>
+            </Button>
+            <Button
+              type="button"
               variant="ghost"
               onClick={onReset}
               aria-label="Reset calculator"
@@ -234,7 +273,94 @@ export function CoverageCalculator() {
         {/* RESULT PANEL */}
         <div className="relative rounded-3xl border border-primary/30 bg-background p-6 shadow-gold md:p-8">
           <AnimatePresence mode="wait">
-            {result && computed ? (
+            {compareMode && compareResults.length > 0 ? (
+              <motion.div
+                key="compare"
+                initial={reduceMotion ? false : { opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.35, ease: EASE }}
+              >
+                <div className="mb-5 flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <span className="flex h-9 w-9 items-center justify-center rounded-full gold-gradient text-accent shadow-gold">
+                      <GitCompare className="h-4 w-4" />
+                    </span>
+                    <div>
+                      <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                        Compare all paints
+                      </p>
+                      <p className="font-display text-sm font-bold text-foreground">
+                        For {areaNum} sq ft
+                      </p>
+                    </div>
+                  </div>
+                  {cheapest ? (
+                    <Badge className="gold-gradient text-accent">
+                      <Trophy className="mr-1 h-3 w-3" />
+                      Cheapest: {cheapest.spec.name}
+                    </Badge>
+                  ) : null}
+                </div>
+
+                {/* Comparison cards */}
+                <div className="space-y-3">
+                  {compareResults.map(({ spec: s, estimate: e }) => {
+                    const isCheapest = cheapest?.spec.id === s.id
+                    return (
+                      <div
+                        key={s.id}
+                        className={cn(
+                          "rounded-2xl border p-4 transition-all",
+                          isCheapest
+                            ? "border-primary bg-primary/[0.06] ring-1 ring-primary/30"
+                            : "border-border bg-card"
+                        )}
+                      >
+                        <div className="flex items-center justify-between gap-3">
+                          <div className="min-w-0">
+                            <p className="font-display text-sm font-bold text-foreground">
+                              {s.name}
+                            </p>
+                            <p className="text-[10px] text-muted-foreground">
+                              {s.coverage} sq ft/L/coat · {s.coats} coats
+                            </p>
+                          </div>
+                          <div className="text-right">
+                            <p className="font-display text-xl font-bold text-foreground">
+                              {e.totalLitres}
+                              <span className="ml-0.5 text-xs text-muted-foreground">L</span>
+                            </p>
+                            <p className="font-mono text-xs font-semibold text-primary">
+                              {formatINR(e.totalCost)}
+                            </p>
+                          </div>
+                        </div>
+                        {isCheapest ? (
+                          <p className="mt-2 flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-wider text-primary">
+                            <Trophy className="h-3 w-3" /> Best value for this area
+                          </p>
+                        ) : null}
+                      </div>
+                    )
+                  })}
+                </div>
+
+                <Separator className="my-5" />
+
+                <Button
+                  asChild
+                  className="w-full rounded-full gold-gradient text-accent shadow-gold hover:opacity-95"
+                >
+                  <a
+                    href="#contact"
+                    onClick={() => track("calculator_enquire", { productId: cheapest?.spec.id, area: areaNum, source: "compare" })}
+                  >
+                    Get an exact quote
+                  </a>
+                </Button>
+              </motion.div>
+            ) : result && computed ? (
               <motion.div
                 key="result"
                 initial={reduceMotion ? false : { opacity: 0, y: 12 }}

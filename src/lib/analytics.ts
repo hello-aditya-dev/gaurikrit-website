@@ -27,7 +27,9 @@ export type AnalyticsEvent =
   | "recipe_view"
   | "coverage_calculate"
   | "calculator_enquire"
+  | "calculator_compare"
   | "press_click"
+  | "cert_view"
 
 export interface AnalyticsPayload {
   [key: string]: string | number | boolean | null | undefined

@@ -2,8 +2,11 @@
 
 import * as React from "react"
 import { motion, useReducedMotion, type Variants } from "framer-motion"
-import { BadgeCheck } from "lucide-react"
+import { BadgeCheck, Info } from "lucide-react"
 import { company } from "@/lib/data"
+import { CERTIFICATIONS, type CertificationDetail } from "@/data/certifications"
+import { CertificationModal } from "@/components/common/certification-modal"
+import { track } from "@/lib/analytics"
 import { cn } from "@/lib/utils"
 import { CountUp } from "@/components/common/count-up"
 
@@ -11,6 +14,14 @@ const EASE = [0.22, 1, 0.36, 1] as const
 
 export function TrustBar() {
   const reduceMotion = useReducedMotion()
+  const [activeCert, setActiveCert] = React.useState<CertificationDetail | null>(null)
+  const [modalOpen, setModalOpen] = React.useState(false)
+
+  const onCertClick = (cert: CertificationDetail) => {
+    setActiveCert(cert)
+    setModalOpen(true)
+    track("cert_view", { certId: cert.id, name: cert.name })
+  }
 
   const containerVariants: Variants = {
     hidden: {},
@@ -88,22 +99,42 @@ export function TrustBar() {
           <span className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground/80">
             Accredited by
           </span>
-          {company.certifications.map((cert) => (
-            <motion.div
-              key={cert.name}
-              variants={itemVariants}
-              className="flex items-center gap-2.5 rounded-full border border-white/10 bg-white/5 px-4 py-2 backdrop-blur transition-colors hover:border-primary/40"
-            >
-              <BadgeCheck className="h-4 w-4 text-primary" aria-hidden="true" />
-              <span className="text-sm font-bold text-accent-foreground">
-                {cert.name}
-              </span>
-              <span className="text-xs text-muted-foreground">·</span>
-              <span className="text-xs text-muted-foreground">{cert.desc}</span>
-            </motion.div>
-          ))}
+          {company.certifications.map((cert) => {
+            const detail = CERTIFICATIONS.find((c) => c.id === cert.name.toLowerCase().replace(/\s+/g, "").replace("iso", "iso"))
+              ?? CERTIFICATIONS.find((c) => c.name === cert.name)
+            return (
+              <motion.button
+                key={cert.name}
+                variants={itemVariants}
+                type="button"
+                onClick={() => detail && onCertClick(detail)}
+                disabled={!detail}
+                aria-label={detail ? `View ${cert.name} certification detail` : cert.name}
+                className={cn(
+                  "group/cert flex items-center gap-2.5 rounded-full border border-white/10 bg-white/5 px-4 py-2 backdrop-blur transition-all",
+                  detail && "hover:border-primary/50 hover:bg-white/10 cursor-pointer"
+                )}
+              >
+                <BadgeCheck className="h-4 w-4 text-primary" aria-hidden="true" />
+                <span className="text-sm font-bold text-accent-foreground">
+                  {cert.name}
+                </span>
+                <span className="text-xs text-muted-foreground">·</span>
+                <span className="text-xs text-muted-foreground">{cert.desc}</span>
+                {detail ? (
+                  <Info className="h-3 w-3 text-muted-foreground/60 transition-colors group-hover/cert:text-primary" aria-hidden="true" />
+                ) : null}
+              </motion.button>
+            )
+          })}
         </motion.div>
       </div>
+
+      <CertificationModal
+        cert={activeCert}
+        open={modalOpen}
+        onOpenChange={setModalOpen}
+      />
     </section>
   )
 }
