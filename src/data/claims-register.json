@@ -1,0 +1,118 @@
+{
+  "categories": [
+    { "id": "all", "label": "All Claims" },
+    { "id": "haldi", "label": "Haldi" },
+    { "id": "paint", "label": "Paint" },
+    { "id": "process", "label": "Process" }
+  ],
+  "items": [
+    {
+      "id": "clm-curcumin",
+      "claim": "Pure Turmeric Powder is standardised to a minimum 4.5% curcumin, batch-tested.",
+      "category": "haldi",
+      "categoryLabel": "Haldi",
+      "source": "Internal NABL-accredited lab (HPLC assay)",
+      "reference": "GK-LAB-CURC-2024",
+      "verifiedOn": "2024-11-15"
+    },
+    {
+      "id": "clm-no-additives",
+      "claim": "No added colour, fillers, preservatives, or irradiation in any haldi product.",
+      "category": "haldi",
+      "categoryLabel": "Haldi",
+      "source": "FSSAI compliance + third-party audit",
+      "reference": "FSSAI/GK-2024-118",
+      "verifiedOn": "2024-11-10"
+    },
+    {
+      "id": "clm-heavy-metal",
+      "claim": "Every haldi batch screened for lead, arsenic, and cadmium below FSSAI limits.",
+      "category": "haldi",
+      "categoryLabel": "Haldi",
+      "source": "NABL-accredited heavy metals panel",
+      "reference": "GK-HM-2024-4412",
+      "verifiedOn": "2024-11-15"
+    },
+    {
+      "id": "clm-natural-ingredients",
+      "claim": "Natural Turmeric Paint is tinted only with plant and mineral pigments — no synthetic dyes.",
+      "category": "paint",
+      "categoryLabel": "Paint",
+      "source": "Formulation declaration + GreenPro review",
+      "reference": "GK-GP-NAT-2024",
+      "verifiedOn": "2024-10-02"
+    },
+    {
+      "id": "clm-heritage",
+      "claim": "Stone-ground turmeric follows a recipe documented across four generations of the founding family.",
+      "category": "process",
+      "categoryLabel": "Process",
+      "source": "Internal craft audit + founder's documented recipe log",
+      "reference": "GK-CRAFT-1998",
+      "verifiedOn": "2024-09-01"
+    },
+    {
+      "id": "clm-fssai",
+      "claim": "All food-grade haldi products are manufactured under a valid FSSAI licence.",
+      "category": "haldi",
+      "categoryLabel": "Haldi",
+      "source": "FSSAI Central Licensing",
+      "reference": "FSSAI 12345678901234",
+      "verifiedOn": "2024-08-12"
+    },
+    {
+      "id": "clm-low-voc",
+      "claim": "Interior Premium Emulsion VOC < 50 g/L; Natural Turmeric Paint VOC < 5 g/L.",
+      "category": "paint",
+      "categoryLabel": "Paint",
+      "source": "BIS VOC test + GreenPro eco-product norms",
+      "reference": "GK-VOC-2024-77",
+      "verifiedOn": "2024-10-20"
+    },
+    {
+      "id": "clm-coverage",
+      "claim": "Interior emulsion coverage ~140 sq ft/L/coat; primer ~160 sq ft/L/coat, as tested.",
+      "category": "paint",
+      "categoryLabel": "Paint",
+      "source": "Internal coverage test on standard substrate",
+      "reference": "GK-COV-2024-03",
+      "verifiedOn": "2024-09-18"
+    },
+    {
+      "id": "clm-no-lead",
+      "claim": "No lead or lead-based driers in any paint product.",
+      "category": "paint",
+      "categoryLabel": "Paint",
+      "source": "BIS lead-content test",
+      "reference": "GK-PB-2024-009",
+      "verifiedOn": "2024-10-05"
+    },
+    {
+      "id": "clm-weatherability",
+      "claim": "Exterior Weather Guard carries an 8-year weatherability performance profile under accelerated weathering.",
+      "category": "paint",
+      "categoryLabel": "Paint",
+      "source": "Accelerated QUV weathering test",
+      "reference": "GK-WEATHER-2024-22",
+      "verifiedOn": "2024-07-30"
+    },
+    {
+      "id": "clm-iso",
+      "claim": "Manufacturing operates under ISO 9001:2015 quality management.",
+      "category": "process",
+      "categoryLabel": "Process",
+      "source": "ISO 9001:2015 certificate",
+      "reference": "ISO-GK-9001-2024",
+      "verifiedOn": "2024-06-01"
+    },
+    {
+      "id": "clm-greenpro",
+      "claim": "Natural Turmeric Paint carries the GreenPro ecolabel (CII-IGBC).",
+      "category": "paint",
+      "categoryLabel": "Paint",
+      "source": "CII-IGBC GreenPro certification",
+      "reference": "GP/GK/2024/0812",
+      "verifiedOn": "2024-08-12"
+    }
+  ]
+}

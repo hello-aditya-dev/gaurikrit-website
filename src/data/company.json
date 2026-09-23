@@ -1,0 +1,50 @@
+{
+  "name": "Gaurikrit",
+  "legalName": "Gaurikrit Naturals & Coatings Pvt. Ltd.",
+  "tagline": "Naturally crafted haldi & premium paint.",
+  "foundedYear": 1998,
+  "hero": {
+    "eyebrow": "Naturally crafted since 1998",
+    "headlineLines": ["The golden warmth of haldi,", "the precision of premium paint."],
+    "subheadline": "Gaurikrit brings naturally crafted turmeric and lab-tested, low-VOC paints into every Indian home. Two crafts, one promise — pure, premium, and made to last.",
+    "primaryCta": { "label": "Explore Products", "href": "#products" },
+    "secondaryCta": { "label": "Talk to Us", "href": "#contact" },
+    "seal": { "label": "Curcumin 4.5%+", "sublabel": "Lab-tested" }
+  },
+  "story": {
+    "lead": "Gaurikrit began in 1998 with a simple belief: what touches your home and your body should be crafted with the same care.",
+    "body": "Our journey started in the turmeric fields of Bengal, where founder Gauri Kritivas watched her grandmother grind haldi on a stone each morning. Decades later, we bring that same integrity to both the turmeric on your shelf and the paint on your walls.\n\nEvery batch of haldi is sun-cured and stone-ground in small lots. Every litre of paint is lab-tested for purity, coverage, and low VOC. Two crafts, one discipline — because your home deserves nothing less.",
+    "founderQuote": "We never sell what we wouldn't bring home to our own family. That is the only rule that has never changed.",
+    "founderName": "Gauri Kritivas",
+    "founderRole": "Founder & Master Crafter"
+  },
+  "stats": [
+    { "value": "25+", "label": "Years of craft" },
+    { "value": "1.2M+", "label": "Homes painted" },
+    { "value": "8", "label": "Product families" },
+    { "value": "14,000+", "label": "Pin-codes served" }
+  ],
+  "certifications": [
+    { "name": "FSSAI", "desc": "Food Safety" },
+    { "name": "NABL", "desc": "Lab-accredited" },
+    { "name": "ISO 9001", "desc": "Quality mgmt" },
+    { "name": "GreenPro", "desc": "Ecolabel" }
+  ],
+  "aboutCards": [
+    { "title": "Heritage", "desc": "Stone-ground turmeric, recipes passed down four generations." },
+    { "title": "Craft", "desc": "Small-batch production, batch-tracked from field to shelf." },
+    { "title": "Trust", "desc": "Every claim lab-verified and published in our Claims Register." }
+  ],
+  "contact": {
+    "address": "12, Lake View Road, Ballygunge, Kolkata 700019, West Bengal, India",
+    "phone": "+91 98300 00000",
+    "email": "hello@gaurikrit.in",
+    "hours": "Mon–Sat, 9:30 AM – 6:30 PM IST"
+  },
+  "socials": [
+    { "name": "Instagram", "href": "#", "handle": "@gaurikrit" },
+    { "name": "Facebook", "href": "#", "handle": "/gaurikrit" },
+    { "name": "YouTube", "href": "#", "handle": "@gaurikritcrafts" },
+    { "name": "LinkedIn", "href": "#", "handle": "/company/gaurikrit" }
+  ]
+}

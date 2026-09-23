@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2025-01-01T00:00:00Z",
+  "brand": "Gaurikrit",
+  "categories": {
+    "originals": [
+      { "file": "Company Board3.pdf", "type": "brief", "status": "client-supplied (not in sandbox)", "usedIn": ["company.json:story"] },
+      { "file": "Broucher-paint.pdf", "type": "brochure", "status": "client-supplied (not in sandbox)", "usedIn": ["products.json:paint"] },
+      { "file": "Website Development.pdf", "type": "brief", "status": "client-supplied (not in sandbox)", "usedIn": ["INFORMATION_ARCHITECTURE.md"] },
+      { "file": "Gaurikrit_Haldi & Black.pdf", "type": "brand", "status": "client-supplied (not in sandbox)", "usedIn": ["DESIGN_SYSTEM.md:palette"] },
+      { "file": "Gaurikrit_Black & White.pdf", "type": "brand", "status": "client-supplied (not in sandbox)", "usedIn": ["DESIGN_SYSTEM.md:palette"] },
+      { "file": "Gaurikrit_Black & White (1).pdf", "type": "brand", "status": "client-supplied (not in sandbox)", "usedIn": ["DESIGN_SYSTEM.md:palette"] },
+      { "file": "6 WhatsApp images", "type": "product", "status": "client-supplied (not in sandbox)", "usedIn": ["public/products/*"] }
+    ],
+    "generated": [
+      { "file": "public/products/haldi-powder.svg", "type": "product-visual", "status": "AI/CSS generated for v1", "replaceBeforeLaunch": true },
+      { "file": "public/products/haldi-paste.svg", "type": "product-visual", "status": "AI/CSS generated for v1", "replaceBeforeLaunch": true },
+      { "file": "public/products/haldi-wellness.svg", "type": "product-visual", "status": "AI/CSS generated for v1", "replaceBeforeLaunch": true },
+      { "file": "public/products/paint-interior.svg", "type": "product-visual", "status": "AI/CSS generated for v1", "replaceBeforeLaunch": true },
+      { "file": "public/products/paint-exterior.svg", "type": "product-visual", "status": "AI/CSS generated for v1", "replaceBeforeLaunch": true },
+      { "file": "public/products/paint-natural.svg", "type": "product-visual", "status": "AI/CSS generated for v1", "replaceBeforeLaunch": true },
+      { "file": "public/products/paint-wood.svg", "type": "product-visual", "status": "AI/CSS generated for v1", "replaceBeforeLaunch": true },
+      { "file": "public/products/paint-primer.svg", "type": "product-visual", "status": "AI/CSS generated for v1", "replaceBeforeLaunch": true },
+      { "file": "public/brand/hero-accent.svg", "type": "decoration", "status": "generated", "replaceBeforeLaunch": false },
+      { "file": "public/logo.svg", "type": "logo", "status": "scaffold default", "replaceBeforeLaunch": true }
+    ]
+  },
+  "notes": "Client-supplied originals are referenced for content derivation but are not present in the sandbox build. v1 uses generated SVG visuals. Replace with optimised WebP photography before public launch."
+}
