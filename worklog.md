@@ -591,3 +591,99 @@ Stage Summary:
 - The library is ready to be imported into `hero.tsx`, `products.tsx`, `about.tsx`, `process.tsx`, `features.tsx`, etc. as visual primitives — the next agent can wire them in (e.g., `<IndianCow className="absolute right-0 bottom-0 w-48 h-32 opacity-90" />` behind hero copy, `<PaintBrushStroke className="absolute -z-10 -rotate-3" />` behind product bucket, `<RuralLandscape className="w-full h-16" />` across hero bottom, `<MaterialJourney />` inside the process section, `<AshtaLaabhDiagram />` as the features radial, `<GaushalaScene />` in the about section, `<FieldBotanicals />` as decorative section accents, `<IndianCourtyard />` in any architectural / story panel).
 - Internal dev comments in both `prakritik-*-bucket.tsx` files document the photo-swap path so a future agent can replace these stylised SVGs with real product WebP photography by simply flipping the `ProductVisual` data field — no UI change needed.
 - No unresolved issues. No external dependencies added. No changes to existing files outside `src/components/illustrations/`.
+
+---
+Task ID: PIVOT-ROUND-6
+Agent: main
+Task: MAJOR BRAND PIVOT — Gaurikrit Bio Products, cow dung Prakritik Paint, coded illustration system (per authoritative client text prompt).
+
+## What happened
+- The client delivered an authoritative text prompt (in-chat, not as a file) directing a full brand pivot:
+  - Brand: "Gaurikrit" → "Gaurikrit Bio Products" (गौरीकृत), "Walls that breathe sustainability."
+  - Products: drop the 8 haldi/premium-paint products; only TWO products: PRAKRITIK DISTEMPER + PRAKRITIK EMULSION (cow dung-based natural paint).
+  - Visual: NO photography anywhere. Build entirely with coded SVG illustrations (11 specified components). Indian/zebu cow, paint buckets, rural landscapes, botanical line art.
+  - Palette: forest green primary + haldi yellow accent + warm limewash background + mitti/geru secondary.
+  - Brand mark: front-facing Indian cow head in a scalloped floral emblem, haldi background, dark outline.
+- File uploads (the pasted-content .txt, the zip, the WhatsApp images, the PDFs) did NOT land on the filesystem — same persistent gateway issue across 5+ attempts. The authoritative text prompt arrived as in-chat text and drove the entire pivot.
+
+## Completed modifications
+### Design system (globals.css)
+- Rewrote palette: forest green primary (oklch 0.38 0.05 150), haldi yellow accent (oklch 0.82 0.14 82), mitti/geru (oklch 0.62 0.08 45), warm limewash background (oklch 0.975 0.008 70). Full dark mode.
+- New utilities: bg-limewash, bg-paper-grain, bg-haldi, bg-forest, bg-mitti, text-haldi-gradient, text-forest-gradient, shadow-forest, shadow-haldi, stroke-base, stroke-haldi, paint-edge (irregular clipped mask).
+
+### Layout (layout.tsx)
+- + Tiro Devanagari Hindi font (--font-tiro) for गौरीकृत.
+- Metadata: title "Gaurikrit Bio Products — Prakritik Paint. Walls that breathe sustainability.", new keywords, icon → /brand/gaurikrit-mark-temp.svg, JSON-LD updated.
+
+### Data layer (full rewrite)
+- company.json: Gaurikrit Bio Products, गौरीकृत, "Walls that breathe sustainability.", cow-dung story, 4 new stats (gaushala partners, 2 formats, 0 lead/VOC solvents, 100% breathable), 10 new marquee phrases, 4 new certifications (Lead-Free, Low-VOC, Breathable, Gaushala-Sourced).
+- products.json: only 2 products — Prakritik Distemper + Prakritik Emulsion, both featured, cow-dung claims.
+- claims-register.json: 9 claims in material/performance/safety categories (cow-dung-based, breathable, zero-lead, no-voc-solvents, scrub-resistant, coverage, gaushala-sourced, limewash-heritage, no-heavy-metals).
+- certifications.ts: 4 cert details (Lead-Free, Low-VOC, Breathable, Gaushala-Sourced) with issuer/scope/what-it-means/covers.
+- paint-calculator.ts: PaintSpec now has unit ("kg"|"L"), packSizes, pricePerUnit; estimatePaint returns topcoatUnits/primerUnits/totalUnits/unitLabel; PRIMER_SPEC = Prakritik Limewash Primer.
+- guides.ts (replaces recipes.ts): 3 paint application guides (prep+prime, distemper two-coat, emulsion application).
+- types/index.ts: Accent = forest|haldi|mitti|charcoal; Product.category = distemper|emulsion; Claim.category = material|performance|safety; CompanyData + fullName, devanagari, supportingIdentity.
+
+### Brand marks (temporary digital)
+- public/brand/gaurikrit-mark-temp.svg — front-facing Indian cow head in 12-petal scalloped floral emblem, haldi gradient fill, dark forest outline.
+- public/brand/gaurikrit-wordmark-temp.svg — "Gaurikrit" serif + "BIO PRODUCTS" supporting identity + small ग dot.
+- BRAND_ASSET_REPLACEMENT.md — documents these as temporary, with replacement instructions.
+
+### 11-component coded illustration library (src/components/illustrations/)
+Built via subagent (Task ID ILLUSTRATIONS). All "use client" SVG components, CSS-var colours, 1.75px stroke round cap/join, aria-hidden by default:
+1. IndianCow (side-view zebu, shoulder hump, dewlap, haldi ear tint) — 280×180
+2. GaurikritCowMark (front-facing cow head in scalloped emblem) — 120×120
+3. PrakritikDistemperBucket (white bucket + handle + label + cow motif) — 200×240 + internal dev comment
+4. PrakritikEmulsionBucket (taller bucket + rim drip) — 200×260 + internal dev comment
+5. RuralLandscape (rolling fields + grass + distant trees) — 600×80
+6. IndianCourtyard (limewashed wall + cusped arch + niche + haldi field) — 320×240
+7. MaterialJourney (cow → refine → bucket → wall, dashed haldi connectors) — 600×120
+8. AshtaLaabhDiagram (8-icon radial around central cow-mark) — 320×320
+9. PaintBrushStroke (irregular haldi stroke + grain filter) — 600×400
+10. FieldBotanicals (herbarium grass + branch + seed-head) — 200×200
+11. GaushalaScene (shelter + 3 cows + tree + sun) — 400×200
++ index.ts barrel re-exporting all 11.
+
+### Hero rewrite (hero.tsx)
+- LEFT: गौरीकृत (Devanagari, text-4xl→5xl) / "GAURIKRIT BIO PRODUCTS" eyebrow / headline "Walls that breathe sustainability." / subheadline / [Explore Prakritik Paint] (forest CTA) + [Why Prakritik?] (outline).
+- RIGHT: 4-layer composition with the specified animation sequence:
+  1. PaintBrushStroke reveals horizontally (clipPath inset 100%→0, 1.1s)
+  2. PrakritikEmulsionBucket enters upward 18px (0.7s, delay 1.0s)
+  3. IndianCow line draws once (opacity + pathLength, 1.2s, delay 1.4s)
+  4. RuralLandscape resolves (parent, delay 1.4s, 0.8s)
+  5. STOP — no continuous floating.
+- Scroll cue at bottom.
+
+### Product visuals (product-visual.tsx)
+- Rewritten to map prakritik-distemper → PrakritikDistemperBucket, prakritik-emulsion → PrakritikEmulsionBucket. FallbackBucket for unknown ids. Designed for one-line .webp swap.
+
+### Bug fixes from the pivot
+- product-card.tsx + product-dialog.tsx: category === "haldi" → "distemper" (chip color logic).
+- claims-register.tsx: category switch haldi/paint/process → material/performance/safety.
+- coverage-calculator.tsx: totalLitres/topcoatLitres/primerLitres → totalUnits/topcoatUnits/primerUnits (sed). Default selectedId paint-interior → prakritik-distemper. Featured badge paint-natural → prakritik-emulsion.
+- compare-dialog.tsx: lowest-VOC winner paint-natural → prakritik-emulsion.
+- recipe-carousel.tsx: imports RECIPES → GUIDES (sed), recipes.ts deleted.
+
+## Verification
+- `bun run lint` → clean. `bunx tsc --noEmit` → clean (src/).
+- HTTP 200, no console errors.
+- agent-browser: title "Gaurikrit Bio Products — Prakritik Paint. Walls that breathe sustainability." ✓
+- गौरीकृत (Devanagari) renders ✓. "Prakritik" present ✓.
+- Products section: "Prakritik Distemper | Prakritik Emulsion" ✓ (2 products with bucket illustrations).
+- Full-page screenshot captured.
+
+## Unresolved issues / risks
+- Section copy (about, features, process, testimonials, faq, why-together, press-strip, contact) still references OLD haldi/premium-paint content in places — needs a copy sweep to fully reflect cow-dung Prakritik Paint.
+- The shade-picker is still imported in product-dialog but gated on `product.id === "paint-natural"` which will never match — dead code, harmless.
+- Real product photography pending (site is 100% coded SVG per the client's VISUAL_ASSET_RULE — photography not required for v1).
+- Real cert numbers / address / phone pending client confirmation.
+- File uploads still not landing on the server filesystem (persistent gateway issue).
+
+## Priority recommendations for next phase
+1. **Copy sweep** — update about/features/process/testimonials/faq/why-together/press copy to fully reflect cow-dung Prakritik Paint brand.
+2. **Wire illustrations into more sections** — GaushalaScene in About, IndianCourtyard in Why-together, MaterialJourney in Process, AshtaLaabhDiagram in Features, FieldBotanicals as section accents.
+3. **Update testimonials + FAQ** to cow-dung paint content.
+4. **OG image** — update to the new brand + forest/haldi palette + cow mark.
+
+## Commit
+- `4f74253` pushed to `main` on https://github.com/hello-aditya-dev/gaurikrit-website
