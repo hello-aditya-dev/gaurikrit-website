@@ -5,6 +5,7 @@ import { motion, useReducedMotion, type Variants } from "framer-motion"
 import { BadgeCheck } from "lucide-react"
 import { company } from "@/lib/data"
 import { cn } from "@/lib/utils"
+import { CountUp } from "@/components/common/count-up"
 
 const EASE = [0.22, 1, 0.36, 1] as const
 
@@ -44,25 +45,36 @@ export function TrustBar() {
           viewport={{ once: true, amount: 0.3 }}
           className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl bg-white/5 md:grid-cols-4"
         >
-          {company.stats.map((stat, i) => (
-            <motion.li
-              key={stat.label}
-              variants={itemVariants}
-              className={cn(
-                "flex flex-col items-center justify-center bg-accent px-4 py-6 text-center md:py-8",
-                // Hide hairline on first of each row on mobile (grid-cols-2)
-                i % 2 === 0 && "md:border-l-0",
-                // Hairline dividers via outline trick on desktop handled by gap + bg
-              )}
-            >
-              <p className="font-display text-3xl font-bold tracking-tight text-primary md:text-4xl">
-                {stat.value}
-              </p>
-              <p className="mt-1.5 text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">
-                {stat.label}
-              </p>
-            </motion.li>
-          ))}
+          {company.stats.map((stat, i) => {
+            const hasNumeric =
+              typeof stat.numericValue === "number" && !Number.isNaN(stat.numericValue)
+            return (
+              <motion.li
+                key={stat.label}
+                variants={itemVariants}
+                className={cn(
+                  "flex flex-col items-center justify-center bg-accent px-4 py-6 text-center md:py-8",
+                  i % 2 === 0 && "md:border-l-0"
+                )}
+              >
+                <p className="font-display text-3xl font-bold tracking-tight text-primary md:text-4xl">
+                  {hasNumeric ? (
+                    <CountUp
+                      value={stat.numericValue as number}
+                      suffix={stat.suffix}
+                      prefix={stat.prefix}
+                      decimals={stat.decimals}
+                    />
+                  ) : (
+                    stat.value
+                  )}
+                </p>
+                <p className="mt-1.5 text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">
+                  {stat.label}
+                </p>
+              </motion.li>
+            )
+          })}
         </motion.ul>
 
         {/* Certifications */}
@@ -73,6 +85,9 @@ export function TrustBar() {
           viewport={{ once: true, amount: 0.3 }}
           className="mt-8 flex flex-wrap items-center justify-center gap-3 md:mt-10"
         >
+          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground/80">
+            Accredited by
+          </span>
           {company.certifications.map((cert) => (
             <motion.div
               key={cert.name}

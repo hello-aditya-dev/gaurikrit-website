@@ -63,3 +63,5 @@ server.log
 .agent-browser/
 
 # worklog is intentionally tracked (shared handover doc)
+# tool results (ephemeral)
+/tool-results/

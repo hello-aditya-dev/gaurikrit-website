@@ -14,11 +14,19 @@ import {
 } from "@/components/ui/sheet"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { navigation } from "@/lib/data"
+import { useActiveSection } from "@/hooks/use-active-section"
 import { cn } from "@/lib/utils"
 
 export function SiteHeader() {
   const [scrolled, setScrolled] = React.useState(false)
   const [mobileOpen, setMobileOpen] = React.useState(false)
+
+  // Scroll-spy: highlight the nav link of the section in view.
+  const sectionIds = React.useMemo(
+    () => navigation.primary.map((l) => l.href.replace("#", "")),
+    []
+  )
+  const activeId = useActiveSection(sectionIds)
 
   React.useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24)
@@ -58,16 +66,32 @@ export function SiteHeader() {
 
         {/* Desktop nav */}
         <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary">
-          {navigation.primary.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="group relative rounded-md px-3 py-2 text-sm font-medium text-foreground/80 transition-colors hover:text-foreground"
-            >
-              {link.label}
-              <span className="absolute inset-x-3 -bottom-0.5 h-0.5 origin-left scale-x-0 bg-primary transition-transform duration-300 group-hover:scale-x-100" />
-            </Link>
-          ))}
+          {navigation.primary.map((link) => {
+            const isActive = activeId === link.href.replace("#", "")
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                aria-current={isActive ? "true" : undefined}
+                className={cn(
+                  "group relative rounded-md px-3 py-2 text-sm font-medium transition-colors",
+                  isActive
+                    ? "text-primary"
+                    : "text-foreground/80 hover:text-foreground"
+                )}
+              >
+                {link.label}
+                <span
+                  className={cn(
+                    "absolute inset-x-3 -bottom-0.5 h-0.5 origin-left bg-primary transition-transform duration-300",
+                    isActive
+                      ? "scale-x-100"
+                      : "scale-x-0 group-hover:scale-x-100"
+                  )}
+                />
+              </Link>
+            )
+          })}
         </nav>
 
         {/* Actions */}
@@ -119,24 +143,33 @@ export function SiteHeader() {
                   className="flex flex-col gap-1 px-3 py-4"
                   aria-label="Mobile"
                 >
-                  {navigation.primary.map((link, i) => (
-                    <motion.div
-                      key={link.href}
-                      initial={{ opacity: 0, x: 12 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: i * 0.05 }}
-                    >
-                      <SheetClose asChild>
-                        <Link
-                          href={link.href}
-                          className="flex items-center justify-between rounded-lg px-3 py-3 text-base font-medium text-foreground/90 transition-colors hover:bg-secondary"
-                        >
-                          {link.label}
-                          <span className="text-primary">→</span>
-                        </Link>
-                      </SheetClose>
-                    </motion.div>
-                  ))}
+                  {navigation.primary.map((link, i) => {
+                    const isActive = activeId === link.href.replace("#", "")
+                    return (
+                      <motion.div
+                        key={link.href}
+                        initial={{ opacity: 0, x: 12 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: i * 0.05 }}
+                      >
+                        <SheetClose asChild>
+                          <Link
+                            href={link.href}
+                            aria-current={isActive ? "true" : undefined}
+                            className={cn(
+                              "flex items-center justify-between rounded-lg px-3 py-3 text-base font-medium transition-colors",
+                              isActive
+                                ? "bg-secondary text-primary"
+                                : "text-foreground/90 hover:bg-secondary"
+                            )}
+                          >
+                            {link.label}
+                            <span className="text-primary">→</span>
+                          </Link>
+                        </SheetClose>
+                      </motion.div>
+                    )
+                  })}
                 </nav>
                 <div className="mt-auto border-t border-border p-5">
                   <Button

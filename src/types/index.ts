@@ -2,6 +2,10 @@ export type Accent = "gold" | "charcoal"
 
 export interface CompanyStats {
   value: string
+  numericValue?: number
+  suffix?: string
+  prefix?: string
+  decimals?: number
   label: string
 }
 
@@ -49,6 +53,7 @@ export interface CompanyData {
     founderRole: string
   }
   stats: CompanyStats[]
+  marquee?: string[]
   certifications: CompanyCertification[]
   aboutCards: CompanyAboutCard[]
   contact: CompanyContact
@@ -89,6 +94,7 @@ export interface Product {
   claims: string[]
   image: string
   accent: Accent
+  featured?: boolean
 }
 
 export interface ProductsData {

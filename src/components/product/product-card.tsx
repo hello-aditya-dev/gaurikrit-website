@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { motion, useReducedMotion } from "framer-motion"
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, Star } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import type { Product } from "@/types"
@@ -25,17 +25,26 @@ export function ProductCard({ product, onOpen }: ProductCardProps) {
   return (
     <motion.article
       layout
-      initial={reduce ? false : { opacity: 0, y: 24, scale: 0.96 }}
-      whileInView={reduce ? false : { opacity: 1, y: 0, scale: 1 }}
+      initial={reduce ? undefined : { opacity: 0, y: 24, scale: 0.96 }}
+      whileInView={reduce ? undefined : { opacity: 1, y: 0, scale: 1 }}
       viewport={{ once: true, margin: "-60px" }}
       exit={reduce ? undefined : { opacity: 0, scale: 0.96 }}
       transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
       whileHover={reduce ? undefined : { y: -6 }}
       className={cn(
         "group relative flex flex-col overflow-hidden rounded-2xl border bg-card shadow-soft",
-        "transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+        "transition-all duration-300 hover:-translate-y-1 hover:shadow-xl",
+        product.featured && "ring-2 ring-primary/50"
       )}
     >
+      {/* Featured ribbon */}
+      {product.featured ? (
+        <span className="absolute right-3 top-3 z-10 inline-flex items-center gap-1 rounded-full gold-gradient px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.12em] text-accent shadow-gold">
+          <Star className="h-3 w-3 fill-accent" aria-hidden="true" />
+          Featured
+        </span>
+      ) : null}
+
       {/* Visual */}
       <div className="relative aspect-square overflow-hidden border-b">
         <ProductVisual id={product.image as React.ComponentProps<typeof ProductVisual>["id"]} />

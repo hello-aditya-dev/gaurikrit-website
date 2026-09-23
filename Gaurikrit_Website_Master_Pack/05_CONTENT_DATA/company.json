@@ -19,10 +19,22 @@
     "founderRole": "Founder & Master Crafter"
   },
   "stats": [
-    { "value": "25+", "label": "Years of craft" },
-    { "value": "1.2M+", "label": "Homes painted" },
-    { "value": "8", "label": "Product families" },
-    { "value": "14,000+", "label": "Pin-codes served" }
+    { "value": "25+", "numericValue": 25, "suffix": "+", "label": "Years of craft" },
+    { "value": "1.2M+", "numericValue": 1.2, "suffix": "M+", "decimals": 1, "label": "Homes painted" },
+    { "value": "8", "numericValue": 8, "suffix": "", "label": "Product families" },
+    { "value": "14,000+", "numericValue": 14000, "suffix": "+", "label": "Pin-codes served" }
+  ],
+  "marquee": [
+    "Naturally Crafted Haldi",
+    "Low-VOC Premium Paint",
+    "Lab-Tested Purity",
+    "Stone-Ground in Small Batches",
+    "Pan-India Delivery",
+    "GreenPro Ecolabel",
+    "Four Generations of Craft",
+    "1,200+ Paint Shades",
+    "Curcumin 4.5%+",
+    "ISO 9001:2015"
   ],
   "certifications": [
     { "name": "FSSAI", "desc": "Food Safety" },
