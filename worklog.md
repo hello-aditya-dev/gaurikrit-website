@@ -530,3 +530,64 @@ Task: QA-driven assessment + new features (certifications modal, calculator comp
 
 ## Commit
 - `063d49d` pushed to `main` on https://github.com/hello-aditya-dev/gaurikrit-website
+
+---
+Task ID: ILLUSTRATIONS
+Agent: illustrations-agent
+Task: Build the coded SVG illustration library — 11 components + barrel — for the Gaurikrit Bio Products website (cow-dung-based Prakritik Paint). Aesthetic: contemporary Indian editorial + old agricultural line drawing + block-print simplicity + architectural minimalism.
+
+Work Log:
+- Read existing worklog and `src/app/globals.css` to align with the project's design tokens (`--forest`, `--haldi`, `--haldi-deep`, `--mitti`, `--background`, stroke-base 1.75px round-cap/join).
+- Read existing `src/components/product/product-visual.tsx` to match the established pattern (single-file SVG component, `var(--…)` colors, Georgia serif SVG text).
+- Created `src/components/illustrations/` directory.
+- Wrote 11 illustration components + 1 barrel:
+
+  1. `indian-cow.tsx` (`<IndianCow />`) — side-view zebu cow, viewBox 280×180. Forest-green 1.75px outline, haldi inner-ear tint. Visible traits: prominent forehead bulge, twin curved horns (front + back), long relaxed hanging ear (leaf-shape), three-line dewlap, **shoulder hump raised above back line** (peak at y=48, back at y=58), slender body, four tapered closed-path legs with hoof marks, calm eye with brow line, tail with three-stroke tuft, subtle ground line.
+
+  2. `gaurikrit-cow-mark.tsx` (`<GaurikritCowMark />`) — front-facing cow head inside an 8-petal scalloped floral emblem, viewBox 120×120. Haldi-yellow filled emblem, forest outline, inner accent ring. Head: prominent forehead (closed contour, narrow top → wide cheeks → muzzle), vertical center crease, two outward-curving horns, two long hanging ears, two eye dots, muzzle band line, mouth curve, two nostril dots.
+
+  3. `prakritik-distemper-bucket.tsx` (`<PrakritikDistemperBucket />`) — front-facing white cylindrical paint bucket, viewBox 200×240. Bail handle (arch + thin inner line + attachment lugs), tapered body, dark-green top rim ellipse (with inner opening + haldi paint surface), bottom curve, small cow-line motif (side-view cow with hump, legs, tail, eye) on upper white body, two haldi accent stripes (upper + lower), dark-green label band (cylinder-curved), "GAURIKRIT" + "PRAKRITIK DISTEMPER" Georgia serif text in haldi on green band, small underline mark, subtle cylinder sheen. Includes the spec-required internal dev comment block referencing the photo swap path `/products/prakritik-distemper.webp`.
+
+  4. `prakritik-emulsion-bucket.tsx` (`<PrakritikEmulsionBucket />`) — taller version, viewBox 200×260. Same structure as distemper plus: two liquid-paint drip wobbles at the rim + a small drip bead on the right side (liquid-paint look), taller label band, "GAURIKRIT" + "PRAKRITIK" + "EMULSION" stacked text. Same internal dev comment referencing `/products/prakritik-emulsion.webp`.
+
+  5. `rural-landscape.tsx` (`<RuralLandscape />`) — wide/short thin rural line, viewBox 600×80. 1.5px forest stroke. Four rolling field lines (distant → foreground, increasing opacity/stroke), two distant tree silhouettes (one large on horizon, one small), 10 distant grass tufts + 12 foreground grass tufts (procedurally mapped), two leafy sprig accents. No buildings, no people.
+
+  6. `indian-courtyard.tsx` (`<IndianCourtyard />`) — architectural Indian wall section, viewBox 320×240. Limewashed wall rectangle (with cornice + subtle horizontal texture lines), central cusped Indian arch opening (3-cusp, with depth inner-edge line + threshold), small wall niche on left (smaller cusped arch + sill), haldi painted field on right side (with scalloped chunari borders top + bottom + vertical motif lines + central dot-and-ring motif), two-step floor at base, subtle shadow inside opening, small grass tufts at floor edge.
+
+  7. `material-journey.tsx` (`<MaterialJourney />`) — horizontal 4-stage material flow, viewBox 600×120. Forest-stroke icons (cow → sun-drying-tray-with-particles → paint bucket → wall+brush), connected by haldi-dashed lines with arrowheads. Stage labels ("SOURCE / REFINE / PRODUCT / APPLY") in Georgia serif + small italic sub-labels ("cow dung / sun-dried / paint / wall"). Haldi paint stroke on wall + small haldi stripe on bucket.
+
+  8. `ashta-laabh-diagram.tsx` (`<AshtaLaabhDiagram />`) — 8-benefit radial, viewBox 320×320. Center (160,160), 8 icons at radius 110 at 45° intervals: sun (top), leaf (top-right), drop (right), wall (bottom-right), sprout (bottom), heart (bottom-left), home (left), branch/sprig (top-left). Outer subtle ring, dashed-haldi radial connectors, 8 small haldi dots on the ring between icons, central cow-mark inside haldi disc (simplified front-facing cow head with horns, ears, eyes, nostrils, muzzle line), positioned labels offset away from each icon.
+
+  9. `paint-brush-stroke.tsx` (`<PaintBrushStroke />`) — enormous organic irregular haldi brush stroke, viewBox 600×400. Single 8-segment cubic Bezier closed path with intentional wobble on every edge (no rectangle), haldi→haldi-deep linear gradient fill, soft radial bloom behind, inner lighter highlight blob, darker rim along lower-right edge, two bristle-texture strokes, three drag-out tails (left, right-top, right-bottom), SVG filter (`feTurbulence` + `feColorMatrix`) grain overlay for paper-fibre feel.
+
+  10. `field-botanicals.tsx` (`<FieldBotanicals />`) — herbarium-style botanical spread, viewBox 200×200. 1.5px forest stroke. Three specimens: grass sprig (5 long curved blades + 2 leaf veins + root suggestion), leafy branch (central stem + 5 side offshoots + 5 alternating leaves with veins + tip bud), seed head (stem + 2 lower leaves + 2 smaller lower leaves + oval seed-head cluster with 8 seed grains + 5 long awn bristles out the top), plus 5 scattered detail dots for field texture.
+
+  11. `gaushala-scene.tsx` (`<GaushalaScene />`) — calm gaushala scene, viewBox 400×200. 1.5px forest stroke. Low pitched shelter roofline (main + underside + 6 roof-segment tile lines) supported by 3 poles (with base bands), 3 simplified side-view cows (1 left under shelter, 1 center under shelter smaller, 1 right outside smaller scale) rendered via a reusable inline `renderCow()` helper (body+head outline with hump, 4 legs, tail, horn, ear, eye), small tree on left (trunk + irregular canopy + 3 canopy vein lines), ground line + lower subtle line, foreground grass tufts, distant horizon line, 3 distant bird v-shapes, low sun with rays.
+
+  12. `index.ts` — barrel re-exporting all 11 named functions + their Props types. Removed `"use client"` from the barrel itself (each component file already declares it; barrel stays importable from both server + client code).
+
+- All 11 components follow the locked conventions:
+  - `"use client"` directive.
+  - Props `{ className?: string; ariaHidden?: boolean }`, default `ariaHidden = true`.
+  - `viewBox`, `width="100%"`, `height="100%"`, `preserveAspectRatio="xMidYMid meet"`.
+  - `className` forwarded to root `<svg>`.
+  - `aria-hidden="true"` set when `ariaHidden !== false`; otherwise `<title>` child added.
+  - Colors via CSS vars (`var(--forest)`, `var(--haldi)`, `var(--haldi-deep)`, `var(--mitti)`, `var(--background)`, `var(--secondary)`, `var(--card)`).
+  - SVG text uses `fontFamily="Georgia, serif"` + `fontWeight={700}`.
+  - Stroke base 1.75px (1.5px for the wide/short landscape, botanical, gaushala, material-journey per spec).
+  - `strokeLinecap="round"`, `strokeLinejoin="round"` everywhere.
+- Honored the CRITICAL RULES: no emoji, no cartoon cow, no children's-book look, no 3D blob, no glossy gradients (only the intentional haldi gradient in `paint-brush-stroke` per spec), no Holstein patches, no cartoon spots, no religious symbolism (no tilak/bindu/crown/halo/sacred marks — the haldi accents are decorative ear-tints / brand color fields / connector lines only).
+- Honored zebu cow traits across all cow depictions (indian-cow, gaushala cows, central cow-mark, bucket cow motifs): prominent forehead, moderate curved horns, long relaxed ears, visible shoulder hump (raised above back line in side views), dewlap, slender body, tapered legs, calm posture.
+
+Verification:
+- `bun run lint` → clean (0 errors).
+- `bunx tsc --noEmit` → clean (0 errors in `src/`, filtering out `examples/`, `skills/`, `node_modules/`).
+- Dev server (`bun run dev`) confirmed still serving `/` HTTP 200 from `dev.log` tail (compiles cleanly after file additions).
+- All 12 files present in `src/components/illustrations/` (11 `.tsx` components + 1 `index.ts` barrel), totalling 1873 lines.
+
+Stage Summary:
+- Coded SVG illustration library delivered: 11 components + barrel at `src/components/illustrations/`.
+- Each component is a self-contained client-side SVG that consumes the project's CSS-var color tokens (so it auto-adapts to light/dark mode) and respects the locked illustration conventions (viewBox, sizing, aria-hidden/title, Georgia serif text, round cap/join, 1.75px base stroke).
+- The library is ready to be imported into `hero.tsx`, `products.tsx`, `about.tsx`, `process.tsx`, `features.tsx`, etc. as visual primitives — the next agent can wire them in (e.g., `<IndianCow className="absolute right-0 bottom-0 w-48 h-32 opacity-90" />` behind hero copy, `<PaintBrushStroke className="absolute -z-10 -rotate-3" />` behind product bucket, `<RuralLandscape className="w-full h-16" />` across hero bottom, `<MaterialJourney />` inside the process section, `<AshtaLaabhDiagram />` as the features radial, `<GaushalaScene />` in the about section, `<FieldBotanicals />` as decorative section accents, `<IndianCourtyard />` in any architectural / story panel).
+- Internal dev comments in both `prakritik-*-bucket.tsx` files document the photo-swap path so a future agent can replace these stylised SVGs with real product WebP photography by simply flipping the `ProductVisual` data field — no UI change needed.
+- No unresolved issues. No external dependencies added. No changes to existing files outside `src/components/illustrations/`.

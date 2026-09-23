@@ -59,8 +59,8 @@ export function ProductDialog({
     return null
   }
 
-  const isHaldi = product.category === "haldi"
-  const chipClass = isHaldi
+  const isDistemper = product.category === "distemper"
+  const chipClass = isDistemper
     ? "bg-primary text-primary-foreground"
     : "bg-accent text-accent-foreground"
 

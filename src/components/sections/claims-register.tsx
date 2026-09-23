@@ -36,11 +36,11 @@ import {
 /** Category badge color mapping per spec */
 function categoryBadgeClass(category: Claim["category"]): string {
   switch (category) {
-    case "haldi":
+    case "material":
       return "bg-primary text-primary-foreground border-transparent"
-    case "paint":
+    case "performance":
       return "bg-accent text-accent-foreground border-transparent"
-    case "process":
+    case "safety":
     default:
       return "bg-secondary text-secondary-foreground border-transparent"
   }

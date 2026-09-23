@@ -35,7 +35,7 @@ export function CoverageCalculator() {
   const reduceMotion = useReducedMotion()
   const [area, setArea] = React.useState<string>("500")
   const [surface, setSurface] = React.useState<Surface>("walls")
-  const [selectedId, setSelectedId] = React.useState<string>("paint-interior")
+  const [selectedId, setSelectedId] = React.useState<string>("prakritik-distemper")
   const [includePrimer, setIncludePrimer] = React.useState(true)
   const [computed, setComputed] = React.useState(false)
   const [compareMode, setCompareMode] = React.useState(false)
@@ -71,7 +71,7 @@ export function CoverageCalculator() {
       surface,
       productId: spec.id,
       includePrimer,
-      totalLitres: result?.totalLitres ?? 0,
+      totalUnits: result?.totalUnits ?? 0,
       totalCost: result?.totalCost ?? 0,
     })
   }
@@ -87,7 +87,7 @@ export function CoverageCalculator() {
   const onReset = () => {
     setArea("500")
     setSurface("walls")
-    setSelectedId("paint-interior")
+    setSelectedId("prakritik-distemper")
     setIncludePrimer(true)
     setComputed(false)
     setCompareMode(false)
@@ -198,7 +198,7 @@ export function CoverageCalculator() {
                       {s.coverage} sq ft/L/coat · {s.coats} coats
                     </span>
                   </span>
-                  {s.id === "paint-natural" ? (
+                  {s.id === "prakritik-emulsion" ? (
                     <Badge className="gold-gradient text-accent">Featured</Badge>
                   ) : null}
                 </button>
@@ -328,7 +328,7 @@ export function CoverageCalculator() {
                           </div>
                           <div className="text-right">
                             <p className="font-display text-xl font-bold text-foreground">
-                              {e.totalLitres}
+                              {e.totalUnits}
                               <span className="ml-0.5 text-xs text-muted-foreground">L</span>
                             </p>
                             <p className="font-mono text-xs font-semibold text-primary">
@@ -391,16 +391,16 @@ export function CoverageCalculator() {
                     Paint needed
                   </p>
                   <p className="mt-1 font-display text-5xl font-bold text-foreground">
-                    {result.totalLitres}
+                    {result.totalUnits}
                     <span className="ml-1 text-xl text-muted-foreground">L</span>
                   </p>
                   <div className="mt-2 flex justify-center gap-4 text-xs text-muted-foreground">
                     <span>
-                      <span className="font-semibold text-foreground">{result.topcoatLitres}L</span> topcoat
+                      <span className="font-semibold text-foreground">{result.topcoatUnits}L</span> topcoat
                     </span>
-                    {result.primerLitres > 0 ? (
+                    {result.primerUnits > 0 ? (
                       <span>
-                        <span className="font-semibold text-foreground">{result.primerLitres}L</span> primer
+                        <span className="font-semibold text-foreground">{result.primerUnits}L</span> primer
                       </span>
                     ) : null}
                   </div>
@@ -431,7 +431,7 @@ export function CoverageCalculator() {
                 {/* Cost */}
                 <div className="space-y-2">
                   <div className="flex items-center justify-between text-sm">
-                    <span className="text-muted-foreground">Topcoat ({result.topcoatLitres}L)</span>
+                    <span className="text-muted-foreground">Topcoat ({result.topcoatUnits}L)</span>
                     <span className="font-medium text-foreground flex items-center">
                       <IndianRupee className="h-3.5 w-3.5" />
                       {result.topcoatCost.toLocaleString("en-IN")}
@@ -439,7 +439,7 @@ export function CoverageCalculator() {
                   </div>
                   {result.primerCost > 0 ? (
                     <div className="flex items-center justify-between text-sm">
-                      <span className="text-muted-foreground">Primer ({result.primerLitres}L)</span>
+                      <span className="text-muted-foreground">Primer ({result.primerUnits}L)</span>
                       <span className="font-medium text-foreground flex items-center">
                         <IndianRupee className="h-3.5 w-3.5" />
                         {result.primerCost.toLocaleString("en-IN")}

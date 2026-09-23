@@ -1,4 +1,4 @@
-export type Accent = "gold" | "charcoal"
+export type Accent = "forest" | "haldi" | "mitti" | "charcoal"
 
 export interface CompanyStats {
   value: string
@@ -34,7 +34,10 @@ export interface CompanyContact {
 
 export interface CompanyData {
   name: string
-  legalName: string
+  fullName?: string
+  legalName?: string
+  devanagari?: string
+  supportingIdentity?: string
   tagline: string
   foundedYear: number
   hero: {
@@ -83,7 +86,7 @@ export interface ProductCategory {
 export interface Product {
   id: string
   name: string
-  category: "haldi" | "paint"
+  category: "distemper" | "emulsion"
   categoryLabel: string
   tagline: string
   description: string
@@ -110,7 +113,7 @@ export interface ClaimCategory {
 export interface Claim {
   id: string
   claim: string
-  category: "haldi" | "paint" | "process"
+  category: "material" | "performance" | "safety"
   categoryLabel: string
   source: string
   reference: string

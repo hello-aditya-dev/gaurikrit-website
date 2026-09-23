@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
+import { Inter, Playfair_Display, Tiro_Devanagari_Hindi } from "next/font/google";
 import { Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
@@ -17,6 +17,13 @@ const playfair = Playfair_Display({
   display: "swap",
 });
 
+const tiro = Tiro_Devanagari_Hindi({
+  variable: "--font-tiro",
+  subsets: ["devanagari"],
+  display: "swap",
+  weight: "400",
+});
+
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
@@ -24,45 +31,44 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://gaurikrit.example.com"),
+  metadataBase: new URL("https://gaurikrit.bio"),
   title: {
-    default: "Gaurikrit — Naturally Crafted Haldi & Premium Paint",
-    template: "%s · Gaurikrit",
+    default: "Gaurikrit Bio Products — Prakritik Paint. Walls that breathe sustainability.",
+    template: "%s · Gaurikrit Bio Products",
   },
   description:
-    "Gaurikrit brings the golden warmth of naturally crafted haldi and the precision of premium paint into every Indian home. Lab-tested purity, low-VOC paints, pan-India delivery.",
+    "Gaurikrit Bio Products makes Prakritik Paint — cow dung-based natural paint in distemper and emulsion formats for interior and exterior walls. Walls that breathe sustainability.",
   keywords: [
     "Gaurikrit",
-    "haldi",
-    "turmeric",
+    "Prakritik Paint",
+    "cow dung paint",
     "natural paint",
-    "premium paint",
-    "low VOC paint",
-    "interior paint",
-    "exterior paint",
-    "turmeric powder",
-    "curcumin",
-    "Indian paint brand",
+    "distemper",
+    "emulsion",
+    "bio products",
+    "sustainable paint India",
+    "limewash",
+    "gaushala",
   ],
-  authors: [{ name: "Gaurikrit" }],
-  creator: "Gaurikrit",
+  authors: [{ name: "Gaurikrit Bio Products" }],
+  creator: "Gaurikrit Bio Products",
   openGraph: {
     type: "website",
     locale: "en_IN",
-    url: "https://gaurikrit.example.com",
-    siteName: "Gaurikrit",
-    title: "Gaurikrit — Naturally Crafted Haldi & Premium Paint",
+    url: "https://gaurikrit.bio",
+    siteName: "Gaurikrit Bio Products",
+    title: "Gaurikrit Bio Products — Walls that breathe sustainability.",
     description:
-      "The golden warmth of haldi meets the precision of premium paint. Naturally crafted, scientifically trusted.",
+      "Cow dung-based Prakritik Paint in distemper and emulsion formats for interior and exterior walls.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Gaurikrit — Naturally Crafted Haldi & Premium Paint",
+    title: "Gaurikrit Bio Products — Prakritik Paint",
     description:
-      "The golden warmth of haldi meets the precision of premium paint. Naturally crafted, scientifically trusted.",
+      "Cow dung-based Prakritik Paint. Walls that breathe sustainability.",
   },
   icons: {
-    icon: "/logo.svg",
+    icon: "/brand/gaurikrit-mark-temp.svg",
   },
   robots: {
     index: true,
@@ -73,25 +79,20 @@ export const metadata: Metadata = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "Gaurikrit",
+  name: "Gaurikrit Bio Products",
+  alternateName: "गौरीकृत",
   description:
-    "Indian brand producing naturally crafted haldi (turmeric) and premium paint products.",
-  foundingDate: "1998",
-  knowsAbout: ["turmeric", "curcumin", "paint", "low-VOC", "natural paint"],
+    "Maker of Prakritik Paint — cow dung-based natural paint in distemper and emulsion formats.",
+  knowsAbout: ["cow dung paint", "prakritik paint", "natural distemper", "natural emulsion", "limewash", "gaushala"],
   address: {
     "@type": "PostalAddress",
-    streetAddress: "12, Lake View Road, Ballygunge",
-    addressLocality: "Kolkata",
-    addressRegion: "West Bengal",
-    postalCode: "700019",
     addressCountry: "IN",
   },
   contactPoint: {
     "@type": "ContactPoint",
-    telephone: "+91-98300-00000",
     contactType: "customer service",
     areaServed: "IN",
-    availableLanguage: ["English", "Hindi", "Bengali"],
+    availableLanguage: ["English", "Hindi"],
   },
 }
 
@@ -109,7 +110,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${inter.variable} ${playfair.variable} ${geistMono.variable} antialiased bg-background text-foreground`}
+        className={`${inter.variable} ${playfair.variable} ${tiro.variable} ${geistMono.variable} antialiased bg-background text-foreground`}
       >
         <ThemeProvider
           attribute="class"

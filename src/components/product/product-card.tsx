@@ -22,8 +22,8 @@ export function ProductCard({ product, onOpen }: ProductCardProps) {
   const isFull = useCompareStore((s) => s.ids.length >= MAX_COMPARE)
   const toggle = useCompareStore((s) => s.toggle)
 
-  const isHaldi = product.category === "haldi"
-  const chipClass = isHaldi
+  const isDistemper = product.category === "distemper"
+  const chipClass = isDistemper
     ? "bg-primary text-primary-foreground"
     : "bg-accent text-accent-foreground"
 

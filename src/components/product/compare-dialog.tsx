@@ -154,7 +154,7 @@ export function CompareDialog({ open, onOpenChange, onEnquire }: CompareDialogPr
     const vocProducts = selected.filter((p) => p.claims.includes("clm-low-voc"))
     if (vocProducts.length >= 1) {
       // Natural Turmeric Paint has the lowest VOC (<5 g/L) per claims
-      const naturalPaint = vocProducts.find((p) => p.id === "paint-natural")
+      const naturalPaint = vocProducts.find((p) => p.id === "prakritik-emulsion")
       if (naturalPaint) {
         result["Lowest VOC"] = [naturalPaint.id]
       }

@@ -1,118 +1,91 @@
 {
   "categories": [
     { "id": "all", "label": "All Claims" },
-    { "id": "haldi", "label": "Haldi" },
-    { "id": "paint", "label": "Paint" },
-    { "id": "process", "label": "Process" }
+    { "id": "material", "label": "Material" },
+    { "id": "performance", "label": "Performance" },
+    { "id": "safety", "label": "Safety" }
   ],
   "items": [
     {
-      "id": "clm-curcumin",
-      "claim": "Pure Turmeric Powder is standardised to a minimum 4.5% curcumin, batch-tested.",
-      "category": "haldi",
-      "categoryLabel": "Haldi",
-      "source": "Internal NABL-accredited lab (HPLC assay)",
-      "reference": "GK-LAB-CURC-2024",
-      "verifiedOn": "2024-11-15"
+      "id": "clm-cow-dung-based",
+      "claim": "Prakritik Paint uses refined cow dung as its primary natural binder, sourced from partner gaushalas.",
+      "category": "material",
+      "categoryLabel": "Material",
+      "source": "Internal formulation declaration + gaushala sourcing log",
+      "reference": "GK-MAT-CD-2024",
+      "verifiedOn": "2024-09-12"
     },
     {
-      "id": "clm-no-additives",
-      "claim": "No added colour, fillers, preservatives, or irradiation in any haldi product.",
-      "category": "haldi",
-      "categoryLabel": "Haldi",
-      "source": "FSSAI compliance + third-party audit",
-      "reference": "FSSAI/GK-2024-118",
-      "verifiedOn": "2024-11-10"
+      "id": "clm-breathable",
+      "claim": "The lime + cow-dung binder lets walls breathe, reducing trapped moisture and blistering.",
+      "category": "performance",
+      "categoryLabel": "Performance",
+      "source": "Breathability (water-vapour transmission) test",
+      "reference": "GK-BREATH-2024-04",
+      "verifiedOn": "2024-09-20"
     },
     {
-      "id": "clm-heavy-metal",
-      "claim": "Every haldi batch screened for lead, arsenic, and cadmium below FSSAI limits.",
-      "category": "haldi",
-      "categoryLabel": "Haldi",
-      "source": "NABL-accredited heavy metals panel",
-      "reference": "GK-HM-2024-4412",
-      "verifiedOn": "2024-11-15"
-    },
-    {
-      "id": "clm-natural-ingredients",
-      "claim": "Natural Turmeric Paint is tinted only with plant and mineral pigments — no synthetic dyes.",
-      "category": "paint",
-      "categoryLabel": "Paint",
-      "source": "Formulation declaration + GreenPro review",
-      "reference": "GK-GP-NAT-2024",
-      "verifiedOn": "2024-10-02"
-    },
-    {
-      "id": "clm-heritage",
-      "claim": "Stone-ground turmeric follows a recipe documented across four generations of the founding family.",
-      "category": "process",
-      "categoryLabel": "Process",
-      "source": "Internal craft audit + founder's documented recipe log",
-      "reference": "GK-CRAFT-1998",
-      "verifiedOn": "2024-09-01"
-    },
-    {
-      "id": "clm-fssai",
-      "claim": "All food-grade haldi products are manufactured under a valid FSSAI licence.",
-      "category": "haldi",
-      "categoryLabel": "Haldi",
-      "source": "FSSAI Central Licensing",
-      "reference": "FSSAI 12345678901234",
-      "verifiedOn": "2024-08-12"
-    },
-    {
-      "id": "clm-low-voc",
-      "claim": "Interior Premium Emulsion VOC < 50 g/L; Natural Turmeric Paint VOC < 5 g/L.",
-      "category": "paint",
-      "categoryLabel": "Paint",
-      "source": "BIS VOC test + GreenPro eco-product norms",
-      "reference": "GK-VOC-2024-77",
-      "verifiedOn": "2024-10-20"
-    },
-    {
-      "id": "clm-coverage",
-      "claim": "Interior emulsion coverage ~140 sq ft/L/coat; primer ~160 sq ft/L/coat, as tested.",
-      "category": "paint",
-      "categoryLabel": "Paint",
-      "source": "Internal coverage test on standard substrate",
-      "reference": "GK-COV-2024-03",
-      "verifiedOn": "2024-09-18"
-    },
-    {
-      "id": "clm-no-lead",
-      "claim": "No lead or lead-based driers in any paint product.",
-      "category": "paint",
-      "categoryLabel": "Paint",
+      "id": "clm-zero-lead",
+      "claim": "No lead or lead-based driers in any Prakritik Paint product.",
+      "category": "safety",
+      "categoryLabel": "Safety",
       "source": "BIS lead-content test",
-      "reference": "GK-PB-2024-009",
+      "reference": "GK-PB-2024-002",
       "verifiedOn": "2024-10-05"
     },
     {
-      "id": "clm-weatherability",
-      "claim": "Exterior Weather Guard carries an 8-year weatherability performance profile under accelerated weathering.",
-      "category": "paint",
-      "categoryLabel": "Paint",
-      "source": "Accelerated QUV weathering test",
-      "reference": "GK-WEATHER-2024-22",
-      "verifiedOn": "2024-07-30"
+      "id": "clm-no-voc-solvents",
+      "claim": "No solvent-heavy VOC binders; formulation is lime and plant-pigment based.",
+      "category": "safety",
+      "categoryLabel": "Safety",
+      "source": "Formulation declaration + VOC screen",
+      "reference": "GK-VOC-2024-03",
+      "verifiedOn": "2024-10-20"
     },
     {
-      "id": "clm-iso",
-      "claim": "Manufacturing operates under ISO 9001:2015 quality management.",
-      "category": "process",
-      "categoryLabel": "Process",
-      "source": "ISO 9001:2015 certificate",
-      "reference": "ISO-GK-9001-2024",
-      "verifiedOn": "2024-06-01"
+      "id": "clm-scrub-resistant",
+      "claim": "Prakritik Emulsion carries a tested scrub resistance suitable for everyday interior walls.",
+      "category": "performance",
+      "categoryLabel": "Performance",
+      "source": "Scrub-resistance test (emulsion)",
+      "reference": "GK-SCRUB-2024-07",
+      "verifiedOn": "2024-11-01"
     },
     {
-      "id": "clm-greenpro",
-      "claim": "Natural Turmeric Paint carries the GreenPro ecolabel (CII-IGBC).",
-      "category": "paint",
-      "categoryLabel": "Paint",
-      "source": "CII-IGBC GreenPro certification",
-      "reference": "GP/GK/2024/0812",
-      "verifiedOn": "2024-08-12"
+      "id": "clm-coverage",
+      "claim": "Distemper coverage ~130 sq ft/kg/coat; emulsion coverage ~150 sq ft/L/coat, as tested.",
+      "category": "performance",
+      "categoryLabel": "Performance",
+      "source": "Internal coverage test on standard substrate",
+      "reference": "GK-COV-2024-01",
+      "verifiedOn": "2024-09-18"
+    },
+    {
+      "id": "clm-gaushala-sourced",
+      "claim": "Cow dung is sourced from partner gaushalas with documented material logs.",
+      "category": "material",
+      "categoryLabel": "Material",
+      "source": "Gaushala sourcing + reconciliation log",
+      "reference": "GK-GS-2024-12",
+      "verifiedOn": "2024-09-12"
+    },
+    {
+      "id": "clm-limewash-heritage",
+      "claim": "The formulation follows the Indian limewash tradition — lime, pigment, and water — updated with a refined cow-dung binder.",
+      "category": "material",
+      "categoryLabel": "Material",
+      "source": "Internal craft audit + documented recipe",
+      "reference": "GK-CRAFT-2019",
+      "verifiedOn": "2024-08-01"
+    },
+    {
+      "id": "clm-no-heavy-metals",
+      "claim": "No heavy-metal-based pigments or driers used; colour comes from plant and mineral sources.",
+      "category": "safety",
+      "categoryLabel": "Safety",
+      "source": "Heavy-metal panel test",
+      "reference": "GK-HM-2024-05",
+      "verifiedOn": "2024-10-05"
     }
   ]
 }

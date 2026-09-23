@@ -9,6 +9,7 @@
   --font-sans: var(--font-inter);
   --font-display: var(--font-playfair);
   --font-mono: var(--font-geist-mono);
+  --font-devanagari: var(--font-tiro);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -45,100 +46,118 @@
 }
 
 :root {
-  /* Brand: turmeric gold + charcoal + paper white */
-  --radius: 0.75rem;
+  /* Gaurikrit Bio Products — coded illustration palette */
+  --radius: 0.625rem;
 
-  /* Paper white with warm undertone */
-  --background: oklch(0.99 0.006 85);
-  --foreground: oklch(0.20 0.012 60);
+  /* Warm limewash paper background (very subtle) */
+  --background: oklch(0.975 0.008 70);
+  --foreground: oklch(0.22 0.015 50);
 
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.20 0.012 60);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.20 0.012 60);
+  --card: oklch(0.99 0.004 70);
+  --card-foreground: oklch(0.22 0.015 50);
+  --popover: oklch(0.99 0.004 70);
+  --popover-foreground: oklch(0.22 0.015 50);
 
-  /* Turmeric gold primary */
-  --primary: oklch(0.72 0.15 75);
-  --primary-foreground: oklch(0.18 0.02 60);
+  /* Deep forest green primary (the cow + line-art stroke colour) */
+  --primary: oklch(0.42 0.05 150);
+  --primary-foreground: oklch(0.97 0.01 70);
 
-  /* Soft sand secondary */
-  --secondary: oklch(0.96 0.012 85);
-  --secondary-foreground: oklch(0.22 0.012 60);
+  /* Soft limewash secondary panel */
+  --secondary: oklch(0.94 0.012 75);
+  --secondary-foreground: oklch(0.28 0.015 50);
 
-  --muted: oklch(0.96 0.01 85);
-  --muted-foreground: oklch(0.46 0.02 60);
+  --muted: oklch(0.95 0.01 75);
+  --muted-foreground: oklch(0.48 0.015 55);
 
-  /* Charcoal accent */
-  --accent: oklch(0.20 0.012 60);
-  --accent-foreground: oklch(0.98 0.005 85);
+  /* Haldi yellow accent */
+  --accent: oklch(0.78 0.15 80);
+  --accent-foreground: oklch(0.24 0.02 60);
 
-  --destructive: oklch(0.58 0.22 27);
+  --destructive: oklch(0.55 0.2 30);
   --destructive-foreground: oklch(0.98 0 0);
 
-  --border: oklch(0.90 0.01 80);
-  --input: oklch(0.92 0.01 80);
-  --ring: oklch(0.72 0.15 75);
+  --border: oklch(0.88 0.012 70);
+  --input: oklch(0.90 0.012 70);
+  --ring: oklch(0.42 0.05 150);
 
-  --chart-1: oklch(0.72 0.15 75);
-  --chart-2: oklch(0.55 0.06 60);
-  --chart-3: oklch(0.40 0.04 50);
-  --chart-4: oklch(0.80 0.10 90);
-  --chart-5: oklch(0.30 0.02 60);
+  /* Mitti / geru earth tone */
+  --mitti: oklch(0.62 0.08 45);
+  --mitti-foreground: oklch(0.98 0.005 70);
 
-  --sidebar: oklch(0.985 0.006 85);
-  --sidebar-foreground: oklch(0.20 0.012 60);
-  --sidebar-primary: oklch(0.72 0.15 75);
-  --sidebar-primary-foreground: oklch(0.18 0.02 60);
-  --sidebar-accent: oklch(0.96 0.012 85);
-  --sidebar-accent-foreground: oklch(0.22 0.012 60);
-  --sidebar-border: oklch(0.90 0.01 80);
-  --sidebar-ring: oklch(0.72 0.15 75);
+  /* Haldi yellow token */
+  --haldi: oklch(0.82 0.14 82);
+  --haldi-deep: oklch(0.70 0.16 72);
+
+  /* Forest green token */
+  --forest: oklch(0.38 0.05 150);
+  --forest-deep: oklch(0.28 0.04 150);
+
+  --chart-1: oklch(0.42 0.05 150);
+  --chart-2: oklch(0.78 0.15 80);
+  --chart-3: oklch(0.62 0.08 45);
+  --chart-4: oklch(0.55 0.06 140);
+  --chart-5: oklch(0.30 0.03 50);
+
+  --sidebar: oklch(0.97 0.008 70);
+  --sidebar-foreground: oklch(0.22 0.015 50);
+  --sidebar-primary: oklch(0.42 0.05 150);
+  --sidebar-primary-foreground: oklch(0.97 0.01 70);
+  --sidebar-accent: oklch(0.94 0.012 75);
+  --sidebar-accent-foreground: oklch(0.28 0.015 50);
+  --sidebar-border: oklch(0.88 0.012 70);
+  --sidebar-ring: oklch(0.42 0.05 150);
 }
 
 .dark {
-  /* Warm charcoal background */
-  --background: oklch(0.165 0.008 60);
-  --foreground: oklch(0.96 0.008 85);
+  /* Warm charcoal limewash */
+  --background: oklch(0.18 0.008 60);
+  --foreground: oklch(0.95 0.008 75);
 
-  --card: oklch(0.205 0.01 60);
-  --card-foreground: oklch(0.96 0.008 85);
-  --popover: oklch(0.205 0.01 60);
-  --popover-foreground: oklch(0.96 0.008 85);
+  --card: oklch(0.22 0.01 60);
+  --card-foreground: oklch(0.95 0.008 75);
+  --popover: oklch(0.22 0.01 60);
+  --popover-foreground: oklch(0.95 0.008 75);
 
-  /* Brighter gold for dark mode */
-  --primary: oklch(0.80 0.14 80);
+  --primary: oklch(0.62 0.06 150);
   --primary-foreground: oklch(0.16 0.008 60);
 
-  --secondary: oklch(0.24 0.012 60);
-  --secondary-foreground: oklch(0.96 0.008 85);
+  --secondary: oklch(0.26 0.01 60);
+  --secondary-foreground: oklch(0.95 0.008 75);
 
-  --muted: oklch(0.24 0.012 60);
-  --muted-foreground: oklch(0.70 0.02 75);
+  --muted: oklch(0.26 0.01 60);
+  --muted-foreground: oklch(0.70 0.012 75);
 
-  --accent: oklch(0.28 0.012 60);
-  --accent-foreground: oklch(0.96 0.008 85);
+  --accent: oklch(0.80 0.14 80);
+  --accent-foreground: oklch(0.18 0.008 60);
 
-  --destructive: oklch(0.70 0.19 22);
+  --destructive: oklch(0.65 0.18 25);
   --destructive-foreground: oklch(0.98 0 0);
 
   --border: oklch(1 0 0 / 12%);
   --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.80 0.14 80);
+  --ring: oklch(0.62 0.06 150);
 
-  --chart-1: oklch(0.80 0.14 80);
-  --chart-2: oklch(0.65 0.06 60);
-  --chart-3: oklch(0.50 0.04 50);
-  --chart-4: oklch(0.85 0.10 90);
-  --chart-5: oklch(0.40 0.02 60);
+  --mitti: oklch(0.68 0.08 45);
+  --mitti-foreground: oklch(0.16 0.008 60);
+  --haldi: oklch(0.82 0.14 82);
+  --haldi-deep: oklch(0.70 0.16 72);
+  --forest: oklch(0.52 0.05 150);
+  --forest-deep: oklch(0.40 0.04 150);
 
-  --sidebar: oklch(0.205 0.01 60);
-  --sidebar-foreground: oklch(0.96 0.008 85);
-  --sidebar-primary: oklch(0.80 0.14 80);
+  --chart-1: oklch(0.62 0.06 150);
+  --chart-2: oklch(0.80 0.14 80);
+  --chart-3: oklch(0.68 0.08 45);
+  --chart-4: oklch(0.55 0.06 140);
+  --chart-5: oklch(0.42 0.03 50);
+
+  --sidebar: oklch(0.22 0.01 60);
+  --sidebar-foreground: oklch(0.95 0.008 75);
+  --sidebar-primary: oklch(0.62 0.06 150);
   --sidebar-primary-foreground: oklch(0.16 0.008 60);
-  --sidebar-accent: oklch(0.24 0.012 60);
-  --sidebar-accent-foreground: oklch(0.96 0.008 85);
+  --sidebar-accent: oklch(0.26 0.01 60);
+  --sidebar-accent-foreground: oklch(0.95 0.008 75);
   --sidebar-border: oklch(1 0 0 / 12%);
-  --sidebar-ring: oklch(0.80 0.14 80);
+  --sidebar-ring: oklch(0.62 0.06 150);
 }
 
 @layer base {
@@ -154,36 +173,97 @@
   }
 }
 
-/* Custom utilities */
+/* Coded illustration utilities */
 @layer utilities {
   .font-display {
     font-family: var(--font-playfair), Georgia, serif;
   }
+  .font-devanagari {
+    font-family: var(--font-tiro), "Noto Serif Devanagari", serif;
+  }
   .text-balance {
     text-wrap: balance;
   }
-  .bg-grain {
-    background-image: radial-gradient(circle at 1px 1px, oklch(0.72 0.15 75 / 0.06) 1px, transparent 0);
-    background-size: 24px 24px;
+
+  /* Limewash paper texture — subtle fibre/noise, <4% perceived */
+  .bg-limewash {
+    background-color: var(--background);
+    background-image:
+      radial-gradient(circle at 25% 35%, oklch(0.42 0.05 150 / 0.018) 0, transparent 50%),
+      radial-gradient(circle at 75% 65%, oklch(0.78 0.15 80 / 0.022) 0, transparent 55%);
   }
-  .gold-gradient {
-    background: linear-gradient(135deg, oklch(0.82 0.14 85) 0%, oklch(0.72 0.15 75) 50%, oklch(0.62 0.16 65) 100%);
+
+  /* Paper grain — very subtle fibre dots */
+  .bg-paper-grain {
+    background-image:
+      radial-gradient(circle at 1px 1px, oklch(0.42 0.05 150 / 0.025) 0.5px, transparent 0);
+    background-size: 18px 18px;
   }
-  .gold-text-gradient {
-    background: linear-gradient(135deg, oklch(0.82 0.14 85) 0%, oklch(0.72 0.15 75) 60%, oklch(0.62 0.16 65) 100%);
+
+  /* Paint edge — irregular clipped look via mask */
+  .paint-edge {
+    -webkit-mask-image: radial-gradient(ellipse 100% 100% at 50% 50%, #000 88%, transparent 100%);
+    mask-image: radial-gradient(ellipse 100% 100% at 50% 50%, #000 88%, transparent 100%);
+  }
+
+  /* Haldi paint field */
+  .bg-haldi {
+    background: linear-gradient(135deg, oklch(0.82 0.14 82) 0%, oklch(0.70 0.16 72) 100%);
+  }
+
+  /* Forest green field */
+  .bg-forest {
+    background: linear-gradient(135deg, oklch(0.42 0.05 150) 0%, oklch(0.30 0.04 150) 100%);
+  }
+
+  /* Mitti / geru field */
+  .bg-mitti {
+    background: linear-gradient(135deg, oklch(0.62 0.08 45) 0%, oklch(0.52 0.09 40) 100%);
+  }
+
+  /* Haldi text gradient */
+  .text-haldi-gradient {
+    background: linear-gradient(135deg, oklch(0.85 0.13 85) 0%, oklch(0.70 0.16 72) 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
     color: transparent;
   }
-  .charcoal-gradient {
-    background: linear-gradient(135deg, oklch(0.22 0.012 60) 0%, oklch(0.16 0.008 60) 100%);
+
+  /* Forest text gradient */
+  .text-forest-gradient {
+    background: linear-gradient(135deg, oklch(0.45 0.06 150) 0%, oklch(0.30 0.04 150) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
   }
-  .shadow-gold {
-    box-shadow: 0 10px 40px -12px oklch(0.72 0.15 75 / 0.45);
-  }
+
+  /* Soft elevation */
   .shadow-soft {
-    box-shadow: 0 4px 24px -8px oklch(0.2 0.01 60 / 0.12);
+    box-shadow: 0 4px 24px -8px oklch(0.28 0.04 150 / 0.14);
+  }
+  .shadow-forest {
+    box-shadow: 0 10px 40px -12px oklch(0.42 0.05 150 / 0.35);
+  }
+  .shadow-haldi {
+    box-shadow: 0 10px 40px -12px oklch(0.70 0.16 72 / 0.40);
+  }
+
+  /* Illustration stroke base */
+  .stroke-base {
+    stroke: var(--forest);
+    stroke-width: 1.75;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+  }
+  .stroke-haldi {
+    stroke: var(--haldi-deep);
+    stroke-width: 1.75;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
   }
 }
 
@@ -196,11 +276,11 @@
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: oklch(0.72 0.15 75 / 0.4);
+  background: oklch(0.42 0.05 150 / 0.35);
   border-radius: 999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: oklch(0.72 0.15 75 / 0.6);
+  background: oklch(0.42 0.05 150 / 0.55);
 }
 
 /* Smooth scroll for anchor nav */

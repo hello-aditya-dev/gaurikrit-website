@@ -1,0 +1,74 @@
+<svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Gaurikrit temporary brand mark — Indian cow head in a scalloped floral emblem">
+  <title>Gaurikrit temporary digital brand mark</title>
+  <!--
+    TEMPORARY DIGITAL BRAND MARK
+    A front-facing Indian/zebu cow head inside a decorative scalloped floral
+    emblem. Haldi-yellow background, dark forest-green outline.
+    Replace with the client's official vector logo before final production
+    launch. See BRAND_ASSET_REPLACEMENT.md.
+  -->
+  <defs>
+    <linearGradient id="gk-mark-bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#e9c76b"/>
+      <stop offset="100%" stop-color="#caa33a"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Scallop: 12-petal rounded-floral frame -->
+  <g fill="url(#gk-mark-bg)" stroke="#1c2a1e" stroke-width="3" stroke-linejoin="round">
+    <circle cx="120" cy="120" r="108" fill="url(#gk-mark-bg)" stroke="none"/>
+    <!-- petals -->
+    <g stroke="#1c2a1e" stroke-width="2.5" fill="none" opacity="0.35">
+      <circle cx="120" cy="120" r="104"/>
+    </g>
+    <g fill="#1c2a1e" opacity="0.18">
+      <circle cx="120" cy="20" r="6"/>
+      <circle cx="170" cy="33" r="6"/>
+      <circle cx="207" cy="70" r="6"/>
+      <circle cx="220" cy="120" r="6"/>
+      <circle cx="207" cy="170" r="6"/>
+      <circle cx="170" cy="207" r="6"/>
+      <circle cx="120" cy="220" r="6"/>
+      <circle cx="70" cy="207" r="6"/>
+      <circle cx="33" cy="170" r="6"/>
+      <circle cx="20" cy="120" r="6"/>
+      <circle cx="33" cy="70" r="6"/>
+      <circle cx="70" cy="33" r="6"/>
+    </g>
+  </g>
+
+  <!-- Indian / zebu cow head — front-facing, calm, line-art -->
+  <g fill="none" stroke="#1c2a1e" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Head core: slender, tapered, dignified -->
+    <path d="M120 78
+             C 100 78 90 96 90 120
+             C 90 150 100 172 120 178
+             C 140 172 150 150 150 120
+             C 150 96 140 78 120 78 Z"/>
+    <!-- Forehead — slightly prominent (zebu trait) -->
+    <path d="M120 78 C 112 78 106 84 106 92 C 106 100 112 104 120 104 C 128 104 134 100 134 92 C 134 84 128 78 120 78" opacity="0.4"/>
+    <!-- Ears — long, relaxed, laid out -->
+    <path d="M88 104 C 70 100 58 108 52 124 C 50 132 56 138 66 138 C 76 138 84 130 88 120"/>
+    <path d="M152 104 C 170 100 182 108 188 124 C 190 132 184 138 174 138 C 164 138 156 130 152 120"/>
+    <!-- Inner ear fold -->
+    <path d="M62 124 C 66 128 70 130 74 128" opacity="0.5"/>
+    <path d="M178 124 C 174 128 170 130 166 128" opacity="0.5"/>
+    <!-- Horns — moderate curve, symmetric -->
+    <path d="M104 84 C 92 70 78 62 66 64 C 60 66 58 72 62 76 C 72 82 86 84 98 88"/>
+    <path d="M136 84 C 148 70 162 62 174 64 C 180 66 182 72 178 76 C 168 82 154 84 142 88"/>
+    <!-- Eyes — calm, half-closed -->
+    <path d="M104 116 C 108 112 116 112 120 116" />
+    <path d="M120 116 C 124 112 132 112 136 116" />
+    <circle cx="112" cy="118" r="2.5" fill="#1c2a1e" stroke="none"/>
+    <circle cx="128" cy="118" r="2.5" fill="#1c2a1e" stroke="none"/>
+    <!-- Muzzle — broad, soft -->
+    <path d="M106 142 C 106 156 112 164 120 164 C 128 164 134 156 134 142"/>
+    <path d="M112 150 C 112 158 116 160 120 160 C 124 160 128 158 128 150"/>
+    <!-- Nostrils -->
+    <circle cx="114" cy="152" r="1.8" fill="#1c2a1e" stroke="none"/>
+    <circle cx="126" cy="152" r="1.8" fill="#1c2a1e" stroke="none"/>
+  </g>
+
+  <!-- decorative ring around the head -->
+  <circle cx="120" cy="120" r="84" fill="none" stroke="#1c2a1e" stroke-width="1.5" opacity="0.25"/>
+</svg>

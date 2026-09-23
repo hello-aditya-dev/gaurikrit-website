@@ -1,77 +1,67 @@
 /**
- * Calculator-grade specs for Gaurikrit paint products.
+ * Calculator-grade specs for Gaurikrit Prakritik Paint products.
  *
- * `coverage` is in sq ft per litre per coat (tested figures, also cited in
- * the Claims Register). `pricePerLitre` is the indicative mid-band price
- * used for estimates only — real quotes come from the contact form.
- *
- * coats defaults to 2 for topcoats + 1 for primer = 3 coats total when
- * `needsPrimer` is true.
+ * `coverage` is in sq ft per unit (kg for distemper, L for emulsion) per coat.
+ * `pricePerUnit` is the indicative mid-band price used for estimates only.
  */
 
 export interface PaintSpec {
   id: string
   name: string
-  category: "interior" | "exterior" | "natural" | "wood" | "primer"
-  coverage: number // sq ft per litre per coat
-  pricePerLitre: number // ₹ per litre (indicative)
-  coats: number // recommended topcoats
+  category: "distemper" | "emulsion"
+  /** Coverage in sq ft per unit per coat */
+  coverage: number
+  /** Price per unit (₹, indicative) */
+  pricePerUnit: number
+  /** Recommended topcoats */
+  coats: number
+  /** Whether a primer coat is recommended */
   needsPrimer: boolean
-  unit: "L"
+  /** Display unit */
+  unit: "kg" | "L"
+  /** Pack sizes available */
+  packSizes: number[]
 }
 
 export const PAINT_SPECS: PaintSpec[] = [
   {
-    id: "paint-interior",
-    name: "Interior Premium Emulsion",
-    category: "interior",
-    coverage: 140,
-    pricePerLitre: 380,
+    id: "prakritik-distemper",
+    name: "Prakritik Distemper",
+    category: "distemper",
+    coverage: 130,
+    pricePerUnit: 180,
+    coats: 2,
+    needsPrimer: true,
+    unit: "kg",
+    packSizes: [5, 10, 20],
+  },
+  {
+    id: "prakritik-emulsion",
+    name: "Prakritik Emulsion",
+    category: "emulsion",
+    coverage: 150,
+    pricePerUnit: 360,
     coats: 2,
     needsPrimer: true,
     unit: "L",
-  },
-  {
-    id: "paint-exterior",
-    name: "Exterior Weather Guard",
-    category: "exterior",
-    coverage: 120,
-    pricePerLitre: 460,
-    coats: 2,
-    needsPrimer: true,
-    unit: "L",
-  },
-  {
-    id: "paint-natural",
-    name: "Natural Turmeric Paint",
-    category: "natural",
-    coverage: 100,
-    pricePerLitre: 580,
-    coats: 2,
-    needsPrimer: false,
-    unit: "L",
-  },
-  {
-    id: "paint-primer",
-    name: "Bond Prime Sealer",
-    category: "primer",
-    coverage: 160,
-    pricePerLitre: 280,
-    coats: 1,
-    needsPrimer: false,
-    unit: "L",
+    packSizes: [1, 4, 10, 20],
   },
 ]
 
-export const PRIMER_SPEC = PAINT_SPECS.find((s) => s.id === "paint-primer")!
+export const PRIMER_SPEC: PaintSpec = {
+  id: "prakritik-primer",
+  name: "Prakritik Limewash Primer",
+  category: "distemper",
+  coverage: 160,
+  pricePerUnit: 140,
+  coats: 1,
+  needsPrimer: false,
+  unit: "kg",
+  packSizes: [5, 10, 20],
+}
 
 /**
- * Estimate litres + cost for a given paint over a wall area.
- *
- * @param areaSqft wall area in square feet
- * @param spec paint spec
- * @param includePrimer whether to add a primer coat
- * @param wastagePct wastage buffer (default 10%)
+ * Estimate paint + cost for a given wall area.
  */
 export function estimatePaint(
   areaSqft: number,
@@ -79,53 +69,50 @@ export function estimatePaint(
   includePrimer: boolean = true,
   wastagePct: number = 10
 ): {
-  topcoatLitres: number
-  primerLitres: number
-  totalLitres: number
+  topcoatUnits: number
+  primerUnits: number
+  totalUnits: number
   topcoatCost: number
   primerCost: number
   totalCost: number
   buckets: { size: number; qty: number }[]
+  unitLabel: string
 } {
   const safeArea = Math.max(0, areaSqft)
   const buffer = 1 + wastagePct / 100
 
-  const topcoatLitres =
-    spec.id === "paint-primer"
-      ? (safeArea / spec.coverage) * buffer
-      : (safeArea / spec.coverage) * spec.coats * buffer
-
-  const primerLitres =
-    includePrimer && spec.needsPrimer && spec.id !== "paint-primer"
+  const topcoatUnits = (safeArea / spec.coverage) * spec.coats * buffer
+  const primerUnits =
+    includePrimer && spec.needsPrimer
       ? (safeArea / PRIMER_SPEC.coverage) * buffer
       : 0
 
-  const totalLitres = topcoatLitres + primerLitres
-  const topcoatCost = topcoatLitres * spec.pricePerLitre
-  const primerCost = primerLitres * PRIMER_SPEC.pricePerLitre
+  const totalUnits = topcoatUnits + primerUnits
+  const topcoatCost = topcoatUnits * spec.pricePerUnit
+  const primerCost = primerUnits * PRIMER_SPEC.pricePerUnit
   const totalCost = topcoatCost + primerCost
 
-  // Round up to the nearest standard bucket size.
-  const bucketSizes = [1, 4, 10, 20]
-  const buckets = pickBuckets(totalLitres, bucketSizes)
+  const buckets = pickBuckets(topcoatUnits, spec.packSizes)
+  const unitLabel = spec.unit
 
   return {
-    topcoatLitres: round(topcoatLitres),
-    primerLitres: round(primerLitres),
-    totalLitres: round(totalLitres),
+    topcoatUnits: round(topcoatUnits),
+    primerUnits: round(primerUnits),
+    totalUnits: round(totalUnits),
     topcoatCost: round(topcoatCost),
     primerCost: round(primerCost),
     totalCost: round(totalCost),
     buckets,
+    unitLabel,
   }
 }
 
 function pickBuckets(
-  litres: number,
+  units: number,
   sizes: number[]
 ): { size: number; qty: number }[] {
   const sorted = [...sizes].sort((a, b) => b - a)
-  let remaining = litres
+  let remaining = units
   const result: { size: number; qty: number }[] = []
   for (const size of sorted) {
     const qty = Math.floor(remaining / size)
@@ -134,7 +121,6 @@ function pickBuckets(
       remaining -= qty * size
     }
   }
-  // round up the last fraction to the smallest bucket
   if (remaining > 0.01) {
     const smallest = sorted[sorted.length - 1]
     const existing = result.find((b) => b.size === smallest)

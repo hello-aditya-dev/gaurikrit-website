@@ -1,62 +1,64 @@
 {
   "name": "Gaurikrit",
-  "legalName": "Gaurikrit Naturals & Coatings Pvt. Ltd.",
-  "tagline": "Naturally crafted haldi & premium paint.",
-  "foundedYear": 1998,
+  "fullName": "Gaurikrit Bio Products",
+  "devanagari": "गौरीकृत",
+  "supportingIdentity": "Bio Products",
+  "tagline": "Walls that breathe sustainability.",
+  "foundedYear": 2019,
   "hero": {
-    "eyebrow": "Naturally crafted since 1998",
-    "headlineLines": ["The golden warmth of haldi,", "the precision of premium paint."],
-    "subheadline": "Gaurikrit brings naturally crafted turmeric and lab-tested, low-VOC paints into every Indian home. Two crafts, one promise — pure, premium, and made to last.",
-    "primaryCta": { "label": "Explore Products", "href": "#products" },
-    "secondaryCta": { "label": "Talk to Us", "href": "#contact" },
-    "seal": { "label": "Curcumin 4.5%+", "sublabel": "Lab-tested" }
+    "eyebrow": "Prakritik Paint · Made from cow dung",
+    "headlineLines": ["Walls that breathe", "sustainability."],
+    "subheadline": "Cow dung-based Prakritik Paint in distemper and emulsion formats for interior and exterior walls. Naturally breathable, naturally Indian.",
+    "primaryCta": { "label": "Explore Prakritik Paint", "href": "#products" },
+    "secondaryCta": { "label": "Why Prakritik?", "href": "#why-together" },
+    "seal": { "label": "Cow-dung based", "sublabel": "Naturally breathable" }
   },
   "story": {
-    "lead": "Gaurikrit began in 1998 with a simple belief: what touches your home and your body should be crafted with the same care.",
-    "body": "Our journey started in the turmeric fields of Bengal, where founder Gauri Kritivas watched her grandmother grind haldi on a stone each morning. Decades later, we bring that same integrity to both the turmeric on your shelf and the paint on your walls.\n\nEvery batch of haldi is sun-cured and stone-ground in small lots. Every litre of paint is lab-tested for purity, coverage, and low VOC. Two crafts, one discipline — because your home deserves nothing less.",
-    "founderQuote": "We never sell what we wouldn't bring home to our own family. That is the only rule that has never changed.",
-    "founderName": "Gauri Kritivas",
-    "founderRole": "Founder & Master Crafter"
+    "lead": "Gaurikrit Bio Products began at a gaushala, where cow dung was abundant and purpose was scarce.",
+    "body": "Every year, thousands of tonnes of cow dung go unused — a material that Indian homes have used on walls for centuries. We set out to turn it back into paint.\n\nPrakritik Paint is made by cleaning, drying, and refining cow dung into a fine natural binder, then blending it with lime, plant pigments, and minerals. The result is a paint that breathes with your walls, contains no lead or VOC-heavy solvents, and carries the warmth of an Indian courtyard.",
+    "founderQuote": "We did not invent this. Our grandmothers did. We only made it consistent.",
+    "founderName": "The Gaurikrit team",
+    "founderRole": "Gaushala-craft, reimagined"
   },
   "stats": [
-    { "value": "25+", "numericValue": 25, "suffix": "+", "label": "Years of craft" },
-    { "value": "1.2M+", "numericValue": 1.2, "suffix": "M+", "decimals": 1, "label": "Homes painted" },
-    { "value": "8", "numericValue": 8, "suffix": "", "label": "Product families" },
-    { "value": "14,000+", "numericValue": 14000, "suffix": "+", "label": "Pin-codes served" }
+    { "value": "5+", "numericValue": 5, "suffix": "+", "label": "Gaushala partners" },
+    { "value": "2", "numericValue": 2, "suffix": "", "label": "Paint formats" },
+    { "value": "0", "numericValue": 0, "suffix": "", "label": "Lead & VOC solvents" },
+    { "value": "100%", "numericValue": 100, "suffix": "%", "label": "Naturally breathable" }
   ],
   "marquee": [
-    "Naturally Crafted Haldi",
-    "Low-VOC Premium Paint",
-    "Lab-Tested Purity",
-    "Stone-Ground in Small Batches",
-    "Pan-India Delivery",
-    "GreenPro Ecolabel",
-    "Four Generations of Craft",
-    "1,200+ Paint Shades",
-    "Curcumin 4.5%+",
-    "ISO 9001:2015"
+    "Cow-Dung Based",
+    "Prakritik Distemper",
+    "Prakritik Emulsion",
+    "Naturally Breathable",
+    "Zero Lead",
+    "Limewash Heritage",
+    "Gaushala Sourced",
+    "Interior & Exterior",
+    "Plant & Mineral Pigments",
+    "Made in Bharat"
   ],
   "certifications": [
-    { "name": "FSSAI", "desc": "Food Safety" },
-    { "name": "NABL", "desc": "Lab-accredited" },
-    { "name": "ISO 9001", "desc": "Quality mgmt" },
-    { "name": "GreenPro", "desc": "Ecolabel" }
+    { "name": "Lead-Free", "desc": "No lead, ever" },
+    { "name": "Low-VOC", "desc": "Solvent-light" },
+    { "name": "Breathable", "desc": "Lime-based" },
+    { "name": "Gaushala-Sourced", "desc": "Cow-dung based" }
   ],
   "aboutCards": [
-    { "title": "Heritage", "desc": "Stone-ground turmeric, recipes passed down four generations." },
-    { "title": "Craft", "desc": "Small-batch production, batch-tracked from field to shelf." },
-    { "title": "Trust", "desc": "Every claim lab-verified and published in our Claims Register." }
+    { "title": "Gaushala", "desc": "Sourced from partner gaushalas — material with a purpose, not a waste." },
+    { "title": "Craft", "desc": "Refined, dried, and blended in small batches the way walls were always meant to be painted." },
+    { "title": "Breathable", "desc": "Lime + cow-dung binder lets walls breathe — no blistering, no trapped moisture." }
   ],
   "contact": {
-    "address": "12, Lake View Road, Ballygunge, Kolkata 700019, West Bengal, India",
-    "phone": "+91 98300 00000",
-    "email": "hello@gaurikrit.in",
+    "address": "Gaurikrit Bio Products, c/o partner gaushala, India",
+    "phone": "+91 90000 00000",
+    "email": "hello@gaurikrit.bio",
     "hours": "Mon–Sat, 9:30 AM – 6:30 PM IST"
   },
   "socials": [
-    { "name": "Instagram", "href": "#", "handle": "@gaurikrit" },
-    { "name": "Facebook", "href": "#", "handle": "/gaurikrit" },
-    { "name": "YouTube", "href": "#", "handle": "@gaurikritcrafts" },
-    { "name": "LinkedIn", "href": "#", "handle": "/company/gaurikrit" }
+    { "name": "Instagram", "href": "#", "handle": "@gaurikrit.bio" },
+    { "name": "Facebook", "href": "#", "handle": "/gaurikritbio" },
+    { "name": "YouTube", "href": "#", "handle": "@gaurikrit" },
+    { "name": "LinkedIn", "href": "#", "handle": "/company/gaurikrit-bio" }
   ]
 }

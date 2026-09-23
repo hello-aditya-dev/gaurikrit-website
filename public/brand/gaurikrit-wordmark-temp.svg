@@ -1,0 +1,16 @@
+<svg viewBox="0 0 420 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Gaurikrit wordmark — temporary digital">
+  <title>Gaurikrit Bio Products — temporary wordmark</title>
+  <!--
+    TEMPORARY DIGITAL WORDMARK
+    "Gaurikrit" in a serif display face with a small "BIO PRODUCTS"
+    supporting identity beneath. Replace with the official vector
+    wordmark before final production launch.
+  -->
+  <g font-family="Georgia, 'Times New Roman', serif">
+    <text x="12" y="62" font-size="48" font-weight="700" fill="#1c2a1e" letter-spacing="-1">Gaurikrit</text>
+    <text x="14" y="92" font-size="13" font-weight="400" fill="#1c2a1e" letter-spacing="6" opacity="0.7">BIO PRODUCTS</text>
+    <!-- small cow-mark dot -->
+    <circle cx="394" cy="52" r="14" fill="#e9c76b" stroke="#1c2a1e" stroke-width="2"/>
+    <text x="394" y="58" font-size="16" font-weight="700" fill="#1c2a1e" text-anchor="middle">ग</text>
+  </g>
+</svg>

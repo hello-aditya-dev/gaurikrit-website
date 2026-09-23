@@ -6,7 +6,7 @@ import { ChefHat, Clock, Users, ChevronLeft, ChevronRight, Sparkles } from "luci
 import { Section, SectionHeading } from "@/components/layout/site-shell"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { RECIPES } from "@/data/recipes"
+import { GUIDES } from "@/data/guides"
 import { allProducts } from "@/lib/data"
 import { track } from "@/lib/analytics"
 import { cn } from "@/lib/utils"
@@ -16,13 +16,13 @@ const EASE = [0.22, 1, 0.36, 1] as const
 export function RecipeCarousel() {
   const reduceMotion = useReducedMotion()
   const [active, setActive] = React.useState(0)
-  const recipe = RECIPES[active]
-  const product = allProducts.find((p) => p.id === recipe.productId)
+  const guide = GUIDES[active]
+  const product = allProducts.find((p) => p.id === guide.productId)
 
   const go = (dir: 1 | -1) => {
-    const next = (active + dir + RECIPES.length) % RECIPES.length
+    const next = (active + dir + GUIDES.length) % GUIDES.length
     setActive(next)
-    track("recipe_view", { recipeId: RECIPES[next].id, title: RECIPES[next].title })
+    track("recipe_view", { recipeId: GUIDES[next].id, title: GUIDES[next].title })
   }
 
   // keyboard nav when focused
@@ -36,22 +36,22 @@ export function RecipeCarousel() {
       <SectionHeading
         eyebrow="From our kitchen"
         title="Three ways to use our haldi"
-        description="Everyday rituals that make the most of Gaurikrit turmeric — drawn from the family recipe book."
+        description="Everyday rituals that make the most of Gaurikrit turmeric — drawn from the family guide book."
       />
 
       <div
         className="mt-10 grid gap-6 lg:grid-cols-[1.1fr_1fr] lg:gap-8"
         tabIndex={0}
         role="region"
-        aria-label="Recipe carousel. Use left and right arrow keys to navigate."
+        aria-label="Guide carousel. Use left and right arrow keys to navigate."
         onKeyDown={onKeyDown}
       >
-        {/* LEFT — recipe card */}
+        {/* LEFT — guide card */}
         <div className="relative overflow-hidden rounded-3xl border bg-card shadow-soft">
           {/* accent banner */}
           <div
             className="relative h-32 overflow-hidden"
-            style={{ background: recipe.accent }}
+            style={{ background: guide.accent }}
           >
             <div
               aria-hidden="true"
@@ -65,22 +65,22 @@ export function RecipeCarousel() {
             <div className="relative flex h-full flex-col justify-between p-6">
               <div className="flex items-center justify-between">
                 <Badge className="bg-background/80 text-foreground backdrop-blur">
-                  <ChefHat className="mr-1 h-3 w-3" /> Recipe
+                  <ChefHat className="mr-1 h-3 w-3" /> Guide
                 </Badge>
                 <div className="flex gap-2 text-[11px] font-medium text-foreground">
                   <span className="inline-flex items-center gap-1 rounded-full bg-background/70 px-2.5 py-1 backdrop-blur">
-                    <Clock className="h-3 w-3" /> {recipe.duration}
+                    <Clock className="h-3 w-3" /> {guide.duration}
                   </span>
                   <span className="inline-flex items-center gap-1 rounded-full bg-background/70 px-2.5 py-1 backdrop-blur">
-                    <Users className="h-3 w-3" /> {recipe.serves}
+                    <Users className="h-3 w-3" /> {guide.serves}
                   </span>
                 </div>
               </div>
               <div>
                 <h3 className="font-display text-2xl font-bold leading-tight text-foreground">
-                  {recipe.title}
+                  {guide.title}
                 </h3>
-                <p className="text-sm text-foreground/80">{recipe.subtitle}</p>
+                <p className="text-sm text-foreground/80">{guide.subtitle}</p>
               </div>
             </div>
           </div>
@@ -89,18 +89,18 @@ export function RecipeCarousel() {
           <div className="p-6">
             <AnimatePresence mode="wait">
               <motion.ol
-                key={recipe.id}
+                key={guide.id}
                 initial={reduceMotion ? false : { opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.35, ease: EASE }}
                 className="space-y-4"
               >
-                {recipe.steps.map((step, i) => (
+                {guide.steps.map((step, i) => (
                   <li key={step.title} className="flex gap-4">
                     <span
                       className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full font-display text-sm font-bold text-accent"
-                      style={{ background: recipe.accent }}
+                      style={{ background: guide.accent }}
                     >
                       {i + 1}
                     </span>
@@ -117,13 +117,13 @@ export function RecipeCarousel() {
 
             {/* nav controls */}
             <div className="mt-6 flex items-center justify-between border-t border-border pt-4">
-              <div className="flex gap-1.5" role="tablist" aria-label="Recipe selector">
-                {RECIPES.map((r, i) => (
+              <div className="flex gap-1.5" role="tablist" aria-label="Guide selector">
+                {GUIDES.map((r, i) => (
                   <button
                     key={r.id}
                     role="tab"
                     aria-selected={i === active}
-                    aria-label={`Show recipe: ${r.title}`}
+                    aria-label={`Show guide: ${r.title}`}
                     onClick={() => {
                       setActive(i)
                       track("recipe_view", { recipeId: r.id, title: r.title })
@@ -141,7 +141,7 @@ export function RecipeCarousel() {
                   variant="outline"
                   size="icon"
                   onClick={() => go(-1)}
-                  aria-label="Previous recipe"
+                  aria-label="Previous guide"
                   className="h-9 w-9 rounded-full"
                 >
                   <ChevronLeft className="h-4 w-4" />
@@ -151,7 +151,7 @@ export function RecipeCarousel() {
                   variant="outline"
                   size="icon"
                   onClick={() => go(1)}
-                  aria-label="Next recipe"
+                  aria-label="Next guide"
                   className="h-9 w-9 rounded-full"
                 >
                   <ChevronRight className="h-4 w-4" />
@@ -204,10 +204,10 @@ export function RecipeCarousel() {
           <div className="rounded-3xl border bg-card p-6 shadow-soft">
             <p className="font-display text-base font-bold text-foreground">
               {String(active + 1).padStart(2, "0")}
-              <span className="text-muted-foreground"> / {String(RECIPES.length).padStart(2, "0")}</span>
+              <span className="text-muted-foreground"> / {String(GUIDES.length).padStart(2, "0")}</span>
             </p>
             <p className="text-xs text-muted-foreground">
-              Use the arrows or dots to browse all {RECIPES.length} recipes.
+              Use the arrows or dots to browse all {GUIDES.length} recipes.
             </p>
           </div>
         </div>
