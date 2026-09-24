@@ -1,108 +1,95 @@
-# Gaurikrit — Naturally Crafted Haldi & Premium Paint
+# Gaurikrit Website
 
-> The public marketing website for **Gaurikrit**, an Indian brand producing naturally crafted turmeric (haldi) and premium, low-VOC paint products. Built end-to-end with Next.js 16, TypeScript, Tailwind CSS 4, shadcn/ui, and Prisma.
+Production website for **Gaurikrit Bio Products (OPC) Private Limited** —
+maker of Prakritik Paint (cow dung-based natural paint in Distemper and
+Emulsion formats).
 
-[![Built with Next.js 16](https://img.shields.io/badge/Next.js-16-black)](https://nextjs.org/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5-blue)](https://www.typescriptlang.org/)
-[![Tailwind CSS 4](https://img.shields.io/badge/Tailwind-4-38bdf8)](https://tailwindcss.com/)
-[![Prisma](https://img.shields.io/badge/Prisma-SQLite-2d3748)](https://www.prisma.io/)
+## Stack
 
----
+- **PHP 8.2+**
+- **HTML5**
+- **CSS3** (authored, no Tailwind, no build step)
+- **Vanilla JavaScript** (no React, no framework, no bundler)
+- **SVG** (coded illustration system — no photography dependency)
+- **SMTP** (zero-Composer built-in mailer)
+- **Optional MySQL** (PDO, for enquiry storage — email works without it)
 
-## What this is
-
-A single-route (`/`), production-ready marketing website for Gaurikrit. The entire brand story lives on one scrollable page, split into twelve sections — hero, trust bar, about, products, features, process, claims register, testimonials, FAQ, contact, and footer.
-
-The design language is **turmeric-gold warmth meeting disciplined black-and-white structure** — premium, warm, trustworthy, and industrial-grade.
-
-## Features
-
-- **Two product families, one brand** — Haldi (turmeric) + Paint, filterable catalogue with detail dialogs.
-- **Claims Register** — every marketing claim is published with a source and reference ID, searchable and filterable.
-- **Lead capture** — contact form + product-specific enquiry + newsletter, all persisted to SQLite via Prisma.
-- **Dark mode** — full light/dark support via `next-themes`, default light.
-- **Motion with restraint** — Framer Motion scroll reveals + hover lifts, gated on `prefers-reduced-motion`.
-- **Responsive & accessible** — mobile-first, 44px touch targets, semantic HTML, ARIA, keyboard navigation.
-- **SEO-ready** — metadata, OpenGraph, Twitter cards, JSON-LD Organization schema.
-
-## Tech stack
-
-| Layer | Choice |
-|-------|--------|
-| Framework | Next.js 16 (App Router, Turbopack) |
-| Language | TypeScript 5 (strict) |
-| Styling | Tailwind CSS 4 + shadcn/ui (New York) |
-| Database | Prisma ORM + SQLite |
-| Forms | react-hook-form + zod |
-| Motion | Framer Motion |
-| Theme | next-themes |
-| Icons | lucide-react |
-
-## Getting started
-
-```bash
-# install
-bun install
-
-# push the database schema
-bun run db:push
-
-# start the dev server (http://localhost:3000)
-bun run dev
-```
-
-Environment: a `.env` file with `DATABASE_URL=file:/home/z/my-project/db/custom.db` (already present).
-
-## Project structure
+## Production directory
 
 ```
-src/
-├── app/
-│   ├── layout.tsx          # Root layout, fonts, ThemeProvider, JSON-LD
-│   ├── page.tsx            # Single-page section assembly
-│   ├── globals.css         # Turmeric-gold + charcoal design tokens
-│   └── api/                # contact, newsletter, inquiry, products
-├── components/
-│   ├── ui/                 # shadcn primitives
-│   ├── layout/             # SiteShell, Container, Section, SectionHeading
-│   ├── header/             # SiteHeader, sticky + mobile sheet
-│   ├── sections/           # Hero, TrustBar, About, Products, Features, Process,
-│   │                       # ClaimsRegister, Testimonials, Faq, ContactSection, SiteFooter
-│   ├── product/            # ProductVisual (SVG), ProductCard, ProductDialog
-│   ├── theme-provider.tsx
-│   └── theme-toggle.tsx
-├── data/                   # company.json, products.json, navigation.json, claims-register.json
-├── lib/                    # db, data loaders, validations, rate-limit, utils
-├── hooks/                  # use-toast, use-mobile
-└── types/                  # shared TS types
+dist-hostinger/
 ```
 
-## The Master Pack
+This is the deployable website. It is designed for **Hostinger shared
+hosting** — upload to `public_html/`, select PHP 8.2+, configure SMTP.
+No Node, no npm, no Composer, no build server required.
 
-The `Gaurikrit_Website_Master_Pack/` directory is the full strategy + design + content + implementation dossier that drove this build:
+## Deployment ZIP
 
 ```
-Gaurikrit_Website_Master_Pack/
-├── 00_SOURCE_ASSETS/      Original briefs, brochures, brand PDFs
-├── 01_STRATEGY/           Locked decisions, IA, user journeys
-├── 02_DESIGN/             Design system, page blueprints, components
-├── 03_MOTION_INTERACTIONS/ Motion spec, responsive & accessibility
-├── 04_TECHNICAL/          Architecture, data/forms/analytics, perf/SEO/security
-├── 05_CONTENT_DATA/       company / products / navigation / claims JSON
-├── 06_IMPLEMENTATION/     Build plan, QA acceptance, client inputs
-├── 07_RESEARCH/           Official research, source inventory
-├── 08_ZAI_PROMPT/         Master prompt for the AI build
-├── ASSET_MANIFEST.json
-├── README.md
-└── ZAI_MASTER_PROMPT_COPY_ME.md
+gaurikrit-hostinger-deploy.zip
 ```
 
-Read `Gaurikrit_Website_Master_Pack/ZAI_MASTER_PROMPT_COPY_ME.md` end-to-end to understand the build directive.
+Extract the contents directly into `public_html/`. See
+`dist-hostinger/HOSTINGER_DEPLOYMENT.md` for step-by-step instructions.
 
-## Brand promise
+**DO NOT deploy the root repository directly.** Deploy only:
+- `gaurikrit-hostinger-deploy.zip`, or
+- the contents of `dist-hostinger/`
 
-> *Gaurikrit brings the golden warmth of haldi and the precision of premium paint into every Indian home — naturally crafted, scientifically trusted.*
+## Routes
 
-## License
+```
+/                                   Home
+/products/                          Products Overview
+/products/prakritik-distemper/      Prakritik Distemper
+/products/prakritik-emulsion/       Prakritik Emulsion
+/why-prakritik/                     Why Prakritik
+/about/                             About Gaurikrit
+/for-business/                      Projects & Partnerships
+/paint-calculator/                  Painting Budget Calculator
+/downloads/                         Product Documents
+/contact/                           Contact
+404                                 Custom branded 404
+```
 
-© Gaurikrit Naturals & Coatings Pvt. Ltd. All rights reserved.
+## Official visual assets
+
+Official client photography, logo, and brochure will be inserted later by
+ChatGPT Work at predefined paths. The website uses coded SVG fallbacks
+until then — no redesign needed when assets arrive.
+
+See **IMAGE_HANDOFF.md** for exact paths and fallbacks.
+
+## Documentation
+
+- `IMAGE_HANDOFF.md` — official asset paths + fallback system
+- `CLIENT_VERIFICATION_REQUIRED.md` — items pending client confirmation
+- `SECURITY_ACTION_REQUIRED.md` — credential rotation notes
+- `REBUILD_AUDIT.md` — summary of corrections made
+- `dist-hostinger/HOSTINGER_DEPLOYMENT.md` — deployment guide
+
+## Architecture
+
+- **PHP includes** (reusable, not a framework): `bootstrap`, `config`,
+  `data`, `helpers`, `seo`, `header`, `footer`, `mailer`, `calculator-config`
+- **Directory-based routes** (clean URLs, no rewrite rules)
+- **Vanilla JS modules**: `app`, `navigation`, `animations`, `ashta-laabh`,
+  `colour-study`, `calculator`, `forms`
+- **Authored CSS**: `assets/css/app.css` with locked design tokens
+- **11 coded SVG illustrations**: IndianCow, GaurikritCowMark,
+  PrakritikDistemperBucket, PrakritikEmulsionBucket, RuralLandscape,
+  IndianCourtyard, MaterialJourney, AshtaLaabhDiagram, PaintBrushStroke,
+  FieldBotanicals, GaushalaScene
+
+## Archived code
+
+The previous Next.js implementation is archived under `_archive/` for
+reference only. Production code (`dist-hostinger/`) has **ZERO dependency**
+on Node, npm, React, or Next.js.
+
+## Old planning pack
+
+`Gaurikrit_Website_Master_Pack/` contains old generated planning data. It
+is **NOT a factual source** and must not be used at runtime. See
+`Gaurikrit_Website_Master_Pack/DO_NOT_USE_AS_FACTUAL_SOURCE.md`.

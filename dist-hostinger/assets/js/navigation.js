@@ -6,7 +6,9 @@
  *  - Scroll-spy: IntersectionObserver on <section id> elements toggles
  *    data-active="true" on matching nav links (desktop + mobile menu).
  *  - Mobile menu: open/close sheet, ESC to close, click backdrop to close.
- *  - Header scroll state: toggle data-scrolled on .site-header after 24px scroll.
+ *  - Header scroll state: toggle data-scrolled on .site-header after 24px.
+ *
+ * Light-only site — no theme toggle is handled here.
  *
  * Exposes: window.GaurikritApp.Navigation.init()
  */
@@ -20,14 +22,17 @@
     }
 
     // Map of section id -> nav href it should highlight.
+    // Driven by the data attributes the page template emits on each nav
+    // link ([data-nav-link="/products/"] etc.). The map below only adds
+    // coverage for the homepage's anchor sections.
     var SECTION_TO_HREF = {
-        'home':          '/',
-        'hero':          '/',
-        'products':      '/products/',
-        'why-prakritik': '/why-prakritik/',
-        'about':         '/about/',
-        'for-business':  '/for-business/',
-        'contact':      '/contact/'
+        'home':           '/',
+        'hero':           '/',
+        'products':       '/products/',
+        'why-prakritik':  '/why-prakritik/',
+        'about':          '/about/',
+        'for-business':   '/for-business/',
+        'contact':        '/contact/'
     };
 
     function setActiveNav(href) {
@@ -36,9 +41,7 @@
             var linkHref = links[i].getAttribute('data-nav-link');
             if (linkHref === href) {
                 links[i].setAttribute('data-active', 'true');
-                if (links[i].setAttribute) {
-                    links[i].setAttribute('aria-current', 'page');
-                }
+                links[i].setAttribute('aria-current', 'page');
             } else {
                 links[i].removeAttribute('data-active');
                 links[i].removeAttribute('aria-current');
@@ -47,16 +50,16 @@
     }
 
     function initScrollSpy() {
-        if (!('IntersectionObserver' in window)) return;
-        var sections = document.querySelectorAll('main section[id], main div[id]');
-        if (!sections.length) return;
-
         var currentPath = window.location.pathname.replace(/\/+$/, '') || '/';
         // On non-home pages, set active by current path immediately.
         if (currentPath !== '/' && currentPath !== '') {
             setActiveNav(currentPath + '/');
             setActiveNav(currentPath);
         }
+
+        if (!('IntersectionObserver' in window)) return;
+        var sections = document.querySelectorAll('main section[id], main div[id]');
+        if (!sections.length) return;
 
         var visible = {};
         var observer = new IntersectionObserver(function (entries) {
@@ -98,7 +101,6 @@
             toggle.setAttribute('aria-label', 'Close menu');
         }
         document.documentElement.style.overflow = 'hidden';
-        // Focus first link for keyboard users.
         var firstLink = menu.querySelector('a, button');
         if (firstLink) firstLink.focus();
     }
@@ -111,12 +113,10 @@
             toggle.setAttribute('aria-label', 'Open menu');
         }
         document.documentElement.style.overflow = '';
-        // Hide after the transition completes.
         var onHide = function () {
             menu.setAttribute('hidden', '');
             menu.removeEventListener('transitionend', onHide);
         };
-        // If no transition (reduced motion), hide immediately.
         if (prefersReducedMotion()) {
             menu.setAttribute('hidden', '');
         } else {
@@ -164,11 +164,11 @@
 
         // Click any nav link closes (mobile).
         var navLinks = menu.querySelectorAll('a');
-        navLinks.forEach(function (link) {
-            link.addEventListener('click', function () {
+        for (var i = 0; i < navLinks.length; i++) {
+            navLinks[i].addEventListener('click', function () {
                 closeMobileMenu(menu, toggle);
             });
-        });
+        }
     }
 
     function initHeaderScroll() {
@@ -176,14 +176,13 @@
         if (!header) return;
         var lastState = null;
         function update() {
-            var scrolled = window.scrollY > 24;
+            var scrolled = (window.scrollY || window.pageYOffset) > 24;
             var state = scrolled ? 'true' : 'false';
             if (state !== lastState) {
                 header.setAttribute('data-scrolled', state);
                 lastState = state;
             }
         }
-        // Use passive listener for scroll performance.
         var ticking = false;
         window.addEventListener('scroll', function () {
             if (!ticking) {

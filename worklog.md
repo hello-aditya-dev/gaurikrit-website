@@ -908,3 +908,872 @@ src/ moved to _archive/nextjs-old-src/ as visual/technical reference. Production
 
 ## Commit
 - d618595 pushed to main on https://github.com/hello-aditya-dev/gaurikrit-website
+
+---
+
+Task ID: CORRECTION-JS-CSS
+Agent: zai-code (Claude Code / Z.ai)
+Task: STRICT CORRECTION PASS on the Gaurikrit Bio Products PHP
+website in `/home/z/my-project/dist-hostinger/`. Rewrite the 6 JS
+modules + 1 CSS file to align with the locked factual `data.php`
+(light-only branded site — no claims, no stats, no certs, no
+prices, no newsletter, no calculator, no dark mode).
+
+## Context read first
+- `dist-hostinger/includes/data.php` — NEW locked factual data. Two
+  products (Prakritik Distemper / Prakritik Emulsion), Ashta Laabh
+  eight benefits, Colours-of-India study moods, project pathways,
+  FAQ, contact/business interest options, NAV. No claims register,
+  no stats, no certifications, no prices.
+- `dist-hostinger/includes/header.php` + `footer.php` — already
+  rewritten by a prior agent. Logo handoff via `data-official-image`
+  on `.brand__mark` (with `.brand__official` <img> + `.brand__fallback`
+  SVG). No dark mode toggle. Toast region `[data-toast-region]`.
+  Back-to-top `[data-back-to-top]`. Mobile menu `[data-mobile-menu]`.
+- `dist-hostinger/agent-ctx/SVG-PORT-zai-code.md` — confirmed the
+  illustration partials reference `--forest`, `--haldi`, `--haldi-deep`,
+  `--card`, `--secondary`, `--background` CSS variables verbatim, so
+  the alias block in `:root` must be preserved.
+
+## Files rewritten (7)
+1. `dist-hostinger/assets/js/app.js` — 219 lines
+2. `dist-hostinger/assets/js/navigation.js` — 206 lines
+3. `dist-hostinger/assets/js/animations.js` — 154 lines
+4. `dist-hostinger/assets/js/ashta-laabh.js` — 83 lines
+5. `dist-hostinger/assets/js/colour-study.js` — 69 lines
+6. `dist-hostinger/assets/js/forms.js` — 324 lines
+7. `dist-hostinger/assets/css/app.css` — 559 lines
+
+## What was REMOVED
+
+### From JS
+- **Dark mode / theme toggle** — all of `initThemeToggle()`,
+  `localStorage['gk-theme']`, `prefers-color-scheme` listeners,
+  `data-theme` attribute mutation. Gone.
+- **Coverage calculator** — `initCoverageCalculator()` and the
+  `#paint-specs` JSON payload reader, pack-breakdown, primer, two-coat,
+  wastage, price-estimate logic. Gone.
+- **Claims register** — `initClaimsSearch()` + `initClaimsCopy()`
+  and the `fallbackCopy()` helper. Gone.
+- **Certification modal / cert badges** — `initCertBadges()`. Gone.
+- **Count-up / animated counters** — `initCountUp()` + `animateCount()`
+  + `easeOutExpo()`. Gone (the locked `data.php` carries no stats).
+- **Newsletter form handling** — `initNewsletterForms()` and any
+  reference to `/api/newsletter.php`. Gone.
+
+### From CSS
+- The entire `[data-theme="dark"] { … }` token override block.
+- `.theme-toggle` / `.theme-toggle__icon--moon` /
+  `[data-theme="dark"] .theme-toggle__icon--*` rules.
+- `.newsletter-form` / `.newsletter-form__input` rules.
+- The `.trust-bar__stats` / `.trust-bar__stat` /
+  `.trust-bar__stat-value` / `.trust-bar__stat-label` counter-grid
+  styles and the `.trust-bar__certs` / `.trust-bar__cert` /
+  `.trust-bar__cert-name` / `.trust-bar__cert-desc` cert-button styles
+  (the trust bar is now a brand strip, see below).
+- The `.site-footer__strip` / `.site-footer__strip-inner` /
+  `.site-footer__strip-title` / `.site-footer__strip-sub` /
+  `.site-footer__blurb` / `.site-footer__socials` / `.site-footer__social`
+  / `.site-footer__legal` rules — the new footer.php is a clean brand
+  + columns + bottom strip without a newsletter signup or fake socials.
+
+Verified: `grep` for `data-theme`, `newsletter`, `claims-table`,
+`calculator`, `count-up`, `theme-toggle`, `testimonial`, `cert-name`
+in `app.css` (outside comments) returns 0 matches.
+
+## What was KEPT / ADDED
+
+### JS — kept
+- **Scroll-spy nav** (navigation.js) — IntersectionObserver on
+  `<main> section[id]` toggles `data-active="true"` + `aria-current="page"`
+  on the matching `[data-nav-link]`. Falls back to pathname-based
+  active link on non-home pages.
+- **Mobile menu** (navigation.js) — open/close sheet, ESC, backdrop
+  click, link-click to close. `prefers-reduced-motion` skips the
+  400ms hide transition.
+- **Header scroll state** (navigation.js) — `data-scrolled="true"`
+  after 24px via passive scroll listener + rAF.
+- **Back-to-top** (app.js) — show after 600px, smooth-scroll on click
+  (or instant under reduced-motion).
+- **Reveal on scroll** (animations.js) — `[data-reveal]` and
+  `[data-reveal-stagger]` set `data-revealed="true"` via
+  IntersectionObserver. Stagger supports up to 8 children.
+- **FAQ accordion** (app.js) — toggle `data-open` on `.faq-item`;
+  single-open per `.faq-list`. `aria-expanded` synced.
+- **Hero paint-stroke reveal** (animations.js) — clip-path animation
+  on `.hero__stroke` via Web Animations API (CSS-transition fallback).
+- **Marquee duplication** (animations.js) — clones children for a
+  seamless CSS loop.
+- **Toast helper** (forms.js) — shows `.toast` in `[data-toast-region]`,
+  auto-dismiss after 5s, click-to-dismiss. Success = forest border-left,
+  error = `--danger` (red) border-left. Errors use `role="alert"`.
+- **Form submission** (forms.js) — generic `handleSubmit()` wired
+  to `[data-contact-form]` and `[data-business-form]`.
+
+### JS — added
+- **Image handoff system** (app.js `initImageHandoff()`) — generic
+  handler for ANY `[data-official-image]` element. Finds the inner
+  `<img>`, on `load` sets `data-loaded="true"` on the wrapper (CSS
+  fades the official in / fallback out via opacity transition); on
+  `error` sets `data-loaded-error` and hides the broken `<img>` so
+  the fallback stays visible. Handles cached-image case via
+  `complete + naturalWidth` check before attaching listeners.
+  Applies to: header logo (`.brand__mark`), footer logo
+  (`.brand--footer .brand__mark`), hero product group, product
+  detail images (`.product-media`), brochure cover.
+- **Material journey draw-in** (animations.js
+  `initMaterialJourney()`) — for the `[data-material-journey]`
+  wrapper, sets `stroke-dasharray = stroke-dashoffset = pathLength`
+  on every SVG path/line/polyline/rect/circle/ellipse, then eases
+  `stroke-dashoffset` to 0 when the diagram enters the viewport
+  (staggered 90ms per shape).
+- **Brochure PDF detection** (app.js `initBrochureDetection()`) —
+  finds `[data-brochure-detect]`, HEAD-fetches the URL from its
+  `data-brochure-detect` / `data-brochure-url` attribute, sets
+  `data-brochure-state="available"|"missing"|"checking"` on the
+  wrapper so the page template can toggle the "View/Download
+  Brochure" buttons vs the "will be available" message.
+- **Ashta Laabh interaction** (ashta-laabh.js) —
+  `[data-ashta-laabh]` wrapper with `[data-ashta-node="<id>"]`
+  nodes and `[data-ashta-detail="<id>"]` details. Click, Enter/Space,
+  focus, and mouseenter all set the active node. First node active
+  by default.
+- **Colour study** (colour-study.js) — `[data-colour-study]`
+  wrapper with swatches carrying `[data-shade="<css-color>"]` (or
+  the legacy `[data-shade-hex]` for back-compat), a
+  `[data-colour-wall]` preview, and an optional
+  `[data-colour-label]` pill. Clicking a swatch sets the wall's
+  `background-color` and the label text. Works with hex / rgb /
+  oklch / named colors — supports the locked `data.php`'s oklch
+  strings.
+
+### JS — updated
+- **forms.js submit flow** — now sends as
+  `application/x-www-form-urlencoded; charset=UTF-8` (URLSearchParams,
+  with `%20→+` substitution) so the PHP backend's `$_POST` is
+  populated natively. Previously sent JSON which the existing
+  `/api/contact.php` and `/api/business-enquiry.php` do not read.
+- **forms.js success message** — toast body for both contact and
+  business forms is now exactly the spec text:
+  "Thank you. Your enquiry has been sent."
+- **forms.js error message** — toast body uses the server's
+  `error` field (falling back to `message`, then to a generic
+  "Please review the form and try again.").
+- **forms.js network error message** — fetch-throw toast body is
+  exactly the spec text: "We could not submit your enquiry right
+  now. Please contact Gaurikrit directly by phone or email."
+- **forms.js honeypot** — if the hidden `company` field is filled,
+  the form is NOT submitted; a fake success toast is shown and the
+  form is reset (per spec).
+- **forms.js ?interest= prefill** — `prefillInterestFromQuery()`
+  reads `?interest=` from `URLSearchParams` and, if the value
+  matches one of the `<select name="interest">` options on a
+  `[data-contact-form]`, sets that option. Server-side prefill in
+  `contact/index.php` continues to work; this is defence-in-depth
+  for SPA-style navigation.
+- **forms.js submit label** — `setBusy()` stashes the original
+  `[data-submit-label]` text and restores it after the request
+  completes (was previously stuck on "Sending…" forever on
+  network error).
+- **forms.js toast `role`** — `role="alert"` for error toasts
+  (was `role="status"` for everything).
+
+### CSS — kept
+- Design tokens in `:root` (`--forest`, `--forest-deep`,
+  `--forest-mid`, `--haldi`, `--haldi-deep`, `--haldi-light`,
+  `--limewash`, `--paper`, `--mitti`, `--geru`, `--leaf`,
+  `--indigo`, `--charcoal`) + semantic aliases (`--bg`, `--bg-card`,
+  `--fg`, `--fg-muted`, `--primary`, `--primary-fg`, `--accent`,
+  `--accent-fg`, `--border`, `--secondary-bg`, `--danger`) + the
+  `--card` / `--secondary` / `--background` / `--foreground`
+  aliases used by the SVG illustration partials.
+- Typography tokens (`--font-sans`, `--font-display`, `--font-deva`).
+- Radii + shadow tokens.
+- Layout primitives: `.container`, `.section`, `.section-heading`,
+  `.eyebrow`.
+- Buttons (`.btn` + variants).
+- Header (`.site-header`, `.site-header__inner`, `.brand`,
+  `.brand__text`, `.brand__name`, `.brand__sub`, `.site-nav`,
+  `.site-nav__link`, `.site-header__actions`, `.site-header__cta`,
+  `.menu-toggle`, `.site-main`).
+- Mobile menu (`.mobile-menu` + all sub-elements).
+- Hero (`.hero`, `.hero__container`, `.hero__lockup`,
+  `.hero__devanagari`, `.hero__brand-sub`, `.hero__title`,
+  `.hero__sub`, `.hero__ctas`, `.hero__art`, `.hero__stroke`,
+  `.hero__bucket`, `.hero__cow`, `.hero__landscape`,
+  `.hero__scroll`, `bounce` keyframes).
+- Marquee + `marquee` keyframes.
+- Products grid + product-card (with media, chip, body, foot,
+  highlights, link).
+- Features grid + feature-card.
+- Process steps.
+- FAQ accordion + reveal states.
+- Contact form + form-field / form-label / form-input /
+  form-textarea / form-select / form-error / form-honeypot.
+- Footer (clean brand + columns + bottom strip).
+- Back-to-top.
+- Toast region + toast + variants.
+- Reveal-on-scroll CSS (`[data-reveal]`, `[data-reveal-stagger]`
+  with up-to-8 child stagger).
+- Product-detail page.
+- 404 page.
+- Utility classes (`.text-center`, `.text-left`, `.mt-0`,
+  `.mt-auto`, `.mb-0`, `.mx-auto`, `.sr-only`).
+
+### CSS — added
+- **`.brand__mark` image handoff** — `.brand__official` is
+  `position:absolute; inset:0; opacity:0` over the `.brand__fallback`
+  SVG. `[data-loaded="true"]` fades the official in and the fallback
+  out. `[data-loaded-error]` hides the broken `<img>` outright so the
+  fallback stays visible.
+- **`.product-media` image handoff** — same pattern as
+  `.brand__mark` for product cards, product detail, brochure cover.
+- **`.trust-bar` brand strip** — replaces the old stats-grid +
+  cert-buttons block with a simple brand row (`.trust-bar__brand-row`,
+  `.trust-bar__brand-row-item`, optional `--deva` variant with the
+  Noto Serif Devanagari font, plus an optional `.trust-bar__subline`).
+- **`.ashta-laabh` radial diagram** — `.ashta-laabh__diagram`,
+  `.ashta-laabh__node` (with `transform-box: fill-box` so SVG nodes
+  scale around their own centre on hover/focus/active), drop-shadow
+  filter on active, and a `.ashta-laabh__details` /
+  `.ashta-laabh__detail` paired with `[hidden]` toggling.
+- **`.colour-study`** — `.colour-study__wall` (16/9 aspect-ratio
+  preview that transitions `background-color` over 0.6s),
+  `.colour-study__wall-overlay` (radial-gradient grain),
+  `.colour-study__wall-label` (pill), `.colour-study__swatches`
+  row, `.colour-study__swatch` (round dot, scales on hover, primary
+  border on active).
+- **`.material-journey`** — wrapper, `.material-journey__svg`,
+  `.material-journey__steps`, `.material-journey__step` with num /
+  title / desc. The draw-in animation is JS-driven via
+  `stroke-dasharray`.
+- **`.material-statement` editorial section** — large editorial
+  typography: asymmetric 1fr / 1.4fr grid, `.material-statement__eyebrow`
+  + `__deva` (Noto Serif Devanagari) + `__title` (clamp up to 3.75rem)
+  + `__body` (clamp up to 1.25rem) + `__rule` (4rem haldi underline).
+- **`.mission` section** — forest-background inverse section with
+  `.mission__inner` (0.9fr / 1.1fr grid), `.mission__eyebrow` (haldi
+  caps), `.mission__deva` (Noto Serif Devanagari in haldi-light),
+  `.mission__title`, `.mission__body`.
+- **`.pathways` + `.pathway-card`** — 4-column grid on desktop,
+  each card has num / title / desc / link.
+- **Editorial layout helpers** — `.editorial-grid` (1col → 2col),
+  `.editorial-grid--offset` (0.85fr / 1.15fr asymmetric),
+  `.editorial-grid--reverse`, `.editorial-bleed` (full-bleed margin
+  trick), `.editorial-pull` (display-italic pull quote with
+  haldi left border), `.editorial-rule` (4rem haldi underline),
+  `.prose` + `.prose--wide` (max-width caps for long-form copy),
+  `.breadcrumb`.
+- **Responsive breakpoints** — explicit `@media (max-width: 390px)`
+  for small phones (smaller header height, full-width buttons,
+  edge-to-edge toast), `@media (min-width: 768px)` tablet tweaks,
+  `@media (min-width: 1440px)` large-desktop container widening.
+- **`@supports not (inset: 0)`** — fallback to top/right/bottom/left
+  for the absolutely-positioned image-handoff layers, for any
+  legacy browser that doesn't support `inset`.
+- **`prefers-reduced-motion` overrides** — kill all animations
+  (marquee, hero bounce, reveal transitions) under reduced motion.
+
+## Verification
+
+```
+$ cd /home/z/my-project/dist-hostinger/assets/js && \
+  for f in app.js navigation.js animations.js ashta-laabh.js \
+           colour-study.js forms.js; do \
+    echo "=== $f ==="; node --check "$f" && echo OK; \
+  done
+=== app.js ===
+OK
+=== navigation.js ===
+OK
+=== animations.js ===
+OK
+=== ashta-laabh.js ===
+OK
+=== colour-study.js ===
+OK
+=== forms.js ===
+OK
+```
+
+All 6 JS files pass `node --check`.
+
+CSS brace balance: 382 opening / 382 closing — balanced.
+`@media` count: 40. `@supports` count: 1.
+Outside-comment `grep` for the removed-term list
+(`data-theme`, `newsletter`, `claims-table`, `calculator`,
+`count-up`, `theme-toggle`, `testimonial`, `cert-name`) returns 0
+matches — only the header-comment block in `app.css` mentions them
+(in the "Removed:" description).
+
+`grep` for `href="#"` in any generated HTML / JS string returns 0
+matches — no placeholder links are produced.
+
+## Notes / hand-off
+
+- The PHP page templates (`index.php`, `contact/index.php`,
+  `for-business/index.php`, `why-prakritik/index.php`,
+  `about/index.php`, `downloads/index.php`,
+  `products/index.php`, `products/prakritik-distemper/index.php`,
+  `products/prakritik-emulsion/index.php`) currently still reference
+  OLD data fields (`$COMPANY['story']`, `$COMPANY['stats']`,
+  `$COMPANY['certifications']`, `$CLAIMS`, `$product['tagline']`,
+  `$product['description']`, `$product['sizes']`,
+  `$product['priceRange']`, `$product['claims']`,
+  `get_claim('clm-…')`, etc.) that the NEW `data.php` no longer
+  supplies. Per task scope, the page templates were NOT rewritten in
+  this pass — that work belongs to a separate agent. Once those
+  templates are rewritten to use the locked `data.php` shape
+  (`$COMPANY['name']`, `$COMPANY['mission']`, `$PRODUCTS[0..1]`,
+  `$ASHTA_LAABH`, `$COLOUR_STUDY`, `$PROJECT_PATHWAYS`, `$FAQ`,
+  `$INTEREST_OPTIONS`, `$PROJECT_TYPES`), the JS and CSS in this
+  commit will work end-to-end without further edits.
+- The image handoff system supports the existing `header.php` and
+  `footer.php` markup as-is: both use `.brand__mark[data-official-image]`
+  with `.brand__official` `<img>` + `.brand__fallback` SVG. No
+  header/footer change needed.
+- The colour-study JS supports BOTH the canonical `[data-shade]`
+  attribute (any CSS color, including the oklch strings the locked
+  `data.php` carries) AND the legacy `[data-shade-hex]` attribute
+  used by the current `products/prakritik-distemper/index.php` page,
+  so the page template can be migrated to oklch incrementally.
+- The brochure-detection JS expects the page template to wrap the
+  brochure UI in `<div data-brochure-detect="<url>">` containing
+  both `[data-brochure-if-available]` and `[data-brochure-if-missing]`
+  blocks. The current `downloads/index.php` uses PHP `is_file()`
+  server-side checks instead — the JS detection is a bonus layer for
+  when the page template is rewritten to use the handoff pattern.
+- Forms now POST as `application/x-www-form-urlencoded` (not JSON),
+  matching what the existing `/api/contact.php` and
+  `/api/business-enquiry.php` endpoints read via `$_POST`. The
+  existing endpoints accept the field names already emitted by the
+  current page templates (`name`, `email`, `phone`, `interest`,
+  `message` for contact; `name`, `organisation`, `role`, `phone`,
+  `email`, `city`, `project_type`, `approximate_requirement`,
+  `interest`, `message` for business). No API change required.
+
+## Commit
+(to be pushed by the main agent)
+
+---
+
+Task ID: CALC-FORMS-API
+Agent: zai-code (Claude Code / Z.ai)
+Task: Build the 4-step painting budget calculator JS, fix the forms JS,
+and fix the two PHP API endpoints for the Gaurikrit Bio Products
+website in `/home/z/my-project/dist-hostinger/`. Full work record is
+in `/home/z/my-project/agent-ctx/CALC-FORMS-API-zai-code.md` — this
+section is the worklog summary.
+
+## Files touched
+- NEW `dist-hostinger/assets/js/calculator.js` — 4-step vanilla-JS
+  painting budget calculator. `window.GaurikritApp.Calculator.init()`
+  renders the entire UI into a `[data-calculator]` mount, reads an
+  optional `<script type="application/json" id="calculator-config">`
+  JSON for the rate config, defaults to `enabled: false` when
+  absent. NO rupee values anywhere (rates not supplied).
+- NEW `dist-hostinger/paint-calculator/index.php` — the page that
+  mounts the calculator (the `paint-calculator/` directory was
+  reserved but empty). Follows the existing page template pattern
+  (`header.php` + `footer.php`), emits the inline calculator-config
+  JSON from `includes/calculator-config.php`, and provides the
+  scoped CSS for `.calc__*` classes.
+- EDIT `dist-hostinger/assets/js/forms.js` — success toast body now
+  uses `json.message || successMsg` so the truthful DB-only-success
+  message ("Your enquiry was saved. If your request is urgent…")
+  reaches the user instead of always showing the canonical SMTP
+  success copy.
+- EDIT `dist-hostinger/api/contact.php` — full rewrite. Truthful
+  success/failure based on `$mailSent` / `$dbSaved` booleans.
+  Honeypot returns generic success (no time promise). Interest
+  validation now requires one of the 6 canonical values from
+  `$INTEREST_OPTIONS` (was previously validating against a bogus
+  4-value list). Maps the interest value to its readable label for
+  the email body. DB error log is sanitised to strip any
+  `//user:pass@` substring before logging.
+- EDIT `dist-hostinger/api/business-enquiry.php` — same truthful
+  pattern. `project_type` validation now requires one of the
+  canonical `$PROJECT_TYPES` values from `data.php`. `phone` is
+  required + format-checked (was optional). `organisation` is now
+  treated as optional (matches the form's `<label>` which has no
+  `*`). Removed the "within one business day" response promise.
+- EDIT `dist-hostinger/includes/footer.php` — added `<script>` tags
+  for `navigation.js`, `animations.js`, `ashta-laabh.js`,
+  `colour-study.js`, `forms.js`, `calculator.js`, all loaded before
+  `app.js`. Previously only `app.js` was loaded, so app.js's boot
+  loop (`G.Forms.init()` etc.) found nothing on `window.GaurikritApp`
+  and silently no-op'd every module init.
+- EDIT `dist-hostinger/assets/js/app.js` — added `'Calculator'` to
+  the module boot list + docstring line. So the calculator inits on
+  DOMContentLoaded.
+- NEW `agent-ctx/php_sanity_check.py` — minimal PHP
+  brace/paren/string balance checker (no `php` CLI in the sandbox).
+
+## Verification
+- All 7 JS files pass `node --check` (app, navigation, animations,
+  ashta-laabh, colour-study, forms, calculator).
+- All 4 touched PHP files + the new page pass `python3
+  agent-ctx/php_sanity_check.py` (modulo a trailing-`?>` warning
+  that matches the existing `contact/index.php` and
+  `for-business/index.php` convention).
+- `bun run lint` exit 0 — no Next.js regressions.
+- Spec text checks: no "within 24 hours" or "one business day" or
+  any response-time promise in any user-facing JSON payload from
+  either API. No `getLog()` calls, no `password` or
+  `base64_encode` references in either API file beyond the
+  docstring.
+
+## Spec compliance highlights
+- calculator.js: 4 steps (Fresh/Repaint -> Interior/Exterior ->
+  Distemper/Emulsion -> area in sq.ft.), progress indicator,
+  single-select cards with `aria-pressed`, keyboard accessible,
+  Enter on the area input triggers calculate, "Start over" resets
+  state. Result panel shows the 4 project choices as a `<dl>`,
+  the "Automatic commercial rates have not yet been configured."
+  copy, the "For an accurate estimate, send these project details
+  to Gaurikrit." copy, and a "Request Estimate" CTA linking to
+  `/contact/?interest=bulk-project&painting_type=X&location=Y&paint=Z&area=N`.
+- forms.js: `application/x-www-form-urlencoded` POST to
+  `/api/contact.php` and `/api/business-enquiry.php`, CSRF token +
+  honeypot included, field-level errors populate
+  `[data-error-for]`, toast helper creates `.toast` elements in
+  `[data-toast-region]` with `role="alert"` for errors and
+  `role="status"` for success, auto-dismiss 5s, click-to-dismiss,
+  `?interest=` pre-fills the contact form's interest select,
+  honeypot returns fake success (no fetch). NO newsletter handling.
+- contact.php + business-enquiry.php: POST only, rate-limited
+  (5/min), CSRF verified, honeypot returns generic success,
+  server-side validation, SMTP attempt captured as `$mailSent`,
+  optional DB PDO save captured as `$dbSaved`, truthful JSON
+  response:
+  - `$mailSent`: 201 `{"success":true,"message":"Thank you. Your
+    enquiry has been sent."}`
+  - `$dbSaved`: 200 `{"success":true,"message":"Your enquiry was
+    saved. If your request is urgent, please contact Gaurikrit
+    directly by phone or email."}`
+  - else: 500 `{"success":false,"error":"We could not submit your
+    enquiry right now. Please contact Gaurikrit directly by phone or
+    email."}`
+
+## Commit
+(to be pushed by the main agent)
+
+---
+
+## Task ID: CSS-LOCK
+Agent: frontend-styling-expert
+Task: Rewrite `/home/z/my-project/dist-hostinger/assets/css/app.css` with the locked design system for the Gaurikrit Bio Products site (pure PHP, Hostinger shared hosting, no Tailwind, no build step).
+
+### Work Log
+
+- **Read the existing `app.css`** (560 lines, oklch-based, with the prior
+  CORRECTION pass) and the full PHP template set
+  (`index.php`, `products/index.php`,
+  `products/prakritik-distemper/index.php`,
+  `products/prakritik-emulsion/index.php`,
+  `contact/index.php`, `about/index.php`,
+  `why-prakritik/index.php`, `for-business/index.php`,
+  `downloads/index.php`, `404.php`, `includes/header.php`,
+  `includes/footer.php`) and the JS modules
+  (`app.js`, `navigation.js`, `animations.js`, `forms.js`,
+  `colour-study.js`, `ashta-laabh.js`) and the SVG illustration
+  partials in `includes/illustrations/`, to confirm which class
+  names and CSS custom properties are still in active use.
+
+- **Rewrote `app.css` end-to-end (3 517 lines, 89 KB)** as a single
+  human-readable authored CSS file. Structure:
+  1. Locked design tokens (`:root`) — every brand colour now uses
+     the EXACT locked hex values
+     (`#173F2B #102F20 #E3A51A #F2D783 #F4EFE2 #FAF8F1 #C9A77C #A86E4B #B65432 #748468 #365B67 #201E19 #4D4A42` + `--hairline` + `--danger`).
+  2. Reset + base (`html`, `body`, headings, `a`, `img`, `button`,
+     `:focus-visible`, `::selection`, `.skip-link`).
+  3. Texture utilities (`.bg-limewash`, `.bg-paper-grain`,
+     `.bg-kraft`, `.paint-edge`, legacy `.section--grain` /
+     `.bg-grain`) — all 1–4% perceived opacity, no `oklch()`.
+  4. Layout (`.container` max-width 80 rem with 20/32/48/72 px
+     padding ladder, `.section` with `--section-y` clamp spacing,
+     `.section--paper/--limewash/--forest/--forest-deep/--haldi/--mitti`).
+  5. Section heading + `.eyebrow` (uppercase, 0.2 em letter-spacing,
+     forest colour, 0.75 rem).
+  6. Buttons (`.btn` 8 px radius — NOT pill, `.btn--primary/--secondary/--haldi/--sm/--lg/--block`, plus legacy `.btn--outline/--ghost`).
+  7. Header (`.site-header` fixed transparent at top → warm paper +
+     thin border after scroll via `[data-scrolled="true"]`,
+     `.brand`, `.brand__mark` with `data-official-image` /
+     `data-loaded` / `data-loaded-error` image-handoff states,
+     `.site-nav` desktop flex with `::after` underline + `[data-active]`,
+     `.site-nav__dropdown` Products hover/focus reveal,
+     `.menu-toggle` mobile only, `.site-header__cta`,
+     `.site-main`).
+  8. Mobile menu (fixed overlay, `.mobile-menu__panel` slides from
+     right, full subcomponent coverage + legacy `.mobile-menu__title`
+     / `__arrow` / `__tagline`).
+  9. Hero — 92 svh desktop, split 1fr 1fr, spec-locked
+     `.hero__left/__right/__body` plus the legacy
+     `.hero__lockup/__sub/__eyebrow-chip/__eyebrow-dot/__group`
+     aliases the existing `index.php` template still uses.
+     `.hero__title` uses `clamp(2.7rem, 7vw, 6.5rem)` with a mobile
+     `clamp(2.7rem, 9vw, 3.5rem)` fallback — meets the spec's
+     hero desktop `clamp(3.75rem, 7vw, 6.5rem)` / mobile
+     `2.7rem–3.5rem` range. `.hero__scroll` + `hero-bounce`
+     keyframe kept.
+  10. Marquee + trust-bar (legacy — still referenced by inline page
+      `<style>` blocks).
+  11. Material statement (`.material-statement` + spec
+      `__headline/__body/__visual` + legacy `.statement/__title/__body`).
+  12. Products preview (spec `.products-preview`, `.product-panel`,
+      `.product-panel--distemper/--emulsion`, `__media/__body/__name/__specs/__cta`,
+      PLUS legacy `.duo-grid`, `.duo-panel*`, `.products-duo`,
+      `.pp-panel*`, `.mat-panel*`, `.two-products__*`,
+      `.products-hero*`, `.products-cta*`). Large material panel
+      radius = 12 px.
+  13. Spec table (`.spec-table`, `__row/__label/__value` —
+      architectural spec sheet: 2-col mobile, 14 rem label column
+      desktop, zebra rows).
+  14. Material journey (`.material-journey`, `__steps/__step/__num/__title/__desc/__line/__svg`,
+      PLUS legacy `.journey/__art/__stages/__stage*` /
+      `.journey-wrap` / `.journey-step*`). Haldi hairline draws
+      between stages on desktop via `::after`.
+  15. Ashta Laabh (spec `.ashta-laabh`, `__radial`, `__center`,
+      `__node`, `__node-label`, `__node--active`, `__grid`,
+      PLUS legacy `.ashta-wrap/__art/__art-inner/__grid/__node*`
+      / `__detail-panel/__detail*` /
+      `.ashta-compact`, `.ashta-tile*`, `.pd-ashta*`).
+  16. Colours of India (spec `.colour-study`, `__heading/__sub/__label/__wall/__palette/__swatch/__swatch--active`,
+      PLUS legacy `.colour-wall*` / `.colours-wall*` /
+      `.colour-swatch*` / `.colours-swatch*` used by the
+      `colour-study.js` handoff).
+  17. Mission (`.mission` forest bg, paper text, large type;
+      spec `__headline/__body/__cta` PLUS legacy `__eyebrow/__deva/__title`
+      AND `.mission-card*` for older templates).
+  18. Calculator teaser (`.calc-teaser`, spec `__heading/__body/__cta`,
+      PLUS legacy `__inner/__eyebrow/__title/__art/__steps`)
+      AND the full calculator page (`.calculator`, `__step`,
+      `__step-num`, `__step-title`, `__options`, `__option`,
+      `__option--active`, `__input`, `__result`, `__result-row`,
+      `__result-label`, `__result-value`).
+  19. Project pathways — ruled editorial columns (spec
+      `.pathways`, `.pathway`, `__title/__desc`, PLUS legacy
+      `.pathways-grid`, `.pathway-card*`, `.pathway-col*`,
+      `.pathways-section*`). No floating cards in the spec layout.
+  20. Products overview + Product detail (`.product-detail`,
+      `__hero/__media/__info/__name/__descriptor/__cta` +
+      `.spec-sheet`, `__item/__num/__label/__value` +
+      `.coverage-disclaimer` + PLUS legacy `.pd-hero*`,
+      `.pd-specs*`, `.pd-disclaimer*`, `.pd-cta*`,
+      `.pd-other*`, `.pd-ashta*`).
+  21. Image handoff (`.product-media`, `__official`, `__fallback`,
+      `data-loaded` / `data-loaded-error` states — opacity
+      transition).
+  22. Contact form (`.contact-grid`, `.contact-form`, `.form-field`,
+      `.form-label`, `.form-input`, `.form-select`,
+      `.form-textarea`, `.form-error`, `.form-honeypot` + legacy
+      `.contact-info-card*`, `.contact-form-card*`,
+      `.form-grid`, `.form-field--full`, `.biz-form*`,
+      `.biz-aside*`).
+  23. Page-hero variants for the about/why/contact/business/
+      downloads pages — all unified to the locked design system.
+  24. FAQ (`.faq-list`, `.faq-item`, `__q`, `__icon`, `__a`,
+      `__a-inner`, `[data-open]` state — drives `app.js`).
+  25. Footer — `.site-footer` deep forest bg (`#102F20`),
+      `.site-footer__main`, `__brand`, `__brandline`,
+      `__legal-name`, `__col`, `__heading`, `__contact-line`,
+      `__bottom`, `__bottom-inner`. NO newsletter, NO socials,
+      NO fake privacy/terms links.
+  26. Back-to-top (8 px radius — NOT full) + Toast
+      (`border-left` accent, 8 px radius, `[data-show]` state —
+      drives `forms.js`).
+  27. 404 page (`.error-page` + `__title/__msg/__cta` AND the
+      `__inner/__seal/__code/__sub/__actions/__stroke` aliases
+      the existing `404.php` uses).
+  28. Editorial helpers + `.prose` + `.breadcrumb`.
+  29. Utility (`.text-center/--left`, `.mt-0/--auto`, `.mb-0`,
+      `.mx-auto`, `.sr-only`).
+  30. Reveal animation (`[data-reveal]` opacity 0 translateY 24 px
+      → 1, 0 when `[data-revealed]`; `[data-reveal-stagger] > *`
+      with 8-deep `transition-delay` ladder;
+      `cubic-bezier(0.22, 1, 0.36, 1)` 0.6 s — drives
+      `animations.js`).
+  31. Reduced motion (`@media (prefers-reduced-motion: reduce)`
+      — disables all animations, shows everything immediately).
+  32. Responsive recomposition at 360 / 375 / 390 / 412 / 768 /
+      1024 / 1280 / 1440 / 1920 — no horizontal overflow at any
+      size; small-phone rules widen `.btn` to 100 % in
+      `.hero__ctas`, pin `.toast` / `.back-to-top` to safe
+      margins.
+  33. `@supports` fallbacks: `inset: 0` → 4-value `top/right/bottom/left`;
+      `color-mix()` → fallback hexes for `--haldi-deep` /
+      `--forest-mid` so the SVG illustrations keep working on
+      legacy browsers.
+
+- **Cross-compatibility preserved:** the inline page `<style>`
+  blocks (in `index.php`, `downloads/index.php`, the product
+  detail pages, etc.) and the SVG illustration partials in
+  `includes/illustrations/` reference CSS custom properties
+  `--card`, `--secondary`, `--background`, `--radius`,
+  `--radius-lg`, `--radius-full`, `--haldi-deep`,
+  `--haldi-light`, `--forest-mid`, `--shadow-soft`,
+  `--shadow-forest`, `--shadow-haldi`, `--bg-card`,
+  `--secondary-bg`, `--fg-muted`, `--primary`, `--primary-fg`,
+  `--accent`, `--border`, `--container`, `--header-h`,
+  `--font-sans`, `--font-display`, `--font-deva`, `--ease`,
+  `--dur`. **All 52 of these aliases are still defined** in
+  `:root`, now derived from the locked hex palette (or computed
+  via `color-mix(in srgb, …)` for `--haldi-deep` /
+  `--haldi-light` / `--forest-mid`). Verified via a Python scan
+  of the `:root` block.
+
+- **Spec class coverage:** every class name the locked-spec
+  section lists is present in the new file. Verified by scanning
+  for 154 spec class selectors — all 154 found.
+
+- **Forbidden-pattern scan (passed):**
+  - No `data-theme` rules (no dark mode).
+  - No `Playfair` font references.
+  - No `@apply` (no Tailwind).
+  - No `rounded-2xl` / `rounded-3xl` / `rounded-full` Tailwind
+    classes.
+  - No `border-radius: 999px` as a universal default — `999px`
+    is only exposed via the `--r-pill` / `--radius-full` tokens,
+    which are used **sparingly** for tiny pills/badges (eyebrow
+    chips, colour-swatch dots, pack-size chips, coverage-
+    disclaimer accent, FAQ-chip etc.), never on buttons, inputs,
+    utility cards, or large material panels.
+  - Zero `oklch()` occurrences (was the prior file's main
+    palette form).
+
+### Verification
+
+- **Brace balance:** 687 opening / 687 closing — balanced.
+  (End-to-end tokeniser pass also confirms balanced.)
+- **Parenthesis balance:** 852 / 852 — balanced.
+- **Empty rules:** 0.
+- **File size:** 89 337 bytes / 3 517 lines.
+- **`@media` count:** 72. **`@supports` count:** 2.
+  **`@keyframes` count:** 2 (`hero-bounce`, `marquee`).
+- All 13 locked hex values are present in the file.
+- All 52 cross-template custom properties are defined in `:root`.
+- All 154 spec-listed class selectors are present.
+- The image-handoff (`data-official-image` / `data-loaded` /
+  `data-loaded-error`), nav scroll-spy (`[data-nav-link]` /
+  `[data-active]`), mobile menu (`[data-mobile-menu]` /
+  `[data-menu-toggle]` / `[data-menu-close]`), reveal
+  (`[data-reveal]` / `[data-reveal-stagger]` /
+  `[data-revealed]`), FAQ (`[data-open]`), toast
+  (`[data-show]`), colour-study (`[data-shade]` /
+  `[data-shade-hex]` / `[data-colour-wall]` /
+  `[data-colour-label]`), ashta (`[data-ashta-node]` /
+  `[data-ashta-detail]`), back-to-top (`[data-back-to-top]`),
+  and brochure-detect (`[data-brochure-detect]`) hooks the JS
+  depends on are all styled and state-aware.
+
+### Notes / hand-off
+
+- The PHP page templates currently embed their own per-page
+  `<style>` blocks for section-specific layouts
+  (`.material-statement__visual`, `.mat-panel*`,
+  `.journey-step*`, `.ashta-benefit*`, `.colours-wall*`,
+  `.mission__inner`, `.calc-teaser__inner`,
+  `.pathway-col*`, `.brand-close*`). Those inline blocks
+  reference the cross-template CSS custom properties
+  (`--card`, `--secondary`, `--radius`, `--radius-lg`,
+  `--haldi-deep`, `--haldi-light`, `--shadow-soft`,
+  `--shadow-forest`, etc.) — all of which are now defined
+  from the locked hex palette, so the inline blocks render in
+  the locked look with no template edit required.
+- The spec's new "locked" class names (`.products-preview`,
+  `.product-panel`, `.material-journey__step`,
+  `.ashta-laabh__radial`, `.colour-study__wall`,
+  `.spec-sheet`, `.calculator__option`, etc.) are now styled
+  in `app.css` ready for future template rewrites that adopt
+  them; until then the legacy aliases carry the live site.
+- `--haldi-deep` and `--haldi-light` are derived from the
+  locked `--haldi` and `--charcoal` via `color-mix(in srgb, …)`
+  so they stay "within the locked palette" while keeping the
+  SVG illustrations' deep-mustard strokes rendering. A
+  `@supports not (color-mix …)` fallback defines hard-coded
+  hexes (`#9E6A00` / `#2E5A3F`) so the site does not break on
+  older browsers (e.g. older Safari).
+- The hero uses `min-height: 92svh` with a `92vh` fallback on
+  the same line for browsers without `svh` support.
+
+## Commit
+(to be pushed by the main agent)
+
+---
+
+## Task ID: PAGES-LOCK
+**Agent:** zai-code (Claude)
+**Task:** Build all 11 page PHP templates for the Gaurikrit Bio Products
+Hostinger site against the locked `includes/data.php` shape.
+
+### Files written (11)
+
+| Route | File | Size |
+|---|---|---|
+| `/` | `index.php` | 32.5 KB |
+| `/products/` | `products/index.php` | 16.7 KB |
+| `/products/prakritik-distemper/` | `products/prakritik-distemper/index.php` | 14.7 KB |
+| `/products/prakritik-emulsion/` | `products/prakritik-emulsion/index.php` | 16.6 KB |
+| `/why-prakritik/` | `why-prakritik/index.php` | 17.7 KB |
+| `/about/` | `about/index.php` | 14.9 KB |
+| `/for-business/` | `for-business/index.php` | 14.5 KB |
+| `/paint-calculator/` (NEW) | `paint-calculator/index.php` | 21.9 KB |
+| `/downloads/` | `downloads/index.php` | 14.6 KB |
+| `/contact/` | `contact/index.php` | 14.4 KB |
+| `/404` | `404.php` | 3.5 KB |
+
+### Patterns followed
+- Page boilerplate: `$pageTitle`/`$pageDescription`/`$pageCanonical`/`$pageClass`
+  → `require_once __DIR__ . '/<N>/includes/bootstrap.php';`
+  → `require ROOT_PATH . '/includes/header.php';`
+  → `… page content …`
+  → `require ROOT_PATH . '/includes/footer.php';`
+- Locked data only — every dynamic value pulled from `$COMPANY`,
+  `$PRODUCTS`, `$ASHTA_LAABH`, `$COLOUR_STUDY`, `$MATERIAL_JOURNEY`,
+  `$PROJECT_PATHWAYS`, `$INTEREST_OPTIONS`, `$PROJECT_TYPES`, `$FAQ`,
+  `$COVERAGE_DISCLAIMER`, `get_product()`.
+- `e()` on all dynamic output (only `$item['a']` in FAQ is output
+  raw — it's pre-escaped as `&amp;` in `data.php`).
+- `render_illustration()` for every coded SVG (cow, mark, buckets,
+  landscape, courtyard, journey, ashta-diagram, brush-stroke,
+  botanicals, gaushala).
+- Image-handoff pattern
+  `<div class="product-media" data-official-image="PATH"><img class="product-media__official" src="PATH" alt…><div class="product-media__fallback">SVG</div></div>`
+  on: hero group, both product detail heroes, both catalogue media
+  blocks, brochure cover. Paths reference files not yet on disk —
+  by design — so the SVG fallback stays visible.
+- `csrf_field()` + honeypot `.form-honeypot input[name="company"]`
+  on both forms (contact + business).
+- Forms.js contract: `[data-contact-form]` / `[data-business-form]`
+  + `[data-submit-label]` span + `[data-submit-spinner]` SVG.
+- Calculator: `[data-calculator-form]` with four
+  `<fieldset data-step="N">` blocks. Inline `<script>` handles the
+  result-panel toggle and builds the
+  `/contact/?interest=bulk-project&painting_type=…&location=…&paint=…&wall_area=…`
+  URL. (Self-contained — interoperable with
+  `/assets/js/calculator.js` once that lands.)
+- Brochure detection: `<div data-brochure-detect="<url>"
+  data-brochure-state="available|missing">` with
+  `[data-brochure-if-available]` / `[data-brochure-if-missing]`
+  children. PHP page does server-side `is_file()` check and emits
+  the right initial state — page works even if JS detection fails.
+- Ashta Laabh interaction: `[data-ashta-laabh]` wrappers with
+  `[data-ashta-node]` items on homepage, emulsion detail, and
+  why-prakritik. Paired CSS rules add visual feedback for hover
+  / focus / `[data-active="true"]`.
+- Colour study on homepage: `[data-colour-study]` with
+  `[data-colour-wall]`, `[data-colour-label]`, 6
+  `[data-shade="<hex>"]` swatches from `$COLOUR_STUDY`.
+- `[data-reveal]` / `[data-reveal-stagger]` on every major section
+  and on the ashta / colours / pathways / FAQ / spec-sheet grids.
+
+### Locked CTA strings (used verbatim)
+- "Talk to Us" — global header (from `header.php`).
+- "Explore Prakritik Paint" — homepage hero + 404 secondary.
+- "Enquire About Distemper" — distemper page CTA
+  (`/contact/?interest=prakritik-distemper`).
+- "Enquire About Emulsion" — emulsion page CTA
+  (`/contact/?interest=prakritik-emulsion`).
+- "Discuss a Project" — for-business form button.
+- "Send Enquiry" — contact form button.
+- "Estimate Your Project" — homepage calc teaser.
+- "Request Estimate" — calculator result CTA + helper strip
+  (carries form values via URL query params).
+- "Explore Products" — why-prakritik essay CTA.
+
+### Per-page visual character
+Every page has its own `<style>` block with distinctive layout —
+NOT a single cloned template 11 times. Highlights:
+- **Homepage**: 10-section editorial (hero with paint-brush-stroke
+  + product group + cow + landscape strip → material statement
+  with cow→wall visual → two large material panels → horizontal
+  material journey → ashta radial + list → colour-study wall →
+  forest mission → calculator teaser card → ruled pathway columns
+  → brand close with devanagari + brush stroke).
+- **Products overview**: architectural catalogue (Distemper first,
+  Emulsion reversed) + side-by-side spec comparison table with
+  mobile reflow using `data-col` attribute labelling.
+- **Distemper**: cooler palette, indigo accent, numbered 01-07
+  two-column spec-sheet LIST.
+- **Emulsion**: warmer palette, haldi gradient background, REVERSED
+  hero (image right, text left), 4-col spec CARDS (different from
+  Distemper's list), radial Ashta (different from Distemper's 4-col
+  grid), haldi gradient CTA card with cross-link to Distemper.
+- **Why Prakritik**: illustrated editorial essay with 7 numbered
+  sections (01 THE MATERIAL / 02 THE TRADITION / 03 FROM MATERIAL
+  TO PAINT with inline journey / 04 ASHTA LAABH radial + list /
+  05 TWO FORMATS mini-cards / 06 SUSTAINABILITY CONTEXT bulleted /
+  07 forest CTA).
+- **About**: institutional manifesto with devanagari hero + gaushala
+  illustration; 4 numbered manifesto sections alternating left-right
+  (WHO WE ARE / WHAT WE CURRENTLY PRESENT / OUR MATERIAL DIRECTION /
+  MISSION) + forest brand-principle section + two-column company-info
+  card grid (legal address + direct contact, all data straight from
+  `$COMPANY`).
+- **For Business**: architectural hero (grid overlay + bucket +
+  brush); four architectural column cards (Architects & Builders /
+  Institutions / CSR / NGOs / Gaushalas — invite language only,
+  NO existing client claims); 9-field business enquiry form with
+  `project_type` select from `$PROJECT_TYPES`.
+- **Paint Calculator (NEW)**: 4-step form with `<fieldset data-step>`
+  blocks; radio-card labels using `:has(input:checked)` CSS; wall-area
+  input with sq.ft. unit; calculate + reset; hidden result panel
+  with 4 value cells + "Automatic commercial rates have not yet been
+  configured" note + Request Estimate CTA that carries form values
+  via URL query params to `/contact/?interest=bulk-project`; forest
+  helper strip with secondary Estimate CTA.
+- **Downloads**: brochure block with image-handoff cover (fallback
+  is a coded branded cover with gaurikrit-cow-mark + devanagari +
+  brand phrase + brush-stroke art); server-side `is_file()` picks
+  initial state — buttons shown if PDF present, "Contact Gaurikrit
+  for the current product brochure." note shown otherwise; "What's
+  inside" 4-item grid.
+- **Contact**: hero with indian-courtyard illustration; two-column
+  contact-grid: company-info `<dl>` (legal name, full address, GSTIN,
+  mailto: email, tel: phones × 2) + contact form with name/phone/
+  email/interest/message; `?interest=` pre-fills select; calculator
+  query params (`painting_type`, `location`, `paint`, `wall_area`)
+  folded into a pre-filled message body; FAQ accordion (9 items
+  from `$FAQ`).
+- **404**: branded "This wall hasn't been painted yet." with
+  field-botanicals low-opacity background accent, cow-mark seal,
+  "Back to home" primary CTA, "Explore Prakritik Paint" secondary,
+  devanagari stamp, paint-brush-stroke flourish.
+
+### Verification
+- Brace + paren balance: balanced in all 11 files (Python count).
+  The paint-calculator file showed a 4-paren imbalance in the naive
+  count, traced to 4 `)` inside the `/* 4 steps: 1) … 2) … 3) …
+  4) … */` docstring. After stripping comments + strings: 165/165.
+- `grep` for `href="#"` across all 11 page files: 0 matches.
+- `grep` for the full banned-strings list: only matches in
+  COMMENT lines of includes/ + api/ files (defensive "No X" notes),
+  zero matches in any user-visible output.
+- `grep` for old-data-shape references (`$COMPANY['story']`,
+  `$COMPANY['stats']`, `$CLAIMS`, `get_claim()`, `$product['tagline']`,
+  `$product['sizes']`, `$product['priceRange']`, etc.): 0 matches
+  in any page template.
+
+### Notes / hand-off
+- **Backend follow-up:** The contact API (`/api/contact.php`)
+  restricts `interest` to `['Distemper', 'Emulsion', 'Partnership',
+  'General']` and falls back to `'General'` for anything else. The
+  locked `data.php` `$INTEREST_OPTIONS` carries canonical keys
+  (`general`, `prakritik-distemper`, `prakritik-emulsion`,
+  `bulk-project`, `business-partnership`, `gaushala-collaboration`).
+  The page templates emit the canonical keys (per spec:
+  "frontend + backend MUST match"). The backend agent should widen
+  `$allowedInterests` in `/api/contact.php` to
+  `array_keys($INTEREST_OPTIONS)` so the selected interest is
+  preserved end-to-end.
+- **sitemap.xml follow-up:** The new `/paint-calculator/` route
+  should be added to `sitemap.xml`.
+- **Asset follow-up:** When `/assets/products/prakritik-group.png`,
+  `/assets/products/prakritik-distemper.png`,
+  `/assets/products/prakritik-emulsion.png`,
+  `/assets/documents/prakritik-paint-brochure-cover.png`, and
+  `/assets/documents/prakritik-paint-brochure.pdf` are dropped in,
+  the image-handoff + brochure-detection JS will swap the fallbacks
+  for the official assets automatically. No page-template changes
+  needed.
+- Full per-page details in `/home/z/my-project/agent-ctx/PAGES-LOCK-zai-code.md`.

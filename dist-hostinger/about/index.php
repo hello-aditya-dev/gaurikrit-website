@@ -1,158 +1,231 @@
 <?php
 /**
- * Gaurikrit Bio Products — About page.
+ * Gaurikrit Bio Products — About.
+ * Task PAGES-LOCK. Institutional / brand manifesto.
+ * Sections: WHO WE ARE / WHAT WE CURRENTLY PRESENT / OUR MATERIAL DIRECTION /
+ * MISSION / BRAND PRINCIPLE / COMPANY INFORMATION.
+ * No timeline, no founder.
  */
 declare(strict_types=1);
 
-global $COMPANY, $PRODUCTS;
-
-$pageTitle       = 'About Gaurikrit Bio Products — Bio Paint from Bharat';
-$pageDescription = 'Gaurikrit Bio Products — cow dung-based Prakritik Paint, made in Bharat since ' . ($COMPANY['foundedYear'] ?? 2019) . '. Gaushala-sourced, naturally breathable, heritage limewash recipe.';
+$pageTitle       = 'About — Gaurikrit Bio Products';
+$pageDescription = 'Gaurikrit Bio Products (OPC) Private Limited — based in Khurja, District Bulandshahr, Uttar Pradesh. Presenting cow dung-based Prakritik Paint in Distemper and Emulsion formats.';
 $pageCanonical   = '/about/';
-$pageClass       = 'about';
-$pageOgType      = 'website';
+$pageClass        = 'about';
 
-require_once __DIR__ . '/../includes/bootstrap.php';
+require_once __DIR__ . '/../../includes/bootstrap.php';
 require ROOT_PATH . '/includes/header.php';
+
+global $COMPANY, $PRODUCTS, $PROJECT_PATHWAYS;
+
+$address = $COMPANY['address'] ?? [];
+$phones  = $COMPANY['phones'] ?? [];
+$distemper = get_product('prakritik-distemper');
+$emulsion  = get_product('prakritik-emulsion');
 ?>
 <style>
-  .breadcrumb { font-size:0.8125rem; color:var(--fg-muted); margin-bottom:1rem; padding-top:1rem; }
-  .breadcrumb a { color:var(--primary); }
-  .breadcrumb a:hover { text-decoration:underline; }
+  /* HERO */
+  .about-hero { padding-top: calc(var(--header-h) + 2.5rem); padding-bottom: clamp(2.5rem, 5vw, 4rem); background: var(--bg); position: relative; overflow: hidden; }
+  .about-hero__container { display: grid; gap: 2rem; align-items: center; position: relative; z-index: 1; }
+  @media (min-width: 1024px) { .about-hero__container { grid-template-columns: 1fr 1fr; gap: 4rem; } }
+  .about-hero__lockup { display: flex; flex-direction: column; gap: 0.625rem; }
+  .about-hero__deva { font-family: var(--font-deva); font-weight: 700; font-size: clamp(2rem, 5vw, 3rem); color: var(--haldi-deep); line-height: 1; }
+  .about-hero__brand-sub { font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.28em; text-transform: uppercase; color: var(--primary); }
+  .about-hero__title { margin-top: 1rem; font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.05; letter-spacing: -0.02em; text-wrap: balance; }
+  .about-hero__body { margin-top: 1.25rem; max-width: 40rem; color: var(--fg-muted); font-size: clamp(1rem, 2vw, 1.125rem); line-height: 1.65; }
+  .about-hero__rule { width: 4rem; height: 2px; background: var(--haldi); margin-top: 1.5rem; border: 0; }
+  .about-hero__art { position: relative; aspect-ratio: 4/3; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-soft); padding: 1rem; display: flex; align-items: center; justify-content: center; }
 
-  .split-grid { display:grid; gap:2rem; grid-template-columns:1fr; align-items:start; }
-  @media (min-width: 768px) { .split-grid { grid-template-columns:1fr 1fr; } }
+  /* MANIFESTO sections */
+  .manifesto { padding-block: clamp(3rem, 6vw, 5rem); }
+  .manifesto__section { display: grid; gap: 1.5rem; padding-block: clamp(2rem, 4vw, 3rem); border-top: 1px solid var(--border); }
+  .manifesto__section:first-of-type { border-top: 0; }
+  @media (min-width: 1024px) { .manifesto__section { grid-template-columns: 0.7fr 1.3fr; gap: 4rem; align-items: start; } }
+  .manifesto__section--reverse > :first-child { order: 2; }
+  @media (min-width: 1024px) { .manifesto__section--reverse > :first-child { order: 0; } }
+  .manifesto__label { font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--primary); }
+  .manifesto__num { font-family: var(--font-display); font-size: 0.875rem; font-weight: 700; color: var(--haldi-deep); margin-top: 0.25rem; }
+  .manifesto__title { font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2.25rem); line-height: 1.15; margin-top: 0.5rem; letter-spacing: -0.02em; text-wrap: balance; }
+  .manifesto__body { color: var(--fg-muted); font-size: clamp(1rem, 1.5vw, 1.125rem); line-height: 1.75; }
+  .manifesto__body p + p { margin-top: 1.25rem; }
+  .manifesto__pull { font-family: var(--font-display); font-style: italic; font-size: clamp(1.125rem, 2vw, 1.5rem); color: var(--primary); padding-left: 1.25rem; border-left: 3px solid var(--haldi); margin: 1.5rem 0; }
+  .manifesto__rule { width: 4rem; height: 2px; background: var(--haldi); margin-block: 1.5rem; border: 0; }
+  .manifesto__list { display: grid; gap: 0.75rem; margin-top: 1rem; }
+  .manifesto__list-item { padding: 0.875rem 1.125rem; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); }
+  .manifesto__list-name { font-family: var(--font-display); font-size: 1.0625rem; font-weight: 700; }
+  .manifesto__list-desc { font-size: 0.8125rem; color: var(--fg-muted); margin-top: 0.125rem; }
 
-  .prose p { color:var(--fg-muted); font-size:1.0625rem; line-height:1.75; margin-bottom:1.25rem; }
-  .prose p:last-child { margin-bottom:0; }
+  /* BRAND PRINCIPLE — large type forest section */
+  .brand-principle { padding-block: clamp(3.5rem, 7vw, 6rem); background: var(--forest); color: var(--primary-fg); text-align: center; position: relative; overflow: hidden; }
+  .brand-principle__eyebrow { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--haldi); }
+  .brand-principle__deva { font-family: var(--font-deva); font-weight: 700; font-size: clamp(1.5rem, 3vw, 2.25rem); margin-top: 0.75rem; color: oklch(0.88 0.11 85); }
+  .brand-principle__phrase { font-family: var(--font-display); font-style: italic; font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.1; margin-top: 1.5rem; text-wrap: balance; }
+  .brand-principle__rule { width: 4rem; height: 2px; background: var(--haldi); margin: 1.5rem auto; border: 0; }
+  .brand-principle__body { max-width: 36rem; margin-inline: auto; color: oklch(0.85 0.01 75); line-height: 1.75; }
 
-  .about-quote { padding:1.75rem; border-left:3px solid var(--haldi); background:var(--bg-card); border-radius:var(--radius); box-shadow:var(--shadow-soft); margin-top:2rem; }
-  .about-quote blockquote { font-family:var(--font-display); font-style:italic; font-size:clamp(1.125rem,2.2vw,1.375rem); line-height:1.5; }
-  .about-quote figcaption { margin-top:0.75rem; font-size:0.875rem; color:var(--fg-muted); }
-
-  .about-courtyard-art { padding:1.5rem; background:var(--secondary-bg); border:1px solid var(--border); border-radius:var(--radius-lg); aspect-ratio:4/3; display:flex; align-items:center; justify-content:center; }
-
-  .timeline { display:grid; gap:1rem; max-width:48rem; margin-inline:auto; }
-  .timeline-item { display:grid; grid-template-columns:auto 1fr; gap:1.25rem; align-items:start; padding:1rem 0; border-bottom:1px dashed var(--border); }
-  .timeline-item:last-child { border-bottom:none; }
-  .timeline-item__year { font-family:var(--font-display); font-size:1.5rem; font-weight:700; color:var(--primary); min-width:5rem; }
-  .timeline-item__title { font-weight:700; margin-bottom:0.25rem; }
-  .timeline-item__desc { color:var(--fg-muted); font-size:0.9375rem; line-height:1.55; }
+  /* COMPANY INFORMATION */
+  .company-info { padding-block: clamp(3rem, 6vw, 5rem); background: var(--secondary-bg); }
+  .company-info__head { margin-bottom: 2.5rem; }
+  .company-info__eyebrow { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--primary); }
+  .company-info__title { font-family: var(--font-display); font-size: clamp(1.75rem, 4vw, 2.5rem); margin-top: 0.75rem; letter-spacing: -0.02em; }
+  .company-info__grid { display: grid; gap: 2rem; }
+  @media (min-width: 768px) { .company-info__grid { grid-template-columns: 1fr 1fr; } }
+  .company-info__card { padding: clamp(1.5rem, 4vw, 2.5rem); background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: var(--shadow-soft); }
+  .company-info__card-title { font-family: var(--font-display); font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem; }
+  .company-info__row { display: grid; grid-template-columns: 7rem 1fr; gap: 0.75rem; padding: 0.5rem 0; border-bottom: 1px dashed var(--border); }
+  .company-info__row:last-child { border-bottom: 0; }
+  .company-info__row dt { font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--fg-muted); padding-top: 0.125rem; }
+  .company-info__row dd { font-size: 0.9375rem; }
+  .company-info__row dd a { color: var(--primary); font-weight: 600; }
+  .company-info__address { white-space: pre-line; }
+  .company-info__actions { margin-top: 1.5rem; display: flex; flex-direction: column; gap: 0.625rem; }
 </style>
 
-<section class="page-hero section section--paper section--grain" style="padding-top:calc(var(--header-h) + 2rem)">
-    <div class="container">
-        <nav class="breadcrumb" aria-label="Breadcrumb">
-            <a href="/">Home</a> <span aria-hidden="true">/</span> <span>About</span>
-        </nav>
-        <div class="section-heading" data-reveal>
-            <span class="section-heading__eyebrow">About Us</span>
-            <h1 class="section-heading__title">From a gaushala to your wall.</h1>
-            <p class="section-heading__desc"><?= e($COMPANY['story']['lead']) ?></p>
+<!-- HERO -->
+<section class="about-hero" id="about-hero" data-reveal>
+    <div class="container about-hero__container">
+        <div class="about-hero__lockup">
+            <span class="about-hero__deva" lang="hi"><?= e($COMPANY['devanagari']) ?></span>
+            <span class="about-hero__brand-sub">Gaurikrit Bio Products</span>
+            <h1 class="about-hero__title">Nature. Culture. Useful materials.</h1>
+            <hr class="about-hero__rule">
+            <p class="about-hero__body">Gaurikrit Bio Products (OPC) Private Limited is based in Khurja, District Bulandshahr, Uttar Pradesh.</p>
+        </div>
+        <div class="about-hero__art" aria-hidden="true">
+            <?php render_illustration('gaushala-scene'); ?>
         </div>
     </div>
 </section>
 
-<section class="section section--paper">
+<!-- MANIFESTO -->
+<section class="manifesto" id="manifesto">
     <div class="container">
-        <div class="split-grid" data-reveal>
+
+        <!-- WHO WE ARE -->
+        <article class="manifesto__section" id="who-we-are" data-reveal>
             <div>
-                <article class="prose">
-                    <?php foreach (explode("\n\n", $COMPANY['story']['body']) as $para): ?>
-                        <p><?= e($para) ?></p>
+                <div class="manifesto__num">01</div>
+                <div class="manifesto__label">Who we are</div>
+                <h2 class="manifesto__title">Legal identity.</h2>
+            </div>
+            <div class="manifesto__body">
+                <p><strong><?= e($COMPANY['legalName']) ?></strong> is a private limited company registered in India. The studio is in Khurja, in District Bulandshahr, Uttar Pradesh.</p>
+                <p class="manifesto__pull">A small, named organisation — not a faceless brand.</p>
+                <p>Gaurikrit works with bio-based materials. Prakritik Paint is the company's current paint presentation.</p>
+            </div>
+        </article>
+
+        <!-- WHAT WE CURRENTLY PRESENT -->
+        <article class="manifesto__section manifesto__section--reverse" id="what-we-present" data-reveal>
+            <div>
+                <div class="manifesto__num">02</div>
+                <div class="manifesto__label">What we currently present</div>
+                <h2 class="manifesto__title">Two products, today.</h2>
+            </div>
+            <div>
+                <div class="manifesto__body">
+                    <p>Currently, Prakritik Paint is presented in two formats — Distemper and Emulsion. Both are white, matt, and suitable for interior and exterior walls.</p>
+                </div>
+                <div class="manifesto__list">
+                    <div class="manifesto__list-item">
+                        <div class="manifesto__list-name"><?= e($distemper['name']) ?></div>
+                        <div class="manifesto__list-desc"><?= e($distemper['descriptor']) ?> · <?= e($distemper['packagingShort']) ?> · <?= e($distemper['finish']) ?> · <?= e($distemper['usage']) ?></div>
+                    </div>
+                    <div class="manifesto__list-item">
+                        <div class="manifesto__list-name"><?= e($emulsion['name']) ?></div>
+                        <div class="manifesto__list-desc"><?= e($emulsion['descriptor']) ?> · <?= e($emulsion['packagingShort']) ?> · <?= e($emulsion['finish']) ?> · <?= e($emulsion['usage']) ?></div>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <!-- OUR MATERIAL DIRECTION -->
+        <article class="manifesto__section" id="material-direction" data-reveal>
+            <div>
+                <div class="manifesto__num">03</div>
+                <div class="manifesto__label">Our material direction</div>
+                <h2 class="manifesto__title">Cow dung, reconsidered.</h2>
+            </div>
+            <div class="manifesto__body">
+                <p>Gaurikrit works with cow dung as a wall-coating material. The direction is material-first — what traditional Indian homes have long used, brought into a contemporary paint format.</p>
+                <p class="manifesto__pull">प्रकृति से, दीवारों तक।</p>
+                <p>The wider context — agricultural-waste reuse, gaushala-led bio-products, rural material opportunity — is where the work sits, without quantifying it.</p>
+            </div>
+        </article>
+
+        <!-- MISSION -->
+        <article class="manifesto__section manifesto__section--reverse" id="mission" data-reveal>
+            <div>
+                <div class="manifesto__num">04</div>
+                <div class="manifesto__label">Mission</div>
+                <h2 class="manifesto__title">A simple statement.</h2>
+            </div>
+            <div class="manifesto__body">
+                <p class="manifesto__pull" style="font-size: clamp(1.5rem, 3vw, 2.25rem); border-left-width: 4px;"><?= e($COMPANY['mission']) ?></p>
+                <p>One wall at a time. The work is patient — gathered, prepared, blended, applied.</p>
+            </div>
+        </article>
+    </div>
+</section>
+
+<!-- BRAND PRINCIPLE (forest section) -->
+<section class="brand-principle" id="brand-principle" data-reveal>
+    <div class="container">
+        <span class="brand-principle__eyebrow">05 · Brand principle</span>
+        <div class="brand-principle__deva" lang="hi">प्रकृति से, दीवारों तक</div>
+        <hr class="brand-principle__rule">
+        <p class="brand-principle__phrase"><?= e($COMPANY['brandLine']) ?></p>
+        <p class="brand-principle__body">The principle is short, on purpose. The work is to bring a familiar material into a contemporary paint format — and to keep that material honest.</p>
+    </div>
+</section>
+
+<!-- COMPANY INFORMATION -->
+<section class="company-info" id="company-info" data-reveal>
+    <div class="container">
+        <div class="company-info__head">
+            <div class="company-info__eyebrow">06 · Company information</div>
+            <h2 class="company-info__title">Reach Gaurikrit directly.</h2>
+        </div>
+        <div class="company-info__grid">
+            <div class="company-info__card">
+                <h3 class="company-info__card-title">Registered address</h3>
+                <dl>
+                    <div class="company-info__row">
+                        <dt>Legal name</dt>
+                        <dd><?= e($COMPANY['legalName']) ?></dd>
+                    </div>
+                    <div class="company-info__row">
+                        <dt>Address</dt>
+                        <dd class="company-info__address"><?php foreach ($address as $line) { echo e($line) . "\n"; } ?></dd>
+                    </div>
+                    <div class="company-info__row">
+                        <dt>GSTIN</dt>
+                        <dd><?= e($COMPANY['gstin']) ?></dd>
+                    </div>
+                </dl>
+            </div>
+            <div class="company-info__card">
+                <h3 class="company-info__card-title">Direct contact</h3>
+                <dl>
+                    <div class="company-info__row">
+                        <dt>Email</dt>
+                        <dd><a href="mailto:<?= e($COMPANY['email']) ?>"><?= e($COMPANY['email']) ?></a></dd>
+                    </div>
+                    <?php foreach ($phones as $i => $phone): ?>
+                    <div class="company-info__row">
+                        <dt>Phone <?= $i + 1 ?></dt>
+                        <dd><a href="tel:<?= e(str_replace(' ', '', $phone)) ?>"><?= e($phone) ?></a></dd>
+                    </div>
                     <?php endforeach; ?>
-                </article>
-                <figure class="about-quote" data-reveal>
-                    <blockquote><?= e($COMPANY['story']['founderQuote']) ?></blockquote>
-                    <figcaption>— <?= e($COMPANY['story']['founderName']) ?>, <?= e($COMPANY['story']['founderRole']) ?></figcaption>
-                </figure>
+                </dl>
+                <div class="company-info__actions">
+                    <a href="mailto:<?= e($COMPANY['email']) ?>" class="btn btn--outline btn--block">Email Gaurikrit</a>
+                    <?php if (!empty($phones[0])): ?>
+                    <a href="tel:<?= e(str_replace(' ', '', $phones[0])) ?>" class="btn btn--primary btn--block">Call Gaurikrit</a>
+                    <?php endif; ?>
+                    <a href="/contact/" class="btn btn--ghost btn--block">Send an enquiry</a>
+                </div>
             </div>
-            <div class="about-courtyard-art" data-reveal>
-                <?php render_illustration('indian-courtyard'); ?>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="section section--paper section--grain">
-    <div class="container">
-        <div class="section-heading" data-reveal>
-            <span class="section-heading__eyebrow">Three Anchors</span>
-            <h2 class="section-heading__title">What we stand on.</h2>
-        </div>
-        <div class="features-grid" data-reveal-stagger>
-            <?php foreach ($COMPANY['aboutCards'] as $card): ?>
-                <article class="feature-card">
-                    <h3 class="feature-card__title"><?= e($card['title']) ?></h3>
-                    <p class="feature-card__desc"><?= e($card['desc']) ?></p>
-                </article>
-            <?php endforeach; ?>
-        </div>
-    </div>
-</section>
-
-<section class="section section--forest">
-    <div class="container">
-        <div class="section-heading" data-reveal>
-            <span class="section-heading__eyebrow">In Numbers</span>
-            <h2 class="section-heading__title">Quiet facts.</h2>
-            <p class="section-heading__desc">No marketing inflation. Just numbers we can defend with a test or a log.</p>
-        </div>
-        <div class="why-stat-row" style="display:grid; gap:1rem; grid-template-columns:repeat(2,1fr)" data-reveal-stagger>
-            <?php foreach ($COMPANY['stats'] as $stat): ?>
-                <div class="why-stat" style="background:oklch(1 0 0 / 0.04); border:1px solid oklch(1 0 0 / 0.1)">
-                    <div class="why-stat__num" style="color:var(--haldi)" data-count-up="<?= e((string)(int)$stat['numericValue']) ?>" data-suffix="<?= e($stat['suffix']) ?>"><?= e($stat['value']) ?></div>
-                    <div class="why-stat__label" style="color:oklch(0.85 0.01 75)"><?= e($stat['label']) ?></div>
-                </div>
-            <?php endforeach; ?>
-        </div>
-    </div>
-</section>
-
-<section class="section section--paper">
-    <div class="container">
-        <div class="section-heading" data-reveal>
-            <span class="section-heading__eyebrow">The Path</span>
-            <h2 class="section-heading__title">From <?= e((string)$COMPANY['foundedYear']) ?> to today.</h2>
-        </div>
-        <ol class="timeline" data-reveal>
-            <li class="timeline-item">
-                <div class="timeline-item__year"><?= e((string)$COMPANY['foundedYear']) ?></div>
-                <div>
-                    <div class="timeline-item__title">The first gaushala conversation</div>
-                    <div class="timeline-item__desc">Gaurikrit begins as an attempt to turn unused cow dung into something useful, with the patience of a craft workshop and the discipline of a paint factory.</div>
-                </div>
-            </li>
-            <li class="timeline-item">
-                <div class="timeline-item__year">2020</div>
-                <div>
-                    <div class="timeline-item__title">First Prakritik Distemper batch</div>
-                    <div class="timeline-item__desc">A cow dung-based natural distemper, finished with lime and plant pigments. Soft, matte, breathable — an interior paint that breathes with the wall.</div>
-                </div>
-            </li>
-            <li class="timeline-item">
-                <div class="timeline-item__year">2022</div>
-                <div>
-                    <div class="timeline-item__title">Prakritik Emulsion</div>
-                    <div class="timeline-item__desc">A finer, more washable emulsion joins the line — same breathable soul, improved scrub resistance, suitable for both interior and sheltered exterior walls.</div>
-                </div>
-            </li>
-            <li class="timeline-item">
-                <div class="timeline-item__year">Today</div>
-                <div>
-                    <div class="timeline-item__title">Pan-India, gaushala by gaushala</div>
-                    <div class="timeline-item__desc">Partner gaushalas, documented batches, and shipping across the country — to families, contractors, architects, and project owners.</div>
-                </div>
-            </li>
-        </ol>
-    </div>
-</section>
-
-<section class="section section--paper section--grain">
-    <div class="container">
-        <div style="text-align:center" data-reveal>
-            <a href="/products/" class="btn btn--primary btn--lg">Explore the products</a>
-            <a href="/why-prakritik/" class="btn btn--outline btn--lg" style="margin-left:0.5rem">Why Prakritik?</a>
         </div>
     </div>
 </section>

@@ -5,10 +5,14 @@
  * Responsibilities:
  *  - Reveal on scroll: IntersectionObserver on [data-reveal] and
  *    [data-reveal-stagger]. Sets data-revealed="true" when in view.
- *  - Count-up: animate [data-count-up] elements from 0 to value when in
- *    view, using easeOutExpo. Honours prefers-reduced-motion.
  *  - Hero paint-stroke reveal: clip-path animation on .hero__stroke.
  *  - Marquee: ensure .marquee__track is duplicated for seamless CSS loop.
+ *  - Material journey draw-in: animate the SVG paths in
+ *    [data-material-journey] via stroke-dasharray when the diagram
+ *    scrolls into view.
+ *
+ * Removed in the CORRECTION pass: count-up / animated counters.
+ * The locked data.php carries no stats — there is nothing to count.
  *
  * Exposes: window.GaurikritApp.Animations.init()
  */
@@ -27,7 +31,9 @@
         if (!els.length) return;
 
         if (prefersReducedMotion() || !('IntersectionObserver' in window)) {
-            els.forEach(function (el) { el.setAttribute('data-revealed', 'true'); });
+            for (var i = 0; i < els.length; i++) {
+                els[i].setAttribute('data-revealed', 'true');
+            }
             return;
         }
 
@@ -43,65 +49,13 @@
         els.forEach(function (el) { observer.observe(el); });
     }
 
-    // ---- Count-up ----
-    function easeOutExpo(t) {
-        return t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
-    }
-
-    function animateCount(el) {
-        var target = parseFloat(el.getAttribute('data-count-up'));
-        if (isNaN(target)) return;
-        var suffix = el.getAttribute('data-suffix') || '';
-        var duration = 1600;
-        var start = null;
-
-        if (prefersReducedMotion()) {
-            el.textContent = String(target) + suffix;
-            return;
-        }
-
-        function step(ts) {
-            if (start === null) start = ts;
-            var progress = Math.min((ts - start) / duration, 1);
-            var v = Math.floor(easeOutExpo(progress) * target);
-            el.textContent = String(v) + suffix;
-            if (progress < 1) {
-                window.requestAnimationFrame(step);
-            } else {
-                el.textContent = String(target) + suffix;
-            }
-        }
-        window.requestAnimationFrame(step);
-    }
-
-    function initCountUp() {
-        var counters = document.querySelectorAll('[data-count-up]');
-        if (!counters.length) return;
-
-        if (!('IntersectionObserver' in window)) {
-            counters.forEach(function (el) { el.textContent = String(el.getAttribute('data-count-up')) + (el.getAttribute('data-suffix') || ''); });
-            return;
-        }
-
-        var observer = new IntersectionObserver(function (entries) {
-            entries.forEach(function (entry) {
-                if (entry.isIntersecting) {
-                    animateCount(entry.target);
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.5 });
-
-        counters.forEach(function (el) { observer.observe(el); });
-    }
-
     // ---- Hero paint-stroke reveal ----
     function initHeroStroke() {
         var stroke = document.querySelector('.hero__stroke');
         if (!stroke) return;
-        if (prefersReducedMotion() || !window.requestAnimationFrame) return;
+        if (prefersReducedMotion()) return;
 
-        // Use the Web Animations API when available (cleaner than keyframes).
+        // Use the Web Animations API when available.
         if (stroke.animate) {
             stroke.animate(
                 [
@@ -123,27 +77,78 @@
     // ---- Marquee duplication ----
     function initMarquee() {
         var tracks = document.querySelectorAll('[data-marquee-track]');
-        tracks.forEach(function (track) {
-            // If the track isn't already duplicated, clone its children.
-            // (PHP may have already duplicated; we leave it alone in that case.)
-            if (track.getAttribute('data-marquee-duplicated') === 'true') return;
-            var children = Array.prototype.slice.call(track.children);
-            if (!children.length) return;
-            children.forEach(function (child) {
-                var clone = child.cloneNode(true);
-                clone.setAttribute('aria-hidden', 'true');
-                track.appendChild(clone);
+        for (var i = 0; i < tracks.length; i++) {
+            (function (track) {
+                if (track.getAttribute('data-marquee-duplicated') === 'true') return;
+                var children = Array.prototype.slice.call(track.children);
+                if (!children.length) return;
+                children.forEach(function (child) {
+                    var clone = child.cloneNode(true);
+                    clone.setAttribute('aria-hidden', 'true');
+                    track.appendChild(clone);
+                });
+                track.setAttribute('data-marquee-duplicated', 'true');
+            })(tracks[i]);
+        }
+    }
+
+    // ---- Material journey draw-in ----
+    // Animate the SVG paths inside [data-material-journey] using
+    // stroke-dasharray + stroke-dashoffset. The dash length is set to
+    // the path's total length, then the offset is eased from full to 0
+    // when the diagram scrolls into view.
+    function initMaterialJourney() {
+        var diagram = document.querySelector('[data-material-journey]');
+        if (!diagram) return;
+        if (prefersReducedMotion() || !('IntersectionObserver' in window)) return;
+
+        var paths = diagram.querySelectorAll('path, line, polyline, rect, circle, ellipse');
+        if (!paths.length) return;
+
+        // Set up each path with a dash long enough to hide it, then
+        // stash the length so we can ease it back to 0 on reveal.
+        var prepared = [];
+        for (var i = 0; i < paths.length; i++) {
+            var p = paths[i];
+            // getTotalLength only exists on SVGGeometryElement; check.
+            if (typeof p.getTotalLength !== 'function') continue;
+            var len = 0;
+            try { len = p.getTotalLength(); } catch (e) { continue; }
+            if (!isFinite(len) || len <= 0) continue;
+
+            p.style.strokeDasharray = len + ' ' + len;
+            p.style.strokeDashoffset = String(len);
+            // Preserve existing transition none.
+            p.style.transition = 'stroke-dashoffset 1.2s cubic-bezier(0.22, 1, 0.36, 1)';
+            prepared.push({ el: p, len: len });
+        }
+
+        if (!prepared.length) return;
+
+        var observer = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (!entry.isIntersecting) return;
+                // Stagger the draw-in slightly for editorial effect.
+                for (var k = 0; k < prepared.length; k++) {
+                    (function (item, idx) {
+                        setTimeout(function () {
+                            item.el.style.strokeDashoffset = '0';
+                        }, idx * 90);
+                    })(prepared[k], k);
+                }
+                observer.unobserve(entry.target);
             });
-            track.setAttribute('data-marquee-duplicated', 'true');
-        });
+        }, { rootMargin: '0px 0px -15% 0px', threshold: 0.2 });
+
+        observer.observe(diagram);
     }
 
     G.Animations = {
         init: function () {
             initMarquee();
             initReveal();
-            initCountUp();
             initHeroStroke();
+            initMaterialJourney();
         }
     };
 })();

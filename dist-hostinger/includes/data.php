@@ -1,145 +1,192 @@
 <?php
 /**
- * Gaurikrit Bio Products — brand data.
- * Single source of truth for all page content.
+ * Gaurikrit Bio Products — locked factual brand data.
+ * SINGLE SOURCE OF TRUTH. Only data explicitly supplied by the client.
+ * No fabricated stats, claims, certifications, socials, prices, or history.
  */
 
 declare(strict_types=1);
 
 $COMPANY = [
     'name'              => 'Gaurikrit',
-    'fullName'          => 'Gaurikrit Bio Products',
     'devanagari'        => 'गौरीकृत',
-    'supportingIdentity'=> 'Bio Products',
-    'tagline'           => 'Walls that breathe sustainability.',
-    'foundedYear'       => 2019,
-    'siteUrl'           => $config['site_url'] ?? 'https://gaurikrit.com',
+    'legalName'         => 'Gaurikrit Bio Products (OPC) Private Limited',
+    'brandLine'         => 'Good for Nature. Good for Life.',
+    'mission'           => 'Transforming waste into wonder, one wall at a time.',
+    'hindiTagline'      => 'प्रकृति से, दीवारों ंतक.',
+    'headline'          => 'Walls that Breathe Sustainability',
     'email'             => 'seva@gaurikrit.com',
-    'phone'             => '+91 90000 00000',
-    'hero' => [
-        'eyebrow' => 'Prakritik Paint · Made from cow dung',
-        'headlineLines' => ['Walls that breathe', 'sustainability.'],
-        'subheadline' => 'Cow dung-based Prakritik Paint in distemper and emulsion formats for interior and exterior walls. Naturally breathable, naturally Indian.',
-        'primaryCta' => ['label' => 'Explore Prakritik Paint', 'href' => '/products/'],
-        'secondaryCta' => ['label' => 'Why Prakritik?', 'href' => '/why-prakritik/'],
+    'phones'            => ['+91 9999624446', '+91 9837638842'],
+    'gstin'             => '09AAMCG8400F1ZK',
+    'address'           => [
+        'House No. 55',
+        'Village Khuriyawali',
+        'Post Arniya',
+        'Khurja',
+        'District Bulandshahr',
+        'Uttar Pradesh – 203131',
+        'India',
     ],
-    'story' => [
-        'lead' => 'Gaurikrit Bio Products began at a gaushala, where cow dung was abundant and purpose was scarce.',
-        'body' => 'Every year, thousands of tonnes of cow dung go unused — a material that Indian homes have used on walls for centuries. We set out to turn it back into paint. Prakritik Paint is made by cleaning, drying, and refining cow dung into a fine natural binder, then blending it with lime, plant pigments, and minerals. The result is a paint that breathes with your walls, contains no lead or VOC-heavy solvents, and carries the warmth of an Indian courtyard.',
-        'founderQuote' => 'We did not invent this. Our grandmothers did. We only made it consistent.',
-        'founderName' => 'The Gaurikrit team',
-        'founderRole' => 'Gaushala-craft, reimagined',
-    ],
-    'stats' => [
-        ['value' => '5+',  'numericValue' => 5,  'suffix' => '+', 'label' => 'Gaushala partners'],
-        ['value' => '2',   'numericValue' => 2,  'suffix' => '',  'label' => 'Paint formats'],
-        ['value' => '0',   'numericValue' => 0,  'suffix' => '',  'label' => 'Lead & VOC solvents'],
-        ['value' => '100%','numericValue' => 100,'suffix' => '%', 'label' => 'Naturally breathable'],
-    ],
-    'marquee' => [
-        'Cow-Dung Based', 'Prakritik Distemper', 'Prakritik Emulsion',
-        'Naturally Breathable', 'Zero Lead', 'Limewash Heritage',
-        'Gaushala Sourced', 'Interior & Exterior', 'Plant & Mineral Pigments', 'Made in Bharat',
-    ],
-    'certifications' => [
-        ['name' => 'Lead-Free',       'desc' => 'No lead, ever'],
-        ['name' => 'Low-VOC',         'desc' => 'Solvent-light'],
-        ['name' => 'Breathable',       'desc' => 'Lime-based'],
-        ['name' => 'Gaushala-Sourced', 'desc' => 'Cow-dung based'],
-    ],
-    'aboutCards' => [
-        ['title' => 'Gaushala',  'desc' => 'Sourced from partner gaushalas — material with a purpose, not a waste.'],
-        ['title' => 'Craft',    'desc' => 'Refined, dried, and blended in small batches the way walls were always meant to be painted.'],
-        ['title' => 'Breathable','desc' => 'Lime + cow-dung binder lets walls breathe — no blistering, no trapped moisture.'],
-    ],
-    'socials' => [
-        ['name' => 'Instagram', 'href' => '#', 'handle' => '@gaurikrit.bio'],
-        ['name' => 'Facebook',  'href' => '#', 'handle' => '/gaurikritbio'],
-        ['name' => 'YouTube',   'href' => '#', 'handle' => '@gaurikrit'],
-        ['name' => 'LinkedIn',  'href' => '#', 'handle' => '/company/gaurikrit-bio'],
-    ],
+    'siteUrl'           => $config['site_url'] ?? 'https://gaurikrit.com',
 ];
 
+/**
+ * Client-supplied brand positioning phrases (use sparingly, NOT as certified claims).
+ */
+$BRAND_PHRASES = ['100% Natural', 'Chemical Free', 'Eco Friendly', 'Sustainable Living'];
+
+/**
+ * Exactly two confirmed products. No prices. No primer.
+ * Coverage values are supplied as-is with the ** marker — never converted.
+ */
 $PRODUCTS = [
     [
-        'id' => 'prakritik-distemper',
-        'slug' => 'prakritik-distemper',
-        'name' => 'Prakritik Distemper',
-        'category' => 'distemper',
-        'categoryLabel' => 'Distemper',
-        'tagline' => 'Cow dung-based natural distemper for interior walls',
-        'description' => 'A breathable, cow dung-based distemper finished with lime and plant pigments. Designed for interior walls where a soft, matte, limewash-like finish is desired. No lead, no solvent-heavy binders. Walls stay breathable and free of trapped moisture.',
-        'usage' => 'Living rooms, bedrooms, ceilings, and heritage interiors. Two coats over a limewash primer. Coverage ~130 sq ft per kg per coat.',
-        'sizes' => ['5 kg', '10 kg', '20 kg'],
-        'priceRange' => '₹180 – ₹2,400',
-        'highlights' => ['Cow dung-based', 'Breathable finish', 'Zero lead'],
-        'claims' => ['clm-cow-dung-based', 'clm-breathable', 'clm-zero-lead', 'clm-no-voc-solvents'],
-        'image' => 'prakritik-distemper',
+        'id'            => 'prakritik-distemper',
+        'slug'          => 'prakritik-distemper',
+        'name'          => 'Prakritik Distemper Paint',
+        'descriptor'    => 'Eco-Friendly Cow Dung Paint',
+        'packaging'     => ['1 kg', '5 kg', '10 kg', '20 kg'],
+        'packagingShort'=> '1, 5, 10 & 20 kg',
+        'colour'        => 'White',
+        'finish'        => 'Matt',
+        'dryingTime'    => '4 hrs',
+        'coverage'      => '200 sq.ft.**',
+        'voc'           => 'Negligible',
+        'usage'         => 'Interior & Exterior',
         'officialImage' => '/assets/products/prakritik-distemper.png',
-        'accent' => 'forest',
-        'featured' => true,
+        'image'         => 'prakritik-distemper',
+        'accent'        => 'indigo',
+        'route'         => '/products/prakritik-distemper/',
     ],
     [
-        'id' => 'prakritik-emulsion',
-        'slug' => 'prakritik-emulsion',
-        'name' => 'Prakritik Emulsion',
-        'category' => 'emulsion',
-        'categoryLabel' => 'Emulsion',
-        'tagline' => 'Cow dung-based natural emulsion for interior & exterior',
-        'description' => 'A finer, more washable cow dung-based emulsion that carries the same breathable soul as our distemper but with improved scrub resistance and coverage. Suitable for both interior and sheltered exterior walls. Plant and mineral pigments only.',
-        'usage' => 'Bedrooms, kitchens, corridors, and sheltered exterior walls. Two coats over a limewash primer. Coverage ~150 sq ft per litre per coat.',
-        'sizes' => ['1 L', '4 L', '10 L', '20 L'],
-        'priceRange' => '₹320 – ₹4,200',
-        'highlights' => ['Scrub-resistant', 'Interior & exterior', 'Plant pigments'],
-        'claims' => ['clm-cow-dung-based', 'clm-breathable', 'clm-zero-lead', 'clm-no-voc-solvents', 'clm-scrub-resistant'],
-        'image' => 'prakritik-emulsion',
+        'id'            => 'prakritik-emulsion',
+        'slug'          => 'prakritik-emulsion',
+        'name'          => 'Prakritik Emulsion Paint',
+        'descriptor'    => 'Eco-Friendly Cow Dung Paint',
+        'packaging'     => ['1 litre', '4 litre', '10 litre', '20 litre'],
+        'packagingShort'=> '1, 4, 10 & 20 litre',
+        'colour'        => 'White',
+        'finish'        => 'Matt',
+        'dryingTime'    => '4 hrs',
+        'coverage'      => '300 sq.ft.**',
+        'voc'           => 'Negligible',
+        'usage'         => 'Interior & Exterior',
         'officialImage' => '/assets/products/prakritik-emulsion.png',
-        'accent' => 'forest',
-        'featured' => true,
+        'image'         => 'prakritik-emulsion',
+        'accent'        => 'haldi',
+        'route'         => '/products/prakritik-emulsion/',
     ],
 ];
 
-$CLAIMS = [
-    ['id' => 'clm-cow-dung-based', 'claim' => 'Prakritik Paint uses refined cow dung as its primary natural binder, sourced from partner gaushalas.', 'category' => 'material', 'categoryLabel' => 'Material', 'source' => 'Internal formulation declaration + gaushala sourcing log', 'reference' => 'GK-MAT-CD-2024', 'verifiedOn' => '2024-09-12'],
-    ['id' => 'clm-breathable', 'claim' => 'The lime + cow-dung binder lets walls breathe, reducing trapped moisture and blistering.', 'category' => 'performance', 'categoryLabel' => 'Performance', 'source' => 'Breathability (water-vapour transmission) test', 'reference' => 'GK-BREATH-2024-04', 'verifiedOn' => '2024-09-20'],
-    ['id' => 'clm-zero-lead', 'claim' => 'No lead or lead-based driers in any Prakritik Paint product.', 'category' => 'safety', 'categoryLabel' => 'Safety', 'source' => 'BIS lead-content test', 'reference' => 'GK-PB-2024-002', 'verifiedOn' => '2024-10-05'],
-    ['id' => 'clm-no-voc-solvents', 'claim' => 'No solvent-heavy VOC binders; formulation is lime and plant-pigment based.', 'category' => 'safety', 'categoryLabel' => 'Safety', 'source' => 'Formulation declaration + VOC screen', 'reference' => 'GK-VOC-2024-03', 'verifiedOn' => '2024-10-20'],
-    ['id' => 'clm-scrub-resistant', 'claim' => 'Prakritik Emulsion carries a tested scrub resistance suitable for everyday interior walls.', 'category' => 'performance', 'categoryLabel' => 'Performance', 'source' => 'Scrub-resistance test (emulsion)', 'reference' => 'GK-SCRUB-2024-07', 'verifiedOn' => '2024-11-01'],
-    ['id' => 'clm-coverage', 'claim' => 'Distemper coverage ~130 sq ft/kg/coat; emulsion coverage ~150 sq ft/L/coat, as tested.', 'category' => 'performance', 'categoryLabel' => 'Performance', 'source' => 'Internal coverage test on standard substrate', 'reference' => 'GK-COV-2024-01', 'verifiedOn' => '2024-09-18'],
-    ['id' => 'clm-gaushala-sourced', 'claim' => 'Cow dung is sourced from partner gaushalas with documented material logs.', 'category' => 'material', 'categoryLabel' => 'Material', 'source' => 'Gaushala sourcing + reconciliation log', 'reference' => 'GK-GS-2024-12', 'verifiedOn' => '2024-09-12'],
-    ['id' => 'clm-limewash-heritage', 'claim' => 'The formulation follows the Indian limewash tradition — lime, pigment, and water — updated with a refined cow-dung binder.', 'category' => 'material', 'categoryLabel' => 'Material', 'source' => 'Internal craft audit + documented recipe', 'reference' => 'GK-CRAFT-2019', 'verifiedOn' => '2024-08-01'],
-    ['id' => 'clm-no-heavy-metals', 'claim' => 'No heavy-metal-based pigments or driers used; colour comes from plant and mineral sources.', 'category' => 'safety', 'categoryLabel' => 'Safety', 'source' => 'Heavy-metal panel test', 'reference' => 'GK-HM-2024-05', 'verifiedOn' => '2024-10-05'],
+$COVERAGE_DISCLAIMER = 'Actual coverage may vary from mentioned coverage due to factors such as method, condition of application surface, roughness and porosity.';
+
+/**
+ * Ashta Laabh — 8 client-supplied product benefits.
+ * NOT independently tested claims. No invented explanations or percentages.
+ */
+$ASHTA_LAABH = [
+    ['name' => 'Antibacterial', 'hindi' => 'जीवाणुरोधी'],
+    ['name' => 'Antifungal', 'hindi' => 'कवकरोधी'],
+    ['name' => 'Eco-Friendly', 'hindi' => 'पर्यावरण-मित्र'],
+    ['name' => 'Natural Thermal Insulator', 'hindi' => 'प्राकृतिक ऊष्मीय इन्सुलेटर'],
+    ['name' => 'Cost-Effective', 'hindi' => 'किफ़ायती'],
+    ['name' => 'Free from Heavy Metals', 'hindi' => 'भारी धातुओं से मुक्त'],
+    ['name' => 'Non-Toxic', 'hindi' => 'गैर-विषाक्त'],
+    ['name' => 'Odourless', 'hindi' => 'गंधरहित'],
 ];
 
+/**
+ * Colours of India — editorial design moods. NOT available product shades.
+ */
+$COLOUR_STUDY = [
+    ['name' => 'Haldi',  'hex' => '#E3A51A', 'label' => 'Turmeric'],
+    ['name' => 'Mitti',  'hex' => '#A86E4B', 'label' => 'Earth'],
+    ['name' => 'Neem',   'hex' => '#748468', 'label' => 'Leaf'],
+    ['name' => 'Geru',   'hex' => '#B65432', 'label' => 'Ochre'],
+    ['name' => 'Indigo', 'hex' => '#365B67', 'label' => 'Indigo'],
+    ['name' => 'Chuna',  'hex' => '#F4EFE2', 'label' => 'Lime'],
+];
+
+/**
+ * Material journey stages (high-level only).
+ */
+$MATERIAL_JOURNEY = [
+    ['num' => '01', 'title' => 'Natural origin', 'desc' => 'The material begins with the cow.'],
+    ['num' => '02', 'title' => 'Raw material', 'desc' => 'Cow dung, gathered and prepared.'],
+    ['num' => '03', 'title' => 'Preparation', 'desc' => 'Processed into a workable binder.'],
+    ['num' => '04', 'title' => 'Prakritik Paint', 'desc' => 'Blended into a contemporary paint format.'],
+    ['num' => '05', 'title' => 'Finished wall', 'desc' => 'Applied to interior and exterior walls.'],
+];
+
+/**
+ * Project pathways (enquiry categories, NOT existing clients/partners).
+ */
+$PROJECT_PATHWAYS = [
+    ['title' => 'Homeowners', 'desc' => 'Explore Prakritik Paint for your space.'],
+    ['title' => 'Architects & Builders', 'desc' => 'Discuss product and project requirements.'],
+    ['title' => 'Institutions / CSR', 'desc' => 'Talk to Gaurikrit about institutional or sustainability-led projects.'],
+    ['title' => 'Gaushalas / Partners', 'desc' => 'Explore collaboration around cow-dung-based bio-products.'],
+];
+
+/**
+ * Contact form interest options — canonical set. Frontend + backend MUST match.
+ */
+$INTEREST_OPTIONS = [
+    'general'              => 'General enquiry',
+    'prakritik-distemper'  => 'Prakritik Distemper',
+    'prakritik-emulsion'   => 'Prakritik Emulsion',
+    'bulk-project'         => 'Bulk / Project',
+    'business-partnership' => 'Business Partnership',
+    'gaushala-collaboration' => 'Gaushala Collaboration',
+];
+
+/**
+ * Business form project types.
+ */
+$PROJECT_TYPES = ['Residential', 'Commercial', 'Institutional', 'CSR / NGO', 'Gaushala Collaboration', 'Other'];
+
+/**
+ * FAQ — only questions the supplied data can answer.
+ */
+$FAQ = [
+    ['q' => 'What products are available?', 'a' => 'Prakritik Distemper Paint and Prakritik Emulsion Paint.'],
+    ['q' => 'What is the finish?', 'a' => 'Matt.'],
+    ['q' => 'What is the drying time?', 'a' => '4 hrs.'],
+    ['q' => 'Can they be used indoors and outdoors?', 'a' => 'The supplied product specifications list usage as Interior &amp; Exterior.'],
+    ['q' => 'What pack sizes are available for Distemper?', 'a' => '1 kg, 5 kg, 10 kg and 20 kg.'],
+    ['q' => 'What pack sizes are available for Emulsion?', 'a' => '1 litre, 4 litre, 10 litre and 20 litre.'],
+    ['q' => 'What coverage is listed for Distemper?', 'a' => '200 sq.ft.**'],
+    ['q' => 'What coverage is listed for Emulsion?', 'a' => '300 sq.ft.**'],
+    ['q' => 'What is the listed V.O.C. information?', 'a' => 'V.O.C.: Negligible.'],
+];
+
+/**
+ * Navigation — real routes, NO anchor links. Includes Calculator.
+ */
 $NAV = [
     ['label' => 'Home',           'href' => '/'],
     ['label' => 'Products',       'href' => '/products/'],
     ['label' => 'Why Prakritik',  'href' => '/why-prakritik/'],
     ['label' => 'About',          'href' => '/about/'],
     ['label' => 'For Business',   'href' => '/for-business/'],
+    ['label' => 'Calculator',     'href' => '/paint-calculator/'],
     ['label' => 'Contact',        'href' => '/contact/'],
 ];
 
 /**
- * Get a product by slug.
+ * Products dropdown items (for the nav).
  */
+$NAV_PRODUCTS = [
+    ['label' => 'Prakritik Distemper', 'href' => '/products/prakritik-distemper/'],
+    ['label' => 'Prakritik Emulsion',  'href' => '/products/prakritik-emulsion/'],
+    ['label' => 'View All Products',    'href' => '/products/'],
+];
+
 function get_product(string $slug): ?array
 {
     global $PRODUCTS;
     foreach ($PRODUCTS as $p) {
         if ($p['slug'] === $slug) return $p;
-    }
-    return null;
-}
-
-/**
- * Get a claim by id.
- */
-function get_claim(string $id): ?array
-{
-    global $CLAIMS;
-    foreach ($CLAIMS as $c) {
-        if ($c['id'] === $id) return $c;
     }
     return null;
 }
