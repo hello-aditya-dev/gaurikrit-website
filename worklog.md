@@ -862,3 +862,49 @@ Task: Build all page PHP files + vanilla JavaScript modules for the Hostinger pu
 - All 10 pages + 6 JS modules delivered, syntax-clean (per the validators available without `php -l`), and conformant to the architecture (directory-based routes, shared header/footer, CSRF + honeypot, `e()` escaping, semantic HTML, reduced-motion paths, 44px targets).
 - The site is ready for: (a) the API agent to drop in `api/contact.php` / `api/business-enquiry.php` / `api/newsletter.php`, (b) a brochure PDF at `/assets/documents/prakritik-paint-brochure.pdf`, (c) optional product PNG photography at `/assets/products/{slug}.png`, (d) the CSS agent to optionally absorb the page-local `<style>` blocks into `app.css`.
 - Work record (this entry) appended to `/home/z/my-project/worklog.md` with Task ID PAGES-JS.
+
+---
+Task ID: PHP-REBUILD
+Agent: main + 2 subagents (SVG-PORT, PAGES-JS)
+Task: Rebuild as PHP for Hostinger shared hosting — no Node/Next.js/React.
+
+## What happened
+Authoritative client prompt: the production target is Hostinger shared hosting (public_html upload). NO Node, NO npm, NO Vercel, NO Prisma, NO React. PHP 8.2+ + HTML5 + CSS3 + vanilla JS + SVG only. Zero-build deployment.
+
+## Completed
+### dist-hostinger/ (42 files, directly uploadable to public_html/)
+- **PHP includes**: bootstrap.php, config.example.php, data.php (company/products/claims/nav), helpers.php (asset_url, e, csrf, rate_limit, clean_text, render_illustration, json_response), seo.php (render_meta + JSON-LD), header.php (shared <head>+header+nav), footer.php (shared footer+back-to-top+toast), mailer.php (zero-Composer SMTP via stream_socket_client + STARTTLS + AUTH LOGIN)
+- **9 directory-based routes**: /, /products/, /products/prakritik-distemper/, /products/prakritik-emulsion/, /why-prakritik/, /about/, /for-business/, /contact/, /downloads/ + branded 404.php
+- **11 coded SVG illustration partials** (includes/illustrations/): IndianCow, GaurikritCowMark, PrakritikDistemperBucket, PrakritikEmulsionBucket, RuralLandscape, IndianCourtyard, MaterialJourney, AshtaLaabhDiagram, PaintBrushStroke, FieldBotanicals, GaushalaScene — all CSS-var coloured, aria-hidden, $class-param
+- **6 vanilla JS modules** (assets/js/): app.js, navigation.js (scroll-spy + mobile menu), animations.js (reveal + count-up + hero stroke), ashta-laabh.js, colour-study.js (wall visualizer), forms.js (fetch + CSRF + honeypot + toast)
+- **Authored CSS** (assets/css/app.css): --forest/--haldi/--limewash tokens, no Tailwind, no build, responsive, dark mode, reduced-motion
+- **2 API endpoints**: /api/contact.php + /api/business-enquiry.php — CSRF, honeypot, rate-limit (5/min), server-side validation, optional MySQL PDO storage, SMTP email
+- **config.example.php**: SMTP + optional DB template; config.php gitignored
+- **.htaccess**: security headers, cache-control, compression, deny includes/config, ErrorDocument 404, Options -Indexes
+- **sitemap.xml** (9 URLs) + **robots.txt**
+- **HOSTINGER_DEPLOYMENT.md**: step-by-step (upload zip, extract, PHP 8.2+, SMTP config, SSL, test forms, optional MySQL)
+- **gaurikrit-hostinger-deploy.zip** (94KB): contents for public_html/
+
+### Image system
+<picture>/<img> with coded SVG fallback. JS detects load → shows image, hides SVG. JS detects error → shows SVG. No CLS (dimensions reserved). Official paths: /assets/products/prakritik-distemper.png etc.
+
+### Animations preserved (all vanilla)
+paint reveal (CSS clip-path), cow line draw, material journey, Ashta Laabh interaction, colour wall visualizer, product entrance, scroll reveals, count-up, marquee.
+
+### Subagent deliverables
+- SVG-PORT: 11 PHP partials, XML-validated, CSS-var aliases noted (fixed in app.css: --card/--secondary/--background aliases added).
+- PAGES-JS: 10 page PHP files + 6 JS modules, 3045 lines total. Fixed critical e() bug in helpers.php ($string→$value). Python-validated all PHP + node --check all JS.
+
+### Next.js archived
+src/ moved to _archive/nextjs-old-src/ as visual/technical reference. Production (dist-hostinger/) has ZERO dependency on Node/npm/React.
+
+## Verification
+- 42 files in dist-hostinger/
+- No PHP CLI in sandbox — subagents used Python validators + node --check
+- All CSS class names in pages match app.css
+- All render_illustration() calls resolve to real partials
+- config.php gitignored, only config.example.php committed
+- .htaccess, sitemap.xml, robots.txt present
+
+## Commit
+- d618595 pushed to main on https://github.com/hello-aditya-dev/gaurikrit-website
