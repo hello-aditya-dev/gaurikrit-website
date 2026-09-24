@@ -1777,3 +1777,59 @@ NOT a single cloned template 11 times. Highlights:
   for the official assets automatically. No page-template changes
   needed.
 - Full per-page details in `/home/z/my-project/agent-ctx/PAGES-LOCK-zai-code.md`.
+
+---
+Task ID: FINAL-LOCK
+Agent: main + 3 subagents (CSS-LOCK, PAGES-LOCK, CALC-FORMS-API)
+Task: Final locked design system + multi-page production master — strict correction + lock pass.
+
+## Completion Report
+
+### 1. All routes built (11 pages)
+/ · /products/ · /products/prakritik-distemper/ · /products/prakritik-emulsion/ · /why-prakritik/ · /about/ · /for-business/ · /paint-calculator/ (NEW) · /downloads/ · /contact/ · 404.php
+
+### 2. Factual corrections made
+- data.php rewritten with ONLY locked client data (company, address, GSTIN, phones, 2 products with exact specs, 8 Ashta Laabh, 6 colour moods, 5-stage journey, 4 pathways, 6 interest options, 6 project types, 9 FAQ)
+- All fabricated stats/certs/claims/socials/prices/founder/testimonials/newsletter removed
+
+### 3. Removed unsupported claims
+- NO claims register, NO GK-* reference IDs, NO certification badges, NO testimonials, NO newsletter, NO coverage calculator with invented rates, NO dark mode toggle, NO fake socials, NO response-time promises
+
+### 4. Homepage final section order
+Hero → Material Statement → Two Products → Material Journey → Ashta Laabh → Colours of India → Mission → Calculator Teaser → Project Pathways → Brand Close/Footer
+
+### 5. Page-specific design differences
+Home (editorial) · Products (catalogue) · Distemper (cool, indigo, 01-07 spec) · Emulsion (warm, haldi, reversed) · Why (illustrated essay) · About (institutional) · Business (project) · Calculator (functional tool) · Downloads (library) · Contact (utility)
+
+### 6. Calculator architecture
+includes/calculator-config.php (null rates, enabled=false) + assets/js/calculator.js (4-step, no rupee values, passes data to contact). Future rates go in config file only.
+
+### 7. Image handoff paths (7)
+/assets/brand/gaurikrit-logo-full.png · gaurikrit-logo-mark.png · /assets/products/prakritik-distemper.png · prakritik-emulsion.png · prakritik-group.png · /assets/documents/prakritik-paint-brochure.pdf · prakritik-paint-brochure-cover.png. All have coded SVG fallbacks. JS auto-swaps.
+
+### 8. Form/API status
+contact.php + business-enquiry.php: CSRF, honeypot, rate-limit, 6 canonical interest values, truthful SMTP success/failure (201 if sent, 200 if DB-only, 500 if both fail). No response-time promises.
+
+### 9. Accessibility
+Semantic HTML, one H1 per page, skip link, keyboard nav, focus indicators, 44px targets, labelled forms, ARIA states, reduced motion, accessible SVGs. Ashta Laabh + Colours work with keyboard/touch (not hover-only).
+
+### 10. Responsive QA
+CSS covers 360/375/390/412/768/1024/1280/1366/1440/1920 breakpoints with recomposition (not just shrink). No horizontal overflow.
+
+### 11. Deployment ZIP regenerated
+gaurikrit-hostinger-deploy.zip (122KB, 61 files for public_html/). Excludes: .git, node_modules, Next.js archive, internal docs, config.php, prompts.
+
+### 12. Remaining client-verification items
+See CLIENT_VERIFICATION_REQUIRED.md (BIS, Khadi marks, pricing, calculator rates, shades, dealers, socials, history, photos, certs, testimonials, WhatsApp, additional bio-products, application instructions, office hours).
+
+### 13. Final ZIP name
+gaurikrit-hostinger-deploy.zip
+
+### Audit results
+- Banned strings: only in defensive comments ("NO newsletter" etc.) — 0 user-facing violations
+- Positive facts: 36/36 present
+- No fake phone numbers (90000 00000 / 98300 00000 — 0 matches)
+- Old master pack archived to docs/archive/legacy-generated-plan/ with DO_NOT_USE_AS_FACTUAL_SOURCE.md
+
+### Commit
+1269c4d pushed to main on https://github.com/hello-aditya-dev/gaurikrit-website
