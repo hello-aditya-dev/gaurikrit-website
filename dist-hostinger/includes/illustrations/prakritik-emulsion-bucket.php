@@ -1,191 +1,127 @@
 <?php
 /**
- * Illustration: Prakritik Emulsion bucket (taller front-facing white cylindrical bucket)
+ * Illustration: Prakritik Emulsion bucket
  * Coded SVG — no photography dependency.
- * Ported from src/components/illustrations/prakritik-emulsion-bucket.tsx
+ * V2 finish pass — taller cylindrical tin for liquid emulsion.
+ *
+ * Stylised website product illustration.
+ * Replace with approved product photography when supplied.
+ * To swap with a photo: change the ProductVisual data field to
+ * "/assets/products/prakritik-emulsion.png"
+ *
+ * Same structural quality as the distemper bucket but slightly TALLER
+ * (emulsion is liquid, taller pack). A subtle liquid line is visible
+ * at the rim, suggesting liquid paint inside. Label says
+ * "PRAKRITIK EMULSION".
  */
 // @var string $class Optional CSS class for the root <svg>
 $class = $class ?? '';
 ?>
-<svg viewBox="0 0 200 260" xmlns="http://www.w3.org/2000/svg" class="<?= htmlspecialchars($class, ENT_QUOTES) ?>" role="img" aria-hidden="true" preserveAspectRatio="xMidYMid meet" width="100%" height="100%">
+<svg viewBox="0 0 220 300" xmlns="http://www.w3.org/2000/svg"
+     class="<?= htmlspecialchars($class, ENT_QUOTES) ?>"
+     role="img" aria-hidden="true"
+     preserveAspectRatio="xMidYMid meet"
+     width="100%" height="100%">
   <title>Prakritik Emulsion bucket</title>
 
-  <!-- Bail / handle — metal arch -->
-  <path
-    d="M 40 60 Q 100 18 160 60"
-    fill="none"
-    stroke="var(--forest)"
-    stroke-width="2"
-    stroke-linecap="round"
-  />
-  <path
-    d="M 44 60 Q 100 24 156 60"
-    fill="none"
-    stroke="var(--forest)"
-    stroke-width="1"
-    opacity="0.55"
-  />
-  <!-- Handle attachment lugs -->
-  <circle cx="40" cy="60" r="2.5" fill="var(--forest)" />
-  <circle cx="160" cy="60" r="2.5" fill="var(--forest)" />
+  <!-- BAIL / HANDLE — metal arch (drawn first, behind the rim) -->
+  <path d="M 42 62 Q 110 22, 178 62"
+        fill="none" stroke="var(--forest)"
+        stroke-width="1.8" stroke-linecap="round"/>
+  <!-- Handle inner line — subtle wire-thickness suggestion -->
+  <path d="M 46 62 Q 110 28, 174 62"
+        fill="none" stroke="var(--forest)"
+        stroke-width="1" opacity="0.5"/>
 
-  <!-- Liquid paint drip at rim — small wobble of haldi paint over the rim -->
-  <path
-    d="M 50 62 C 55 70 52 78 58 76 C 62 75 60 68 62 64"
-    fill="var(--haldi)"
-    stroke="var(--forest)"
-    stroke-width="1.2"
-    stroke-linejoin="round"
-  />
-  <path
-    d="M 138 64 C 142 70 140 78 146 76 C 150 75 148 68 152 64"
-    fill="var(--haldi)"
-    stroke="var(--forest)"
-    stroke-width="1.2"
-    stroke-linejoin="round"
-  />
-  <!-- Small drip bead on right side -->
-  <circle cx="150" cy="82" r="2.2" fill="var(--haldi)" stroke="var(--forest)" stroke-width="0.8" />
+  <!-- HANDLE ATTACHMENT LUGS — on the rim -->
+  <circle cx="42" cy="62" r="3" fill="var(--forest)"/>
+  <circle cx="178" cy="62" r="3" fill="var(--forest)"/>
 
-  <!-- Bucket body — taller, white, slightly tapered -->
-  <path
-    d="M 38 60 L 50 228 C 75 235 125 235 150 228 L 162 60 Z"
-    fill="var(--card)"
-    stroke="var(--forest)"
-    stroke-width="1.75"
-    stroke-linejoin="round"
-  />
+  <!-- BUCKET BODY — TALLER tapered cylinder, paper-white fill.
+       Top corners at the rim (x=40, x=180), bottom corners narrower (x=52, x=168).
+       Taller body — base at y=270 (vs y=250 for distemper). -->
+  <path d="M 40 62
+           L 52 270
+           C 60 276, 160 276, 168 270
+           L 180 62 Z"
+        fill="var(--paper)" stroke="var(--forest)"
+        stroke-width="1.5" stroke-linejoin="round"/>
 
-  <!-- Top rim ellipse — dark green -->
-  <ellipse
-    cx="100"
-    cy="58"
-    rx="62"
-    ry="8"
-    fill="var(--forest)"
-    stroke="var(--forest)"
-    stroke-width="1.5"
-  />
-  <!-- Inner opening (inside of bucket) -->
-  <ellipse
-    cx="100"
-    cy="57"
-    rx="55"
-    ry="5.5"
-    fill="var(--secondary)"
-    opacity="0.85"
-  />
-  <!-- Paint surface inside — haldi tinted -->
-  <ellipse
-    cx="100"
-    cy="57"
-    rx="50"
-    ry="4"
-    fill="var(--haldi)"
-    opacity="0.4"
-  />
+  <!-- SUBTLE VERTICAL HIGHLIGHT on the LEFT side of the cylinder -->
+  <path d="M 56 80 L 64 260"
+        stroke="var(--forest)" stroke-width="0.8" opacity="0.12"/>
 
-  <!-- Bottom front curve -->
-  <path
-    d="M 50 228 C 60 234 140 234 150 228"
-    fill="none"
-    stroke="var(--forest)"
-    stroke-width="1.5"
-    opacity="0.7"
-  />
+  <!-- SUBTLE VERTICAL SHADOW on the RIGHT side -->
+  <path d="M 162 80 L 156 260"
+        stroke="var(--forest)" stroke-width="0.8" opacity="0.08"/>
 
-  <!-- Small cow-line motif on upper white body -->
-  <g
-    fill="none"
-    stroke="var(--forest)"
-    stroke-width="1.4"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-  >
-    <!-- Tiny side-view cow silhouette with hump -->
-    <path d="M 78 110 C 76 106 75 102 76 98 C 77 94 80 93 82 95 C 82 90 84 89 86 92 C 86 95 86 98 84 99 L 86 101 C 88 99 90 98 92 98 C 95 96 100 96 105 98 L 116 98 C 120 98 122 100 122 104 L 122 110 Z" />
-    <!-- Cow legs -->
-    <path d="M 82 110 L 81 120" stroke-width="1.2" />
-    <path d="M 88 110 L 89 120" stroke-width="1.2" />
-    <path d="M 115 110 L 114 120" stroke-width="1.2" />
-    <path d="M 121 110 L 122 120" stroke-width="1.2" />
-    <!-- Cow tail -->
-    <path d="M 122 104 C 126 106 128 112 126 116" stroke-width="1.2" />
-    <!-- Cow eye -->
-    <circle cx="79" cy="101" r="0.6" fill="var(--forest)" stroke="none" />
-  </g>
+  <!-- TOP RIM ELLIPSE — dark green -->
+  <ellipse cx="110" cy="60" rx="70" ry="9"
+           fill="var(--forest)" stroke="var(--forest)"
+           stroke-width="1.5"/>
 
-  <!-- Haldi accent stripe (upper) -->
-  <path
-    d="M 44 124 L 156 124"
-    stroke="var(--haldi-deep)"
-    stroke-width="2.2"
-    stroke-linecap="round"
-  />
-  <!-- Haldi accent stripe (lower) -->
-  <path
-    d="M 47 196 L 153 196"
-    stroke="var(--haldi-deep)"
-    stroke-width="2.2"
-    stroke-linecap="round"
-  />
+  <!-- INNER OPENING — limewash-toned inside -->
+  <ellipse cx="110" cy="59" rx="62" ry="6"
+           fill="var(--limewash)" opacity="0.85"/>
 
-  <!-- Dark-green label band (taller for emulsion) -->
-  <path
-    d="M 44 128 L 47 192 L 153 192 L 156 128 C 120 132 80 132 44 128 Z"
-    fill="var(--forest)"
-    stroke="var(--forest)"
-    stroke-width="1.5"
-    stroke-linejoin="round"
-  />
+  <!-- LIQUID LINE AT RIM — a subtle haldi-toned ellipse just inside the rim,
+       suggesting the liquid paint surface filling up to the rim -->
+  <ellipse cx="110" cy="58" rx="58" ry="5"
+           fill="var(--haldi)" opacity="0.32"/>
 
-  <!-- Wordmark text -->
-  <text
-    x="100"
-    y="150"
-    text-anchor="middle"
-    font-family="Georgia, serif"
-    font-weight="700"
-    font-size="13"
-    fill="var(--haldi)"
-    letter-spacing="1.5"
-  >GAURIKRIT</text>
-  <!-- Subtitle line 1 -->
-  <text
-    x="100"
-    y="167"
-    text-anchor="middle"
-    font-family="Georgia, serif"
-    font-weight="700"
-    font-size="7.5"
-    fill="var(--haldi)"
-    letter-spacing="1.6"
-  >PRAKRITIK</text>
-  <!-- Subtitle line 2 -->
-  <text
-    x="100"
-    y="181"
-    text-anchor="middle"
-    font-family="Georgia, serif"
-    font-weight="700"
-    font-size="7.5"
-    fill="var(--haldi)"
-    letter-spacing="1.6"
-  >EMULSION</text>
+  <!-- SURFACE RIPPLE on the liquid — very subtle line suggesting liquid surface tension -->
+  <path d="M 56 57 C 80 55, 140 55, 164 57"
+        fill="none" stroke="var(--haldi-deep)"
+        stroke-width="0.8" opacity="0.55"/>
 
-  <!-- Small underline mark beneath wordmark -->
-  <path
-    d="M 78 156 L 122 156"
-    stroke="var(--haldi)"
-    stroke-width="0.8"
-    opacity="0.5"
-  />
+  <!-- HALDI ACCENT STRIPE ABOVE LABEL BAND -->
+  <path d="M 46 128 L 50 130 C 80 134, 140 134, 170 130 L 174 128"
+        fill="none" stroke="var(--haldi-deep)"
+        stroke-width="1.6" stroke-linecap="round"/>
 
-  <!-- Subtle bucket sheen on left side -->
-  <path
-    d="M 56 70 L 62 220"
-    stroke="var(--forest)"
-    stroke-width="0.6"
-    opacity="0.18"
-  />
+  <!-- DARK-GREEN LABEL BAND — taller band (emulsion pack), curved to follow cylinder -->
+  <path d="M 46 132
+           L 50 204
+           C 80 208, 140 208, 170 204
+           L 174 132
+           C 140 136, 80 136, 46 132 Z"
+        fill="var(--forest)" stroke="var(--forest)"
+        stroke-width="1.4" stroke-linejoin="round"/>
+
+  <!-- HALDI ACCENT STRIPE BELOW LABEL BAND -->
+  <path d="M 50 208 L 54 210 C 80 213, 140 213, 166 210 L 170 208"
+        fill="none" stroke="var(--haldi-deep)"
+        stroke-width="1.6" stroke-linecap="round"/>
+
+  <!-- SMALL GEOMETRIC MARK above the wordmark — haldi dot -->
+  <circle cx="110" cy="138" r="2.2" fill="var(--haldi)"/>
+
+  <!-- WORDMARK TEXT -->
+  <text x="110" y="153" text-anchor="middle"
+        font-family="var(--font-display)" font-weight="700"
+        font-size="12" fill="var(--haldi)" letter-spacing="1.5">GAURIKRIT</text>
+
+  <!-- SUBTITLE LINE 1 -->
+  <text x="110" y="174" text-anchor="middle"
+        font-family="var(--font-display)" font-weight="700"
+        font-size="7" fill="var(--haldi)" letter-spacing="1.6">PRAKRITIK</text>
+
+  <!-- SUBTITLE LINE 2 -->
+  <text x="110" y="190" text-anchor="middle"
+        font-family="var(--font-display)" font-weight="700"
+        font-size="7" fill="var(--haldi)" letter-spacing="1.6">EMULSION</text>
+
+  <!-- SMALL UNDERLINE MARK beneath wordmark -->
+  <path d="M 86 160 L 134 160"
+        stroke="var(--haldi)" stroke-width="0.8" opacity="0.5"/>
+
+  <!-- BOTTOM FRONT CURVE — base of cylinder -->
+  <path d="M 52 270 C 60 276, 160 276, 168 270"
+        fill="none" stroke="var(--forest)"
+        stroke-width="1.5" opacity="0.85"/>
+
+  <!-- SUBTLE BASE SHADOW ELLIPSE — very faint ground contact -->
+  <ellipse cx="110" cy="276" rx="56" ry="3"
+           fill="var(--forest)" opacity="0.08"/>
+
 </svg>

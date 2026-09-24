@@ -2,144 +2,178 @@
 /**
  * Illustration: Material journey (cow → refine → product → apply)
  * Coded SVG — no photography dependency.
- * Ported from src/components/illustrations/material-journey.tsx
+ * V2 finish pass — disciplined material-flow diagram.
+ *
+ * Horizontal 4-stage material-flow: cow → drying/refining → bucket →
+ * wall-with-brush. Each stage is a small finished line icon, NOT a
+ * generic infographic icon. Connecting dashed haldi line with arrow
+ * marks. Each stage labelled with a number (01, 02, 03, 04) in
+ * Newsreader serif.
  */
 // @var string $class Optional CSS class for the root <svg>
 $class = $class ?? '';
 ?>
-<svg viewBox="0 0 600 120" xmlns="http://www.w3.org/2000/svg" class="<?= htmlspecialchars($class, ENT_QUOTES) ?>" role="img" aria-hidden="true" preserveAspectRatio="xMidYMid meet" width="100%" height="100%">
+<svg viewBox="0 0 640 140" xmlns="http://www.w3.org/2000/svg"
+     class="<?= htmlspecialchars($class, ENT_QUOTES) ?>"
+     role="img" aria-hidden="true"
+     preserveAspectRatio="xMidYMid meet"
+     width="100%" height="100%">
   <title>Material journey</title>
 
-  <!-- Dashed haldi connectors between stages -->
-  <g
-    fill="none"
-    stroke="var(--haldi-deep)"
-    stroke-width="1.5"
-    stroke-linecap="round"
-    stroke-dasharray="4 4"
-  >
-    <path d="M 110 60 L 190 60" />
-    <path d="M 260 60 L 340 60" />
-    <path d="M 400 60 L 490 60" />
+  <!-- CONNECTING DASHED HALDI LINE — between stages, with directional arrow marks -->
+  <g fill="none" stroke="var(--haldi-deep)"
+     stroke-width="1.2" stroke-dasharray="3 3"
+     opacity="0.7" stroke-linecap="round">
+    <path d="M 110 70 L 210 70"/>
+    <path d="M 270 70 L 370 70"/>
+    <path d="M 430 70 L 530 70"/>
   </g>
 
-  <!-- Arrowheads at end of each connector -->
+  <!-- DIRECTIONAL ARROW MARKS — small triangles at the end of each connector -->
   <g fill="var(--haldi-deep)" stroke="none">
-    <path d="M 190 60 L 184 56 L 184 64 Z" />
-    <path d="M 340 60 L 334 56 L 334 64 Z" />
-    <path d="M 490 60 L 484 56 L 484 64 Z" />
+    <path d="M 210 70 L 204 66 L 204 74 Z"/>
+    <path d="M 370 70 L 364 66 L 364 74 Z"/>
+    <path d="M 530 70 L 524 66 L 524 74 Z"/>
   </g>
 
-  <g
-    fill="none"
-    stroke="var(--forest)"
-    stroke-width="1.5"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-  >
-    <!-- STAGE 1 — Cow (source) at x ~ 75 -->
-    <path d="M 50 70 C 48 66 47 62 50 58 C 52 55 55 55 56 58 C 56 53 58 52 58 56 C 58 58 58 61 56 62 L 56 65 C 60 63 64 63 68 65 L 90 65 C 94 65 96 67 96 71 L 96 70 Z" />
-    <path d="M 54 70 L 53 80" stroke-width="1.2" />
-    <path d="M 58 70 L 59 80" stroke-width="1.2" />
-    <path d="M 90 70 L 89 80" stroke-width="1.2" />
-    <path d="M 94 70 L 95 80" stroke-width="1.2" />
-    <path d="M 96 66 C 100 68 102 73 100 78" stroke-width="1.2" />
-    <circle cx="51" cy="64" r="0.6" fill="var(--forest)" stroke="none" />
+  <g fill="none" stroke="var(--forest)"
+     stroke-width="1.5" stroke-linecap="round"
+     stroke-linejoin="round">
 
-    <!-- STAGE 2 — Drying/refining tray with sun -->
-    <!-- Sun above -->
-    <circle cx="225" cy="42" r="7" />
-    <path d="M 225 31 L 225 28" />
-    <path d="M 217 36 L 215 34" />
-    <path d="M 233 36 L 235 34" />
-    <path d="M 213 42 L 210 42" />
-    <path d="M 237 42 L 240 42" />
-    <path d="M 219 49 L 217 51" />
-    <path d="M 231 49 L 233 51" />
-    <!-- Tray (trapezoidal) -->
-    <path d="M 195 65 L 255 65 L 250 76 L 200 76 Z" />
-    <!-- Material in tray — wavy line -->
-    <path d="M 200 65 C 215 60 230 65 245 62 C 252 60 252 64 252 65" stroke-width="1.2" />
-    <!-- Particles -->
-    <circle cx="210" cy="63" r="0.8" fill="var(--forest)" stroke="none" />
-    <circle cx="220" cy="61" r="0.8" fill="var(--forest)" stroke="none" />
-    <circle cx="235" cy="63" r="0.8" fill="var(--forest)" stroke="none" />
-    <circle cx="242" cy="61" r="0.8" fill="var(--forest)" stroke="none" />
+    <!-- ===== STAGE 1 — SMALL COW SILHOUETTE (simplified side-view, facing left) =====
+         Simplified version of the IndianCow: body barrel, hump, head, 4 legs, tail, eye. -->
+    <g>
+      <!-- BODY BARREL (closed contour) -->
+      <path d="M 68 56
+               L 92 52
+               C 100 53, 108 55, 112 56
+               L 112 70
+               L 68 70
+               C 66 64, 66 60, 68 56 Z"/>
+      <!-- HUMP — rises above back line -->
+      <path d="M 68 56
+               C 70 48, 76 42, 80 42
+               C 84 42, 88 48, 92 52"/>
+      <!-- NECK TOP — from withers forward-down to poll -->
+      <path d="M 68 56 C 62 54, 56 53, 50 52"/>
+      <!-- HEAD — elongated face, side-view -->
+      <path d="M 50 52
+               C 46 54, 42 58, 38 62
+               C 34 66, 32 70, 32 72
+               C 36 74, 42 74, 48 72
+               C 52 72, 54 72, 56 72
+               C 56 64, 54 58, 50 52 Z"/>
+      <!-- HORN — short, curved -->
+      <path d="M 50 52 C 46 47, 42 45, 38 46" stroke-width="1.3"/>
+      <!-- EAR — small, hanging -->
+      <path d="M 54 56 C 60 60, 64 64, 66 68" stroke-width="1.3"/>
+      <!-- FRONT LEGS — slender, paired -->
+      <path d="M 72 70 L 72 84" stroke-width="1.3"/>
+      <path d="M 76 70 L 76 84" stroke-width="1.3"/>
+      <!-- BACK LEGS — slender, paired -->
+      <path d="M 104 70 L 104 84" stroke-width="1.3"/>
+      <path d="M 108 70 L 108 84" stroke-width="1.3"/>
+      <!-- TAIL — short with tuft -->
+      <path d="M 112 58 C 118 62, 120 70, 118 78" stroke-width="1.3"/>
+      <!-- EYE -->
+      <circle cx="42" cy="60" r="0.7" fill="var(--forest)" stroke="none"/>
+      <!-- HOOF TICKS -->
+      <path d="M 70 85 L 78 85" stroke-width="1.2"/>
+      <path d="M 102 85 L 110 85" stroke-width="1.2"/>
+    </g>
 
-    <!-- STAGE 3 — Paint bucket (product) at x ~ 375 -->
-    <!-- Top rim ellipse -->
-    <ellipse cx="375" cy="42" rx="17" ry="4" fill="var(--forest)" stroke="var(--forest)" />
-    <!-- Body -->
-    <path d="M 358 42 L 360 80 L 390 80 L 392 42" />
-    <path d="M 358 42 C 360 40 390 40 392 42" stroke-width="1.2" opacity="0.7" />
-    <!-- Handle -->
-    <path d="M 360 42 Q 375 32 390 42" stroke-width="1.4" />
-    <!-- Label band -->
-    <path d="M 359 60 L 391 60" stroke-width="1.4" />
-    <path d="M 359 65 L 391 65" stroke-width="1.4" />
-    <!-- Small haldi stripe accent on bucket -->
-    <path d="M 359 70 L 391 70" stroke-width="1" stroke="var(--haldi-deep)" />
+    <!-- ===== STAGE 2 — SUN OVER A DRYING SURFACE (tray with material) ===== -->
+    <g>
+      <!-- SUN — small circle with rays -->
+      <circle cx="240" cy="40" r="6"/>
+      <path d="M 240 30 L 240 27"/>
+      <path d="M 234 35 L 232 33"/>
+      <path d="M 246 35 L 248 33"/>
+      <path d="M 230 40 L 227 40"/>
+      <path d="M 250 40 L 253 40"/>
+      <path d="M 236 45 L 234 47"/>
+      <path d="M 244 45 L 246 47"/>
+      <!-- DRYING SURFACE — trapezoidal tray -->
+      <path d="M 218 64 L 262 64 L 258 76 L 222 76 Z"/>
+      <!-- MATERIAL INSIDE TRAY — wavy line suggesting dried material -->
+      <path d="M 222 63 C 232 60, 242 64, 252 61 C 256 60, 258 62, 258 64"
+            stroke-width="1.2"/>
+      <!-- PARTICLE DOTS — scattered on the material -->
+      <circle cx="230" cy="62" r="0.7" fill="var(--forest)" stroke="none"/>
+      <circle cx="240" cy="60" r="0.7" fill="var(--forest)" stroke="none"/>
+      <circle cx="248" cy="62" r="0.7" fill="var(--forest)" stroke="none"/>
+    </g>
 
-    <!-- STAGE 4 — Wall + brush (application) at x ~ 525 -->
-    <!-- Wall section -->
-    <path d="M 495 40 L 555 40 L 555 80 L 495 80 Z" />
-    <!-- Wall brick lines -->
-    <path d="M 495 56 L 555 56" stroke-width="0.7" opacity="0.5" />
-    <path d="M 515 40 L 515 56" stroke-width="0.7" opacity="0.5" />
-    <path d="M 535 56 L 535 80" stroke-width="0.7" opacity="0.5" />
-    <path d="M 505 56 L 505 80" stroke-width="0.7" opacity="0.5" />
-    <path d="M 525 56 L 525 80" stroke-width="0.7" opacity="0.5" />
-    <path d="M 545 56 L 545 80" stroke-width="0.7" opacity="0.5" />
-    <path d="M 495 68 L 555 68" stroke-width="0.7" opacity="0.5" />
+    <!-- ===== STAGE 3 — SMALL BUCKET SILHOUETTE ===== -->
+    <g>
+      <!-- TOP RIM ELLIPSE -->
+      <ellipse cx="400" cy="44" rx="13" ry="3.5"
+               fill="var(--forest)" stroke="var(--forest)"
+               stroke-width="1.2"/>
+      <!-- BODY — slight taper -->
+      <path d="M 387 44 L 389 84 L 411 84 L 413 44"/>
+      <!-- HANDLE ARCH -->
+      <path d="M 387 44 Q 400 32, 413 44" stroke-width="1.4"/>
+      <!-- INNER RIM OPENING — limewash tone -->
+      <ellipse cx="400" cy="43" rx="10" ry="2.5"
+               fill="var(--limewash)" stroke="none" opacity="0.7"/>
+      <!-- LABEL BAND — dark green, slight curve -->
+      <path d="M 388 58 L 389 70 L 411 70 L 412 58 C 400 60, 400 60, 388 58 Z"
+            fill="var(--forest)" stroke="var(--forest)" stroke-width="1.2"/>
+      <!-- HALDI ACCENT STRIPE above label -->
+      <path d="M 388 56 L 412 56" stroke="var(--haldi-deep)" stroke-width="1"/>
+      <!-- HALDI ACCENT STRIPE below label -->
+      <path d="M 389 72 L 411 72" stroke="var(--haldi-deep)" stroke-width="1"/>
+      <!-- BASE CURVE -->
+      <path d="M 389 84 C 392 86, 408 86, 411 84"
+            stroke-width="1.2" opacity="0.7"/>
+    </g>
 
-    <!-- Haldi paint stroke on wall -->
-    <path
-      d="M 500 50 L 550 50 L 550 60 L 500 60 Z"
-      fill="var(--haldi)"
-      stroke="none"
-      opacity="0.7"
-    />
-    <path d="M 500 50 L 550 50" stroke-width="1" />
-    <path d="M 500 60 L 550 60" stroke-width="1" />
+    <!-- ===== STAGE 4 — WALL SECTION WITH PAINT BRUSH (application) ===== -->
+    <g>
+      <!-- WALL SECTION — rectangular elevation -->
+      <path d="M 538 44 L 582 44 L 582 84 L 538 84 Z"/>
+      <!-- WALL HORIZONTAL ARTICULATION LINES — subtle plaster lines -->
+      <path d="M 538 56 L 582 56" stroke-width="0.7" opacity="0.5"/>
+      <path d="M 538 70 L 582 70" stroke-width="0.7" opacity="0.5"/>
+      <!-- PAINT STROKE on wall — haldi band (already applied paint) -->
+      <path d="M 538 50 L 582 50 L 582 56 L 538 56 Z"
+            fill="var(--haldi)" stroke="none" opacity="0.85"/>
+      <!-- BRUSH — applying more paint to the wall -->
+      <!-- Handle -->
+      <path d="M 575 30 L 565 44" stroke-width="1.6"/>
+      <!-- Ferrule (metal band) -->
+      <path d="M 563 42 L 569 46 L 566 50 L 560 46 Z"
+            stroke-width="1.2"/>
+      <!-- Bristles — 3 strokes fanning out to the wall -->
+      <path d="M 560 46 L 555 52" stroke-width="1.2"/>
+      <path d="M 563 48 L 559 54" stroke-width="1.2"/>
+      <path d="M 566 50 L 563 56" stroke-width="1.2"/>
+      <!-- Haldi paint on bristle tips — subtle dots -->
+      <circle cx="555" cy="52" r="0.6" fill="var(--haldi)" stroke="none"/>
+      <circle cx="559" cy="54" r="0.6" fill="var(--haldi)" stroke="none"/>
+    </g>
 
-    <!-- Brush applying paint -->
-    <!-- Handle -->
-    <path d="M 555 22 L 545 36" stroke-width="1.6" />
-    <!-- Ferrule -->
-    <path d="M 543 34 L 550 38 L 547 42 L 540 38 Z" stroke-width="1.3" />
-    <!-- Bristles -->
-    <path d="M 540 39 L 535 50" stroke-width="1.2" />
-    <path d="M 543 41 L 539 52" stroke-width="1.2" />
-    <path d="M 546 42 L 543 53" stroke-width="1.2" />
   </g>
 
-  <!-- Stage labels -->
-  <g
-    font-family="Georgia, serif"
-    font-weight="700"
-    font-size="8"
-    fill="var(--forest)"
-    text-anchor="middle"
-    letter-spacing="1.5"
-  >
-    <text x="75" y="105">SOURCE</text>
-    <text x="225" y="105">REFINE</text>
-    <text x="375" y="105">PRODUCT</text>
-    <text x="525" y="105">APPLY</text>
+  <!-- STAGE NUMBERS in Newsreader serif (var font-display) -->
+  <g font-family="var(--font-display)" font-weight="700"
+     font-size="9" fill="var(--haldi-deep)"
+     text-anchor="middle" letter-spacing="1.4">
+    <text x="80" y="110">01</text>
+    <text x="240" y="110">02</text>
+    <text x="400" y="110">03</text>
+    <text x="560" y="110">04</text>
   </g>
 
-  <!-- Small sub-labels (italic, smaller) -->
-  <g
-    font-family="Georgia, serif"
-    font-size="6"
-    fill="var(--forest)"
-    text-anchor="middle"
-    opacity="0.7"
-    font-style="italic"
-  >
-    <text x="75" y="115">cow dung</text>
-    <text x="225" y="115">sun-dried</text>
-    <text x="375" y="115">paint</text>
-    <text x="525" y="115">wall</text>
+  <!-- STAGE LABELS — small captions under each number (subtle) -->
+  <g font-family="var(--font-sans)" font-weight="600"
+     font-size="6" fill="var(--soft-ink)"
+     text-anchor="middle" letter-spacing="1.5" opacity="0.7">
+    <text x="80" y="122">SOURCE</text>
+    <text x="240" y="122">REFINE</text>
+    <text x="400" y="122">PRODUCT</text>
+    <text x="560" y="122">APPLY</text>
   </g>
+
 </svg>

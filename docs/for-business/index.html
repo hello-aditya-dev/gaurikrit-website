@@ -58,62 +58,87 @@
             <a href="../" class="brand" aria-label="Gaurikrit home">
                 <span class="brand__mark" data-official-image="../assets/brand/gaurikrit-logo-mark.png">
                     <img class="brand__official" src="../assets/brand/gaurikrit-logo-mark.png" alt="Gaurikrit" width="36" height="36">
-                    <span class="brand__fallback"><svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" class="brand__mark-svg" role="img" aria-hidden="true" preserveAspectRatio="xMidYMid meet" width="100%" height="100%">
+                    <span class="brand__fallback"><svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg"
+     class="brand__mark-svg"
+     role="img" aria-hidden="true"
+     preserveAspectRatio="xMidYMid meet"
+     width="100%" height="100%">
   <title>Gaurikrit cow mark</title>
 
-  <!-- Scalloped floral emblem — haldi fill -->
-  <path
-    d="M 98.8 76.1 Q 112 60 98.8 43.9 Q 96.8 23.2 76.1 21.2 Q 60 8 43.9 21.2 Q 23.2 23.2 21.2 43.9 Q 8 60 21.2 76.1 Q 23.2 96.8 43.9 98.8 Q 60 112 76.1 98.8 Q 96.8 96.8 98.8 76.1 Z"
-    fill="var(--haldi)"
-    stroke="var(--forest)"
-    stroke-width="1.75"
-    stroke-linejoin="round"
-  />
+  <!-- Emblem — clean circle, haldi fill, forest outline -->
+  <circle cx="70" cy="70" r="60"
+          fill="var(--haldi)" stroke="var(--forest)"
+          stroke-width="1.5"/>
 
-  <!-- Inner accent ring — very subtle -->
-  <circle
-    cx="60"
-    cy="60"
-    r="44"
-    fill="none"
-    stroke="var(--forest)"
-    stroke-width="0.8"
-    opacity="0.35"
-  />
+  <!-- Inner accent ring — very subtle, for restraint -->
+  <circle cx="70" cy="70" r="54"
+          fill="none" stroke="var(--forest)"
+          stroke-width="0.8" opacity="0.35"/>
 
-  <g fill="none" stroke="var(--forest)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-    <!-- Left horn — curves up and outward -->
-    <path d="M 50 32 C 42 24 34 20 30 22 C 28 23 28 26 31 27 C 38 29 45 31 50 33" />
-    <!-- Right horn — mirror -->
-    <path d="M 70 32 C 78 24 86 20 90 22 C 92 23 92 26 89 27 C 82 29 75 31 70 33" />
+  <g fill="none" stroke="var(--forest)" stroke-width="1.5"
+     stroke-linecap="round" stroke-linejoin="round">
 
-    <!-- Left ear — long, hanging out -->
-    <path d="M 46 40 C 36 46 28 56 26 66 C 30 66 36 62 42 56 C 46 50 48 44 48 40 Z" />
-    <!-- Right ear — mirror -->
-    <path d="M 74 40 C 84 46 92 56 94 66 C 90 66 84 62 78 56 C 74 50 72 44 72 40 Z" />
+    <!-- LEFT HORN — curves up and outward from the forehead, moderate length -->
+    <path d="M 60 38
+             C 52 28, 42 22, 32 22
+             C 28 22, 26 24, 28 26
+             C 36 30, 46 32, 56 36"/>
 
-    <!-- Head outline (front-facing, prominent forehead) -->
-    <path d="M 60 30 C 52 30 46 33 44 38 C 42 42 42 50 44 56 C 46 64 48 70 50 74 C 54 78 56 82 60 84 C 64 82 66 78 70 74 C 72 70 74 64 76 56 C 78 50 78 42 76 38 C 74 33 68 30 60 30 Z" />
+    <!-- RIGHT HORN — mirror of left -->
+    <path d="M 80 38
+             C 88 28, 98 22, 108 22
+             C 112 22, 114 24, 112 26
+             C 104 30, 94 32, 84 36"/>
 
-    <!-- Forehead crest line — subtle vertical center crease -->
-    <path d="M 60 33 L 60 44" stroke-width="1.1" opacity="0.55" />
-    <!-- Forehead bulge definition -->
-    <path d="M 54 36 Q 60 38 66 36" stroke-width="1.1" opacity="0.55" />
+    <!-- LEFT EAR — long, hanging out and slightly down -->
+    <path d="M 56 46
+             C 44 50, 32 56, 24 64
+             C 28 66, 36 64, 44 60
+             C 50 56, 54 50, 58 48 Z"/>
 
-    <!-- Muzzle band line (separating muzzle from face) -->
-    <path d="M 48 70 Q 60 74 72 70" stroke-width="1.3" opacity="0.75" />
+    <!-- RIGHT EAR — mirror of left -->
+    <path d="M 84 46
+             C 96 50, 108 56, 116 64
+             C 112 66, 104 64, 96 60
+             C 90 56, 86 50, 82 48 Z"/>
 
-    <!-- Mouth -->
-    <path d="M 54 80 Q 60 82 66 80" stroke-width="1.3" opacity="0.75" />
+    <!-- HEAD — front-facing, prominent forehead, elongated face down to muzzle.
+         Forehead bulges out at top, narrows through bridge, widens at muzzle, chin under. -->
+    <path d="M 70 36
+             C 62 36, 56 40, 54 46
+             C 52 52, 52 60, 54 66
+             C 56 76, 60 86, 64 92
+             C 66 96, 74 96, 76 92
+             C 80 86, 84 76, 86 66
+             C 88 60, 88 52, 86 46
+             C 84 40, 78 36, 70 36 Z"/>
+
+    <!-- FOREHEAD CENTER CREASE — subtle vertical line -->
+    <path d="M 70 40 L 70 52"
+          stroke-width="1.2" opacity="0.5"/>
+
+    <!-- FOREHEAD BULGE DEFINITION — subtle horizontal curve -->
+    <path d="M 64 44 Q 70 46, 76 44"
+          stroke-width="1.2" opacity="0.5"/>
+
+    <!-- MUZZLE BAND — separating muzzle from face bridge -->
+    <path d="M 58 76 Q 70 80, 82 76"
+          stroke-width="1.2" opacity="0.65"/>
+
+    <!-- MOUTH -->
+    <path d="M 62 90 Q 70 93, 78 90"
+          stroke-width="1.2" opacity="0.7"/>
+
   </g>
 
-  <!-- Eyes — two small filled dots -->
-  <circle cx="53" cy="50" r="1.7" fill="var(--forest)" />
-  <circle cx="67" cy="50" r="1.7" fill="var(--forest)" />
+  <!-- EYES — two small filled dots, calm -->
+  <circle cx="62" cy="56" r="1.6" fill="var(--forest)"/>
+  <circle cx="78" cy="56" r="1.6" fill="var(--forest)"/>
 
-  <!-- Nostrils — two small filled dots -->
-  <circle cx="55" cy="77" r="1.2" fill="var(--forest)" />
-  <circle cx="65" cy="77" r="1.2" fill="var(--forest)" />
+  <!-- NOSTRILS — two small filled dots -->
+  <circle cx="64" cy="84" r="1.1" fill="var(--forest)"/>
+  <circle cx="76" cy="84" r="1.1" fill="var(--forest)"/>
+
 </svg></span>
                 </span>
                 <span class="brand__text">
@@ -223,320 +248,247 @@
         </div>
         <div class="biz-hero__art" aria-hidden="true">
             <div class="biz-hero__grid-overlay"></div>
-            <div class="biz-hero__brush"><svg viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg" class="" role="img" aria-hidden="true" preserveAspectRatio="xMidYMid meet" width="100%" height="100%">
+            <div class="biz-hero__brush"><svg viewBox="0 0 640 420" xmlns="http://www.w3.org/2000/svg"
+     class=""
+     role="img" aria-hidden="true"
+     preserveAspectRatio="xMidYMid meet"
+     width="100%" height="100%">
   <title>Paint brush stroke</title>
 
   <defs>
-    <linearGradient id="brush-stroke-grad" x1="0" y1="0" x2="0.6" y2="1">
-      <stop offset="0%" stop-color="var(--haldi)" />
-      <stop offset="55%" stop-color="var(--haldi)" />
-      <stop offset="100%" stop-color="var(--haldi-deep)" />
+    <!-- HALDI GRADIENT — soft → mid → deep, diagonal -->
+    <linearGradient id="pbs-grad" x1="0.2" y1="0.1" x2="0.8" y2="0.9">
+      <stop offset="0%" stop-color="var(--haldi-soft)"/>
+      <stop offset="40%" stop-color="var(--haldi)"/>
+      <stop offset="100%" stop-color="var(--haldi-deep)"/>
     </linearGradient>
-    <radialGradient id="brush-stroke-bloom" cx="50%" cy="50%" r="60%">
-      <stop offset="0%" stop-color="var(--haldi)" stop-opacity="0.6" />
-      <stop offset="100%" stop-color="var(--haldi)" stop-opacity="0" />
-    </radialGradient>
-    <filter id="brush-stroke-grain" x="0" y="0" width="100%" height="100%">
-      <feTurbulence
-        type="fractalNoise"
-        baseFrequency="0.9"
-        numOctaves="2"
-        seed="7"
-      />
-      <feColorMatrix
-        type="matrix"
-        values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.12 0"
-      />
-      <feComposite in2="SourceGraphic" operator="in" />
-    </filter>
+
+    <!-- PAPER-GRAIN TEXTURE PATTERN — tiny dots, very sparse.
+         Applied as an additional layer at 0.05 opacity for a paper-fibre feel. -->
+    <pattern id="pbs-grain" x="0" y="0" width="4" height="4"
+             patternUnits="userSpaceOnUse">
+      <circle cx="1" cy="1" r="0.45" fill="var(--charcoal)" opacity="0.5"/>
+      <circle cx="3" cy="2.5" r="0.3" fill="var(--charcoal)" opacity="0.35"/>
+    </pattern>
+
+    <!-- CLIP PATH — the main stroke shape, used to clip the grain overlay -->
+    <clipPath id="pbs-clip">
+      <path d="M 50 210
+               C 38 200, 28 218, 36 240
+               C 44 262, 60 268, 78 258
+               C 96 250, 108 274, 130 270
+               C 154 266, 168 290, 192 286
+               C 218 282, 232 308, 258 304
+               C 286 300, 302 326, 332 322
+               C 364 318, 380 344, 412 340
+               C 444 336, 462 360, 496 354
+               C 528 348, 548 372, 580 362
+               C 600 356, 612 336, 600 314
+               C 614 296, 596 282, 612 264
+               C 624 244, 600 232, 588 220
+               C 600 204, 580 192, 568 184
+               C 552 168, 528 178, 508 172
+               C 484 166, 470 184, 446 180
+               C 422 174, 408 192, 384 188
+               C 360 182, 344 200, 320 196
+               C 294 190, 278 208, 254 204
+               C 228 198, 212 218, 188 214
+               C 162 208, 146 226, 122 222
+               C 96 216, 80 232, 58 226
+               C 44 222, 42 218, 50 210 Z"/>
+    </clipPath>
   </defs>
 
-  <!-- Soft bloom behind the stroke -->
-  <ellipse cx="300" cy="200" rx="260" ry="170" fill="url(#brush-stroke-bloom)" />
+  <!-- MAIN ORGANIC BRUSH STROKE — irregular edge with many control points.
+       Haldi gradient fill. Subtle forest outline for definition. -->
+  <path d="M 50 210
+           C 38 200, 28 218, 36 240
+           C 44 262, 60 268, 78 258
+           C 96 250, 108 274, 130 270
+           C 154 266, 168 290, 192 286
+           C 218 282, 232 308, 258 304
+           C 286 300, 302 326, 332 322
+           C 364 318, 380 344, 412 340
+           C 444 336, 462 360, 496 354
+           C 528 348, 548 372, 580 362
+           C 600 356, 612 336, 600 314
+           C 614 296, 596 282, 612 264
+           C 624 244, 600 232, 588 220
+           C 600 204, 580 192, 568 184
+           C 552 168, 528 178, 508 172
+           C 484 166, 470 184, 446 180
+           C 422 174, 408 192, 384 188
+           C 360 182, 344 200, 320 196
+           C 294 190, 278 208, 254 204
+           C 228 198, 212 218, 188 214
+           C 162 208, 146 226, 122 222
+           C 96 216, 80 232, 58 226
+           C 44 222, 42 218, 50 210 Z"
+        fill="url(#pbs-grad)"
+        stroke="var(--haldi-deep)"
+        stroke-width="1.2"
+        stroke-linejoin="round"
+        opacity="0.92"/>
 
-  <!-- Main irregular brush stroke — organic wobble on all edges -->
-  <path
-    d="M 50 200
-       C 60 180 70 160 90 140
-       C 130 110 170 90 210 100
-       C 240 88 270 110 300 104
-       C 330 96 360 90 390 95
-       C 420 90 450 100 480 110
-       C 510 120 540 150 555 180
-       C 565 220 565 260 555 290
-       C 540 320 510 340 470 345
-       C 430 360 390 350 360 340
-       C 320 350 280 350 240 340
-       C 200 350 160 340 130 330
-       C 90 320 60 280 50 240
-       C 45 220 45 210 50 200 Z"
-    fill="url(#brush-stroke-grad)"
-    stroke="var(--haldi-deep)"
-    stroke-width="1.2"
-    stroke-linejoin="round"
-    opacity="0.92"
-  />
+  <!-- INTERNAL LIGHTER PATCH 1 — small organic shape on top of the stroke.
+       Suggests a thicker/limewash-ier part of the brushstroke. -->
+  <path d="M 150 220
+           C 180 200, 240 196, 290 210
+           C 340 220, 380 210, 400 230
+           C 380 250, 330 244, 280 240
+           C 230 235, 180 250, 150 220 Z"
+        fill="var(--haldi-soft)"
+        stroke="none"
+        opacity="0.3"/>
 
-  <!-- Inner subtle highlight — a lighter organic blob on top -->
-  <path
-    d="M 120 180
-       C 170 140 250 130 310 150
-       C 360 130 440 140 500 175
-       C 510 195 470 215 410 200
-       C 350 215 280 215 220 195
-       C 170 210 130 200 120 180 Z"
-    fill="var(--haldi)"
-    stroke="none"
-    opacity="0.45"
-  />
+  <!-- INTERNAL LIGHTER PATCH 2 — smaller accent on lower-right -->
+  <path d="M 420 270
+           C 450 256, 490 260, 510 280
+           C 488 294, 450 290, 420 270 Z"
+        fill="var(--haldi-soft)"
+        stroke="none"
+        opacity="0.25"/>
 
-  <!-- Subtle darker rim along the lower-right edge -->
-  <path
-    d="M 555 290 C 540 320 510 340 470 345 C 430 360 390 350 360 340 C 320 350 280 350 240 340"
-    fill="none"
-    stroke="var(--haldi-deep)"
-    stroke-width="1.5"
-    opacity="0.5"
-  />
+  <!-- SUBTLE DARKER RIM along the lower edge — suggests where the brush
+       dragged slightly thicker paint. Single line, low opacity. -->
+  <path d="M 192 286
+           C 218 282, 232 308, 258 304
+           C 286 300, 302 326, 332 322
+           C 364 318, 380 344, 412 340"
+        fill="none"
+        stroke="var(--haldi-deep)"
+        stroke-width="1.5"
+        opacity="0.4"
+        stroke-linecap="round"/>
 
-  <!-- Bristle texture — a few thin lighter strokes laid along the stroke -->
-  <g
-    fill="none"
-    stroke="var(--haldi-deep)"
-    stroke-width="1.4"
-    stroke-linecap="round"
-    opacity="0.35"
-  >
-    <path d="M 90 170 C 200 130 380 130 540 200" />
-    <path d="M 80 210 C 200 180 400 180 540 250" />
+  <!-- BRISTLE TEXTURE — a few thin lighter strokes laid along the stroke direction.
+       Subtle, suggests the direction the brush was dragged. -->
+  <g fill="none" stroke="var(--haldi-deep)"
+     stroke-width="1.3" stroke-linecap="round"
+     opacity="0.28">
+    <path d="M 100 200 C 240 168, 400 168, 560 232"/>
+    <path d="M 90 240 C 240 210, 420 210, 560 278"/>
   </g>
-  <g
-    fill="none"
-    stroke="var(--haldi)"
-    stroke-width="1.2"
-    stroke-linecap="round"
-    opacity="0.5"
-  >
-    <path d="M 100 195 C 200 165 400 165 540 220" />
+  <g fill="none" stroke="var(--haldi-soft)"
+     stroke-width="1.1" stroke-linecap="round"
+     opacity="0.4">
+    <path d="M 110 220 C 240 188, 400 188, 540 244"/>
   </g>
 
-  <!-- Brush drag-out tails at edges — tapering strokes off the main body -->
-  <path
-    d="M 50 200 C 35 198 22 205 8 210"
-    fill="none"
-    stroke="var(--haldi)"
-    stroke-width="6"
-    stroke-linecap="round"
-    opacity="0.7"
-  />
-  <path
-    d="M 555 200 C 575 200 590 195 595 188"
-    fill="none"
-    stroke="var(--haldi)"
-    stroke-width="5"
-    stroke-linecap="round"
-    opacity="0.6"
-  />
-  <path
-    d="M 555 280 C 575 285 590 282 598 278"
-    fill="none"
-    stroke="var(--haldi-deep)"
-    stroke-width="4"
-    stroke-linecap="round"
-    opacity="0.55"
-  />
+  <!-- PAPER-GRAIN TEXTURE OVERLAY — very subtle (3-4% perceived opacity).
+       Uses the clip path so the grain only appears inside the stroke shape. -->
+  <g clip-path="url(#pbs-clip)" opacity="0.06">
+    <rect x="0" y="0" width="640" height="420" fill="url(#pbs-grain)"/>
+  </g>
 
-  <!-- Sparse grain/noise overlay for paper-fibre feel -->
-  <rect
-    x="50"
-    y="90"
-    width="510"
-    height="260"
-    filter="url(#brush-stroke-grain)"
-    opacity="0.25"
-  />
 </svg></div>
-            <div class="biz-hero__bucket"><svg viewBox="0 0 200 260" xmlns="http://www.w3.org/2000/svg" class="" role="img" aria-hidden="true" preserveAspectRatio="xMidYMid meet" width="100%" height="100%">
+            <div class="biz-hero__bucket"><svg viewBox="0 0 220 300" xmlns="http://www.w3.org/2000/svg"
+     class=""
+     role="img" aria-hidden="true"
+     preserveAspectRatio="xMidYMid meet"
+     width="100%" height="100%">
   <title>Prakritik Emulsion bucket</title>
 
-  <!-- Bail / handle — metal arch -->
-  <path
-    d="M 40 60 Q 100 18 160 60"
-    fill="none"
-    stroke="var(--forest)"
-    stroke-width="2"
-    stroke-linecap="round"
-  />
-  <path
-    d="M 44 60 Q 100 24 156 60"
-    fill="none"
-    stroke="var(--forest)"
-    stroke-width="1"
-    opacity="0.55"
-  />
-  <!-- Handle attachment lugs -->
-  <circle cx="40" cy="60" r="2.5" fill="var(--forest)" />
-  <circle cx="160" cy="60" r="2.5" fill="var(--forest)" />
+  <!-- BAIL / HANDLE — metal arch (drawn first, behind the rim) -->
+  <path d="M 42 62 Q 110 22, 178 62"
+        fill="none" stroke="var(--forest)"
+        stroke-width="1.8" stroke-linecap="round"/>
+  <!-- Handle inner line — subtle wire-thickness suggestion -->
+  <path d="M 46 62 Q 110 28, 174 62"
+        fill="none" stroke="var(--forest)"
+        stroke-width="1" opacity="0.5"/>
 
-  <!-- Liquid paint drip at rim — small wobble of haldi paint over the rim -->
-  <path
-    d="M 50 62 C 55 70 52 78 58 76 C 62 75 60 68 62 64"
-    fill="var(--haldi)"
-    stroke="var(--forest)"
-    stroke-width="1.2"
-    stroke-linejoin="round"
-  />
-  <path
-    d="M 138 64 C 142 70 140 78 146 76 C 150 75 148 68 152 64"
-    fill="var(--haldi)"
-    stroke="var(--forest)"
-    stroke-width="1.2"
-    stroke-linejoin="round"
-  />
-  <!-- Small drip bead on right side -->
-  <circle cx="150" cy="82" r="2.2" fill="var(--haldi)" stroke="var(--forest)" stroke-width="0.8" />
+  <!-- HANDLE ATTACHMENT LUGS — on the rim -->
+  <circle cx="42" cy="62" r="3" fill="var(--forest)"/>
+  <circle cx="178" cy="62" r="3" fill="var(--forest)"/>
 
-  <!-- Bucket body — taller, white, slightly tapered -->
-  <path
-    d="M 38 60 L 50 228 C 75 235 125 235 150 228 L 162 60 Z"
-    fill="var(--card)"
-    stroke="var(--forest)"
-    stroke-width="1.75"
-    stroke-linejoin="round"
-  />
+  <!-- BUCKET BODY — TALLER tapered cylinder, paper-white fill.
+       Top corners at the rim (x=40, x=180), bottom corners narrower (x=52, x=168).
+       Taller body — base at y=270 (vs y=250 for distemper). -->
+  <path d="M 40 62
+           L 52 270
+           C 60 276, 160 276, 168 270
+           L 180 62 Z"
+        fill="var(--paper)" stroke="var(--forest)"
+        stroke-width="1.5" stroke-linejoin="round"/>
 
-  <!-- Top rim ellipse — dark green -->
-  <ellipse
-    cx="100"
-    cy="58"
-    rx="62"
-    ry="8"
-    fill="var(--forest)"
-    stroke="var(--forest)"
-    stroke-width="1.5"
-  />
-  <!-- Inner opening (inside of bucket) -->
-  <ellipse
-    cx="100"
-    cy="57"
-    rx="55"
-    ry="5.5"
-    fill="var(--secondary)"
-    opacity="0.85"
-  />
-  <!-- Paint surface inside — haldi tinted -->
-  <ellipse
-    cx="100"
-    cy="57"
-    rx="50"
-    ry="4"
-    fill="var(--haldi)"
-    opacity="0.4"
-  />
+  <!-- SUBTLE VERTICAL HIGHLIGHT on the LEFT side of the cylinder -->
+  <path d="M 56 80 L 64 260"
+        stroke="var(--forest)" stroke-width="0.8" opacity="0.12"/>
 
-  <!-- Bottom front curve -->
-  <path
-    d="M 50 228 C 60 234 140 234 150 228"
-    fill="none"
-    stroke="var(--forest)"
-    stroke-width="1.5"
-    opacity="0.7"
-  />
+  <!-- SUBTLE VERTICAL SHADOW on the RIGHT side -->
+  <path d="M 162 80 L 156 260"
+        stroke="var(--forest)" stroke-width="0.8" opacity="0.08"/>
 
-  <!-- Small cow-line motif on upper white body -->
-  <g
-    fill="none"
-    stroke="var(--forest)"
-    stroke-width="1.4"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-  >
-    <!-- Tiny side-view cow silhouette with hump -->
-    <path d="M 78 110 C 76 106 75 102 76 98 C 77 94 80 93 82 95 C 82 90 84 89 86 92 C 86 95 86 98 84 99 L 86 101 C 88 99 90 98 92 98 C 95 96 100 96 105 98 L 116 98 C 120 98 122 100 122 104 L 122 110 Z" />
-    <!-- Cow legs -->
-    <path d="M 82 110 L 81 120" stroke-width="1.2" />
-    <path d="M 88 110 L 89 120" stroke-width="1.2" />
-    <path d="M 115 110 L 114 120" stroke-width="1.2" />
-    <path d="M 121 110 L 122 120" stroke-width="1.2" />
-    <!-- Cow tail -->
-    <path d="M 122 104 C 126 106 128 112 126 116" stroke-width="1.2" />
-    <!-- Cow eye -->
-    <circle cx="79" cy="101" r="0.6" fill="var(--forest)" stroke="none" />
-  </g>
+  <!-- TOP RIM ELLIPSE — dark green -->
+  <ellipse cx="110" cy="60" rx="70" ry="9"
+           fill="var(--forest)" stroke="var(--forest)"
+           stroke-width="1.5"/>
 
-  <!-- Haldi accent stripe (upper) -->
-  <path
-    d="M 44 124 L 156 124"
-    stroke="var(--haldi-deep)"
-    stroke-width="2.2"
-    stroke-linecap="round"
-  />
-  <!-- Haldi accent stripe (lower) -->
-  <path
-    d="M 47 196 L 153 196"
-    stroke="var(--haldi-deep)"
-    stroke-width="2.2"
-    stroke-linecap="round"
-  />
+  <!-- INNER OPENING — limewash-toned inside -->
+  <ellipse cx="110" cy="59" rx="62" ry="6"
+           fill="var(--limewash)" opacity="0.85"/>
 
-  <!-- Dark-green label band (taller for emulsion) -->
-  <path
-    d="M 44 128 L 47 192 L 153 192 L 156 128 C 120 132 80 132 44 128 Z"
-    fill="var(--forest)"
-    stroke="var(--forest)"
-    stroke-width="1.5"
-    stroke-linejoin="round"
-  />
+  <!-- LIQUID LINE AT RIM — a subtle haldi-toned ellipse just inside the rim,
+       suggesting the liquid paint surface filling up to the rim -->
+  <ellipse cx="110" cy="58" rx="58" ry="5"
+           fill="var(--haldi)" opacity="0.32"/>
 
-  <!-- Wordmark text -->
-  <text
-    x="100"
-    y="150"
-    text-anchor="middle"
-    font-family="Georgia, serif"
-    font-weight="700"
-    font-size="13"
-    fill="var(--haldi)"
-    letter-spacing="1.5"
-  >GAURIKRIT</text>
-  <!-- Subtitle line 1 -->
-  <text
-    x="100"
-    y="167"
-    text-anchor="middle"
-    font-family="Georgia, serif"
-    font-weight="700"
-    font-size="7.5"
-    fill="var(--haldi)"
-    letter-spacing="1.6"
-  >PRAKRITIK</text>
-  <!-- Subtitle line 2 -->
-  <text
-    x="100"
-    y="181"
-    text-anchor="middle"
-    font-family="Georgia, serif"
-    font-weight="700"
-    font-size="7.5"
-    fill="var(--haldi)"
-    letter-spacing="1.6"
-  >EMULSION</text>
+  <!-- SURFACE RIPPLE on the liquid — very subtle line suggesting liquid surface tension -->
+  <path d="M 56 57 C 80 55, 140 55, 164 57"
+        fill="none" stroke="var(--haldi-deep)"
+        stroke-width="0.8" opacity="0.55"/>
 
-  <!-- Small underline mark beneath wordmark -->
-  <path
-    d="M 78 156 L 122 156"
-    stroke="var(--haldi)"
-    stroke-width="0.8"
-    opacity="0.5"
-  />
+  <!-- HALDI ACCENT STRIPE ABOVE LABEL BAND -->
+  <path d="M 46 128 L 50 130 C 80 134, 140 134, 170 130 L 174 128"
+        fill="none" stroke="var(--haldi-deep)"
+        stroke-width="1.6" stroke-linecap="round"/>
 
-  <!-- Subtle bucket sheen on left side -->
-  <path
-    d="M 56 70 L 62 220"
-    stroke="var(--forest)"
-    stroke-width="0.6"
-    opacity="0.18"
-  />
+  <!-- DARK-GREEN LABEL BAND — taller band (emulsion pack), curved to follow cylinder -->
+  <path d="M 46 132
+           L 50 204
+           C 80 208, 140 208, 170 204
+           L 174 132
+           C 140 136, 80 136, 46 132 Z"
+        fill="var(--forest)" stroke="var(--forest)"
+        stroke-width="1.4" stroke-linejoin="round"/>
+
+  <!-- HALDI ACCENT STRIPE BELOW LABEL BAND -->
+  <path d="M 50 208 L 54 210 C 80 213, 140 213, 166 210 L 170 208"
+        fill="none" stroke="var(--haldi-deep)"
+        stroke-width="1.6" stroke-linecap="round"/>
+
+  <!-- SMALL GEOMETRIC MARK above the wordmark — haldi dot -->
+  <circle cx="110" cy="138" r="2.2" fill="var(--haldi)"/>
+
+  <!-- WORDMARK TEXT -->
+  <text x="110" y="153" text-anchor="middle"
+        font-family="var(--font-display)" font-weight="700"
+        font-size="12" fill="var(--haldi)" letter-spacing="1.5">GAURIKRIT</text>
+
+  <!-- SUBTITLE LINE 1 -->
+  <text x="110" y="174" text-anchor="middle"
+        font-family="var(--font-display)" font-weight="700"
+        font-size="7" fill="var(--haldi)" letter-spacing="1.6">PRAKRITIK</text>
+
+  <!-- SUBTITLE LINE 2 -->
+  <text x="110" y="190" text-anchor="middle"
+        font-family="var(--font-display)" font-weight="700"
+        font-size="7" fill="var(--haldi)" letter-spacing="1.6">EMULSION</text>
+
+  <!-- SMALL UNDERLINE MARK beneath wordmark -->
+  <path d="M 86 160 L 134 160"
+        stroke="var(--haldi)" stroke-width="0.8" opacity="0.5"/>
+
+  <!-- BOTTOM FRONT CURVE — base of cylinder -->
+  <path d="M 52 270 C 60 276, 160 276, 168 270"
+        fill="none" stroke="var(--forest)"
+        stroke-width="1.5" opacity="0.85"/>
+
+  <!-- SUBTLE BASE SHADOW ELLIPSE — very faint ground contact -->
+  <ellipse cx="110" cy="276" rx="56" ry="3"
+           fill="var(--forest)" opacity="0.08"/>
+
 </svg></div>
         </div>
     </div>
@@ -665,62 +617,87 @@
                 <a href="../" class="brand brand--footer">
                     <span class="brand__mark" data-official-image="../assets/brand/gaurikrit-logo-mark.png">
                         <img class="brand__official" src="../assets/brand/gaurikrit-logo-mark.png" alt="Gaurikrit" width="36" height="36">
-                        <span class="brand__fallback"><svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" class="brand__mark-svg" role="img" aria-hidden="true" preserveAspectRatio="xMidYMid meet" width="100%" height="100%">
+                        <span class="brand__fallback"><svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg"
+     class="brand__mark-svg"
+     role="img" aria-hidden="true"
+     preserveAspectRatio="xMidYMid meet"
+     width="100%" height="100%">
   <title>Gaurikrit cow mark</title>
 
-  <!-- Scalloped floral emblem — haldi fill -->
-  <path
-    d="M 98.8 76.1 Q 112 60 98.8 43.9 Q 96.8 23.2 76.1 21.2 Q 60 8 43.9 21.2 Q 23.2 23.2 21.2 43.9 Q 8 60 21.2 76.1 Q 23.2 96.8 43.9 98.8 Q 60 112 76.1 98.8 Q 96.8 96.8 98.8 76.1 Z"
-    fill="var(--haldi)"
-    stroke="var(--forest)"
-    stroke-width="1.75"
-    stroke-linejoin="round"
-  />
+  <!-- Emblem — clean circle, haldi fill, forest outline -->
+  <circle cx="70" cy="70" r="60"
+          fill="var(--haldi)" stroke="var(--forest)"
+          stroke-width="1.5"/>
 
-  <!-- Inner accent ring — very subtle -->
-  <circle
-    cx="60"
-    cy="60"
-    r="44"
-    fill="none"
-    stroke="var(--forest)"
-    stroke-width="0.8"
-    opacity="0.35"
-  />
+  <!-- Inner accent ring — very subtle, for restraint -->
+  <circle cx="70" cy="70" r="54"
+          fill="none" stroke="var(--forest)"
+          stroke-width="0.8" opacity="0.35"/>
 
-  <g fill="none" stroke="var(--forest)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-    <!-- Left horn — curves up and outward -->
-    <path d="M 50 32 C 42 24 34 20 30 22 C 28 23 28 26 31 27 C 38 29 45 31 50 33" />
-    <!-- Right horn — mirror -->
-    <path d="M 70 32 C 78 24 86 20 90 22 C 92 23 92 26 89 27 C 82 29 75 31 70 33" />
+  <g fill="none" stroke="var(--forest)" stroke-width="1.5"
+     stroke-linecap="round" stroke-linejoin="round">
 
-    <!-- Left ear — long, hanging out -->
-    <path d="M 46 40 C 36 46 28 56 26 66 C 30 66 36 62 42 56 C 46 50 48 44 48 40 Z" />
-    <!-- Right ear — mirror -->
-    <path d="M 74 40 C 84 46 92 56 94 66 C 90 66 84 62 78 56 C 74 50 72 44 72 40 Z" />
+    <!-- LEFT HORN — curves up and outward from the forehead, moderate length -->
+    <path d="M 60 38
+             C 52 28, 42 22, 32 22
+             C 28 22, 26 24, 28 26
+             C 36 30, 46 32, 56 36"/>
 
-    <!-- Head outline (front-facing, prominent forehead) -->
-    <path d="M 60 30 C 52 30 46 33 44 38 C 42 42 42 50 44 56 C 46 64 48 70 50 74 C 54 78 56 82 60 84 C 64 82 66 78 70 74 C 72 70 74 64 76 56 C 78 50 78 42 76 38 C 74 33 68 30 60 30 Z" />
+    <!-- RIGHT HORN — mirror of left -->
+    <path d="M 80 38
+             C 88 28, 98 22, 108 22
+             C 112 22, 114 24, 112 26
+             C 104 30, 94 32, 84 36"/>
 
-    <!-- Forehead crest line — subtle vertical center crease -->
-    <path d="M 60 33 L 60 44" stroke-width="1.1" opacity="0.55" />
-    <!-- Forehead bulge definition -->
-    <path d="M 54 36 Q 60 38 66 36" stroke-width="1.1" opacity="0.55" />
+    <!-- LEFT EAR — long, hanging out and slightly down -->
+    <path d="M 56 46
+             C 44 50, 32 56, 24 64
+             C 28 66, 36 64, 44 60
+             C 50 56, 54 50, 58 48 Z"/>
 
-    <!-- Muzzle band line (separating muzzle from face) -->
-    <path d="M 48 70 Q 60 74 72 70" stroke-width="1.3" opacity="0.75" />
+    <!-- RIGHT EAR — mirror of left -->
+    <path d="M 84 46
+             C 96 50, 108 56, 116 64
+             C 112 66, 104 64, 96 60
+             C 90 56, 86 50, 82 48 Z"/>
 
-    <!-- Mouth -->
-    <path d="M 54 80 Q 60 82 66 80" stroke-width="1.3" opacity="0.75" />
+    <!-- HEAD — front-facing, prominent forehead, elongated face down to muzzle.
+         Forehead bulges out at top, narrows through bridge, widens at muzzle, chin under. -->
+    <path d="M 70 36
+             C 62 36, 56 40, 54 46
+             C 52 52, 52 60, 54 66
+             C 56 76, 60 86, 64 92
+             C 66 96, 74 96, 76 92
+             C 80 86, 84 76, 86 66
+             C 88 60, 88 52, 86 46
+             C 84 40, 78 36, 70 36 Z"/>
+
+    <!-- FOREHEAD CENTER CREASE — subtle vertical line -->
+    <path d="M 70 40 L 70 52"
+          stroke-width="1.2" opacity="0.5"/>
+
+    <!-- FOREHEAD BULGE DEFINITION — subtle horizontal curve -->
+    <path d="M 64 44 Q 70 46, 76 44"
+          stroke-width="1.2" opacity="0.5"/>
+
+    <!-- MUZZLE BAND — separating muzzle from face bridge -->
+    <path d="M 58 76 Q 70 80, 82 76"
+          stroke-width="1.2" opacity="0.65"/>
+
+    <!-- MOUTH -->
+    <path d="M 62 90 Q 70 93, 78 90"
+          stroke-width="1.2" opacity="0.7"/>
+
   </g>
 
-  <!-- Eyes — two small filled dots -->
-  <circle cx="53" cy="50" r="1.7" fill="var(--forest)" />
-  <circle cx="67" cy="50" r="1.7" fill="var(--forest)" />
+  <!-- EYES — two small filled dots, calm -->
+  <circle cx="62" cy="56" r="1.6" fill="var(--forest)"/>
+  <circle cx="78" cy="56" r="1.6" fill="var(--forest)"/>
 
-  <!-- Nostrils — two small filled dots -->
-  <circle cx="55" cy="77" r="1.2" fill="var(--forest)" />
-  <circle cx="65" cy="77" r="1.2" fill="var(--forest)" />
+  <!-- NOSTRILS — two small filled dots -->
+  <circle cx="64" cy="84" r="1.1" fill="var(--forest)"/>
+  <circle cx="76" cy="84" r="1.1" fill="var(--forest)"/>
+
 </svg></span>
                     </span>
                     <span class="brand__name">Gaurikrit</span>

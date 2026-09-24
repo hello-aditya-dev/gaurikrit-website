@@ -1,66 +1,95 @@
 <?php
 /**
- * Illustration: Gaurikrit cow mark (front-facing cow-head in scalloped emblem)
+ * Illustration: Gaurikrit cow mark (front-facing cow-head in emblem)
  * Coded SVG — no photography dependency.
- * Ported from src/components/illustrations/gaurikrit-cow-mark.tsx
+ * V2 finish pass — refined, symmetrical, restrained emblem.
+ *
+ * Clean circular haldi emblem with forest outline. Front-facing cow head
+ * with prominent forehead, two curved horns, two long hanging ears,
+ * calm eyes, and muzzle. Symmetrical, dignified.
  */
 // @var string $class Optional CSS class for the root <svg>
 $class = $class ?? '';
 ?>
-<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" class="<?= htmlspecialchars($class, ENT_QUOTES) ?>" role="img" aria-hidden="true" preserveAspectRatio="xMidYMid meet" width="100%" height="100%">
+<svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg"
+     class="<?= htmlspecialchars($class, ENT_QUOTES) ?>"
+     role="img" aria-hidden="true"
+     preserveAspectRatio="xMidYMid meet"
+     width="100%" height="100%">
   <title>Gaurikrit cow mark</title>
 
-  <!-- Scalloped floral emblem — haldi fill -->
-  <path
-    d="M 98.8 76.1 Q 112 60 98.8 43.9 Q 96.8 23.2 76.1 21.2 Q 60 8 43.9 21.2 Q 23.2 23.2 21.2 43.9 Q 8 60 21.2 76.1 Q 23.2 96.8 43.9 98.8 Q 60 112 76.1 98.8 Q 96.8 96.8 98.8 76.1 Z"
-    fill="var(--haldi)"
-    stroke="var(--forest)"
-    stroke-width="1.75"
-    stroke-linejoin="round"
-  />
+  <!-- Emblem — clean circle, haldi fill, forest outline -->
+  <circle cx="70" cy="70" r="60"
+          fill="var(--haldi)" stroke="var(--forest)"
+          stroke-width="1.5"/>
 
-  <!-- Inner accent ring — very subtle -->
-  <circle
-    cx="60"
-    cy="60"
-    r="44"
-    fill="none"
-    stroke="var(--forest)"
-    stroke-width="0.8"
-    opacity="0.35"
-  />
+  <!-- Inner accent ring — very subtle, for restraint -->
+  <circle cx="70" cy="70" r="54"
+          fill="none" stroke="var(--forest)"
+          stroke-width="0.8" opacity="0.35"/>
 
-  <g fill="none" stroke="var(--forest)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-    <!-- Left horn — curves up and outward -->
-    <path d="M 50 32 C 42 24 34 20 30 22 C 28 23 28 26 31 27 C 38 29 45 31 50 33" />
-    <!-- Right horn — mirror -->
-    <path d="M 70 32 C 78 24 86 20 90 22 C 92 23 92 26 89 27 C 82 29 75 31 70 33" />
+  <g fill="none" stroke="var(--forest)" stroke-width="1.5"
+     stroke-linecap="round" stroke-linejoin="round">
 
-    <!-- Left ear — long, hanging out -->
-    <path d="M 46 40 C 36 46 28 56 26 66 C 30 66 36 62 42 56 C 46 50 48 44 48 40 Z" />
-    <!-- Right ear — mirror -->
-    <path d="M 74 40 C 84 46 92 56 94 66 C 90 66 84 62 78 56 C 74 50 72 44 72 40 Z" />
+    <!-- LEFT HORN — curves up and outward from the forehead, moderate length -->
+    <path d="M 60 38
+             C 52 28, 42 22, 32 22
+             C 28 22, 26 24, 28 26
+             C 36 30, 46 32, 56 36"/>
 
-    <!-- Head outline (front-facing, prominent forehead) -->
-    <path d="M 60 30 C 52 30 46 33 44 38 C 42 42 42 50 44 56 C 46 64 48 70 50 74 C 54 78 56 82 60 84 C 64 82 66 78 70 74 C 72 70 74 64 76 56 C 78 50 78 42 76 38 C 74 33 68 30 60 30 Z" />
+    <!-- RIGHT HORN — mirror of left -->
+    <path d="M 80 38
+             C 88 28, 98 22, 108 22
+             C 112 22, 114 24, 112 26
+             C 104 30, 94 32, 84 36"/>
 
-    <!-- Forehead crest line — subtle vertical center crease -->
-    <path d="M 60 33 L 60 44" stroke-width="1.1" opacity="0.55" />
-    <!-- Forehead bulge definition -->
-    <path d="M 54 36 Q 60 38 66 36" stroke-width="1.1" opacity="0.55" />
+    <!-- LEFT EAR — long, hanging out and slightly down -->
+    <path d="M 56 46
+             C 44 50, 32 56, 24 64
+             C 28 66, 36 64, 44 60
+             C 50 56, 54 50, 58 48 Z"/>
 
-    <!-- Muzzle band line (separating muzzle from face) -->
-    <path d="M 48 70 Q 60 74 72 70" stroke-width="1.3" opacity="0.75" />
+    <!-- RIGHT EAR — mirror of left -->
+    <path d="M 84 46
+             C 96 50, 108 56, 116 64
+             C 112 66, 104 64, 96 60
+             C 90 56, 86 50, 82 48 Z"/>
 
-    <!-- Mouth -->
-    <path d="M 54 80 Q 60 82 66 80" stroke-width="1.3" opacity="0.75" />
+    <!-- HEAD — front-facing, prominent forehead, elongated face down to muzzle.
+         Forehead bulges out at top, narrows through bridge, widens at muzzle, chin under. -->
+    <path d="M 70 36
+             C 62 36, 56 40, 54 46
+             C 52 52, 52 60, 54 66
+             C 56 76, 60 86, 64 92
+             C 66 96, 74 96, 76 92
+             C 80 86, 84 76, 86 66
+             C 88 60, 88 52, 86 46
+             C 84 40, 78 36, 70 36 Z"/>
+
+    <!-- FOREHEAD CENTER CREASE — subtle vertical line -->
+    <path d="M 70 40 L 70 52"
+          stroke-width="1.2" opacity="0.5"/>
+
+    <!-- FOREHEAD BULGE DEFINITION — subtle horizontal curve -->
+    <path d="M 64 44 Q 70 46, 76 44"
+          stroke-width="1.2" opacity="0.5"/>
+
+    <!-- MUZZLE BAND — separating muzzle from face bridge -->
+    <path d="M 58 76 Q 70 80, 82 76"
+          stroke-width="1.2" opacity="0.65"/>
+
+    <!-- MOUTH -->
+    <path d="M 62 90 Q 70 93, 78 90"
+          stroke-width="1.2" opacity="0.7"/>
+
   </g>
 
-  <!-- Eyes — two small filled dots -->
-  <circle cx="53" cy="50" r="1.7" fill="var(--forest)" />
-  <circle cx="67" cy="50" r="1.7" fill="var(--forest)" />
+  <!-- EYES — two small filled dots, calm -->
+  <circle cx="62" cy="56" r="1.6" fill="var(--forest)"/>
+  <circle cx="78" cy="56" r="1.6" fill="var(--forest)"/>
 
-  <!-- Nostrils — two small filled dots -->
-  <circle cx="55" cy="77" r="1.2" fill="var(--forest)" />
-  <circle cx="65" cy="77" r="1.2" fill="var(--forest)" />
+  <!-- NOSTRILS — two small filled dots -->
+  <circle cx="64" cy="84" r="1.1" fill="var(--forest)"/>
+  <circle cx="76" cy="84" r="1.1" fill="var(--forest)"/>
+
 </svg>

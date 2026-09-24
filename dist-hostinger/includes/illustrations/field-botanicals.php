@@ -2,102 +2,155 @@
 /**
  * Illustration: Field botanicals (grass sprig, leafy branch, seed head)
  * Coded SVG — no photography dependency.
- * Ported from src/components/illustrations/field-botanicals.tsx
+ * V2 finish pass — herbarium / old-botanical-book line style.
+ *
+ * 2-3 plant specimens: a grass sprig (left), a leafy branch (center),
+ * a seed head (right). Very fine, disciplined line work (1.2px). Each
+ * plant has: a stem line, leaf shapes (paired or alternate), seed /
+ * flower detail. No fill — pure line drawing (only seed grains as
+ * small filled ellipses for accent). Arranged as a small composition,
+ * not overlapping chaotically. Decorative accent — restrained.
  */
 // @var string $class Optional CSS class for the root <svg>
 $class = $class ?? '';
 ?>
-<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="<?= htmlspecialchars($class, ENT_QUOTES) ?>" role="img" aria-hidden="true" preserveAspectRatio="xMidYMid meet" width="100%" height="100%">
+<svg viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg"
+     class="<?= htmlspecialchars($class, ENT_QUOTES) ?>"
+     role="img" aria-hidden="true"
+     preserveAspectRatio="xMidYMid meet"
+     width="100%" height="100%">
   <title>Field botanicals</title>
 
-  <g
-    fill="none"
-    stroke="var(--forest)"
-    stroke-width="1.5"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-  >
-    <!-- === GRASS SPRIG (left side) === -->
-    <!-- Main stem -->
-    <path d="M 50 180 L 50 70" stroke-width="1.4" />
-    <!-- Leaves — long curved blades -->
-    <path d="M 50 168 C 35 162 25 152 28 138 C 36 150 46 158 50 168 Z" stroke-width="1.3" />
-    <path d="M 50 146 C 65 140 75 130 72 116 C 64 128 56 138 50 146 Z" stroke-width="1.3" />
-    <path d="M 50 122 C 35 116 25 106 28 92 C 36 104 46 112 50 122 Z" stroke-width="1.3" />
-    <path d="M 50 100 C 65 94 75 84 72 70 C 64 82 56 92 50 100 Z" stroke-width="1.3" />
-    <path d="M 50 78 C 45 72 47 62 55 56 C 50 66 49 72 50 78 Z" stroke-width="1.2" />
-    <!-- Leaf vein accents -->
-    <path d="M 50 168 C 42 158 38 150 30 142" stroke-width="0.7" opacity="0.5" />
-    <path d="M 50 122 C 42 112 38 104 30 96" stroke-width="0.7" opacity="0.5" />
-    <!-- Root suggestion -->
-    <path d="M 50 180 L 48 188" stroke-width="0.9" opacity="0.5" />
-    <path d="M 50 180 L 52 188" stroke-width="0.9" opacity="0.5" />
-    <path d="M 50 180 L 50 190" stroke-width="0.9" opacity="0.5" />
+  <g fill="none" stroke="var(--forest)"
+     stroke-width="1.2" stroke-linecap="round"
+     stroke-linejoin="round">
 
-    <!-- === LEAFY BRANCH (center) === -->
-    <!-- Main stem -->
-    <path d="M 100 180 L 100 50" stroke-width="1.5" />
-    <!-- Branch small offshoots -->
-    <path d="M 100 160 L 92 152" stroke-width="1.1" />
-    <path d="M 100 140 L 108 132" stroke-width="1.1" />
-    <path d="M 100 120 L 92 112" stroke-width="1.1" />
-    <path d="M 100 100 L 108 92" stroke-width="1.1" />
-    <path d="M 100 80 L 92 72" stroke-width="1.1" />
+    <!-- ===== SPECIMEN 1: GRASS SPRIG (left) ===== -->
+    <!-- Main stem — long, slightly curving -->
+    <path d="M 40 200 L 40 60" stroke-width="1.3"/>
 
-    <!-- Leaves — alternating along stem -->
-    <path d="M 100 160 C 80 155 70 145 75 130 C 85 145 95 155 100 160 Z" stroke-width="1.3" />
-    <path d="M 100 140 C 120 135 130 125 125 110 C 115 125 105 135 100 140 Z" stroke-width="1.3" />
-    <path d="M 100 120 C 80 115 70 105 75 90 C 85 105 95 115 100 120 Z" stroke-width="1.3" />
-    <path d="M 100 100 C 120 95 130 85 125 70 C 115 85 105 95 100 100 Z" stroke-width="1.3" />
-    <path d="M 100 80 C 85 75 80 65 85 55 C 95 65 100 75 100 80 Z" stroke-width="1.2" />
-    <!-- Leaf veins -->
-    <path d="M 100 160 C 92 152 86 146 78 138" stroke-width="0.7" opacity="0.5" />
-    <path d="M 100 140 C 108 132 114 126 122 118" stroke-width="0.7" opacity="0.5" />
-    <path d="M 100 120 C 92 112 86 106 78 98" stroke-width="0.7" opacity="0.5" />
-    <path d="M 100 100 C 108 92 114 86 122 78" stroke-width="0.7" opacity="0.5" />
-    <!-- Branch tip bud -->
-    <path d="M 100 50 C 96 46 98 40 102 42 C 102 46 100 50 100 50 Z" stroke-width="1.2" />
+    <!-- Long curved blades — alternate along the stem -->
+    <path d="M 40 180 C 28 175, 22 165, 26 152
+             C 36 162, 42 172, 40 180 Z"
+          stroke-width="1.1"/>
+    <path d="M 40 155 C 52 150, 58 140, 54 127
+             C 44 137, 38 147, 40 155 Z"
+          stroke-width="1.1"/>
+    <path d="M 40 130 C 28 125, 22 115, 26 102
+             C 36 112, 42 122, 40 130 Z"
+          stroke-width="1.1"/>
+    <path d="M 40 105 C 52 100, 58 90, 54 77
+             C 44 87, 38 97, 40 105 Z"
+          stroke-width="1.1"/>
+    <!-- Small upper leaf -->
+    <path d="M 40 80 C 35 75, 36 67, 42 61
+             C 40 71, 40 75, 40 80 Z"
+          stroke-width="1"/>
+    <!-- Tip — slender awn -->
+    <path d="M 40 60 C 38 56, 40 50, 44 48"
+          stroke-width="1.1"/>
 
-    <!-- === SEED HEAD (right side) === -->
+    <!-- Leaf vein accents — subtle interior lines on the larger blades -->
+    <path d="M 40 178 C 34 170, 30 162, 28 156"
+          stroke-width="0.7" opacity="0.45"/>
+    <path d="M 40 128 C 34 120, 30 112, 28 106"
+          stroke-width="0.7" opacity="0.45"/>
+
+    <!-- Root suggestion — three small marks at the base -->
+    <path d="M 40 200 L 38 207" stroke-width="0.9" opacity="0.55"/>
+    <path d="M 40 200 L 42 207" stroke-width="0.9" opacity="0.55"/>
+    <path d="M 40 200 L 40 209" stroke-width="0.9" opacity="0.55"/>
+
+
+    <!-- ===== SPECIMEN 2: LEAFY BRANCH (center) ===== -->
+    <!-- Main stem — taller -->
+    <path d="M 110 200 L 110 50" stroke-width="1.3"/>
+
+    <!-- Side branch offshoots — alternate, short -->
+    <path d="M 110 175 L 100 168" stroke-width="1"/>
+    <path d="M 110 150 L 122 142" stroke-width="1"/>
+    <path d="M 110 125 L 100 118" stroke-width="1"/>
+    <path d="M 110 100 L 122 92" stroke-width="1"/>
+    <path d="M 110 75 L 100 68" stroke-width="1"/>
+
+    <!-- Leaves — alternate along stem, curved teardrop shapes -->
+    <path d="M 110 175 C 92 170, 84 162, 88 150
+             C 100 162, 108 170, 110 175 Z"
+          stroke-width="1.1"/>
+    <path d="M 110 150 C 128 145, 136 137, 132 125
+             C 120 137, 112 145, 110 150 Z"
+          stroke-width="1.1"/>
+    <path d="M 110 125 C 92 120, 84 112, 88 100
+             C 100 112, 108 120, 110 125 Z"
+          stroke-width="1.1"/>
+    <path d="M 110 100 C 128 95, 136 87, 132 75
+             C 120 87, 112 95, 110 100 Z"
+          stroke-width="1.1"/>
+    <path d="M 110 75 C 95 70, 90 62, 95 54
+             C 105 64, 110 70, 110 75 Z"
+          stroke-width="1"/>
+
+    <!-- Leaf veins on alternate leaves -->
+    <path d="M 110 173 C 100 165, 94 159, 88 153"
+          stroke-width="0.7" opacity="0.45"/>
+    <path d="M 110 148 C 120 140, 126 134, 132 128"
+          stroke-width="0.7" opacity="0.45"/>
+    <path d="M 110 123 C 100 115, 94 109, 88 103"
+          stroke-width="0.7" opacity="0.45"/>
+    <path d="M 110 98 C 120 90, 126 84, 132 78"
+          stroke-width="0.7" opacity="0.45"/>
+
+    <!-- Tip bud — small terminal leaf -->
+    <path d="M 110 50 C 106 46, 110 40, 114 42
+             C 114 46, 112 50, 110 50 Z"
+          stroke-width="1.1"/>
+
+
+    <!-- ===== SPECIMEN 3: SEED HEAD (right) ===== -->
     <!-- Stem -->
-    <path d="M 160 180 L 160 95" stroke-width="1.5" />
-    <!-- Small leaves at base -->
-    <path d="M 160 130 C 145 125 140 115 145 105 C 150 115 158 125 160 130 Z" stroke-width="1.3" />
-    <path d="M 160 130 C 175 125 180 115 175 105 C 170 115 162 125 160 130 Z" stroke-width="1.3" />
-    <!-- Lower smaller leaves -->
-    <path d="M 160 155 C 148 150 144 142 148 134 C 154 142 158 148 160 155 Z" stroke-width="1.1" opacity="0.85" />
-    <path d="M 160 155 C 172 150 176 142 172 134 C 166 142 162 148 160 155 Z" stroke-width="1.1" opacity="0.85" />
+    <path d="M 180 200 L 180 95" stroke-width="1.3"/>
 
-    <!-- Seed head — oval cluster -->
-    <ellipse cx="160" cy="78" rx="11" ry="20" stroke-width="1.4" />
+    <!-- Lower leaves at base — paired -->
+    <path d="M 180 165 C 168 161, 164 153, 168 143
+             C 176 153, 180 161, 180 165 Z"
+          stroke-width="1.1"/>
+    <path d="M 180 165 C 192 161, 196 153, 192 143
+             C 184 153, 180 161, 180 165 Z"
+          stroke-width="1.1"/>
 
-    <!-- Seed grains (small ovals/dots inside the cluster) -->
-    <g stroke-width="0.8" opacity="0.85">
-      <ellipse cx="155" cy="68" rx="2" ry="3.2" fill="var(--forest)" stroke="none" />
-      <ellipse cx="165" cy="68" rx="2" ry="3.2" fill="var(--forest)" stroke="none" />
-      <ellipse cx="160" cy="74" rx="2" ry="3.2" fill="var(--forest)" stroke="none" />
-      <ellipse cx="155" cy="80" rx="2" ry="3.2" fill="var(--forest)" stroke="none" />
-      <ellipse cx="165" cy="80" rx="2" ry="3.2" fill="var(--forest)" stroke="none" />
-      <ellipse cx="160" cy="86" rx="2" ry="3.2" fill="var(--forest)" stroke="none" />
-      <ellipse cx="157" cy="92" rx="1.6" ry="2.6" fill="var(--forest)" stroke="none" />
-      <ellipse cx="163" cy="92" rx="1.6" ry="2.6" fill="var(--forest)" stroke="none" />
-    </g>
-    <!-- Awns (long thin bristles out the top of seed head) -->
+    <!-- Mid leaves — smaller, slightly higher up -->
+    <path d="M 180 135 C 170 131, 166 125, 170 117
+             C 178 125, 180 131, 180 135 Z"
+          stroke-width="1"/>
+    <path d="M 180 135 C 190 131, 194 125, 190 117
+             C 182 125, 180 131, 180 135 Z"
+          stroke-width="1"/>
+
+    <!-- SEED HEAD — oval cluster shape -->
+    <ellipse cx="180" cy="80" rx="9" ry="18"
+             stroke-width="1.3"/>
+
+    <!-- AWNS — long thin bristles out the top of the seed head -->
     <g stroke-width="0.8" opacity="0.7">
-      <path d="M 155 60 C 153 54 154 48 156 42" />
-      <path d="M 160 60 C 160 52 160 44 160 38" />
-      <path d="M 165 60 C 167 54 166 48 164 42" />
-      <path d="M 152 62 C 148 56 145 50 142 44" />
-      <path d="M 168 62 C 172 56 175 50 178 44" />
+      <path d="M 174 65 C 172 58, 172 50, 174 44"/>
+      <path d="M 180 65 L 180 40"/>
+      <path d="M 186 65 C 188 58, 188 50, 186 44"/>
+      <path d="M 170 68 C 166 62, 162 56, 160 50"/>
+      <path d="M 190 68 C 194 62, 198 56, 200 50"/>
     </g>
 
-    <!-- === Scattered detail dots (subtle field texture) === -->
   </g>
+
+  <!-- SEED GRAINS — small filled ellipses inside the seed head for accent -->
   <g fill="var(--forest)" stroke="none">
-    <circle cx="28" cy="50" r="0.8" opacity="0.5" />
-    <circle cx="180" cy="186" r="0.9" opacity="0.5" />
-    <circle cx="120" cy="188" r="0.7" opacity="0.45" />
-    <circle cx="30" cy="186" r="0.7" opacity="0.5" />
-    <circle cx="185" cy="50" r="0.8" opacity="0.45" />
+    <ellipse cx="175" cy="72" rx="1.5" ry="2.2"/>
+    <ellipse cx="185" cy="72" rx="1.5" ry="2.2"/>
+    <ellipse cx="180" cy="78" rx="1.5" ry="2.2"/>
+    <ellipse cx="175" cy="84" rx="1.5" ry="2.2"/>
+    <ellipse cx="185" cy="84" rx="1.5" ry="2.2"/>
+    <ellipse cx="180" cy="90" rx="1.5" ry="2.2"/>
+    <ellipse cx="177" cy="96" rx="1.2" ry="1.8"/>
+    <ellipse cx="183" cy="96" rx="1.2" ry="1.8"/>
   </g>
+
 </svg>

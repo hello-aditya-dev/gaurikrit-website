@@ -245,6 +245,10 @@ ul, ol { list-style: none; }
 .section--forest-deep { background: var(--forest-deep); color: var(--primary-fg); }
 .section--haldi    { background: linear-gradient(135deg, var(--haldi-soft), var(--haldi)); color: var(--charcoal); }
 .section--mitti    { background: var(--secondary-bg); }
+/* V2 finish: chapter-like background rhythm */
+.section--haldi-wash { background: color-mix(in srgb, var(--haldi) 6%, var(--paper)); color: var(--fg); }
+.section--cool      { background: color-mix(in srgb, var(--indigo) 5%, var(--paper)); color: var(--fg); }
+.section--paper-grain { background: var(--paper); background-image: radial-gradient(circle at 1px 1px, oklch(0.42 0.05 150 / 0.025) 0.5px, transparent 0); background-size: 18px 18px; }
 
 /* ==========================================================================
    5. Section heading + eyebrow
