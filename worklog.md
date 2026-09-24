@@ -1833,3 +1833,58 @@ gaurikrit-hostinger-deploy.zip
 
 ### Commit
 1269c4d pushed to main on https://github.com/hello-aditya-dev/gaurikrit-website
+
+---
+
+Task ID: STATIC-BUILD
+Agent: static-builder
+Task: Generate a static HTML version of the Gaurikrit Bio Products site from the PHP source in `dist-hostinger/` for GitHub Pages deployment (subdirectory-hosted).
+
+Work Log:
+- Read all PHP source files: `dist-hostinger/index.php` (home), `products/index.php`, `products/prakritik-distemper/index.php`, `products/prakritik-emulsion/index.php`, `why-prakritik/index.php`, `about/index.php`, `for-business/index.php`, `paint-calculator/index.php`, `downloads/index.php`, `contact/index.php`, `404.php` — plus shared `includes/header.php`, `footer.php`, `data.php`, `seo.php`, `bootstrap.php`, `helpers.php`, `calculator-config.php`, and all 11 illustration partials in `includes/illustrations/`.
+- Read `assets/css/app.css` (3516 lines) and the 7 JS modules (`navigation.js`, `animations.js`, `ashta-laabh.js`, `colour-study.js`, `forms.js`, `calculator.js`, `app.js`) to understand the contract each PHP page expects at runtime (image-handoff attributes, brochure-detect wrapper, calculator-config script tag, form data attributes).
+- Wrote `/home/z/my-project/build-static.mjs` — a single Bun/Node ESM script that:
+  1. **Reproduces `data.php` as JS objects** — `$COMPANY`, `$BRAND_PHRASES`, `$PRODUCTS`, `$COVERAGE_DISCLAIMER`, `$ASHTA_LAABH`, `$COLOUR_STUDY`, `$MATERIAL_JOURNEY`, `$PROJECT_PATHWAYS`, `$INTEREST_OPTIONS`, `$PROJECT_TYPES`, `$FAQ`, `$NAV`, `$NAV_PRODUCTS`. Values are exact mirrors of the PHP source (same strings, same array order, same Devanagari).
+  2. **Provides `loadSvg(name, className)`** — reads each `.php` illustration partial, strips the `<?php ... ?>` header, and replaces `<?= htmlspecialchars($class, ENT_QUOTES) ?>` with the supplied class value (HTML-escaped). Returns the pure SVG markup as a string.
+  3. **Provides `renderHeader(pageMeta, depth)` and `renderFooter(depth)`** — reproduce the inlined HTML output of `header.php` and `footer.php`. Each uses the same DOM structure, the same JSON-LD Organization schema (computed from `COMPANY` data), the same Google Fonts link, the same script ordering (navigation → animations → ashta-laabh → colour-study → forms → calculator → app). Asset paths are computed relative to the page depth (`./` for depth 0, `../` for depth 1, `../../` for depth 2).
+  4. **Provides `generatePage(pageMeta, depth, bodyContent)`** — wraps a body string between header + footer to produce a complete HTML document.
+  5. **One body function per route** — `homeBody`, `productsBody`, `distemperBody`, `emulsionBody`, `whyPrakritikBody`, `aboutBody`, `forBusinessBody`, `paintCalculatorBody`, `downloadsBody`, `contactBody`, `error404Body`. Each returns the inline `<style>` + section HTML for that page, with PHP control flow translated to JS: `foreach` → `array.map(...).join('\n')`, `if` → ternary, `e($var)` → `e(value)` JS helper (mirrors PHP htmlspecialchars with `&`, `<`, `>`, `"`, `'`), `render_illustration('name', ['class' => 'foo'])` → `loadSvg('name', 'foo')`, `sprintf('%02d', $n)` → `pad2(n)`.
+  6. **Builds 11 HTML files** at the correct depth:
+     - `docs/index.html` (depth 0, `./` prefix)
+     - `docs/products/index.html` (depth 1, `../` prefix)
+     - `docs/products/prakritik-distemper/index.html` (depth 2, `../../` prefix)
+     - `docs/products/prakritik-emulsion/index.html` (depth 2, `../../` prefix)
+     - `docs/why-prakritik/index.html`, `about/`, `for-business/`, `paint-calculator/`, `downloads/`, `contact/` (depth 1)
+     - `docs/404.html` (depth 0)
+  7. **Copies CSS + all 7 JS files** into `docs/assets/css/` and `docs/assets/js/`. SVG illustrations are inlined directly in the HTML so no PHP partials need to be copied.
+  8. **Writes `docs/.nojekyll`** so GitHub Pages does not process the site with Jekyll (would skip folders starting with `_`).
+  9. **Writes `docs/robots.txt`** and `docs/sitemap.xml` (absolute URLs pointing at `https://hello-aditya-dev.github.io/gaurikrit-website/`).
+
+- **Static fallbacks for PHP-only behaviour**:
+  - **Forms** (contact + business): `action="/api/contact.php"` and `action="/api/business-enquiry.php"` are replaced with `action="https://formspree.io/f/your-form-id"` (placeholder the client will replace). CSRF token field and honeypot field are removed (not needed for static). Each form includes the comment `<!-- Replace the form action with your Formspree ID or deploy to Hostinger for PHP backend -->` and a user-facing note "This form requires a backend. Deploy to Hostinger for full functionality, or connect a Formspree form ID." The existing `forms.js` still wires up the submit handlers — when the client plugs in a real Formspree ID, the fetch-based submit will work without any other changes.
+  - **Brochure PDF**: PHP used `is_file()` to detect the brochure at build time. The static version always renders the "missing" state (`data-brochure-state="missing"`), then the existing `app.js` brochure-detection module does a runtime HEAD fetch. On GitHub Pages the PDF will 404 → `data-brochure-state="missing"` → "Contact Gaurikrit for the current product brochure." message shows. Correct behaviour without PHP.
+  - **Calculator**: embeds `<script type="application/json" id="calculator-config">{"enabled":false}</script>` inline (mirrors the PHP `calculator-config.php` returning `['enabled' => false]`). The inline minimal JS handler in the page body computes the result and builds the "Request Estimate" URL — changed to use a relative `../contact/?interest=bulk-project&...` so it works on GitHub Pages. The `calculator.js` module reads the same config and stays consistent.
+  - **Contact `?interest=` prefill**: removed (the PHP prefill logic is server-side). The `<select>` still lists all `INTEREST_OPTIONS` so users can pick manually. Form submission via Formspree will include the selected interest.
+
+- **Relative path strategy**: GitHub Pages serves at `https://hello-aditya-dev.github.io/gaurikrit-website/` (a subdirectory), so all paths must be relative. The script computes a depth per page (0 for `index.html` and `404.html`, 1 for direct subdirectory pages, 2 for nested product detail pages) and uses `'./'` or `'../'.repeat(depth)` as the prefix. Internal links (`/products/`, `/contact/?interest=prakritik-emulsion`, etc.) and asset links (`/assets/css/app.css`, `/assets/brand/gaurikrit-logo-mark.png`, `/assets/products/prakritik-emulsion.png`, `/assets/documents/prakritik-paint-brochure.pdf`) all use the same depth-aware prefix. The `data-nav-link` attribute preserves the original absolute path for scroll-spy lookup, but the `href` is relative.
+
+- **Verified output**:
+  - `ls docs/` shows all 11 HTML files + `assets/`, `robots.txt`, `sitemap.xml`, `.nojekyll`. (The old `docs/archive/legacy-generated-plan/` was wiped by the script's `rmSync(OUT, { recursive: true })`.)
+  - `grep -r '<?php\|<?=\|\$COMPANY\|csrf_field\|render_illustration\|render_meta\|honeypot' docs/` returns no matches — the static HTML has zero PHP syntax.
+  - Spot-checked `docs/index.html`, `docs/products/prakritik-distemper/index.html`, `docs/about/index.html`, `docs/404.html` — all have correct relative asset paths (`./assets/...`, `../assets/...`, `../../assets/...`), inlined SVGs, Formspree form actions, the calculator-config JSON, and the brochure-detect wrapper.
+  - File sizes: `index.html` 113KB (largest — includes 14 inlined SVGs), `products/prakritik-emulsion/index.html` 50KB (ashta-laabh diagram + spec cards + radial list), `why-prakritik/index.html` 51KB (7-section essay with journey + ashta), `404.html` 29KB. Total: ~505KB across 11 HTML files.
+
+- **Build is reproducible**: `bun run build-static.mjs` cleans `docs/` and regenerates everything in ~1 second. Output is deterministic (same input → same bytes).
+
+- **Deploy path**: push the `docs/` folder to the `gh-pages` branch (or set GitHub Pages → Source → main / `/docs` folder). The site will be live at `https://hello-aditya-dev.github.io/gaurikrit-website/`. The client can also use the repo Settings → Pages to enable GitHub Actions deployment if they want to push the `docs/` folder elsewhere.
+
+- **Known deltas from the PHP version** (all intentional):
+  1. Forms submit to Formspree (placeholder ID `your-form-id` — client must replace) instead of `/api/contact.php` and `/api/business-enquiry.php`.
+  2. Contact `?interest=` query param no longer pre-selects the Interest dropdown (PHP server-side prefill is gone). Users still see all options and can select manually. Formspree will include the selected value in the submission.
+  3. Brochure PDF detection is JS-only (HEAD fetch) instead of `is_file()` server-side. On GitHub Pages the PDF will 404 and the "Contact Gaurikrit for the current product brochure." note will show — correct behaviour.
+
+Files:
+- `/home/z/my-project/build-static.mjs` — the build script (≈1900 lines, ~70KB).
+- `/home/z/my-project/docs/` — the generated static site (11 HTML files + `assets/css/app.css` + 7 JS files + `.nojekyll` + `robots.txt` + `sitemap.xml`).
+
+Run: `bun run build-static.mjs`

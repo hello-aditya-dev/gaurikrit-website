@@ -1,0 +1,8 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "echo 'Static site — production lives in dist-hostinger/ (PHP for Hostinger) and docs/ (static for GitHub Pages). No Next.js build needed.'",
+  "outputDirectory": "docs",
+  "framework": null,
+  "cleanUrls": true,
+  "trailingSlash": true
+}
