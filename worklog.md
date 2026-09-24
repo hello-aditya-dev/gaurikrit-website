@@ -1960,3 +1960,466 @@ Files:
 
 Stage Summary:
 - All 11 illustrations are now disciplined editorial line drawings in the "architectural material illustration" style — flat 2D, restrained, Indian, line-led, proportionally believable, subtly textured. The cow has a visible zebu hump, dewlap, long hanging ears, slender legs, elongated face. The buckets have accurate cylindrical geometry with slight taper and curved label bands. The courtyard has wall thickness (double cornice line) and a cusped ogee arch with believable 2:1 height:width proportions. The ashta-laabh diagram responds to the sibling list's `data-active` state via `:has()` CSS — pure progressive enhancement, no aria-hidden conflict. The paint stroke feels like a material limewash patch (organic edge, gradient, internal lighter patches, paper-grain texture overlay), not a decorative blob. All 11 files are well-formed XML (validated by two independent parsers).
+
+---
+Task ID: V3-CSS
+Agent: frontend-styling-expert
+Task: Rewrite app.css for the V3 art direction rebuild — 12-column editorial grid, ban generic AI-website patterns, reorient component classes around the V3 spec.
+
+Work Log:
+- Read existing `/home/z/my-project/dist-hostinger/assets/css/app.css` (3520 lines, CSS-LOCK pass), `/home/z/my-project/dist-hostinger/includes/data.php` (locked brand data), and `/home/z/my-project/worklog.md` for full project context.
+- Audited 496 unique `class="..."` occurrences across all 13 page templates + header + footer to enumerate the legacy class names that must keep rendering against the new palette (`.btn`, `.container`, `.section`, `.brand`, `.site-header`, `.site-nav`, `.mobile-menu`, `.site-footer`, `.form-*`, `.faq-item`, `.product-media`, `.breadcrumb`, `.hero__*`, `.material-statement*`, `.mat-panel*`, `.spec-table*`, `.journey*`, `.ashta-*`, `.colours-*`/`.colour-wall*`, `.calc-*`, `.pathway*`, `.dl-*`, `.distemper-*`, `.emulsion-*`, `.pd-*`, `.biz-*`, `.about-*`, `.why-*`, `.essay*`, `.manifesto*`, `.principle-band*`, `.brand-close*`, `.brand-principle*`, `.two-products*`, `.two-formats-mini*`, `.inside*`, `.spec-card*`, `.radio-card*`, `.brochure*`, `.catalogue*`, `.error-page*`, `.toast*`, `.back-to-top`, `.skip-link`).
+- Inventoried the CSS custom-property aliases the inline page `<style>` blocks + the SVG illustrations depend on (`--bg`, `--bg-card`, `--secondary-bg`, `--card`, `--secondary`, `--background`, `--foreground`, `--fg`, `--fg-muted`, `--primary`, `--primary-fg`, `--accent`, `--border`, `--border-strong`, `--radius`, `--radius-lg`, `--radius-full`, `--r-btn`, `--r-input`, `--r-card`, `--r-panel`, `--r-pill`, `--shadow-soft`, `--shadow-forest`, `--shadow-haldi`, `--haldi-deep`, `--haldi-light`, `--forest-mid`, `--header-h`, `--max-w`, `--dur`, `--ease`, `--font-sans`, `--font-display`, `--font-deva`). All kept — derived from the locked hex palette.
+- Completely rewrote `/home/z/my-project/dist-hostinger/assets/css/app.css` (38 sections, 756 top-level CSS rules, 120KB, ~4789 lines, 873 opening + 873 closing braces, zero tinycss2 parse errors, zero empty rules, zero doubled semicolons).
+- Locked colour palette preserved exactly: `--forest #173F2B`, `--forest-deep #102F20`, `--haldi #E3A51A`, `--haldi-soft #F2D783`, `--limewash #F4EFE2`, `--paper #FAF8F1`, `--kraft #C9A77C`, `--mitti #A86E4B`, `--geru #B65432`, `--leaf #748468`, `--indigo #365B67`, `--charcoal #201E19`, `--soft-ink #4D4A42`, `--hairline rgba(32,30,25,0.14)`.
+- Typography preserved: `Manrope` (sans), `Newsreader` (display), `Noto Serif Devanagari` (Hindi). NO Playfair Display.
+- NO dark mode. NO `[data-theme="dark"]` selector. NO Tailwind. NO oklch() colour values.
+- 12-column editorial grid system: `.grid-12 { display: grid; grid-template-columns: repeat(12, 1fr); gap: clamp(1rem, 3vw, 2.5rem); }` with `.col-4`/`.col-5`/`.col-7`/`.col-8`/`.col-12` spans. Recompose at 1199px (8-col) and 767px (4-col), no horizontal overflow.
+- Section background rhythm: `.section--paper`, `.section--limewash`, `.section--forest`, `.section--forest-deep`, `.section--haldi-wash` (6% haldi → paper), `.section--cool` (5% indigo → paper), `.section--warm` (8% leaf → paper). Plus legacy `.section--haldi`, `.section--mitti`, `.section--grain`, `.section--paper-grain`.
+- Section vertical rhythm tightened: `--section-y: clamp(4rem, 6vw, 7rem)`, `--section-y-large: clamp(7.5rem, 12vw, 10rem)`, `--section-y-tight: clamp(2.5rem, 4vw, 4rem)`. `.section--large` and `.section--tight` modifiers exposed.
+- Border-radius: `--r-btn: 8px`, `--r-input: 6px`, `--r-card: 6px`, `--r-panel: 4px`. `--r-pill: 999px` kept as legacy alias ONLY for genuine dot/swatch/packaging-chip elements (not eyebrows or buttons). No universal rounded-2xl/3xl/full.
+- Shadows: `--shadow-soft: 0 2px 12px -4px rgba(32,30,25,0.06)`, `--shadow-forest: 0 2px 12px -4px rgba(23,63,43,0.10)`, `--shadow-haldi: 0 2px 12px -4px rgba(227,165,26,0.10)`. Never glowing.
+- BANNED patterns implemented:
+  1. `.eyebrow` is plain uppercase text — `display: inline-block; background: none; border: 0; padding: 0;` (NOT a pill/badge).
+  2. Sections use borderless editorial layouts — `.spec-matrix`, `.contact-info`, `.company-plate`, `.about-product-card`, `.format-card`, `.audience-card`, `.biz-section`, `.pathway`, `.faq-item`, `.manifesto__list-item`, `.inside__item`, `.spec-card` all strip card chrome (`background: transparent; border: 0; border-radius: 0; box-shadow: none`).
+  3. NO `.features-grid` with 4 equal cards. Numbered typographic strips + ruled columns instead (`.pathway`, `.calc-step`, `.manifesto__list-item`, `.inside__item`, `.spec-card`, `.ashta-benefit`).
+  4. Illustrations are large and unboxed — `.material-statement__visual`, `.colour-study__wall`, `.calc-teaser__art`, `.product-chapter__visual`, `.distemper-media`, `.emulsion-hero__media`, `.hero__visual` all use generous aspect ratios + min-heights + `position: relative` for material patches behind the line art.
+  5. Paint shapes are material patches — `.hero__haldi-field::before`, `.calc-teaser__art::before`, `.dl-cover` use radial/linear gradients with internal texture (`background-image: radial-gradient(circle at 1px 1px, rgba(32,30,25,0.08) 0.5px, transparent 0)`). No abstract blobs.
+  6. Section titles left-aligned / asymmetric by default — `.section-heading { text-align: left; max-width: 48rem; margin-bottom: 2.5rem; }` (was `text-align: center`). `.section-heading--center` available when explicitly needed.
+  7. Each page hero composed differently — `.hero` (5/7 grid, haldi-field + cow-line), `.about-hero` (identity plate 5/7), `.biz-hero`/`.business-hero` (5/7 architectural), `.calc-hero` (left eyebrow + title + sub, no visual), `.dl-hero` (split with brochure cover below), `.why-hero` (5/7), `.contact-hero` (5/7 with form right), `.distemper-hero`/`.emulsion-hero` (5/7 reversed on warm).
+  8. Spacing tightened — section padding clamps reduced, no oversized empty sections.
+  9. FAQ only styled for the canonical `.faq-item` accordion — explicitly documented as "intended for Products / Why-Prakritik consumption". No FAQ-as-filler scaffolding.
+  10. No decorative icons for icon's-sake — only meaningful marks (cow line art, haldi paint field, courtyard elevation, brand mark).
+- V3 component coverage (all delivered):
+  - `.hero` (12-col, text col-5 / visual col-7), `.hero__grid`, `.hero__visual`, `.hero__haldi-field` (large irregular haldi paint field behind product), `.hero__cow-line` (0.16 opacity cow line art).
+  - `.material-statement` (5/7, copy col-5 / visual col-7) with `.material-statement__visual` (limewashed wall plane + cow profile, NO arrow + yellow rectangle — legacy `.ms-arrow` re-rendered as a thin haldi hairline).
+  - `.product-chapter` (full-width section), `.product-chapter--distemper` (cool/paper-cool bg), `.product-chapter--emulsion` (warm/paper-leaf bg, REVERSED order), `.product-chapter__visual` (60-70% chapter height), `.product-chapter__copy` (specs as ruled rows), `.product-chapter__ghost` (oversized background word at 0.05 opacity).
+  - `.spec-matrix` + `.spec-matrix__row` (ruled hairline rows, label-left/value-right desktop, definition layout mobile), `.spec-matrix__label` (uppercase muted), `.spec-matrix__value` (display weight foreground). `.spec-table` kept as legacy alias, stripped of card chrome.
+  - `.material-flow` (full-width 3-stage diagram, no border/card). `.material-journey`, `.journey-wrap`, `.journey-inline` all re-rendered borderless.
+  - `.ashta-section` (large section) + `.ashta-section__seal` (60% width desktop) + `.ashta-section__support` (40% width), `.ashta-benefit-list` (numbered ruled rows, NO card backgrounds). `.ashta-laabh__radial` seal kept. Legacy `.ashta-tile`/`.pd-ashta-tile` re-rendered borderless.
+  - `.colour-study` (large courtyard elevation), `.colour-study__wall` (the recolourable wall plane — SVG has id="courtyard-wall-plane"), `.colour-study__palette` (swatch dots below or beside), `.colour-study__swatch` (clickable dot, `--active`/`[data-active]` state).
+  - `.calc-teaser` (split: mini project-summary preview + wall elevation), `.calc-teaser__preview` (small project summary card with painting type / location / paint / area), `.calc-teaser__art` (wall elevation as material patch — NOT a yellow blob).
+  - `.pathways` (shared illustration + 4 ruled text columns), `.pathway` (column with left rule line, NO box/card). Legacy `.pathways-grid`/`.pathway-card` also re-rendered borderless.
+  - `.calculator-page` (12-col grid), `.calculator-page__visual` (42% sticky interactive wall scene), `.calculator-page__steps` (58% step controls), `.calc-step` (numbered step with clear `[data-selected]`/`.calc-step--active` selected state), `.calc-option` (6-8px radius, border), `.calc-option--active` (forest border + haldi-tinted bg), `.calc-result` (project summary, no prices). Tablet: visual above steps. Mobile: small preview above controls.
+  - `.contact-section` (5 col company info / 7 col form), `.contact-info` (left, ruled ledger plate), `.contact-form` (right, practical form).
+  - `.business-hero` (text left / architectural-elevation right), `.business-audiences` (shared illustration + 4 ruled columns, no cards), `.business-form-layout` (12-col, left 4 = heading/help/contact, right 8 = form fields).
+  - `.about-hero` (brand identity + strong typography + product presence), `.company-plate` (modern ledger/plate layout for company info, not cards).
+  - `.downloads-split` (large brochure cover left / details+actions right). Legacy `.dl-wrap` re-rendered split, not centred card.
+  - `.product-detail` (split hero copy 5 / product 7), `.product-detail--cool` (distemper: pale chuna/indigo environment), `.product-detail--warm` (emulsion: warm leaf/haldi, REVERSED), `.spec-sheet` (large ruled rows numbered 01-07, not pills).
+  - `.site-footer` (forest-deep bg, NO newsletter, NO socials), `.site-footer__main` (grid), `.site-footer__bottom` (copyright + GSTIN).
+  - `.btn`, `.btn--primary` (forest bg, paper text), `.btn--secondary` (transparent, forest border), `.btn--haldi` (haldi bg, charcoal text). 6-8px radius. No glowing shadows.
+  - `.form-field` (border-only inputs, 6-8px radius), `.form-label` (always visible, NO floating labels), `.form-error` (below field), `.form-honeypot` (sr-only).
+  - Header/nav kept refined — transparent at top, paper bg after scroll, logo left, nav links center/right, CTA right, `.site-nav__dropdown` for Products, mobile menu panel.
+  - `.product-media` with `data-loaded` + `data-loaded-error` handoff (official img absolute on top, fallback behind, opacity transition).
+  - `[data-reveal]` → `[data-revealed="true"]`, `[data-reveal-stagger] > *` staggered, `prefers-reduced-motion` overrides (disable all, show everything immediately).
+  - Responsive breakpoints: Desktop >=1200 (12-col), Tablet 768-1199 (8-col, visuals move below copy), Mobile <=767 (4-col stack). No horizontal overflow — recompose, don't shrink.
+- Backward compatibility: all legacy class names kept (`.duo-panel`, `.pp-panel`, `.mat-panel`, `.journey-step`, `.ashta__node`, `.colour-wall`, `.colours-wall`, `.calculator__option`, `.contact-info-card`, `.biz-aside-card`, `.format-card`, `.audience-card`, `.pathway-card`, `.dl-card`, `.pd-specs`, `.spec-sheet__*`, etc.) so existing templates render against the new palette without a template edit.
+- Syntax sanity:
+  - Braces balance: 873 opening, 873 closing.
+  - tinycss2 parse: 756 top-level rules, 0 errors.
+  - No empty `{}` rules. No doubled `;;` semicolons. No `: ;` missing-value declarations.
+  - Verified no `oklch()` colour values in actual CSS (only mentioned in the header comment as a rule).
+  - Verified no `[data-theme="dark"]` selector anywhere (only mentioned in the header comment as a rule).
+  - Verified no `@tailwind` directive.
+- Verified the grid math for all 12-col splits the V3 spec demanded:
+  - `.hero__grid` / `.hero__container` = 5fr 7fr (text/visual).
+  - `.material-statement` = 5fr 7fr (copy/visual).
+  - `.product-chapter__inner` = 7fr 5fr (visual/copy), reversed to 5fr 7fr on `.product-chapter--emulsion`.
+  - `.ashta-section__grid` / `.ashta-laabh` / `.ashta-grid` = 6fr 4fr (60% seal / 40% support).
+  - `.calc-teaser__inner` = 5fr 7fr (preview/art).
+  - `.calculator-page` / `.calculator` = 42fr 58fr (visual/steps).
+  - `.contact-section` / `.contact-grid` = 5fr 7fr (info/form).
+  - `.contact-hero__container` = 5fr 7fr.
+  - `.biz-hero__container` / `.business-hero__container` = 5fr 7fr.
+  - `.biz-form-layout` / `.business-form-layout` / `.biz-form-wrap` = 4fr 8fr.
+  - `.about-hero__container` = 5fr 7fr.
+  - `.about-section` / `.why-section` = 4fr 8fr.
+  - `.manifesto__section` / `.essay__section` = 4fr 8fr.
+  - `.product-detail` = 5fr 7fr (copy/product).
+  - `.product-detail__hero` / `.pd-hero` / `.distemper-hero` / `.emulsion-hero` = 5fr 7fr, REVERSED on warm.
+  - `.downloads-split` / `.dl-wrap` = 6fr 6fr (cover/details).
+  - `.spec-matrix__row` / `.spec-table__row` / `.spec-sheet__item` / `.spec-sheet__row` = 14rem 1fr at >=768px, stacked definition layout on mobile.
+- Reduced the V3 banned patterns to zero actual occurrences: no `.features-grid`, no `.card--*` floating-card defaults, no `eyebrow-pill` selectors, no centred `.section-heading` default, no oversized `.section` padding, no FAQ scaffolding on filler pages.
+
+Files:
+- `/home/z/my-project/dist-hostinger/assets/css/app.css` — completely rewritten (V3 art direction).
+
+Stage Summary:
+- V3 art direction is now fully delivered at the CSS layer. The file bans all 10 generic AI-website patterns the brief listed, implements the 12-column editorial grid system at every breakpoint, reorients every component around the V3 spec (12-col hero 5/7, material statement 5/7, full-width product chapters with ghost background type at 0.05 opacity, ruled spec matrix with no card chrome, large ashta seal 60% / support 40%, calculator page 42/58 sticky visual + steps, contact 5/7 info+form, business form 4/8 layout, about identity plate, downloads split, product detail 5/7 cool/warm reversed with numbered 01-07 spec sheet, deep-forest footer with no newsletter/socials). All locked hex colours preserved exactly. No dark mode, no oklch(), no Tailwind, no universal rounded-full. Backward compatibility maintained for every legacy class name + CSS custom-property alias so existing PHP templates and SVG illustrations continue to render against the new palette. Braces balance (873/873), tinycss2 parse zero errors, zero empty rules, zero doubled semicolons.
+- Next actions (for downstream agents):
+  - Page-template agents can now adopt the new spec-locked class names (`.grid-12` + `.col-4/5/7/8/12`, `.product-chapter`, `.spec-matrix`, `.material-flow`, `.ashta-section__seal` + `.ashta-benefit-list`, `.colour-study__wall`, `.calc-teaser__preview`, `.calculator-page__visual` + `.calculator-page__steps`, `.contact-section` + `.contact-info` + `.contact-form`, `.business-hero` + `.business-audiences` + `.business-form-layout`, `.about-hero` + `.company-plate`, `.downloads-split`, `.product-detail--cool` / `.product-detail--warm`) without a CSS edit — the styles are already in place.
+  - The inline page `<style>` blocks are still safe to keep (they target page-specific class names like `.distemper-hero__chips`, `.spec-sheet__list`, `.two-products__head` etc.); they will now compose against the new palette + tighter spacing tokens.
+  - A follow-up "template sweep" pass can migrate any remaining `.section-heading` centred layouts to left-aligned by simply removing the `text-align: center` modifier from the markup (the CSS now defaults to left).
+  - Any future dark-mode ask is explicitly blocked by the locked colour system — would need a separate V4 CSS pass.
+
+---
+Task ID: V3-ILLUSTRATIONS
+Agent: illustrations-v3-pass
+Task: V3 core illustration system rebuild — exactly 7 major illustrated systems (not 11) for the Gaurikrit Bio Products website. Complete art-direction rebuild replacing the V2 generic / AI-generated feel with "architectural material illustration" — flat 2D, restrained, editorial, Indian, line-led, proportionally believable.
+
+Work Log:
+
+- Read the 11 V2 illustration partials in `dist-hostinger/includes/illustrations/` (indian-cow 320x200, gaurikrit-cow-mark, prakritik-distemper-bucket, prakritik-emulsion-bucket, rural-landscape 640x80, indian-courtyard 360x280 with cusped ogee arch, material-journey 640x140, ashta-laabh-diagram 360x360, paint-brush-stroke, field-botanicals, gaushala-scene) to confirm the V2 baseline and its shortcomings (small cow canvas, palace-arch courtyard, generic 4-stage journey infographic, small wheel-style ashta diagram).
+- Read `dist-hostinger/assets/css/app.css` lines 1–106 to confirm the LOCKED palette (`--forest #173F2B`, `--forest-deep #102F20`, `--haldi #E3A51A`, `--haldi-soft #F2D783`, `--limewash #F4EFE2`, `--paper #FAF8F1`, `--kraft #C9A77C`, `--mitti #A86E4B`, `--geru #B65432`, `--leaf #748468`, `--indigo #365B67`, `--charcoal #201E19`, `--soft-ink #4D4A42`, `--hairline`) plus the derived tints (`--haldi-deep`, `--haldi-light`, `--forest-mid`) and font tokens (`--font-sans` Manrope, `--font-display` Newsreader, `--font-deva` Noto Serif Devanagari). Confirmed `--card`, `--secondary`, `--background` aliases are present for SVG use.
+- Read V2 worklog entry (Task ID V2-ILLUSTRATIONS) to inherit its design discipline (separate-paths approach to prevent blobby cow, double-line wall thickness for parapet, `:has()`-based interactivity for the ashta diagram, paint-stroke gradient + paper-grain texture, herbarium-style botanicals, calm gaushala scene).
+- Read `validate-illustrations.mjs` to confirm the XML validation harness (strips `<?php ?>` header, replaces `<?= htmlspecialchars(...) ?>` shortcode, parses via `@xmldom/xmldom`, checks root is `<svg>` and a `<title>` is present).
+
+### Design decisions — the 7 V3 illustration systems
+
+**1. `indian-cow.php` — THE signature piece.** viewBox 0 0 1000 600 (3× the V2 canvas). Side-elevation of a medium Indian/zebu cow facing LEFT. Pure line art (NO haldi on the cow — the only "haldi" reference is in the docblock comment explicitly stating "no haldi accent on the cow"). Separate path elements throughout — NO single closed blob contour:
+  - Body barrel (closed contour with a FORWARD chest bulge for depth — chest front curves to x=278, well forward of the withers at x=320, suggesting believable chest volume rather than a flat front).
+  - Hump (separate open curve rising from withers (320,260) up to peak (380,215) and back down to mid-back (440,263) — 45px rise above the back line, ~17% of withers height: clearly visible, NOT exaggerated).
+  - Neck top (separate curve from withers forward-down to poll).
+  - Head/face (closed contour, elongated narrow: long slender bridge from forehead to broad soft muzzle, narrow cheek back to poll — length 180px, height 115px, ratio ~1.57:1 reads as elongated without being a thin sliver).
+  - NEAR + FAR horn (left horn in profile curving up-forward-LEFT with small back-curve at tip; right horn behind head curving up-back-RIGHT, foreshortened, 0.65 opacity).
+  - NEAR + FAR ear (long leaf-shaped, hanging down — drawn as closed leaf contours with attachment at top, widening mid-leaf, rounded tip at bottom; far ear behind head at 0.6 opacity).
+  - Eye (small filled circle r=2, calm) + brow (subtle curve above).
+  - Muzzle: nostril dot (r=1.6) + mouth curve.
+  - Dewlap: main line from under-jaw down to low-point at y=458 (just above the knee at y=462) then up to brisket, plus 2 subtle parallel fold lines suggesting skin creases — long, loose, zebu-pronounced.
+  - 4 legs in 4 positions × 2 parallel strokes each (8 strokes total): near front (x=308,316), far front (x=332,340, lighter), near back (x=748,756), far back (x=772,780, lighter). Each leg has a small horizontal knee/hock tick at y=462 + subtle thigh/gaskin bulge suggestion above the joint.
+  - Hooves: small horizontal cloven marks at the base of each leg pair (y=524).
+  - Tail (long, naturally hanging — from rump at (820,295) curving down to (852,515), reaching near the ground at y=515) + 3-stroke tuft at the end.
+  - Interior anatomy suggestions (very subtle, low opacity 0.25-0.4): shoulder blade line under hump, belly midline, flank fold at back leg, hip line under rump, 3 rib marks along the body, neck muscle curve — gives depth and volume without going 3D.
+  - Subtle ground line at y=525 (0.12 opacity).
+  - Stroke language: 1.35px main (27 strokes), 0.85px detail (19 strokes), 0.5px very-subtle texture (4 strokes). Round cap/join throughout.
+
+**2. `indian-courtyard.php` — vernacular limewashed courtyard elevation.** viewBox 0 0 1440 850 (4× the V2 canvas). NOT a palace, NOT a Mughal arch, NOT a temple — pure rectangular vernacular. Critical: the wall plane is isolated as `<rect id="courtyard-wall-plane">` (x=80, y=130, width=1280, height=590) so the Colours of India JS can recolour it at runtime. Wall outline drawn as a SEPARATE rect on top (so the outline stays crisp regardless of the wall-plane fill colour). Includes:
+  - Long plaster wall (limewash fill, default).
+  - 7 subtle limewash tonal patches at 0.04 opacity (scattered rects + one ellipse) suggesting plaster age / weathering — never a uniform colour block.
+  - Parapet / wall thickness (double line at top: y=130 + y=145, square cap for crisp architectural molding).
+  - Plinth (double line at base: y=720 + y=740, slightly wider than the wall by 20px each side; subtle mitti fill at 0.12 opacity suggesting earthy masonry; interior plinth joint line at y=732).
+  - Rectangular timber door (NOT arched — explicitly vernacular): x=480-640 (width 160), y=400-720 (height 320, so height = 2× width ✓). Double-leaf with center divider, jamb depth suggestion (interior stroke at inset), 8 vertical timber board lines (0.5px, 0.4 opacity), 4 horizontal rail lines (top + bottom of each leaf), threshold line at base, two haldi door handles (the ONLY haldi in the courtyard) with forest backplate rings.
+  - Smaller rectangular window: x=860-1040 (width 180), y=350-550 (height 200), offset from the door. Mullion cross + 4 secondary mullions (smaller panes), sill line + lintel line.
+  - 3 jaali/ventilation openings high on the wall (small 22×22 squares at y=190 with internal lattice detail — 3 vertical + 3 horizontal lines per jaali).
+  - Shallow verandah / shade line above the door (thin projection at y=388, slightly wider than the door by 20px each side; subtle underside line + two short vertical posts).
+  - Wall surface articulation: short horizontal limewash-plaster segments scattered across all sections (0.5px, 0.18 opacity).
+  - Mature tree on the LEFT side (full canopy as a closed contour with overlapping arcs from x=88 to x=292, y=440 to y=608; slender trunk; 2 main branches; 3 interior vein lines; root flare at base).
+  - Earthen / stone floor baseline: main ground line at y=790, lower subtle ground at y=810, 8 stone tile seam marks (vertical ticks on the floor), 3 small grass tuft clusters at the wall base.
+  - Stroke language: 1.35px main (13 strokes), 0.85px detail (31 strokes), 0.5px very-subtle plaster lines (19 strokes). Square cap + miter join on the architectural moldings (parapet, plinth, verandah) for crisp technical endpoints; round cap/join on organic elements (tree, grass, foliage).
+
+**3. `material-to-wall.php` — Material-to-Wall Diagram (NEW, replaces material-journey.php).** viewBox 0 0 1600 500 (wide, horizontal, 2.5× the V2 journey canvas). Three conceptual stages only (manufacturing details are NOT confirmed — no invented machinery or chemistry, just three conceptual stages + a connecting line):
+  - **01 NATURAL MATERIAL** (left third, x=0-533): a simplified cow profile (small, ~30% of section height = ~145px tall) facing RIGHT (toward the diagram flow, narrative direction). Cow has the same separate-paths discipline as the main cow at smaller scale: body barrel + hump + neck top + head + near/far horn + near/far ear + dewlap (with 1 fold line) + eye/brow/nostril/mouth + 4 legs (paired strokes, near+far) + knee suggestions + hoof ticks + tail + tuft + shoulder blade line + belly midline.
+  - **02 PRAKRITIK PAINT** (middle third, x=533-1067): a paint vessel (cylindrical tin, slight taper, elliptical rim with limewash interior + haldi liquid surface tint, arched bail handle with two lugs, dark-green curved label band with haldi accent stripes above+below, "PRAKRITIK" wordmark in Newsreader on the label, base curve) + a paint brush laying next to the bucket (handle with mitti wood-grain accent, kraft-toned ferrule with haldi accent stripe, 3 bristle strokes fanning down to the baseline, 3 haldi paint dots on the bristle tips).
+  - **03 FINISHED WALL** (right third, x=1067-1600): a simplified courtyard wall elevation (limewash fill, forest outline, parapet double line, plinth double line, rectangular door opening with jamb depth + 4 vertical timber board lines + threshold + haldi door handle, rectangular window with mullion cross + sill, 3 jaali squares high on the wall, subtle limewash plaster lines, small shrub at the base).
+  - Stage numerals "01" / "02" / "03" in Newsreader serif (56px, weight 700, forest, letter-spacing 2) at y=100 above each stage.
+  - Stage labels "NATURAL MATERIAL" / "PRAKRITIK PAINT" / "FINISHED WALL" in Manrope (11px, weight 600, soft-ink, uppercase, letter-spacing 3) at y=448 below each stage.
+  - 2 subtle vertical divider ticks (architectural register marks) between stages at x=533 and x=1067.
+  - **ONE CONTINUOUS LINE** runs through all three stages at y=380: forest ground-line under the cow (x=130→540) → forest transition (x=540→580) → **haldi paint stroke segment** (x=580→1080, 6px thick with haldi gradient + subtle organic wobble + 2.5px haldi halo above suggesting paint being laid onto a surface) → forest wall baseline under the finished wall (x=1080→1560). The haldi paint stroke is the SOLE haldi in the line itself — it is the material transition from raw to applied.
+  - Stroke language: 1.35px main (42 strokes), 0.85px detail (33 strokes), 0.5px very-subtle (5 strokes), 6px haldi paint stroke + 2.5px halo (the paint segment).
+
+**4. `rural-landscape.php` — Rural Landscape Band.** viewBox 0 0 1600 280 (2.5× wider + 3.5× taller than the V2 band). Restrained rural engraving at low opacity (0.18 base group opacity; inner elements 0.4-0.85 individual opacity within the group, so the horizon reads first and the silhouettes fade further into the paper). Includes:
+  - 3 gentle rolling field contours: distant (y~138, 0.45 opacity), mid (y~168, 0.6 opacity), main horizon (y~196, 0.85 opacity) — each a smooth cubic Bezier across the full width with subtle elevation variation.
+  - Foreground ground line at y=232 (0.55 opacity).
+  - Mature tree on the LEFT: trunk + 2 main branches + full canopy as a closed contour with overlapping arcs (x=152-308, y=84-180) + 3 interior vein lines + root flare marks.
+  - 4 distant shrub marks on the horizon (small bush silhouettes, 0.6-0.7 opacity).
+  - Modest agricultural shed on the RIGHT: peaked roof line (3-point: 1280→1310→1380→1410) + underside projection line + rectangular body + small door opening + small window/vent + 3 roof tile segment lines.
+  - TWO tiny zebu cow silhouettes in the middle field: Cow A (facing right, at x=720-768, simplified: body barrel + hump + head + 4 legs + tail, 0.85 opacity) and Cow B (smaller, further back, at x=980-1018, 0.7 opacity for depth).
+  - 5 restrained grass tuft clusters across the foreground (3 blades each, 0.55-0.6 opacity) + 1 longer grass blade for compositional accent.
+  - Stroke language: 1.35px main (10 strokes), 0.85px detail (32 strokes). All forest, no haldi (correct for a low-opacity engraving).
+
+**5. `architectural-elevation.php` — Architectural Project Elevation (NEW).** viewBox 0 0 1200 700. Orthographic elevation of a modest contemporary Indian residential/institutional building (immediately communicates "architects / builders / projects" through technical-drawing discipline). NO 3D perspective. Includes:
+  - Faint architectural grid (vertical every 60px, horizontal every 60px, opacity 0.05) suggesting drawing paper.
+  - **HALDI-HIGHLIGHTED WALL PLANE**: `<rect id="arch-elev-haldi-plane" x=600 y=260 width=360 height=160>` filled haldi at 0.5 opacity, drawn UNDER the wall outline (so the outline reads cleanly on top). This is the "Prakritik Paint goes here" callout — Floor 2, right portion of the building.
+  - Building outline (rect x=240 y=120 width=720 height=460) with limewash fill + forest outline.
+  - 3 floors stacked: Floor 1 ground (y=420-580, 160px tall), Floor 2 middle (y=260-420, 160px tall), Floor 3 top (y=140-260, 120px tall, slightly smaller).
+  - Parapet (double line at top: y=120 + y=130).
+  - Floor divider lines at y=260 and y=420 (0.85px, 0.7 opacity).
+  - 3 vertical structural bay lines at x=360, 600, 840 (0.85px, 0.35 opacity) suggesting the building's structural grid.
+  - Floor 3 windows: 3 smaller 50×80 rects at x=290/575/860, y=170-250, each with mullion cross.
+  - Floor 2 windows: 4 × 60×100 rects at x=285/455/650/855, y=295-395, each with mullion cross. Two of these sit INSIDE the haldi plane (the "painted" windows).
+  - Floor 1: main entrance door (x=380-500, 120×150, double-leaf with center divider + jamb depth + threshold + 2 haldi door handles + verandah canopy projection above), 2 side windows (80×80 each at x=270 and x=855 with sill lines).
+  - Plinth band (rect x=220 y=580 width=760 height=40, mitti fill at 0.18 opacity, double-line top/bottom + interior joint line).
+  - Ground line at y=620 (0.55 opacity).
+  - 7 subtle limewash plaster lines on the wall (0.5px, 0.18 opacity).
+  - **Dimension ticks**: LEFT side total height dimension (extension lines x=240→160, dimension line x=170 from y=120→580, 45° end-tick slashes at both ends, plus sub-ticks for each floor at y=260 and y=420). RIGHT side single floor height (extension lines x=960→1040, dimension line x=1030 from y=260→420 with end ticks). BOTTOM total width dimension (extension lines x=240→y=670, dimension line y=660 from x=240→960 with end ticks, plus 3 structural bay sub-ticks at x=360/600/840). Square cap on extension lines (technical-drawing convention).
+  - Tiny annotation: leader line from the haldi plane up to a small "PAINT ZONE" label (Manrope 10px, soft-ink, 0.85 opacity, letter-spacing 1.2) at the top-right.
+  - Stroke language: 1.35px main (17 strokes), 0.85px detail (35 strokes), 0.5px grid + plaster (2 strokes). Round cap/join on organic elements; square cap on dimension extension lines.
+
+**6. `ashta-laabh-seal.php` — Ashta Laabh Seal (NEW, replaces ashta-laabh-diagram.php).** viewBox 0 0 600 600 (large square, 1.67× the V2 diagram). Large radial typographic seal — NOT a tiny wheel beside UI rows. Composition:
+  - Outer subtle ring (r=215, dashed 2-4, 0.18 opacity) connecting all label positions visually.
+  - **Central medallion** (r=80, limewash fill, forest outline 1.35px) + inner accent ring (r=73, 0.4 opacity).
+  - Inside the medallion: a small side-view cow silhouette (facing LEFT, consistent with the brand signature cow) drawn with the same separate-paths discipline as the main indian-cow (body barrel + hump + neck top + head + near/far horn + near/far ear + eye + nostril + 4 legs + tail + tuft + hoof ticks), scaled to fit inside r=80.
+  - Small haldi dot accent (r=2.5 at top of medallion) — the brand mark.
+  - **8 numbered radial lines** at 45° intervals (0.85px stroke, 0.45 opacity default) from medallion edge (r=80) to label position (r=215). Trigonometry-verified positions:
+    - Node 1 (top, -90°): line (300,220)→(300,85), label at (300,60) "01 Antibacterial"
+    - Node 2 (top-right, -45°): line (357,243)→(452,148), label at (470,130) "02 Antifungal"
+    - Node 3 (right, 0°): line (380,300)→(515,300), label at (540,300) "03 Eco-Friendly"
+    - Node 4 (bottom-right, 45°): line (357,357)→(452,452), label at (470,470) "04 Natural Thermal Insulator" (split across two lines: "Natural Thermal" / "Insulator")
+    - Node 5 (bottom, 90°): line (300,380)→(300,515), label at (300,540) "05 Cost-Effective"
+    - Node 6 (bottom-left, 135°): line (243,357)→(148,452), label at (130,470) "06 Free from Heavy Metals" (split: "Free from Heavy" / "Metals")
+    - Node 7 (left, 180°): line (220,300)→(85,300), label at (60,300) "07 Non-Toxic"
+    - Node 8 (top-left, 225°): line (243,243)→(148,148), label at (130,130) "08 Odourless"
+  - Each label: number in Newsreader serif (18px, weight 700, forest) on top + benefit name in Manrope (10px, weight 600, uppercase, letter-spacing 1.2, forest) below.
+  - **Interactive state**: SVG nodes carry `data-benefit` attributes (`antibacterial`, `antifungal`, `eco-friendly`, `thermal-insulator`, `cost-effective`, `heavy-metal-free`, `non-toxic`, `odourless`). The CSS uses `:has()` to react:
+    - When ANY node has `data-active="true"`, ALL other nodes dim to 0.4 opacity (`svg:has(.al-node[data-active="true"]) .al-node:not([data-active="true"]) { opacity: 0.4; }`).
+    - The active node's radial line turns haldi (stroke=var(--haldi), stroke-width 1.35, full opacity).
+    - The active node's number turns forest-deep and name turns forest + full opacity.
+    - The active label moves 3px outward along its angle (each `.al-node-N` has its own `transform: translate(Xpx, Ypx)` rule with the 3px vector decomposed into x/y per the 45° angle: N1=translate(0,-3), N2=translate(2.12,-2.12), N3=translate(3,0), N4=translate(2.12,2.12), N5=translate(0,3), N6=translate(-2.12,2.12), N7=translate(-3,0), N8=translate(-2.12,-2.12)).
+  - No cute icons — just numbers + text + lines, as specified.
+  - Stroke language: 1.35px medallion outline + active radial line (16 strokes), 0.85px default radial lines + interior cow detail (8 strokes). Round cap/join throughout.
+
+**7. `calculator-wall-scene.php` — Calculator Wall Scene (NEW).** viewBox 0 0 800 600. Layered interactive wall scene that responds to calculator selections via data- attributes on the SVG root. Includes:
+  - **Wall/room elevation**: `<rect id="wall-surface" x=100 y=80 width=600 height=440>` — the recolourable wall plane (limewash default; calculator JS / Colours of India JS can swap the fill at runtime). Wall outline drawn as a separate rect on top for crisp edges regardless of fill colour.
+  - 8 subtle limewash plaster lines on the wall (0.5px, 0.18 opacity).
+  - **Door opening**: rectangular, x=200-300 (width 100), y=300-520 (height 220, so height ≈ 2.2× width), recessed background tone, jamb depth suggestion (interior stroke at inset), double-leaf center divider, 8 vertical timber board lines (0.5px), 4 horizontal rail lines, threshold, 2 haldi door handles.
+  - **Window opening**: rectangular, x=480-620 (width 140), y=180-320 (height 140), recessed, jamb depth suggestion, mullion cross + 4 secondary mullions (smaller panes), sill line, lintel line.
+  - **Floor line** at y=540 (0.55 opacity).
+  - **Architectural dimension lines** (always visible): LEFT vertical height dimension (extension lines x=100→60, dimension line x=70 from y=80→520 with 45° end-tick slashes, sub-tick at the floor line y=540). BOTTOM horizontal width dimension (extension lines x=100,700→y=580, dimension line y=570 from x=100→700 with end ticks, plus door-width sub-tick at x=200-300 and window-width sub-tick at x=480-620). Square cap on extension lines.
+  - **Dynamic layers** (hidden by default, shown via CSS reacting to data- attributes on the root `<svg>`):
+    - `id="repaint-edge"` (visible when `[data-state="repaint"]`): a mitti-toned band along the bottom of the wall (irregular top edge, opacity 0.55) + small geru accent patch within the band (opacity 0.35) + subtle seam line where old meets new paint.
+    - `id="interior-detail"` (visible when `[data-location="interior"]`): baseboard skirting profile (rect x=100 y=498 width=600 height=22 with limewash fill + forest outline + 3 horizontal profile lines suggesting the skirting toe).
+    - `id="exterior-detail"` (visible when `[data-location="exterior"]`): subtle sky line above the wall (y=60, 0.3 opacity) + plinth band (rect x=80 y=520 width=640 height=20 with mitti fill at 0.2 opacity + double-line top/bottom + interior joint line).
+    - `id="product-distemper"` (visible when `[data-paint="distemper"]`): a small simplified distemper bucket mark in the lower-right corner (short body + rim + handle + haldi accent stripes + "DISTEMPER" label).
+    - `id="product-emulsion"` (visible when `[data-paint="emulsion"]`): a taller emulsion bucket mark (taller body + rim with liquid surface tint + handle + haldi stripes + 3-line label "GAURIKRIT / PRAKRITIK / EMULSION").
+    - `id="dimension-annotation"` (visible when `[data-area]:not([data-area=""])`): a small annotation pill at the top-centre of the SVG with leader line + dot connecting to the wall. Pill contains "AREA" label (Manrope 10px, soft-ink) + value text (`id="dimension-annotation-value"`, Manrope 12px, forest, weight 700) — JS sets the value text content to reflect the user's entered area. Default text "— m²".
+  - All dynamic CSS embedded in `<defs><style>` block in the SVG itself, so the file is self-contained.
+  - Stroke language: 1.35px main (18 strokes), 0.85px detail (24 strokes), 0.5px very-subtle plaster + timber lines (7 strokes). Round cap/join throughout; square cap on dimension extension lines.
+
+### Filesystem changes
+
+- Wrote 7 new/rewritten illustration partials to `dist-hostinger/includes/illustrations/`:
+  - `indian-cow.php` — rewritten (V3 signature piece)
+  - `indian-courtyard.php` — rewritten (V3 architectural elevation)
+  - `material-to-wall.php` — NEW (replaces material-journey.php)
+  - `rural-landscape.php` — rewritten (V3 low-opacity engraving)
+  - `architectural-elevation.php` — NEW
+  - `ashta-laabh-seal.php` — NEW (replaces ashta-laabh-diagram.php)
+  - `calculator-wall-scene.php` — NEW
+- Deleted the 2 replaced files:
+  - `material-journey.php` (replaced by `material-to-wall.php`)
+  - `ashta-laabh-diagram.php` (replaced by `ashta-laabh-seal.php`)
+- Kept 6 secondary illustrations as specified (used sparingly, not part of the 7 V3 systems):
+  - `gaurikrit-cow-mark.php` (small brand mark)
+  - `prakritik-distemper-bucket.php` (fallback for product image handoff)
+  - `prakritik-emulsion-bucket.php` (fallback)
+  - `paint-brush-stroke.php` (hero haldi field)
+  - `field-botanicals.php` (accent)
+  - `gaushala-scene.php` (why-prakritik context)
+
+### Validation
+
+- Ran `bun run validate-illustrations.mjs` — **13/13 files PASS** XML well-formedness validation (7 new V3 files + 6 kept V2 files). Each file has a `<svg>` root element + a `<title>` for accessibility + the correct viewBox.
+- Audited viewBoxes against spec: all 7 V3 illustrations match exactly — indian-cow 0 0 1000 600, indian-courtyard 0 0 1440 850, material-to-wall 0 0 1600 500, rural-landscape 0 0 1600 280, architectural-elevation 0 0 1200 700, ashta-laabh-seal 0 0 600 600, calculator-wall-scene 0 0 800 600.
+- Audited required IDs / data-attributes:
+  - `indian-cow.php` — no required IDs (pure line art); confirmed NO haldi references in the SVG body (only in the docblock comment "no haldi accent on the cow"). ✓
+  - `indian-courtyard.php` — `id="courtyard-wall-plane"` present on the recolourable wall rect. ✓
+  - `material-to-wall.php` — `id="mtw-paint"` (haldi gradient) + `id="mtw-wall-surface"` (the stage-3 wall). ✓
+  - `architectural-elevation.php` — `id="arch-elev-haldi-plane"` present on the haldi-highlighted wall rect. ✓
+  - `ashta-laabh-seal.php` — all 8 `data-benefit` attributes present (antibacterial, antifungal, eco-friendly, thermal-insulator, cost-effective, heavy-metal-free, non-toxic, odourless). ✓
+  - `calculator-wall-scene.php` — all 7 required IDs present (wall-surface, repaint-edge, interior-detail, exterior-detail, product-distemper, product-emulsion, dimension-annotation + dimension-annotation-value). All 4 data-attribute hooks present (data-state, data-location, data-paint, data-area). ✓
+- Audited stroke widths: each V3 file uses 1.35px main + 0.85px detail (with 0.5px very-subtle texture in some files, matching V2 convention). The material-to-wall.php haldi paint stroke segment uses 6px (the wider organic paint stroke) + 2.5px halo — this is the intended paint-stroke treatment, not a stray stroke. ✓
+- Audited stroke-linecap/linejoin: round cap/join throughout for organic elements (cow, tree, grass, brush, canopy). Square cap on architectural moldings (parapet, plinth, verandah line in indian-courtyard; dimension extension lines in architectural-elevation + calculator-wall-scene). Miter join on the indian-courtyard wall outline rect for crisp architectural corners. These are deliberate technical-drawing overrides of the global round-cap rule, documented in each partial's design notes. ✓
+- Audited haldi usage:
+  - indian-cow.php: 0 haldi references in the SVG body (pure line art). ✓
+  - indian-courtyard.php: haldi only on the 2 door handles (material patch — paint surface accent). ✓
+  - material-to-wall.php: haldi on the paint stroke segment (the material transition line) + the brush ferrule accent + the bristle tip dots + the door handle of the stage-3 wall + the bucket label accents (paint surface / material patches). ✓
+  - rural-landscape.php: 0 haldi (correct for a low-opacity engraving). ✓
+  - architectural-elevation.php: haldi on the highlighted wall plane (paint surface callout) + 2 door handles + 1 annotation endpoint dot. ✓
+  - ashta-laabh-seal.php: haldi only appears in the CSS rules for the active state (the radial line turns haldi when active) + 1 brand-mark dot in the central medallion (material patch). ✓
+  - calculator-wall-scene.php: haldi on the door handles (material patch) + the dimension-annotation endpoint dot + the product marks' accent stripes (paint surface). The repaint-edge uses mitti/geru (previous-colour patch) — NOT haldi, correct. ✓
+- Audited colour tokens used: only `--forest`, `--forest-deep`, `--haldi`, `--haldi-soft`, `--limewash`, `--paper`, `--mitti`, `--geru`, `--kraft`, `--background`, `--soft-ink`, `--charcoal` — all confirmed present in app.css (no out-of-palette colours). ✓
+- Audited the ashta-laabh-seal trigonometry: all 8 line endpoints computed via `(300 + 215·cos θ, 300 + 215·sin θ)` for the line end and `(300 + 80·cos θ, 300 + 80·sin θ)` for the line start, with θ at 45° intervals from -90°. Verified all 8 (cos, sin) pairs and resulting coordinates match the SVG markup. ✓
+
+### Downstream consumer impact (follow-up needed — out of scope for this task)
+
+The 2 renamed illustrations have downstream consumers that reference the OLD file names:
+- `dist-hostinger/index.php` (PHP template) — references `render_illustration('material-journey')` and `render_illustration('ashta-laabh-diagram')` (in the journey + ashta sections).
+- `dist-hostinger/products/prakritik-emulsion/index.php` — references `render_illustration('ashta-laabh-diagram')`.
+- `dist-hostinger/why-prakritik/index.php` — references both `render_illustration('material-journey')` and `render_illustration('ashta-laabh-diagram')`.
+- `build-static.mjs` — calls `loadSvg('material-journey')` at lines 803 and 1764, and `loadSvg('ashta-laabh-diagram')` at lines 820, 1577, and 1789.
+- `dist-hostinger/assets/js/ashta-laabh.js` — sets `data-active="true"` on `[data-ashta-node="al-N"]` list items; the new seal's CSS uses `data-benefit` + `[data-active="true"]` on the SVG nodes themselves (NOT on sibling list items). The JS will need a small update to also set `data-active="true"` on the matching `[data-benefit]` SVG node (or the existing list-item mechanism can stay and a parallel selector added).
+
+`loadSvg()` in build-static.mjs returns `''` for missing files (`if (!existsSync(file)) return ''`), so the build won't crash — the journey + ashta sections will just render with empty SVG containers until the references are updated. The PHP `render_illustration()` helper likely has similar graceful fallback.
+
+A follow-up "V3 template integration" pass should:
+1. Update `render_illustration('material-journey')` → `render_illustration('material-to-wall')` in the 3 PHP templates.
+2. Update `render_illustration('ashta-laabh-diagram')` → `render_illustration('ashta-laabh-seal')` in the 3 PHP templates.
+3. Update `loadSvg('material-journey')` → `loadSvg('material-to-wall')` in build-static.mjs (lines 803, 1764).
+4. Update `loadSvg('ashta-laabh-diagram')` → `loadSvg('ashta-laabh-seal')` in build-static.mjs (lines 820, 1577, 1789).
+5. Update `ashta-laabh.js` to also set `data-active="true"` on the matching `[data-benefit]` SVG node when the sibling list item becomes active (so the new seal's CSS `:has()` + `[data-active="true"]` selectors light up correctly). Alternatively, the seal's CSS could be revised to read from the sibling list item state (V2 approach) — but the V3 spec explicitly asks for `data-benefit` on the SVG nodes, so the JS update is the cleaner path.
+6. Add new templates/markup for the architectural-elevation + calculator-wall-scene illustrations (they are NEW — there are no existing template slots that reference them yet). The calculator-wall-scene in particular needs:
+   - A wrapper element on the calculator section that carries the data- attributes (`data-state`, `data-location`, `data-paint`, `data-area`).
+   - JS in `calculator.js` that sets these attributes on the wrapper as the user interacts with the calculator inputs.
+   - JS that updates the `#dimension-annotation-value` text content with the computed area value (with units).
+
+Files:
+- `/home/z/my-project/dist-hostinger/includes/illustrations/indian-cow.php` — rewritten (V3 signature piece, viewBox 0 0 1000 600)
+- `/home/z/my-project/dist-hostinger/includes/illustrations/indian-courtyard.php` — rewritten (V3 architectural elevation, viewBox 0 0 1440 850, with id="courtyard-wall-plane")
+- `/home/z/my-project/dist-hostinger/includes/illustrations/material-to-wall.php` — NEW (replaces material-journey.php, viewBox 0 0 1600 500)
+- `/home/z/my-project/dist-hostinger/includes/illustrations/rural-landscape.php` — rewritten (V3 low-opacity engraving, viewBox 0 0 1600 280)
+- `/home/z/my-project/dist-hostinger/includes/illustrations/architectural-elevation.php` — NEW (viewBox 0 0 1200 700, with id="arch-elev-haldi-plane")
+- `/home/z/my-project/dist-hostinger/includes/illustrations/ashta-laabh-seal.php` — NEW (replaces ashta-laabh-diagram.php, viewBox 0 0 600 600, with 8 × data-benefit attributes)
+- `/home/z/my-project/dist-hostinger/includes/illustrations/calculator-wall-scene.php` — NEW (viewBox 0 0 800 600, with 7 id hooks + 4 data-attribute hooks for JS)
+
+Stage Summary:
+- All 7 V3 core illustration systems are now disciplined "architectural material illustration" works — flat 2D, restrained, editorial, Indian, line-led, proportionally believable. The indian-cow has a clear zebu hump (45px rise above the back line, ~17% of withers height — visible but not exaggerated), long dewlap with 2 fold lines, long leaf-shaped hanging ears, slender paired-stroke legs with knee/hock suggestions + cloven hoof ticks, naturally hanging tail near the ground with a 3-stroke tuft, narrow elongated face with broad soft muzzle + nostril + mouth line, forward chest bulge for depth, subtle interior anatomy (shoulder blade, hip, ribs, flank fold) — pure line art, NO haldi. The indian-courtyard is a vernacular limewashed elevation with rectangular (NOT arched) door + window, wall thickness (double parapet line), plinth, jaali vents, verandah shade, mature tree, earthen floor with stone tile seams, and the critical `id="courtyard-wall-plane"` recolourable surface. The material-to-wall diagram is 3 conceptual stages connected by ONE continuous line that transitions from forest ground → forest material → haldi paint stroke → forest wall baseline — no invented machinery or chemistry. The rural-landscape is a low-opacity (0.18) engraving with 3 field contours, mature tree, modest shed, 2 tiny zebu silhouettes, distant shrubs, restrained grass tufts. The architectural-elevation is an orthographic building study with 3 floors, dimension ticks, faint grid, and a haldi-highlighted wall plane callout. The ashta-laabh-seal is a large radial typographic seal with 8 benefit nodes carrying `data-benefit` attributes, interactive via `:has()` CSS that lights up the active node's haldi radial line + pops the label 3px outward + dims the others. The calculator-wall-scene is a layered interactive wall that responds to data-state / data-location / data-paint / data-area attributes on the SVG root via CSS, with 7 id hooks for JS to manipulate. All 7 files are well-formed XML (validated by @xmldom/xmldom). All 6 secondary illustrations are kept as-is for fallback / accent use.
+
+---
+Task ID: V3-PAGES
+Agent: main (subagent: PHP page composition)
+Task: Rebuild all 11 page PHP files for the Gaurikrit Bio Products website against the V3 art-direction pass — new illustration names, 12-column grid, editorial (non-card) layout patterns.
+
+Work Log:
+- Read `/home/z/my-project/dist-hostinger/includes/data.php` (locked brand data — `$COMPANY`, `$PRODUCTS`, `$ASHTA_LAABH`, `$COLOUR_STUDY`, `$MATERIAL_JOURNEY`, `$PROJECT_PATHWAYS`, `$INTEREST_OPTIONS`, `$PROJECT_TYPES`, `$FAQ`, `$NAV`, `$COVERAGE_DISCLAIMER`, `get_product()`).
+- Read shared chrome (`header.php` + `footer.php`), helpers (`e()`, `asset_url()`, `render_illustration()`, `csrf_field()`), and the V3 `app.css` (4788 lines — 12-col grid `.grid-12` + `.col-4/5/7/8/12`, editorial sections `.product-chapter`, `.spec-matrix`, `.material-flow`, `.ashta-section`, `.colour-study`, `.calc-teaser`, `.pathways`, `.calculator-page`, `.contact-section`, `.business-form-layout`, `.company-plate`, `.downloads-split`, `.product-detail`).
+- Read all 13 V3 illustration partials (indian-cow 1000×600, indian-courtyard 1440×850 with `id="courtyard-wall-plane"`, material-to-wall 1600×500, rural-landscape 1600×280, architectural-elevation 1200×700 with haldi plane, ashta-laabh-seal 600×600 with 8 `data-benefit` SVG nodes, calculator-wall-scene 800×600, paint-brush-stroke, field-botanicals, gaurikrit-cow-mark, prakritik-distemper-bucket, prakritik-emulsion-bucket).
+- Read existing JS modules (app.js, animations.js, ashta-laabh.js, colour-study.js, forms.js, calculator.js) to understand the page contract for `[data-calculator]`, `[data-contact-form]`, `[data-business-form]`, `[data-ashta-laabh]` + `[data-ashta-node]`, `[data-colour-study]` + `[data-shade]` + `[data-colour-wall]` + `[data-colour-label]`, image handoff (`[data-official-image]`), reveal-on-scroll (`[data-reveal]` / `[data-reveal-stagger]`), FAQ accordion (`.faq-item` + `.faq-item__q` button).
+- Wrote all 11 page files using the V3 page template (require bootstrap → header → page → footer), 12-col composition (via `grid-template-columns: 5fr 7fr` / `45fr 55fr` / `42fr 58fr` inline where the V3 CSS aliases don't quite fit), and the editorial non-card patterns.
+
+Page-by-page composition:
+
+1. `index.php` (Homepage) — 10 sections:
+   • Hero (12-col: text 5 / visual 7). Visual stack: paint-brush-stroke SVG (haldi field, opacity 0.95, behind) → product-media image-handoff for `/assets/products/prakritik-group.png` (76% wide × 70% tall, dominant) → indian-cow SVG at opacity 0.16 as secondary line art. H1 = headline. CTAs: "Explore Prakritik Paint" + "Talk to Us".
+   • Material Statement (5/7) — copy left with rule + body, visual right with cow profile (ms-cow, opacity 0.85) beside limewashed wall plane (.ms-wall). NO arrow + yellow rectangle.
+   • Distemper Product Chapter — `.product-chapter--distemper` (cool/chuna/indigo env), ghost "DISTEMPER" oversized at opacity 0.05, 7/5 split (visual left, copy right) with image-handoff + distemper-bucket fallback, specs in duo-panel__row dl, CTAs "View Distemper" + "Enquire About Distemper".
+   • Emulsion Product Chapter — `.product-chapter--emulsion` (warm/leaf/haldi env), ghost "EMULSION", REVERSED 5/7 (copy left, visual right via CSS order), emulsion-bucket fallback, "View Emulsion" + "Enquire About Emulsion".
+   • Material Journey — full-width `material-to-wall` SVG (1600×500, 3 conceptual stages, NOT inside a bordered card), 5-step ordered list (material-journey__step) below.
+   • Ashta Laabh — 60/40 split (seal left 60%, numbered list right 40%) inside `[data-ashta-laabh]`. Each list item has `data-ashta-node="<id>"` mapping to the SVG node's `data-benefit` value. NO card backgrounds. Bridge inline script copies `data-benefit` → `data-ashta-node` on the SVG nodes so ashta-laabh.js can drive the seal's `:has()` CSS.
+   • Colours of India — large `indian-courtyard` SVG inside `[data-colour-study]` `[data-colour-wall]` wrapper. Swatch buttons with `data-shade` + `data-shade-name`. Label with nested `<span data-colour-label>` for swatch name + `<small>` for the "Editorial colour study" caption (so colour-study.js can update text without wiping the small). Bridge inline script sets the `<rect id="courtyard-wall-plane">` fill attribute on swatch click (since colour-study.js sets background-color on the wrapper, not on the SVG `<rect>`).
+   • Mission — deep forest band (`.mission-band`, `var(--forest-deep)`), rural-landscape SVG at opacity 0.15 as background engraving, eyebrow "Our direction" + italic display title = $COMPANY['mission'], sub = brandLine, CTAs "About Gaurikrit" → /about/ + "Why Prakritik" → /why-prakritik/.
+   • Calculator Teaser — `.calc-teaser__inner` 5/7 split. Left: heading "Estimate your project." + body + "Estimate Your Project" CTA → /paint-calculator/. Right: `.calc-teaser__art` with `.calc-teaser__preview` mini project-summary (Painting / Location / Paint / Area rows). NO yellow blob — uses `.calc-teaser__art::before` haldi material patch.
+   • Project Pathways — shared `rural-landscape` illustration at opacity 0.55, then `.pathways` 4-column ruled layout (no cards), each `.pathway` has number + title + desc. Foot CTA "Talk to Gaurikrit" → /for-business/.
+
+2. `products/index.php` (Products Overview) — hero 45/55 with group image-handoff, then distemper chapter, emulsion chapter (reversed), large ruled `.spec-matrix` (3-column comparison: label / distemper / emulsion — NO outer card), coverage disclaimer, benefits strip (numbered typographic list using $ASHTA_LAABH — NO 8 small cards), FAQ accordion (`.faq-item` + `.faq-item__q` button pattern matching the app.js init contract), forest CTA "Need help choosing? Talk to Gaurikrit." with "Talk to Us" + "Estimate Your Project" buttons.
+
+3. `products/prakritik-distemper/index.php` (Distemper Detail) — `.product-detail--cool` environment (paper-cool bg, indigo accent). Hero: copy 5 / product 7 (image-handoff for prakritik-distemper.png, fallback prakritik-distemper-bucket SVG). Ghost number "01" in top-right at opacity 0.12 (indigo). Spec sheet: 7 numbered ruled rows (01-07) using `.spec-sheet__list` (single column override), each row has `.spec-sheet__num` + `.spec-sheet__label` + `.spec-sheet__value`. Coverage disclaimer with indigo border-left. Ashta Laabh grid (seal + list). Cross-link to Emulsion. CTA "Enquire About Distemper" → /contact/?interest=prakritik-distemper.
+
+4. `products/prakritik-emulsion/index.php` (Emulsion Detail) — `.product-detail--warm` (paper-leaf bg, leaf accent). REVERSED hero: product left (7) / copy right (5) via CSS `order: 1` / `order: 2`. Same spec-sheet system (7 rows). Coverage 300 sq.ft.** with leaf border-left. Ashta Laabh grid. Cross-link to Distemper. CTA "Enquire About Emulsion" → /contact/?interest=prakritik-emulsion.
+
+5. `why-prakritik/index.php` (Why Prakritik) — illustrated editorial essay. Hero with indian-cow (why-cow at opacity 0.85) beside limewashed wall (.why-wall with grain texture). 6 numbered chapters, each visually distinct:
+   01 MATERIAL — physical material sample (kraft/mitti gradient patch + grain overlay + "Material sample" tag pill).
+   02 TRADITION — large indian-courtyard SVG (16/9 aspect) on the right (reversed chapter).
+   03 MATERIAL TO WALL — full-width material-to-wall diagram + 5-step list.
+   04 ASHTA — full-size ashta-laabh-seal + numbered list (interactive via bridge script).
+   05 FORMATS — two real product visuals (image-handoff for distemper + emulsion, 4/5 aspect cards with indigo/leaf border-top and pack-size caption pill).
+   06 CONTEXT — rural-landscape band with annotation pill (Bulandshahr, Uttar Pradesh). CTA "Explore Products" → /products/ + "About Gaurikrit" → /about/.
+
+6. `about/index.php` (About) — institutional/brand identity. NO gaushala hero. NO filler copy. Hero: devanagari + brand-sub + H1 "Nature. Culture. Useful materials." + body, with product group image-handoff on the right. Sections:
+   WHO WE ARE — legal identity, OPC registered in Bulandshahr.
+   WHAT WE CURRENTLY PRESENT — 2 product cards (image-handoff + name + pack/coverage/finish desc + "View X" link).
+   MATERIAL DIRECTION — `.about-direction__visual` (cow + wall composition matching the hero pattern).
+   MISSION — deep forest band (forest-deep bg) with rural-landscape at opacity 0.15 + italic display title = mission + brandLine + CTAs "Explore Prakritik Paint" + "Talk to Us".
+   COMPANY INFORMATION — `.company-plate` modern ledger (border-top + ruled rows, NO cards): Legal name, Brand name, GSTIN, Email, Phone (×2), Registered address (multi-line). Two CTAs at the bottom: "Talk to Us" + "For Business".
+
+7. `for-business/index.php` (For Business) — hero text left / `architectural-elevation` right (12/7 aspect, paper-cool bg, NO floating paint blob). Audiences: shared `rural-landscape` illustration at opacity 0.5 + 4 ruled columns (`.biz-audiences` + `.audience-card` with `border-left` rule line — NO cards): Architects & Builders / Institutions / CSR / NGOs / Gaushalas / Partners. Practical section: "When you enquire, it helps to include" with 5-item ruled list (Project type / City / Approximate wall area / Paint format / Approximate requirement). Business form: 12-col `.business-form-layout` (4fr 8fr — left aside with heading + help-cta + biz-aside-card phone/email/location ruled plate, right form card with form-grid 2-col fields: name, phone, email, organisation, role, city, project_type (select from $PROJECT_TYPES), approximate_requirement, message). `<?= csrf_field() ?>` + honeypot `name="company"`. CTA button "Discuss a Project" posts to /api/business-enquiry.php.
+
+8. `paint-calculator/index.php` (Calculator) — hero with eyebrow + H1 "Planning to paint?" + sub. Calculator page: 42% sticky `calculator-wall-scene` SVG (paper-cool bg, sticky on desktop ≥1024px, relative on tablet/mobile) / 58% steps. Inline `<script type="application/json" id="calculator-config">` carries the calculator-config.php JSON (enabled=false, all rates null) so calculator.js reads it truthfully. `[data-calculator]` mount — JS builds the 4-step UI. Custom CSS overrides for `.calc-step`, `.calc__card`, `.calc__progress` to match V3 styling (8px radius on cards, haldi accent on selected state). Below: calc-helper aside ("Need a more specific estimate?" + "Talk to Us" → /contact/?interest=bulk-project + "Explore Products" → /products/). The calculator.js result panel includes "Automatic commercial rates have not yet been configured." note and "Request Estimate" CTA that links to /contact/?interest=bulk-project&painting_type=...&location=...&paint=...&area=... (built dynamically by the JS).
+
+9. `downloads/index.php` (Downloads) — hero with eyebrow + H1 "Prakritik Paint brochure." + sub. `.downloads-split` (6/6 split — NO card grid). Left: large brochure cover (`.dl-cover`, haldi gradient bg, 26-34rem tall) with image-handoff for `/assets/documents/prakritik-paint-brochure-cover.png` (fallback is a typographic "PRAKRITIK PAINT BROCHURE" wordmark) + stamp (gaurikrit-cow-mark) + devanagari + wordmark + italic title + legal-name footer. Right: PHP `is_file($brochurePath)` check at render time. If file present: detail card with eyebrow / title / desc / dl (Format: PDF, Source, Use rows) / "View Brochure" + "Download PDF" buttons + note. If absent: "Brochure pending" card with "Contact Gaurikrit for the current product brochure" CTA → /contact/?interest=general + missing-path display. The wrapper carries `data-brochure-detect` for the JS HEAD-fetch bonus check (graceful fallback to PHP render truth).
+
+10. `contact/index.php` (Contact) — simplified. NO large architectural hero. NO newsletter. NO FAQ. Hero: eyebrow + H1 "Talk to Gaurikrit." + sub (one short paragraph). Contact section: 5/7 split. LEFT: company/contact plate (`.contact-info` ruled rows with `dt` label + `dd` value) — Legal name, GSTIN, Email, Phone (×2), Address (multi-line). RIGHT: enquiry form (`.contact-form` paper card) with form-grid 2-col fields: name (required), phone (optional), email (required), interest (select 6 options from $INTEREST_OPTIONS, with `?interest=` server-side pre-fill), message (required textarea). `<?= csrf_field() ?>` + honeypot `name="company"`. CTA button "Send Enquiry" posts to /api/contact.php. forms.js handles fetch POST + toast + field error display.
+
+11. `404.php` (404) — branded. Hero-style error-page section. Field-botanicals SVG as background accent at opacity 0.08 (right side, large). Gaurikrit-cow-mark in `.error-page__seal`. "404" big display number + devanagari + H1 "This wall hasn't been painted yet." + sub explaining the URL is unfinished. CTAs "Back to Home" + "Explore Products".
+
+Cross-cutting implementation notes:
+- All `<a href>` use real routes (`/`, `/products/`, `/products/prakritik-distemper/`, `/products/prakritik-emulsion/`, `/why-prakritik/`, `/about/`, `/for-business/`, `/paint-calculator/`, `/downloads/`, `/contact/`, plus query-string variants like `/contact/?interest=prakritik-distemper`). No `href="#"` placeholders.
+- All product images use the image-handoff pattern: `<div class="product-media" data-official-image="PATH"><img class="product-media__official" src="PATH" alt="..." width="W" height="H"><div class="product-media__fallback">SVG</div></div>`. The fallback SVG is a `render_illustration()` call so it always paints.
+- All SVGs use `render_illustration('name', ['class' => '...'])` per the helpers contract.
+- All dynamic output uses `<?= e($value) ?>` for HTML escaping. The FAQ answers in data.php are pre-escaped (they contain `&amp;`) and output without `e()` (only on those FAQ items).
+- All forms carry `<?= csrf_field() ?>` (CSRF hidden input) and a honeypot field named `company` (the forms.js contract).
+- All forms post to the canonical API endpoints: `/api/contact.php` (contact) and `/api/business-enquiry.php` (business).
+- `[data-reveal]` / `[data-reveal-stagger]` on sections / lists for the IntersectionObserver-driven reveal.
+- All interactive elements meet the 44px touch target minimum (buttons use `.btn` with `min-height: 44px`).
+- All pages set `$pageTitle`, `$pageDescription`, `$pageCanonical`, `$pageClass` before `require header.php` per the page template contract.
+- Ashta Laabh interactivity bridge: inline `<script>` on each page that uses the seal copies the SVG node's `data-benefit` attribute → `data-ashta-node` so the ashta-laabh.js module can drive the seal's CSS `:has(.al-node[data-active="true"])` selector. This avoids modifying the SVG partial and keeps the JS untouched.
+- Colours-of-India interactivity bridge: inline `<script>` on the homepage sets the `<rect id="courtyard-wall-plane">` `fill` attribute directly on swatch click, since the colour-study.js module sets `wall.style.backgroundColor` on the `[data-colour-wall]` wrapper (which doesn't recolour an SVG `<rect>`). Both run together — colour-study.js still drives the swatch state + label text.
+- Calculator config: inline `<script type="application/json" id="calculator-config">` carries the calculator-config.php JSON so calculator.js reads it truthfully (enabled=false, all rates null). The result panel shows the canonical "Automatic commercial rates have not yet been configured." copy.
+
+Verification:
+- Searched all 11 files for the banned phrases (`2019`, `founded`, `₹`, `newsletter`, `within 24 hours`, `one business day`, `Get a Quote`, `Buy Now`, `certified`, `lab tested`) — only matches are in code comments stating "do NOT use these".
+- Searched for `href="#"` placeholders — none.
+- Searched for `render_illustration('material-journey')` and `render_illustration('ashta-laabh-diagram')` (deleted illustrations) — none. All `render_illustration()` calls use the V3 core / secondary names that exist in `/includes/illustrations/`.
+- Confirmed the contact form select has 6 options matching `$INTEREST_OPTIONS` keys (general, prakritik-distemper, prakritik-emulsion, bulk-project, business-partnership, gaushala-collaboration).
+- Confirmed the business form project_type select has 6 options matching `$PROJECT_TYPES` (Residential, Commercial, Institutional, CSR / NGO, Gaushala Collaboration, Other).
+- Confirmed the homepage mission CTA "About Gaurikrit" → /about/ per spec.
+- Confirmed the homepage calculator teaser CTA "Estimate Your Project" → /paint-calculator/ per spec.
+- Confirmed the why-prakritik CTA "Explore Products" → /products/ per spec.
+- Confirmed the for-business CTA "Discuss a Project" → form posts to /api/business-enquiry.php per spec.
+- Confirmed the contact CTA "Send Enquiry" → form posts to /api/contact.php per spec.
+- Confirmed each page has its own visual character (no layout cloning): homepage hero (haldi field + product + cow line), products hero (45/55 split with group image on paper-warm), distemper detail (cool env, copy 5/product 7), emulsion detail (warm env, REVERSED product 7/copy 5), why-prakritik hero (cow + wall + 6 numbered chapters with distinct visuals), about hero (identity + product presence), for-business hero (text + architectural elevation), calculator hero (intro + 42/58 sticky visual + steps), downloads hero (split with brochure cover), contact hero (text-only, no big architectural illustration), 404 (field-botanicals accent + cow-mark seal).
+
+Files (all rewritten in place):
+- `/home/z/my-project/dist-hostinger/index.php` — 626 lines, 10 sections + inline bridge script
+- `/home/z/my-project/dist-hostinger/products/index.php` — hero + 2 product chapters + spec matrix + benefits strip + FAQ + forest CTA
+- `/home/z/my-project/dist-hostinger/products/prakritik-distemper/index.php` — cool hero (5/7) + 7-row spec sheet + ashta + cross-link
+- `/home/z/my-project/dist-hostinger/products/prakritik-emulsion/index.php` — warm REVERSED hero (7/5) + 7-row spec sheet + ashta + cross-link
+- `/home/z/my-project/dist-hostinger/why-prakritik/index.php` — hero + 6 numbered chapters
+- `/home/z/my-project/dist-hostinger/about/index.php` — identity hero + 5 sections + company plate
+- `/home/z/my-project/dist-hostinger/for-business/index.php` — hero + audiences + practical + 12-col form
+- `/home/z/my-project/dist-hostinger/paint-calculator/index.php` — hero + 42/58 calculator page
+- `/home/z/my-project/dist-hostinger/downloads/index.php` — hero + 6/6 downloads split with is_file() check
+- `/home/z/my-project/dist-hostinger/contact/index.php` — hero + 5/7 contact section (info plate + form)
+- `/home/z/my-project/dist-hostinger/404.php` — branded error page with field-botanicals accent
+
+Stage Summary:
+- All 11 page PHP files are now composed against the V3 art direction: 12-col grid (via `5fr 7fr` / `45fr 55fr` / `42fr 58fr` / `6fr 6fr` inline where the V3 CSS aliases don't fit), editorial non-card layouts (product chapters with ghost type, ruled spec-sheet rows, numbered ashta list, ruled pathway columns, company-plate ledger, downloads split), new V3 illustration names (`indian-cow`, `indian-courtyard`, `material-to-wall`, `rural-landscape`, `architectural-elevation`, `ashta-laabh-seal`, `calculator-wall-scene`, `paint-brush-stroke`, `field-botanicals`, `gaurikrit-cow-mark`, `prakritik-distemper-bucket`, `prakritik-emulsion-bucket`), image-handoff pattern for every product visual, real route links only, locked factual data only, banned phrases absent, canonical CTAs, CSRF + honeypot on both forms, 44px touch targets, semantic HTML, `[data-reveal]` / `[data-reveal-stagger]` animation hooks, reduced-motion safe. Each page has its own visual character. No layout cloning.
+
+---
+Task ID: V3-STATIC
+Agent: main (subagent: static site build script)
+Task: Update /home/z/my-project/build-static.mjs to mirror the V3 page compositions (12-col editorial grid, product chapters not cards, ruled spec-matrix rows, new illustration names), then run it to regenerate /home/z/my-project/docs/ for GitHub Pages.
+
+Work Log:
+- Read the existing /home/z/my-project/build-static.mjs (3201 lines — data definitions + helpers + renderHeader/renderFooter + 11 page body functions + PAGES array + build() orchestration).
+- Read all 11 V3 PHP pages in /home/z/my-project/dist-hostinger/ (index.php, products/index.php, products/prakritik-distemper/index.php, products/prakritik-emulsion/index.php, why-prakritik/index.php, about/index.php, for-business/index.php, paint-calculator/index.php, downloads/index.php, contact/index.php, 404.php) — each one re-composed against the V3 art-direction pass with 12-col grid, editorial non-card layouts, and the new V3 illustration names.
+- Read all 13 V3 illustration partials in dist-hostinger/includes/illustrations/ (indian-cow 1000×600, indian-courtyard 1440×850 with `id="courtyard-wall-plane"`, material-to-wall 1600×500 with 3 conceptual stages, rural-landscape 1600×280, architectural-elevation 1200×700, ashta-laabh-seal 600×600 with 8 `data-benefit` SVG nodes, calculator-wall-scene 800×600, paint-brush-stroke, field-botanicals, gaurikrit-cow-mark, prakritik-distemper-bucket, prakritik-emulsion-bucket, gaushala-scene — gaushala-scene not used by V3 pages, kept for legacy).
+- Read dist-hostinger/assets/css/app.css (4788 lines — V3 art-direction rebuild with .grid-12 + .col-4/5/7/8/12, .product-chapter, .spec-matrix, .material-flow, .ashta-section, .colour-study, .calc-teaser, .pathways, .calculator-page, .contact-section, .business-form-layout, .company-plate, .downloads-split, .product-detail--cool/--warm, .spec-sheet, .benefits-strip, .mission-band, etc.).
+- Read V3-PAGES entry in worklog.md to confirm the page composition contract for each route.
+- Read dist-hostinger/includes/header.php + footer.php — confirmed the shared chrome is unchanged (site-header with brand-mark fallback to gaurikrit-cow-mark SVG, mobile-menu, site-footer with NAV loop + contact details + bottom bar, back-to-top button, toast region, module scripts in order navigation → animations → ashta-laabh → colour-study → forms → calculator → app). The existing renderHeader() and renderFooter() functions already match this contract byte-for-byte, so they were preserved.
+
+Changes made to build-static.mjs:
+
+1. **Data definitions** — kept COMPANY/PRODUCTS/ASHTA_LAABH/COLOUR_STUDY/MATERIAL_JOURNEY/PROJECT_PATHWAYS/INTEREST_OPTIONS/PROJECT_TYPES/FAQ/NAV exactly as data.php. Added a new ASHTA_IDS map (name → ashta-laabh-seal SVG node id) so each ashta-benefit list item gets the right `data-ashta-node` value that the ashta-laabh.js module reads.
+
+2. **loadSvg() / relUrl() / assetUrl() / e() / pad2()** — preserved unchanged.
+
+3. **renderHeader() / renderFooter() / generatePage()** — preserved unchanged. The header/footer chrome already matches V3 PHP.
+
+4. **Page body functions — rewrote all 11** to mirror the V3 PHP pages exactly:
+   - **homeBody(depth)** — 10 sections: hero (12-col text 5/visual 7, haldi paint-brush-stroke field behind + product group image-handoff + indian-cow at opacity 0.16) → material-statement (5/7 cow + limewashed wall) → distemper product-chapter (cool env, ghost "DISTEMPER" type at opacity 0.05) → emulsion product-chapter (warm env, reversed, ghost "EMULSION") → material-flow (full-width material-to-wall diagram + 5-step list) → ashta-section (60/40 split, seal + numbered list) → colours-section (indian-courtyard with `id="courtyard-wall-plane"` recolourable + 6 swatches) → mission-band (forest-deep bg + rural-landscape at opacity 0.15) → calc-teaser (split with mini project-summary) → pathways-section (shared rural-landscape + 4 ruled columns). Inline bridge script copies data-benefit → data-ashta-node on the seal SVG nodes and recolours the courtyard `<rect>` on swatch click.
+   - **productsBody(depth)** — products-hero (45/55 with group image-handoff) → distemper product-chapter → emulsion product-chapter (reversed) → spec-matrix-section (3-column ruled comparison, no outer card) + coverage disclaimer → benefits-strip (numbered typographic list, no 8 cards) → faq-section (consumed here per spec) → why-cta forest band.
+   - **distemperBody(depth)** — `.product-detail--cool` env. Hero: copy 5 / product 7 (image-handoff with prakritik-distemper-bucket fallback, ghost "01" at opacity 0.12 indigo). spec-sheet (7 numbered ruled rows 01-07, single-column override). coverage-disclaimer with indigo border-left. ashta-section (seal + numbered list with data-ashta-node). distemper-cta cross-link to Emulsion. Inline bridge script.
+   - **emulsionBody(depth)** — `.product-detail--warm` env. Hero REVERSED: product 7 left / copy 5 right (CSS order: 1, 2). Ghost "02" at opacity 0.18 leaf. spec-sheet (same 7-row system). coverage-disclaimer with leaf border-left. ashta-section. emulsion-cta cross-link to Distemper. Inline bridge script.
+   - **whyPrakritikBody(depth)** — why-hero (cow + limewashed wall art) + 6 numbered chapters each visually distinct: 01 MATERIAL (physical material sample graphic with mitti gradient + grain) → 02 TRADITION (large indian-courtyard, reversed) → 03 MATERIAL TO WALL (full-width material-to-wall diagram + 5-step list) → 04 ASHTA (full-size ashta-laabh-seal + numbered list) → 05 FORMATS (two real product image-handoff cards with pack-size captions) → 06 CONTEXT (rural-landscape band with annotation pill). CTA "Explore Products" → /products/ + "About Gaurikrit" → /about/. Inline bridge script.
+   - **aboutBody(depth)** — about-hero (identity + product group image-handoff) → about-section "Who we are" (legal identity) → about-products-section (2 product cards with image-handoff) → about-direction-section (cow + limewashed wall composition) → about-mission band (forest-deep bg + rural-landscape at opacity 0.15) → company-plate-section (modern ledger ruled rows: Legal name / Brand name / GSTIN / Email / Phone ×2 / Registered address). CTAs "Talk to Us" + "For Business".
+   - **forBusinessBody(depth)** — biz-hero (text 5 / architectural-elevation 7, no floating paint blob) → biz-audiences-section (shared rural-landscape at opacity 0.5 + 4 ruled audience-card columns) → biz-practical-section ("When you enquire, it helps to include" with 5-item ruled list) → biz-form-section (12-col 4fr/8fr layout: left aside with heading + help-cta + biz-aside-card phone/email/location plate, right biz-form-card with 9 form fields). Static fallback: form action = `https://formspree.io/f/your-form-id`, no csrf_field() or honeypot (per task spec — comment notes Formspree replacement).
+   - **paintCalculatorBody(depth)** — calc-hero (eyebrow + H1 "Planning to paint?" + sub) → calculator-page (42/58 split: sticky calculator-wall-scene SVG left + 4-step calculator mount right). Inline `<script type="application/json" id="calculator-config">{"enabled":false}</script>` per task spec — calculator.js reads this and builds the 4-step UI client-side. calc-helper aside at the bottom with "Talk to Us" + "Explore Products" buttons.
+   - **downloadsBody(depth)** — dl-hero → downloads-split (6/6). Left: dl-cover (haldi gradient bg, image-handoff for brochure cover, fallback "PRAKRITIK PAINT BROCHURE" wordmark, gaurikrit-cow-mark seal + devanagari + wordmark + italic title + legal-name footer). Right: dl-card with data-brochure-state="missing" (static site can't is_file() at build time) — shows "Brochure pending" + "Contact Gaurikrit for the current product brochure" CTA + checked-path display. data-brochure-if-available hidden (JS brochure-detection module can flip via HEAD fetch if hosted where the PDF is present).
+   - **contactBody(depth)** — contact-hero (text-only, no big architectural illustration) → contact-section (5/7 split: left aside with contact-info ruled plate — Legal name / GSTIN / Email / Phone ×2 / Address — and "For Business" + "Estimate Your Project" buttons; right contact-form with 5 form fields name/phone/email/interest(6 options)/message). Static fallback: form action = `https://formspree.io/f/your-form-id`, no csrf_field() or honeypot per task spec.
+   - **error404Body(depth)** — error-page section with field-botanicals bg at opacity 0.08 + gaurikrit-cow-mark seal + "404" big display + devanagari + H1 "This wall hasn't been painted yet." + sub + "Back to Home" + "Explore Products" CTAs.
+
+5. **PAGES array** — updated pageMeta titles + descriptions + pageClass for each route to mirror the V3 PHP page metadata exactly:
+   - index.html → "Gaurikrit Bio Products — Prakritik Paint & Bio Products" / pageClass: 'home'
+   - products/index.html → "Prakritik Paint Products — Distemper & Emulsion | Gaurikrit" / pageClass: 'products'
+   - products/prakritik-distemper/index.html → "Prakritik Distemper Paint — Cow Dung-Based | Gaurikrit" / pageClass: 'product-distemper'
+   - products/prakritik-emulsion/index.html → "Prakritik Emulsion Paint — Cow Dung-Based | Gaurikrit" / pageClass: 'product-emulsion'
+   - why-prakritik/index.html → "Why Prakritik Paint — An Old Material, Reconsidered | Gaurikrit" / pageClass: 'why-prakritik'
+   - about/index.html → "About Gaurikrit Bio Products — Nature. Culture. Useful materials." / pageClass: 'about'
+   - for-business/index.html → "For Business — Architects, Builders, CSR, NGOs, Gaushalas | Gaurikrit" / pageClass: 'for-business'
+   - paint-calculator/index.html → "Paint Calculator — Estimate Your Project | Gaurikrit" / pageClass: 'paint-calculator'
+   - downloads/index.html → "Downloads — Prakritik Paint Brochure | Gaurikrit" / pageClass: 'downloads'
+   - contact/index.html → "Talk to Gaurikrit — Contact | Gaurikrit Bio Products" / pageClass: 'contact'
+   - 404.html → "404 — This wall hasn't been painted yet | Gaurikrit" / pageClass: 'error-404'
+
+6. **build() orchestration** — preserved. Same flow: clean OUT → loop PAGES → generate 404.html → copy CSS + 7 JS files to docs/assets/ → write .nojekyll → write robots.txt → write sitemap.xml. Updated console.log prefixes to "STATIC-BUILD (V3):" so the new run is distinguishable in logs.
+
+Run + verification:
+- `cd /home/z/my-project && bun run build-static.mjs` — exited 0, wrote 11 HTML files + copied app.css + 7 JS modules + .nojekyll + robots.txt + sitemap.xml.
+- File sizes (bytes): index.html 146906, products/index.html 49992, distemper 42040, emulsion 42386, why-prakritik 105042, about 62072, for-business 49406, paint-calculator 39748, downloads 27103, contact 24244, 404.html 26705.
+- Verified: no PHP syntax in any output (`<?php`, `<?=`, `?>` — 0 matches across all 11 files).
+- Verified: V3 illustration names appear in correct pages — material-to-wall + ashta-laabh-seal + indian-cow + indian-courtyard + rural-landscape + paint-brush-stroke all inlined as SVG content (correct viewBoxes: 1600×500 material-to-wall, 1000×600 indian-cow, 1440×850 indian-courtyard with `id="courtyard-wall-plane"`, 600×600 ashta-laabh-seal with 8 `data-benefit` nodes, 1600×280 rural-landscape, 1200×700 architectural-elevation in for-business, 800×600 calculator-wall-scene in paint-calculator).
+- Verified: no references to deleted illustrations (material-journey SVG file, ashta-laabh-diagram SVG file — 0 matches; the only `material-journey` references are CSS class names like `material-journey__svg` and `material-journey__steps` which are the V3 legacy CSS aliases kept by app.css for the inline SVG class attribute and the ordered list — same as the PHP source).
+- Verified: relative paths correct at each depth — depth 0 (index.html, 404.html) uses `./assets/...`, depth 1 (about/, contact/, etc.) uses `../assets/...`, depth 2 (products/prakritik-distemper/, products/prakritik-emulsion/) uses `../../assets/...`. All internal `<a href>` links use relUrl() so they resolve correctly under GitHub Pages subdirectory serving.
+- Verified: inline JSON calculator config is `{"enabled":false}` per task spec — calculator.js reads this and builds the 4-step UI client-side.
+- Verified: forms on /contact/ and /for-business/ have `action="https://formspree.io/f/your-form-id"` placeholder, no csrf_field() hidden input, no honeypot field — per task spec for static fallback. HTML comments note "Replace the action URL with your Formspree form ID for static deployment".
+- Verified: downloads/index.html has `data-brochure-state="missing"` with `data-brochure-if-missing` block visible (the brochure pending message + Contact CTA + checked path display) and `data-brochure-if-available` block hidden — static-correct behaviour since the brochure PDF is_file() check can't run at static build time.
+- Verified: shared chrome (site-header with brand-mark + gaurikrit-cow-mark fallback SVG, mobile-menu, site-footer with NAV loop + phones + bottom bar, back-to-top, toast region, 7 module scripts in correct order) present on all 11 pages.
+- Verified: sitemap.xml lists all 10 main routes with lastmod = today's date. robots.txt allows all + points at sitemap. .nojekyll file present (0 bytes — tells GitHub Pages to skip Jekyll processing).
+- Verified: home page contains 10 sections (hero, material-statement, distemper product-chapter, emulsion product-chapter, material-flow, ashta-section, colours-section, mission-band, calc-teaser, pathways-section) + inline bridge script. Why-prakritik page contains 6 numbered chapters (01–06). About page contains 5 sections + company-plate. For-business contains hero + audiences + practical + form. Paint-calculator contains hero + 42/58 split with sticky visual. Downloads contains hero + 6/6 split. Contact contains hero + 5/7 section. 404 contains branded error page with field-botanicals + cow-mark seal.
+
+Files (all rewritten in place):
+- /home/z/my-project/build-static.mjs — fully rewritten, 11 page body functions + PAGES array pageMeta updated to mirror V3 PHP source.
+- /home/z/my-project/docs/ — regenerated, 11 HTML files + assets/css/app.css + 7 JS modules in assets/js/ + .nojekyll + robots.txt + sitemap.xml.
+
+Stage Summary:
+- The static site in /home/z/my-project/docs/ now mirrors the V3 PHP site composition exactly: 12-column editorial grid layouts (5fr/7fr, 45fr/55fr, 42fr/58fr, 4fr/8fr, 6fr/6fr), product chapters (not cards) with ghost oversized type at 0.05 opacity, ruled spec-matrix rows, large illustrations (material-to-wall full-width diagram, indian-courtyard recolourable wall plane, ashta-laabh-seal with 8 data-benefit nodes, architectural-elevation hero, calculator-wall-scene sticky visual), numbered ashta list (no card backgrounds), ruled pathway columns, company-plate ledger, downloads split with image-handoff brochure cover, contact section with ruled plate + form, branded 404 with field-botanicals accent. All paths relative for GitHub Pages subdirectory serving. All forms have Formspree placeholder action (no CSRF/honeypot for static). Calculator carries inline `{"enabled":false}` JSON config so calculator.js builds the 4-step UI client-side. All V3 illustration names used (material-to-wall, ashta-laabh-seal, architectural-elevation, calculator-wall-scene, indian-cow, indian-courtyard, rural-landscape, paint-brush-stroke, field-botanicals, gaurikrit-cow-mark, prakritik-distemper-bucket, prakritik-emulsion-bucket) — no references to deleted material-journey or ashta-laabh-diagram SVG files. Inline bridge scripts on home + why-prakritik + distemper + emulsion pages copy data-benefit → data-ashta-node so the ashta-laabh.js module can drive the seal's `:has()` CSS. Home page also has the courtyard `<rect>` recolour bridge.

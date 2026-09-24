@@ -4,19 +4,19 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="../../assets/brand/gaurikrit-logo-mark.png" type="image/png" onerror="this.onerror=null;this.href='../../assets/brand/gaurikrit-mark-temp.svg'">
-    <title>Prakritik Emulsion Paint — Gaurikrit Bio Products</title>
-    <meta name="description" content="Prakritik Emulsion Paint — eco-friendly cow dung paint. White, matt finish, 4 hrs drying time, 300 sq.ft. coverage, interior and exterior use. 1, 4, 10 and 20 litre packaging.">
+    <title>Prakritik Emulsion Paint — Cow Dung-Based | Gaurikrit</title>
+    <meta name="description" content="Prakritik Emulsion Paint: cow dung-based, matt finish, 1-20 litre packs, 300 sq.ft.** coverage, Interior &amp; Exterior usage. From Gaurikrit Bio Products, Khurja, Uttar Pradesh.">
     <link rel="canonical" href="https://hello-aditya-dev.github.io/gaurikrit-website/products/prakritik-emulsion/">
     <meta name="robots" content="index, follow">
-    <meta property="og:title" content="Prakritik Emulsion Paint — Gaurikrit Bio Products">
-    <meta property="og:description" content="Prakritik Emulsion Paint — eco-friendly cow dung paint. White, matt finish, 4 hrs drying time, 300 sq.ft. coverage, interior and exterior use. 1, 4, 10 and 20 litre packaging.">
+    <meta property="og:title" content="Prakritik Emulsion Paint — Cow Dung-Based | Gaurikrit">
+    <meta property="og:description" content="Prakritik Emulsion Paint: cow dung-based, matt finish, 1-20 litre packs, 300 sq.ft.** coverage, Interior &amp; Exterior usage. From Gaurikrit Bio Products, Khurja, Uttar Pradesh.">
     <meta property="og:url" content="https://hello-aditya-dev.github.io/gaurikrit-website/products/prakritik-emulsion/">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Gaurikrit Bio Products">
     <meta property="og:image" content="https://hello-aditya-dev.github.io/gaurikrit-website/assets/brand/gaurikrit-logo-mark.png">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Prakritik Emulsion Paint — Gaurikrit Bio Products">
-    <meta name="twitter:description" content="Prakritik Emulsion Paint — eco-friendly cow dung paint. White, matt finish, 4 hrs drying time, 300 sq.ft. coverage, interior and exterior use. 1, 4, 10 and 20 litre packaging.">
+    <meta name="twitter:title" content="Prakritik Emulsion Paint — Cow Dung-Based | Gaurikrit">
+    <meta name="twitter:description" content="Prakritik Emulsion Paint: cow dung-based, matt finish, 1-20 litre packs, 300 sq.ft.** coverage, Interior &amp; Exterior usage. From Gaurikrit Bio Products, Khurja, Uttar Pradesh.">
     <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -192,112 +192,73 @@
 
     <main id="main" class="site-main">
 <style>
-  .emulsion-detail { padding-top: calc(var(--header-h) + 2rem); background: linear-gradient(180deg, var(--bg) 0%, var(--haldi-light) 100%); }
-  .breadcrumb { font-size: 0.8125rem; color: var(--fg-muted); margin-bottom: 1.5rem; padding-top: 0.5rem; }
-  .breadcrumb a { color: var(--primary); }
-  .breadcrumb a:hover { text-decoration: underline; }
-  .breadcrumb span { color: var(--fg-muted); margin: 0 0.375rem; }
+  /* ===== HERO — REVERSED (product left, copy right — warm env) ===== */
+  .product-detail { padding-bottom: clamp(3rem, 6vw, 5rem); }
+  .product-detail__hero {
+    display: grid; gap: 2rem; padding-top: calc(var(--header-h) + 2rem);
+    padding-bottom: 2rem; align-items: center;
+  }
+  @media (min-width: 1024px) {
+    .product-detail__hero {
+      grid-template-columns: 7fr 5fr; gap: clamp(2.5rem, 5vw, 4rem);
+    }
+    /* Reversed: product is the first child, on the left. */
+    .product-detail--warm .product-detail__hero > :first-child { order: 1; }
+    .product-detail--warm .product-detail__hero > :last-child  { order: 2; }
+  }
+  .product-detail__media {
+    position: relative; aspect-ratio: 1;
+    background: linear-gradient(160deg, var(--paper), var(--paper-warm));
+    border: 1px solid var(--border); border-top: 3px solid var(--leaf);
+    border-radius: var(--r-panel); overflow: hidden;
+    min-height: 22rem;
+  }
+  @media (min-width: 1024px) { .product-detail__media { min-height: 30rem; } }
+  .product-detail__media .product-media { width: 100%; height: 100%; }
+  .product-detail__media .product-media__official { object-fit: contain; padding: 2.5rem; }
+  .product-detail__media .product-media__fallback { padding: 2rem; }
+  .product-detail__media__num {
+    position: absolute; top: 1rem; right: 1.25rem;
+    font-family: var(--font-display); font-size: clamp(3rem, 8vw, 5rem);
+    font-weight: 700; color: var(--leaf); opacity: 0.18;
+    line-height: 1; pointer-events: none;
+  }
+  .product-detail__info { display: flex; flex-direction: column; gap: 0.75rem; }
+  .product-detail__name { margin-top: 0.5rem; }
+  .product-detail__descriptor { color: var(--leaf); }
 
-  /* HERO — REVERSED: image RIGHT, text LEFT (opposite of Distemper) */
-  .emulsion-hero { display: grid; gap: 2rem; align-items: center; padding-bottom: clamp(2rem, 4vw, 3rem); border-bottom: 1px solid var(--haldi-deep); }
-  @media (min-width: 1024px) { .emulsion-hero { grid-template-columns: 1fr 1fr; gap: 4rem; } }
-  .emulsion-hero__eyebrow { font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--haldi-deep); }
-  .emulsion-hero__name { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.05; letter-spacing: -0.02em; margin-top: 0.75rem; }
-  .emulsion-hero__descriptor { margin-top: 0.5rem; font-size: clamp(1rem, 2vw, 1.25rem); color: var(--geru); font-weight: 600; }
-  .emulsion-hero__body { margin-top: 1rem; color: var(--fg-muted); line-height: 1.65; max-width: 36rem; }
-  .emulsion-hero__chips { margin-top: 1.5rem; display: flex; flex-wrap: wrap; gap: 0.5rem; }
-  .emulsion-hero__chip { padding: 0.3125rem 0.875rem; border-radius: var(--radius-full); background: var(--bg-card); border: 1px solid var(--haldi-deep); font-size: 0.75rem; font-weight: 600; color: var(--haldi-deep); }
-  .emulsion-hero__cta-row { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 0.75rem; }
+  /* ===== SPEC SHEET ===== */
+  .emulsion-specs-section { padding-block: clamp(3rem, 6vw, 5rem); }
+  .spec-sheet__head { margin-bottom: 1.5rem; }
+  .spec-sheet__list { grid-template-columns: 1fr; }
 
-  /* MEDIA on the RIGHT — reverse grid order */
-  .emulsion-hero > :first-child { order: 2; }
-  @media (min-width: 1024px) { .emulsion-hero > :first-child { order: 0; } }
-  .emulsion-hero__media { position: relative; aspect-ratio: 1; background: var(--bg-card); border: 1px solid var(--haldi-deep); border-top: 4px solid var(--haldi); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-haldi); }
-  .emulsion-hero__media .product-media { width: 100%; height: 100%; }
-  .emulsion-hero__media .product-media__official { object-fit: contain; padding: 3rem; }
-  .emulsion-hero__media .product-media__fallback { padding: 2.5rem; }
-  .emulsion-hero__media__num { position: absolute; top: 1rem; right: 1.25rem; font-family: var(--font-display); font-size: 4rem; font-weight: 700; color: var(--haldi-deep); opacity: 0.22; line-height: 1; }
-  .emulsion-hero__media__leaf { position: absolute; left: -0.5rem; bottom: -0.5rem; width: 4rem; height: 4rem; opacity: 0.65; pointer-events: none; }
+  /* ===== COVERAGE DISCLAIMER ===== */
+  .coverage-disclaimer { margin-top: 2rem; border-left-color: var(--leaf); }
 
-  /* SPEC SHEET — horizontal row cards (different from Distemper's numbered list) */
-  .spec-sheet { padding-block: clamp(3rem, 6vw, 5rem); }
-  .spec-sheet__head { margin-bottom: 2.5rem; max-width: 48rem; }
-  .spec-sheet__eyebrow { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--haldi-deep); }
-  .spec-sheet__title { font-family: var(--font-display); font-size: clamp(1.75rem, 4vw, 2.5rem); margin-top: 0.75rem; letter-spacing: -0.02em; }
-  .spec-sheet__grid { display: grid; gap: 1rem; }
-  @media (min-width: 640px) { .spec-sheet__grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (min-width: 1024px) { .spec-sheet__grid { grid-template-columns: repeat(4, 1fr); } }
-  .spec-card { padding: 1.5rem; background: var(--bg-card); border: 1px solid var(--border); border-bottom: 3px solid var(--haldi); border-radius: var(--radius); display: flex; flex-direction: column; gap: 0.375rem; }
-  .spec-card__num { font-family: var(--font-display); font-size: 0.75rem; font-weight: 700; color: var(--haldi-deep); }
-  .spec-card__label { font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--fg-muted); }
-  .spec-card__value { font-family: var(--font-display); font-size: 1.375rem; font-weight: 700; color: var(--fg); line-height: 1.15; }
-  .spec-card__note { font-size: 0.75rem; color: var(--fg-muted); line-height: 1.5; margin-top: 0.25rem; }
-
-  .disclaimer-card { padding: 1.25rem 1.5rem; background: var(--bg-card); border-left: 3px solid var(--haldi-deep); border-radius: var(--radius); font-size: 0.8125rem; color: var(--fg-muted); line-height: 1.65; margin-top: 2rem; }
-
-  /* ASHTA LAABH — radial + side list (different from Distemper's 4-col grid) */
-  .emulsion-ashta { padding-block: clamp(3rem, 6vw, 5rem); background: var(--bg-card); }
-  .emulsion-ashta__head { text-align: center; max-width: 48rem; margin-inline: auto; margin-bottom: 2.5rem; }
-  .emulsion-ashta__deva { font-family: var(--font-deva); font-weight: 700; font-size: clamp(1.75rem, 4vw, 2.5rem); color: var(--haldi-deep); }
-  .emulsion-ashta__title { font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2rem); margin-top: 0.5rem; }
-  .emulsion-ashta__grid { display: grid; gap: 2rem; align-items: center; }
-  @media (min-width: 1024px) { .emulsion-ashta__grid { grid-template-columns: 1fr 1fr; } }
-  .emulsion-ashta__diagram { max-width: 28rem; margin-inline: auto; width: 100%; aspect-ratio: 1; }
-  .emulsion-ashta__diagram svg { width: 100%; height: 100%; }
-  .emulsion-ashta__list { display: grid; gap: 0.625rem; }
-  .emulsion-ashta__item { padding: 0.875rem 1.125rem; background: var(--bg); border-left: 3px solid var(--haldi); border-radius: var(--radius); display: grid; grid-template-columns: 2rem 1fr auto; gap: 0.75rem; align-items: center; cursor: pointer; transition: background var(--dur), border-color var(--dur), transform var(--dur); }
-  .emulsion-ashta__item:hover, .emulsion-ashta__item:focus-visible, .emulsion-ashta__item[data-active="true"] { background: oklch(0.82 0.14 82 / 0.12); border-left-color: var(--forest); transform: translateX(2px); outline: none; }
-  .emulsion-ashta__item:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
-  .emulsion-ashta__num { font-family: var(--font-display); font-size: 0.75rem; font-weight: 700; color: var(--haldi-deep); }
-  .emulsion-ashta__name { font-weight: 600; font-size: 0.9375rem; }
-  .emulsion-ashta__deva { font-family: var(--font-deva); font-size: 0.8125rem; color: var(--fg-muted); }
-
-  /* CTA + CROSS-LINK */
-  .emulsion-cta { padding-block: clamp(3rem, 6vw, 5rem); }
-  .emulsion-cta__inner { display: grid; gap: 1.5rem; padding: clamp(1.75rem, 4vw, 3rem); background: linear-gradient(135deg, var(--haldi-light), var(--haldi)); border-radius: var(--radius-lg); box-shadow: var(--shadow-haldi); color: var(--charcoal); }
-  @media (min-width: 768px) { .emulsion-cta__inner { grid-template-columns: 1.4fr 1fr; gap: 2.5rem; align-items: center; } }
-  .emulsion-cta__title { font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2rem); letter-spacing: -0.02em; }
-  .emulsion-cta__body { margin-top: 0.75rem; color: oklch(0.30 0.02 50); line-height: 1.65; }
-  .emulsion-cta__actions { display: flex; flex-direction: column; gap: 0.75rem; }
-  .emulsion-cta__actions .btn--primary { background: var(--forest); color: var(--primary-fg); }
-  .emulsion-cta__actions .btn--outline { background: transparent; border-color: var(--forest-deep); color: var(--forest-deep); }
-  .emulsion-cta__cross { padding: 1.25rem; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); }
-  .emulsion-cta__cross-title { font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--fg-muted); }
-  .emulsion-cta__cross-name { font-family: var(--font-display); font-size: 1.125rem; font-weight: 700; margin-top: 0.375rem; }
-  .emulsion-cta__cross-link { margin-top: 0.5rem; display: inline-flex; align-items: center; gap: 0.25rem; font-size: 0.8125rem; font-weight: 600; color: var(--primary); }
-  .emulsion-cta__cross-link:hover { gap: 0.5rem; }
+  /* ===== ASHTA LAABH ===== */
+  .emulsion-ashta-section { padding-block: clamp(3rem, 6vw, 5rem); }
+  .emulsion-ashta-section__head { max-width: 48rem; margin-bottom: 2.5rem; }
 </style>
 
-<section class="emulsion-detail" id="emulsion-detail">
-    <div class="container">
-        <nav class="breadcrumb" aria-label="Breadcrumb">
-            <a href="../../">Home</a><span>›</span>
-            <a href="../../products/">Products</a><span>›</span>
-            Prakritik Emulsion
-        </nav>
+<!-- ===== HERO — REVERSED (warm env) ===== -->
+<section class="product-detail product-detail--warm" aria-labelledby="emulsion-title">
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="../../">Home</a><span>›</span>
+      <a href="../../products/">Products</a><span>›</span>
+      <span>Prakritik Emulsion</span>
+    </nav>
 
-        <!-- HERO (REVERSED: image right, text left) -->
-        <div class="emulsion-hero" data-reveal>
-            <div class="emulsion-hero__lockup">
-                <span class="emulsion-hero__eyebrow">Prakritik Paint</span>
-                <h1 class="emulsion-hero__name">Prakritik Emulsion Paint</h1>
-                <div class="emulsion-hero__descriptor">Eco-Friendly Cow Dung Paint</div>
-                <p class="emulsion-hero__body">A liquid cow dung-based paint format. White, matt, and suitable for interior and exterior walls — the warmer half of the Prakritik range.</p>
-                <div class="emulsion-hero__chips">
-                    <span class="emulsion-hero__chip">1, 4, 10 &amp; 20 litre</span>
-                    <span class="emulsion-hero__chip">Matt finish</span>
-                    <span class="emulsion-hero__chip">Interior &amp; Exterior</span>
-                </div>
-                <div class="emulsion-hero__cta-row">
-                    <a href="../../contact/?interest=prakritik-emulsion" class="btn btn--primary btn--lg">Enquire About Emulsion</a>
-                    <a href="../../paint-calculator/" class="btn btn--outline btn--lg">Estimate Your Project</a>
-                </div>
-            </div>
-            <div class="emulsion-hero__media">
-                <span class="emulsion-hero__media__num" aria-hidden="true">02</span>
-                <div class="product-media" data-official-image="../../assets/products/prakritik-emulsion.png">
-                    <img class="product-media__official" src="../../assets/products/prakritik-emulsion.png" alt="Prakritik Emulsion Paint" width="640" height="640">
-                    <div class="product-media__fallback"><svg viewBox="0 0 220 300" xmlns="http://www.w3.org/2000/svg"
+    <div class="product-detail__hero" data-reveal>
+      <div class="product-detail__media">
+        <span class="product-detail__media__num" aria-hidden="true">02</span>
+        <div class="product-media" data-official-image="../../assets/products/prakritik-emulsion.png">
+          <img class="product-media__official"
+               src="../../assets/products/prakritik-emulsion.png"
+               alt="Prakritik Emulsion Paint pack"
+               width="800" height="800" loading="eager" decoding="async">
+          <div class="product-media__fallback">
+            <svg viewBox="0 0 220 300" xmlns="http://www.w3.org/2000/svg"
      class=""
      role="img" aria-hidden="true"
      preserveAspectRatio="xMidYMid meet"
@@ -404,482 +365,437 @@
   <ellipse cx="110" cy="276" rx="56" ry="3"
            fill="var(--forest)" opacity="0.08"/>
 
-</svg></div>
-                </div>
-                <div class="emulsion-hero__media__leaf" aria-hidden="true"><svg viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg"
+</svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-detail__info">
+        <span class="emulsion-hero__eyebrow">Format 02 — Emulsion</span>
+        <h1 class="product-detail__name" id="emulsion-title">Prakritik Emulsion Paint</h1>
+        <p class="product-detail__descriptor">Eco-Friendly Cow Dung Paint</p>
+        <p class="emulsion-hero__body">
+          A liquid-format cow dung-based paint, brushed on interior and exterior
+          walls. Supplied in 1, 4, 10 &amp; 20 litre packs.
+        </p>
+        <div class="emulsion-hero__cta-row">
+          <a class="btn btn--primary btn--lg"
+             href="../../contact/?interest=prakritik-emulsion">Enquire About Emulsion</a>
+          <a class="btn btn--outline" href="../../products/">View All Products</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SPEC SHEET (numbered 01-07 ruled rows) ===== -->
+<section class="section section--paper emulsion-specs-section" aria-labelledby="specs-title">
+  <div class="container">
+    <div class="spec-sheet__head section-heading section-heading--left" data-reveal>
+      <span class="spec-sheet__eyebrow">Specifications</span>
+      <h2 class="spec-sheet__title" id="specs-title">Product specifications.</h2>
+    </div>
+
+    <dl class="spec-sheet__list" data-reveal>
+        <div class="spec-sheet__item">
+          <span class="spec-sheet__num">01</span>
+          <div>
+            <dt class="spec-sheet__label">Packaging</dt>
+            <dd class="spec-sheet__value">
+              1, 4, 10 &amp; 20 litre
+              <small>1 litre / 4 litre / 10 litre / 20 litre packs</small>
+            </dd>
+          </div>
+        </div>
+        <div class="spec-sheet__item">
+          <span class="spec-sheet__num">02</span>
+          <div>
+            <dt class="spec-sheet__label">Colour</dt>
+            <dd class="spec-sheet__value">
+              White
+            </dd>
+          </div>
+        </div>
+        <div class="spec-sheet__item">
+          <span class="spec-sheet__num">03</span>
+          <div>
+            <dt class="spec-sheet__label">Finish</dt>
+            <dd class="spec-sheet__value">
+              Matt
+            </dd>
+          </div>
+        </div>
+        <div class="spec-sheet__item">
+          <span class="spec-sheet__num">04</span>
+          <div>
+            <dt class="spec-sheet__label">Drying time</dt>
+            <dd class="spec-sheet__value">
+              4 hrs
+            </dd>
+          </div>
+        </div>
+        <div class="spec-sheet__item">
+          <span class="spec-sheet__num">05</span>
+          <div>
+            <dt class="spec-sheet__label">Coverage</dt>
+            <dd class="spec-sheet__value">
+              300 sq.ft.**
+              <small>** Actual coverage may vary from mentioned coverage due to factors such as method, condition of application surface, roughness and porosity.</small>
+            </dd>
+          </div>
+        </div>
+        <div class="spec-sheet__item">
+          <span class="spec-sheet__num">06</span>
+          <div>
+            <dt class="spec-sheet__label">V.O.C.</dt>
+            <dd class="spec-sheet__value">
+              Negligible
+            </dd>
+          </div>
+        </div>
+        <div class="spec-sheet__item">
+          <span class="spec-sheet__num">07</span>
+          <div>
+            <dt class="spec-sheet__label">Usage</dt>
+            <dd class="spec-sheet__value">
+              Interior &amp; Exterior
+            </dd>
+          </div>
+        </div>
+    </dl>
+
+    <p class="coverage-disclaimer" data-reveal>
+      <span class="coverage-disclaimer__label">Coverage note</span>
+      <span class="coverage-disclaimer__text">Actual coverage may vary from mentioned coverage due to factors such as method, condition of application surface, roughness and porosity.</span>
+    </p>
+  </div>
+</section>
+
+<!-- ===== ASHTA LAABH ===== -->
+<section class="section section--limewash emulsion-ashta-section" aria-labelledby="emulsion-ashta-title" data-ashta-laabh>
+  <div class="container">
+    <div class="emulsion-ashta-section__head section-heading section-heading--left" data-reveal>
+      <span class="section-heading__eyebrow">अष्ट लाभ — Eight benefits</span>
+      <h2 class="section-heading__title" id="emulsion-ashta-title">Ashta Laabh.</h2>
+      <p class="section-heading__desc">
+        Client-supplied product benefits, not independently tested claims.
+      </p>
+    </div>
+
+    <div class="ashta-section__grid" data-reveal>
+      <div class="ashta-section__seal">
+        <svg viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg"
      class=""
      role="img" aria-hidden="true"
      preserveAspectRatio="xMidYMid meet"
      width="100%" height="100%">
-  <title>Field botanicals</title>
-
-  <g fill="none" stroke="var(--forest)"
-     stroke-width="1.2" stroke-linecap="round"
-     stroke-linejoin="round">
-
-    <!-- ===== SPECIMEN 1: GRASS SPRIG (left) ===== -->
-    <!-- Main stem — long, slightly curving -->
-    <path d="M 40 200 L 40 60" stroke-width="1.3"/>
-
-    <!-- Long curved blades — alternate along the stem -->
-    <path d="M 40 180 C 28 175, 22 165, 26 152
-             C 36 162, 42 172, 40 180 Z"
-          stroke-width="1.1"/>
-    <path d="M 40 155 C 52 150, 58 140, 54 127
-             C 44 137, 38 147, 40 155 Z"
-          stroke-width="1.1"/>
-    <path d="M 40 130 C 28 125, 22 115, 26 102
-             C 36 112, 42 122, 40 130 Z"
-          stroke-width="1.1"/>
-    <path d="M 40 105 C 52 100, 58 90, 54 77
-             C 44 87, 38 97, 40 105 Z"
-          stroke-width="1.1"/>
-    <!-- Small upper leaf -->
-    <path d="M 40 80 C 35 75, 36 67, 42 61
-             C 40 71, 40 75, 40 80 Z"
-          stroke-width="1"/>
-    <!-- Tip — slender awn -->
-    <path d="M 40 60 C 38 56, 40 50, 44 48"
-          stroke-width="1.1"/>
-
-    <!-- Leaf vein accents — subtle interior lines on the larger blades -->
-    <path d="M 40 178 C 34 170, 30 162, 28 156"
-          stroke-width="0.7" opacity="0.45"/>
-    <path d="M 40 128 C 34 120, 30 112, 28 106"
-          stroke-width="0.7" opacity="0.45"/>
-
-    <!-- Root suggestion — three small marks at the base -->
-    <path d="M 40 200 L 38 207" stroke-width="0.9" opacity="0.55"/>
-    <path d="M 40 200 L 42 207" stroke-width="0.9" opacity="0.55"/>
-    <path d="M 40 200 L 40 209" stroke-width="0.9" opacity="0.55"/>
-
-
-    <!-- ===== SPECIMEN 2: LEAFY BRANCH (center) ===== -->
-    <!-- Main stem — taller -->
-    <path d="M 110 200 L 110 50" stroke-width="1.3"/>
-
-    <!-- Side branch offshoots — alternate, short -->
-    <path d="M 110 175 L 100 168" stroke-width="1"/>
-    <path d="M 110 150 L 122 142" stroke-width="1"/>
-    <path d="M 110 125 L 100 118" stroke-width="1"/>
-    <path d="M 110 100 L 122 92" stroke-width="1"/>
-    <path d="M 110 75 L 100 68" stroke-width="1"/>
-
-    <!-- Leaves — alternate along stem, curved teardrop shapes -->
-    <path d="M 110 175 C 92 170, 84 162, 88 150
-             C 100 162, 108 170, 110 175 Z"
-          stroke-width="1.1"/>
-    <path d="M 110 150 C 128 145, 136 137, 132 125
-             C 120 137, 112 145, 110 150 Z"
-          stroke-width="1.1"/>
-    <path d="M 110 125 C 92 120, 84 112, 88 100
-             C 100 112, 108 120, 110 125 Z"
-          stroke-width="1.1"/>
-    <path d="M 110 100 C 128 95, 136 87, 132 75
-             C 120 87, 112 95, 110 100 Z"
-          stroke-width="1.1"/>
-    <path d="M 110 75 C 95 70, 90 62, 95 54
-             C 105 64, 110 70, 110 75 Z"
-          stroke-width="1"/>
-
-    <!-- Leaf veins on alternate leaves -->
-    <path d="M 110 173 C 100 165, 94 159, 88 153"
-          stroke-width="0.7" opacity="0.45"/>
-    <path d="M 110 148 C 120 140, 126 134, 132 128"
-          stroke-width="0.7" opacity="0.45"/>
-    <path d="M 110 123 C 100 115, 94 109, 88 103"
-          stroke-width="0.7" opacity="0.45"/>
-    <path d="M 110 98 C 120 90, 126 84, 132 78"
-          stroke-width="0.7" opacity="0.45"/>
-
-    <!-- Tip bud — small terminal leaf -->
-    <path d="M 110 50 C 106 46, 110 40, 114 42
-             C 114 46, 112 50, 110 50 Z"
-          stroke-width="1.1"/>
-
-
-    <!-- ===== SPECIMEN 3: SEED HEAD (right) ===== -->
-    <!-- Stem -->
-    <path d="M 180 200 L 180 95" stroke-width="1.3"/>
-
-    <!-- Lower leaves at base — paired -->
-    <path d="M 180 165 C 168 161, 164 153, 168 143
-             C 176 153, 180 161, 180 165 Z"
-          stroke-width="1.1"/>
-    <path d="M 180 165 C 192 161, 196 153, 192 143
-             C 184 153, 180 161, 180 165 Z"
-          stroke-width="1.1"/>
-
-    <!-- Mid leaves — smaller, slightly higher up -->
-    <path d="M 180 135 C 170 131, 166 125, 170 117
-             C 178 125, 180 131, 180 135 Z"
-          stroke-width="1"/>
-    <path d="M 180 135 C 190 131, 194 125, 190 117
-             C 182 125, 180 131, 180 135 Z"
-          stroke-width="1"/>
-
-    <!-- SEED HEAD — oval cluster shape -->
-    <ellipse cx="180" cy="80" rx="9" ry="18"
-             stroke-width="1.3"/>
-
-    <!-- AWNS — long thin bristles out the top of the seed head -->
-    <g stroke-width="0.8" opacity="0.7">
-      <path d="M 174 65 C 172 58, 172 50, 174 44"/>
-      <path d="M 180 65 L 180 40"/>
-      <path d="M 186 65 C 188 58, 188 50, 186 44"/>
-      <path d="M 170 68 C 166 62, 162 56, 160 50"/>
-      <path d="M 190 68 C 194 62, 198 56, 200 50"/>
-    </g>
-
-  </g>
-
-  <!-- SEED GRAINS — small filled ellipses inside the seed head for accent -->
-  <g fill="var(--forest)" stroke="none">
-    <ellipse cx="175" cy="72" rx="1.5" ry="2.2"/>
-    <ellipse cx="185" cy="72" rx="1.5" ry="2.2"/>
-    <ellipse cx="180" cy="78" rx="1.5" ry="2.2"/>
-    <ellipse cx="175" cy="84" rx="1.5" ry="2.2"/>
-    <ellipse cx="185" cy="84" rx="1.5" ry="2.2"/>
-    <ellipse cx="180" cy="90" rx="1.5" ry="2.2"/>
-    <ellipse cx="177" cy="96" rx="1.2" ry="1.8"/>
-    <ellipse cx="183" cy="96" rx="1.2" ry="1.8"/>
-  </g>
-
-</svg></div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- SPEC SHEET — 4-col row cards (different from Distemper's 2-col list) -->
-<section class="spec-sheet section--paper" id="spec-sheet" data-reveal>
-    <div class="container">
-        <div class="spec-sheet__head">
-            <span class="spec-sheet__eyebrow">Specification sheet</span>
-            <h2 class="spec-sheet__title">Material specifications.</h2>
-        </div>
-        <div class="spec-sheet__grid" data-reveal-stagger>
-            <div class="spec-card">
-                <span class="spec-card__num">01</span>
-                <span class="spec-card__label">Packaging</span>
-                <span class="spec-card__value">1, 4, 10 &amp; 20 litre</span>
-            </div>
-            <div class="spec-card">
-                <span class="spec-card__num">02</span>
-                <span class="spec-card__label">Colour</span>
-                <span class="spec-card__value">White</span>
-            </div>
-            <div class="spec-card">
-                <span class="spec-card__num">03</span>
-                <span class="spec-card__label">Finish</span>
-                <span class="spec-card__value">Matt</span>
-            </div>
-            <div class="spec-card">
-                <span class="spec-card__num">04</span>
-                <span class="spec-card__label">Drying time</span>
-                <span class="spec-card__value">4 hrs</span>
-            </div>
-            <div class="spec-card">
-                <span class="spec-card__num">05</span>
-                <span class="spec-card__label">Coverage</span>
-                <span class="spec-card__value">300 sq.ft.**</span>
-                <span class="spec-card__note">Actual coverage may vary from mentioned coverage due to factors such as method, condition of application surface, roughness and porosity.</span>
-            </div>
-            <div class="spec-card">
-                <span class="spec-card__num">06</span>
-                <span class="spec-card__label">V.O.C.</span>
-                <span class="spec-card__value">Negligible</span>
-            </div>
-            <div class="spec-card">
-                <span class="spec-card__num">07</span>
-                <span class="spec-card__label">Usage</span>
-                <span class="spec-card__value">Interior &amp; Exterior</span>
-            </div>
-            <div class="spec-card" style="background: var(--secondary-bg);">
-                <span class="spec-card__num">∞</span>
-                <span class="spec-card__label">Also see</span>
-                <a href="../../products/" class="spec-card__value" style="color: var(--primary); font-size: 1.125rem; text-decoration: underline;">Compare both formats</a>
-            </div>
-        </div>
-        <div class="disclaimer-card">
-            <strong>Coverage note —</strong> Actual coverage may vary from mentioned coverage due to factors such as method, condition of application surface, roughness and porosity.
-        </div>
-    </div>
-</section>
-
-<!-- ASHTA LAABH — radial + list -->
-<section class="emulsion-ashta" id="ashta-laabh" data-reveal>
-    <div class="container">
-        <div class="emulsion-ashta__head">
-            <div class="emulsion-ashta__deva" lang="hi">अष्ट लाभ</div>
-            <h2 class="emulsion-ashta__title">Eight benefits presented in Prakritik Paint.</h2>
-        </div>
-        <div class="emulsion-ashta__grid" data-ashta-laabh>
-            <div class="emulsion-ashta__diagram" aria-hidden="true"><svg viewBox="0 0 360 360" xmlns="http://www.w3.org/2000/svg"
-     class=""
-     role="img" aria-hidden="true"
-     preserveAspectRatio="xMidYMid meet"
-     width="100%" height="100%">
-  <title>Eight benefits radial diagram</title>
+  <title>Ashta Laabh seal — eight benefits</title>
 
   <defs>
     <style>
-      /* Base node styles — calm default state */
-      .al-node__dot {
-        fill: var(--paper);
+      /* ===== Default node state ===== */
+      .al-node {
+        opacity: 1;
+        transition: opacity 0.3s ease, transform 0.3s ease;
+      }
+      .al-node__line {
         stroke: var(--forest);
-        stroke-width: 1.5;
-        transition: fill 0.3s ease, stroke-width 0.3s ease, stroke 0.3s ease;
+        stroke-width: 0.85;
+        opacity: 0.45;
+        stroke-linecap: round;
+        transition: stroke 0.3s ease, stroke-width 0.3s ease, opacity 0.3s ease;
       }
       .al-node__num {
         fill: var(--forest);
         font-family: var(--font-display);
-        font-size: 9px;
+        font-size: 18px;
         font-weight: 700;
         text-anchor: middle;
         dominant-baseline: central;
+        letter-spacing: 0.5px;
         transition: fill 0.3s ease;
-        letter-spacing: 0.4px;
       }
-      .al-node__lbl {
-        fill: var(--soft-ink);
+      .al-node__name {
+        fill: var(--forest);
         font-family: var(--font-sans);
-        font-size: 6.5px;
+        font-size: 10px;
         font-weight: 600;
-        letter-spacing: 0.6px;
+        text-anchor: middle;
+        dominant-baseline: central;
+        letter-spacing: 1.2px;
+        text-transform: uppercase;
         opacity: 0.85;
         transition: fill 0.3s ease, opacity 0.3s ease;
-        text-transform: uppercase;
-      }
-      .al-node__connector {
-        stroke: var(--forest);
-        stroke-width: 0.8;
-        opacity: 0.3;
-        stroke-dasharray: 2 3;
-        transition: stroke 0.3s ease, opacity 0.3s ease,
-                    stroke-width 0.3s ease, stroke-dasharray 0.3s ease;
       }
 
-      /* Active state — when the sibling list item with matching
-         data-ashta-node is [data-active="true"], light up the matching
-         SVG node. Uses :has() (modern browsers — Chrome 105+, Safari
-         15.4+, Firefox 121+). On older browsers the SVG renders in its
-         calm default state, which is still perfectly legible. */
-      [data-ashta-laabh]:has([data-ashta-node="al-1"][data-active="true"]) .al-node-1 .al-node__dot,
-      [data-ashta-laabh]:has([data-ashta-node="al-2"][data-active="true"]) .al-node-2 .al-node__dot,
-      [data-ashta-laabh]:has([data-ashta-node="al-3"][data-active="true"]) .al-node-3 .al-node__dot,
-      [data-ashta-laabh]:has([data-ashta-node="al-4"][data-active="true"]) .al-node-4 .al-node__dot,
-      [data-ashta-laabh]:has([data-ashta-node="al-5"][data-active="true"]) .al-node-5 .al-node__dot,
-      [data-ashta-laabh]:has([data-ashta-node="al-6"][data-active="true"]) .al-node-6 .al-node__dot,
-      [data-ashta-laabh]:has([data-ashta-node="al-7"][data-active="true"]) .al-node-7 .al-node__dot,
-      [data-ashta-laabh]:has([data-ashta-node="al-8"][data-active="true"]) .al-node-8 .al-node__dot {
-        fill: var(--haldi);
-        stroke: var(--haldi-deep);
-        stroke-width: 1.8;
+      /* ===== When ANY node is active, dim the other nodes ===== */
+      svg:has(.al-node[data-active="true"]) .al-node:not([data-active="true"]) {
+        opacity: 0.4;
       }
 
-      [data-ashta-laabh]:has([data-ashta-node="al-1"][data-active="true"]) .al-node-1 .al-node__connector,
-      [data-ashta-laabh]:has([data-ashta-node="al-2"][data-active="true"]) .al-node-2 .al-node__connector,
-      [data-ashta-laabh]:has([data-ashta-node="al-3"][data-active="true"]) .al-node-3 .al-node__connector,
-      [data-ashta-laabh]:has([data-ashta-node="al-4"][data-active="true"]) .al-node-4 .al-node__connector,
-      [data-ashta-laabh]:has([data-ashta-node="al-5"][data-active="true"]) .al-node-5 .al-node__connector,
-      [data-ashta-laabh]:has([data-ashta-node="al-6"][data-active="true"]) .al-node-6 .al-node__connector,
-      [data-ashta-laabh]:has([data-ashta-node="al-7"][data-active="true"]) .al-node-7 .al-node__connector,
-      [data-ashta-laabh]:has([data-ashta-node="al-8"][data-active="true"]) .al-node-8 .al-node__connector {
-        stroke: var(--haldi-deep);
-        stroke-width: 1.2;
+      /* ===== Active node — radial line turns haldi, label pops ===== */
+      .al-node[data-active="true"] .al-node__line {
+        stroke: var(--haldi);
+        stroke-width: 1.35;
         opacity: 1;
-        stroke-dasharray: none;
       }
-
-      [data-ashta-laabh]:has([data-ashta-node="al-1"][data-active="true"]) .al-node-1 .al-node__lbl,
-      [data-ashta-laabh]:has([data-ashta-node="al-2"][data-active="true"]) .al-node-2 .al-node__lbl,
-      [data-ashta-laabh]:has([data-ashta-node="al-3"][data-active="true"]) .al-node-3 .al-node__lbl,
-      [data-ashta-laabh]:has([data-ashta-node="al-4"][data-active="true"]) .al-node-4 .al-node__lbl,
-      [data-ashta-laabh]:has([data-ashta-node="al-5"][data-active="true"]) .al-node-5 .al-node__lbl,
-      [data-ashta-laabh]:has([data-ashta-node="al-6"][data-active="true"]) .al-node-6 .al-node__lbl,
-      [data-ashta-laabh]:has([data-ashta-node="al-7"][data-active="true"]) .al-node-7 .al-node__lbl,
-      [data-ashta-laabh]:has([data-ashta-node="al-8"][data-active="true"]) .al-node-8 .al-node__lbl {
+      .al-node[data-active="true"] .al-node__num {
+        fill: var(--forest-deep);
+      }
+      .al-node[data-active="true"] .al-node__name {
         fill: var(--forest);
         opacity: 1;
       }
+
+      /* ===== Active label moves 3px outward along its angle ===== */
+      .al-node-1[data-active="true"] { transform: translate(0px, -3px); }
+      .al-node-2[data-active="true"] { transform: translate(2.12px, -2.12px); }
+      .al-node-3[data-active="true"] { transform: translate(3px, 0px); }
+      .al-node-4[data-active="true"] { transform: translate(2.12px, 2.12px); }
+      .al-node-5[data-active="true"] { transform: translate(0px, 3px); }
+      .al-node-6[data-active="true"] { transform: translate(-2.12px, 2.12px); }
+      .al-node-7[data-active="true"] { transform: translate(-3px, 0px); }
+      .al-node-8[data-active="true"] { transform: translate(-2.12px, -2.12px); }
     </style>
   </defs>
 
-  <!-- OUTER SUBTLE RING — connects all node positions visually -->
-  <circle cx="180" cy="180" r="110"
+  <!-- ============================================================
+       OUTER SUBTLE RING — connects all label positions visually
+       ============================================================ -->
+  <circle cx="300" cy="300" r="215"
           fill="none" stroke="var(--forest)"
-          stroke-width="0.8" opacity="0.25"/>
+          stroke-width="0.85" opacity="0.18" stroke-dasharray="2 4"/>
 
-  <!-- CENTRAL MEDALLION with cow-mark -->
-  <circle cx="180" cy="180" r="38"
-          fill="var(--haldi)" stroke="var(--forest)"
-          stroke-width="1.5"/>
-  <!-- Inner accent ring — subtle -->
-  <circle cx="180" cy="180" r="33"
+  <!-- ============================================================
+       CENTRAL MEDALLION — circular, with a small cow-mark inside
+       ============================================================ -->
+  <circle cx="300" cy="300" r="80"
+          fill="var(--limewash)" stroke="var(--forest)" stroke-width="1.35"/>
+  <!-- Inner accent ring -->
+  <circle cx="300" cy="300" r="73"
           fill="none" stroke="var(--forest)"
-          stroke-width="0.7" opacity="0.4"/>
+          stroke-width="0.85" opacity="0.4"/>
 
-  <!-- Central cow head — front-facing, simplified cow-mark silhouette -->
-  <g fill="none" stroke="var(--forest)" stroke-width="1.3"
+  <!-- Central cow-mark — small side-view silhouette, facing LEFT
+       (consistent with the brand signature cow). Drawn with the same
+       separate-paths discipline: body barrel, hump, neck top, head,
+       horn, ear, eye, 4 legs, tail. -->
+  <g fill="none" stroke="var(--forest)"
      stroke-linecap="round" stroke-linejoin="round">
-    <!-- Left horn -->
-    <path d="M 168 172 C 162 164, 158 160, 156 162"/>
-    <!-- Right horn -->
-    <path d="M 192 172 C 198 164, 202 160, 204 162"/>
-    <!-- Head outline (front-facing, prominent forehead, elongated face) -->
-    <path d="M 180 168
-             C 172 168, 168 172, 168 178
-             C 168 186, 170 194, 174 198
-             C 176 200, 184 200, 186 198
-             C 190 194, 192 186, 192 178
-             C 192 172, 188 168, 180 168 Z"/>
-    <!-- Muzzle line -->
-    <path d="M 174 194 Q 180 196, 186 194"
-          stroke-width="1.1" opacity="0.7"/>
-  </g>
-  <!-- Eyes -->
-  <circle cx="175" cy="180" r="1.4" fill="var(--forest)"/>
-  <circle cx="185" cy="180" r="1.4" fill="var(--forest)"/>
-  <!-- Nostrils -->
-  <circle cx="177" cy="192" r="0.9" fill="var(--forest)"/>
-  <circle cx="183" cy="192" r="0.9" fill="var(--forest)"/>
-
-  <!-- ===== 8 NODES — positioned at 45° intervals around (180,180), r=110 ===== -->
-
-  <!-- Node 1: Antibacterial (top, -90°) -->
-  <g class="al-node al-node-1">
-    <line class="al-node__connector" x1="180" y1="142" x2="180" y2="82"/>
-    <circle class="al-node__dot" cx="180" cy="70" r="12"/>
-    <text class="al-node__num" x="180" y="70">01</text>
-    <text class="al-node__lbl" x="180" y="48" text-anchor="middle">Antibacterial</text>
-  </g>
-
-  <!-- Node 2: Antifungal (top-right, -45°) -->
-  <g class="al-node al-node-2">
-    <line class="al-node__connector" x1="207" y1="153" x2="250" y2="110"/>
-    <circle class="al-node__dot" cx="258" cy="102" r="12"/>
-    <text class="al-node__num" x="258" y="102">02</text>
-    <text class="al-node__lbl" x="273" y="86" text-anchor="start">Antifungal</text>
-  </g>
-
-  <!-- Node 3: Eco-Friendly (right, 0°) -->
-  <g class="al-node al-node-3">
-    <line class="al-node__connector" x1="218" y1="180" x2="278" y2="180"/>
-    <circle class="al-node__dot" cx="290" cy="180" r="12"/>
-    <text class="al-node__num" x="290" y="180">03</text>
-    <text class="al-node__lbl" x="306" y="184" text-anchor="start">Eco-Friendly</text>
-  </g>
-
-  <!-- Node 4: Thermal Insulator (bottom-right, 45°) -->
-  <g class="al-node al-node-4">
-    <line class="al-node__connector" x1="207" y1="207" x2="250" y2="250"/>
-    <circle class="al-node__dot" cx="258" cy="258" r="12"/>
-    <text class="al-node__num" x="258" y="258">04</text>
-    <text class="al-node__lbl" x="273" y="278" text-anchor="start">Thermal Ins.</text>
-  </g>
-
-  <!-- Node 5: Cost-Effective (bottom, 90°) -->
-  <g class="al-node al-node-5">
-    <line class="al-node__connector" x1="180" y1="218" x2="180" y2="278"/>
-    <circle class="al-node__dot" cx="180" cy="290" r="12"/>
-    <text class="al-node__num" x="180" y="290">05</text>
-    <text class="al-node__lbl" x="180" y="312" text-anchor="middle">Cost-Effective</text>
+    <!-- FAR HORN — behind head, lighter -->
+    <path d="M 252 286 C 248 280, 244 278, 240 280" stroke-width="0.85" opacity="0.65"/>
+    <!-- FAR EAR — small leaf behind head, lighter -->
+    <path d="M 256 294 C 252 304, 248 312, 244 316" stroke-width="0.85" opacity="0.65"/>
+    <!-- BODY BARREL — closed contour -->
+    <path d="M 268 288
+             C 260 286, 252 285, 246 287
+             C 240 289, 236 292, 234 296
+             L 234 318
+             L 322 320
+             C 326 314, 326 304, 324 296
+             C 320 290, 314 288, 308 288
+             C 296 286, 282 286, 268 288 Z"
+          stroke-width="1.35"/>
+    <!-- HUMP — open curve rising above the back line -->
+    <path d="M 266 288
+             C 262 278, 256 272, 252 270
+             C 248 268, 246 270, 246 274
+             C 248 280, 252 285, 256 288"
+          stroke-width="1.35"/>
+    <!-- NECK TOP — from withers forward-down to poll -->
+    <path d="M 268 288 C 262 287, 256 286, 252 284" stroke-width="1.35"/>
+    <!-- HEAD — small wedge extending left to muzzle -->
+    <path d="M 252 284
+             C 248 286, 244 290, 240 294
+             C 236 298, 232 302, 230 304
+             C 230 306, 232 308, 236 308
+             C 240 310, 244 312, 248 312
+             C 252 312, 252 312, 252 310
+             C 252 302, 252 294, 252 284 Z"
+          stroke-width="1.35"/>
+    <!-- NEAR HORN — over head, prominent -->
+    <path d="M 252 284 C 248 278, 244 274, 240 276" stroke-width="1.35"/>
+    <!-- NEAR EAR — small leaf hanging down -->
+    <path d="M 258 292 C 254 302, 250 310, 246 314
+             C 250 310, 254 302, 258 296 Z" stroke-width="1.35"/>
+    <!-- EYE — small filled circle -->
+    <circle cx="240" cy="294" r="1.4" fill="var(--forest)" stroke="none"/>
+    <!-- NOSTRIL — small dot -->
+    <circle cx="232" cy="302" r="1" fill="var(--forest)" stroke="none"/>
+    <!-- FRONT LEGS (left side, paired slender strokes) -->
+    <path d="M 244 320 L 244 338" stroke-width="1.35"/>
+    <path d="M 248 320 L 248 338" stroke-width="1.35"/>
+    <path d="M 254 320 L 254 338" stroke-width="1.35" opacity="0.65"/>
+    <path d="M 258 320 L 258 338" stroke-width="1.35" opacity="0.65"/>
+    <!-- BACK LEGS (right side, paired slender strokes) -->
+    <path d="M 308 320 L 308 338" stroke-width="1.35"/>
+    <path d="M 312 320 L 312 338" stroke-width="1.35"/>
+    <path d="M 318 320 L 318 338" stroke-width="1.35" opacity="0.65"/>
+    <path d="M 322 320 L 322 338" stroke-width="1.35" opacity="0.65"/>
+    <!-- HOOF TICKS -->
+    <path d="M 243 339 L 259 339" stroke-width="0.85"/>
+    <path d="M 307 339 L 323 339" stroke-width="0.85"/>
+    <!-- TAIL — from rump curving down with small tuft -->
+    <path d="M 322 292 C 328 300, 332 314, 332 326
+             C 332 332, 330 336, 328 338" stroke-width="1.35"/>
+    <path d="M 328 338 C 326 342, 324 344, 326 346" stroke-width="0.85"/>
+    <path d="M 328 338 C 328 342, 328 344, 330 346" stroke-width="0.85"/>
   </g>
 
-  <!-- Node 6: Metal-Free (bottom-left, 135°) -->
-  <g class="al-node al-node-6">
-    <line class="al-node__connector" x1="153" y1="207" x2="110" y2="250"/>
-    <circle class="al-node__dot" cx="102" cy="258" r="12"/>
-    <text class="al-node__num" x="102" y="258">06</text>
-    <text class="al-node__lbl" x="87" y="278" text-anchor="end">Metal-Free</text>
+  <!-- Small haldi dot accent in the medallion corner (the brand mark) -->
+  <circle cx="300" cy="248" r="2.5" fill="var(--haldi)" stroke="none"/>
+
+  <!-- ============================================================
+       8 RADIAL NODES — at 45° intervals around centre (300, 300)
+       Line: r=80 (medallion edge) → r=215 (label position)
+       Labels: number (top) + name (bottom), centred at r=240
+       ============================================================ -->
+
+  <!-- ===== NODE 1: Antibacterial (top, angle -90°) =====
+       Line: (300, 220) → (300, 85), Label centre: (300, 60) -->
+  <g class="al-node al-node-1" data-benefit="antibacterial">
+    <line class="al-node__line" x1="300" y1="220" x2="300" y2="85"/>
+    <text class="al-node__num" x="300" y="50">01</text>
+    <text class="al-node__name" x="300" y="70">Antibacterial</text>
   </g>
 
-  <!-- Node 7: Non-Toxic (left, 180°) -->
-  <g class="al-node al-node-7">
-    <line class="al-node__connector" x1="142" y1="180" x2="82" y2="180"/>
-    <circle class="al-node__dot" cx="70" cy="180" r="12"/>
-    <text class="al-node__num" x="70" y="180">07</text>
-    <text class="al-node__lbl" x="54" y="184" text-anchor="end">Non-Toxic</text>
+  <!-- ===== NODE 2: Antifungal (top-right, angle -45°) =====
+       Line: (357, 243) → (452, 148), Label centre: (470, 130) -->
+  <g class="al-node al-node-2" data-benefit="antifungal">
+    <line class="al-node__line" x1="357" y1="243" x2="452" y2="148"/>
+    <text class="al-node__num" x="470" y="120">02</text>
+    <text class="al-node__name" x="470" y="140">Antifungal</text>
   </g>
 
-  <!-- Node 8: Odourless (top-left, 225°) -->
-  <g class="al-node al-node-8">
-    <line class="al-node__connector" x1="153" y1="153" x2="110" y2="110"/>
-    <circle class="al-node__dot" cx="102" cy="102" r="12"/>
-    <text class="al-node__num" x="102" y="102">08</text>
-    <text class="al-node__lbl" x="87" y="86" text-anchor="end">Odourless</text>
+  <!-- ===== NODE 3: Eco-Friendly (right, angle 0°) =====
+       Line: (380, 300) → (515, 300), Label centre: (540, 300) -->
+  <g class="al-node al-node-3" data-benefit="eco-friendly">
+    <line class="al-node__line" x1="380" y1="300" x2="515" y2="300"/>
+    <text class="al-node__num" x="540" y="290">03</text>
+    <text class="al-node__name" x="540" y="310">Eco-Friendly</text>
   </g>
 
-</svg></div>
-            <ol class="emulsion-ashta__list" data-reveal-stagger>
-                <li class="emulsion-ashta__item" data-ashta-node="em-al-1">
-                    <span class="emulsion-ashta__num">01</span>
-                    <span class="emulsion-ashta__name">Antibacterial</span>
-                    <span class="emulsion-ashta__deva" lang="hi">जीवाणुरोधी</span>
-                </li>
-                <li class="emulsion-ashta__item" data-ashta-node="em-al-2">
-                    <span class="emulsion-ashta__num">02</span>
-                    <span class="emulsion-ashta__name">Antifungal</span>
-                    <span class="emulsion-ashta__deva" lang="hi">कवकरोधी</span>
-                </li>
-                <li class="emulsion-ashta__item" data-ashta-node="em-al-3">
-                    <span class="emulsion-ashta__num">03</span>
-                    <span class="emulsion-ashta__name">Eco-Friendly</span>
-                    <span class="emulsion-ashta__deva" lang="hi">पर्यावरण-मित्र</span>
-                </li>
-                <li class="emulsion-ashta__item" data-ashta-node="em-al-4">
-                    <span class="emulsion-ashta__num">04</span>
-                    <span class="emulsion-ashta__name">Natural Thermal Insulator</span>
-                    <span class="emulsion-ashta__deva" lang="hi">प्राकृतिक ऊष्मीय इन्सुलेटर</span>
-                </li>
-                <li class="emulsion-ashta__item" data-ashta-node="em-al-5">
-                    <span class="emulsion-ashta__num">05</span>
-                    <span class="emulsion-ashta__name">Cost-Effective</span>
-                    <span class="emulsion-ashta__deva" lang="hi">किफ़ायती</span>
-                </li>
-                <li class="emulsion-ashta__item" data-ashta-node="em-al-6">
-                    <span class="emulsion-ashta__num">06</span>
-                    <span class="emulsion-ashta__name">Free from Heavy Metals</span>
-                    <span class="emulsion-ashta__deva" lang="hi">भारी धातुओं से मुक्त</span>
-                </li>
-                <li class="emulsion-ashta__item" data-ashta-node="em-al-7">
-                    <span class="emulsion-ashta__num">07</span>
-                    <span class="emulsion-ashta__name">Non-Toxic</span>
-                    <span class="emulsion-ashta__deva" lang="hi">गैर-विषाक्त</span>
-                </li>
-                <li class="emulsion-ashta__item" data-ashta-node="em-al-8">
-                    <span class="emulsion-ashta__num">08</span>
-                    <span class="emulsion-ashta__name">Odourless</span>
-                    <span class="emulsion-ashta__deva" lang="hi">गंधरहित</span>
-                </li>
-            </ol>
-        </div>
+  <!-- ===== NODE 4: Natural Thermal Insulator (bottom-right, angle 45°) =====
+       Line: (357, 357) → (452, 452), Label centre: (470, 470)
+       Long name split across two lines. -->
+  <g class="al-node al-node-4" data-benefit="thermal-insulator">
+    <line class="al-node__line" x1="357" y1="357" x2="452" y2="452"/>
+    <text class="al-node__num" x="470" y="460">04</text>
+    <text class="al-node__name" x="470" y="478">Natural Thermal</text>
+    <text class="al-node__name" x="470" y="492">Insulator</text>
+  </g>
+
+  <!-- ===== NODE 5: Cost-Effective (bottom, angle 90°) =====
+       Line: (300, 380) → (300, 515), Label centre: (300, 540) -->
+  <g class="al-node al-node-5" data-benefit="cost-effective">
+    <line class="al-node__line" x1="300" y1="380" x2="300" y2="515"/>
+    <text class="al-node__num" x="300" y="530">05</text>
+    <text class="al-node__name" x="300" y="550">Cost-Effective</text>
+  </g>
+
+  <!-- ===== NODE 6: Free from Heavy Metals (bottom-left, angle 135°) =====
+       Line: (243, 357) → (148, 452), Label centre: (130, 470)
+       Long name split across two lines. -->
+  <g class="al-node al-node-6" data-benefit="heavy-metal-free">
+    <line class="al-node__line" x1="243" y1="357" x2="148" y2="452"/>
+    <text class="al-node__num" x="130" y="460">06</text>
+    <text class="al-node__name" x="130" y="478">Free from Heavy</text>
+    <text class="al-node__name" x="130" y="492">Metals</text>
+  </g>
+
+  <!-- ===== NODE 7: Non-Toxic (left, angle 180°) =====
+       Line: (220, 300) → (85, 300), Label centre: (60, 300) -->
+  <g class="al-node al-node-7" data-benefit="non-toxic">
+    <line class="al-node__line" x1="220" y1="300" x2="85" y2="300"/>
+    <text class="al-node__num" x="60" y="290">07</text>
+    <text class="al-node__name" x="60" y="310">Non-Toxic</text>
+  </g>
+
+  <!-- ===== NODE 8: Odourless (top-left, angle 225°) =====
+       Line: (243, 243) → (148, 148), Label centre: (130, 130) -->
+  <g class="al-node al-node-8" data-benefit="odourless">
+    <line class="al-node__line" x1="243" y1="243" x2="148" y2="148"/>
+    <text class="al-node__num" x="130" y="120">08</text>
+    <text class="al-node__name" x="130" y="140">Odourless</text>
+  </g>
+
+</svg>
+      </div>
+      <ol class="ashta-section__support" data-reveal-stagger>
+        <li class="ashta-benefit emulsion-ashta__item" data-ashta-node="antibacterial">
+          <span class="ashta-benefit__num">01</span>
+          <span class="ashta-benefit__name">Antibacterial</span>
+          <span class="ashta-benefit__deva">जीवाणुरोधी</span>
+        </li>
+        <li class="ashta-benefit emulsion-ashta__item" data-ashta-node="antifungal">
+          <span class="ashta-benefit__num">02</span>
+          <span class="ashta-benefit__name">Antifungal</span>
+          <span class="ashta-benefit__deva">कवकरोधी</span>
+        </li>
+        <li class="ashta-benefit emulsion-ashta__item" data-ashta-node="eco-friendly">
+          <span class="ashta-benefit__num">03</span>
+          <span class="ashta-benefit__name">Eco-Friendly</span>
+          <span class="ashta-benefit__deva">पर्यावरण-मित्र</span>
+        </li>
+        <li class="ashta-benefit emulsion-ashta__item" data-ashta-node="thermal-insulator">
+          <span class="ashta-benefit__num">04</span>
+          <span class="ashta-benefit__name">Natural Thermal Insulator</span>
+          <span class="ashta-benefit__deva">प्राकृतिक ऊष्मीय इन्सुलेटर</span>
+        </li>
+        <li class="ashta-benefit emulsion-ashta__item" data-ashta-node="cost-effective">
+          <span class="ashta-benefit__num">05</span>
+          <span class="ashta-benefit__name">Cost-Effective</span>
+          <span class="ashta-benefit__deva">किफ़ायती</span>
+        </li>
+        <li class="ashta-benefit emulsion-ashta__item" data-ashta-node="heavy-metal-free">
+          <span class="ashta-benefit__num">06</span>
+          <span class="ashta-benefit__name">Free from Heavy Metals</span>
+          <span class="ashta-benefit__deva">भारी धातुओं से मुक्त</span>
+        </li>
+        <li class="ashta-benefit emulsion-ashta__item" data-ashta-node="non-toxic">
+          <span class="ashta-benefit__num">07</span>
+          <span class="ashta-benefit__name">Non-Toxic</span>
+          <span class="ashta-benefit__deva">गैर-विषाक्त</span>
+        </li>
+        <li class="ashta-benefit emulsion-ashta__item" data-ashta-node="odourless">
+          <span class="ashta-benefit__num">08</span>
+          <span class="ashta-benefit__name">Odourless</span>
+          <span class="ashta-benefit__deva">गंधरहित</span>
+        </li>
+      </ol>
     </div>
+  </div>
 </section>
 
-<!-- CTA + CROSS-LINK -->
-<section class="emulsion-cta section--paper" id="enquire" data-reveal>
-    <div class="container">
-        <div class="emulsion-cta__inner">
-            <div>
-                <h2 class="emulsion-cta__title">Want to know more about Prakritik Emulsion?</h2>
-                <p class="emulsion-cta__body">Send an enquiry about packaging, project sizes, or collaboration. We'll respond with what's currently available.</p>
-                <div class="emulsion-cta__actions">
-                    <a href="../../contact/?interest=prakritik-emulsion" class="btn btn--primary btn--lg btn--block">Enquire About Emulsion</a>
-                    <a href="../../for-business/" class="btn btn--outline btn--lg btn--block">Discuss a Project</a>
-                </div>
-            </div>
-            <div class="emulsion-cta__cross">
-                <span class="emulsion-cta__cross-title">Also in the Prakritik range</span>
-                <h3 class="emulsion-cta__cross-name">Prakritik Distemper Paint</h3>
-                <a href="../../products/prakritik-distemper/" class="emulsion-cta__cross-link">Explore Distemper
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                </a>
-            </div>
+<!-- ===== CROSS-LINK ===== -->
+<section class="section section--paper" aria-labelledby="cross-title">
+  <div class="container">
+    <div class="emulsion-cta" data-reveal>
+      <div class="emulsion-cta__inner">
+        <div>
+          <span class="emulsion-hero__eyebrow">Looking at the other format?</span>
+          <h2 class="emulsion-cta__title" id="cross-title">Prakritik Distemper.</h2>
+          <p class="emulsion-cta__body">
+            A powder-format cow dung-based paint. Coverage 200 sq.ft.**.
+            Supplied in 1, 5, 10 &amp; 20 kg packs.
+          </p>
         </div>
+        <div class="emulsion-cta__actions">
+          <a class="btn btn--secondary" href="../../products/prakritik-distemper/">View Distemper</a>
+        </div>
+      </div>
     </div>
+  </div>
 </section>
+
+<script>
+  (function () {
+    'use strict';
+    document.querySelectorAll('[data-ashta-laabh] svg [data-benefit]').forEach(function (node) {
+      node.setAttribute('data-ashta-node', node.getAttribute('data-benefit'));
+    });
+  })();
+</script>
     </main>
 
     <!-- ===== Site footer ===== -->
@@ -1022,10 +938,7 @@
     <!--
       Module scripts. Order matters: each module registers
       window.GaurikritApp.<Name> = { init: fn, ... } and app.js
-      (loaded last) calls .init() on each. calculator.js is included
-      after forms.js so it can reuse the toast helper if needed, and
-      before app.js so app.js can include 'Calculator' in its boot
-      sequence.
+      (loaded last) calls .init() on each.
     -->
     <script src="../../assets/js/navigation.js?v=static"></script>
     <script src="../../assets/js/animations.js?v=static"></script>

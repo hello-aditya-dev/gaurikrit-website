@@ -4,19 +4,19 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="../assets/brand/gaurikrit-logo-mark.png" type="image/png" onerror="this.onerror=null;this.href='../assets/brand/gaurikrit-mark-temp.svg'">
-    <title>Why Prakritik Paint — Gaurikrit Bio Products</title>
-    <meta name="description" content="Why Prakritik Paint — an old Indian material idea, reconsidered for modern walls. Cow dung-based paint from Gaurikrit Bio Products.">
+    <title>Why Prakritik Paint — An Old Material, Reconsidered | Gaurikrit</title>
+    <meta name="description" content="Cow dung has been used on Indian walls for generations. Prakritik Paint carries that material into a contemporary paint format. The material, the tradition, the wall.">
     <link rel="canonical" href="https://hello-aditya-dev.github.io/gaurikrit-website/why-prakritik/">
     <meta name="robots" content="index, follow">
-    <meta property="og:title" content="Why Prakritik Paint — Gaurikrit Bio Products">
-    <meta property="og:description" content="Why Prakritik Paint — an old Indian material idea, reconsidered for modern walls. Cow dung-based paint from Gaurikrit Bio Products.">
+    <meta property="og:title" content="Why Prakritik Paint — An Old Material, Reconsidered | Gaurikrit">
+    <meta property="og:description" content="Cow dung has been used on Indian walls for generations. Prakritik Paint carries that material into a contemporary paint format. The material, the tradition, the wall.">
     <meta property="og:url" content="https://hello-aditya-dev.github.io/gaurikrit-website/why-prakritik/">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Gaurikrit Bio Products">
     <meta property="og:image" content="https://hello-aditya-dev.github.io/gaurikrit-website/assets/brand/gaurikrit-logo-mark.png">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Why Prakritik Paint — Gaurikrit Bio Products">
-    <meta name="twitter:description" content="Why Prakritik Paint — an old Indian material idea, reconsidered for modern walls. Cow dung-based paint from Gaurikrit Bio Products.">
+    <meta name="twitter:title" content="Why Prakritik Paint — An Old Material, Reconsidered | Gaurikrit">
+    <meta name="twitter:description" content="Cow dung has been used on Indian walls for generations. Prakritik Paint carries that material into a contemporary paint format. The material, the tradition, the wall.">
     <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -192,797 +192,1941 @@
 
     <main id="main" class="site-main">
 <style>
-  /* HERO */
-  .why-hero { padding-top: calc(var(--header-h) + 2.5rem); padding-bottom: clamp(2.5rem, 5vw, 4rem); position: relative; overflow: hidden; }
+  /* ===== HERO (cow + wall sample) ===== */
+  .why-hero { padding-top: calc(var(--header-h) + 2rem); padding-bottom: 1.5rem; }
   .why-hero__container { display: grid; gap: 2rem; align-items: center; }
-  @media (min-width: 1024px) { .why-hero__container { grid-template-columns: 1fr 1fr; gap: 4rem; } }
-  .why-hero__eyebrow { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.3125rem 0.75rem; border: 1px solid var(--border); border-radius: var(--radius-full); background: var(--bg-card); font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--primary); width: fit-content; }
-  .why-hero__eyebrow-dot { width: 0.375rem; height: 0.375rem; border-radius: 50%; background: var(--haldi); }
-  .why-hero__title { margin-top: 1.25rem; font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.05; letter-spacing: -0.02em; text-wrap: balance; }
-  .why-hero__sub { margin-top: 1.25rem; max-width: 36rem; color: var(--fg-muted); font-size: clamp(1rem, 2vw, 1.125rem); line-height: 1.65; }
-  .why-hero__rule { width: 4rem; height: 2px; background: var(--haldi); margin-top: 1.5rem; border: 0; }
-  .why-hero__art { position: relative; aspect-ratio: 4/3; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-soft); }
-  .why-hero__art .why-hero__cow { position: absolute; left: 1.5rem; bottom: 1rem; width: 50%; opacity: 0.9; }
-  .why-hero__art .why-hero__wall { position: absolute; right: 1rem; top: 1rem; bottom: 1rem; width: 38%; border-radius: var(--radius); background: linear-gradient(135deg, var(--haldi-light), var(--haldi)); border: 1px solid var(--haldi-deep); overflow: hidden; }
-  .why-hero__art .why-hero__wall::after { content: ''; position: absolute; inset: 0; background-image: radial-gradient(circle at 1px 1px, oklch(0.28 0.04 150 / 0.08) 0.5px, transparent 0); background-size: 14px 14px; }
+  @media (min-width: 1024px) {
+    .why-hero__container { grid-template-columns: 5fr 7fr; gap: 3rem; }
+  }
+  .why-hero__lockup { max-width: 42rem; }
+  .why-hero__art {
+    position: relative; aspect-ratio: 5/4; background: var(--limewash);
+    border-radius: var(--r-panel); overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .why-hero__art .why-cow {
+    position: absolute; left: 6%; bottom: 8%; width: 46%; opacity: 0.85;
+  }
+  .why-hero__art .why-wall {
+    position: absolute; right: 8%; top: 8%; bottom: 8%; width: 42%;
+    background: linear-gradient(135deg, var(--limewash), color-mix(in srgb, var(--kraft) 35%, var(--limewash)));
+    overflow: hidden;
+  }
+  .why-hero__art .why-wall::after {
+    content: ''; position: absolute; inset: 0;
+    background-image: radial-gradient(circle at 1px 1px, rgba(32, 30, 25, 0.08) 0.5px, transparent 0);
+    background-size: 14px 14px;
+  }
+  .why-hero__title { font-size: clamp(2.2rem, 5vw, 4rem); }
 
-  /* ESSAY */
-  .essay { padding-block: clamp(3rem, 6vw, 5rem); }
-  .essay__section { display: grid; gap: 1.5rem; padding-block: clamp(2rem, 4vw, 3rem); border-top: 1px solid var(--border); }
-  .essay__section:first-of-type { border-top: 0; }
-  @media (min-width: 1024px) { .essay__section { grid-template-columns: 0.85fr 1.15fr; gap: 4rem; align-items: start; } }
-  .essay__section--reverse > :first-child { order: 2; }
-  @media (min-width: 1024px) { .essay__section--reverse > :first-child { order: 0; } }
-  .essay__num { font-family: var(--font-display); font-size: clamp(3rem, 7vw, 5rem); font-weight: 700; color: var(--haldi-deep); line-height: 0.9; opacity: 0.85; }
-  .essay__eyebrow { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--primary); margin-top: 0.75rem; }
-  .essay__title { font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2.25rem); line-height: 1.15; margin-top: 0.5rem; letter-spacing: -0.02em; }
-  .essay__body { color: var(--fg-muted); font-size: clamp(1rem, 1.5vw, 1.125rem); line-height: 1.75; }
-  .essay__body p + p { margin-top: 1.25rem; }
-  .essay__pull { font-family: var(--font-display); font-style: italic; font-size: clamp(1.125rem, 2vw, 1.5rem); color: var(--primary); padding-left: 1.25rem; border-left: 3px solid var(--haldi); margin: 1.5rem 0; }
-  .essay__body ul { list-style: disc; padding-left: 1.5rem; margin: 1rem 0; }
-  .essay__body li { color: var(--fg-muted); margin-bottom: 0.5rem; line-height: 1.65; }
-  .essay__rule { width: 4rem; height: 2px; background: var(--haldi); margin-block: 1.5rem; border: 0; }
+  /* ===== NUMBERED CHAPTERS ===== */
+  .why-chapter {
+    display: grid; gap: 2rem; padding-block: clamp(3.5rem, 6vw, 5rem);
+  }
+  @media (min-width: 1024px) {
+    .why-chapter { grid-template-columns: 4fr 8fr; gap: 3rem; align-items: start; }
+  }
+  .why-chapter--reverse > :first-child { order: 2; }
+  @media (min-width: 1024px) {
+    .why-chapter--reverse > :first-child { order: 0; }
+  }
+  .why-chapter__num {
+    font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 700; color: var(--haldi-deep); line-height: 1;
+  }
+  .why-chapter__eyebrow {
+    display: block; margin-top: 0.875rem; font-size: 0.75rem;
+    font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--primary);
+  }
+  .why-chapter__title {
+    margin-top: 0.5rem; font-family: var(--font-display);
+    font-size: clamp(1.75rem, 4vw, 2.75rem); line-height: 1.1;
+    letter-spacing: -0.02em; text-wrap: balance;
+  }
+  .why-chapter__body {
+    margin-top: 1.25rem; color: var(--fg-muted);
+    font-size: 1.0625rem; line-height: 1.75; max-width: 60ch;
+  }
+  .why-chapter__body p + p { margin-top: 1.25rem; }
+  .why-chapter__pull {
+    margin-top: 1.5rem; font-family: var(--font-display);
+    font-style: italic; font-size: clamp(1.25rem, 2.5vw, 1.625rem);
+    line-height: 1.4; color: var(--primary);
+    padding-left: 1.5rem; border-left: 3px solid var(--haldi);
+  }
 
-  /* MATERIAL JOURNEY inline */
-  .journey-inline { padding: 1.5rem; background: var(--secondary-bg); border: 1px solid var(--border); border-radius: var(--radius-lg); margin-top: 1rem; }
-  .journey-inline .material-journey__svg { max-height: 8rem; margin-inline: auto; }
-  .journey-inline__steps { display: grid; gap: 0.75rem; margin-top: 1.5rem; }
-  @media (min-width: 768px) { .journey-inline__steps { grid-template-columns: repeat(5, 1fr); } }
-  .journey-inline__step { padding: 0.5rem; }
-  .journey-inline__num { font-family: var(--font-display); font-size: 1rem; font-weight: 700; color: var(--haldi-deep); }
-  .journey-inline__title { font-size: 0.8125rem; font-weight: 700; margin-top: 0.25rem; }
-  .journey-inline__desc { font-size: 0.75rem; color: var(--fg-muted); margin-top: 0.125rem; }
+  /* === Chapter 01 — MATERIAL: physical material sample === */
+  .why-material-sample {
+    position: relative; aspect-ratio: 4/3;
+    background: var(--paper); border: 1px solid var(--border);
+    border-radius: var(--r-panel); overflow: hidden; padding: 2rem;
+  }
+  .why-material-sample__patch {
+    position: absolute; left: 12%; top: 12%; right: 12%; bottom: 12%;
+    background:
+      radial-gradient(ellipse 70% 60% at 40% 35%, var(--mitti) 0%, color-mix(in srgb, var(--mitti) 80%, var(--charcoal)) 65%, transparent 92%),
+      linear-gradient(135deg, var(--kraft), var(--mitti));
+    border-radius: 4px;
+  }
+  .why-material-sample__patch::after {
+    content: ''; position: absolute; inset: 0;
+    background-image: radial-gradient(circle at 1px 1px, rgba(32, 30, 25, 0.12) 0.5px, transparent 0);
+    background-size: 12px 12px;
+  }
+  .why-material-sample__tag {
+    position: absolute; bottom: 1rem; left: 1rem;
+    font-family: var(--font-display); font-style: italic;
+    font-size: 0.875rem; color: var(--fg-muted);
+    background: rgba(250, 248, 241, 0.85); padding: 0.25rem 0.75rem;
+    border-radius: var(--r-pill);
+  }
 
-  /* ASHTA LAABH full */
-  .ashta-essay { padding-block: clamp(2rem, 4vw, 3rem); }
-  .ashta-essay__grid { display: grid; gap: 2rem; align-items: center; }
-  @media (min-width: 1024px) { .ashta-essay__grid { grid-template-columns: 1fr 1fr; } }
-  .ashta-essay__diagram { max-width: 28rem; margin-inline: auto; width: 100%; aspect-ratio: 1; }
-  .ashta-essay__diagram svg { width: 100%; height: 100%; }
-  .ashta-essay__list { display: grid; gap: 0.625rem; }
-  .ashta-essay__item { padding: 0.875rem 1.125rem; background: var(--bg-card); border-left: 3px solid var(--haldi); border-radius: var(--radius); display: grid; grid-template-columns: 2rem 1fr auto; gap: 0.75rem; align-items: center; box-shadow: var(--shadow-soft); cursor: pointer; transition: background var(--dur), border-color var(--dur), transform var(--dur); }
-  .ashta-essay__item:hover, .ashta-essay__item:focus-visible, .ashta-essay__item[data-active="true"] { background: oklch(0.42 0.05 150 / 0.06); border-left-color: var(--forest); transform: translateX(2px); outline: none; }
-  .ashta-essay__item:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
-  .ashta-essay__num { font-family: var(--font-display); font-size: 0.75rem; font-weight: 700; color: var(--haldi-deep); }
-  .ashta-essay__name { font-weight: 600; font-size: 0.9375rem; }
-  .ashta-essay__deva { font-family: var(--font-deva); font-size: 0.8125rem; color: var(--fg-muted); }
+  /* === Chapter 02 — TRADITION: large courtyard === */
+  .why-tradition-art {
+    width: 100%; aspect-ratio: 16/9;
+    background: var(--limewash); border-radius: var(--r-panel);
+    overflow: hidden;
+  }
+  .why-tradition-art svg { width: 100%; height: 100%; display: block; }
 
-  /* TWO FORMATS mini */
-  .two-formats-mini { display: grid; gap: 1rem; margin-top: 1.25rem; }
-  @media (min-width: 640px) { .two-formats-mini { grid-template-columns: 1fr 1fr; } }
-  .two-formats-mini__item { padding: 1rem 1.25rem; border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg-card); }
-  .two-formats-mini__name { font-family: var(--font-display); font-size: 1.125rem; font-weight: 700; }
-  .two-formats-mini__desc { font-size: 0.8125rem; color: var(--fg-muted); margin-top: 0.25rem; }
-  .two-formats-mini__link { display: inline-flex; align-items: center; gap: 0.25rem; margin-top: 0.5rem; font-size: 0.8125rem; font-weight: 600; color: var(--primary); }
-  .two-formats-mini__link:hover { gap: 0.5rem; }
+  /* === Chapter 03 — MATERIAL TO WALL: full-width diagram === */
+  .why-flow-section { padding-block: clamp(3.5rem, 6vw, 5rem); }
+  .why-flow-svg { width: 100%; margin-inline: 0; }
+  .why-flow-svg svg { width: 100%; height: auto; display: block; }
 
-  /* CTA */
-  .why-cta { padding-block: clamp(3rem, 6vw, 5rem); background: var(--forest); color: var(--primary-fg); text-align: center; }
-  .why-cta__eyebrow { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--haldi); }
-  .why-cta__title { font-family: var(--font-display); font-size: clamp(1.75rem, 4vw, 2.75rem); margin-top: 0.75rem; letter-spacing: -0.02em; text-wrap: balance; }
-  .why-cta__sub { margin-top: 0.75rem; color: oklch(0.85 0.01 75); max-width: 36rem; margin-inline: auto; }
-  .why-cta__actions { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center; }
+  /* === Chapter 04 — ASHTA: full-size seal === */
+  .why-ashta-section { padding-block: clamp(3.5rem, 6vw, 5rem); }
+  .why-ashta-section__head { max-width: 48rem; margin-bottom: 2.5rem; }
+  .ashta-section__seal { max-width: 38rem; margin-inline: auto; }
+
+  /* === Chapter 05 — FORMATS: two real product visuals === */
+  .why-formats-section { padding-block: clamp(3.5rem, 6vw, 5rem); }
+  .why-formats {
+    display: grid; gap: 2rem; margin-top: 2rem;
+  }
+  @media (min-width: 768px) { .why-formats { grid-template-columns: 1fr 1fr; } }
+  .why-format-card {
+    position: relative; aspect-ratio: 4/5;
+    background: linear-gradient(160deg, var(--paper), var(--limewash));
+    border: 1px solid var(--border); border-top: 3px solid var(--indigo);
+    border-radius: var(--r-panel); overflow: hidden;
+    display: flex; align-items: center; justify-content: center; padding: 2rem;
+  }
+  .why-format-card--emulsion { border-top-color: var(--leaf); }
+  .why-format-card .product-media { width: 100%; height: 100%; }
+  .why-format-card .product-media__official { object-fit: contain; padding: 1.5rem; }
+  .why-format-card__caption {
+    position: absolute; bottom: 1rem; left: 1rem;
+    background: rgba(250, 248, 241, 0.9); padding: 0.5rem 0.875rem;
+    border-radius: var(--r-pill); font-size: 0.8125rem; font-weight: 600;
+  }
+  .why-format-card--distemper .why-format-card__caption { color: var(--indigo); }
+  .why-format-card--emulsion  .why-format-card__caption { color: var(--leaf); }
+
+  /* === Chapter 06 — CONTEXT: rural-landscape with annotations === */
+  .why-context-section { padding-block: clamp(3.5rem, 6vw, 5rem); }
+  .why-context-band {
+    position: relative; width: 100%; aspect-ratio: 16/5;
+    background: var(--limewash); border-radius: var(--r-panel);
+    overflow: hidden;
+  }
+  .why-context-band svg { width: 100%; height: 100%; display: block; }
+  .why-context-band__annot {
+    position: absolute; bottom: 1rem; left: 1rem;
+    background: rgba(250, 248, 241, 0.85);
+    padding: 0.5rem 0.875rem; border-radius: var(--r-pill);
+    font-size: 0.75rem; font-weight: 600;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--fg-muted);
+  }
 </style>
 
-<!-- HERO -->
-<section class="why-hero" id="why-hero" data-reveal>
-    <div class="container why-hero__container">
-        <div>
-            <span class="why-hero__eyebrow"><span class="why-hero__eyebrow-dot" aria-hidden="true"></span>Why Prakritik</span>
-            <h1 class="why-hero__title">An old material idea, reconsidered for modern walls.</h1>
-            <hr class="why-hero__rule">
-            <p class="why-hero__sub">A short reading of where Prakritik Paint comes from — the material, the tradition it carries, and the contemporary paint format it has become.</p>
-        </div>
-        <div class="why-hero__art" aria-hidden="true">
-            <div class="why-hero__cow"><svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg"
-     class=""
+<!-- ===== HERO ===== -->
+<section class="why-hero bg-limewash" aria-labelledby="why-title">
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="../">Home</a><span>›</span>
+      <span>Why Prakritik</span>
+    </nav>
+    <div class="why-hero__container" data-reveal>
+      <div class="why-hero__lockup">
+        <span class="why-hero__eyebrow"><span class="why-hero__eyebrow-dot" aria-hidden="true"></span>An old Indian material idea</span>
+        <hr class="why-hero__rule">
+        <h1 class="why-hero__title" id="why-title">An old material idea, reconsidered for modern walls.</h1>
+        <p class="why-hero__sub">
+          Cow dung has been used on Indian walls and floors for generations — as
+          surface treatment, renewal ritual, and a quiet form of care. Prakritik
+          Paint carries that material into a contemporary paint format.
+        </p>
+      </div>
+      <div class="why-hero__art" aria-hidden="true">
+        <div class="why-wall"></div>
+        <svg viewBox="0 0 1000 600" xmlns="http://www.w3.org/2000/svg"
+     class="why-cow"
      role="img" aria-hidden="true"
      preserveAspectRatio="xMidYMid meet"
      width="100%" height="100%">
-  <title>Side-view Indian cow</title>
+  <title>Indian zebu cow study — side elevation, facing left</title>
 
   <!-- Subtle ground line — very faint, for grounding the figure -->
-  <line x1="22" y1="176" x2="298" y2="176"
-        stroke="var(--forest)" stroke-width="1"
-        stroke-linecap="round" opacity="0.15"/>
-
-  <g fill="none" stroke="var(--forest)" stroke-width="1.5"
-     stroke-linecap="round" stroke-linejoin="round">
-
-    <!-- FAR HORN — drawn first, slightly behind head, lighter -->
-    <path d="M 52 66 C 46 56, 38 50, 28 54" opacity="0.7"/>
-
-    <!-- FAR EAR — drawn behind head, hanging down-back, lighter -->
-    <path d="M 62 78 C 72 88, 80 100, 84 112
-             C 80 114, 76 110, 70 102
-             C 64 94, 58 86, 58 80 Z"
-          opacity="0.65"/>
-
-    <!-- BODY BARREL — closed contour: withers → back → rump → thigh → belly → chest → withers.
-         Back line is intentionally flat/diagonal here; the hump sits on top as a separate path. -->
-    <path d="M 88 88
-             L 134 80
-             C 160 82, 200 84, 240 86
-             C 254 88, 262 90, 266 92
-             C 274 94, 274 98, 272 102
-             C 270 120, 268 138, 264 146
-             L 92 146
-             C 88 130, 86 110, 88 88 Z"/>
-
-    <!-- HUMP — open curve rising above the back line, from withers to mid-back.
-         This is the zebu signature — peak clearly above the back line. -->
-    <path d="M 88 88
-             C 92 72, 100 60, 110 58
-             C 120 60, 128 70, 134 80"/>
-
-    <!-- NECK TOP — from withers forward-down to poll -->
-    <path d="M 88 88
-             C 80 84, 72 80, 64 76
-             L 52 70"/>
-
-    <!-- HEAD / FACE — closed contour: poll → forehead → bridge → muzzle → under-jaw → cheek → poll.
-         Elongated face (muzzle extends well forward of poll). -->
-    <path d="M 52 70
-             C 46 76, 40 82, 32 90
-             C 26 96, 20 100, 16 104
-             C 14 106, 14 109, 16 111
-             C 20 113, 24 113, 28 111
-             C 34 113, 42 113, 50 111
-             C 54 110, 56 110, 58 110
-             C 58 100, 56 90, 54 80
-             C 53 76, 52 73, 52 70 Z"/>
-
-    <!-- DEWLAP — loose skin fold from under-jaw down to chest between front legs -->
-    <path d="M 50 111
-             C 56 116, 64 122, 72 126
-             C 78 130, 82 132, 86 132"/>
-
-    <!-- DEWLAP FOLD LINES — subtle interior detail suggesting skin folds -->
-    <path d="M 54 116 C 60 120, 66 124, 72 128"
-          stroke-width="1.2" opacity="0.5"/>
-    <path d="M 60 122 C 64 126, 68 128, 72 130"
-          stroke-width="1.2" opacity="0.35"/>
-
-    <!-- NEAR HORN — drawn over the head, prominent. Lyre-shaped, moderate length. -->
-    <path d="M 50 70
-             C 44 60, 36 54, 26 58
-             C 24 60, 25 62, 28 62"/>
-
-    <!-- NEAR EAR — long, hanging, leaf-shaped. Drawn over the head. -->
-    <path d="M 58 76
-             C 68 84, 76 96, 80 110
-             C 76 112, 72 108, 68 102
-             C 62 92, 56 84, 56 78 Z"/>
-
-    <!-- EYE — small filled circle, calm half-lidded -->
-    <circle cx="40" cy="84" r="1.6" fill="var(--forest)" stroke="none"/>
-
-    <!-- BROW — subtle curve above the eye -->
-    <path d="M 36 80 C 39 78, 43 78, 46 80"
-          stroke-width="1.2" opacity="0.55"/>
-
-    <!-- NOSTRIL — small dot -->
-    <circle cx="20" cy="106" r="0.9" fill="var(--forest)" stroke="none"/>
-
-    <!-- MOUTH — subtle line at muzzle -->
-    <path d="M 15 111 Q 19 114, 23 111"
-          stroke-width="1.2" opacity="0.7"/>
-
-    <!-- FRONT LEGS — slender, paired (near + far). Each leg is two parallel strokes for slenderness. -->
-    <!-- Near front leg -->
-    <path d="M 92 146 L 93 170"/>
-    <path d="M 96 146 L 97 170"/>
-    <!-- Far front leg (slightly offset back, lighter) -->
-    <path d="M 104 146 L 105 170" opacity="0.7"/>
-    <path d="M 108 146 L 109 170" opacity="0.7"/>
-
-    <!-- BACK LEGS — same treatment -->
-    <!-- Near back leg -->
-    <path d="M 238 146 L 239 170"/>
-    <path d="M 242 146 L 243 170"/>
-    <!-- Far back leg -->
-    <path d="M 250 146 L 251 170" opacity="0.7"/>
-    <path d="M 254 146 L 255 170" opacity="0.7"/>
-
-    <!-- HOOF TICKS — small horizontal marks at the base of each leg -->
-    <path d="M 90 171 L 99 171"/>
-    <path d="M 102 171 L 111 171" opacity="0.7"/>
-    <path d="M 236 171 L 245 171"/>
-    <path d="M 248 171 L 257 171" opacity="0.7"/>
-
-    <!-- TAIL — from rump curving down-back to the tuft -->
-    <path d="M 270 92
-             C 276 110, 280 130, 282 156"/>
-
-    <!-- TAIL TUFT — three short strokes at the end -->
-    <path d="M 282 156 C 278 162, 276 168, 278 172" stroke-width="1.2"/>
-    <path d="M 282 156 C 282 164, 282 170, 283 173" stroke-width="1.2"/>
-    <path d="M 282 156 C 286 162, 288 168, 286 172" stroke-width="1.2"/>
-
-    <!-- SHOULDER BLADE — subtle interior detail suggesting the scapula under the hump -->
-    <path d="M 112 96 C 116 110, 116 130, 114 144"
-          stroke-width="1.2" opacity="0.35"/>
-
-    <!-- BELLY MIDLINE — subtle curve suggesting the barrel's lower contour -->
-    <path d="M 96 146 C 140 143, 200 143, 240 146"
-          stroke-width="1.2" opacity="0.3"/>
-
-    <!-- FLANK LINE — subtle curve suggesting the fold where the back leg meets the belly -->
-    <path d="M 248 140 C 252 142, 254 144, 254 146"
-          stroke-width="1.2" opacity="0.4"/>
-
-  </g>
-
-  <!-- HALDI ACCENT — inner ear canal tint, very subtle (0.15 opacity) -->
-  <path d="M 62 80 C 70 88, 76 100, 78 110
-           C 75 110, 72 106, 68 100
-           C 64 92, 60 86, 60 80 Z"
-        fill="var(--haldi)" stroke="none" opacity="0.15"/>
-
-</svg></div>
-            <div class="why-hero__wall"></div>
-        </div>
-    </div>
-</section>
-
-<!-- ESSAY (numbered sections) -->
-<section class="essay" id="essay">
-
-    <!-- 01 THE MATERIAL -->
-    <article class="container essay__section" id="material" data-reveal>
-        <div>
-            <div class="essay__num">01</div>
-            <div class="essay__eyebrow">The material</div>
-            <h2 class="essay__title">Cow dung, as a wall-coating material.</h2>
-        </div>
-        <div class="essay__body">
-            <p>Cow dung is a familiar material in Indian domestic life. It has long been used as a wall and floor coating — a way of refreshing a surface and bringing an everyday material back into the home.</p>
-            <p class="essay__pull">The material idea is older than the paint format.</p>
-            <p>Prakritik Paint begins with this material — gathered, prepared, and brought into a paint format that can be applied with a brush.</p>
-        </div>
-    </article>
-
-    <!-- 02 THE TRADITION -->
-    <article class="container essay__section" id="tradition" data-reveal>
-        <div>
-            <div class="essay__num">02</div>
-            <div class="essay__eyebrow">The tradition</div>
-            <h2 class="essay__title">A traditional Indian wall practice.</h2>
-        </div>
-        <div class="essay__body">
-            <p>Traditional Indian homes have long used cow-dung-based wall coatings. The practice is domestic — part of cleaning and refreshing living spaces — and rural, tied to the rhythms of the household and the herd.</p>
-            <p>Prakritik Paint does not replace the practice. It carries the material idea into a contemporary paint format that can be applied to interior and exterior walls.</p>
-        </div>
-    </article>
-
-    <!-- 03 FROM MATERIAL TO PAINT -->
-    <article class="container essay__section essay__section--reverse" id="from-material-to-paint" data-reveal>
-        <div>
-            <div class="essay__num">03</div>
-            <div class="essay__eyebrow">From material to paint</div>
-            <h2 class="essay__title">Five stages, from nature to the wall.</h2>
-        </div>
-        <div>
-            <div class="essay__body">
-                <p>The journey from cow dung to painted wall passes through five stages — gathered, prepared, blended, applied.</p>
-                <hr class="essay__rule">
-            </div>
-            <div class="journey-inline" data-material-journey>
-                <div class="material-journey__svg" aria-hidden="true"><svg viewBox="0 0 640 140" xmlns="http://www.w3.org/2000/svg"
-     class=""
-     role="img" aria-hidden="true"
-     preserveAspectRatio="xMidYMid meet"
-     width="100%" height="100%">
-  <title>Material journey</title>
-
-  <!-- CONNECTING DASHED HALDI LINE — between stages, with directional arrow marks -->
-  <g fill="none" stroke="var(--haldi-deep)"
-     stroke-width="1.2" stroke-dasharray="3 3"
-     opacity="0.7" stroke-linecap="round">
-    <path d="M 110 70 L 210 70"/>
-    <path d="M 270 70 L 370 70"/>
-    <path d="M 430 70 L 530 70"/>
-  </g>
-
-  <!-- DIRECTIONAL ARROW MARKS — small triangles at the end of each connector -->
-  <g fill="var(--haldi-deep)" stroke="none">
-    <path d="M 210 70 L 204 66 L 204 74 Z"/>
-    <path d="M 370 70 L 364 66 L 364 74 Z"/>
-    <path d="M 530 70 L 524 66 L 524 74 Z"/>
-  </g>
+  <line x1="40" y1="525" x2="960" y2="525"
+        stroke="var(--forest)" stroke-width="1.35"
+        stroke-linecap="round" opacity="0.12"/>
 
   <g fill="none" stroke="var(--forest)"
-     stroke-width="1.5" stroke-linecap="round"
-     stroke-linejoin="round">
+     stroke-linecap="round" stroke-linejoin="round">
 
-    <!-- ===== STAGE 1 — SMALL COW SILHOUETTE (simplified side-view, facing left) =====
-         Simplified version of the IndianCow: body barrel, hump, head, 4 legs, tail, eye. -->
-    <g>
-      <!-- BODY BARREL (closed contour) -->
-      <path d="M 68 56
-               L 92 52
-               C 100 53, 108 55, 112 56
-               L 112 70
-               L 68 70
-               C 66 64, 66 60, 68 56 Z"/>
-      <!-- HUMP — rises above back line -->
-      <path d="M 68 56
-               C 70 48, 76 42, 80 42
-               C 84 42, 88 48, 92 52"/>
-      <!-- NECK TOP — from withers forward-down to poll -->
-      <path d="M 68 56 C 62 54, 56 53, 50 52"/>
-      <!-- HEAD — elongated face, side-view -->
-      <path d="M 50 52
-               C 46 54, 42 58, 38 62
-               C 34 66, 32 70, 32 72
-               C 36 74, 42 74, 48 72
-               C 52 72, 54 72, 56 72
-               C 56 64, 54 58, 50 52 Z"/>
-      <!-- HORN — short, curved -->
-      <path d="M 50 52 C 46 47, 42 45, 38 46" stroke-width="1.3"/>
-      <!-- EAR — small, hanging -->
-      <path d="M 54 56 C 60 60, 64 64, 66 68" stroke-width="1.3"/>
-      <!-- FRONT LEGS — slender, paired -->
-      <path d="M 72 70 L 72 84" stroke-width="1.3"/>
-      <path d="M 76 70 L 76 84" stroke-width="1.3"/>
-      <!-- BACK LEGS — slender, paired -->
-      <path d="M 104 70 L 104 84" stroke-width="1.3"/>
-      <path d="M 108 70 L 108 84" stroke-width="1.3"/>
-      <!-- TAIL — short with tuft -->
-      <path d="M 112 58 C 118 62, 120 70, 118 78" stroke-width="1.3"/>
-      <!-- EYE -->
-      <circle cx="42" cy="60" r="0.7" fill="var(--forest)" stroke="none"/>
-      <!-- HOOF TICKS -->
-      <path d="M 70 85 L 78 85" stroke-width="1.2"/>
-      <path d="M 102 85 L 110 85" stroke-width="1.2"/>
-    </g>
+    <!-- ============================================================
+         FAR HORN (RIGHT horn, behind head) — drawn first, lighter.
+         Attaches at the poll and curves up-and-back (rightward),
+         foreshortened from this side view.
+         ============================================================ -->
+    <path d="M 222 290
+             C 240 272, 268 252, 295 240
+             C 300 237, 303 240, 300 245"
+          stroke-width="1.35" opacity="0.65"/>
 
-    <!-- ===== STAGE 2 — SUN OVER A DRYING SURFACE (tray with material) ===== -->
-    <g>
-      <!-- SUN — small circle with rays -->
-      <circle cx="240" cy="40" r="6"/>
-      <path d="M 240 30 L 240 27"/>
-      <path d="M 234 35 L 232 33"/>
-      <path d="M 246 35 L 248 33"/>
-      <path d="M 230 40 L 227 40"/>
-      <path d="M 250 40 L 253 40"/>
-      <path d="M 236 45 L 234 47"/>
-      <path d="M 244 45 L 246 47"/>
-      <!-- DRYING SURFACE — trapezoidal tray -->
-      <path d="M 218 64 L 262 64 L 258 76 L 222 76 Z"/>
-      <!-- MATERIAL INSIDE TRAY — wavy line suggesting dried material -->
-      <path d="M 222 63 C 232 60, 242 64, 252 61 C 256 60, 258 62, 258 64"
-            stroke-width="1.2"/>
-      <!-- PARTICLE DOTS — scattered on the material -->
-      <circle cx="230" cy="62" r="0.7" fill="var(--forest)" stroke="none"/>
-      <circle cx="240" cy="60" r="0.7" fill="var(--forest)" stroke="none"/>
-      <circle cx="248" cy="62" r="0.7" fill="var(--forest)" stroke="none"/>
-    </g>
+    <!-- ============================================================
+         FAR EAR (RIGHT ear, behind head) — drawn first, lighter.
+         Hangs down-back from behind the head.
+         ============================================================ -->
+    <path d="M 235 308
+             C 226 326, 218 348, 215 372
+             C 213 386, 220 392, 230 388
+             C 245 380, 256 360, 262 336
+             C 264 322, 262 312, 254 308
+             C 246 305, 240 305, 235 308 Z"
+          stroke-width="1.35" opacity="0.6"/>
 
-    <!-- ===== STAGE 3 — SMALL BUCKET SILHOUETTE ===== -->
-    <g>
-      <!-- TOP RIM ELLIPSE -->
-      <ellipse cx="400" cy="44" rx="13" ry="3.5"
-               fill="var(--forest)" stroke="var(--forest)"
-               stroke-width="1.2"/>
-      <!-- BODY — slight taper -->
-      <path d="M 387 44 L 389 84 L 411 84 L 413 44"/>
-      <!-- HANDLE ARCH -->
-      <path d="M 387 44 Q 400 32, 413 44" stroke-width="1.4"/>
-      <!-- INNER RIM OPENING — limewash tone -->
-      <ellipse cx="400" cy="43" rx="10" ry="2.5"
-               fill="var(--limewash)" stroke="none" opacity="0.7"/>
-      <!-- LABEL BAND — dark green, slight curve -->
-      <path d="M 388 58 L 389 70 L 411 70 L 412 58 C 400 60, 400 60, 388 58 Z"
-            fill="var(--forest)" stroke="var(--forest)" stroke-width="1.2"/>
-      <!-- HALDI ACCENT STRIPE above label -->
-      <path d="M 388 56 L 412 56" stroke="var(--haldi-deep)" stroke-width="1"/>
-      <!-- HALDI ACCENT STRIPE below label -->
-      <path d="M 389 72 L 411 72" stroke="var(--haldi-deep)" stroke-width="1"/>
-      <!-- BASE CURVE -->
-      <path d="M 389 84 C 392 86, 408 86, 411 84"
-            stroke-width="1.2" opacity="0.7"/>
-    </g>
+    <!-- ============================================================
+         BODY BARREL — closed contour.
+         Withers (top-front) → back → rump → hindquarters curve
+         → belly → brisket → chest front (FORWARD BULGE for depth)
+         → back to withers.
+         The chest front curves forward (lower x) suggesting a
+         believable chest depth, not a flat front.
+         ============================================================ -->
+    <path d="M 320 260
+             C 400 263, 580 268, 790 280
+             C 815 285, 835 305, 832 360
+             C 830 400, 820 418, 800 422
+             C 600 430, 400 430, 320 425
+             C 295 420, 278 400, 278 365
+             C 277 330, 282 300, 295 280
+             C 305 268, 312 262, 320 260 Z"
+          stroke-width="1.35"/>
 
-    <!-- ===== STAGE 4 — WALL SECTION WITH PAINT BRUSH (application) ===== -->
-    <g>
-      <!-- WALL SECTION — rectangular elevation -->
-      <path d="M 538 44 L 582 44 L 582 84 L 538 84 Z"/>
-      <!-- WALL HORIZONTAL ARTICULATION LINES — subtle plaster lines -->
-      <path d="M 538 56 L 582 56" stroke-width="0.7" opacity="0.5"/>
-      <path d="M 538 70 L 582 70" stroke-width="0.7" opacity="0.5"/>
-      <!-- PAINT STROKE on wall — haldi band (already applied paint) -->
-      <path d="M 538 50 L 582 50 L 582 56 L 538 56 Z"
-            fill="var(--haldi)" stroke="none" opacity="0.85"/>
-      <!-- BRUSH — applying more paint to the wall -->
-      <!-- Handle -->
-      <path d="M 575 30 L 565 44" stroke-width="1.6"/>
-      <!-- Ferrule (metal band) -->
-      <path d="M 563 42 L 569 46 L 566 50 L 560 46 Z"
-            stroke-width="1.2"/>
-      <!-- Bristles — 3 strokes fanning out to the wall -->
-      <path d="M 560 46 L 555 52" stroke-width="1.2"/>
-      <path d="M 563 48 L 559 54" stroke-width="1.2"/>
-      <path d="M 566 50 L 563 56" stroke-width="1.2"/>
-      <!-- Haldi paint on bristle tips — subtle dots -->
-      <circle cx="555" cy="52" r="0.6" fill="var(--haldi)" stroke="none"/>
-      <circle cx="559" cy="54" r="0.6" fill="var(--haldi)" stroke="none"/>
-    </g>
+    <!-- ============================================================
+         HUMP — separate open curve rising above the back line.
+         Zebu signature. From withers (320, 260) up to peak
+         (380, 215) and back down to mid-back (440, 263).
+         45px rise above the back line — clearly visible,
+         proportionally correct (not exaggerated).
+         ============================================================ -->
+    <path d="M 320 260
+             C 335 232, 358 208, 380 215
+             C 400 222, 422 240, 440 263"
+          stroke-width="1.35"/>
+
+    <!-- ============================================================
+         NECK TOP — from withers forward-down to the poll.
+         Single curve connecting body to head.
+         ============================================================ -->
+    <path d="M 320 260
+             C 290 268, 255 280, 222 290"
+          stroke-width="1.35"/>
+
+    <!-- ============================================================
+         HEAD / FACE — closed contour, elongated narrow.
+         Poll → forehead → long bridge of nose → broad soft muzzle
+         → under-jaw → cheek → back to poll.
+         The bridge is long and slender; the muzzle widens and
+         rounds for the broad soft trait.
+         ============================================================ -->
+    <path d="M 222 290
+             C 212 296, 200 308, 188 322
+             C 168 348, 138 368, 100 380
+             C 78 386, 56 388, 42 392
+             C 32 395, 30 402, 38 406
+             C 50 410, 70 410, 92 406
+             C 118 402, 148 396, 175 386
+             C 198 376, 215 358, 224 336
+             C 230 320, 232 302, 222 290 Z"
+          stroke-width="1.35"/>
+
+    <!-- ============================================================
+         NEAR HORN (LEFT horn, in profile) — drawn over head.
+         From poll curving up-forward (toward upper-left, since
+         cow faces left). Moderate length, gentle curve, with
+         small back-curve at the tip.
+         ============================================================ -->
+    <path d="M 222 290
+             C 200 268, 170 244, 138 232
+             C 128 230, 125 235, 132 240
+             C 138 244, 144 246, 148 248"
+          stroke-width="1.35"/>
+
+    <!-- ============================================================
+         NEAR EAR (LEFT ear, in profile) — long, relaxed, leaf-shaped.
+         Hangs DOWN and slightly forward (toward face direction).
+         Drawn as a closed leaf shape — narrow at attachment,
+         widening to a rounded tip.
+         ============================================================ -->
+    <path d="M 198 304
+             C 188 322, 174 348, 162 372
+             C 156 386, 162 396, 175 394
+             C 192 390, 210 374, 222 352
+             C 232 332, 236 314, 230 306
+             C 222 300, 208 300, 198 304 Z"
+          stroke-width="1.35"/>
+
+    <!-- ============================================================
+         EYE — small filled circle, calm half-lidded.
+         r=2 at this scale. Positioned on the upper face, below
+         the bridge of nose and toward the forehead.
+         ============================================================ -->
+    <circle cx="138" cy="338" r="2" fill="var(--forest)" stroke="none"/>
+
+    <!-- BROW — subtle curve above the eye -->
+    <path d="M 128 330 C 133 326, 144 326, 152 330"
+          stroke-width="0.85" opacity="0.55"/>
+
+    <!-- ============================================================
+         NOSTRIL — small filled dot on the broad muzzle.
+         ============================================================ -->
+    <circle cx="58" cy="392" r="1.6" fill="var(--forest)" stroke="none"/>
+
+    <!-- MOUTH — subtle curve at the muzzle -->
+    <path d="M 40 402 Q 55 408, 72 404"
+          stroke-width="0.85" opacity="0.7"/>
+
+    <!-- ============================================================
+         DEWLAP — long loose skin fold from under-jaw to brisket.
+         Main line is the lower edge of the fold; 2 interior fold
+         lines suggest skin creases.
+         ============================================================ -->
+    <!-- Main dewlap line (lower edge) -->
+    <path d="M 100 408
+             C 150 432, 200 458, 250 452
+             C 280 446, 300 436, 318 428"
+          stroke-width="1.35"/>
+    <!-- Fold line 1 (subtle, above main line) -->
+    <path d="M 115 408
+             C 160 426, 200 446, 232 444"
+          stroke-width="0.85" opacity="0.55"/>
+    <!-- Fold line 2 (subtle, above fold 1) -->
+    <path d="M 130 408
+             C 170 422, 200 438, 220 438"
+          stroke-width="0.85" opacity="0.4"/>
+
+    <!-- ============================================================
+         FRONT LEGS — slender paired strokes, near + far.
+         Near front leg (foreground): paired strokes ~8px apart.
+         Far front leg (slightly behind, lighter): paired strokes.
+         Each leg has a small horizontal knee tick partway down.
+         ============================================================ -->
+    <!-- Near front leg — paired parallel strokes -->
+    <path d="M 308 425 L 308 522" stroke-width="1.35"/>
+    <path d="M 316 425 L 316 522" stroke-width="1.35"/>
+    <!-- Knee suggestion (small horizontal tick) -->
+    <path d="M 305 462 L 319 462" stroke-width="0.85" opacity="0.55"/>
+    <!-- Slight thigh bulge above the knee (subtle) -->
+    <path d="M 305 440 C 304 450, 304 455, 306 460"
+          stroke-width="0.85" opacity="0.4"/>
+    <path d="M 319 440 C 320 450, 320 455, 318 460"
+          stroke-width="0.85" opacity="0.4"/>
+
+    <!-- Far front leg (slightly behind, lighter) — paired strokes -->
+    <path d="M 332 425 L 332 522" stroke-width="1.35" opacity="0.65"/>
+    <path d="M 340 425 L 340 522" stroke-width="1.35" opacity="0.65"/>
+    <!-- Knee suggestion -->
+    <path d="M 329 462 L 343 462" stroke-width="0.85" opacity="0.45"/>
+
+    <!-- ============================================================
+         BACK LEGS — slender paired strokes, near + far.
+         Near back leg (foreground) and far back leg (behind).
+         ============================================================ -->
+    <!-- Near back leg — paired parallel strokes -->
+    <path d="M 748 422 L 748 522" stroke-width="1.35"/>
+    <path d="M 756 422 L 756 522" stroke-width="1.35"/>
+    <!-- Hock suggestion -->
+    <path d="M 745 462 L 759 462" stroke-width="0.85" opacity="0.55"/>
+    <!-- Slight gaskin bulge above the hock (subtle) -->
+    <path d="M 745 440 C 744 450, 744 455, 746 460"
+          stroke-width="0.85" opacity="0.4"/>
+    <path d="M 759 440 C 760 450, 760 455, 758 460"
+          stroke-width="0.85" opacity="0.4"/>
+
+    <!-- Far back leg (slightly behind, lighter) — paired strokes -->
+    <path d="M 772 422 L 772 522" stroke-width="1.35" opacity="0.65"/>
+    <path d="M 780 422 L 780 522" stroke-width="1.35" opacity="0.65"/>
+    <!-- Hock suggestion -->
+    <path d="M 769 462 L 783 462" stroke-width="0.85" opacity="0.45"/>
+
+    <!-- ============================================================
+         HOOF TICKS — small horizontal cloven marks at the base of
+         each leg pair. Two short marks per hoof (suggesting the
+         cloven split).
+         ============================================================ -->
+    <!-- Near front hoof -->
+    <path d="M 306 524 L 312 524" stroke-width="1.35"/>
+    <path d="M 312 524 L 318 524" stroke-width="1.35" opacity="0.55"/>
+    <!-- Far front hoof -->
+    <path d="M 330 524 L 336 524" stroke-width="1.35" opacity="0.65"/>
+    <path d="M 336 524 L 342 524" stroke-width="1.35" opacity="0.4"/>
+    <!-- Near back hoof -->
+    <path d="M 746 524 L 752 524" stroke-width="1.35"/>
+    <path d="M 752 524 L 758 524" stroke-width="1.35" opacity="0.55"/>
+    <!-- Far back hoof -->
+    <path d="M 770 524 L 776 524" stroke-width="1.35" opacity="0.65"/>
+    <path d="M 776 524 L 782 524" stroke-width="1.35" opacity="0.4"/>
+
+    <!-- ============================================================
+         TAIL — long, naturally hanging, reaches near the ground.
+         From rump (820, 295) curving down-back to (855, 510).
+         ============================================================ -->
+    <path d="M 820 295
+             C 832 320, 845 380, 852 440
+             C 855 470, 855 495, 852 515"
+          stroke-width="1.35"/>
+
+    <!-- TAIL TUFT — three short strokes at the end -->
+    <path d="M 852 515 C 845 522, 840 525, 842 528" stroke-width="0.85"/>
+    <path d="M 852 515 C 852 522, 852 528, 854 530" stroke-width="0.85"/>
+    <path d="M 852 515 C 860 522, 865 525, 863 528" stroke-width="0.85"/>
+
+    <!-- ============================================================
+         INTERIOR ANATOMY SUGGESTIONS — very subtle, low opacity.
+         These give the cow depth and volume without going 3D.
+         ============================================================ -->
+    <!-- Shoulder blade line (scapula under the hump) -->
+    <path d="M 360 275 C 366 320, 366 380, 360 420"
+          stroke-width="0.85" opacity="0.3"/>
+    <!-- Belly midline (subtle barrel lower contour) -->
+    <path d="M 322 425 C 480 430, 640 430, 798 422"
+          stroke-width="0.85" opacity="0.25"/>
+    <!-- Flank fold where back leg meets belly -->
+    <path d="M 738 410 C 745 415, 750 420, 748 422"
+          stroke-width="0.85" opacity="0.4"/>
+    <!-- Hip line (subtle, suggesting the hip bone under the rump) -->
+    <path d="M 770 290 C 778 320, 778 360, 770 400"
+          stroke-width="0.85" opacity="0.3"/>
+    <!-- Rib suggestion marks (3 subtle vertical curves along the body) -->
+    <path d="M 500 280 C 498 320, 498 380, 500 420"
+          stroke-width="0.5" opacity="0.25"/>
+    <path d="M 580 282 C 578 320, 578 380, 580 420"
+          stroke-width="0.5" opacity="0.25"/>
+    <path d="M 660 284 C 658 320, 658 380, 660 420"
+          stroke-width="0.5" opacity="0.25"/>
+    <!-- Neck muscle suggestion (subtle curve from poll to withers) -->
+    <path d="M 230 295 C 260 270, 290 268, 318 262"
+          stroke-width="0.5" opacity="0.3"/>
 
   </g>
+</svg>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <!-- STAGE NUMBERS in Newsreader serif (var font-display) -->
-  <g font-family="var(--font-display)" font-weight="700"
-     font-size="9" fill="var(--haldi-deep)"
-     text-anchor="middle" letter-spacing="1.4">
-    <text x="80" y="110">01</text>
-    <text x="240" y="110">02</text>
-    <text x="400" y="110">03</text>
-    <text x="560" y="110">04</text>
-  </g>
-
-  <!-- STAGE LABELS — small captions under each number (subtle) -->
-  <g font-family="var(--font-sans)" font-weight="600"
-     font-size="6" fill="var(--soft-ink)"
-     text-anchor="middle" letter-spacing="1.5" opacity="0.7">
-    <text x="80" y="122">SOURCE</text>
-    <text x="240" y="122">REFINE</text>
-    <text x="400" y="122">PRODUCT</text>
-    <text x="560" y="122">APPLY</text>
-  </g>
-
-</svg></div>
-                <ol class="journey-inline__steps">
-                    <li class="journey-inline__step">
-                        <div class="journey-inline__num">01</div>
-                        <div class="journey-inline__title">Natural origin</div>
-                        <div class="journey-inline__desc">The material begins with the cow.</div>
-                    </li>
-                    <li class="journey-inline__step">
-                        <div class="journey-inline__num">02</div>
-                        <div class="journey-inline__title">Raw material</div>
-                        <div class="journey-inline__desc">Cow dung, gathered and prepared.</div>
-                    </li>
-                    <li class="journey-inline__step">
-                        <div class="journey-inline__num">03</div>
-                        <div class="journey-inline__title">Preparation</div>
-                        <div class="journey-inline__desc">Processed into a workable binder.</div>
-                    </li>
-                    <li class="journey-inline__step">
-                        <div class="journey-inline__num">04</div>
-                        <div class="journey-inline__title">Prakritik Paint</div>
-                        <div class="journey-inline__desc">Blended into a contemporary paint format.</div>
-                    </li>
-                    <li class="journey-inline__step">
-                        <div class="journey-inline__num">05</div>
-                        <div class="journey-inline__title">Finished wall</div>
-                        <div class="journey-inline__desc">Applied to interior and exterior walls.</div>
-                    </li>
-                </ol>
-            </div>
+<!-- ===== 01 MATERIAL ===== -->
+<section class="section section--paper" aria-labelledby="chapter-01-title">
+  <div class="container">
+    <div class="why-chapter" data-reveal>
+      <div>
+        <span class="why-chapter__num">01</span>
+        <span class="why-chapter__eyebrow">The material</span>
+        <h2 class="why-chapter__title" id="chapter-01-title">A natural material, with provenance.</h2>
+        <div class="why-chapter__body">
+          <p>
+            The material begins with the cow. Cow dung, gathered and prepared —
+            a substance with a long Indian tradition of being applied to walls
+            and floors.
+          </p>
+          <p>
+            Prakritik Paint works with that same material, processed into a
+            workable binder for a contemporary paint format.
+          </p>
         </div>
-    </article>
+        <p class="why-chapter__pull">
+          Not a novelty. A useful material, reconsidered.
+        </p>
+      </div>
+      <div class="why-material-sample" aria-hidden="true">
+        <div class="why-material-sample__patch"></div>
+        <span class="why-material-sample__tag">Material sample — cow dung binder</span>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- 04 ASHTA LAABH (full interaction) -->
-    <article class="container essay__section" id="ashta-laabh" data-reveal>
-        <div>
-            <div class="essay__num">04</div>
-            <div class="essay__eyebrow">Ashta Laabh</div>
-            <h2 class="essay__title">Eight benefits presented in Prakritik Paint.</h2>
-            <div class="essay__body">
-                <p style="margin-top: 1rem;">A reading of the material, not a verified claim.</p>
-                <ul>
-                    <li>Antibacterial, Antifungal — material qualities presented as benefits.</li>
-                    <li>Eco-Friendly, Non-Toxic, Odourless — read alongside the cow-dung lineage.</li>
-                    <li>Cost-Effective, Free from Heavy Metals, Natural Thermal Insulator.</li>
-                </ul>
-            </div>
-        </div>
-        <div class="ashta-essay">
-            <div class="ashta-essay__grid" data-ashta-laabh>
-                <div class="ashta-essay__diagram" aria-hidden="true"><svg viewBox="0 0 360 360" xmlns="http://www.w3.org/2000/svg"
+<!-- ===== 02 TRADITION — large courtyard ===== -->
+<section class="section section--limewash" aria-labelledby="chapter-02-title">
+  <div class="container">
+    <div class="why-chapter why-chapter--reverse" data-reveal>
+      <div class="why-tradition-art" aria-hidden="true">
+        <svg viewBox="0 0 1440 850" xmlns="http://www.w3.org/2000/svg"
      class=""
      role="img" aria-hidden="true"
      preserveAspectRatio="xMidYMid meet"
      width="100%" height="100%">
-  <title>Eight benefits radial diagram</title>
+  <title>Indian limewashed courtyard elevation</title>
+
+  <!-- ============================================================
+       COURTYARD WALL PLANE — the recolourable wall surface.
+       id="courtyard-wall-plane" — the Colours of India JS swaps
+       the fill on this element. Default fill: limewash.
+       ============================================================ -->
+  <rect id="courtyard-wall-plane"
+        x="80" y="130" width="1280" height="590"
+        fill="var(--limewash)" stroke="none"/>
+
+  <!-- ============================================================
+       LIMEWASH TONAL PATCHES — very faint tonal variation across
+       the wall (0.04 opacity). Suggests plaster age / weathering.
+       Never a uniform colour block.
+       ============================================================ -->
+  <g fill="var(--forest)" stroke="none" opacity="0.04">
+    <rect x="200" y="180" width="180" height="120"/>
+    <rect x="700" y="200" width="140" height="100"/>
+    <rect x="1200" y="250" width="120" height="180"/>
+    <rect x="300" y="450" width="100" height="80"/>
+    <rect x="1100" y="500" width="180" height="150"/>
+    <rect x="900" y="600" width="160" height="100"/>
+    <ellipse cx="450" cy="650" rx="80" ry="40"/>
+  </g>
+
+  <!-- ============================================================
+       WALL OUTLINE — single clean stroke around the whole wall
+       (drawn on top of the recolourable plane so the outline
+       stays crisp regardless of fill colour).
+       ============================================================ -->
+  <rect x="80" y="130" width="1280" height="590"
+        fill="none" stroke="var(--forest)"
+        stroke-width="1.35" stroke-linejoin="miter"/>
+
+  <!-- ============================================================
+       PARAPET / WALL THICKNESS — double line at top of wall,
+       suggesting physical depth when viewed from outside.
+       Square cap for crisp architectural molding endpoints.
+       ============================================================ -->
+  <g stroke="var(--forest)" stroke-linecap="square" fill="none">
+    <path d="M 80 130 H 1360" stroke-width="1.35"/>
+    <path d="M 80 145 H 1360" stroke-width="0.85" opacity="0.65"/>
+  </g>
+
+  <!-- ============================================================
+       PLINTH — double line at base of wall (masonry plinth band).
+       Slightly wider than the wall (extends 20px each side).
+       ============================================================ -->
+  <g stroke="var(--forest)" stroke-linecap="square" fill="none">
+    <path d="M 60 720 H 1380" stroke-width="1.35"/>
+    <path d="M 60 740 H 1380" stroke-width="1.35"/>
+    <!-- Subtle interior plinth line (masonry joint) -->
+    <path d="M 60 732 H 1380" stroke-width="0.85" opacity="0.5"/>
+  </g>
+  <!-- Plinth fill (subtle mitti tone — earthy masonry) -->
+  <rect x="60" y="720" width="1320" height="20"
+        fill="var(--mitti)" stroke="none" opacity="0.12"/>
+
+  <!-- ============================================================
+       SHALLOW VERANDAH / SHADE LINE — thin projection above the
+       door. Slightly wider than the door opening. Square cap.
+       ============================================================ -->
+  <g stroke="var(--forest)" stroke-linecap="square" fill="none">
+    <!-- Shade projection line -->
+    <path d="M 460 388 H 660" stroke-width="1.35"/>
+    <!-- Subtle underside line (slab thickness) -->
+    <path d="M 460 394 H 660" stroke-width="0.85" opacity="0.55"/>
+    <!-- Two short vertical posts at each end -->
+    <path d="M 460 388 L 460 404" stroke-width="0.85" opacity="0.6"/>
+    <path d="M 660 388 L 660 404" stroke-width="0.85" opacity="0.6"/>
+  </g>
+
+  <!-- ============================================================
+       TIMBER DOOR OPENING — rectangular (NOT arched).
+       Door opening: x=480 to x=640 (width 160),
+                     y=400 to y=720 (height 320).
+       Height ≈ 2× width ✓.
+       Double-leaf timber door with vertical board detail.
+       ============================================================ -->
+  <g fill="none" stroke="var(--forest)"
+     stroke-linecap="round" stroke-linejoin="round">
+    <!-- Door opening — recessed background tone -->
+    <rect x="480" y="400" width="160" height="320"
+          fill="var(--background)" stroke-width="1.35"/>
+
+    <!-- Door jamb depth suggestion — interior stroke at inset -->
+    <path d="M 488 408 L 488 720" stroke-width="0.85" opacity="0.4"/>
+    <path d="M 632 408 L 632 720" stroke-width="0.85" opacity="0.4"/>
+    <path d="M 488 408 H 632" stroke-width="0.85" opacity="0.4"/>
+
+    <!-- Door panel divider (double-leaf split, center) -->
+    <path d="M 560 400 V 720" stroke-width="0.85" opacity="0.55"/>
+
+    <!-- Timber board vertical lines — 5 per leaf -->
+    <path d="M 498 400 V 720" stroke-width="0.5" opacity="0.4"/>
+    <path d="M 516 400 V 720" stroke-width="0.5" opacity="0.4"/>
+    <path d="M 534 400 V 720" stroke-width="0.5" opacity="0.4"/>
+    <path d="M 548 400 V 720" stroke-width="0.5" opacity="0.4"/>
+    <path d="M 572 400 V 720" stroke-width="0.5" opacity="0.4"/>
+    <path d="M 586 400 V 720" stroke-width="0.5" opacity="0.4"/>
+    <path d="M 604 400 V 720" stroke-width="0.5" opacity="0.4"/>
+    <path d="M 622 400 V 720" stroke-width="0.5" opacity="0.4"/>
+
+    <!-- Door threshold (slight step) -->
+    <path d="M 476 720 L 644 720" stroke-width="1.35" opacity="0.85"/>
+
+    <!-- Two horizontal rail lines on each leaf (top + bottom rail of the door panel) -->
+    <path d="M 482 440 H 558" stroke-width="0.85" opacity="0.45"/>
+    <path d="M 482 690 H 558" stroke-width="0.85" opacity="0.45"/>
+    <path d="M 562 440 H 638" stroke-width="0.85" opacity="0.45"/>
+    <path d="M 562 690 H 638" stroke-width="0.85" opacity="0.45"/>
+
+    <!-- Door handles — haldi dots (the only haldi in the courtyard) -->
+    <circle cx="544" cy="560" r="2.5" fill="var(--haldi)" stroke="none"/>
+    <circle cx="576" cy="560" r="2.5" fill="var(--haldi)" stroke="none"/>
+    <!-- Handle backplates (small forest rings around the haldi dots) -->
+    <circle cx="544" cy="560" r="4" fill="none" stroke="var(--forest)" stroke-width="0.85"/>
+    <circle cx="576" cy="560" r="4" fill="none" stroke="var(--forest)" stroke-width="0.85"/>
+  </g>
+
+  <!-- ============================================================
+       WINDOW OPENING — rectangular, offset from the door.
+       Window: x=860 to x=1040 (width 180),
+              y=350 to y=550 (height 200).
+       ============================================================ -->
+  <g fill="none" stroke="var(--forest)"
+     stroke-linecap="round" stroke-linejoin="round">
+    <!-- Window opening — recessed background tone -->
+    <rect x="860" y="350" width="180" height="200"
+          fill="var(--background)" stroke-width="1.35"/>
+    <!-- Jamb depth suggestion -->
+    <path d="M 868 358 L 868 550" stroke-width="0.85" opacity="0.4"/>
+    <path d="M 1032 358 L 1032 550" stroke-width="0.85" opacity="0.4"/>
+    <path d="M 868 358 H 1032" stroke-width="0.85" opacity="0.4"/>
+    <!-- Mullion cross (vertical + horizontal) -->
+    <path d="M 950 350 V 550" stroke-width="0.85" opacity="0.55"/>
+    <path d="M 860 450 H 1040" stroke-width="0.85" opacity="0.55"/>
+    <!-- Subtle secondary mullions (smaller panes) -->
+    <path d="M 905 350 V 550" stroke-width="0.5" opacity="0.35"/>
+    <path d="M 995 350 V 550" stroke-width="0.5" opacity="0.35"/>
+    <path d="M 860 400 H 1040" stroke-width="0.5" opacity="0.35"/>
+    <path d="M 860 500 H 1040" stroke-width="0.5" opacity="0.35"/>
+    <!-- Window sill (slightly proud horizontal line) -->
+    <path d="M 854 552 L 1046 552" stroke-width="1.35" opacity="0.85"/>
+    <!-- Window head lintel line -->
+    <path d="M 854 348 L 1046 348" stroke-width="1.35" opacity="0.85"/>
+  </g>
+
+  <!-- ============================================================
+       JAALI / VENTILATION OPENINGS — small geometric perforations
+       high on the wall. 3 small square openings with lattice
+       detail, positioned to the right of the window.
+       ============================================================ -->
+  <g fill="var(--background)" stroke="var(--forest)"
+     stroke-width="0.85" stroke-linejoin="round">
+    <!-- Jaali 1 -->
+    <rect x="1110" y="190" width="22" height="22"/>
+    <path d="M 1115 190 V 212 M 1121 190 V 212 M 1127 190 V 212" stroke-width="0.5" opacity="0.7" fill="none"/>
+    <path d="M 1110 195 H 1132 M 1110 201 H 1132 M 1110 207 H 1132" stroke-width="0.5" opacity="0.7" fill="none"/>
+    <!-- Jaali 2 -->
+    <rect x="1144" y="190" width="22" height="22"/>
+    <path d="M 1149 190 V 212 M 1155 190 V 212 M 1161 190 V 212" stroke-width="0.5" opacity="0.7" fill="none"/>
+    <path d="M 1144 195 H 1166 M 1144 201 H 1166 M 1144 207 H 1166" stroke-width="0.5" opacity="0.7" fill="none"/>
+    <!-- Jaali 3 -->
+    <rect x="1178" y="190" width="22" height="22"/>
+    <path d="M 1183 190 V 212 M 1189 190 V 212 M 1195 190 V 212" stroke-width="0.5" opacity="0.7" fill="none"/>
+    <path d="M 1178 195 H 1200 M 1178 201 H 1200 M 1178 207 H 1200" stroke-width="0.5" opacity="0.7" fill="none"/>
+  </g>
+
+  <!-- ============================================================
+       WALL SURFACE ARTICULATION — very subtle horizontal limewash
+       plaster lines (short, scattered, low opacity) suggesting
+       the wall was plastered in horizontal courses.
+       ============================================================ -->
+  <g stroke="var(--forest)" stroke-width="0.5" opacity="0.18"
+     stroke-linecap="round" fill="none">
+    <!-- Left of door -->
+    <path d="M 100 220 H 280"/>
+    <path d="M 100 290 H 200"/>
+    <path d="M 240 290 H 380"/>
+    <path d="M 100 380 H 200"/>
+    <path d="M 240 380 H 380"/>
+    <path d="M 100 480 H 380"/>
+    <path d="M 100 580 H 200"/>
+    <path d="M 240 580 H 380"/>
+    <path d="M 100 680 H 380"/>
+    <!-- Between door and window -->
+    <path d="M 680 350 H 800"/>
+    <path d="M 680 450 H 800"/>
+    <path d="M 680 550 H 800"/>
+    <path d="M 680 650 H 800"/>
+    <!-- Right of window -->
+    <path d="M 1080 350 H 1300"/>
+    <path d="M 1080 450 H 1240"/>
+    <path d="M 1080 550 H 1240"/>
+    <path d="M 1080 650 H 1300"/>
+  </g>
+
+  <!-- ============================================================
+       MATURE TREE — restrained line-drawn tree on the left side.
+       Full canopy (rounded mass with overlapping arcs), slender
+       trunk, a few interior vein lines.
+       ============================================================ -->
+  <g fill="none" stroke="var(--forest)"
+     stroke-linecap="round" stroke-linejoin="round">
+    <!-- Trunk — single slender stroke from ground up into canopy -->
+    <path d="M 175 790 L 170 580" stroke-width="1.35" opacity="0.85"/>
+    <!-- Two main branches splitting off the trunk -->
+    <path d="M 172 660 C 158 640, 142 632, 130 628" stroke-width="0.85" opacity="0.7"/>
+    <path d="M 170 640 C 184 620, 200 612, 212 608" stroke-width="0.85" opacity="0.7"/>
+    <!-- Canopy — full rounded mass built from overlapping arcs.
+         Drawn as a closed contour with several cubic curves for
+         natural edge variation. Spans approx x=80 to x=260,
+         y=440 to y=600. -->
+    <path d="M 100 560
+             C 88 540, 92 510, 112 496
+             C 108 476, 124 458, 148 458
+             C 152 440, 178 432, 198 444
+             C 216 432, 240 440, 250 460
+             C 274 460, 288 482, 280 504
+             C 292 514, 294 538, 278 552
+             C 282 568, 270 584, 248 588
+             C 238 600, 218 604, 200 596
+             C 184 608, 158 608, 144 596
+             C 124 604, 102 596, 96 580
+             C 86 574, 88 566, 100 560 Z"
+          stroke-width="1.35" opacity="0.85"/>
+    <!-- Canopy interior vein lines — 3 subtle branching marks -->
+    <path d="M 174 540 C 168 552, 160 562, 152 568" stroke-width="0.85" opacity="0.55"/>
+    <path d="M 174 540 C 182 552, 190 562, 198 568" stroke-width="0.85" opacity="0.55"/>
+    <path d="M 174 540 L 174 524" stroke-width="0.85" opacity="0.45"/>
+    <!-- Root flare at the base of the trunk -->
+    <path d="M 167 790 C 162 794, 156 794, 152 792" stroke-width="0.85" opacity="0.6"/>
+    <path d="M 178 790 C 183 794, 189 794, 193 792" stroke-width="0.85" opacity="0.6"/>
+  </g>
+
+  <!-- ============================================================
+       EARTHEN / STONE FLOOR BASELINE — ground line + subtle texture
+       marks (stone tile seams + a few grass tufts at the wall base).
+       ============================================================ -->
+  <g fill="none" stroke="var(--forest)"
+     stroke-linecap="round" stroke-linejoin="round">
+    <!-- Main ground line -->
+    <path d="M 0 790 H 1440" stroke-width="1.35" opacity="0.5"/>
+    <!-- Lower subtle ground line (suggests ground depth) -->
+    <path d="M 0 810 H 1440" stroke-width="0.85" opacity="0.25"/>
+    <!-- Stone tile seam marks (subtle vertical ticks on the floor) -->
+    <g stroke-width="0.85" opacity="0.3">
+      <path d="M 220 790 L 220 810"/>
+      <path d="M 380 790 L 380 810"/>
+      <path d="M 540 790 L 540 810"/>
+      <path d="M 700 790 L 700 810"/>
+      <path d="M 860 790 L 860 810"/>
+      <path d="M 1020 790 L 1020 810"/>
+      <path d="M 1180 790 L 1180 810"/>
+      <path d="M 1340 790 L 1340 810"/>
+    </g>
+    <!-- Small grass tufts at the base of the wall (restrained) -->
+    <g stroke-width="0.85" opacity="0.6">
+      <path d="M 410 790 L 408 784"/>
+      <path d="M 412 790 L 412 782"/>
+      <path d="M 414 790 L 416 784"/>
+      <path d="M 720 790 L 718 784"/>
+      <path d="M 722 790 L 722 782"/>
+      <path d="M 724 790 L 726 784"/>
+      <path d="M 1300 790 L 1298 784"/>
+      <path d="M 1302 790 L 1302 782"/>
+      <path d="M 1304 790 L 1306 784"/>
+    </g>
+  </g>
+
+</svg>
+      </div>
+      <div>
+        <span class="why-chapter__num">02</span>
+        <span class="why-chapter__eyebrow">The tradition</span>
+        <h2 class="why-chapter__title" id="chapter-02-title">Limewashed walls, courtyard elevations.</h2>
+        <div class="why-chapter__body">
+          <p>
+            Indian vernacular architecture is full of limewashed walls, plinths,
+            verandahs, and rectangular openings — a discipline of plaster, lime,
+            and earth that Prakritik Paint inherits materially.
+          </p>
+          <p>
+            The paint belongs to that lineage. It is not imported. It is not
+            decorative. It is local material, on local walls.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 03 MATERIAL TO WALL — full-width diagram ===== -->
+<section class="section section--paper why-flow-section" aria-labelledby="chapter-03-title">
+  <div class="container">
+    <div data-reveal>
+      <span class="why-chapter__num">03</span>
+      <span class="why-chapter__eyebrow">Material to wall</span>
+      <h2 class="why-chapter__title" id="chapter-03-title">From a natural material to a finished wall.</h2>
+      <p class="why-chapter__body">
+        Three conceptual stages. Not a process diagram — a narrative one.
+      </p>
+    </div>
+    <div class="why-flow-svg" data-reveal>
+      <svg viewBox="0 0 1600 500" xmlns="http://www.w3.org/2000/svg"
+     class=""
+     role="img" aria-hidden="true"
+     preserveAspectRatio="xMidYMid meet"
+     width="100%" height="100%">
+  <title>Material to wall diagram</title>
+
+  <defs>
+    <!-- Haldi paint-stroke gradient — soft to deep, gives the stroke
+         segment a wet-paint feel without going glossy. -->
+    <linearGradient id="mtw-paint" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%"  stop-color="var(--haldi-soft)"/>
+      <stop offset="50%" stop-color="var(--haldi)"/>
+      <stop offset="100%" stop-color="var(--haldi)"/>
+    </linearGradient>
+  </defs>
+
+  <!-- ============================================================
+       CONTINUOUS CONNECTING LINE — runs through all three stages.
+       Three visually-joined segments at y=380 (ground/baseline).
+
+       Segment 1: forest ground-line under the cow (x=130 → 540)
+       Segment 2: forest transition segment (x=540 → 580)
+       Segment 3: HALDI paint stroke — wider, organic edge (x=580 → 1080)
+       Segment 4: forest wall baseline under the finished wall (x=1080 → 1560)
+       ============================================================ -->
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Forest ground-line under cow -->
+    <path d="M 130 380 L 540 380"
+          stroke="var(--forest)" stroke-width="1.35" opacity="0.85"/>
+    <!-- Brief forest transition (subtle visual seam between ground and paint) -->
+    <path d="M 540 380 L 580 380"
+          stroke="var(--forest)" stroke-width="1.35" opacity="0.55"/>
+    <!-- Haldi paint stroke — wider, with a faint organic wobble -->
+    <path d="M 580 380 C 660 378, 880 382, 980 379 C 1030 378, 1060 380, 1080 380"
+          stroke="url(#mtw-paint)" stroke-width="6" opacity="0.95"/>
+    <!-- Subtle haldi halo just above the stroke segment — paint being laid onto a surface -->
+    <path d="M 600 376 C 700 374, 900 378, 1060 376"
+          stroke="var(--haldi)" stroke-width="2.5" opacity="0.4"/>
+    <!-- Forest wall baseline -->
+    <path d="M 1080 380 L 1560 380"
+          stroke="var(--forest)" stroke-width="1.35" opacity="0.85"/>
+  </g>
+
+  <!-- ============================================================
+       STAGE 01 — NATURAL MATERIAL (simplified cow profile, facing right)
+       Cow sits small in the section, ground at y=380.
+       ============================================================ -->
+  <g fill="none" stroke="var(--forest)"
+     stroke-linecap="round" stroke-linejoin="round">
+
+    <!-- FAR HORN — drawn behind head, lighter -->
+    <path d="M 372 296 C 365 282, 358 274, 348 276"
+          stroke-width="0.85" opacity="0.7"/>
+    <!-- FAR EAR — small leaf behind head, lighter -->
+    <path d="M 376 304 C 372 318, 366 328, 360 332
+             C 362 322, 366 312, 372 304 Z"
+          stroke-width="0.85" opacity="0.65"/>
+
+    <!-- BODY BARREL — closed contour: chest top → back → rump → belly → chest front -->
+    <path d="M 340 280
+             C 320 273, 280 270, 230 272
+             C 210 274, 196 278, 192 286
+             C 188 296, 188 304, 192 312
+             L 200 322
+             L 335 322
+             C 340 316, 342 308, 342 300
+             C 342 290, 342 284, 340 280 Z"
+          stroke-width="1.35"/>
+
+    <!-- HUMP — open curve rising above the back line, between chest and mid-back -->
+    <path d="M 332 278
+             C 322 252, 300 240, 280 246
+             C 270 250, 262 262, 258 272"
+          stroke-width="1.35"/>
+
+    <!-- NECK TOP — from chest top forward-down to the poll -->
+    <path d="M 340 280
+             C 352 285, 364 290, 372 294"
+          stroke-width="1.35"/>
+
+    <!-- HEAD / FACE — closed contour: poll → forehead → bridge → muzzle → under-jaw → cheek → poll.
+         Elongated narrow face; muzzle extends forward of poll. Cow faces RIGHT. -->
+    <path d="M 372 294
+             C 378 296, 384 300, 388 304
+             C 392 308, 396 312, 400 316
+             C 404 320, 408 322, 410 324
+             C 408 326, 404 328, 400 328
+             C 396 330, 392 332, 388 332
+             C 384 332, 380 332, 376 332
+             C 374 328, 372 322, 372 316
+             C 372 308, 372 300, 372 294 Z"
+          stroke-width="1.35"/>
+
+    <!-- DEWLAP — loose skin fold from under-jaw down to chest, with one fold line -->
+    <path d="M 388 332 C 384 340, 380 348, 376 354
+             C 372 358, 366 360, 358 360"
+          stroke-width="1.35"/>
+    <path d="M 392 334 C 388 342, 384 350, 380 356"
+          stroke-width="0.85" opacity="0.55"/>
+
+    <!-- NEAR HORN — drawn over the head, prominent. From poll up-back to the left. -->
+    <path d="M 374 294
+             C 368 280, 360 270, 350 272
+             C 348 274, 350 276, 352 278"
+          stroke-width="1.35"/>
+
+    <!-- NEAR EAR — long leaf hanging down-back. From below horn, down-left. -->
+    <path d="M 380 302
+             C 376 316, 370 328, 364 334
+             C 360 332, 362 322, 366 312
+             C 370 304, 374 300, 380 302 Z"
+          stroke-width="1.35"/>
+
+    <!-- EYE — small filled circle, calm -->
+    <circle cx="394" cy="306" r="1.8" fill="var(--forest)" stroke="none"/>
+
+    <!-- BROW — subtle curve above the eye -->
+    <path d="M 390 302 C 393 300, 397 300, 400 302"
+          stroke-width="0.85" opacity="0.55"/>
+
+    <!-- NOSTRIL — small dot near the muzzle tip -->
+    <circle cx="406" cy="320" r="1.2" fill="var(--forest)" stroke="none"/>
+
+    <!-- MOUTH — subtle line at muzzle -->
+    <path d="M 404 326 Q 408 328, 412 326"
+          stroke-width="0.85" opacity="0.7"/>
+
+    <!-- FRONT LEGS — slender paired strokes. Near (right, foreground). -->
+    <path d="M 320 322 L 320 376" stroke-width="1.35"/>
+    <path d="M 325 322 L 325 376" stroke-width="1.35"/>
+    <!-- Far front leg (slightly offset back, lighter) -->
+    <path d="M 310 322 L 310 376" stroke-width="1.35" opacity="0.65"/>
+    <path d="M 315 322 L 315 376" stroke-width="1.35" opacity="0.65"/>
+
+    <!-- BACK LEGS — slender paired strokes. Near (left, foreground). -->
+    <path d="M 218 322 L 218 376" stroke-width="1.35"/>
+    <path d="M 223 322 L 223 376" stroke-width="1.35"/>
+    <!-- Far back leg -->
+    <path d="M 208 322 L 208 376" stroke-width="1.35" opacity="0.65"/>
+    <path d="M 213 322 L 213 376" stroke-width="1.35" opacity="0.65"/>
+
+    <!-- KNEE SUGGESTIONS — small horizontal ticks partway down each near leg -->
+    <path d="M 318 350 L 327 350" stroke-width="0.85" opacity="0.45"/>
+    <path d="M 216 350 L 225 350" stroke-width="0.85" opacity="0.45"/>
+
+    <!-- HOOF TICKS — small horizontal cloven marks at the base of each leg pair -->
+    <path d="M 318 376 L 327 376" stroke-width="1.35"/>
+    <path d="M 308 376 L 317 376" stroke-width="1.35" opacity="0.65"/>
+    <path d="M 216 376 L 225 376" stroke-width="1.35"/>
+    <path d="M 206 376 L 215 376" stroke-width="1.35" opacity="0.65"/>
+
+    <!-- TAIL — from rump curving down-back, with small tuft at end -->
+    <path d="M 192 288
+             C 186 300, 182 320, 180 340
+             C 178 356, 180 368, 184 372"
+          stroke-width="1.35"/>
+    <!-- TAIL TUFT — three short strokes -->
+    <path d="M 184 372 C 180 376, 178 378, 180 380" stroke-width="0.85"/>
+    <path d="M 184 372 C 184 376, 184 378, 186 380" stroke-width="0.85"/>
+    <path d="M 184 372 C 188 376, 190 378, 188 380" stroke-width="0.85"/>
+
+    <!-- SHOULDER BLADE INTERIOR LINE — subtle scapula suggestion -->
+    <path d="M 330 286 C 326 300, 326 312, 328 320"
+          stroke-width="0.85" opacity="0.35"/>
+
+    <!-- BELLY MIDLINE — subtle curve suggesting barrel lower contour -->
+    <path d="M 200 322 C 240 320, 290 320, 335 322"
+          stroke-width="0.85" opacity="0.3"/>
+
+  </g>
+
+  <!-- ============================================================
+       STAGE 02 — PRAKRITIK PAINT (paint vessel + brush)
+       Bucket centered around x=720, brush around x=920.
+       ============================================================ -->
+  <g fill="none" stroke="var(--forest)"
+     stroke-linecap="round" stroke-linejoin="round">
+
+    <!-- PAINT VESSEL (TIN) — cylindrical, slight taper from rim to base -->
+    <!-- Top rim ellipse (dark green fill for the rolled metal edge) -->
+    <ellipse cx="720" cy="240" rx="56" ry="12"
+             fill="var(--forest)" stroke="var(--forest)" stroke-width="1.35"/>
+    <!-- Inner opening (limewash tone — interior of the vessel) -->
+    <ellipse cx="720" cy="238" rx="48" ry="9"
+             fill="var(--limewash)" stroke="none" opacity="0.85"/>
+    <!-- Subtle liquid surface line inside the rim (haldi-tinted paint) -->
+    <ellipse cx="720" cy="240" rx="44" ry="7"
+             fill="var(--haldi)" stroke="none" opacity="0.32"/>
+    <path d="M 678 240 C 700 244, 740 244, 762 240"
+          stroke="var(--haldi)" stroke-width="0.85" opacity="0.55"/>
+
+    <!-- BODY — slight taper from rim (x=664-776) to base (x=676-764) -->
+    <path d="M 664 240 L 676 380 L 764 380 L 776 240"
+          stroke-width="1.35"/>
+
+    <!-- METAL BAIL HANDLE — arched over the rim -->
+    <path d="M 666 240 C 690 200, 750 200, 774 240"
+          stroke-width="1.35"/>
+    <!-- Two attachment lugs where bail meets rim -->
+    <path d="M 664 236 L 664 244" stroke-width="1.35"/>
+    <path d="M 776 236 L 776 244" stroke-width="1.35"/>
+
+    <!-- LABEL BAND — dark green band with curved top/bottom edges (cylinder curve) -->
+    <path d="M 668 300
+             C 690 304, 750 304, 772 300
+             L 770 332
+             C 750 336, 690 336, 670 332 Z"
+          fill="var(--forest)" stroke="var(--forest)" stroke-width="1.35"/>
+    <!-- HALDI ACCENT STRIPES above and below the label band -->
+    <path d="M 668 294 C 690 298, 750 298, 772 294"
+          stroke="var(--haldi)" stroke-width="1.35"/>
+    <path d="M 670 338 C 690 342, 750 342, 770 338"
+          stroke="var(--haldi)" stroke-width="1.35"/>
+
+    <!-- WORDMARK on label band -->
+    <text x="720" y="318"
+          font-family="var(--font-display)" font-size="11" font-weight="700"
+          fill="var(--paper)" stroke="none"
+          text-anchor="middle" letter-spacing="1.2">PRAKRITIK</text>
+
+    <!-- BASE CURVE — subtle ellipse suggestion at the bottom -->
+    <path d="M 676 380 C 690 386, 750 386, 764 380"
+          stroke-width="0.85" opacity="0.6"/>
+
+    <!-- VERTICAL HIGHLIGHT on left side of vessel — subtle, not glossy -->
+    <path d="M 678 250 C 680 290, 680 340, 680 374"
+          stroke="var(--paper)" stroke-width="2" opacity="0.25"/>
+
+    <!-- PAINT BRUSH — laying next to the bucket, leaning right toward the wall -->
+    <!-- Handle (down-right from top to ferrule) -->
+    <path d="M 940 200 L 905 250"
+          stroke="var(--forest)" stroke-width="1.35"/>
+    <!-- Wood-grain accent on handle -->
+    <path d="M 938 205 L 908 248"
+          stroke="var(--mitti)" stroke-width="0.85" opacity="0.55"/>
+    <!-- Ferrule (metal band) -->
+    <path d="M 905 248 L 912 256 L 905 264 L 898 256 Z"
+          fill="var(--kraft)" stroke="var(--forest)" stroke-width="1.35"/>
+    <!-- Haldi accent stripe on ferrule -->
+    <path d="M 902 256 L 910 256"
+          stroke="var(--haldi)" stroke-width="0.85" opacity="0.85"/>
+    <!-- Bristles — 3 strokes fanning down-left toward the baseline (paint stroke) -->
+    <path d="M 905 264 C 895 280, 885 320, 875 372"
+          stroke="var(--forest)" stroke-width="1.35"/>
+    <path d="M 905 264 C 905 285, 905 325, 905 374"
+          stroke="var(--forest)" stroke-width="1.35" opacity="0.85"/>
+    <path d="M 905 264 C 915 285, 925 320, 935 372"
+          stroke="var(--forest)" stroke-width="1.35" opacity="0.7"/>
+    <!-- Haldi paint on bristle tips — where the brush meets the line -->
+    <circle cx="875" cy="374" r="2.5" fill="var(--haldi)" stroke="none"/>
+    <circle cx="905" cy="376" r="2.5" fill="var(--haldi)" stroke="none"/>
+    <circle cx="935" cy="374" r="2.5" fill="var(--haldi)" stroke="none"/>
+
+  </g>
+
+  <!-- ============================================================
+       STAGE 03 — FINISHED WALL (simplified courtyard elevation)
+       Wall sits on the continuous baseline at y=380.
+       ============================================================ -->
+  <g fill="none" stroke="var(--forest)"
+     stroke-linecap="round" stroke-linejoin="round">
+
+    <!-- WALL SURFACE — limewash fill, recolourable by Colours of India JS -->
+    <rect id="mtw-wall-surface" x="1100" y="160" width="460" height="220"
+          fill="var(--limewash)" stroke="var(--forest)" stroke-width="1.35"/>
+
+    <!-- PARAPET — thin double line at top suggesting wall thickness -->
+    <path d="M 1100 160 L 1560 160"
+          stroke="var(--forest)" stroke-width="1.35" opacity="0.9"/>
+    <path d="M 1100 170 L 1560 170"
+          stroke="var(--forest)" stroke-width="0.85" opacity="0.55"/>
+
+    <!-- PLINTH — thin double line at base -->
+    <path d="M 1100 380 L 1560 380"
+          stroke="var(--forest)" stroke-width="1.35"/>
+    <path d="M 1100 388 L 1560 388"
+          stroke="var(--forest)" stroke-width="0.85" opacity="0.55"/>
+
+    <!-- DOOR OPENING — rectangular, height ~2x width -->
+    <rect x="1240" y="220" width="80" height="160"
+          fill="var(--background)" stroke="var(--forest)" stroke-width="1.35"/>
+    <!-- Door jamb depth line — second stroke suggesting recess -->
+    <path d="M 1245 225 L 1245 376"
+          stroke="var(--forest)" stroke-width="0.85" opacity="0.4"/>
+    <!-- Door threshold line at base -->
+    <path d="M 1238 380 L 1322 380"
+          stroke="var(--forest)" stroke-width="1.35" opacity="0.7"/>
+
+    <!-- TIMBER DOOR — vertical board suggestion inside the opening -->
+    <path d="M 1252 220 L 1252 380" stroke="var(--forest)" stroke-width="0.85" opacity="0.5"/>
+    <path d="M 1268 220 L 1268 380" stroke="var(--forest)" stroke-width="0.85" opacity="0.5"/>
+    <path d="M 1284 220 L 1284 380" stroke="var(--forest)" stroke-width="0.85" opacity="0.5"/>
+    <path d="M 1300 220 L 1300 380" stroke="var(--forest)" stroke-width="0.85" opacity="0.5"/>
+    <!-- Door handle (small haldi dot) -->
+    <circle cx="1306" cy="304" r="1.8" fill="var(--haldi)" stroke="none"/>
+
+    <!-- WINDOW OPENING — small rectangular, offset from door -->
+    <rect x="1420" y="240" width="100" height="80"
+          fill="var(--background)" stroke="var(--forest)" stroke-width="1.35"/>
+    <!-- Window mullion cross -->
+    <path d="M 1470 240 L 1470 320" stroke="var(--forest)" stroke-width="0.85" opacity="0.5"/>
+    <path d="M 1420 280 L 1520 280" stroke="var(--forest)" stroke-width="0.85" opacity="0.5"/>
+    <!-- Window sill line -->
+    <path d="M 1418 322 L 1522 322" stroke="var(--forest)" stroke-width="0.85" opacity="0.55"/>
+
+    <!-- JAALI / VENTILATION DETAIL — 3 small square openings high on the wall -->
+    <rect x="1130" y="190" width="10" height="10"
+          fill="var(--background)" stroke="var(--forest)" stroke-width="0.85"/>
+    <rect x="1148" y="190" width="10" height="10"
+          fill="var(--background)" stroke="var(--forest)" stroke-width="0.85"/>
+    <rect x="1166" y="190" width="10" height="10"
+          fill="var(--background)" stroke="var(--forest)" stroke-width="0.85"/>
+
+    <!-- SUBTLE LIMEWASH PLASTER LINES on the wall (short, scattered) -->
+    <path d="M 1110 220 L 1180 220" stroke="var(--forest)" stroke-width="0.5" opacity="0.18"/>
+    <path d="M 1110 280 L 1140 280" stroke="var(--forest)" stroke-width="0.5" opacity="0.18"/>
+    <path d="M 1110 340 L 1180 340" stroke="var(--forest)" stroke-width="0.5" opacity="0.18"/>
+    <path d="M 1340 200 L 1400 200" stroke="var(--forest)" stroke-width="0.5" opacity="0.18"/>
+    <path d="M 1340 340 L 1400 340" stroke="var(--forest)" stroke-width="0.5" opacity="0.18"/>
+
+    <!-- SMALL SHRUB at the base of the wall — restrained botanical accent -->
+    <path d="M 1085 380 C 1080 372, 1080 364, 1086 360"
+          stroke="var(--forest)" stroke-width="0.85" opacity="0.6"/>
+    <path d="M 1090 380 C 1088 370, 1088 362, 1092 358"
+          stroke="var(--forest)" stroke-width="0.85" opacity="0.55"/>
+    <path d="M 1095 380 C 1096 370, 1096 362, 1094 358"
+          stroke="var(--forest)" stroke-width="0.85" opacity="0.55"/>
+
+  </g>
+
+  <!-- ============================================================
+       STAGE LABELS — large numerals in Newsreader serif + small
+       Manrope captions. Numerals sit ABOVE the diagram; captions BELOW.
+       ============================================================ -->
+  <g font-family="var(--font-display)" font-weight="700"
+     text-anchor="middle" fill="var(--forest)" letter-spacing="2">
+    <text x="265" y="100" font-size="56">01</text>
+    <text x="800" y="100" font-size="56">02</text>
+    <text x="1330" y="100" font-size="56">03</text>
+  </g>
+
+  <g font-family="var(--font-sans)" font-weight="600"
+     text-anchor="middle" fill="var(--soft-ink)" letter-spacing="3"
+     font-size="11">
+    <text x="265" y="448">NATURAL MATERIAL</text>
+    <text x="800" y="448">PRAKRITIK PAINT</text>
+    <text x="1330" y="448">FINISHED WALL</text>
+  </g>
+
+  <!-- Subtle vertical divider ticks between stages (architectural register marks) -->
+  <g stroke="var(--forest)" stroke-width="0.85" opacity="0.25">
+    <path d="M 533 340 L 533 420"/>
+    <path d="M 1067 340 L 1067 420"/>
+  </g>
+
+</svg>
+    </div>
+    <ol class="material-journey__steps" data-reveal-stagger>
+        <li class="material-journey__step">
+          <span class="material-journey__num">01</span>
+          <h3 class="material-journey__title">Natural origin</h3>
+          <p class="material-journey__desc">The material begins with the cow.</p>
+        </li>
+        <li class="material-journey__step">
+          <span class="material-journey__num">02</span>
+          <h3 class="material-journey__title">Raw material</h3>
+          <p class="material-journey__desc">Cow dung, gathered and prepared.</p>
+        </li>
+        <li class="material-journey__step">
+          <span class="material-journey__num">03</span>
+          <h3 class="material-journey__title">Preparation</h3>
+          <p class="material-journey__desc">Processed into a workable binder.</p>
+        </li>
+        <li class="material-journey__step">
+          <span class="material-journey__num">04</span>
+          <h3 class="material-journey__title">Prakritik Paint</h3>
+          <p class="material-journey__desc">Blended into a contemporary paint format.</p>
+        </li>
+        <li class="material-journey__step">
+          <span class="material-journey__num">05</span>
+          <h3 class="material-journey__title">Finished wall</h3>
+          <p class="material-journey__desc">Applied to interior and exterior walls.</p>
+        </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ===== 04 ASHTA — full-size seal ===== -->
+<section class="section section--limewash why-ashta-section" aria-labelledby="chapter-04-title" data-ashta-laabh>
+  <div class="container">
+    <div class="why-ashta-section__head section-heading section-heading--left" data-reveal>
+      <span class="section-heading__eyebrow">अष्ट लाभ</span>
+      <h2 class="section-heading__title" id="chapter-04-title">Eight benefits.</h2>
+      <p class="section-heading__desc">
+        Client-supplied product benefits, not independently tested claims.
+      </p>
+    </div>
+    <div class="ashta-section__grid" data-reveal>
+      <div class="ashta-section__seal">
+        <svg viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg"
+     class=""
+     role="img" aria-hidden="true"
+     preserveAspectRatio="xMidYMid meet"
+     width="100%" height="100%">
+  <title>Ashta Laabh seal — eight benefits</title>
 
   <defs>
     <style>
-      /* Base node styles — calm default state */
-      .al-node__dot {
-        fill: var(--paper);
+      /* ===== Default node state ===== */
+      .al-node {
+        opacity: 1;
+        transition: opacity 0.3s ease, transform 0.3s ease;
+      }
+      .al-node__line {
         stroke: var(--forest);
-        stroke-width: 1.5;
-        transition: fill 0.3s ease, stroke-width 0.3s ease, stroke 0.3s ease;
+        stroke-width: 0.85;
+        opacity: 0.45;
+        stroke-linecap: round;
+        transition: stroke 0.3s ease, stroke-width 0.3s ease, opacity 0.3s ease;
       }
       .al-node__num {
         fill: var(--forest);
         font-family: var(--font-display);
-        font-size: 9px;
+        font-size: 18px;
         font-weight: 700;
         text-anchor: middle;
         dominant-baseline: central;
+        letter-spacing: 0.5px;
         transition: fill 0.3s ease;
-        letter-spacing: 0.4px;
       }
-      .al-node__lbl {
-        fill: var(--soft-ink);
+      .al-node__name {
+        fill: var(--forest);
         font-family: var(--font-sans);
-        font-size: 6.5px;
+        font-size: 10px;
         font-weight: 600;
-        letter-spacing: 0.6px;
+        text-anchor: middle;
+        dominant-baseline: central;
+        letter-spacing: 1.2px;
+        text-transform: uppercase;
         opacity: 0.85;
         transition: fill 0.3s ease, opacity 0.3s ease;
-        text-transform: uppercase;
-      }
-      .al-node__connector {
-        stroke: var(--forest);
-        stroke-width: 0.8;
-        opacity: 0.3;
-        stroke-dasharray: 2 3;
-        transition: stroke 0.3s ease, opacity 0.3s ease,
-                    stroke-width 0.3s ease, stroke-dasharray 0.3s ease;
       }
 
-      /* Active state — when the sibling list item with matching
-         data-ashta-node is [data-active="true"], light up the matching
-         SVG node. Uses :has() (modern browsers — Chrome 105+, Safari
-         15.4+, Firefox 121+). On older browsers the SVG renders in its
-         calm default state, which is still perfectly legible. */
-      [data-ashta-laabh]:has([data-ashta-node="al-1"][data-active="true"]) .al-node-1 .al-node__dot,
-      [data-ashta-laabh]:has([data-ashta-node="al-2"][data-active="true"]) .al-node-2 .al-node__dot,
-      [data-ashta-laabh]:has([data-ashta-node="al-3"][data-active="true"]) .al-node-3 .al-node__dot,
-      [data-ashta-laabh]:has([data-ashta-node="al-4"][data-active="true"]) .al-node-4 .al-node__dot,
-      [data-ashta-laabh]:has([data-ashta-node="al-5"][data-active="true"]) .al-node-5 .al-node__dot,
-      [data-ashta-laabh]:has([data-ashta-node="al-6"][data-active="true"]) .al-node-6 .al-node__dot,
-      [data-ashta-laabh]:has([data-ashta-node="al-7"][data-active="true"]) .al-node-7 .al-node__dot,
-      [data-ashta-laabh]:has([data-ashta-node="al-8"][data-active="true"]) .al-node-8 .al-node__dot {
-        fill: var(--haldi);
-        stroke: var(--haldi-deep);
-        stroke-width: 1.8;
+      /* ===== When ANY node is active, dim the other nodes ===== */
+      svg:has(.al-node[data-active="true"]) .al-node:not([data-active="true"]) {
+        opacity: 0.4;
       }
 
-      [data-ashta-laabh]:has([data-ashta-node="al-1"][data-active="true"]) .al-node-1 .al-node__connector,
-      [data-ashta-laabh]:has([data-ashta-node="al-2"][data-active="true"]) .al-node-2 .al-node__connector,
-      [data-ashta-laabh]:has([data-ashta-node="al-3"][data-active="true"]) .al-node-3 .al-node__connector,
-      [data-ashta-laabh]:has([data-ashta-node="al-4"][data-active="true"]) .al-node-4 .al-node__connector,
-      [data-ashta-laabh]:has([data-ashta-node="al-5"][data-active="true"]) .al-node-5 .al-node__connector,
-      [data-ashta-laabh]:has([data-ashta-node="al-6"][data-active="true"]) .al-node-6 .al-node__connector,
-      [data-ashta-laabh]:has([data-ashta-node="al-7"][data-active="true"]) .al-node-7 .al-node__connector,
-      [data-ashta-laabh]:has([data-ashta-node="al-8"][data-active="true"]) .al-node-8 .al-node__connector {
-        stroke: var(--haldi-deep);
-        stroke-width: 1.2;
+      /* ===== Active node — radial line turns haldi, label pops ===== */
+      .al-node[data-active="true"] .al-node__line {
+        stroke: var(--haldi);
+        stroke-width: 1.35;
         opacity: 1;
-        stroke-dasharray: none;
       }
-
-      [data-ashta-laabh]:has([data-ashta-node="al-1"][data-active="true"]) .al-node-1 .al-node__lbl,
-      [data-ashta-laabh]:has([data-ashta-node="al-2"][data-active="true"]) .al-node-2 .al-node__lbl,
-      [data-ashta-laabh]:has([data-ashta-node="al-3"][data-active="true"]) .al-node-3 .al-node__lbl,
-      [data-ashta-laabh]:has([data-ashta-node="al-4"][data-active="true"]) .al-node-4 .al-node__lbl,
-      [data-ashta-laabh]:has([data-ashta-node="al-5"][data-active="true"]) .al-node-5 .al-node__lbl,
-      [data-ashta-laabh]:has([data-ashta-node="al-6"][data-active="true"]) .al-node-6 .al-node__lbl,
-      [data-ashta-laabh]:has([data-ashta-node="al-7"][data-active="true"]) .al-node-7 .al-node__lbl,
-      [data-ashta-laabh]:has([data-ashta-node="al-8"][data-active="true"]) .al-node-8 .al-node__lbl {
+      .al-node[data-active="true"] .al-node__num {
+        fill: var(--forest-deep);
+      }
+      .al-node[data-active="true"] .al-node__name {
         fill: var(--forest);
         opacity: 1;
       }
+
+      /* ===== Active label moves 3px outward along its angle ===== */
+      .al-node-1[data-active="true"] { transform: translate(0px, -3px); }
+      .al-node-2[data-active="true"] { transform: translate(2.12px, -2.12px); }
+      .al-node-3[data-active="true"] { transform: translate(3px, 0px); }
+      .al-node-4[data-active="true"] { transform: translate(2.12px, 2.12px); }
+      .al-node-5[data-active="true"] { transform: translate(0px, 3px); }
+      .al-node-6[data-active="true"] { transform: translate(-2.12px, 2.12px); }
+      .al-node-7[data-active="true"] { transform: translate(-3px, 0px); }
+      .al-node-8[data-active="true"] { transform: translate(-2.12px, -2.12px); }
     </style>
   </defs>
 
-  <!-- OUTER SUBTLE RING — connects all node positions visually -->
-  <circle cx="180" cy="180" r="110"
+  <!-- ============================================================
+       OUTER SUBTLE RING — connects all label positions visually
+       ============================================================ -->
+  <circle cx="300" cy="300" r="215"
           fill="none" stroke="var(--forest)"
-          stroke-width="0.8" opacity="0.25"/>
+          stroke-width="0.85" opacity="0.18" stroke-dasharray="2 4"/>
 
-  <!-- CENTRAL MEDALLION with cow-mark -->
-  <circle cx="180" cy="180" r="38"
-          fill="var(--haldi)" stroke="var(--forest)"
-          stroke-width="1.5"/>
-  <!-- Inner accent ring — subtle -->
-  <circle cx="180" cy="180" r="33"
+  <!-- ============================================================
+       CENTRAL MEDALLION — circular, with a small cow-mark inside
+       ============================================================ -->
+  <circle cx="300" cy="300" r="80"
+          fill="var(--limewash)" stroke="var(--forest)" stroke-width="1.35"/>
+  <!-- Inner accent ring -->
+  <circle cx="300" cy="300" r="73"
           fill="none" stroke="var(--forest)"
-          stroke-width="0.7" opacity="0.4"/>
+          stroke-width="0.85" opacity="0.4"/>
 
-  <!-- Central cow head — front-facing, simplified cow-mark silhouette -->
-  <g fill="none" stroke="var(--forest)" stroke-width="1.3"
+  <!-- Central cow-mark — small side-view silhouette, facing LEFT
+       (consistent with the brand signature cow). Drawn with the same
+       separate-paths discipline: body barrel, hump, neck top, head,
+       horn, ear, eye, 4 legs, tail. -->
+  <g fill="none" stroke="var(--forest)"
      stroke-linecap="round" stroke-linejoin="round">
-    <!-- Left horn -->
-    <path d="M 168 172 C 162 164, 158 160, 156 162"/>
-    <!-- Right horn -->
-    <path d="M 192 172 C 198 164, 202 160, 204 162"/>
-    <!-- Head outline (front-facing, prominent forehead, elongated face) -->
-    <path d="M 180 168
-             C 172 168, 168 172, 168 178
-             C 168 186, 170 194, 174 198
-             C 176 200, 184 200, 186 198
-             C 190 194, 192 186, 192 178
-             C 192 172, 188 168, 180 168 Z"/>
-    <!-- Muzzle line -->
-    <path d="M 174 194 Q 180 196, 186 194"
-          stroke-width="1.1" opacity="0.7"/>
-  </g>
-  <!-- Eyes -->
-  <circle cx="175" cy="180" r="1.4" fill="var(--forest)"/>
-  <circle cx="185" cy="180" r="1.4" fill="var(--forest)"/>
-  <!-- Nostrils -->
-  <circle cx="177" cy="192" r="0.9" fill="var(--forest)"/>
-  <circle cx="183" cy="192" r="0.9" fill="var(--forest)"/>
-
-  <!-- ===== 8 NODES — positioned at 45° intervals around (180,180), r=110 ===== -->
-
-  <!-- Node 1: Antibacterial (top, -90°) -->
-  <g class="al-node al-node-1">
-    <line class="al-node__connector" x1="180" y1="142" x2="180" y2="82"/>
-    <circle class="al-node__dot" cx="180" cy="70" r="12"/>
-    <text class="al-node__num" x="180" y="70">01</text>
-    <text class="al-node__lbl" x="180" y="48" text-anchor="middle">Antibacterial</text>
-  </g>
-
-  <!-- Node 2: Antifungal (top-right, -45°) -->
-  <g class="al-node al-node-2">
-    <line class="al-node__connector" x1="207" y1="153" x2="250" y2="110"/>
-    <circle class="al-node__dot" cx="258" cy="102" r="12"/>
-    <text class="al-node__num" x="258" y="102">02</text>
-    <text class="al-node__lbl" x="273" y="86" text-anchor="start">Antifungal</text>
-  </g>
-
-  <!-- Node 3: Eco-Friendly (right, 0°) -->
-  <g class="al-node al-node-3">
-    <line class="al-node__connector" x1="218" y1="180" x2="278" y2="180"/>
-    <circle class="al-node__dot" cx="290" cy="180" r="12"/>
-    <text class="al-node__num" x="290" y="180">03</text>
-    <text class="al-node__lbl" x="306" y="184" text-anchor="start">Eco-Friendly</text>
-  </g>
-
-  <!-- Node 4: Thermal Insulator (bottom-right, 45°) -->
-  <g class="al-node al-node-4">
-    <line class="al-node__connector" x1="207" y1="207" x2="250" y2="250"/>
-    <circle class="al-node__dot" cx="258" cy="258" r="12"/>
-    <text class="al-node__num" x="258" y="258">04</text>
-    <text class="al-node__lbl" x="273" y="278" text-anchor="start">Thermal Ins.</text>
-  </g>
-
-  <!-- Node 5: Cost-Effective (bottom, 90°) -->
-  <g class="al-node al-node-5">
-    <line class="al-node__connector" x1="180" y1="218" x2="180" y2="278"/>
-    <circle class="al-node__dot" cx="180" cy="290" r="12"/>
-    <text class="al-node__num" x="180" y="290">05</text>
-    <text class="al-node__lbl" x="180" y="312" text-anchor="middle">Cost-Effective</text>
+    <!-- FAR HORN — behind head, lighter -->
+    <path d="M 252 286 C 248 280, 244 278, 240 280" stroke-width="0.85" opacity="0.65"/>
+    <!-- FAR EAR — small leaf behind head, lighter -->
+    <path d="M 256 294 C 252 304, 248 312, 244 316" stroke-width="0.85" opacity="0.65"/>
+    <!-- BODY BARREL — closed contour -->
+    <path d="M 268 288
+             C 260 286, 252 285, 246 287
+             C 240 289, 236 292, 234 296
+             L 234 318
+             L 322 320
+             C 326 314, 326 304, 324 296
+             C 320 290, 314 288, 308 288
+             C 296 286, 282 286, 268 288 Z"
+          stroke-width="1.35"/>
+    <!-- HUMP — open curve rising above the back line -->
+    <path d="M 266 288
+             C 262 278, 256 272, 252 270
+             C 248 268, 246 270, 246 274
+             C 248 280, 252 285, 256 288"
+          stroke-width="1.35"/>
+    <!-- NECK TOP — from withers forward-down to poll -->
+    <path d="M 268 288 C 262 287, 256 286, 252 284" stroke-width="1.35"/>
+    <!-- HEAD — small wedge extending left to muzzle -->
+    <path d="M 252 284
+             C 248 286, 244 290, 240 294
+             C 236 298, 232 302, 230 304
+             C 230 306, 232 308, 236 308
+             C 240 310, 244 312, 248 312
+             C 252 312, 252 312, 252 310
+             C 252 302, 252 294, 252 284 Z"
+          stroke-width="1.35"/>
+    <!-- NEAR HORN — over head, prominent -->
+    <path d="M 252 284 C 248 278, 244 274, 240 276" stroke-width="1.35"/>
+    <!-- NEAR EAR — small leaf hanging down -->
+    <path d="M 258 292 C 254 302, 250 310, 246 314
+             C 250 310, 254 302, 258 296 Z" stroke-width="1.35"/>
+    <!-- EYE — small filled circle -->
+    <circle cx="240" cy="294" r="1.4" fill="var(--forest)" stroke="none"/>
+    <!-- NOSTRIL — small dot -->
+    <circle cx="232" cy="302" r="1" fill="var(--forest)" stroke="none"/>
+    <!-- FRONT LEGS (left side, paired slender strokes) -->
+    <path d="M 244 320 L 244 338" stroke-width="1.35"/>
+    <path d="M 248 320 L 248 338" stroke-width="1.35"/>
+    <path d="M 254 320 L 254 338" stroke-width="1.35" opacity="0.65"/>
+    <path d="M 258 320 L 258 338" stroke-width="1.35" opacity="0.65"/>
+    <!-- BACK LEGS (right side, paired slender strokes) -->
+    <path d="M 308 320 L 308 338" stroke-width="1.35"/>
+    <path d="M 312 320 L 312 338" stroke-width="1.35"/>
+    <path d="M 318 320 L 318 338" stroke-width="1.35" opacity="0.65"/>
+    <path d="M 322 320 L 322 338" stroke-width="1.35" opacity="0.65"/>
+    <!-- HOOF TICKS -->
+    <path d="M 243 339 L 259 339" stroke-width="0.85"/>
+    <path d="M 307 339 L 323 339" stroke-width="0.85"/>
+    <!-- TAIL — from rump curving down with small tuft -->
+    <path d="M 322 292 C 328 300, 332 314, 332 326
+             C 332 332, 330 336, 328 338" stroke-width="1.35"/>
+    <path d="M 328 338 C 326 342, 324 344, 326 346" stroke-width="0.85"/>
+    <path d="M 328 338 C 328 342, 328 344, 330 346" stroke-width="0.85"/>
   </g>
 
-  <!-- Node 6: Metal-Free (bottom-left, 135°) -->
-  <g class="al-node al-node-6">
-    <line class="al-node__connector" x1="153" y1="207" x2="110" y2="250"/>
-    <circle class="al-node__dot" cx="102" cy="258" r="12"/>
-    <text class="al-node__num" x="102" y="258">06</text>
-    <text class="al-node__lbl" x="87" y="278" text-anchor="end">Metal-Free</text>
+  <!-- Small haldi dot accent in the medallion corner (the brand mark) -->
+  <circle cx="300" cy="248" r="2.5" fill="var(--haldi)" stroke="none"/>
+
+  <!-- ============================================================
+       8 RADIAL NODES — at 45° intervals around centre (300, 300)
+       Line: r=80 (medallion edge) → r=215 (label position)
+       Labels: number (top) + name (bottom), centred at r=240
+       ============================================================ -->
+
+  <!-- ===== NODE 1: Antibacterial (top, angle -90°) =====
+       Line: (300, 220) → (300, 85), Label centre: (300, 60) -->
+  <g class="al-node al-node-1" data-benefit="antibacterial">
+    <line class="al-node__line" x1="300" y1="220" x2="300" y2="85"/>
+    <text class="al-node__num" x="300" y="50">01</text>
+    <text class="al-node__name" x="300" y="70">Antibacterial</text>
   </g>
 
-  <!-- Node 7: Non-Toxic (left, 180°) -->
-  <g class="al-node al-node-7">
-    <line class="al-node__connector" x1="142" y1="180" x2="82" y2="180"/>
-    <circle class="al-node__dot" cx="70" cy="180" r="12"/>
-    <text class="al-node__num" x="70" y="180">07</text>
-    <text class="al-node__lbl" x="54" y="184" text-anchor="end">Non-Toxic</text>
+  <!-- ===== NODE 2: Antifungal (top-right, angle -45°) =====
+       Line: (357, 243) → (452, 148), Label centre: (470, 130) -->
+  <g class="al-node al-node-2" data-benefit="antifungal">
+    <line class="al-node__line" x1="357" y1="243" x2="452" y2="148"/>
+    <text class="al-node__num" x="470" y="120">02</text>
+    <text class="al-node__name" x="470" y="140">Antifungal</text>
   </g>
 
-  <!-- Node 8: Odourless (top-left, 225°) -->
-  <g class="al-node al-node-8">
-    <line class="al-node__connector" x1="153" y1="153" x2="110" y2="110"/>
-    <circle class="al-node__dot" cx="102" cy="102" r="12"/>
-    <text class="al-node__num" x="102" y="102">08</text>
-    <text class="al-node__lbl" x="87" y="86" text-anchor="end">Odourless</text>
+  <!-- ===== NODE 3: Eco-Friendly (right, angle 0°) =====
+       Line: (380, 300) → (515, 300), Label centre: (540, 300) -->
+  <g class="al-node al-node-3" data-benefit="eco-friendly">
+    <line class="al-node__line" x1="380" y1="300" x2="515" y2="300"/>
+    <text class="al-node__num" x="540" y="290">03</text>
+    <text class="al-node__name" x="540" y="310">Eco-Friendly</text>
   </g>
 
-</svg></div>
-                <ol class="ashta-essay__list" data-reveal-stagger>
-                    <li class="ashta-essay__item" data-ashta-node="wp-al-1">
-                        <span class="ashta-essay__num">01</span>
-                        <span class="ashta-essay__name">Antibacterial</span>
-                        <span class="ashta-essay__deva" lang="hi">जीवाणुरोधी</span>
-                    </li>
-                    <li class="ashta-essay__item" data-ashta-node="wp-al-2">
-                        <span class="ashta-essay__num">02</span>
-                        <span class="ashta-essay__name">Antifungal</span>
-                        <span class="ashta-essay__deva" lang="hi">कवकरोधी</span>
-                    </li>
-                    <li class="ashta-essay__item" data-ashta-node="wp-al-3">
-                        <span class="ashta-essay__num">03</span>
-                        <span class="ashta-essay__name">Eco-Friendly</span>
-                        <span class="ashta-essay__deva" lang="hi">पर्यावरण-मित्र</span>
-                    </li>
-                    <li class="ashta-essay__item" data-ashta-node="wp-al-4">
-                        <span class="ashta-essay__num">04</span>
-                        <span class="ashta-essay__name">Natural Thermal Insulator</span>
-                        <span class="ashta-essay__deva" lang="hi">प्राकृतिक ऊष्मीय इन्सुलेटर</span>
-                    </li>
-                    <li class="ashta-essay__item" data-ashta-node="wp-al-5">
-                        <span class="ashta-essay__num">05</span>
-                        <span class="ashta-essay__name">Cost-Effective</span>
-                        <span class="ashta-essay__deva" lang="hi">किफ़ायती</span>
-                    </li>
-                    <li class="ashta-essay__item" data-ashta-node="wp-al-6">
-                        <span class="ashta-essay__num">06</span>
-                        <span class="ashta-essay__name">Free from Heavy Metals</span>
-                        <span class="ashta-essay__deva" lang="hi">भारी धातुओं से मुक्त</span>
-                    </li>
-                    <li class="ashta-essay__item" data-ashta-node="wp-al-7">
-                        <span class="ashta-essay__num">07</span>
-                        <span class="ashta-essay__name">Non-Toxic</span>
-                        <span class="ashta-essay__deva" lang="hi">गैर-विषाक्त</span>
-                    </li>
-                    <li class="ashta-essay__item" data-ashta-node="wp-al-8">
-                        <span class="ashta-essay__num">08</span>
-                        <span class="ashta-essay__name">Odourless</span>
-                        <span class="ashta-essay__deva" lang="hi">गंधरहित</span>
-                    </li>
-                </ol>
-            </div>
-        </div>
-    </article>
+  <!-- ===== NODE 4: Natural Thermal Insulator (bottom-right, angle 45°) =====
+       Line: (357, 357) → (452, 452), Label centre: (470, 470)
+       Long name split across two lines. -->
+  <g class="al-node al-node-4" data-benefit="thermal-insulator">
+    <line class="al-node__line" x1="357" y1="357" x2="452" y2="452"/>
+    <text class="al-node__num" x="470" y="460">04</text>
+    <text class="al-node__name" x="470" y="478">Natural Thermal</text>
+    <text class="al-node__name" x="470" y="492">Insulator</text>
+  </g>
 
-    <!-- 05 TWO FORMATS -->
-    <article class="container essay__section essay__section--reverse" id="two-formats" data-reveal>
-        <div>
-            <div class="essay__num">05</div>
-            <div class="essay__eyebrow">Two formats</div>
-            <h2 class="essay__title">Distemper and Emulsion.</h2>
-        </div>
-        <div class="essay__body">
-            <p>Prakritik Paint is presented in two formats — Distemper (powder, sold by kilogram) and Emulsion (liquid, sold by litre). Both are white, matt, and suitable for interior and exterior walls.</p>
-            <div class="two-formats-mini">
-                <div class="two-formats-mini__item">
-                    <div class="two-formats-mini__name">Prakritik Distemper Paint</div>
-                    <div class="two-formats-mini__desc">1, 5, 10 &amp; 20 kg · Matt · Interior &amp; Exterior</div>
-                    <a href="../products/prakritik-distemper/" class="two-formats-mini__link">Explore Distemper
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                    </a>
-                </div>
-                <div class="two-formats-mini__item">
-                    <div class="two-formats-mini__name">Prakritik Emulsion Paint</div>
-                    <div class="two-formats-mini__desc">1, 4, 10 &amp; 20 litre · Matt · Interior &amp; Exterior</div>
-                    <a href="../products/prakritik-emulsion/" class="two-formats-mini__link">Explore Emulsion
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </article>
+  <!-- ===== NODE 5: Cost-Effective (bottom, angle 90°) =====
+       Line: (300, 380) → (300, 515), Label centre: (300, 540) -->
+  <g class="al-node al-node-5" data-benefit="cost-effective">
+    <line class="al-node__line" x1="300" y1="380" x2="300" y2="515"/>
+    <text class="al-node__num" x="300" y="530">05</text>
+    <text class="al-node__name" x="300" y="550">Cost-Effective</text>
+  </g>
 
-    <!-- 06 SUSTAINABILITY CONTEXT -->
-    <article class="container essay__section" id="sustainability-context" data-reveal>
-        <div>
-            <div class="essay__num">06</div>
-            <div class="essay__eyebrow">Sustainability context</div>
-            <h2 class="essay__title">Where the work sits.</h2>
-        </div>
-        <div class="essay__body">
-            <p>Prakritik Paint sits at the intersection of a few threads — without quantifying any of them.</p>
-            <ul>
-                <li><strong>Agricultural-waste reuse.</strong> Cow dung is repurposed into a wall-coating material.</li>
-                <li><strong>Gaushala context.</strong> A natural fit with gaushala-led bio-product conversations.</li>
-                <li><strong>Rural opportunity.</strong> The material and the work sit close to rural India.</li>
-                <li><strong>Eco-friendly framing.</strong> A wall coating read alongside the wider eco-friendly conversation.</li>
-            </ul>
-            <p class="essay__pull">Material reuse, not a quantified claim.</p>
-        </div>
-    </article>
-</section>
+  <!-- ===== NODE 6: Free from Heavy Metals (bottom-left, angle 135°) =====
+       Line: (243, 357) → (148, 452), Label centre: (130, 470)
+       Long name split across two lines. -->
+  <g class="al-node al-node-6" data-benefit="heavy-metal-free">
+    <line class="al-node__line" x1="243" y1="357" x2="148" y2="452"/>
+    <text class="al-node__num" x="130" y="460">06</text>
+    <text class="al-node__name" x="130" y="478">Free from Heavy</text>
+    <text class="al-node__name" x="130" y="492">Metals</text>
+  </g>
 
-<!-- 07 CTA -->
-<section class="why-cta" id="explore" data-reveal>
-    <div class="container">
-        <span class="why-cta__eyebrow">07 · Next step</span>
-        <h2 class="why-cta__title">See the formats, then talk to Gaurikrit.</h2>
-        <p class="why-cta__sub">Explore the two Prakritik Paint formats — Distemper and Emulsion — or send an enquiry with your project in mind.</p>
-        <div class="why-cta__actions">
-            <a href="../products/" class="btn btn--haldi btn--lg">Explore Products</a>
-            <a href="../contact/" class="btn btn--outline btn--lg" style="border-color: var(--haldi); color: var(--haldi);">Talk to Us</a>
-        </div>
+  <!-- ===== NODE 7: Non-Toxic (left, angle 180°) =====
+       Line: (220, 300) → (85, 300), Label centre: (60, 300) -->
+  <g class="al-node al-node-7" data-benefit="non-toxic">
+    <line class="al-node__line" x1="220" y1="300" x2="85" y2="300"/>
+    <text class="al-node__num" x="60" y="290">07</text>
+    <text class="al-node__name" x="60" y="310">Non-Toxic</text>
+  </g>
+
+  <!-- ===== NODE 8: Odourless (top-left, angle 225°) =====
+       Line: (243, 243) → (148, 148), Label centre: (130, 130) -->
+  <g class="al-node al-node-8" data-benefit="odourless">
+    <line class="al-node__line" x1="243" y1="243" x2="148" y2="148"/>
+    <text class="al-node__num" x="130" y="120">08</text>
+    <text class="al-node__name" x="130" y="140">Odourless</text>
+  </g>
+
+</svg>
+      </div>
+      <ol class="ashta-section__support" data-reveal-stagger>
+        <li class="ashta-benefit" data-ashta-node="antibacterial">
+          <span class="ashta-benefit__num">01</span>
+          <span class="ashta-benefit__name">Antibacterial</span>
+          <span class="ashta-benefit__deva">जीवाणुरोधी</span>
+        </li>
+        <li class="ashta-benefit" data-ashta-node="antifungal">
+          <span class="ashta-benefit__num">02</span>
+          <span class="ashta-benefit__name">Antifungal</span>
+          <span class="ashta-benefit__deva">कवकरोधी</span>
+        </li>
+        <li class="ashta-benefit" data-ashta-node="eco-friendly">
+          <span class="ashta-benefit__num">03</span>
+          <span class="ashta-benefit__name">Eco-Friendly</span>
+          <span class="ashta-benefit__deva">पर्यावरण-मित्र</span>
+        </li>
+        <li class="ashta-benefit" data-ashta-node="thermal-insulator">
+          <span class="ashta-benefit__num">04</span>
+          <span class="ashta-benefit__name">Natural Thermal Insulator</span>
+          <span class="ashta-benefit__deva">प्राकृतिक ऊष्मीय इन्सुलेटर</span>
+        </li>
+        <li class="ashta-benefit" data-ashta-node="cost-effective">
+          <span class="ashta-benefit__num">05</span>
+          <span class="ashta-benefit__name">Cost-Effective</span>
+          <span class="ashta-benefit__deva">किफ़ायती</span>
+        </li>
+        <li class="ashta-benefit" data-ashta-node="heavy-metal-free">
+          <span class="ashta-benefit__num">06</span>
+          <span class="ashta-benefit__name">Free from Heavy Metals</span>
+          <span class="ashta-benefit__deva">भारी धातुओं से मुक्त</span>
+        </li>
+        <li class="ashta-benefit" data-ashta-node="non-toxic">
+          <span class="ashta-benefit__num">07</span>
+          <span class="ashta-benefit__name">Non-Toxic</span>
+          <span class="ashta-benefit__deva">गैर-विषाक्त</span>
+        </li>
+        <li class="ashta-benefit" data-ashta-node="odourless">
+          <span class="ashta-benefit__num">08</span>
+          <span class="ashta-benefit__name">Odourless</span>
+          <span class="ashta-benefit__deva">गंधरहित</span>
+        </li>
+      </ol>
     </div>
+  </div>
 </section>
+
+<!-- ===== 05 FORMATS — real product visuals ===== -->
+<section class="section section--paper why-formats-section" aria-labelledby="chapter-05-title">
+  <div class="container">
+    <div data-reveal>
+      <span class="why-chapter__num">05</span>
+      <span class="why-chapter__eyebrow">Two formats</span>
+      <h2 class="why-chapter__title" id="chapter-05-title">Distemper and Emulsion.</h2>
+      <p class="why-chapter__body">
+        Two paint formats, one material idea. Powder and liquid, both for
+        interior and exterior walls.
+      </p>
+    </div>
+
+    <div class="why-formats" data-reveal-stagger>
+      <div class="why-format-card why-format-card--distemper">
+        <div class="product-media" data-official-image="../assets/products/prakritik-distemper.png">
+          <img class="product-media__official"
+               src="../assets/products/prakritik-distemper.png"
+               alt="Prakritik Distemper Paint pack"
+               width="600" height="750" loading="lazy" decoding="async">
+          <div class="product-media__fallback">
+            <svg viewBox="0 0 220 280" xmlns="http://www.w3.org/2000/svg"
+     class=""
+     role="img" aria-hidden="true"
+     preserveAspectRatio="xMidYMid meet"
+     width="100%" height="100%">
+  <title>Prakritik Distemper bucket</title>
+
+  <!-- BAIL / HANDLE — metal arch (drawn first, behind the rim) -->
+  <path d="M 42 62 Q 110 22, 178 62"
+        fill="none" stroke="var(--forest)"
+        stroke-width="1.8" stroke-linecap="round"/>
+  <!-- Handle inner line — subtle wire-thickness suggestion -->
+  <path d="M 46 62 Q 110 28, 174 62"
+        fill="none" stroke="var(--forest)"
+        stroke-width="1" opacity="0.5"/>
+
+  <!-- HANDLE ATTACHMENT LUGS — on the rim -->
+  <circle cx="42" cy="62" r="3" fill="var(--forest)"/>
+  <circle cx="178" cy="62" r="3" fill="var(--forest)"/>
+
+  <!-- BUCKET BODY — tapered cylinder, paper-white fill.
+       Top corners at the rim (x=40, x=180), bottom corners narrower (x=52, x=168) -->
+  <path d="M 40 62
+           L 52 250
+           C 60 256, 160 256, 168 250
+           L 180 62 Z"
+        fill="var(--paper)" stroke="var(--forest)"
+        stroke-width="1.5" stroke-linejoin="round"/>
+
+  <!-- SUBTLE VERTICAL HIGHLIGHT on the LEFT side of the cylinder (curve suggestion).
+       No glossy gradient — just a faint single line at 0.12 opacity. -->
+  <path d="M 56 80 L 64 240"
+        stroke="var(--forest)" stroke-width="0.8" opacity="0.12"/>
+
+  <!-- SUBTLE VERTICAL SHADOW on the RIGHT side (even fainter) -->
+  <path d="M 162 80 L 156 240"
+        stroke="var(--forest)" stroke-width="0.8" opacity="0.08"/>
+
+  <!-- TOP RIM ELLIPSE — dark green, seen at slight angle -->
+  <ellipse cx="110" cy="60" rx="70" ry="9"
+           fill="var(--forest)" stroke="var(--forest)"
+           stroke-width="1.5"/>
+
+  <!-- INNER OPENING — limewash-toned, showing the inside of the bucket -->
+  <ellipse cx="110" cy="59" rx="62" ry="6"
+           fill="var(--limewash)" opacity="0.85"/>
+
+  <!-- INNER PAINT SURFACE — very subtle haldi tint inside the rim (suggesting paint residue) -->
+  <ellipse cx="110" cy="59" rx="56" ry="4.5"
+           fill="var(--haldi)" opacity="0.18"/>
+
+  <!-- HALDI ACCENT STRIPE ABOVE LABEL BAND — thin line following the cylinder curve -->
+  <path d="M 46 128 L 50 130 C 80 134, 140 134, 170 130 L 174 128"
+        fill="none" stroke="var(--haldi-deep)"
+        stroke-width="1.6" stroke-linecap="round"/>
+
+  <!-- DARK-GREEN LABEL BAND — curved to follow the cylinder surface (not a flat rectangle).
+       The top and bottom edges have a slight curve suggesting the wrap-around of the band. -->
+  <path d="M 46 132
+           L 50 180
+           C 80 184, 140 184, 170 180
+           L 174 132
+           C 140 136, 80 136, 46 132 Z"
+        fill="var(--forest)" stroke="var(--forest)"
+        stroke-width="1.4" stroke-linejoin="round"/>
+
+  <!-- HALDI ACCENT STRIPE BELOW LABEL BAND -->
+  <path d="M 50 184 L 54 186 C 80 189, 140 189, 166 186 L 170 184"
+        fill="none" stroke="var(--haldi-deep)"
+        stroke-width="1.6" stroke-linecap="round"/>
+
+  <!-- SMALL GEOMETRIC MARK above the wordmark — haldi dot (replaces cartoon cow motif) -->
+  <circle cx="110" cy="138" r="2.2" fill="var(--haldi)"/>
+
+  <!-- WORDMARK TEXT -->
+  <text x="110" y="151" text-anchor="middle"
+        font-family="var(--font-display)" font-weight="700"
+        font-size="11" fill="var(--haldi)" letter-spacing="1.4">GAURIKRIT</text>
+
+  <!-- PRODUCT NAME TEXT -->
+  <text x="110" y="168" text-anchor="middle"
+        font-family="var(--font-display)" font-weight="700"
+        font-size="5.5" fill="var(--haldi)" letter-spacing="1.2">PRAKRITIK DISTEMPER</text>
+
+  <!-- SMALL UNDERLINE MARK beneath wordmark -->
+  <path d="M 86 174 L 134 174"
+        stroke="var(--haldi)" stroke-width="0.8" opacity="0.5"/>
+
+  <!-- BOTTOM FRONT CURVE — base of cylinder visible from the front -->
+  <path d="M 52 250 C 60 256, 160 256, 168 250"
+        fill="none" stroke="var(--forest)"
+        stroke-width="1.5" opacity="0.85"/>
+
+  <!-- SUBTLE BASE SHADOW ELLIPSE — very faint ground contact -->
+  <ellipse cx="110" cy="256" rx="56" ry="3"
+           fill="var(--forest)" opacity="0.08"/>
+
+</svg>
+          </div>
+        </div>
+        <span class="why-format-card__caption">1, 5, 10 &amp; 20 kg packs</span>
+      </div>
+      <div class="why-format-card why-format-card--emulsion">
+        <div class="product-media" data-official-image="../assets/products/prakritik-emulsion.png">
+          <img class="product-media__official"
+               src="../assets/products/prakritik-emulsion.png"
+               alt="Prakritik Emulsion Paint pack"
+               width="600" height="750" loading="lazy" decoding="async">
+          <div class="product-media__fallback">
+            <svg viewBox="0 0 220 300" xmlns="http://www.w3.org/2000/svg"
+     class=""
+     role="img" aria-hidden="true"
+     preserveAspectRatio="xMidYMid meet"
+     width="100%" height="100%">
+  <title>Prakritik Emulsion bucket</title>
+
+  <!-- BAIL / HANDLE — metal arch (drawn first, behind the rim) -->
+  <path d="M 42 62 Q 110 22, 178 62"
+        fill="none" stroke="var(--forest)"
+        stroke-width="1.8" stroke-linecap="round"/>
+  <!-- Handle inner line — subtle wire-thickness suggestion -->
+  <path d="M 46 62 Q 110 28, 174 62"
+        fill="none" stroke="var(--forest)"
+        stroke-width="1" opacity="0.5"/>
+
+  <!-- HANDLE ATTACHMENT LUGS — on the rim -->
+  <circle cx="42" cy="62" r="3" fill="var(--forest)"/>
+  <circle cx="178" cy="62" r="3" fill="var(--forest)"/>
+
+  <!-- BUCKET BODY — TALLER tapered cylinder, paper-white fill.
+       Top corners at the rim (x=40, x=180), bottom corners narrower (x=52, x=168).
+       Taller body — base at y=270 (vs y=250 for distemper). -->
+  <path d="M 40 62
+           L 52 270
+           C 60 276, 160 276, 168 270
+           L 180 62 Z"
+        fill="var(--paper)" stroke="var(--forest)"
+        stroke-width="1.5" stroke-linejoin="round"/>
+
+  <!-- SUBTLE VERTICAL HIGHLIGHT on the LEFT side of the cylinder -->
+  <path d="M 56 80 L 64 260"
+        stroke="var(--forest)" stroke-width="0.8" opacity="0.12"/>
+
+  <!-- SUBTLE VERTICAL SHADOW on the RIGHT side -->
+  <path d="M 162 80 L 156 260"
+        stroke="var(--forest)" stroke-width="0.8" opacity="0.08"/>
+
+  <!-- TOP RIM ELLIPSE — dark green -->
+  <ellipse cx="110" cy="60" rx="70" ry="9"
+           fill="var(--forest)" stroke="var(--forest)"
+           stroke-width="1.5"/>
+
+  <!-- INNER OPENING — limewash-toned inside -->
+  <ellipse cx="110" cy="59" rx="62" ry="6"
+           fill="var(--limewash)" opacity="0.85"/>
+
+  <!-- LIQUID LINE AT RIM — a subtle haldi-toned ellipse just inside the rim,
+       suggesting the liquid paint surface filling up to the rim -->
+  <ellipse cx="110" cy="58" rx="58" ry="5"
+           fill="var(--haldi)" opacity="0.32"/>
+
+  <!-- SURFACE RIPPLE on the liquid — very subtle line suggesting liquid surface tension -->
+  <path d="M 56 57 C 80 55, 140 55, 164 57"
+        fill="none" stroke="var(--haldi-deep)"
+        stroke-width="0.8" opacity="0.55"/>
+
+  <!-- HALDI ACCENT STRIPE ABOVE LABEL BAND -->
+  <path d="M 46 128 L 50 130 C 80 134, 140 134, 170 130 L 174 128"
+        fill="none" stroke="var(--haldi-deep)"
+        stroke-width="1.6" stroke-linecap="round"/>
+
+  <!-- DARK-GREEN LABEL BAND — taller band (emulsion pack), curved to follow cylinder -->
+  <path d="M 46 132
+           L 50 204
+           C 80 208, 140 208, 170 204
+           L 174 132
+           C 140 136, 80 136, 46 132 Z"
+        fill="var(--forest)" stroke="var(--forest)"
+        stroke-width="1.4" stroke-linejoin="round"/>
+
+  <!-- HALDI ACCENT STRIPE BELOW LABEL BAND -->
+  <path d="M 50 208 L 54 210 C 80 213, 140 213, 166 210 L 170 208"
+        fill="none" stroke="var(--haldi-deep)"
+        stroke-width="1.6" stroke-linecap="round"/>
+
+  <!-- SMALL GEOMETRIC MARK above the wordmark — haldi dot -->
+  <circle cx="110" cy="138" r="2.2" fill="var(--haldi)"/>
+
+  <!-- WORDMARK TEXT -->
+  <text x="110" y="153" text-anchor="middle"
+        font-family="var(--font-display)" font-weight="700"
+        font-size="12" fill="var(--haldi)" letter-spacing="1.5">GAURIKRIT</text>
+
+  <!-- SUBTITLE LINE 1 -->
+  <text x="110" y="174" text-anchor="middle"
+        font-family="var(--font-display)" font-weight="700"
+        font-size="7" fill="var(--haldi)" letter-spacing="1.6">PRAKRITIK</text>
+
+  <!-- SUBTITLE LINE 2 -->
+  <text x="110" y="190" text-anchor="middle"
+        font-family="var(--font-display)" font-weight="700"
+        font-size="7" fill="var(--haldi)" letter-spacing="1.6">EMULSION</text>
+
+  <!-- SMALL UNDERLINE MARK beneath wordmark -->
+  <path d="M 86 160 L 134 160"
+        stroke="var(--haldi)" stroke-width="0.8" opacity="0.5"/>
+
+  <!-- BOTTOM FRONT CURVE — base of cylinder -->
+  <path d="M 52 270 C 60 276, 160 276, 168 270"
+        fill="none" stroke="var(--forest)"
+        stroke-width="1.5" opacity="0.85"/>
+
+  <!-- SUBTLE BASE SHADOW ELLIPSE — very faint ground contact -->
+  <ellipse cx="110" cy="276" rx="56" ry="3"
+           fill="var(--forest)" opacity="0.08"/>
+
+</svg>
+          </div>
+        </div>
+        <span class="why-format-card__caption">1, 4, 10 &amp; 20 litre packs</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 06 CONTEXT — rural-landscape with annotation ===== -->
+<section class="section section--limewash why-context-section" aria-labelledby="chapter-06-title">
+  <div class="container">
+    <div class="why-chapter" data-reveal>
+      <div>
+        <span class="why-chapter__num">06</span>
+        <span class="why-chapter__eyebrow">Context</span>
+        <h2 class="why-chapter__title" id="chapter-06-title">From Bulandshahr, Uttar Pradesh.</h2>
+        <div class="why-chapter__body">
+          <p>
+            Prakritik Paint is made by Gaurikrit Bio Products (OPC) Private Limited, in
+            Khurja, District Bulandshahr.
+            A rural material, made in a rural context — the landscape it
+            belongs to.
+          </p>
+        </div>
+        <div class="mission-band__cta" style="margin-top: 1.5rem;">
+          <a class="btn btn--primary" href="../products/">Explore Products</a>
+          <a class="btn btn--outline" href="../about/">About Gaurikrit</a>
+        </div>
+      </div>
+      <div class="why-context-band" aria-hidden="true">
+        <svg viewBox="0 0 1600 280" xmlns="http://www.w3.org/2000/svg"
+     class=""
+     role="img" aria-hidden="true"
+     preserveAspectRatio="xMidYMid meet"
+     width="100%" height="100%">
+  <title>Rural landscape engraving</title>
+
+  <!-- The whole engraving sits at low opacity so it functions as background.
+       Inner elements use individual opacities so the horizon reads first
+       and the silhouettes fade further into the paper. -->
+  <g fill="none" stroke="var(--forest)"
+     stroke-linecap="round" stroke-linejoin="round"
+     opacity="0.18">
+
+    <!-- ===== DISTANT FIELD CONTOUR — back layer, the softest ===== -->
+    <path d="M 0 138 C 200 132, 380 138, 560 134
+             S 920 130, 1100 134
+             S 1440 138, 1600 134"
+          stroke-width="1.35" opacity="0.45"/>
+
+    <!-- ===== MID FIELD CONTOUR — gentle rolling, slightly more present ===== -->
+    <path d="M 0 168 C 240 162, 460 168, 680 164
+             S 1040 160, 1240 164
+             S 1500 168, 1600 164"
+          stroke-width="1.35" opacity="0.6"/>
+
+    <!-- ===== MAIN HORIZON LINE — most prominent ===== -->
+    <path d="M 0 196 C 220 192, 460 198, 700 194
+             S 1080 190, 1300 194
+             S 1540 198, 1600 194"
+          stroke-width="1.35" opacity="0.85"/>
+
+    <!-- ===== GROUND LINE — foreground baseline ===== -->
+    <path d="M 0 232 L 1600 232"
+          stroke-width="1.35" opacity="0.55"/>
+
+    <!-- ===== MATURE TREE (left side) — full canopy, line-drawn ===== -->
+    <g>
+      <!-- Trunk — single slender stroke from ground up into canopy -->
+      <path d="M 230 232 L 228 168" stroke-width="1.35" opacity="0.85"/>
+      <!-- Two main branches splitting off the trunk -->
+      <path d="M 228 188 C 218 184, 208 184, 198 188"
+            stroke-width="0.85" opacity="0.7"/>
+      <path d="M 228 184 C 238 180, 248 180, 258 184"
+            stroke-width="0.85" opacity="0.7"/>
+      <!-- Canopy — full rounded mass built from overlapping arcs.
+           Drawn as a single closed contour with several cubic curves
+           so the edge has natural variation, not a perfect circle. -->
+      <path d="M 168 140
+               C 160 120, 172 100, 196 96
+               C 204 84, 224 80, 236 90
+               C 248 80, 268 84, 276 98
+               C 296 100, 308 118, 300 138
+               C 308 148, 304 164, 286 168
+               C 278 178, 258 180, 244 174
+               C 234 182, 214 182, 202 174
+               C 188 180, 168 178, 162 168
+               C 152 162, 154 148, 168 140 Z"
+            stroke-width="1.35" opacity="0.85"/>
+      <!-- Canopy interior vein lines — 3 subtle branching marks -->
+      <path d="M 232 140 C 226 150, 220 158, 214 162"
+            stroke-width="0.85" opacity="0.55"/>
+      <path d="M 232 140 C 240 150, 246 158, 252 162"
+            stroke-width="0.85" opacity="0.55"/>
+      <path d="M 232 140 L 232 130"
+            stroke-width="0.85" opacity="0.45"/>
+      <!-- Root flare marks at the base of the trunk -->
+      <path d="M 222 232 C 218 236, 214 236, 212 234"
+            stroke-width="0.85" opacity="0.6"/>
+      <path d="M 234 232 C 238 236, 242 236, 244 234"
+            stroke-width="0.85" opacity="0.6"/>
+    </g>
+
+    <!-- ===== DISTANT SHRUBS — small bush marks on the horizon ===== -->
+    <g>
+      <path d="M 540 196 C 548 190, 558 190, 562 196
+               C 566 190, 574 190, 578 196"
+            stroke-width="0.85" opacity="0.7"/>
+      <path d="M 820 194 C 828 188, 838 188, 842 194"
+            stroke-width="0.85" opacity="0.65"/>
+      <path d="M 850 196 C 858 190, 866 190, 870 196"
+            stroke-width="0.85" opacity="0.6"/>
+      <path d="M 1180 194 C 1188 188, 1198 188, 1202 194"
+            stroke-width="0.85" opacity="0.6"/>
+    </g>
+
+    <!-- ===== MODEST AGRICULTURAL SHED (right side) — small, simple ===== -->
+    <g>
+      <!-- Roof — single peaked line, low and shallow -->
+      <path d="M 1280 168 L 1310 148 L 1380 148 L 1410 168"
+            stroke-width="1.35" opacity="0.85"/>
+      <!-- Roof underside — thin projection suggesting roof slab thickness -->
+      <path d="M 1280 168 L 1410 168"
+            stroke-width="0.85" opacity="0.55"/>
+      <!-- Body — simple rectangle -->
+      <path d="M 1290 168 L 1290 232 L 1400 232 L 1400 168"
+            stroke-width="1.35" opacity="0.85"/>
+      <!-- Door — small rectangle opening -->
+      <path d="M 1330 232 L 1330 198 L 1360 198 L 1360 232"
+            stroke-width="0.85" opacity="0.7"/>
+      <!-- Small window/vent high on the wall -->
+      <path d="M 1372 180 L 1384 180 L 1384 192 L 1372 192 Z"
+            stroke-width="0.85" opacity="0.6"/>
+      <!-- Roof tile segment lines — 3 subtle marks -->
+      <path d="M 1310 152 L 1314 168" stroke-width="0.85" opacity="0.5"/>
+      <path d="M 1340 148 L 1344 168" stroke-width="0.85" opacity="0.5"/>
+      <path d="M 1370 148 L 1374 168" stroke-width="0.85" opacity="0.5"/>
+    </g>
+
+    <!-- ===== TINY ZEBU COWS — small silhouettes in the middle field ===== -->
+    <!-- Cow A — facing left, sitting in the field at mid-distance -->
+    <g opacity="0.85">
+      <!-- Body barrel — small closed contour -->
+      <path d="M 720 196
+               C 728 192, 740 191, 752 192
+               L 768 192
+               L 768 200
+               L 720 200
+               C 718 198, 718 197, 720 196 Z"
+            stroke-width="0.85"/>
+      <!-- Hump — small rise above back line -->
+      <path d="M 722 196 C 724 192, 728 190, 732 190
+               C 736 190, 740 192, 742 196"
+            stroke-width="0.85"/>
+      <!-- Head — small wedge to the left -->
+      <path d="M 720 196 C 716 196, 712 198, 710 200"
+            stroke-width="0.85"/>
+      <!-- Legs — 4 tiny vertical strokes -->
+      <path d="M 724 200 L 724 208" stroke-width="0.85"/>
+      <path d="M 728 200 L 728 208" stroke-width="0.85"/>
+      <path d="M 762 200 L 762 208" stroke-width="0.85"/>
+      <path d="M 766 200 L 766 208" stroke-width="0.85"/>
+      <!-- Tail — short curve down -->
+      <path d="M 768 194 C 772 196, 774 200, 772 204" stroke-width="0.85"/>
+    </g>
+
+    <!-- Cow B — facing left, slightly smaller, further back -->
+    <g opacity="0.7">
+      <path d="M 980 198
+               C 986 195, 996 194, 1006 195
+               L 1018 195
+               L 1018 202
+               L 980 202
+               C 978 200, 978 199, 980 198 Z"
+            stroke-width="0.85"/>
+      <path d="M 982 198 C 984 195, 988 193, 992 193
+               C 996 193, 1000 195, 1002 198"
+            stroke-width="0.85"/>
+      <path d="M 980 198 C 976 198, 972 200, 970 202"
+            stroke-width="0.85"/>
+      <path d="M 984 202 L 984 208" stroke-width="0.85"/>
+      <path d="M 988 202 L 988 208" stroke-width="0.85"/>
+      <path d="M 1014 202 L 1014 208" stroke-width="0.85"/>
+      <path d="M 1018 200 C 1022 202, 1024 204, 1022 207" stroke-width="0.85"/>
+    </g>
+
+    <!-- ===== FOREGROUND GRASS TUFTS — restrained, deliberate ===== -->
+    <g stroke-width="1.35">
+      <!-- Tuft cluster 1 — left -->
+      <path d="M 80 232 L 78 226" opacity="0.6"/>
+      <path d="M 82 232 L 82 224" opacity="0.6"/>
+      <path d="M 84 232 L 86 226" opacity="0.6"/>
+      <!-- Tuft cluster 2 — between tree and cows -->
+      <path d="M 460 232 L 458 226" opacity="0.55"/>
+      <path d="M 462 232 L 462 224" opacity="0.55"/>
+      <path d="M 464 232 L 466 226" opacity="0.55"/>
+      <!-- Tuft cluster 3 — right of cows -->
+      <path d="M 1080 232 L 1078 226" opacity="0.55"/>
+      <path d="M 1082 232 L 1082 224" opacity="0.55"/>
+      <path d="M 1084 232 L 1086 226" opacity="0.55"/>
+      <!-- Tuft cluster 4 — left of shed -->
+      <path d="M 1220 232 L 1218 226" opacity="0.55"/>
+      <path d="M 1222 232 L 1222 224" opacity="0.55"/>
+      <!-- Tuft cluster 5 — far right -->
+      <path d="M 1480 232 L 1478 226" opacity="0.55"/>
+      <path d="M 1482 232 L 1482 224" opacity="0.55"/>
+      <path d="M 1484 232 L 1486 226" opacity="0.55"/>
+    </g>
+
+    <!-- ===== ONE LONGER GRASS BLADE — compositional accent ===== -->
+    <path d="M 580 232 C 578 224, 576 218, 580 212"
+          stroke-width="1.35" opacity="0.65"/>
+
+  </g>
+</svg>
+        <span class="why-context-band__annot">District Bulandshahr, Uttar Pradesh – 203131</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  (function () {
+    'use strict';
+    document.querySelectorAll('[data-ashta-laabh] svg [data-benefit]').forEach(function (node) {
+      node.setAttribute('data-ashta-node', node.getAttribute('data-benefit'));
+    });
+  })();
+</script>
     </main>
 
     <!-- ===== Site footer ===== -->
@@ -1125,10 +2269,7 @@
     <!--
       Module scripts. Order matters: each module registers
       window.GaurikritApp.<Name> = { init: fn, ... } and app.js
-      (loaded last) calls .init() on each. calculator.js is included
-      after forms.js so it can reuse the toast helper if needed, and
-      before app.js so app.js can include 'Calculator' in its boot
-      sequence.
+      (loaded last) calls .init() on each.
     -->
     <script src="../assets/js/navigation.js?v=static"></script>
     <script src="../assets/js/animations.js?v=static"></script>

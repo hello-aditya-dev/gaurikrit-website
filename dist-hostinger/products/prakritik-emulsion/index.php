@@ -1,237 +1,235 @@
 <?php
 /**
- * Gaurikrit Bio Products — Prakritik Emulsion detail.
- * Task PAGES-LOCK. Warmer. Haldi / Leaf secondary accent.
- * REVERSED main composition — image right, text left (opposite of Distemper).
+ * Gaurikrit Bio Products — Prakritik Emulsion Product Detail (V3 rebuild).
+ * Task V3-PAGES.
+ *
+ * Composition (REVERSED — product left, copy right):
+ *   - Warm leaf / haldi material environment (.product-detail--warm).
+ *   - Hero: product 7 (left) / copy 5 (right).
+ *   - Spec sheet: same numbered ruled system, different layout.
+ *   - Coverage disclaimer.
+ *   - Ashta Laabh grid.
+ *   - CTA "Enquire About Emulsion".
  */
 declare(strict_types=1);
 
-$pageTitle       = 'Prakritik Emulsion Paint — Gaurikrit Bio Products';
-$pageDescription = 'Prakritik Emulsion Paint — eco-friendly cow dung paint. White, matt finish, 4 hrs drying time, 300 sq.ft. coverage, interior and exterior use. 1, 4, 10 and 20 litre packaging.';
+$pageTitle       = 'Prakritik Emulsion Paint — Cow Dung-Based | Gaurikrit';
+$pageDescription = 'Prakritik Emulsion Paint: cow dung-based, matt finish, 1-20 litre packs, 300 sq.ft.** coverage, Interior & Exterior usage. From Gaurikrit Bio Products, Khurja, Uttar Pradesh.';
 $pageCanonical   = '/products/prakritik-emulsion/';
 $pageClass       = 'product-emulsion';
 
-require_once __DIR__ . '/../../../includes/bootstrap.php';
+require_once __DIR__ . '/../../includes/bootstrap.php';
 require ROOT_PATH . '/includes/header.php';
 
-global $COMPANY, $PRODUCTS, $ASHTA_LAABH, $COVERAGE_DISCLAIMER;
+global $COMPANY, $ASHTA_LAABH, $COVERAGE_DISCLAIMER;
 
-$product   = get_product('prakritik-emulsion');
+$product = get_product('prakritik-emulsion');
+if (!$product) {
+    http_response_code(404);
+    exit;
+}
+
 $distemper = get_product('prakritik-distemper');
+
+$ashtaIds = [
+    'Antibacterial'              => 'antibacterial',
+    'Antifungal'                 => 'antifungal',
+    'Eco-Friendly'               => 'eco-friendly',
+    'Natural Thermal Insulator'  => 'thermal-insulator',
+    'Cost-Effective'             => 'cost-effective',
+    'Free from Heavy Metals'     => 'heavy-metal-free',
+    'Non-Toxic'                  => 'non-toxic',
+    'Odourless'                  => 'odourless',
+];
+
+$specRows = [
+    ['num' => '01', 'label' => 'Packaging',   'value' => $product['packagingShort'], 'note' => '1 litre / 4 litre / 10 litre / 20 litre packs'],
+    ['num' => '02', 'label' => 'Colour',      'value' => $product['colour']],
+    ['num' => '03', 'label' => 'Finish',      'value' => $product['finish']],
+    ['num' => '04', 'label' => 'Drying time', 'value' => $product['dryingTime']],
+    ['num' => '05', 'label' => 'Coverage',    'value' => $product['coverage'], 'note' => '** ' . $COVERAGE_DISCLAIMER],
+    ['num' => '06', 'label' => 'V.O.C.',      'value' => $product['voc']],
+    ['num' => '07', 'label' => 'Usage',       'value' => $product['usage']],
+];
 ?>
 <style>
-  .emulsion-detail { padding-top: calc(var(--header-h) + 2rem); background: linear-gradient(180deg, var(--bg) 0%, var(--haldi-light) 100%); }
-  .breadcrumb { font-size: 0.8125rem; color: var(--fg-muted); margin-bottom: 1.5rem; padding-top: 0.5rem; }
-  .breadcrumb a { color: var(--primary); }
-  .breadcrumb a:hover { text-decoration: underline; }
-  .breadcrumb span { color: var(--fg-muted); margin: 0 0.375rem; }
+  /* ===== HERO — REVERSED (product left, copy right — warm env) ===== */
+  .product-detail { padding-bottom: clamp(3rem, 6vw, 5rem); }
+  .product-detail__hero {
+    display: grid; gap: 2rem; padding-top: calc(var(--header-h) + 2rem);
+    padding-bottom: 2rem; align-items: center;
+  }
+  @media (min-width: 1024px) {
+    .product-detail__hero {
+      grid-template-columns: 7fr 5fr; gap: clamp(2.5rem, 5vw, 4rem);
+    }
+    /* Reversed: product is the first child, on the left. */
+    .product-detail--warm .product-detail__hero > :first-child { order: 1; }
+    .product-detail--warm .product-detail__hero > :last-child  { order: 2; }
+  }
+  .product-detail__media {
+    position: relative; aspect-ratio: 1;
+    background: linear-gradient(160deg, var(--paper), var(--paper-warm));
+    border: 1px solid var(--border); border-top: 3px solid var(--leaf);
+    border-radius: var(--r-panel); overflow: hidden;
+    min-height: 22rem;
+  }
+  @media (min-width: 1024px) { .product-detail__media { min-height: 30rem; } }
+  .product-detail__media .product-media { width: 100%; height: 100%; }
+  .product-detail__media .product-media__official { object-fit: contain; padding: 2.5rem; }
+  .product-detail__media .product-media__fallback { padding: 2rem; }
+  .product-detail__media__num {
+    position: absolute; top: 1rem; right: 1.25rem;
+    font-family: var(--font-display); font-size: clamp(3rem, 8vw, 5rem);
+    font-weight: 700; color: var(--leaf); opacity: 0.18;
+    line-height: 1; pointer-events: none;
+  }
+  .product-detail__info { display: flex; flex-direction: column; gap: 0.75rem; }
+  .product-detail__name { margin-top: 0.5rem; }
+  .product-detail__descriptor { color: var(--leaf); }
 
-  /* HERO — REVERSED: image RIGHT, text LEFT (opposite of Distemper) */
-  .emulsion-hero { display: grid; gap: 2rem; align-items: center; padding-bottom: clamp(2rem, 4vw, 3rem); border-bottom: 1px solid var(--haldi-deep); }
-  @media (min-width: 1024px) { .emulsion-hero { grid-template-columns: 1fr 1fr; gap: 4rem; } }
-  .emulsion-hero__eyebrow { font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--haldi-deep); }
-  .emulsion-hero__name { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.05; letter-spacing: -0.02em; margin-top: 0.75rem; }
-  .emulsion-hero__descriptor { margin-top: 0.5rem; font-size: clamp(1rem, 2vw, 1.25rem); color: var(--geru); font-weight: 600; }
-  .emulsion-hero__body { margin-top: 1rem; color: var(--fg-muted); line-height: 1.65; max-width: 36rem; }
-  .emulsion-hero__chips { margin-top: 1.5rem; display: flex; flex-wrap: wrap; gap: 0.5rem; }
-  .emulsion-hero__chip { padding: 0.3125rem 0.875rem; border-radius: var(--radius-full); background: var(--bg-card); border: 1px solid var(--haldi-deep); font-size: 0.75rem; font-weight: 600; color: var(--haldi-deep); }
-  .emulsion-hero__cta-row { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 0.75rem; }
+  /* ===== SPEC SHEET ===== */
+  .emulsion-specs-section { padding-block: clamp(3rem, 6vw, 5rem); }
+  .spec-sheet__head { margin-bottom: 1.5rem; }
+  .spec-sheet__list { grid-template-columns: 1fr; }
 
-  /* MEDIA on the RIGHT — reverse grid order */
-  .emulsion-hero > :first-child { order: 2; }
-  @media (min-width: 1024px) { .emulsion-hero > :first-child { order: 0; } }
-  .emulsion-hero__media { position: relative; aspect-ratio: 1; background: var(--bg-card); border: 1px solid var(--haldi-deep); border-top: 4px solid var(--haldi); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-haldi); }
-  .emulsion-hero__media .product-media { width: 100%; height: 100%; }
-  .emulsion-hero__media .product-media__official { object-fit: contain; padding: 3rem; }
-  .emulsion-hero__media .product-media__fallback { padding: 2.5rem; }
-  .emulsion-hero__media__num { position: absolute; top: 1rem; right: 1.25rem; font-family: var(--font-display); font-size: 4rem; font-weight: 700; color: var(--haldi-deep); opacity: 0.22; line-height: 1; }
-  .emulsion-hero__media__leaf { position: absolute; left: -0.5rem; bottom: -0.5rem; width: 4rem; height: 4rem; opacity: 0.65; pointer-events: none; }
+  /* ===== COVERAGE DISCLAIMER ===== */
+  .coverage-disclaimer { margin-top: 2rem; border-left-color: var(--leaf); }
 
-  /* SPEC SHEET — horizontal row cards (different from Distemper's numbered list) */
-  .spec-sheet { padding-block: clamp(3rem, 6vw, 5rem); }
-  .spec-sheet__head { margin-bottom: 2.5rem; max-width: 48rem; }
-  .spec-sheet__eyebrow { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--haldi-deep); }
-  .spec-sheet__title { font-family: var(--font-display); font-size: clamp(1.75rem, 4vw, 2.5rem); margin-top: 0.75rem; letter-spacing: -0.02em; }
-  .spec-sheet__grid { display: grid; gap: 1rem; }
-  @media (min-width: 640px) { .spec-sheet__grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (min-width: 1024px) { .spec-sheet__grid { grid-template-columns: repeat(4, 1fr); } }
-  .spec-card { padding: 1.5rem; background: var(--bg-card); border: 1px solid var(--border); border-bottom: 3px solid var(--haldi); border-radius: var(--radius); display: flex; flex-direction: column; gap: 0.375rem; }
-  .spec-card__num { font-family: var(--font-display); font-size: 0.75rem; font-weight: 700; color: var(--haldi-deep); }
-  .spec-card__label { font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--fg-muted); }
-  .spec-card__value { font-family: var(--font-display); font-size: 1.375rem; font-weight: 700; color: var(--fg); line-height: 1.15; }
-  .spec-card__note { font-size: 0.75rem; color: var(--fg-muted); line-height: 1.5; margin-top: 0.25rem; }
-
-  .disclaimer-card { padding: 1.25rem 1.5rem; background: var(--bg-card); border-left: 3px solid var(--haldi-deep); border-radius: var(--radius); font-size: 0.8125rem; color: var(--fg-muted); line-height: 1.65; margin-top: 2rem; }
-
-  /* ASHTA LAABH — radial + side list (different from Distemper's 4-col grid) */
-  .emulsion-ashta { padding-block: clamp(3rem, 6vw, 5rem); background: var(--bg-card); }
-  .emulsion-ashta__head { text-align: center; max-width: 48rem; margin-inline: auto; margin-bottom: 2.5rem; }
-  .emulsion-ashta__deva { font-family: var(--font-deva); font-weight: 700; font-size: clamp(1.75rem, 4vw, 2.5rem); color: var(--haldi-deep); }
-  .emulsion-ashta__title { font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2rem); margin-top: 0.5rem; }
-  .emulsion-ashta__grid { display: grid; gap: 2rem; align-items: center; }
-  @media (min-width: 1024px) { .emulsion-ashta__grid { grid-template-columns: 1fr 1fr; } }
-  .emulsion-ashta__diagram { max-width: 28rem; margin-inline: auto; width: 100%; aspect-ratio: 1; }
-  .emulsion-ashta__diagram svg { width: 100%; height: 100%; }
-  .emulsion-ashta__list { display: grid; gap: 0.625rem; }
-  .emulsion-ashta__item { padding: 0.875rem 1.125rem; background: var(--bg); border-left: 3px solid var(--haldi); border-radius: var(--radius); display: grid; grid-template-columns: 2rem 1fr auto; gap: 0.75rem; align-items: center; cursor: pointer; transition: background var(--dur), border-color var(--dur), transform var(--dur); }
-  .emulsion-ashta__item:hover, .emulsion-ashta__item:focus-visible, .emulsion-ashta__item[data-active="true"] { background: oklch(0.82 0.14 82 / 0.12); border-left-color: var(--forest); transform: translateX(2px); outline: none; }
-  .emulsion-ashta__item:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
-  .emulsion-ashta__num { font-family: var(--font-display); font-size: 0.75rem; font-weight: 700; color: var(--haldi-deep); }
-  .emulsion-ashta__name { font-weight: 600; font-size: 0.9375rem; }
-  .emulsion-ashta__deva { font-family: var(--font-deva); font-size: 0.8125rem; color: var(--fg-muted); }
-
-  /* CTA + CROSS-LINK */
-  .emulsion-cta { padding-block: clamp(3rem, 6vw, 5rem); }
-  .emulsion-cta__inner { display: grid; gap: 1.5rem; padding: clamp(1.75rem, 4vw, 3rem); background: linear-gradient(135deg, var(--haldi-light), var(--haldi)); border-radius: var(--radius-lg); box-shadow: var(--shadow-haldi); color: var(--charcoal); }
-  @media (min-width: 768px) { .emulsion-cta__inner { grid-template-columns: 1.4fr 1fr; gap: 2.5rem; align-items: center; } }
-  .emulsion-cta__title { font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2rem); letter-spacing: -0.02em; }
-  .emulsion-cta__body { margin-top: 0.75rem; color: oklch(0.30 0.02 50); line-height: 1.65; }
-  .emulsion-cta__actions { display: flex; flex-direction: column; gap: 0.75rem; }
-  .emulsion-cta__actions .btn--primary { background: var(--forest); color: var(--primary-fg); }
-  .emulsion-cta__actions .btn--outline { background: transparent; border-color: var(--forest-deep); color: var(--forest-deep); }
-  .emulsion-cta__cross { padding: 1.25rem; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); }
-  .emulsion-cta__cross-title { font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--fg-muted); }
-  .emulsion-cta__cross-name { font-family: var(--font-display); font-size: 1.125rem; font-weight: 700; margin-top: 0.375rem; }
-  .emulsion-cta__cross-link { margin-top: 0.5rem; display: inline-flex; align-items: center; gap: 0.25rem; font-size: 0.8125rem; font-weight: 600; color: var(--primary); }
-  .emulsion-cta__cross-link:hover { gap: 0.5rem; }
+  /* ===== ASHTA LAABH ===== */
+  .emulsion-ashta-section { padding-block: clamp(3rem, 6vw, 5rem); }
+  .emulsion-ashta-section__head { max-width: 48rem; margin-bottom: 2.5rem; }
 </style>
 
-<section class="emulsion-detail" id="emulsion-detail">
-    <div class="container">
-        <nav class="breadcrumb" aria-label="Breadcrumb">
-            <a href="/">Home</a><span>›</span>
-            <a href="/products/">Products</a><span>›</span>
-            Prakritik Emulsion
-        </nav>
+<!-- ===== HERO — REVERSED (warm env) ===== -->
+<section class="product-detail product-detail--warm" aria-labelledby="emulsion-title">
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/">Home</a><span>›</span>
+      <a href="/products/">Products</a><span>›</span>
+      <span>Prakritik Emulsion</span>
+    </nav>
 
-        <!-- HERO (REVERSED: image right, text left) -->
-        <div class="emulsion-hero" data-reveal>
-            <div class="emulsion-hero__lockup">
-                <span class="emulsion-hero__eyebrow">Prakritik Paint</span>
-                <h1 class="emulsion-hero__name"><?= e($product['name']) ?></h1>
-                <div class="emulsion-hero__descriptor"><?= e($product['descriptor']) ?></div>
-                <p class="emulsion-hero__body">A liquid cow dung-based paint format. White, matt, and suitable for interior and exterior walls — the warmer half of the Prakritik range.</p>
-                <div class="emulsion-hero__chips">
-                    <span class="emulsion-hero__chip"><?= e($product['packagingShort']) ?></span>
-                    <span class="emulsion-hero__chip"><?= e($product['finish']) ?> finish</span>
-                    <span class="emulsion-hero__chip"><?= e($product['usage']) ?></span>
-                </div>
-                <div class="emulsion-hero__cta-row">
-                    <a href="/contact/?interest=prakritik-emulsion" class="btn btn--primary btn--lg">Enquire About Emulsion</a>
-                    <a href="/paint-calculator/" class="btn btn--outline btn--lg">Estimate Your Project</a>
-                </div>
-            </div>
-            <div class="emulsion-hero__media">
-                <span class="emulsion-hero__media__num" aria-hidden="true">02</span>
-                <div class="product-media" data-official-image="<?= e($product['officialImage']) ?>">
-                    <img class="product-media__official" src="<?= e($product['officialImage']) ?>" alt="<?= e($product['name']) ?>" width="640" height="640">
-                    <div class="product-media__fallback"><?php render_illustration('prakritik-emulsion-bucket'); ?></div>
-                </div>
-                <div class="emulsion-hero__media__leaf" aria-hidden="true"><?php render_illustration('field-botanicals'); ?></div>
-            </div>
+    <div class="product-detail__hero" data-reveal>
+      <div class="product-detail__media">
+        <span class="product-detail__media__num" aria-hidden="true">02</span>
+        <div class="product-media" data-official-image="<?= e($product['officialImage']) ?>">
+          <img class="product-media__official"
+               src="<?= e($product['officialImage']) ?>"
+               alt="<?= e($product['name']) ?> pack"
+               width="800" height="800" loading="eager" decoding="async">
+          <div class="product-media__fallback">
+            <?php render_illustration('prakritik-emulsion-bucket'); ?>
+          </div>
         </div>
+      </div>
+
+      <div class="product-detail__info">
+        <span class="emulsion-hero__eyebrow">Format 02 — Emulsion</span>
+        <h1 class="product-detail__name" id="emulsion-title"><?= e($product['name']) ?></h1>
+        <p class="product-detail__descriptor"><?= e($product['descriptor']) ?></p>
+        <p class="emulsion-hero__body">
+          A liquid-format cow dung-based paint, brushed on interior and exterior
+          walls. Supplied in <?= e($product['packagingShort']) ?> packs.
+        </p>
+        <div class="emulsion-hero__cta-row">
+          <a class="btn btn--primary btn--lg"
+             href="/contact/?interest=prakritik-emulsion">Enquire About Emulsion</a>
+          <a class="btn btn--outline" href="/products/">View All Products</a>
+        </div>
+      </div>
     </div>
+  </div>
 </section>
 
-<!-- SPEC SHEET — 4-col row cards (different from Distemper's 2-col list) -->
-<section class="spec-sheet section--paper" id="spec-sheet" data-reveal>
-    <div class="container">
-        <div class="spec-sheet__head">
-            <span class="spec-sheet__eyebrow">Specification sheet</span>
-            <h2 class="spec-sheet__title">Material specifications.</h2>
-        </div>
-        <div class="spec-sheet__grid" data-reveal-stagger>
-            <div class="spec-card">
-                <span class="spec-card__num">01</span>
-                <span class="spec-card__label">Packaging</span>
-                <span class="spec-card__value"><?= e($product['packagingShort']) ?></span>
-            </div>
-            <div class="spec-card">
-                <span class="spec-card__num">02</span>
-                <span class="spec-card__label">Colour</span>
-                <span class="spec-card__value"><?= e($product['colour']) ?></span>
-            </div>
-            <div class="spec-card">
-                <span class="spec-card__num">03</span>
-                <span class="spec-card__label">Finish</span>
-                <span class="spec-card__value"><?= e($product['finish']) ?></span>
-            </div>
-            <div class="spec-card">
-                <span class="spec-card__num">04</span>
-                <span class="spec-card__label">Drying time</span>
-                <span class="spec-card__value"><?= e($product['dryingTime']) ?></span>
-            </div>
-            <div class="spec-card">
-                <span class="spec-card__num">05</span>
-                <span class="spec-card__label">Coverage</span>
-                <span class="spec-card__value"><?= e($product['coverage']) ?></span>
-                <span class="spec-card__note"><?= e($COVERAGE_DISCLAIMER) ?></span>
-            </div>
-            <div class="spec-card">
-                <span class="spec-card__num">06</span>
-                <span class="spec-card__label">V.O.C.</span>
-                <span class="spec-card__value"><?= e($product['voc']) ?></span>
-            </div>
-            <div class="spec-card">
-                <span class="spec-card__num">07</span>
-                <span class="spec-card__label">Usage</span>
-                <span class="spec-card__value"><?= e($product['usage']) ?></span>
-            </div>
-            <div class="spec-card" style="background: var(--secondary-bg);">
-                <span class="spec-card__num">∞</span>
-                <span class="spec-card__label">Also see</span>
-                <a href="/products/" class="spec-card__value" style="color: var(--primary); font-size: 1.125rem; text-decoration: underline;">Compare both formats</a>
-            </div>
-        </div>
-        <div class="disclaimer-card">
-            <strong>Coverage note —</strong> <?= e($COVERAGE_DISCLAIMER) ?>
-        </div>
+<!-- ===== SPEC SHEET (numbered 01-07 ruled rows) ===== -->
+<section class="section section--paper emulsion-specs-section" aria-labelledby="specs-title">
+  <div class="container">
+    <div class="spec-sheet__head section-heading section-heading--left" data-reveal>
+      <span class="spec-sheet__eyebrow">Specifications</span>
+      <h2 class="spec-sheet__title" id="specs-title">Product specifications.</h2>
     </div>
+
+    <dl class="spec-sheet__list" data-reveal>
+      <?php foreach ($specRows as $row): ?>
+        <div class="spec-sheet__item">
+          <span class="spec-sheet__num"><?= e($row['num']) ?></span>
+          <div>
+            <dt class="spec-sheet__label"><?= e($row['label']) ?></dt>
+            <dd class="spec-sheet__value">
+              <?= e($row['value']) ?>
+              <?php if (!empty($row['note'])): ?>
+                <small><?= e($row['note']) ?></small>
+              <?php endif; ?>
+            </dd>
+          </div>
+        </div>
+      <?php endforeach; ?>
+    </dl>
+
+    <p class="coverage-disclaimer" data-reveal>
+      <span class="coverage-disclaimer__label">Coverage note</span>
+      <span class="coverage-disclaimer__text"><?= e($COVERAGE_DISCLAIMER) ?></span>
+    </p>
+  </div>
 </section>
 
-<!-- ASHTA LAABH — radial + list -->
-<section class="emulsion-ashta" id="ashta-laabh" data-reveal>
-    <div class="container">
-        <div class="emulsion-ashta__head">
-            <div class="emulsion-ashta__deva" lang="hi"><?= e('अष्ट लाभ') ?></div>
-            <h2 class="emulsion-ashta__title">Eight benefits presented in Prakritik Paint.</h2>
-        </div>
-        <div class="emulsion-ashta__grid" data-ashta-laabh>
-            <div class="emulsion-ashta__diagram" aria-hidden="true"><?php render_illustration('ashta-laabh-diagram'); ?></div>
-            <ol class="emulsion-ashta__list" data-reveal-stagger>
-                <?php foreach ($ASHTA_LAABH as $i => $benefit): $bid = 'em-al-' . ($i + 1); ?>
-                <li class="emulsion-ashta__item" data-ashta-node="<?= e($bid) ?>">
-                    <span class="emulsion-ashta__num"><?= sprintf('%02d', $i + 1) ?></span>
-                    <span class="emulsion-ashta__name"><?= e($benefit['name']) ?></span>
-                    <span class="emulsion-ashta__deva" lang="hi"><?= e($benefit['hindi']) ?></span>
-                </li>
-                <?php endforeach; ?>
-            </ol>
-        </div>
+<!-- ===== ASHTA LAABH ===== -->
+<section class="section section--limewash emulsion-ashta-section" aria-labelledby="emulsion-ashta-title" data-ashta-laabh>
+  <div class="container">
+    <div class="emulsion-ashta-section__head section-heading section-heading--left" data-reveal>
+      <span class="section-heading__eyebrow">अष्ट लाभ — Eight benefits</span>
+      <h2 class="section-heading__title" id="emulsion-ashta-title">Ashta Laabh.</h2>
+      <p class="section-heading__desc">
+        Client-supplied product benefits, not independently tested claims.
+      </p>
     </div>
+
+    <div class="ashta-section__grid" data-reveal>
+      <div class="ashta-section__seal">
+        <?php render_illustration('ashta-laabh-seal'); ?>
+      </div>
+      <ol class="ashta-section__support" data-reveal-stagger>
+        <?php foreach ($ASHTA_LAABH as $i => $benefit): ?>
+          <?php $bid = $ashtaIds[$benefit['name']] ?? ('benefit-' . ($i + 1)); ?>
+          <li class="ashta-benefit emulsion-ashta__item" data-ashta-node="<?= e($bid) ?>">
+            <span class="ashta-benefit__num"><?= e(sprintf('%02d', $i + 1)) ?></span>
+            <span class="ashta-benefit__name"><?= e($benefit['name']) ?></span>
+            <span class="ashta-benefit__deva"><?= e($benefit['hindi']) ?></span>
+          </li>
+        <?php endforeach; ?>
+      </ol>
+    </div>
+  </div>
 </section>
 
-<!-- CTA + CROSS-LINK -->
-<section class="emulsion-cta section--paper" id="enquire" data-reveal>
-    <div class="container">
-        <div class="emulsion-cta__inner">
-            <div>
-                <h2 class="emulsion-cta__title">Want to know more about Prakritik Emulsion?</h2>
-                <p class="emulsion-cta__body">Send an enquiry about packaging, project sizes, or collaboration. We'll respond with what's currently available.</p>
-                <div class="emulsion-cta__actions">
-                    <a href="/contact/?interest=prakritik-emulsion" class="btn btn--primary btn--lg btn--block">Enquire About Emulsion</a>
-                    <a href="/for-business/" class="btn btn--outline btn--lg btn--block">Discuss a Project</a>
-                </div>
-            </div>
-            <div class="emulsion-cta__cross">
-                <span class="emulsion-cta__cross-title">Also in the Prakritik range</span>
-                <h3 class="emulsion-cta__cross-name"><?= e($distemper['name']) ?></h3>
-                <a href="<?= e($distemper['route']) ?>" class="emulsion-cta__cross-link">Explore Distemper
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                </a>
-            </div>
+<!-- ===== CROSS-LINK ===== -->
+<section class="section section--paper" aria-labelledby="cross-title">
+  <div class="container">
+    <div class="emulsion-cta" data-reveal>
+      <div class="emulsion-cta__inner">
+        <div>
+          <span class="emulsion-hero__eyebrow">Looking at the other format?</span>
+          <h2 class="emulsion-cta__title" id="cross-title">Prakritik Distemper.</h2>
+          <p class="emulsion-cta__body">
+            A powder-format cow dung-based paint. Coverage <?= e($distemper['coverage']) ?>.
+            Supplied in <?= e($distemper['packagingShort']) ?> packs.
+          </p>
         </div>
+        <div class="emulsion-cta__actions">
+          <a class="btn btn--secondary" href="<?= e($distemper['route']) ?>">View Distemper</a>
+        </div>
+      </div>
     </div>
+  </div>
 </section>
 
+<script>
+  (function () {
+    'use strict';
+    document.querySelectorAll('[data-ashta-laabh] svg [data-benefit]').forEach(function (node) {
+      node.setAttribute('data-ashta-node', node.getAttribute('data-benefit'));
+    });
+  })();
+</script>
 <?php require ROOT_PATH . '/includes/footer.php';

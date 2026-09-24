@@ -1,233 +1,227 @@
 <?php
 /**
- * Gaurikrit Bio Products — Contact.
- * Task PAGES-LOCK.
+ * Gaurikrit Bio Products — Contact (V3 rebuild).
+ * Task V3-PAGES.
  *
- * Display: legal name, full address, GSTIN, email (mailto:), both phones (tel:).
- * Contact form posts to /api/contact.php. Pre-fill interest from ?interest=.
- * NO newsletter. NO office hours. NO Pan-India.
+ * Simplified. NO large architectural hero. NO newsletter. NO FAQ.
+ *
+ *   H1 "Talk to Gaurikrit." Short copy. Immediately surface:
+ *     email, phones, address, GSTIN.
+ *
+ *   Layout: .contact-section 5 col company/contact info (left) /
+ *           7 col enquiry form (right). NO giant card.
+ *
+ *   Form: name, phone, email, interest (select 6 values from
+ *   $INTEREST_OPTIONS), message. Posts to /api/contact.php.
+ *   csrf_field() + honeypot. Button "Send Enquiry".
  */
 declare(strict_types=1);
 
-$pageTitle       = 'Contact — Gaurikrit Bio Products';
-$pageDescription = 'Talk to Gaurikrit. Send an enquiry about Prakritik Paint products, projects or partnerships. Based in Khurja, District Bulandshahr, Uttar Pradesh.';
+$pageTitle       = 'Talk to Gaurikrit — Contact | Gaurikrit Bio Products';
+$pageDescription = 'Email, phones, address and GSTIN for Gaurikrit Bio Products (OPC) Private Limited. Send an enquiry about Prakritik Distemper, Emulsion, bulk projects, partnerships or Gaushala collaboration.';
 $pageCanonical   = '/contact/';
 $pageClass        = 'contact';
 
-require_once __DIR__ . '/../../includes/bootstrap.php';
+require_once __DIR__ . '/../includes/bootstrap.php';
 require ROOT_PATH . '/includes/header.php';
 
-global $COMPANY, $INTEREST_OPTIONS, $FAQ;
+global $COMPANY, $INTEREST_OPTIONS;
 
+$phones = $COMPANY['phones'] ?? [];
 $address = $COMPANY['address'] ?? [];
-$phones  = $COMPANY['phones'] ?? [];
+$addressLine = implode("\n", $address);
 
-// Pre-fill interest from ?interest= if it's a known option.
+// Pre-fill interest from ?interest= query (server-side; forms.js also does
+// this client-side as a backup).
 $selectedInterest = '';
-if (!empty($_GET['interest'])) {
-    $candidate = (string) $_GET['interest'];
-    if (array_key_exists($candidate, $INTEREST_OPTIONS)) {
-        $selectedInterest = $candidate;
-    } else {
-        foreach ($INTEREST_OPTIONS as $key => $label) {
-            if (stripos($key, $candidate) !== false || stripos($label, $candidate) !== false) {
-                $selectedInterest = $key;
-                break;
-            }
-        }
-    }
-}
-
-// Carry through any project detail hints from the calculator (?paint=, ?area=).
-$calcHint = '';
-$paintHint = !empty($_GET['paint']) ? (string) $_GET['paint'] : '';
-$paintingHint = !empty($_GET['painting_type']) ? (string) $_GET['painting_type'] : '';
-$locationHint = !empty($_GET['location']) ? (string) $_GET['location'] : '';
-$areaHint = !empty($_GET['wall_area']) ? (string) $_GET['wall_area'] : '';
-$hints = array_filter([
-    $paintingHint ? 'Painting type: ' . $paintingHint : '',
-    $locationHint ? 'Location: ' . $locationHint : '',
-    $paintHint ? ('paint' === $paintHint ? 'Paint: Prakritik ' . ucfirst($paintHint) : 'Paint: ' . $paintHint) : '',
-    $areaHint ? 'Wall area: ' . $areaHint . ' sq.ft.' : '',
-]);
-if (!empty($hints)) {
-    $calcHint = "Project details from the calculator:\n" . implode("\n", $hints) . "\n\nPlease share an accurate estimate.";
+$interestParam = $_GET['interest'] ?? '';
+if ($interestParam !== '' && array_key_exists($interestParam, $INTEREST_OPTIONS)) {
+    $selectedInterest = $interestParam;
 }
 ?>
 <style>
-  /* HERO */
-  .contact-hero { padding-top: calc(var(--header-h) + 2.5rem); padding-bottom: clamp(2rem, 4vw, 3rem); }
-  .contact-hero__container { display: grid; gap: 2rem; align-items: center; }
-  @media (min-width: 1024px) { .contact-hero__container { grid-template-columns: 1.1fr 0.9fr; } }
-  .contact-hero__lockup { display: flex; flex-direction: column; gap: 0.625rem; }
-  .contact-hero__eyebrow { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.3125rem 0.75rem; border: 1px solid var(--border); border-radius: var(--radius-full); background: var(--bg-card); font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--primary); width: fit-content; }
-  .contact-hero__eyebrow-dot { width: 0.375rem; height: 0.375rem; border-radius: 50%; background: var(--haldi); }
-  .contact-hero__title { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.25rem); line-height: 1.1; letter-spacing: -0.02em; text-wrap: balance; }
-  .contact-hero__sub { max-width: 36rem; font-size: clamp(1rem, 2vw, 1.125rem); color: var(--fg-muted); line-height: 1.65; }
-  .contact-hero__art { aspect-ratio: 4/3; border-radius: var(--radius-lg); background: var(--bg-card); border: 1px solid var(--border); box-shadow: var(--shadow-soft); overflow: hidden; display: flex; align-items: center; justify-content: center; padding: 2rem; }
+  /* ===== HERO ===== */
+  .contact-hero { padding-top: calc(var(--header-h) + 2rem); padding-bottom: 1.5rem; }
+  .contact-hero__container { display: grid; gap: 2rem; align-items: start; }
+  .contact-hero__lockup { max-width: 42rem; }
+  .contact-hero__title {
+    font-family: var(--font-display); font-size: clamp(2.2rem, 5vw, 4rem);
+    line-height: 1.05; letter-spacing: -0.02em; text-wrap: balance;
+    margin-top: 0.5rem;
+  }
+  .contact-hero__sub {
+    margin-top: 1rem; color: var(--fg-muted);
+    font-size: clamp(1rem, 2vw, 1.125rem); line-height: 1.65; max-width: 60ch;
+  }
 
-  /* CONTACT INFO CARD */
-  .contact-info-card { padding: clamp(1.5rem, 4vw, 2.5rem); border: 1px solid var(--border); border-radius: var(--radius-lg); background: var(--bg-card); box-shadow: var(--shadow-soft); }
-  .contact-info-card h2 { font-size: 1.5rem; margin-bottom: 1rem; }
-  .contact-info-card dl { display: grid; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
-  .contact-info-card__row { display: grid; grid-template-columns: 8rem 1fr; background: var(--bg-card); }
-  @media (max-width: 480px) { .contact-info-card__row { grid-template-columns: 1fr; } .contact-info-card__row dt { background: var(--secondary-bg); } }
-  .contact-info-card__row dt, .contact-info-card__row dd { padding: 0.75rem 1rem; }
-  .contact-info-card__row dt { font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--fg-muted); }
-  .contact-info-card__row dd { font-size: 0.9375rem; }
-  .contact-info-card__row dd a { color: var(--primary); font-weight: 600; }
-  .contact-info-card__address { white-space: pre-line; }
+  /* ===== CONTACT SECTION (5 / 7 — info left, form right) ===== */
+  .contact-section { padding-top: clamp(1.5rem, 3vw, 2.5rem); }
 
-  /* FORM */
-  .contact-form-card { padding: clamp(1.5rem, 4vw, 2.5rem); border: 1px solid var(--border); border-radius: var(--radius-lg); background: var(--bg-card); box-shadow: var(--shadow-soft); }
-  .contact-form-card h2 { font-size: 1.5rem; margin-bottom: 0.5rem; }
-  .contact-form-card__intro { font-size: 0.9375rem; color: var(--fg-muted); margin-bottom: 1.5rem; }
-  .contact-form-card .form-grid { display: grid; gap: 1rem; grid-template-columns: 1fr; }
-  @media (min-width: 640px) { .contact-form-card .form-grid { grid-template-columns: 1fr 1fr; } }
-  .contact-form-card .form-field--full { grid-column: 1 / -1; }
+  /* Contact info as a modern plate / ledger (ruled rows, no card chrome). */
+  .contact-info {
+    padding: 0; background: transparent; border: 0;
+    border-top: 1px solid var(--border); border-radius: 0; box-shadow: none;
+  }
+  .contact-info__row {
+    padding-block: 1rem; border-bottom: 1px solid var(--border);
+    display: grid; grid-template-columns: 1fr; gap: 0.25rem;
+    align-items: baseline;
+  }
+  @media (min-width: 640px) {
+    .contact-info__row { grid-template-columns: 11rem 1fr; gap: 1rem; }
+  }
+  .contact-info__row dt {
+    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--fg-muted);
+  }
+  .contact-info__row dd { font-size: 0.9375rem; color: var(--fg); }
+  .contact-info__address { white-space: pre-line; }
+  .contact-info__actions {
+    display: flex; flex-wrap: wrap; gap: 0.625rem; margin-top: 1.5rem;
+  }
 
-  /* FAQ */
-  .contact-faq { padding-block: clamp(3rem, 6vw, 5rem); background: var(--secondary-bg); }
-  .contact-faq__head { text-align: center; max-width: 48rem; margin-inline: auto; margin-bottom: 2.5rem; }
-  .contact-faq__title { font-family: var(--font-display); font-size: clamp(1.75rem, 4vw, 2.5rem); letter-spacing: -0.02em; }
-  .contact-faq__list { max-width: 48rem; margin-inline: auto; }
+  /* Form (right). */
+  .contact-form {
+    background: var(--paper); border: 1px solid var(--border);
+    border-radius: var(--r-panel); padding: 1.5rem;
+  }
+  @media (min-width: 768px) { .contact-form { padding: 2rem; } }
+  .contact-form-card__intro {
+    font-size: 0.875rem; color: var(--fg-muted); margin-bottom: 1.5rem;
+  }
+  .contact-form-card__intro .req { color: var(--mitti); }
+  .form-grid { gap: 1.25rem; }
 </style>
 
-<!-- HERO -->
-<section class="contact-hero" id="contact-hero" data-reveal>
-    <div class="container contact-hero__container">
-        <div class="contact-hero__lockup">
-            <span class="contact-hero__eyebrow"><span class="contact-hero__eyebrow-dot" aria-hidden="true"></span>Contact</span>
-            <h1 class="contact-hero__title">Talk to Gaurikrit.</h1>
-            <p class="contact-hero__sub">Product questions, project requirements or partnership conversations — send an enquiry or contact Gaurikrit directly.</p>
-        </div>
-        <div class="contact-hero__art" aria-hidden="true">
-            <?php render_illustration('indian-courtyard'); ?>
-        </div>
+<!-- ===== HERO ===== -->
+<section class="contact-hero bg-limewash" aria-labelledby="contact-title">
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/">Home</a><span>›</span>
+      <span>Contact</span>
+    </nav>
+    <div class="contact-hero__container" data-reveal>
+      <div class="contact-hero__lockup">
+        <span class="contact-hero__eyebrow">
+          <span class="contact-hero__eyebrow-dot" aria-hidden="true"></span>
+          Get in touch
+        </span>
+        <hr class="contact-hero__rule">
+        <h1 class="contact-hero__title" id="contact-title">Talk to Gaurikrit.</h1>
+        <p class="contact-hero__sub">
+          A short message and a phone number are usually enough. Tell us what
+          you are painting — home, site, Gaushala collaboration — and we will
+          respond.
+        </p>
+      </div>
     </div>
+  </div>
 </section>
 
-<!-- CONTACT INFO + FORM -->
-<section class="section section--paper" id="reach" data-reveal>
-    <div class="container">
-        <div class="contact-grid">
-            <div class="contact-info-card">
-                <h2>Company information</h2>
-                <dl>
-                    <div class="contact-info-card__row">
-                        <dt>Legal name</dt>
-                        <dd><?= e($COMPANY['legalName']) ?></dd>
-                    </div>
-                    <div class="contact-info-card__row">
-                        <dt>Address</dt>
-                        <dd class="contact-info-card__address"><?php foreach ($address as $line) { echo e($line) . "\n"; } ?></dd>
-                    </div>
-                    <div class="contact-info-card__row">
-                        <dt>GSTIN</dt>
-                        <dd><?= e($COMPANY['gstin']) ?></dd>
-                    </div>
-                    <div class="contact-info-card__row">
-                        <dt>Email</dt>
-                        <dd><a href="mailto:<?= e($COMPANY['email']) ?>"><?= e($COMPANY['email']) ?></a></dd>
-                    </div>
-                    <div class="contact-info-card__row">
-                        <dt>Phone</dt>
-                        <dd>
-                            <?php foreach ($phones as $phone): ?>
-                                <a href="tel:<?= e(str_replace(' ', '', $phone)) ?>"><?= e($phone) ?></a><br>
-                            <?php endforeach; ?>
-                        </dd>
-                    </div>
-                </dl>
-                <div style="margin-top:1.25rem; display:flex; flex-direction:column; gap:0.75rem;">
-                    <a href="mailto:<?= e($COMPANY['email']) ?>" class="btn btn--outline btn--block">Email Gaurikrit</a>
-                    <?php if (!empty($phones[0])): ?>
-                        <a href="tel:<?= e(str_replace(' ', '', $phones[0])) ?>" class="btn btn--primary btn--block">Call Gaurikrit</a>
-                    <?php endif; ?>
-                </div>
+<!-- ===== CONTACT SECTION — 5 / 7 (info left / form right) ===== -->
+<section class="section section--paper" style="padding-top: clamp(2rem, 4vw, 3rem);">
+  <div class="container">
+    <div class="contact-section" data-reveal>
+      <!-- LEFT — company info / contact plate -->
+      <aside>
+        <span class="contact-hero__eyebrow">Direct lines</span>
+        <h2 class="spec-sheet__title" style="margin-top: 0.5rem;">Company &amp; contact.</h2>
+
+        <dl class="contact-info">
+          <div class="contact-info__row">
+            <dt>Legal name</dt>
+            <dd><?= e($COMPANY['legalName']) ?></dd>
+          </div>
+          <div class="contact-info__row">
+            <dt>GSTIN</dt>
+            <dd><?= e($COMPANY['gstin']) ?></dd>
+          </div>
+          <div class="contact-info__row">
+            <dt>Email</dt>
+            <dd>
+              <a href="mailto:<?= e($COMPANY['email']) ?>"><?= e($COMPANY['email']) ?></a>
+            </dd>
+          </div>
+          <?php foreach ($phones as $phone): ?>
+            <div class="contact-info__row">
+              <dt>Phone</dt>
+              <dd>
+                <a href="tel:<?= e(str_replace(' ', '', $phone)) ?>"><?= e($phone) ?></a>
+              </dd>
             </div>
+          <?php endforeach; ?>
+          <div class="contact-info__row">
+            <dt>Address</dt>
+            <dd class="contact-info__address"><?= e($addressLine) ?></dd>
+          </div>
+        </dl>
 
-            <div class="contact-form-card">
-                <h2>Send an enquiry</h2>
-                <p class="contact-form-card__intro">Fields marked <span class="req" style="color: var(--mitti);">*</span> are required.</p>
-                <form data-contact-form method="post" action="/api/contact.php" novalidate>
-                    <?= csrf_field() ?>
-                    <div class="form-honeypot" aria-hidden="true">
-                        <label for="ct-company">Company (leave empty)</label>
-                        <input type="text" id="ct-company" name="company" tabindex="-1" autocomplete="off">
-                    </div>
-                    <div class="form-grid">
-                        <div class="form-field">
-                            <label class="form-label" for="ct-name">Name <span class="req">*</span></label>
-                            <input class="form-input" type="text" id="ct-name" name="name" required maxlength="80" autocomplete="name">
-                            <div class="form-error" data-error-for="name"></div>
-                        </div>
-                        <div class="form-field">
-                            <label class="form-label" for="ct-email">Email <span class="req">*</span></label>
-                            <input class="form-input" type="email" id="ct-email" name="email" required maxlength="254" autocomplete="email">
-                            <div class="form-error" data-error-for="email"></div>
-                        </div>
-                        <div class="form-field">
-                            <label class="form-label" for="ct-phone">Phone</label>
-                            <input class="form-input" type="tel" id="ct-phone" name="phone" maxlength="20" autocomplete="tel">
-                            <div class="form-error" data-error-for="phone"></div>
-                        </div>
-                        <div class="form-field">
-                            <label class="form-label" for="ct-interest">Interest</label>
-                            <select class="form-select" id="ct-interest" name="interest">
-                                <option value="">Select…</option>
-                                <?php foreach ($INTEREST_OPTIONS as $key => $label): ?>
-                                    <option value="<?= e($key) ?>" <?= $selectedInterest === $key ? 'selected' : '' ?>><?= e($label) ?></option>
-                                <?php endforeach; ?>
-                            </select>
-                            <div class="form-error" data-error-for="interest"></div>
-                        </div>
-                        <div class="form-field form-field--full">
-                            <label class="form-label" for="ct-message">Message <span class="req">*</span></label>
-                            <textarea class="form-textarea" id="ct-message" name="message" required minlength="10" maxlength="2000" rows="6" placeholder="Tell us a little about your question or project." <?php if ($calcHint): ?>data-prefill="<?= e($calcHint) ?>"<?php endif; ?>><?php if ($calcHint) echo e($calcHint); ?></textarea>
-                            <div class="form-error" data-error-for="message"></div>
-                        </div>
-                    </div>
-                    <div style="margin-top:1rem; display:flex; flex-direction:column; gap:0.75rem;">
-                        <button type="submit" class="btn btn--primary btn--lg btn--block">
-                            <span data-submit-label>Send Enquiry</span>
-                            <svg data-submit-spinner hidden width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-6.219-8.56" style="animation: spin 1s linear infinite"/></svg>
-                        </button>
-                        <p style="font-size:0.75rem; color:var(--fg-muted); text-align:center;">By submitting, you agree to be contacted about your enquiry.</p>
-                    </div>
-                </form>
-            </div>
+        <div class="contact-info__actions">
+          <a class="btn btn--secondary" href="/for-business/">For Business</a>
+          <a class="btn btn--outline" href="/paint-calculator/">Estimate Your Project</a>
         </div>
+      </aside>
+
+      <!-- RIGHT — enquiry form -->
+      <form class="contact-form" action="/api/contact.php" method="post"
+            data-contact-form novalidate>
+        <p class="contact-form-card__intro">
+          Fields marked <span class="req">*</span> are required.
+        </p>
+        <?= csrf_field() ?>
+        <div class="form-honeypot" aria-hidden="true">
+          <label for="contact-company-hp">Company (leave this blank)</label>
+          <input type="text" id="contact-company-hp" name="company" tabindex="-1"
+                 autocomplete="off">
+        </div>
+
+        <div class="form-grid">
+          <div class="form-field">
+            <label class="form-label" for="contact-name">Name <span class="req">*</span></label>
+            <input class="form-input" type="text" id="contact-name" name="name"
+                   required maxlength="80" autocomplete="name">
+            <div class="form-error" data-error-for="name" role="alert"></div>
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="contact-phone">Phone</label>
+            <input class="form-input" type="tel" id="contact-phone" name="phone"
+                   maxlength="20" autocomplete="tel" placeholder="+91 ...">
+            <div class="form-error" data-error-for="phone" role="alert"></div>
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="contact-email">Email <span class="req">*</span></label>
+            <input class="form-input" type="email" id="contact-email" name="email"
+                   required maxlength="254" autocomplete="email">
+            <div class="form-error" data-error-for="email" role="alert"></div>
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="contact-interest">Enquiry is about <span class="req">*</span></label>
+            <select class="form-select" id="contact-interest" name="interest" required>
+              <option value="" disabled <?= $selectedInterest === '' ? 'selected' : '' ?>>Choose…</option>
+              <?php foreach ($INTEREST_OPTIONS as $value => $label): ?>
+                <option value="<?= e($value) ?>" <?= $value === $selectedInterest ? 'selected' : '' ?>>
+                  <?= e($label) ?>
+                </option>
+              <?php endforeach; ?>
+            </select>
+            <div class="form-error" data-error-for="interest" role="alert"></div>
+          </div>
+          <div class="form-field form-field--full">
+            <label class="form-label" for="contact-message">Message <span class="req">*</span></label>
+            <textarea class="form-textarea" id="contact-message" name="message" required
+                      maxlength="2000" rows="6"
+                      placeholder="Tell us a bit about what you are painting."></textarea>
+            <div class="form-error" data-error-for="message" role="alert"></div>
+          </div>
+        </div>
+
+        <div class="calc-actions">
+          <button type="submit" class="btn btn--primary btn--lg">
+            <span data-submit-label>Send Enquiry</span>
+          </button>
+        </div>
+      </form>
     </div>
+  </div>
 </section>
-
-<!-- FAQ -->
-<section class="contact-faq" id="faq" data-reveal>
-    <div class="container">
-        <div class="contact-faq__head">
-            <span class="section-heading__eyebrow">Quick answers</span>
-            <h2 class="contact-faq__title">Frequently asked questions.</h2>
-            <p class="section-heading__desc">A short list of questions the supplied product information can answer.</p>
-        </div>
-        <div class="faq-list contact-faq__list" data-reveal-stagger>
-            <?php foreach ($FAQ as $i => $item): $fid = 'faq-' . ($i + 1); ?>
-                <div class="faq-item" data-faq-item>
-                    <button type="button" class="faq-item__q" aria-expanded="false" aria-controls="<?= e($fid) ?>-a" id="<?= e($fid) ?>-q">
-                        <span><?= e($item['q']) ?></span>
-                        <svg class="faq-item__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-                    </button>
-                    <div class="faq-item__a" id="<?= e($fid) ?>-a" role="region" aria-labelledby="<?= e($fid) ?>-q">
-                        <div class="faq-item__a-inner"><?= $item['a'] /* pre-escaped in data.php where needed */ ?></div>
-                    </div>
-                </div>
-            <?php endforeach; ?>
-        </div>
-        <div style="text-align:center; margin-top:2rem;" data-reveal>
-            <a href="/downloads/" class="btn btn--outline btn--lg">See the brochure</a>
-        </div>
-    </div>
-</section>
-
-<style>@keyframes spin { to { transform: rotate(360deg); } }</style>
-
 <?php require ROOT_PATH . '/includes/footer.php';

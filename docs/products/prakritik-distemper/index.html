@@ -4,19 +4,19 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="../../assets/brand/gaurikrit-logo-mark.png" type="image/png" onerror="this.onerror=null;this.href='../../assets/brand/gaurikrit-mark-temp.svg'">
-    <title>Prakritik Distemper Paint — Gaurikrit Bio Products</title>
-    <meta name="description" content="Prakritik Distemper Paint — eco-friendly cow dung paint. White, matt finish, 4 hrs drying time, 200 sq.ft. coverage, interior and exterior use. 1, 5, 10 and 20 kg packaging.">
+    <title>Prakritik Distemper Paint — Cow Dung-Based | Gaurikrit</title>
+    <meta name="description" content="Prakritik Distemper Paint: cow dung-based, matt finish, 1-20 kg packs, 200 sq.ft.** coverage, Interior &amp; Exterior usage. From Gaurikrit Bio Products, Khurja, Uttar Pradesh.">
     <link rel="canonical" href="https://hello-aditya-dev.github.io/gaurikrit-website/products/prakritik-distemper/">
     <meta name="robots" content="index, follow">
-    <meta property="og:title" content="Prakritik Distemper Paint — Gaurikrit Bio Products">
-    <meta property="og:description" content="Prakritik Distemper Paint — eco-friendly cow dung paint. White, matt finish, 4 hrs drying time, 200 sq.ft. coverage, interior and exterior use. 1, 5, 10 and 20 kg packaging.">
+    <meta property="og:title" content="Prakritik Distemper Paint — Cow Dung-Based | Gaurikrit">
+    <meta property="og:description" content="Prakritik Distemper Paint: cow dung-based, matt finish, 1-20 kg packs, 200 sq.ft.** coverage, Interior &amp; Exterior usage. From Gaurikrit Bio Products, Khurja, Uttar Pradesh.">
     <meta property="og:url" content="https://hello-aditya-dev.github.io/gaurikrit-website/products/prakritik-distemper/">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Gaurikrit Bio Products">
     <meta property="og:image" content="https://hello-aditya-dev.github.io/gaurikrit-website/assets/brand/gaurikrit-logo-mark.png">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Prakritik Distemper Paint — Gaurikrit Bio Products">
-    <meta name="twitter:description" content="Prakritik Distemper Paint — eco-friendly cow dung paint. White, matt finish, 4 hrs drying time, 200 sq.ft. coverage, interior and exterior use. 1, 5, 10 and 20 kg packaging.">
+    <meta name="twitter:title" content="Prakritik Distemper Paint — Cow Dung-Based | Gaurikrit">
+    <meta name="twitter:description" content="Prakritik Distemper Paint: cow dung-based, matt finish, 1-20 kg packs, 200 sq.ft.** coverage, Interior &amp; Exterior usage. From Gaurikrit Bio Products, Khurja, Uttar Pradesh.">
     <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -192,101 +192,87 @@
 
     <main id="main" class="site-main">
 <style>
-  .distemper-detail { padding-top: calc(var(--header-h) + 2rem); }
-  .breadcrumb { font-size: 0.8125rem; color: var(--fg-muted); margin-bottom: 1.5rem; padding-top: 0.5rem; }
-  .breadcrumb a { color: var(--primary); }
-  .breadcrumb a:hover { text-decoration: underline; }
-  .breadcrumb span { color: var(--fg-muted); margin: 0 0.375rem; }
+  /* ===== HERO (copy 5 / product 7 — cool env) ===== */
+  .product-detail { padding-bottom: clamp(3rem, 6vw, 5rem); }
+  .product-detail__hero {
+    display: grid; gap: 2rem; padding-top: calc(var(--header-h) + 2rem);
+    padding-bottom: 2rem; align-items: center;
+  }
+  @media (min-width: 1024px) {
+    .product-detail__hero {
+      grid-template-columns: 5fr 7fr; gap: clamp(2.5rem, 5vw, 4rem);
+    }
+  }
+  .product-detail__media {
+    position: relative; aspect-ratio: 1;
+    background: linear-gradient(160deg, var(--paper), var(--limewash));
+    border: 1px solid var(--border); border-top: 3px solid var(--indigo);
+    border-radius: var(--r-panel); overflow: hidden;
+    min-height: 22rem;
+  }
+  @media (min-width: 1024px) { .product-detail__media { min-height: 30rem; } }
+  .product-detail__media .product-media { width: 100%; height: 100%; }
+  .product-detail__media .product-media__official { object-fit: contain; padding: 2.5rem; }
+  .product-detail__media .product-media__fallback { padding: 2rem; }
+  .product-detail__media__num {
+    position: absolute; top: 1rem; right: 1.25rem;
+    font-family: var(--font-display); font-size: clamp(3rem, 8vw, 5rem);
+    font-weight: 700; color: var(--indigo); opacity: 0.12;
+    line-height: 1; pointer-events: none;
+  }
+  .product-detail__info { display: flex; flex-direction: column; gap: 0.75rem; }
+  .product-detail__name { margin-top: 0.5rem; }
+  .product-detail__descriptor { color: var(--indigo); }
 
-  .distemper-hero { display: grid; gap: 2rem; align-items: center; padding-bottom: clamp(2rem, 4vw, 3rem); border-bottom: 1px solid var(--border); }
-  @media (min-width: 1024px) { .distemper-hero { grid-template-columns: 1fr 1fr; gap: 4rem; } }
-  .distemper-hero__eyebrow { font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--primary); }
-  .distemper-hero__name { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.05; letter-spacing: -0.02em; margin-top: 0.75rem; }
-  .distemper-hero__descriptor { margin-top: 0.5rem; font-size: clamp(1rem, 2vw, 1.25rem); color: var(--indigo); font-weight: 600; }
-  .distemper-hero__body { margin-top: 1rem; color: var(--fg-muted); line-height: 1.65; max-width: 36rem; }
-  .distemper-hero__chips { margin-top: 1.5rem; display: flex; flex-wrap: wrap; gap: 0.5rem; }
-  .distemper-hero__chip { padding: 0.3125rem 0.875rem; border-radius: var(--radius-full); background: var(--bg-card); border: 1px solid var(--border); font-size: 0.75rem; font-weight: 600; color: var(--indigo); }
-  .distemper-hero__cta-row { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 0.75rem; }
+  /* ===== SPEC SHEET (numbered 01-07 ruled rows, NOT pills) ===== */
+  .distemper-specs-section { padding-block: clamp(3rem, 6vw, 5rem); }
+  .spec-sheet__head { margin-bottom: 1.5rem; }
+  .spec-sheet__list {
+    grid-template-columns: 1fr;
+  }
 
-  .distemper-media { position: relative; aspect-ratio: 1; background: linear-gradient(160deg, var(--bg-card), var(--secondary-bg)); border: 1px solid var(--border); border-top: 4px solid var(--indigo); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-soft); }
-  .distemper-media .product-media { width: 100%; height: 100%; }
-  .distemper-media .product-media__official { object-fit: contain; padding: 3rem; }
-  .distemper-media .product-media__fallback { padding: 2.5rem; }
-  .distemper-media__num { position: absolute; top: 1rem; right: 1.25rem; font-family: var(--font-display); font-size: 4rem; font-weight: 700; color: var(--indigo); opacity: 0.18; line-height: 1; }
+  /* ===== COVERAGE DISCLAIMER ===== */
+  .coverage-disclaimer { margin-top: 2rem; border-left-color: var(--indigo); }
 
-  /* SPEC SHEET */
-  .spec-sheet { padding-block: clamp(3rem, 6vw, 5rem); }
-  .spec-sheet__head { margin-bottom: 2.5rem; }
-  .spec-sheet__eyebrow { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--indigo); }
-  .spec-sheet__title { font-family: var(--font-display); font-size: clamp(1.75rem, 4vw, 2.5rem); margin-top: 0.75rem; letter-spacing: -0.02em; }
-  .spec-sheet__list { display: grid; gap: 0; border-top: 1px solid var(--border); }
-  @media (min-width: 640px) { .spec-sheet__list { grid-template-columns: repeat(2, 1fr); } }
-  .spec-sheet__row { padding: 1.25rem 0; border-bottom: 1px solid var(--border); display: grid; grid-template-columns: 2.5rem 1fr; gap: 1rem; align-items: start; }
-  @media (min-width: 640px) { .spec-sheet__row { padding: 1.25rem 1.5rem; } .spec-sheet__row:nth-child(odd) { border-right: 1px solid var(--border); } }
-  .spec-sheet__num { font-family: var(--font-display); font-size: 0.875rem; font-weight: 700; color: var(--haldi-deep); }
-  .spec-sheet__label { font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--fg-muted); }
-  .spec-sheet__value { font-family: var(--font-display); font-size: 1.25rem; font-weight: 700; margin-top: 0.25rem; color: var(--fg); }
-  .spec-sheet__value small { font-family: var(--font-sans); font-size: 0.75rem; font-weight: 500; color: var(--fg-muted); display: block; margin-top: 0.25rem; }
-
-  .disclaimer-card { padding: 1.25rem 1.5rem; background: var(--bg-card); border-left: 3px solid var(--indigo); border-radius: var(--radius); font-size: 0.8125rem; color: var(--fg-muted); line-height: 1.65; margin-top: 2rem; }
-
-  /* ASHTA LAABH */
-  .distemper-ashta { padding-block: clamp(3rem, 6vw, 5rem); background: var(--secondary-bg); }
-  .distemper-ashta__head { text-align: center; max-width: 48rem; margin-inline: auto; margin-bottom: 2.5rem; }
-  .distemper-ashta__deva { font-family: var(--font-deva); font-weight: 700; font-size: clamp(1.75rem, 4vw, 2.5rem); color: var(--indigo); }
-  .distemper-ashta__title { font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2rem); margin-top: 0.5rem; }
-  .distemper-ashta__grid { display: grid; gap: 0.75rem; }
-  @media (min-width: 640px) { .distemper-ashta__grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (min-width: 1024px) { .distemper-ashta__grid { grid-template-columns: repeat(4, 1fr); } }
-  .distemper-ashta__item { padding: 1rem 1.25rem; background: var(--bg-card); border-left: 2px solid var(--indigo); border-radius: var(--radius); display: flex; flex-direction: column; gap: 0.25rem; }
-  .distemper-ashta__num { font-family: var(--font-display); font-size: 0.75rem; font-weight: 700; color: var(--haldi-deep); }
-  .distemper-ashta__name { font-weight: 600; font-size: 0.9375rem; }
-  .distemper-ashta__deva { font-family: var(--font-deva); font-size: 0.8125rem; color: var(--fg-muted); }
-
-  /* CTA + CROSS-LINK */
-  .distemper-cta { padding-block: clamp(3rem, 6vw, 5rem); }
-  .distemper-cta__inner { display: grid; gap: 1.5rem; padding: clamp(1.75rem, 4vw, 3rem); background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: var(--shadow-soft); }
-  @media (min-width: 768px) { .distemper-cta__inner { grid-template-columns: 1.4fr 1fr; gap: 2.5rem; align-items: center; } }
-  .distemper-cta__title { font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2rem); letter-spacing: -0.02em; }
-  .distemper-cta__body { margin-top: 0.75rem; color: var(--fg-muted); line-height: 1.65; }
-  .distemper-cta__actions { display: flex; flex-direction: column; gap: 0.75rem; }
-  .distemper-cta__cross { padding: 1.25rem; border: 1px dashed var(--border); border-radius: var(--radius); }
-  .distemper-cta__cross-title { font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--fg-muted); }
-  .distemper-cta__cross-name { font-family: var(--font-display); font-size: 1.125rem; font-weight: 700; margin-top: 0.375rem; }
-  .distemper-cta__cross-link { margin-top: 0.5rem; display: inline-flex; align-items: center; gap: 0.25rem; font-size: 0.8125rem; font-weight: 600; color: var(--primary); }
-  .distemper-cta__cross-link:hover { gap: 0.5rem; }
+  /* ===== ASHTA LAABH GRID ===== */
+  .distemper-ashta-section { padding-block: clamp(3rem, 6vw, 5rem); }
+  .distemper-ashta-section__head { max-width: 48rem; margin-bottom: 2.5rem; }
 </style>
 
-<section class="distemper-detail" id="distemper-detail">
-    <div class="container">
-        <nav class="breadcrumb" aria-label="Breadcrumb">
-            <a href="../../">Home</a><span>›</span>
-            <a href="../../products/">Products</a><span>›</span>
-            Prakritik Distemper
-        </nav>
+<!-- ===== HERO (cool env, copy 5 / product 7) ===== -->
+<section class="product-detail product-detail--cool" aria-labelledby="distemper-title">
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="../../">Home</a><span>›</span>
+      <a href="../../products/">Products</a><span>›</span>
+      <span>Prakritik Distemper</span>
+    </nav>
 
-        <!-- HERO -->
-        <div class="distemper-hero" data-reveal>
-            <div class="distemper-hero__lockup">
-                <span class="distemper-hero__eyebrow">Prakritik Paint</span>
-                <h1 class="distemper-hero__name">Prakritik Distemper Paint</h1>
-                <div class="distemper-hero__descriptor">Eco-Friendly Cow Dung Paint</div>
-                <p class="distemper-hero__body">A powdered cow dung-based paint format. White, matt, and suitable for interior and exterior walls — a quieter material sheet in the Prakritik range.</p>
-                <div class="distemper-hero__chips">
-                    <span class="distemper-hero__chip">1, 5, 10 &amp; 20 kg</span>
-                    <span class="distemper-hero__chip">Matt finish</span>
-                    <span class="distemper-hero__chip">Interior &amp; Exterior</span>
-                </div>
-                <div class="distemper-hero__cta-row">
-                    <a href="../../contact/?interest=prakritik-distemper" class="btn btn--primary btn--lg">Enquire About Distemper</a>
-                    <a href="../../paint-calculator/" class="btn btn--outline btn--lg">Estimate Your Project</a>
-                </div>
-            </div>
-            <div class="distemper-media">
-                <span class="distemper-media__num" aria-hidden="true">01</span>
-                <div class="product-media" data-official-image="../../assets/products/prakritik-distemper.png">
-                    <img class="product-media__official" src="../../assets/products/prakritik-distemper.png" alt="Prakritik Distemper Paint" width="640" height="640">
-                    <div class="product-media__fallback"><svg viewBox="0 0 220 280" xmlns="http://www.w3.org/2000/svg"
+    <div class="product-detail__hero" data-reveal>
+      <div class="product-detail__info">
+        <span class="distemper-hero__eyebrow">Format 01 — Distemper</span>
+        <h1 class="product-detail__name" id="distemper-title">Prakritik Distemper Paint</h1>
+        <p class="product-detail__descriptor">Eco-Friendly Cow Dung Paint</p>
+        <p class="distemper-hero__body">
+          A powder-format cow dung-based paint, brushed on interior and exterior
+          walls. Supplied in 1, 5, 10 &amp; 20 kg packs.
+        </p>
+        <div class="distemper-hero__cta-row">
+          <a class="btn btn--primary btn--lg"
+             href="../../contact/?interest=prakritik-distemper">Enquire About Distemper</a>
+          <a class="btn btn--outline" href="../../products/">View All Products</a>
+        </div>
+      </div>
+
+      <div class="product-detail__media">
+        <span class="product-detail__media__num" aria-hidden="true">01</span>
+        <div class="product-media" data-official-image="../../assets/products/prakritik-distemper.png">
+          <img class="product-media__official"
+               src="../../assets/products/prakritik-distemper.png"
+               alt="Prakritik Distemper Paint pack"
+               width="800" height="800" loading="eager" decoding="async">
+          <div class="product-media__fallback">
+            <svg viewBox="0 0 220 280" xmlns="http://www.w3.org/2000/svg"
      class=""
      role="img" aria-hidden="true"
      preserveAspectRatio="xMidYMid meet"
@@ -383,153 +369,422 @@
   <ellipse cx="110" cy="256" rx="56" ry="3"
            fill="var(--forest)" opacity="0.08"/>
 
-</svg></div>
-                </div>
-            </div>
+</svg>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </section>
 
-<!-- SPEC SHEET (numbered 01-07) -->
-<section class="spec-sheet section--paper" id="spec-sheet" data-reveal>
-    <div class="container">
-        <div class="spec-sheet__head">
-            <span class="spec-sheet__eyebrow">Specification sheet</span>
-            <h2 class="spec-sheet__title">Material specifications.</h2>
-        </div>
-        <ol class="spec-sheet__list" data-reveal-stagger>
-            <li class="spec-sheet__row">
-                <span class="spec-sheet__num">01</span>
-                <div>
-                    <div class="spec-sheet__label">Packaging</div>
-                    <div class="spec-sheet__value">1, 5, 10 &amp; 20 kg</div>
-                </div>
-            </li>
-            <li class="spec-sheet__row">
-                <span class="spec-sheet__num">02</span>
-                <div>
-                    <div class="spec-sheet__label">Colour</div>
-                    <div class="spec-sheet__value">White</div>
-                </div>
-            </li>
-            <li class="spec-sheet__row">
-                <span class="spec-sheet__num">03</span>
-                <div>
-                    <div class="spec-sheet__label">Finish</div>
-                    <div class="spec-sheet__value">Matt</div>
-                </div>
-            </li>
-            <li class="spec-sheet__row">
-                <span class="spec-sheet__num">04</span>
-                <div>
-                    <div class="spec-sheet__label">Drying time</div>
-                    <div class="spec-sheet__value">4 hrs</div>
-                </div>
-            </li>
-            <li class="spec-sheet__row">
-                <span class="spec-sheet__num">05</span>
-                <div>
-                    <div class="spec-sheet__label">Coverage</div>
-                    <div class="spec-sheet__value">200 sq.ft.**
-                        <small>Actual coverage may vary from mentioned coverage due to factors such as method, condition of application surface, roughness and porosity.</small>
-                    </div>
-                </div>
-            </li>
-            <li class="spec-sheet__row">
-                <span class="spec-sheet__num">06</span>
-                <div>
-                    <div class="spec-sheet__label">V.O.C.</div>
-                    <div class="spec-sheet__value">Negligible</div>
-                </div>
-            </li>
-            <li class="spec-sheet__row">
-                <span class="spec-sheet__num">07</span>
-                <div>
-                    <div class="spec-sheet__label">Usage</div>
-                    <div class="spec-sheet__value">Interior &amp; Exterior</div>
-                </div>
-            </li>
-        </ol>
-        <div class="disclaimer-card">
-            <strong>Coverage note —</strong> Actual coverage may vary from mentioned coverage due to factors such as method, condition of application surface, roughness and porosity.
-        </div>
+<!-- ===== SPEC SHEET (numbered 01-07 ruled rows) ===== -->
+<section class="section section--paper distemper-specs-section" aria-labelledby="specs-title">
+  <div class="container">
+    <div class="spec-sheet__head section-heading section-heading--left" data-reveal>
+      <span class="spec-sheet__eyebrow">Specifications</span>
+      <h2 class="spec-sheet__title" id="specs-title">Product specifications.</h2>
     </div>
+
+    <dl class="spec-sheet__list" data-reveal>
+        <div class="spec-sheet__item">
+          <span class="spec-sheet__num">01</span>
+          <div>
+            <dt class="spec-sheet__label">Packaging</dt>
+            <dd class="spec-sheet__value">
+              1, 5, 10 &amp; 20 kg
+              <small>1 kg / 5 kg / 10 kg / 20 kg packs</small>
+            </dd>
+          </div>
+        </div>
+        <div class="spec-sheet__item">
+          <span class="spec-sheet__num">02</span>
+          <div>
+            <dt class="spec-sheet__label">Colour</dt>
+            <dd class="spec-sheet__value">
+              White
+            </dd>
+          </div>
+        </div>
+        <div class="spec-sheet__item">
+          <span class="spec-sheet__num">03</span>
+          <div>
+            <dt class="spec-sheet__label">Finish</dt>
+            <dd class="spec-sheet__value">
+              Matt
+            </dd>
+          </div>
+        </div>
+        <div class="spec-sheet__item">
+          <span class="spec-sheet__num">04</span>
+          <div>
+            <dt class="spec-sheet__label">Drying time</dt>
+            <dd class="spec-sheet__value">
+              4 hrs
+            </dd>
+          </div>
+        </div>
+        <div class="spec-sheet__item">
+          <span class="spec-sheet__num">05</span>
+          <div>
+            <dt class="spec-sheet__label">Coverage</dt>
+            <dd class="spec-sheet__value">
+              200 sq.ft.**
+              <small>** Actual coverage may vary from mentioned coverage due to factors such as method, condition of application surface, roughness and porosity.</small>
+            </dd>
+          </div>
+        </div>
+        <div class="spec-sheet__item">
+          <span class="spec-sheet__num">06</span>
+          <div>
+            <dt class="spec-sheet__label">V.O.C.</dt>
+            <dd class="spec-sheet__value">
+              Negligible
+            </dd>
+          </div>
+        </div>
+        <div class="spec-sheet__item">
+          <span class="spec-sheet__num">07</span>
+          <div>
+            <dt class="spec-sheet__label">Usage</dt>
+            <dd class="spec-sheet__value">
+              Interior &amp; Exterior
+            </dd>
+          </div>
+        </div>
+    </dl>
+
+    <p class="coverage-disclaimer" data-reveal>
+      <span class="coverage-disclaimer__label">Coverage note</span>
+      <span class="coverage-disclaimer__text">Actual coverage may vary from mentioned coverage due to factors such as method, condition of application surface, roughness and porosity.</span>
+    </p>
+  </div>
 </section>
 
-<!-- ASHTA LAABH -->
-<section class="distemper-ashta" id="ashta-laabh" data-reveal>
-    <div class="container">
-        <div class="distemper-ashta__head">
-            <div class="distemper-ashta__deva" lang="hi">अष्ट लाभ</div>
-            <h2 class="distemper-ashta__title">Eight benefits presented in Prakritik Paint.</h2>
-        </div>
-        <ol class="distemper-ashta__grid" data-reveal-stagger>
-            <li class="distemper-ashta__item">
-                <span class="distemper-ashta__num">01</span>
-                <span class="distemper-ashta__name">Antibacterial</span>
-                <span class="distemper-ashta__deva" lang="hi">जीवाणुरोधी</span>
-            </li>
-            <li class="distemper-ashta__item">
-                <span class="distemper-ashta__num">02</span>
-                <span class="distemper-ashta__name">Antifungal</span>
-                <span class="distemper-ashta__deva" lang="hi">कवकरोधी</span>
-            </li>
-            <li class="distemper-ashta__item">
-                <span class="distemper-ashta__num">03</span>
-                <span class="distemper-ashta__name">Eco-Friendly</span>
-                <span class="distemper-ashta__deva" lang="hi">पर्यावरण-मित्र</span>
-            </li>
-            <li class="distemper-ashta__item">
-                <span class="distemper-ashta__num">04</span>
-                <span class="distemper-ashta__name">Natural Thermal Insulator</span>
-                <span class="distemper-ashta__deva" lang="hi">प्राकृतिक ऊष्मीय इन्सुलेटर</span>
-            </li>
-            <li class="distemper-ashta__item">
-                <span class="distemper-ashta__num">05</span>
-                <span class="distemper-ashta__name">Cost-Effective</span>
-                <span class="distemper-ashta__deva" lang="hi">किफ़ायती</span>
-            </li>
-            <li class="distemper-ashta__item">
-                <span class="distemper-ashta__num">06</span>
-                <span class="distemper-ashta__name">Free from Heavy Metals</span>
-                <span class="distemper-ashta__deva" lang="hi">भारी धातुओं से मुक्त</span>
-            </li>
-            <li class="distemper-ashta__item">
-                <span class="distemper-ashta__num">07</span>
-                <span class="distemper-ashta__name">Non-Toxic</span>
-                <span class="distemper-ashta__deva" lang="hi">गैर-विषाक्त</span>
-            </li>
-            <li class="distemper-ashta__item">
-                <span class="distemper-ashta__num">08</span>
-                <span class="distemper-ashta__name">Odourless</span>
-                <span class="distemper-ashta__deva" lang="hi">गंधरहित</span>
-            </li>
-        </ol>
+<!-- ===== ASHTA LAABH ===== -->
+<section class="section section--limewash distemper-ashta-section" aria-labelledby="distemper-ashta-title" data-ashta-laabh>
+  <div class="container">
+    <div class="distemper-ashta-section__head section-heading section-heading--left" data-reveal>
+      <span class="section-heading__eyebrow">अष्ट लाभ — Eight benefits</span>
+      <h2 class="section-heading__title" id="distemper-ashta-title">Ashta Laabh.</h2>
+      <p class="section-heading__desc">
+        Client-supplied product benefits, not independently tested claims.
+      </p>
     </div>
+
+    <div class="ashta-section__grid" data-reveal>
+      <div class="ashta-section__seal">
+        <svg viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg"
+     class=""
+     role="img" aria-hidden="true"
+     preserveAspectRatio="xMidYMid meet"
+     width="100%" height="100%">
+  <title>Ashta Laabh seal — eight benefits</title>
+
+  <defs>
+    <style>
+      /* ===== Default node state ===== */
+      .al-node {
+        opacity: 1;
+        transition: opacity 0.3s ease, transform 0.3s ease;
+      }
+      .al-node__line {
+        stroke: var(--forest);
+        stroke-width: 0.85;
+        opacity: 0.45;
+        stroke-linecap: round;
+        transition: stroke 0.3s ease, stroke-width 0.3s ease, opacity 0.3s ease;
+      }
+      .al-node__num {
+        fill: var(--forest);
+        font-family: var(--font-display);
+        font-size: 18px;
+        font-weight: 700;
+        text-anchor: middle;
+        dominant-baseline: central;
+        letter-spacing: 0.5px;
+        transition: fill 0.3s ease;
+      }
+      .al-node__name {
+        fill: var(--forest);
+        font-family: var(--font-sans);
+        font-size: 10px;
+        font-weight: 600;
+        text-anchor: middle;
+        dominant-baseline: central;
+        letter-spacing: 1.2px;
+        text-transform: uppercase;
+        opacity: 0.85;
+        transition: fill 0.3s ease, opacity 0.3s ease;
+      }
+
+      /* ===== When ANY node is active, dim the other nodes ===== */
+      svg:has(.al-node[data-active="true"]) .al-node:not([data-active="true"]) {
+        opacity: 0.4;
+      }
+
+      /* ===== Active node — radial line turns haldi, label pops ===== */
+      .al-node[data-active="true"] .al-node__line {
+        stroke: var(--haldi);
+        stroke-width: 1.35;
+        opacity: 1;
+      }
+      .al-node[data-active="true"] .al-node__num {
+        fill: var(--forest-deep);
+      }
+      .al-node[data-active="true"] .al-node__name {
+        fill: var(--forest);
+        opacity: 1;
+      }
+
+      /* ===== Active label moves 3px outward along its angle ===== */
+      .al-node-1[data-active="true"] { transform: translate(0px, -3px); }
+      .al-node-2[data-active="true"] { transform: translate(2.12px, -2.12px); }
+      .al-node-3[data-active="true"] { transform: translate(3px, 0px); }
+      .al-node-4[data-active="true"] { transform: translate(2.12px, 2.12px); }
+      .al-node-5[data-active="true"] { transform: translate(0px, 3px); }
+      .al-node-6[data-active="true"] { transform: translate(-2.12px, 2.12px); }
+      .al-node-7[data-active="true"] { transform: translate(-3px, 0px); }
+      .al-node-8[data-active="true"] { transform: translate(-2.12px, -2.12px); }
+    </style>
+  </defs>
+
+  <!-- ============================================================
+       OUTER SUBTLE RING — connects all label positions visually
+       ============================================================ -->
+  <circle cx="300" cy="300" r="215"
+          fill="none" stroke="var(--forest)"
+          stroke-width="0.85" opacity="0.18" stroke-dasharray="2 4"/>
+
+  <!-- ============================================================
+       CENTRAL MEDALLION — circular, with a small cow-mark inside
+       ============================================================ -->
+  <circle cx="300" cy="300" r="80"
+          fill="var(--limewash)" stroke="var(--forest)" stroke-width="1.35"/>
+  <!-- Inner accent ring -->
+  <circle cx="300" cy="300" r="73"
+          fill="none" stroke="var(--forest)"
+          stroke-width="0.85" opacity="0.4"/>
+
+  <!-- Central cow-mark — small side-view silhouette, facing LEFT
+       (consistent with the brand signature cow). Drawn with the same
+       separate-paths discipline: body barrel, hump, neck top, head,
+       horn, ear, eye, 4 legs, tail. -->
+  <g fill="none" stroke="var(--forest)"
+     stroke-linecap="round" stroke-linejoin="round">
+    <!-- FAR HORN — behind head, lighter -->
+    <path d="M 252 286 C 248 280, 244 278, 240 280" stroke-width="0.85" opacity="0.65"/>
+    <!-- FAR EAR — small leaf behind head, lighter -->
+    <path d="M 256 294 C 252 304, 248 312, 244 316" stroke-width="0.85" opacity="0.65"/>
+    <!-- BODY BARREL — closed contour -->
+    <path d="M 268 288
+             C 260 286, 252 285, 246 287
+             C 240 289, 236 292, 234 296
+             L 234 318
+             L 322 320
+             C 326 314, 326 304, 324 296
+             C 320 290, 314 288, 308 288
+             C 296 286, 282 286, 268 288 Z"
+          stroke-width="1.35"/>
+    <!-- HUMP — open curve rising above the back line -->
+    <path d="M 266 288
+             C 262 278, 256 272, 252 270
+             C 248 268, 246 270, 246 274
+             C 248 280, 252 285, 256 288"
+          stroke-width="1.35"/>
+    <!-- NECK TOP — from withers forward-down to poll -->
+    <path d="M 268 288 C 262 287, 256 286, 252 284" stroke-width="1.35"/>
+    <!-- HEAD — small wedge extending left to muzzle -->
+    <path d="M 252 284
+             C 248 286, 244 290, 240 294
+             C 236 298, 232 302, 230 304
+             C 230 306, 232 308, 236 308
+             C 240 310, 244 312, 248 312
+             C 252 312, 252 312, 252 310
+             C 252 302, 252 294, 252 284 Z"
+          stroke-width="1.35"/>
+    <!-- NEAR HORN — over head, prominent -->
+    <path d="M 252 284 C 248 278, 244 274, 240 276" stroke-width="1.35"/>
+    <!-- NEAR EAR — small leaf hanging down -->
+    <path d="M 258 292 C 254 302, 250 310, 246 314
+             C 250 310, 254 302, 258 296 Z" stroke-width="1.35"/>
+    <!-- EYE — small filled circle -->
+    <circle cx="240" cy="294" r="1.4" fill="var(--forest)" stroke="none"/>
+    <!-- NOSTRIL — small dot -->
+    <circle cx="232" cy="302" r="1" fill="var(--forest)" stroke="none"/>
+    <!-- FRONT LEGS (left side, paired slender strokes) -->
+    <path d="M 244 320 L 244 338" stroke-width="1.35"/>
+    <path d="M 248 320 L 248 338" stroke-width="1.35"/>
+    <path d="M 254 320 L 254 338" stroke-width="1.35" opacity="0.65"/>
+    <path d="M 258 320 L 258 338" stroke-width="1.35" opacity="0.65"/>
+    <!-- BACK LEGS (right side, paired slender strokes) -->
+    <path d="M 308 320 L 308 338" stroke-width="1.35"/>
+    <path d="M 312 320 L 312 338" stroke-width="1.35"/>
+    <path d="M 318 320 L 318 338" stroke-width="1.35" opacity="0.65"/>
+    <path d="M 322 320 L 322 338" stroke-width="1.35" opacity="0.65"/>
+    <!-- HOOF TICKS -->
+    <path d="M 243 339 L 259 339" stroke-width="0.85"/>
+    <path d="M 307 339 L 323 339" stroke-width="0.85"/>
+    <!-- TAIL — from rump curving down with small tuft -->
+    <path d="M 322 292 C 328 300, 332 314, 332 326
+             C 332 332, 330 336, 328 338" stroke-width="1.35"/>
+    <path d="M 328 338 C 326 342, 324 344, 326 346" stroke-width="0.85"/>
+    <path d="M 328 338 C 328 342, 328 344, 330 346" stroke-width="0.85"/>
+  </g>
+
+  <!-- Small haldi dot accent in the medallion corner (the brand mark) -->
+  <circle cx="300" cy="248" r="2.5" fill="var(--haldi)" stroke="none"/>
+
+  <!-- ============================================================
+       8 RADIAL NODES — at 45° intervals around centre (300, 300)
+       Line: r=80 (medallion edge) → r=215 (label position)
+       Labels: number (top) + name (bottom), centred at r=240
+       ============================================================ -->
+
+  <!-- ===== NODE 1: Antibacterial (top, angle -90°) =====
+       Line: (300, 220) → (300, 85), Label centre: (300, 60) -->
+  <g class="al-node al-node-1" data-benefit="antibacterial">
+    <line class="al-node__line" x1="300" y1="220" x2="300" y2="85"/>
+    <text class="al-node__num" x="300" y="50">01</text>
+    <text class="al-node__name" x="300" y="70">Antibacterial</text>
+  </g>
+
+  <!-- ===== NODE 2: Antifungal (top-right, angle -45°) =====
+       Line: (357, 243) → (452, 148), Label centre: (470, 130) -->
+  <g class="al-node al-node-2" data-benefit="antifungal">
+    <line class="al-node__line" x1="357" y1="243" x2="452" y2="148"/>
+    <text class="al-node__num" x="470" y="120">02</text>
+    <text class="al-node__name" x="470" y="140">Antifungal</text>
+  </g>
+
+  <!-- ===== NODE 3: Eco-Friendly (right, angle 0°) =====
+       Line: (380, 300) → (515, 300), Label centre: (540, 300) -->
+  <g class="al-node al-node-3" data-benefit="eco-friendly">
+    <line class="al-node__line" x1="380" y1="300" x2="515" y2="300"/>
+    <text class="al-node__num" x="540" y="290">03</text>
+    <text class="al-node__name" x="540" y="310">Eco-Friendly</text>
+  </g>
+
+  <!-- ===== NODE 4: Natural Thermal Insulator (bottom-right, angle 45°) =====
+       Line: (357, 357) → (452, 452), Label centre: (470, 470)
+       Long name split across two lines. -->
+  <g class="al-node al-node-4" data-benefit="thermal-insulator">
+    <line class="al-node__line" x1="357" y1="357" x2="452" y2="452"/>
+    <text class="al-node__num" x="470" y="460">04</text>
+    <text class="al-node__name" x="470" y="478">Natural Thermal</text>
+    <text class="al-node__name" x="470" y="492">Insulator</text>
+  </g>
+
+  <!-- ===== NODE 5: Cost-Effective (bottom, angle 90°) =====
+       Line: (300, 380) → (300, 515), Label centre: (300, 540) -->
+  <g class="al-node al-node-5" data-benefit="cost-effective">
+    <line class="al-node__line" x1="300" y1="380" x2="300" y2="515"/>
+    <text class="al-node__num" x="300" y="530">05</text>
+    <text class="al-node__name" x="300" y="550">Cost-Effective</text>
+  </g>
+
+  <!-- ===== NODE 6: Free from Heavy Metals (bottom-left, angle 135°) =====
+       Line: (243, 357) → (148, 452), Label centre: (130, 470)
+       Long name split across two lines. -->
+  <g class="al-node al-node-6" data-benefit="heavy-metal-free">
+    <line class="al-node__line" x1="243" y1="357" x2="148" y2="452"/>
+    <text class="al-node__num" x="130" y="460">06</text>
+    <text class="al-node__name" x="130" y="478">Free from Heavy</text>
+    <text class="al-node__name" x="130" y="492">Metals</text>
+  </g>
+
+  <!-- ===== NODE 7: Non-Toxic (left, angle 180°) =====
+       Line: (220, 300) → (85, 300), Label centre: (60, 300) -->
+  <g class="al-node al-node-7" data-benefit="non-toxic">
+    <line class="al-node__line" x1="220" y1="300" x2="85" y2="300"/>
+    <text class="al-node__num" x="60" y="290">07</text>
+    <text class="al-node__name" x="60" y="310">Non-Toxic</text>
+  </g>
+
+  <!-- ===== NODE 8: Odourless (top-left, angle 225°) =====
+       Line: (243, 243) → (148, 148), Label centre: (130, 130) -->
+  <g class="al-node al-node-8" data-benefit="odourless">
+    <line class="al-node__line" x1="243" y1="243" x2="148" y2="148"/>
+    <text class="al-node__num" x="130" y="120">08</text>
+    <text class="al-node__name" x="130" y="140">Odourless</text>
+  </g>
+
+</svg>
+      </div>
+      <ol class="ashta-section__support" data-reveal-stagger>
+        <li class="ashta-benefit distemper-ashta__item" data-ashta-node="antibacterial">
+          <span class="ashta-benefit__num">01</span>
+          <span class="ashta-benefit__name">Antibacterial</span>
+          <span class="ashta-benefit__deva">जीवाणुरोधी</span>
+        </li>
+        <li class="ashta-benefit distemper-ashta__item" data-ashta-node="antifungal">
+          <span class="ashta-benefit__num">02</span>
+          <span class="ashta-benefit__name">Antifungal</span>
+          <span class="ashta-benefit__deva">कवकरोधी</span>
+        </li>
+        <li class="ashta-benefit distemper-ashta__item" data-ashta-node="eco-friendly">
+          <span class="ashta-benefit__num">03</span>
+          <span class="ashta-benefit__name">Eco-Friendly</span>
+          <span class="ashta-benefit__deva">पर्यावरण-मित्र</span>
+        </li>
+        <li class="ashta-benefit distemper-ashta__item" data-ashta-node="thermal-insulator">
+          <span class="ashta-benefit__num">04</span>
+          <span class="ashta-benefit__name">Natural Thermal Insulator</span>
+          <span class="ashta-benefit__deva">प्राकृतिक ऊष्मीय इन्सुलेटर</span>
+        </li>
+        <li class="ashta-benefit distemper-ashta__item" data-ashta-node="cost-effective">
+          <span class="ashta-benefit__num">05</span>
+          <span class="ashta-benefit__name">Cost-Effective</span>
+          <span class="ashta-benefit__deva">किफ़ायती</span>
+        </li>
+        <li class="ashta-benefit distemper-ashta__item" data-ashta-node="heavy-metal-free">
+          <span class="ashta-benefit__num">06</span>
+          <span class="ashta-benefit__name">Free from Heavy Metals</span>
+          <span class="ashta-benefit__deva">भारी धातुओं से मुक्त</span>
+        </li>
+        <li class="ashta-benefit distemper-ashta__item" data-ashta-node="non-toxic">
+          <span class="ashta-benefit__num">07</span>
+          <span class="ashta-benefit__name">Non-Toxic</span>
+          <span class="ashta-benefit__deva">गैर-विषाक्त</span>
+        </li>
+        <li class="ashta-benefit distemper-ashta__item" data-ashta-node="odourless">
+          <span class="ashta-benefit__num">08</span>
+          <span class="ashta-benefit__name">Odourless</span>
+          <span class="ashta-benefit__deva">गंधरहित</span>
+        </li>
+      </ol>
+    </div>
+  </div>
 </section>
 
-<!-- CTA + CROSS-LINK -->
-<section class="distemper-cta section--paper" id="enquire" data-reveal>
-    <div class="container">
-        <div class="distemper-cta__inner">
-            <div>
-                <h2 class="distemper-cta__title">Want to know more about Prakritik Distemper?</h2>
-                <p class="distemper-cta__body">Send an enquiry about packaging, project sizes, or collaboration. We'll respond with what's currently available.</p>
-                <div class="distemper-cta__actions">
-                    <a href="../../contact/?interest=prakritik-distemper" class="btn btn--primary btn--lg btn--block">Enquire About Distemper</a>
-                    <a href="../../for-business/" class="btn btn--outline btn--lg btn--block">Discuss a Project</a>
-                </div>
-            </div>
-            <div class="distemper-cta__cross">
-                <span class="distemper-cta__cross-title">Also in the Prakritik range</span>
-                <h3 class="distemper-cta__cross-name">Prakritik Emulsion Paint</h3>
-                <a href="../../products/prakritik-emulsion/" class="distemper-cta__cross-link">Explore Emulsion
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                </a>
-            </div>
+<!-- ===== CROSS-LINK ===== -->
+<section class="section section--paper" aria-labelledby="cross-title">
+  <div class="container">
+    <div class="distemper-cta" data-reveal>
+      <div class="distemper-cta__inner">
+        <div>
+          <span class="distemper-hero__eyebrow">Looking at the other format?</span>
+          <h2 class="distemper-cta__title" id="cross-title">Prakritik Emulsion.</h2>
+          <p class="distemper-cta__body">
+            A liquid-format cow dung-based paint. Coverage 300 sq.ft.**.
+            Supplied in 1, 4, 10 &amp; 20 litre packs.
+          </p>
         </div>
+        <div class="distemper-cta__actions">
+          <a class="btn btn--secondary" href="../../products/prakritik-emulsion/">View Emulsion</a>
+        </div>
+      </div>
     </div>
+  </div>
 </section>
+
+<script>
+  (function () {
+    'use strict';
+    document.querySelectorAll('[data-ashta-laabh] svg [data-benefit]').forEach(function (node) {
+      node.setAttribute('data-ashta-node', node.getAttribute('data-benefit'));
+    });
+  })();
+</script>
     </main>
 
     <!-- ===== Site footer ===== -->
@@ -672,10 +927,7 @@
     <!--
       Module scripts. Order matters: each module registers
       window.GaurikritApp.<Name> = { init: fn, ... } and app.js
-      (loaded last) calls .init() on each. calculator.js is included
-      after forms.js so it can reuse the toast helper if needed, and
-      before app.js so app.js can include 'Calculator' in its boot
-      sequence.
+      (loaded last) calls .init() on each.
     -->
     <script src="../../assets/js/navigation.js?v=static"></script>
     <script src="../../assets/js/animations.js?v=static"></script>

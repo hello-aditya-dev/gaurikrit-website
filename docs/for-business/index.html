@@ -4,19 +4,19 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="../assets/brand/gaurikrit-logo-mark.png" type="image/png" onerror="this.onerror=null;this.href='../assets/brand/gaurikrit-mark-temp.svg'">
-    <title>For Business — Gaurikrit Bio Products</title>
-    <meta name="description" content="Talk to Gaurikrit about project, bulk and collaboration requirements for Prakritik Paint. Architects, builders, institutions, CSR, NGOs and gaushalas.">
+    <title>For Business — Architects, Builders, CSR, NGOs, Gaushalas | Gaurikrit</title>
+    <meta name="description" content="Discuss Prakritik Paint for residential, commercial, institutional, CSR / NGO and Gaushala collaboration projects with Gaurikrit Bio Products.">
     <link rel="canonical" href="https://hello-aditya-dev.github.io/gaurikrit-website/for-business/">
     <meta name="robots" content="index, follow">
-    <meta property="og:title" content="For Business — Gaurikrit Bio Products">
-    <meta property="og:description" content="Talk to Gaurikrit about project, bulk and collaboration requirements for Prakritik Paint. Architects, builders, institutions, CSR, NGOs and gaushalas.">
+    <meta property="og:title" content="For Business — Architects, Builders, CSR, NGOs, Gaushalas | Gaurikrit">
+    <meta property="og:description" content="Discuss Prakritik Paint for residential, commercial, institutional, CSR / NGO and Gaushala collaboration projects with Gaurikrit Bio Products.">
     <meta property="og:url" content="https://hello-aditya-dev.github.io/gaurikrit-website/for-business/">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Gaurikrit Bio Products">
     <meta property="og:image" content="https://hello-aditya-dev.github.io/gaurikrit-website/assets/brand/gaurikrit-logo-mark.png">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="For Business — Gaurikrit Bio Products">
-    <meta name="twitter:description" content="Talk to Gaurikrit about project, bulk and collaboration requirements for Prakritik Paint. Architects, builders, institutions, CSR, NGOs and gaushalas.">
+    <meta name="twitter:title" content="For Business — Architects, Builders, CSR, NGOs, Gaushalas | Gaurikrit">
+    <meta name="twitter:description" content="Discuss Prakritik Paint for residential, commercial, institutional, CSR / NGO and Gaushala collaboration projects with Gaurikrit Bio Products.">
     <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -192,422 +192,726 @@
 
     <main id="main" class="site-main">
 <style>
-  /* HERO */
-  .biz-hero { padding-top: calc(var(--header-h) + 2.5rem); padding-bottom: clamp(2.5rem, 5vw, 4rem); background: linear-gradient(180deg, var(--bg) 0%, var(--secondary-bg) 100%); }
+  /* ===== HERO (text left / architectural-elevation right) ===== */
+  .biz-hero { padding-top: calc(var(--header-h) + 2rem); padding-bottom: 1.5rem; }
+  @media (min-width: 1024px) { .biz-hero { padding-bottom: 2.5rem; } }
   .biz-hero__container { display: grid; gap: 2rem; align-items: center; }
-  @media (min-width: 1024px) { .biz-hero__container { grid-template-columns: 1.1fr 0.9fr; gap: 4rem; } }
-  .biz-hero__eyebrow { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.3125rem 0.75rem; border: 1px solid var(--border); border-radius: var(--radius-full); background: var(--bg-card); font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--primary); width: fit-content; }
-  .biz-hero__eyebrow-dot { width: 0.375rem; height: 0.375rem; border-radius: 50%; background: var(--haldi); }
-  .biz-hero__title { margin-top: 1.25rem; font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.25rem); line-height: 1.1; letter-spacing: -0.02em; text-wrap: balance; }
-  .biz-hero__sub { margin-top: 1.25rem; max-width: 36rem; color: var(--fg-muted); font-size: clamp(1rem, 2vw, 1.125rem); line-height: 1.65; }
-  .biz-hero__ctas { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 0.75rem; }
-  .biz-hero__art { position: relative; aspect-ratio: 4/3; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-soft); padding: 1.5rem; display: flex; align-items: flex-end; justify-content: center; }
-  .biz-hero__art .biz-hero__bucket { position: absolute; right: 1.5rem; bottom: 1.5rem; width: 30%; height: 60%; }
-  .biz-hero__art .biz-hero__brush { position: absolute; left: 1rem; top: 1rem; width: 60%; height: 50%; opacity: 0.7; }
-  .biz-hero__art .biz-hero__grid-overlay { position: absolute; inset: 0; background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px); background-size: 3rem 3rem; opacity: 0.4; pointer-events: none; }
+  @media (min-width: 1024px) {
+    .biz-hero__container { grid-template-columns: 5fr 7fr; gap: 3rem; }
+  }
+  .biz-hero__lockup { max-width: 42rem; }
+  .biz-hero__art {
+    position: relative; aspect-ratio: 12/7; background: var(--paper-cool);
+    border-radius: var(--r-panel); overflow: hidden;
+    display: flex; align-items: center; justify-content: center; padding: 1.5rem;
+  }
+  .biz-hero__art svg { width: 100%; height: 100%; display: block; }
 
-  /* SECTIONS — architectural columns */
-  .biz-sections { padding-block: clamp(3rem, 6vw, 5rem); }
-  .biz-sections__head { text-align: center; max-width: 48rem; margin-inline: auto; margin-bottom: 2.5rem; }
-  .biz-sections__title { font-family: var(--font-display); font-size: clamp(1.75rem, 4vw, 2.5rem); letter-spacing: -0.02em; }
-  .biz-sections__grid { display: grid; gap: 0; border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; background: var(--bg-card); box-shadow: var(--shadow-soft); }
-  @media (min-width: 640px) { .biz-sections__grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (min-width: 1024px) { .biz-sections__grid { grid-template-columns: repeat(4, 1fr); } }
-  .biz-section { padding: 1.75rem; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); display: flex; flex-direction: column; gap: 0.625rem; min-height: 14rem; }
-  @media (min-width: 1024px) { .biz-section:nth-child(2n) { border-right: 1px solid var(--border); } .biz-section:nth-child(4n) { border-right: 0; } .biz-section:nth-last-child(-n+4) { border-bottom: 0; } }
-  .biz-section__num { font-family: var(--font-display); font-size: 0.875rem; font-weight: 700; color: var(--haldi-deep); }
-  .biz-section__title { font-family: var(--font-display); font-size: 1.125rem; font-weight: 700; line-height: 1.2; }
-  .biz-section__desc { font-size: 0.875rem; color: var(--fg-muted); line-height: 1.6; }
-  .biz-section__chip { margin-top: auto; padding: 0.3125rem 0.625rem; border-radius: var(--radius-full); background: var(--secondary-bg); font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--primary); width: fit-content; }
+  /* ===== AUDIENCES (shared illustration + 4 ruled columns) ===== */
+  .biz-audiences-section { padding-block: clamp(3.5rem, 6vw, 5rem); }
+  .biz-audiences-illustration {
+    margin-bottom: 3rem; width: 100%; opacity: 0.5;
+  }
+  .biz-audiences-illustration svg { width: 100%; height: auto; display: block; }
+  .biz-audiences__head { max-width: 48rem; margin-bottom: 2.5rem; }
 
-  /* FORM */
-  .biz-form-section { padding-block: clamp(3rem, 6vw, 5rem); background: var(--secondary-bg); }
-  .biz-form-card { padding: clamp(1.5rem, 4vw, 2.5rem); background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: var(--shadow-soft); }
-  @media (min-width: 768px) { .biz-form-card { padding: 2.5rem; } }
-  .biz-form-card__eyebrow { font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--primary); }
-  .biz-form-card__title { font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2.25rem); line-height: 1.15; margin-top: 0.5rem; letter-spacing: -0.02em; }
-  .biz-form-card__intro { margin-top: 0.75rem; color: var(--fg-muted); line-height: 1.65; font-size: 0.9375rem; }
-  .biz-form-grid { display: grid; gap: 1rem; grid-template-columns: 1fr; margin-top: 1.5rem; }
-  @media (min-width: 640px) { .biz-form-grid { grid-template-columns: 1fr 1fr; } }
-  .biz-form-field--full { grid-column: 1 / -1; }
-  .biz-form-card .btn { width: 100%; }
-  .biz-form-card__note { margin-top: 1rem; font-size: 0.75rem; color: var(--fg-muted); text-align: center; }
+  /* ===== PRACTICAL SECTION ===== */
+  .biz-practical { padding-block: clamp(3.5rem, 6vw, 5rem); }
+  .biz-practical__grid {
+    display: grid; gap: 2rem; align-items: start;
+  }
+  @media (min-width: 768px) {
+    .biz-practical__grid { grid-template-columns: 5fr 7fr; gap: 3rem; }
+  }
+  .biz-practical__head { max-width: 36rem; }
+  .biz-practical__title {
+    font-family: var(--font-display); font-size: clamp(1.75rem, 4vw, 2.5rem);
+    line-height: 1.1; letter-spacing: -0.02em; text-wrap: balance;
+  }
+  .biz-practical__body {
+    margin-top: 1rem; color: var(--fg-muted); line-height: 1.65;
+  }
+  .biz-practical__list {
+    display: grid; gap: 0;
+    border-top: 1px solid var(--border);
+  }
+  .biz-practical__item {
+    display: grid; gap: 0.5rem; padding: 1rem 0;
+    border-bottom: 1px solid var(--border);
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 768px) {
+    .biz-practical__item { grid-template-columns: 14rem 1fr; gap: 1rem; align-items: baseline; }
+  }
+  .biz-practical__item-label {
+    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--fg-muted);
+  }
+  .biz-practical__item-hint { font-size: 0.9375rem; color: var(--fg); }
+
+  /* ===== FORM (12-col: left 4 help/contact, right 8 fields) ===== */
+  .biz-form-section { padding-block: clamp(3.5rem, 6vw, 5rem); }
+  .biz-form-layout__aside { display: flex; flex-direction: column; gap: 1.5rem; }
+  .biz-form-layout__aside .help-cta { padding: 1.5rem; }
+  .biz-form-card {
+    background: var(--paper); border: 1px solid var(--border);
+    border-radius: var(--r-panel); padding: 1.5rem;
+  }
+  @media (min-width: 768px) { .biz-form-card { padding: 2rem; } }
+  .biz-form-card__intro { font-size: 0.875rem; color: var(--fg-muted); margin-bottom: 1.5rem; }
+  .biz-form-card__intro .req { color: var(--mitti); }
+  .form-grid { gap: 1.25rem; }
+  .biz-aside-card {
+    border-top: 1px solid var(--border); padding: 0; background: transparent;
+  }
+  .biz-aside-card__row { padding-block: 1rem; border-bottom: 1px solid var(--border); }
+  .biz-aside-card dt { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fg-muted); }
 </style>
 
-<!-- HERO -->
-<section class="biz-hero" id="biz-hero" data-reveal>
-    <div class="container biz-hero__container">
+<!-- ===== HERO ===== -->
+<section class="biz-hero bg-limewash" aria-labelledby="biz-title">
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="../">Home</a><span>›</span>
+      <span>For Business</span>
+    </nav>
+    <div class="biz-hero__container" data-reveal>
+      <div class="biz-hero__lockup">
+        <span class="biz-hero__eyebrow"><span class="biz-hero__eyebrow-dot" aria-hidden="true"></span>For Business</span>
+        <hr class="biz-hero__rule">
+        <h1 class="biz-hero__title" id="biz-title">Discuss a project with Gaurikrit.</h1>
+        <p class="biz-hero__sub">
+          For architects, builders, institutions, CSR programmes, NGOs and
+          Gaushalas. Tell us about the project — site, scale, and what you are
+          painting — and we will talk through Prakritik Distemper and Emulsion
+          for your context.
+        </p>
+        <div class="biz-hero__ctas">
+          <a class="btn btn--primary btn--lg" href="#enquire">Discuss a Project</a>
+          <a class="btn btn--outline" href="../products/">Explore Products</a>
+        </div>
+      </div>
+      <div class="biz-hero__art" aria-hidden="true">
+        <svg viewBox="0 0 1200 700" xmlns="http://www.w3.org/2000/svg"
+     class=""
+     role="img" aria-hidden="true"
+     preserveAspectRatio="xMidYMid meet"
+     width="100%" height="100%">
+  <title>Architectural building elevation</title>
+
+  <!-- ============================================================
+       ARCHITECTURAL GRID — very faint, suggests drawing paper.
+       Vertical every 60px, horizontal every 60px. Opacity 0.05.
+       ============================================================ -->
+  <g stroke="var(--forest)" stroke-width="0.5" opacity="0.05">
+    <!-- Vertical grid lines (across the building width) -->
+    <path d="M 240 100 V 620"/>
+    <path d="M 300 100 V 620"/>
+    <path d="M 360 100 V 620"/>
+    <path d="M 420 100 V 620"/>
+    <path d="M 480 100 V 620"/>
+    <path d="M 540 100 V 620"/>
+    <path d="M 600 100 V 620"/>
+    <path d="M 660 100 V 620"/>
+    <path d="M 720 100 V 620"/>
+    <path d="M 780 100 V 620"/>
+    <path d="M 840 100 V 620"/>
+    <path d="M 900 100 V 620"/>
+    <path d="M 960 100 V 620"/>
+    <!-- Horizontal grid lines -->
+    <path d="M 240 120 H 960"/>
+    <path d="M 240 180 H 960"/>
+    <path d="M 240 240 H 960"/>
+    <path d="M 240 300 H 960"/>
+    <path d="M 240 360 H 960"/>
+    <path d="M 240 420 H 960"/>
+    <path d="M 240 480 H 960"/>
+    <path d="M 240 540 H 960"/>
+    <path d="M 240 580 H 960"/>
+  </g>
+
+  <!-- ============================================================
+       HALDI-HIGHLIGHTED WALL PLANE — the "Prakritik Paint goes here"
+       callout. Filled at 0.5 opacity. Drawn UNDER the wall outline
+       so the outline reads cleanly on top.
+       ============================================================ -->
+  <rect id="arch-elev-haldi-plane"
+        x="600" y="260" width="360" height="160"
+        fill="var(--haldi)" stroke="none" opacity="0.5"/>
+
+  <!-- ============================================================
+       BUILDING ELEVATION — line-drawn, orthographic
+       ============================================================ -->
+  <g fill="none" stroke="var(--forest)"
+     stroke-linecap="round" stroke-linejoin="round">
+
+    <!-- BUILDING OUTLINE — main facade rectangle -->
+    <rect x="240" y="120" width="720" height="460"
+          stroke-width="1.35" fill="var(--limewash)"/>
+
+    <!-- PARAPET — thin band at the top, slightly proud -->
+    <path d="M 240 120 H 960" stroke-width="1.35"/>
+    <path d="M 240 130 H 960" stroke-width="0.85" opacity="0.55"/>
+
+    <!-- FLOOR DIVIDER LINES — horizontal lines at each floor level -->
+    <path d="M 240 260 H 960" stroke-width="0.85" opacity="0.7"/>
+    <path d="M 240 420 H 960" stroke-width="0.85" opacity="0.7"/>
+
+    <!-- VERTICAL STRUCTURAL BAYS — subtle verticals that suggest
+         the building's structural grid (columns / load-bearing piers) -->
+    <path d="M 360 130 V 580" stroke-width="0.85" opacity="0.35"/>
+    <path d="M 600 130 V 580" stroke-width="0.85" opacity="0.35"/>
+    <path d="M 840 130 V 580" stroke-width="0.85" opacity="0.35"/>
+
+    <!-- ===== FLOOR 3 (TOP) — 3 smaller windows ===== -->
+    <rect x="290" y="170" width="50" height="80"
+          fill="var(--background)" stroke-width="1.35"/>
+    <rect x="575" y="170" width="50" height="80"
+          fill="var(--background)" stroke-width="1.35"/>
+    <rect x="860" y="170" width="50" height="80"
+          fill="var(--background)" stroke-width="1.35"/>
+    <!-- Window mullion crosses -->
+    <path d="M 315 170 V 250" stroke-width="0.85" opacity="0.5"/>
+    <path d="M 290 210 H 340" stroke-width="0.85" opacity="0.5"/>
+    <path d="M 600 170 V 250" stroke-width="0.85" opacity="0.5"/>
+    <path d="M 575 210 H 625" stroke-width="0.85" opacity="0.5"/>
+    <path d="M 885 170 V 250" stroke-width="0.85" opacity="0.5"/>
+    <path d="M 860 210 H 910" stroke-width="0.85" opacity="0.5"/>
+
+    <!-- ===== FLOOR 2 (MIDDLE) — 4 windows ===== -->
+    <!-- Left window (in the limewash plane) -->
+    <rect x="285" y="295" width="60" height="100"
+          fill="var(--background)" stroke-width="1.35"/>
+    <!-- Window between limewash and haldi plane -->
+    <rect x="455" y="295" width="60" height="100"
+          fill="var(--background)" stroke-width="1.35"/>
+    <!-- Window inside the haldi plane -->
+    <rect x="650" y="295" width="60" height="100"
+          fill="var(--background)" stroke-width="1.35"/>
+    <!-- Right window (in the haldi plane) -->
+    <rect x="855" y="295" width="60" height="100"
+          fill="var(--background)" stroke-width="1.35"/>
+    <!-- Window mullion crosses -->
+    <path d="M 315 295 V 395" stroke-width="0.85" opacity="0.5"/>
+    <path d="M 285 345 H 345" stroke-width="0.85" opacity="0.5"/>
+    <path d="M 485 295 V 395" stroke-width="0.85" opacity="0.5"/>
+    <path d="M 455 345 H 515" stroke-width="0.85" opacity="0.5"/>
+    <path d="M 680 295 V 395" stroke-width="0.85" opacity="0.5"/>
+    <path d="M 650 345 H 710" stroke-width="0.85" opacity="0.5"/>
+    <path d="M 885 295 V 395" stroke-width="0.85" opacity="0.5"/>
+    <path d="M 855 345 H 915" stroke-width="0.85" opacity="0.5"/>
+
+    <!-- ===== FLOOR 1 (GROUND) — entrance door + 2 side windows ===== -->
+    <!-- Main entrance door (center-left) — timber, double-leaf -->
+    <rect x="380" y="430" width="120" height="150"
+          fill="var(--background)" stroke-width="1.35"/>
+    <!-- Door divider (double-leaf split) -->
+    <path d="M 440 430 V 580" stroke-width="0.85" opacity="0.55"/>
+    <!-- Door jamb depth suggestion -->
+    <path d="M 385 435 V 575" stroke-width="0.85" opacity="0.35"/>
+    <!-- Door threshold -->
+    <path d="M 378 580 L 502 580" stroke-width="1.35" opacity="0.85"/>
+    <!-- Door handle marks (haldi dots) -->
+    <circle cx="430" cy="510" r="1.6" fill="var(--haldi)" stroke="none"/>
+    <circle cx="450" cy="510" r="1.6" fill="var(--haldi)" stroke="none"/>
+    <!-- Door canopy / verandah projection above the entrance -->
+    <path d="M 360 425 H 540" stroke-width="0.85" opacity="0.55"/>
+    <path d="M 360 425 L 360 432" stroke-width="0.85" opacity="0.55"/>
+    <path d="M 540 425 L 540 432" stroke-width="0.85" opacity="0.55"/>
+
+    <!-- Left ground-floor window -->
+    <rect x="270" y="460" width="80" height="80"
+          fill="var(--background)" stroke-width="1.35"/>
+    <path d="M 310 460 V 540" stroke-width="0.85" opacity="0.5"/>
+    <path d="M 270 500 H 350" stroke-width="0.85" opacity="0.5"/>
+    <!-- Sill line -->
+    <path d="M 268 540 L 352 540" stroke-width="0.85" opacity="0.55"/>
+
+    <!-- Right ground-floor window (in the haldi plane) -->
+    <rect x="855" y="460" width="80" height="80"
+          fill="var(--background)" stroke-width="1.35"/>
+    <path d="M 895 460 V 540" stroke-width="0.85" opacity="0.5"/>
+    <path d="M 855 500 H 935" stroke-width="0.85" opacity="0.5"/>
+    <path d="M 853 540 L 937 540" stroke-width="0.85" opacity="0.55"/>
+
+    <!-- ===== PLINTH — base band, slightly wider than building ===== -->
+    <rect x="220" y="580" width="760" height="40"
+          fill="var(--mitti)" stroke="var(--forest)" stroke-width="1.35" opacity="0.18"/>
+    <path d="M 220 580 H 980" stroke-width="1.35"/>
+    <path d="M 220 620 H 980" stroke-width="1.35"/>
+    <path d="M 220 612 H 980" stroke-width="0.85" opacity="0.5"/>
+
+    <!-- ===== GROUND LINE ===== -->
+    <path d="M 80 620 H 1120" stroke-width="1.35" opacity="0.55"/>
+
+    <!-- ===== SUBTLE LIMEWASH PLASTER LINES on the wall
+            (very short, scattered, low opacity) ===== -->
+    <g stroke-width="0.5" opacity="0.18">
+      <path d="M 250 200 H 280"/>
+      <path d="M 400 200 H 430"/>
+      <path d="M 250 360 H 280"/>
+      <path d="M 400 360 H 430"/>
+      <path d="M 250 500 H 270"/>
+      <path d="M 540 200 H 570"/>
+      <path d="M 720 220 H 760"/>
+    </g>
+
+  </g>
+
+  <!-- ============================================================
+       DIMENSION TICKS — thin extension lines with 45° end slashes.
+       Square cap on extension lines (technical-drawing convention).
+       ============================================================ -->
+  <g fill="none" stroke="var(--forest)" stroke-width="0.85"
+     stroke-linecap="square" stroke-linejoin="round">
+
+    <!-- LEFT SIDE — total building height dimension (parapet → plinth top) -->
+    <!-- Extension lines from building left edge outward -->
+    <path d="M 240 120 H 160" opacity="0.7"/>
+    <path d="M 240 580 H 160" opacity="0.7"/>
+    <!-- Dimension line -->
+    <path d="M 170 120 V 580" opacity="0.85"/>
+    <!-- End ticks (45° slashes) -->
+    <path d="M 165 124 L 175 116"/>
+    <path d="M 165 584 L 175 576"/>
+    <!-- Sub-dimensions for each floor -->
+    <path d="M 240 260 H 180" opacity="0.55"/>
+    <path d="M 240 420 H 180" opacity="0.55"/>
+    <!-- Small ticks at the floor dividers on the dimension line -->
+    <path d="M 165 264 L 175 256" opacity="0.7"/>
+    <path d="M 165 424 L 175 416" opacity="0.7"/>
+
+    <!-- RIGHT SIDE — single floor height dimension -->
+    <path d="M 960 260 H 1040" opacity="0.7"/>
+    <path d="M 960 420 H 1040" opacity="0.7"/>
+    <path d="M 1030 260 V 420" opacity="0.85"/>
+    <path d="M 1025 264 L 1035 256"/>
+    <path d="M 1025 424 L 1035 416"/>
+
+    <!-- BOTTOM — building width dimension -->
+    <path d="M 240 620 V 670" opacity="0.7"/>
+    <path d="M 960 620 V 670" opacity="0.7"/>
+    <path d="M 240 660 H 960" opacity="0.85"/>
+    <path d="M 236 656 L 244 664"/>
+    <path d="M 956 656 L 964 664"/>
+    <!-- Structural bay sub-dimensions (3 bays) -->
+    <path d="M 360 620 V 650" opacity="0.55"/>
+    <path d="M 600 620 V 650" opacity="0.55"/>
+    <path d="M 840 620 V 650" opacity="0.55"/>
+    <path d="M 356 646 L 364 654" opacity="0.7"/>
+    <path d="M 596 646 L 604 654" opacity="0.7"/>
+    <path d="M 836 646 L 844 654" opacity="0.7"/>
+
+  </g>
+
+  <!-- ===== TINY ANNOTATION TICK next to the haldi plane ===== -->
+  <g fill="none" stroke="var(--forest)" stroke-width="0.85"
+     stroke-linecap="round">
+    <!-- Leader line from the haldi plane to a small label position -->
+    <path d="M 780 260 L 780 220 L 880 220" opacity="0.7"/>
+    <!-- Small endpoint dot -->
+    <circle cx="780" cy="260" r="2" fill="var(--haldi)" stroke="var(--forest)" stroke-width="0.85"/>
+  </g>
+  <!-- Annotation text (Manrope, small, soft-ink) -->
+  <text x="884" y="216"
+        font-family="var(--font-sans)" font-size="10" font-weight="600"
+        fill="var(--soft-ink)" stroke="none" letter-spacing="1.2"
+        opacity="0.85">PAINT ZONE</text>
+
+</svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== AUDIENCES — shared illustration + 4 ruled columns ===== -->
+<section class="section section--paper biz-audiences-section" aria-labelledby="audiences-title">
+  <div class="container">
+    <div class="biz-audiences__head section-heading section-heading--left" data-reveal>
+      <span class="section-heading__eyebrow">Who this is for</span>
+      <h2 class="section-heading__title" id="audiences-title">Audiences.</h2>
+    </div>
+
+    <div class="biz-audiences-illustration" aria-hidden="true" data-reveal>
+      <svg viewBox="0 0 1600 280" xmlns="http://www.w3.org/2000/svg"
+     class=""
+     role="img" aria-hidden="true"
+     preserveAspectRatio="xMidYMid meet"
+     width="100%" height="100%">
+  <title>Rural landscape engraving</title>
+
+  <!-- The whole engraving sits at low opacity so it functions as background.
+       Inner elements use individual opacities so the horizon reads first
+       and the silhouettes fade further into the paper. -->
+  <g fill="none" stroke="var(--forest)"
+     stroke-linecap="round" stroke-linejoin="round"
+     opacity="0.18">
+
+    <!-- ===== DISTANT FIELD CONTOUR — back layer, the softest ===== -->
+    <path d="M 0 138 C 200 132, 380 138, 560 134
+             S 920 130, 1100 134
+             S 1440 138, 1600 134"
+          stroke-width="1.35" opacity="0.45"/>
+
+    <!-- ===== MID FIELD CONTOUR — gentle rolling, slightly more present ===== -->
+    <path d="M 0 168 C 240 162, 460 168, 680 164
+             S 1040 160, 1240 164
+             S 1500 168, 1600 164"
+          stroke-width="1.35" opacity="0.6"/>
+
+    <!-- ===== MAIN HORIZON LINE — most prominent ===== -->
+    <path d="M 0 196 C 220 192, 460 198, 700 194
+             S 1080 190, 1300 194
+             S 1540 198, 1600 194"
+          stroke-width="1.35" opacity="0.85"/>
+
+    <!-- ===== GROUND LINE — foreground baseline ===== -->
+    <path d="M 0 232 L 1600 232"
+          stroke-width="1.35" opacity="0.55"/>
+
+    <!-- ===== MATURE TREE (left side) — full canopy, line-drawn ===== -->
+    <g>
+      <!-- Trunk — single slender stroke from ground up into canopy -->
+      <path d="M 230 232 L 228 168" stroke-width="1.35" opacity="0.85"/>
+      <!-- Two main branches splitting off the trunk -->
+      <path d="M 228 188 C 218 184, 208 184, 198 188"
+            stroke-width="0.85" opacity="0.7"/>
+      <path d="M 228 184 C 238 180, 248 180, 258 184"
+            stroke-width="0.85" opacity="0.7"/>
+      <!-- Canopy — full rounded mass built from overlapping arcs.
+           Drawn as a single closed contour with several cubic curves
+           so the edge has natural variation, not a perfect circle. -->
+      <path d="M 168 140
+               C 160 120, 172 100, 196 96
+               C 204 84, 224 80, 236 90
+               C 248 80, 268 84, 276 98
+               C 296 100, 308 118, 300 138
+               C 308 148, 304 164, 286 168
+               C 278 178, 258 180, 244 174
+               C 234 182, 214 182, 202 174
+               C 188 180, 168 178, 162 168
+               C 152 162, 154 148, 168 140 Z"
+            stroke-width="1.35" opacity="0.85"/>
+      <!-- Canopy interior vein lines — 3 subtle branching marks -->
+      <path d="M 232 140 C 226 150, 220 158, 214 162"
+            stroke-width="0.85" opacity="0.55"/>
+      <path d="M 232 140 C 240 150, 246 158, 252 162"
+            stroke-width="0.85" opacity="0.55"/>
+      <path d="M 232 140 L 232 130"
+            stroke-width="0.85" opacity="0.45"/>
+      <!-- Root flare marks at the base of the trunk -->
+      <path d="M 222 232 C 218 236, 214 236, 212 234"
+            stroke-width="0.85" opacity="0.6"/>
+      <path d="M 234 232 C 238 236, 242 236, 244 234"
+            stroke-width="0.85" opacity="0.6"/>
+    </g>
+
+    <!-- ===== DISTANT SHRUBS — small bush marks on the horizon ===== -->
+    <g>
+      <path d="M 540 196 C 548 190, 558 190, 562 196
+               C 566 190, 574 190, 578 196"
+            stroke-width="0.85" opacity="0.7"/>
+      <path d="M 820 194 C 828 188, 838 188, 842 194"
+            stroke-width="0.85" opacity="0.65"/>
+      <path d="M 850 196 C 858 190, 866 190, 870 196"
+            stroke-width="0.85" opacity="0.6"/>
+      <path d="M 1180 194 C 1188 188, 1198 188, 1202 194"
+            stroke-width="0.85" opacity="0.6"/>
+    </g>
+
+    <!-- ===== MODEST AGRICULTURAL SHED (right side) — small, simple ===== -->
+    <g>
+      <!-- Roof — single peaked line, low and shallow -->
+      <path d="M 1280 168 L 1310 148 L 1380 148 L 1410 168"
+            stroke-width="1.35" opacity="0.85"/>
+      <!-- Roof underside — thin projection suggesting roof slab thickness -->
+      <path d="M 1280 168 L 1410 168"
+            stroke-width="0.85" opacity="0.55"/>
+      <!-- Body — simple rectangle -->
+      <path d="M 1290 168 L 1290 232 L 1400 232 L 1400 168"
+            stroke-width="1.35" opacity="0.85"/>
+      <!-- Door — small rectangle opening -->
+      <path d="M 1330 232 L 1330 198 L 1360 198 L 1360 232"
+            stroke-width="0.85" opacity="0.7"/>
+      <!-- Small window/vent high on the wall -->
+      <path d="M 1372 180 L 1384 180 L 1384 192 L 1372 192 Z"
+            stroke-width="0.85" opacity="0.6"/>
+      <!-- Roof tile segment lines — 3 subtle marks -->
+      <path d="M 1310 152 L 1314 168" stroke-width="0.85" opacity="0.5"/>
+      <path d="M 1340 148 L 1344 168" stroke-width="0.85" opacity="0.5"/>
+      <path d="M 1370 148 L 1374 168" stroke-width="0.85" opacity="0.5"/>
+    </g>
+
+    <!-- ===== TINY ZEBU COWS — small silhouettes in the middle field ===== -->
+    <!-- Cow A — facing left, sitting in the field at mid-distance -->
+    <g opacity="0.85">
+      <!-- Body barrel — small closed contour -->
+      <path d="M 720 196
+               C 728 192, 740 191, 752 192
+               L 768 192
+               L 768 200
+               L 720 200
+               C 718 198, 718 197, 720 196 Z"
+            stroke-width="0.85"/>
+      <!-- Hump — small rise above back line -->
+      <path d="M 722 196 C 724 192, 728 190, 732 190
+               C 736 190, 740 192, 742 196"
+            stroke-width="0.85"/>
+      <!-- Head — small wedge to the left -->
+      <path d="M 720 196 C 716 196, 712 198, 710 200"
+            stroke-width="0.85"/>
+      <!-- Legs — 4 tiny vertical strokes -->
+      <path d="M 724 200 L 724 208" stroke-width="0.85"/>
+      <path d="M 728 200 L 728 208" stroke-width="0.85"/>
+      <path d="M 762 200 L 762 208" stroke-width="0.85"/>
+      <path d="M 766 200 L 766 208" stroke-width="0.85"/>
+      <!-- Tail — short curve down -->
+      <path d="M 768 194 C 772 196, 774 200, 772 204" stroke-width="0.85"/>
+    </g>
+
+    <!-- Cow B — facing left, slightly smaller, further back -->
+    <g opacity="0.7">
+      <path d="M 980 198
+               C 986 195, 996 194, 1006 195
+               L 1018 195
+               L 1018 202
+               L 980 202
+               C 978 200, 978 199, 980 198 Z"
+            stroke-width="0.85"/>
+      <path d="M 982 198 C 984 195, 988 193, 992 193
+               C 996 193, 1000 195, 1002 198"
+            stroke-width="0.85"/>
+      <path d="M 980 198 C 976 198, 972 200, 970 202"
+            stroke-width="0.85"/>
+      <path d="M 984 202 L 984 208" stroke-width="0.85"/>
+      <path d="M 988 202 L 988 208" stroke-width="0.85"/>
+      <path d="M 1014 202 L 1014 208" stroke-width="0.85"/>
+      <path d="M 1018 200 C 1022 202, 1024 204, 1022 207" stroke-width="0.85"/>
+    </g>
+
+    <!-- ===== FOREGROUND GRASS TUFTS — restrained, deliberate ===== -->
+    <g stroke-width="1.35">
+      <!-- Tuft cluster 1 — left -->
+      <path d="M 80 232 L 78 226" opacity="0.6"/>
+      <path d="M 82 232 L 82 224" opacity="0.6"/>
+      <path d="M 84 232 L 86 226" opacity="0.6"/>
+      <!-- Tuft cluster 2 — between tree and cows -->
+      <path d="M 460 232 L 458 226" opacity="0.55"/>
+      <path d="M 462 232 L 462 224" opacity="0.55"/>
+      <path d="M 464 232 L 466 226" opacity="0.55"/>
+      <!-- Tuft cluster 3 — right of cows -->
+      <path d="M 1080 232 L 1078 226" opacity="0.55"/>
+      <path d="M 1082 232 L 1082 224" opacity="0.55"/>
+      <path d="M 1084 232 L 1086 226" opacity="0.55"/>
+      <!-- Tuft cluster 4 — left of shed -->
+      <path d="M 1220 232 L 1218 226" opacity="0.55"/>
+      <path d="M 1222 232 L 1222 224" opacity="0.55"/>
+      <!-- Tuft cluster 5 — far right -->
+      <path d="M 1480 232 L 1478 226" opacity="0.55"/>
+      <path d="M 1482 232 L 1482 224" opacity="0.55"/>
+      <path d="M 1484 232 L 1486 226" opacity="0.55"/>
+    </g>
+
+    <!-- ===== ONE LONGER GRASS BLADE — compositional accent ===== -->
+    <path d="M 580 232 C 578 224, 576 218, 580 212"
+          stroke-width="1.35" opacity="0.65"/>
+
+  </g>
+</svg>
+    </div>
+
+    <div class="biz-audiences" data-reveal-stagger>
+        <div class="audience-card">
+          <span class="audience-card__num">01</span>
+          <h3 class="audience-card__title">Architects &amp; Builders</h3>
+          <p class="audience-card__desc">Discuss product and project requirements for residential, commercial, or institutional work.</p>
+        </div>
+        <div class="audience-card">
+          <span class="audience-card__num">02</span>
+          <h3 class="audience-card__title">Institutions / CSR</h3>
+          <p class="audience-card__desc">Talk to Gaurikrit about institutional or sustainability-led projects.</p>
+        </div>
+        <div class="audience-card">
+          <span class="audience-card__num">03</span>
+          <h3 class="audience-card__title">CSR / NGOs</h3>
+          <p class="audience-card__desc">Discuss sustainability-led projects and community paint programmes.</p>
+        </div>
+        <div class="audience-card">
+          <span class="audience-card__num">04</span>
+          <h3 class="audience-card__title">Gaushalas / Partners</h3>
+          <p class="audience-card__desc">Explore collaboration around cow-dung-based bio-products.</p>
+        </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PRACTICAL SECTION — "When you enquire, it helps to include" ===== -->
+<section class="section section--limewash biz-practical" aria-labelledby="include-title">
+  <div class="container">
+    <div class="biz-practical__grid" data-reveal>
+      <div class="biz-practical__head">
+        <span class="biz-hero__eyebrow"><span class="biz-hero__eyebrow-dot" aria-hidden="true"></span>Practical</span>
+        <h2 class="biz-practical__title" id="include-title">When you enquire, it helps to include.</h2>
+        <p class="biz-practical__body">
+          A few practical details up front let us give you a useful response —
+          not a "we will get back to you" placeholder.
+        </p>
+      </div>
+      <ul class="biz-practical__list">
+        <li class="biz-practical__item">
+          <span class="biz-practical__item-label">Project type</span>
+          <span class="biz-practical__item-hint">Residential / Commercial / Institutional / CSR-NGO / Gaushala / Other</span>
+        </li>
+        <li class="biz-practical__item">
+          <span class="biz-practical__item-label">City</span>
+          <span class="biz-practical__item-hint">Where the site is located</span>
+        </li>
+        <li class="biz-practical__item">
+          <span class="biz-practical__item-label">Approximate wall area</span>
+          <span class="biz-practical__item-hint">In sq.ft. if you have a number</span>
+        </li>
+        <li class="biz-practical__item">
+          <span class="biz-practical__item-label">Paint format</span>
+          <span class="biz-practical__item-hint">Distemper, Emulsion, or not sure yet</span>
+        </li>
+        <li class="biz-practical__item">
+          <span class="biz-practical__item-label">Approximate requirement</span>
+          <span class="biz-practical__item-hint">Number of packs or litres you expect to need</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FORM (12-col) ===== -->
+<!-- Static fallback: replace the action with your Formspree ID. No CSRF /
+     honeypot needed for static — forms.js handles fetch + toast. -->
+<section class="section section--paper biz-form-section" id="enquire" aria-labelledby="form-title">
+  <div class="container">
+    <div class="biz-form-layout" data-reveal>
+      <!-- LEFT 4 col: heading/help/direct contact -->
+      <aside class="biz-form-layout__aside">
         <div>
-            <span class="biz-hero__eyebrow"><span class="biz-hero__eyebrow-dot" aria-hidden="true"></span>For Business</span>
-            <h1 class="biz-hero__title">Building with a different kind of material?</h1>
-            <p class="biz-hero__sub">Talk to Gaurikrit about project, bulk and collaboration requirements for Prakritik Paint.</p>
-            <div class="biz-hero__ctas">
-                <a href="#enquiry" class="btn btn--primary btn--lg">Discuss a Project</a>
-                <a href="../products/" class="btn btn--outline btn--lg">Explore Prakritik Paint</a>
+          <span class="biz-form-card__eyebrow">Project enquiry</span>
+          <h2 class="biz-form-card__title" id="form-title">Discuss a Project.</h2>
+          <p class="biz-form-card__note">
+            Tell us about the site and the wall. We will respond with what we
+            can practically supply — pack sizes, format, and how Prakritik Paint
+            fits your project.
+          </p>
+        </div>
+
+        <div class="help-cta">
+          <h3 class="help-cta__title">Prefer to talk first?</h3>
+          <p class="help-cta__sub">
+            Call +91 9999624446 or email seva@gaurikrit.com.
+          </p>
+          <div class="help-cta__btn">
+            <a class="btn btn--secondary btn--block" href="../contact/">Contact Gaurikrit</a>
+          </div>
+        </div>
+
+        <dl class="biz-aside-card">
+            <div class="biz-aside-card__row">
+              <dt>Phone</dt>
+              <dd><a href="tel:+919999624446">+91 9999624446</a></dd>
             </div>
+            <div class="biz-aside-card__row">
+              <dt>Phone</dt>
+              <dd><a href="tel:+919837638842">+91 9837638842</a></dd>
+            </div>
+          <div class="biz-aside-card__row">
+            <dt>Email</dt>
+            <dd><a href="mailto:seva@gaurikrit.com">seva@gaurikrit.com</a></dd>
+          </div>
+          <div class="biz-aside-card__row">
+            <dt>Location</dt>
+            <dd>Khurja, District Bulandshahr</dd>
+          </div>
+        </dl>
+      </aside>
+
+      <!-- RIGHT 8 col: form fields -->
+      <!-- Replace the action URL with your Formspree form ID for static deployment -->
+      <form class="biz-form-card" action="https://formspree.io/f/your-form-id" method="post"
+            data-business-form novalidate>
+        <p class="biz-form-card__intro">
+          Fields marked <span class="req">*</span> are required.
+        </p>
+
+        <div class="form-grid">
+          <div class="form-field">
+            <label class="form-label" for="biz-name">Name <span class="req">*</span></label>
+            <input class="form-input" type="text" id="biz-name" name="name"
+                   required maxlength="80" autocomplete="name">
+            <div class="form-error" data-error-for="name" role="alert"></div>
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="biz-phone">Phone <span class="req">*</span></label>
+            <input class="form-input" type="tel" id="biz-phone" name="phone"
+                   required maxlength="20" autocomplete="tel"
+                   placeholder="+91 ...">
+            <div class="form-error" data-error-for="phone" role="alert"></div>
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="biz-email">Email <span class="req">*</span></label>
+            <input class="form-input" type="email" id="biz-email" name="email"
+                   required maxlength="254" autocomplete="email">
+            <div class="form-error" data-error-for="email" role="alert"></div>
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="biz-organisation">Organisation</label>
+            <input class="form-input" type="text" id="biz-organisation"
+                   name="organisation" maxlength="120" autocomplete="organization">
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="biz-role">Role</label>
+            <input class="form-input" type="text" id="biz-role" name="role"
+                   maxlength="80" autocomplete="organization-title">
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="biz-city">City <span class="req">*</span></label>
+            <input class="form-input" type="text" id="biz-city" name="city"
+                   required maxlength="80" autocomplete="address-level2">
+            <div class="form-error" data-error-for="city" role="alert"></div>
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="biz-project-type">Project type <span class="req">*</span></label>
+            <select class="form-select" id="biz-project-type" name="project_type" required>
+              <option value="" disabled selected>Choose…</option>
+                <option value="Residential">Residential</option>
+                <option value="Commercial">Commercial</option>
+                <option value="Institutional">Institutional</option>
+                <option value="CSR / NGO">CSR / NGO</option>
+                <option value="Gaushala Collaboration">Gaushala Collaboration</option>
+                <option value="Other">Other</option>
+            </select>
+            <div class="form-error" data-error-for="project_type" role="alert"></div>
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="biz-requirement">Approximate requirement</label>
+            <input class="form-input" type="text" id="biz-requirement"
+                   name="approximate_requirement" maxlength="100"
+                   placeholder="e.g. 20 packs / 80 litres / not sure yet">
+          </div>
+          <div class="form-field form-field--full">
+            <label class="form-label" for="biz-message">About the project <span class="req">*</span></label>
+            <textarea class="form-textarea" id="biz-message" name="message" required
+                      maxlength="2000" rows="6"
+                      placeholder="Tell us about the site, the walls, and what you are painting."></textarea>
+            <div class="form-error" data-error-for="message" role="alert"></div>
+          </div>
         </div>
-        <div class="biz-hero__art" aria-hidden="true">
-            <div class="biz-hero__grid-overlay"></div>
-            <div class="biz-hero__brush"><svg viewBox="0 0 640 420" xmlns="http://www.w3.org/2000/svg"
-     class=""
-     role="img" aria-hidden="true"
-     preserveAspectRatio="xMidYMid meet"
-     width="100%" height="100%">
-  <title>Paint brush stroke</title>
 
-  <defs>
-    <!-- HALDI GRADIENT — soft → mid → deep, diagonal -->
-    <linearGradient id="pbs-grad" x1="0.2" y1="0.1" x2="0.8" y2="0.9">
-      <stop offset="0%" stop-color="var(--haldi-soft)"/>
-      <stop offset="40%" stop-color="var(--haldi)"/>
-      <stop offset="100%" stop-color="var(--haldi-deep)"/>
-    </linearGradient>
-
-    <!-- PAPER-GRAIN TEXTURE PATTERN — tiny dots, very sparse.
-         Applied as an additional layer at 0.05 opacity for a paper-fibre feel. -->
-    <pattern id="pbs-grain" x="0" y="0" width="4" height="4"
-             patternUnits="userSpaceOnUse">
-      <circle cx="1" cy="1" r="0.45" fill="var(--charcoal)" opacity="0.5"/>
-      <circle cx="3" cy="2.5" r="0.3" fill="var(--charcoal)" opacity="0.35"/>
-    </pattern>
-
-    <!-- CLIP PATH — the main stroke shape, used to clip the grain overlay -->
-    <clipPath id="pbs-clip">
-      <path d="M 50 210
-               C 38 200, 28 218, 36 240
-               C 44 262, 60 268, 78 258
-               C 96 250, 108 274, 130 270
-               C 154 266, 168 290, 192 286
-               C 218 282, 232 308, 258 304
-               C 286 300, 302 326, 332 322
-               C 364 318, 380 344, 412 340
-               C 444 336, 462 360, 496 354
-               C 528 348, 548 372, 580 362
-               C 600 356, 612 336, 600 314
-               C 614 296, 596 282, 612 264
-               C 624 244, 600 232, 588 220
-               C 600 204, 580 192, 568 184
-               C 552 168, 528 178, 508 172
-               C 484 166, 470 184, 446 180
-               C 422 174, 408 192, 384 188
-               C 360 182, 344 200, 320 196
-               C 294 190, 278 208, 254 204
-               C 228 198, 212 218, 188 214
-               C 162 208, 146 226, 122 222
-               C 96 216, 80 232, 58 226
-               C 44 222, 42 218, 50 210 Z"/>
-    </clipPath>
-  </defs>
-
-  <!-- MAIN ORGANIC BRUSH STROKE — irregular edge with many control points.
-       Haldi gradient fill. Subtle forest outline for definition. -->
-  <path d="M 50 210
-           C 38 200, 28 218, 36 240
-           C 44 262, 60 268, 78 258
-           C 96 250, 108 274, 130 270
-           C 154 266, 168 290, 192 286
-           C 218 282, 232 308, 258 304
-           C 286 300, 302 326, 332 322
-           C 364 318, 380 344, 412 340
-           C 444 336, 462 360, 496 354
-           C 528 348, 548 372, 580 362
-           C 600 356, 612 336, 600 314
-           C 614 296, 596 282, 612 264
-           C 624 244, 600 232, 588 220
-           C 600 204, 580 192, 568 184
-           C 552 168, 528 178, 508 172
-           C 484 166, 470 184, 446 180
-           C 422 174, 408 192, 384 188
-           C 360 182, 344 200, 320 196
-           C 294 190, 278 208, 254 204
-           C 228 198, 212 218, 188 214
-           C 162 208, 146 226, 122 222
-           C 96 216, 80 232, 58 226
-           C 44 222, 42 218, 50 210 Z"
-        fill="url(#pbs-grad)"
-        stroke="var(--haldi-deep)"
-        stroke-width="1.2"
-        stroke-linejoin="round"
-        opacity="0.92"/>
-
-  <!-- INTERNAL LIGHTER PATCH 1 — small organic shape on top of the stroke.
-       Suggests a thicker/limewash-ier part of the brushstroke. -->
-  <path d="M 150 220
-           C 180 200, 240 196, 290 210
-           C 340 220, 380 210, 400 230
-           C 380 250, 330 244, 280 240
-           C 230 235, 180 250, 150 220 Z"
-        fill="var(--haldi-soft)"
-        stroke="none"
-        opacity="0.3"/>
-
-  <!-- INTERNAL LIGHTER PATCH 2 — smaller accent on lower-right -->
-  <path d="M 420 270
-           C 450 256, 490 260, 510 280
-           C 488 294, 450 290, 420 270 Z"
-        fill="var(--haldi-soft)"
-        stroke="none"
-        opacity="0.25"/>
-
-  <!-- SUBTLE DARKER RIM along the lower edge — suggests where the brush
-       dragged slightly thicker paint. Single line, low opacity. -->
-  <path d="M 192 286
-           C 218 282, 232 308, 258 304
-           C 286 300, 302 326, 332 322
-           C 364 318, 380 344, 412 340"
-        fill="none"
-        stroke="var(--haldi-deep)"
-        stroke-width="1.5"
-        opacity="0.4"
-        stroke-linecap="round"/>
-
-  <!-- BRISTLE TEXTURE — a few thin lighter strokes laid along the stroke direction.
-       Subtle, suggests the direction the brush was dragged. -->
-  <g fill="none" stroke="var(--haldi-deep)"
-     stroke-width="1.3" stroke-linecap="round"
-     opacity="0.28">
-    <path d="M 100 200 C 240 168, 400 168, 560 232"/>
-    <path d="M 90 240 C 240 210, 420 210, 560 278"/>
-  </g>
-  <g fill="none" stroke="var(--haldi-soft)"
-     stroke-width="1.1" stroke-linecap="round"
-     opacity="0.4">
-    <path d="M 110 220 C 240 188, 400 188, 540 244"/>
-  </g>
-
-  <!-- PAPER-GRAIN TEXTURE OVERLAY — very subtle (3-4% perceived opacity).
-       Uses the clip path so the grain only appears inside the stroke shape. -->
-  <g clip-path="url(#pbs-clip)" opacity="0.06">
-    <rect x="0" y="0" width="640" height="420" fill="url(#pbs-grain)"/>
-  </g>
-
-</svg></div>
-            <div class="biz-hero__bucket"><svg viewBox="0 0 220 300" xmlns="http://www.w3.org/2000/svg"
-     class=""
-     role="img" aria-hidden="true"
-     preserveAspectRatio="xMidYMid meet"
-     width="100%" height="100%">
-  <title>Prakritik Emulsion bucket</title>
-
-  <!-- BAIL / HANDLE — metal arch (drawn first, behind the rim) -->
-  <path d="M 42 62 Q 110 22, 178 62"
-        fill="none" stroke="var(--forest)"
-        stroke-width="1.8" stroke-linecap="round"/>
-  <!-- Handle inner line — subtle wire-thickness suggestion -->
-  <path d="M 46 62 Q 110 28, 174 62"
-        fill="none" stroke="var(--forest)"
-        stroke-width="1" opacity="0.5"/>
-
-  <!-- HANDLE ATTACHMENT LUGS — on the rim -->
-  <circle cx="42" cy="62" r="3" fill="var(--forest)"/>
-  <circle cx="178" cy="62" r="3" fill="var(--forest)"/>
-
-  <!-- BUCKET BODY — TALLER tapered cylinder, paper-white fill.
-       Top corners at the rim (x=40, x=180), bottom corners narrower (x=52, x=168).
-       Taller body — base at y=270 (vs y=250 for distemper). -->
-  <path d="M 40 62
-           L 52 270
-           C 60 276, 160 276, 168 270
-           L 180 62 Z"
-        fill="var(--paper)" stroke="var(--forest)"
-        stroke-width="1.5" stroke-linejoin="round"/>
-
-  <!-- SUBTLE VERTICAL HIGHLIGHT on the LEFT side of the cylinder -->
-  <path d="M 56 80 L 64 260"
-        stroke="var(--forest)" stroke-width="0.8" opacity="0.12"/>
-
-  <!-- SUBTLE VERTICAL SHADOW on the RIGHT side -->
-  <path d="M 162 80 L 156 260"
-        stroke="var(--forest)" stroke-width="0.8" opacity="0.08"/>
-
-  <!-- TOP RIM ELLIPSE — dark green -->
-  <ellipse cx="110" cy="60" rx="70" ry="9"
-           fill="var(--forest)" stroke="var(--forest)"
-           stroke-width="1.5"/>
-
-  <!-- INNER OPENING — limewash-toned inside -->
-  <ellipse cx="110" cy="59" rx="62" ry="6"
-           fill="var(--limewash)" opacity="0.85"/>
-
-  <!-- LIQUID LINE AT RIM — a subtle haldi-toned ellipse just inside the rim,
-       suggesting the liquid paint surface filling up to the rim -->
-  <ellipse cx="110" cy="58" rx="58" ry="5"
-           fill="var(--haldi)" opacity="0.32"/>
-
-  <!-- SURFACE RIPPLE on the liquid — very subtle line suggesting liquid surface tension -->
-  <path d="M 56 57 C 80 55, 140 55, 164 57"
-        fill="none" stroke="var(--haldi-deep)"
-        stroke-width="0.8" opacity="0.55"/>
-
-  <!-- HALDI ACCENT STRIPE ABOVE LABEL BAND -->
-  <path d="M 46 128 L 50 130 C 80 134, 140 134, 170 130 L 174 128"
-        fill="none" stroke="var(--haldi-deep)"
-        stroke-width="1.6" stroke-linecap="round"/>
-
-  <!-- DARK-GREEN LABEL BAND — taller band (emulsion pack), curved to follow cylinder -->
-  <path d="M 46 132
-           L 50 204
-           C 80 208, 140 208, 170 204
-           L 174 132
-           C 140 136, 80 136, 46 132 Z"
-        fill="var(--forest)" stroke="var(--forest)"
-        stroke-width="1.4" stroke-linejoin="round"/>
-
-  <!-- HALDI ACCENT STRIPE BELOW LABEL BAND -->
-  <path d="M 50 208 L 54 210 C 80 213, 140 213, 166 210 L 170 208"
-        fill="none" stroke="var(--haldi-deep)"
-        stroke-width="1.6" stroke-linecap="round"/>
-
-  <!-- SMALL GEOMETRIC MARK above the wordmark — haldi dot -->
-  <circle cx="110" cy="138" r="2.2" fill="var(--haldi)"/>
-
-  <!-- WORDMARK TEXT -->
-  <text x="110" y="153" text-anchor="middle"
-        font-family="var(--font-display)" font-weight="700"
-        font-size="12" fill="var(--haldi)" letter-spacing="1.5">GAURIKRIT</text>
-
-  <!-- SUBTITLE LINE 1 -->
-  <text x="110" y="174" text-anchor="middle"
-        font-family="var(--font-display)" font-weight="700"
-        font-size="7" fill="var(--haldi)" letter-spacing="1.6">PRAKRITIK</text>
-
-  <!-- SUBTITLE LINE 2 -->
-  <text x="110" y="190" text-anchor="middle"
-        font-family="var(--font-display)" font-weight="700"
-        font-size="7" fill="var(--haldi)" letter-spacing="1.6">EMULSION</text>
-
-  <!-- SMALL UNDERLINE MARK beneath wordmark -->
-  <path d="M 86 160 L 134 160"
-        stroke="var(--haldi)" stroke-width="0.8" opacity="0.5"/>
-
-  <!-- BOTTOM FRONT CURVE — base of cylinder -->
-  <path d="M 52 270 C 60 276, 160 276, 168 270"
-        fill="none" stroke="var(--forest)"
-        stroke-width="1.5" opacity="0.85"/>
-
-  <!-- SUBTLE BASE SHADOW ELLIPSE — very faint ground contact -->
-  <ellipse cx="110" cy="276" rx="56" ry="3"
-           fill="var(--forest)" opacity="0.08"/>
-
-</svg></div>
+        <div class="calc-actions">
+          <button type="submit" class="btn btn--primary btn--lg">
+            <span data-submit-label>Discuss a Project</span>
+          </button>
         </div>
+      </form>
     </div>
+  </div>
 </section>
-
-<!-- SECTIONS -->
-<section class="biz-sections section--paper" id="audiences" data-reveal>
-    <div class="container">
-        <div class="biz-sections__head">
-            <span class="section-heading__eyebrow">Who this is for</span>
-            <h2 class="biz-sections__title">Four conversations, one form.</h2>
-        </div>
-        <div class="biz-sections__grid">
-            <article class="biz-section">
-                <div class="biz-section__num">01</div>
-                <h3 class="biz-section__title">Architects & Builders</h3>
-                <p class="biz-section__desc">Discuss product, packaging, and project requirements for residential and commercial builds.</p>
-                <span class="biz-section__chip">Project</span>
-            </article>
-            <article class="biz-section">
-                <div class="biz-section__num">02</div>
-                <h3 class="biz-section__title">Institutions</h3>
-                <p class="biz-section__desc">Talk to Gaurikrit about institutional projects that want a bio-based wall coating.</p>
-                <span class="biz-section__chip">Institution</span>
-            </article>
-            <article class="biz-section">
-                <div class="biz-section__num">03</div>
-                <h3 class="biz-section__title">CSR / NGOs</h3>
-                <p class="biz-section__desc">Sustainability-led CSR or NGO programmes exploring cow-dung-based bio-products.</p>
-                <span class="biz-section__chip">CSR</span>
-            </article>
-            <article class="biz-section">
-                <div class="biz-section__num">04</div>
-                <h3 class="biz-section__title">Gaushalas</h3>
-                <p class="biz-section__desc">Explore collaboration around cow-dung-based bio-products and Prakritik Paint.</p>
-                <span class="biz-section__chip">Gaushala</span>
-            </article>
-        </div>
-    </div>
-</section>
-
-<!-- BUSINESS FORM -->
-<!-- Replace the form action with your Formspree ID or deploy to Hostinger for PHP backend -->
-<section class="biz-form-section" id="enquiry" data-reveal>
-    <div class="container" style="max-width: 56rem;">
-        <div class="biz-form-card">
-            <span class="biz-form-card__eyebrow">Business enquiry</span>
-            <h2 class="biz-form-card__title">Discuss a project with Gaurikrit.</h2>
-            <p class="biz-form-card__intro">Fields marked <span class="req" style="color: var(--mitti);">*</span> are required. The more you share, the more useful the response.</p>
-
-            <form data-business-form method="post" action="https://formspree.io/f/your-form-id" novalidate>
-                <div class="biz-form-grid">
-                    <div class="form-field">
-                        <label class="form-label" for="bz-name">Name <span class="req">*</span></label>
-                        <input class="form-input" type="text" id="bz-name" name="name" required maxlength="80" autocomplete="name">
-                        <div class="form-error" data-error-for="name"></div>
-                    </div>
-                    <div class="form-field">
-                        <label class="form-label" for="bz-organisation">Organisation <span class="req">*</span></label>
-                        <input class="form-input" type="text" id="bz-organisation" name="organisation" required maxlength="120" autocomplete="organization">
-                        <div class="form-error" data-error-for="organisation"></div>
-                    </div>
-                    <div class="form-field">
-                        <label class="form-label" for="bz-role">Role</label>
-                        <input class="form-input" type="text" id="bz-role" name="role" maxlength="80" placeholder="Architect, Procurement, Programme lead…" autocomplete="organization-title">
-                        <div class="form-error" data-error-for="role"></div>
-                    </div>
-                    <div class="form-field">
-                        <label class="form-label" for="bz-phone">Phone</label>
-                        <input class="form-input" type="tel" id="bz-phone" name="phone" maxlength="20" autocomplete="tel">
-                        <div class="form-error" data-error-for="phone"></div>
-                    </div>
-                    <div class="form-field">
-                        <label class="form-label" for="bz-email">Email <span class="req">*</span></label>
-                        <input class="form-input" type="email" id="bz-email" name="email" required maxlength="254" autocomplete="email">
-                        <div class="form-error" data-error-for="email"></div>
-                    </div>
-                    <div class="form-field">
-                        <label class="form-label" for="bz-city">City</label>
-                        <input class="form-input" type="text" id="bz-city" name="city" maxlength="80" autocomplete="address-level2">
-                        <div class="form-error" data-error-for="city"></div>
-                    </div>
-                    <div class="form-field">
-                        <label class="form-label" for="bz-project-type">Project type</label>
-                        <select class="form-select" id="bz-project-type" name="project_type">
-                            <option value="">Select…</option>
-                            <option value="Residential">Residential</option>
-                            <option value="Commercial">Commercial</option>
-                            <option value="Institutional">Institutional</option>
-                            <option value="CSR / NGO">CSR / NGO</option>
-                            <option value="Gaushala Collaboration">Gaushala Collaboration</option>
-                            <option value="Other">Other</option>
-                        </select>
-                        <div class="form-error" data-error-for="project_type"></div>
-                    </div>
-                    <div class="form-field">
-                        <label class="form-label" for="bz-requirement">Approximate requirement</label>
-                        <input class="form-input" type="text" id="bz-requirement" name="approximate_requirement" maxlength="100" placeholder="e.g. 20 litres of Emulsion, 50 kg of Distemper">
-                        <div class="form-error" data-error-for="approximate_requirement"></div>
-                    </div>
-                    <div class="form-field biz-form-field--full">
-                        <label class="form-label" for="bz-message">Message</label>
-                        <textarea class="form-textarea" id="bz-message" name="message" maxlength="2000" rows="5" placeholder="A short note about your project, timeline and what you'd like to discuss."></textarea>
-                        <div class="form-error" data-error-for="message"></div>
-                    </div>
-                    <div class="biz-form-field--full" style="margin-top: 0.5rem;">
-                        <button type="submit" class="btn btn--primary btn--lg">
-                            <span data-submit-label>Discuss a Project</span>
-                            <svg data-submit-spinner hidden width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-6.219-8.56" style="animation: spin 1s linear infinite"/></svg>
-                        </button>
-                    </div>
-                </div>
-            </form>
-            <p class="biz-form-card__note">This form requires a backend. Deploy to Hostinger for full functionality, or connect a Formspree form ID.</p>
-        </div>
-    </div>
-</section>
-
-<style>@keyframes spin { to { transform: rotate(360deg); } }</style>
     </main>
 
     <!-- ===== Site footer ===== -->
@@ -750,10 +1054,7 @@
     <!--
       Module scripts. Order matters: each module registers
       window.GaurikritApp.<Name> = { init: fn, ... } and app.js
-      (loaded last) calls .init() on each. calculator.js is included
-      after forms.js so it can reuse the toast helper if needed, and
-      before app.js so app.js can include 'Calculator' in its boot
-      sequence.
+      (loaded last) calls .init() on each.
     -->
     <script src="../assets/js/navigation.js?v=static"></script>
     <script src="../assets/js/animations.js?v=static"></script>

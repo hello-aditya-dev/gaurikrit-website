@@ -4,19 +4,19 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="./assets/brand/gaurikrit-logo-mark.png" type="image/png" onerror="this.onerror=null;this.href='./assets/brand/gaurikrit-mark-temp.svg'">
-    <title>Page not found — Gaurikrit Bio Products</title>
-    <meta name="description" content="This wall hasn&#39;t been painted yet. Return to the Gaurikrit homepage.">
-    <link rel="canonical" href="https://hello-aditya-dev.github.io/gaurikrit-website/404">
+    <title>404 — This wall hasn&#39;t been painted yet | Gaurikrit</title>
+    <meta name="description" content="The page you were looking for has not been painted yet. Return to the Gaurikrit homepage.">
+    <link rel="canonical" href="https://hello-aditya-dev.github.io/gaurikrit-website/">
     <meta name="robots" content="index, follow">
-    <meta property="og:title" content="Page not found — Gaurikrit Bio Products">
-    <meta property="og:description" content="This wall hasn&#39;t been painted yet. Return to the Gaurikrit homepage.">
-    <meta property="og:url" content="https://hello-aditya-dev.github.io/gaurikrit-website/404">
+    <meta property="og:title" content="404 — This wall hasn&#39;t been painted yet | Gaurikrit">
+    <meta property="og:description" content="The page you were looking for has not been painted yet. Return to the Gaurikrit homepage.">
+    <meta property="og:url" content="https://hello-aditya-dev.github.io/gaurikrit-website/">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Gaurikrit Bio Products">
     <meta property="og:image" content="https://hello-aditya-dev.github.io/gaurikrit-website/assets/brand/gaurikrit-logo-mark.png">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Page not found — Gaurikrit Bio Products">
-    <meta name="twitter:description" content="This wall hasn&#39;t been painted yet. Return to the Gaurikrit homepage.">
+    <meta name="twitter:title" content="404 — This wall hasn&#39;t been painted yet | Gaurikrit">
+    <meta name="twitter:description" content="The page you were looking for has not been painted yet. Return to the Gaurikrit homepage.">
     <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -192,21 +192,58 @@
 
     <main id="main" class="site-main">
 <style>
-  .error-page { min-height: 80vh; display: flex; align-items: center; justify-content: center; text-align: center; padding-block: clamp(3rem, 8vw, 6rem); padding-top: calc(var(--header-h) + 3rem); position: relative; overflow: hidden; }
-  .error-page__bg { position: absolute; right: -2rem; top: 50%; transform: translateY(-50%); width: 18rem; height: 18rem; opacity: 0.12; pointer-events: none; color: var(--primary); }
-  .error-page__inner { position: relative; z-index: 1; max-width: 40rem; }
-  .error-page__seal { width: 4rem; height: 4rem; margin: 0 auto 1.5rem; display: flex; align-items: center; justify-content: center; }
-  .error-page__code { font-family: var(--font-display); font-size: clamp(3rem, 10vw, 5.5rem); font-weight: 700; color: var(--primary); line-height: 1; letter-spacing: -0.02em; }
-  .error-page__msg { font-family: var(--font-display); font-size: clamp(1.25rem, 3vw, 1.875rem); margin-top: 1rem; color: var(--fg); line-height: 1.3; text-wrap: balance; }
-  .error-page__sub { margin-top: 1rem; font-size: 0.9375rem; color: var(--fg-muted); line-height: 1.6; }
-  .error-page__actions { margin-top: 2rem; display: flex; flex-direction: column; gap: 0.75rem; justify-content: center; }
-  @media (min-width: 480px) { .error-page__actions { flex-direction: row; align-items: center; justify-content: center; } }
-  .error-page__stroke { margin: 2rem auto 0; max-width: 16rem; }
-  .error-page__deva { font-family: var(--font-deva); font-weight: 700; font-size: clamp(1.25rem, 3vw, 1.75rem); color: var(--haldi-deep); margin-top: 1.5rem; }
+  .error-page {
+    min-height: 80vh; display: flex; align-items: center; justify-content: flex-start;
+    text-align: left; padding-block: clamp(3rem, 8vw, 6rem);
+    padding-top: calc(var(--header-h) + 3rem);
+    position: relative; overflow: hidden;
+  }
+  .error-page__bg {
+    position: absolute; right: -2rem; top: 50%; transform: translateY(-50%);
+    width: 22rem; height: 22rem; opacity: 0.08; z-index: 0;
+    pointer-events: none; color: var(--forest);
+  }
+  @media (max-width: 768px) {
+    .error-page__bg { width: 14rem; height: 14rem; right: -3rem; opacity: 0.06; }
+  }
+  .error-page__inner {
+    position: relative; z-index: 1; max-width: 40rem;
+  }
+  .error-page__seal {
+    width: 4rem; height: 4rem; margin: 0 0 1.5rem;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--forest);
+  }
+  .error-page__seal svg { width: 100%; height: 100%; }
+  .error-page__code {
+    font-family: var(--font-display); font-size: clamp(3rem, 10vw, 5.5rem);
+    font-weight: 700; color: var(--primary); line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .error-page__deva {
+    font-family: var(--font-deva); font-size: clamp(1.25rem, 2.5vw, 1.625rem);
+    color: var(--haldi-deep); margin-top: 0.75rem;
+  }
+  .error-page__msg {
+    font-family: var(--font-display); font-size: clamp(1.5rem, 4vw, 2.25rem);
+    margin-top: 1.25rem; color: var(--fg); line-height: 1.2;
+    text-wrap: balance;
+  }
+  .error-page__sub {
+    margin-top: 1.25rem; font-size: 1rem; color: var(--fg-muted);
+    line-height: 1.7; max-width: 50ch;
+  }
+  .error-page__actions {
+    margin-top: 2rem; display: flex; flex-direction: column; gap: 0.75rem;
+  }
+  @media (min-width: 480px) {
+    .error-page__actions { flex-direction: row; align-items: center; }
+  }
 </style>
 
-<section class="error-page" id="error-404">
-    <div class="error-page__bg" aria-hidden="true"><svg viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg"
+<section class="error-page bg-limewash" aria-labelledby="error-title">
+  <div class="error-page__bg" aria-hidden="true">
+    <svg viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg"
      class=""
      role="img" aria-hidden="true"
      preserveAspectRatio="xMidYMid meet"
@@ -345,9 +382,12 @@
     <ellipse cx="183" cy="96" rx="1.2" ry="1.8"/>
   </g>
 
-</svg></div>
-    <div class="container error-page__inner" data-reveal>
-        <div class="error-page__seal" aria-hidden="true"><svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg"
+</svg>
+  </div>
+  <div class="container">
+    <div class="error-page__inner" data-reveal>
+      <div class="error-page__seal" aria-hidden="true">
+        <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg"
      class=""
      role="img" aria-hidden="true"
      preserveAspectRatio="xMidYMid meet"
@@ -428,153 +468,24 @@
   <circle cx="64" cy="84" r="1.1" fill="var(--forest)"/>
   <circle cx="76" cy="84" r="1.1" fill="var(--forest)"/>
 
-</svg></div>
-        <div class="error-page__code">404</div>
-        <h1 class="error-page__msg">This wall hasn't been painted yet.</h1>
-        <p class="error-page__sub">The page you were looking for doesn't exist — or hasn't been built yet. Let's get you back to a painted wall.</p>
-        <div class="error-page__actions">
-            <a href="./" class="btn btn--primary btn--lg">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-                Back to home
-            </a>
-            <a href="./products/" class="btn btn--outline btn--lg">Explore Prakritik Paint</a>
-        </div>
-        <div class="error-page__deva" lang="hi">गौरीकृत</div>
-        <div class="error-page__stroke" aria-hidden="true"><svg viewBox="0 0 640 420" xmlns="http://www.w3.org/2000/svg"
-     class=""
-     role="img" aria-hidden="true"
-     preserveAspectRatio="xMidYMid meet"
-     width="100%" height="100%">
-  <title>Paint brush stroke</title>
-
-  <defs>
-    <!-- HALDI GRADIENT — soft → mid → deep, diagonal -->
-    <linearGradient id="pbs-grad" x1="0.2" y1="0.1" x2="0.8" y2="0.9">
-      <stop offset="0%" stop-color="var(--haldi-soft)"/>
-      <stop offset="40%" stop-color="var(--haldi)"/>
-      <stop offset="100%" stop-color="var(--haldi-deep)"/>
-    </linearGradient>
-
-    <!-- PAPER-GRAIN TEXTURE PATTERN — tiny dots, very sparse.
-         Applied as an additional layer at 0.05 opacity for a paper-fibre feel. -->
-    <pattern id="pbs-grain" x="0" y="0" width="4" height="4"
-             patternUnits="userSpaceOnUse">
-      <circle cx="1" cy="1" r="0.45" fill="var(--charcoal)" opacity="0.5"/>
-      <circle cx="3" cy="2.5" r="0.3" fill="var(--charcoal)" opacity="0.35"/>
-    </pattern>
-
-    <!-- CLIP PATH — the main stroke shape, used to clip the grain overlay -->
-    <clipPath id="pbs-clip">
-      <path d="M 50 210
-               C 38 200, 28 218, 36 240
-               C 44 262, 60 268, 78 258
-               C 96 250, 108 274, 130 270
-               C 154 266, 168 290, 192 286
-               C 218 282, 232 308, 258 304
-               C 286 300, 302 326, 332 322
-               C 364 318, 380 344, 412 340
-               C 444 336, 462 360, 496 354
-               C 528 348, 548 372, 580 362
-               C 600 356, 612 336, 600 314
-               C 614 296, 596 282, 612 264
-               C 624 244, 600 232, 588 220
-               C 600 204, 580 192, 568 184
-               C 552 168, 528 178, 508 172
-               C 484 166, 470 184, 446 180
-               C 422 174, 408 192, 384 188
-               C 360 182, 344 200, 320 196
-               C 294 190, 278 208, 254 204
-               C 228 198, 212 218, 188 214
-               C 162 208, 146 226, 122 222
-               C 96 216, 80 232, 58 226
-               C 44 222, 42 218, 50 210 Z"/>
-    </clipPath>
-  </defs>
-
-  <!-- MAIN ORGANIC BRUSH STROKE — irregular edge with many control points.
-       Haldi gradient fill. Subtle forest outline for definition. -->
-  <path d="M 50 210
-           C 38 200, 28 218, 36 240
-           C 44 262, 60 268, 78 258
-           C 96 250, 108 274, 130 270
-           C 154 266, 168 290, 192 286
-           C 218 282, 232 308, 258 304
-           C 286 300, 302 326, 332 322
-           C 364 318, 380 344, 412 340
-           C 444 336, 462 360, 496 354
-           C 528 348, 548 372, 580 362
-           C 600 356, 612 336, 600 314
-           C 614 296, 596 282, 612 264
-           C 624 244, 600 232, 588 220
-           C 600 204, 580 192, 568 184
-           C 552 168, 528 178, 508 172
-           C 484 166, 470 184, 446 180
-           C 422 174, 408 192, 384 188
-           C 360 182, 344 200, 320 196
-           C 294 190, 278 208, 254 204
-           C 228 198, 212 218, 188 214
-           C 162 208, 146 226, 122 222
-           C 96 216, 80 232, 58 226
-           C 44 222, 42 218, 50 210 Z"
-        fill="url(#pbs-grad)"
-        stroke="var(--haldi-deep)"
-        stroke-width="1.2"
-        stroke-linejoin="round"
-        opacity="0.92"/>
-
-  <!-- INTERNAL LIGHTER PATCH 1 — small organic shape on top of the stroke.
-       Suggests a thicker/limewash-ier part of the brushstroke. -->
-  <path d="M 150 220
-           C 180 200, 240 196, 290 210
-           C 340 220, 380 210, 400 230
-           C 380 250, 330 244, 280 240
-           C 230 235, 180 250, 150 220 Z"
-        fill="var(--haldi-soft)"
-        stroke="none"
-        opacity="0.3"/>
-
-  <!-- INTERNAL LIGHTER PATCH 2 — smaller accent on lower-right -->
-  <path d="M 420 270
-           C 450 256, 490 260, 510 280
-           C 488 294, 450 290, 420 270 Z"
-        fill="var(--haldi-soft)"
-        stroke="none"
-        opacity="0.25"/>
-
-  <!-- SUBTLE DARKER RIM along the lower edge — suggests where the brush
-       dragged slightly thicker paint. Single line, low opacity. -->
-  <path d="M 192 286
-           C 218 282, 232 308, 258 304
-           C 286 300, 302 326, 332 322
-           C 364 318, 380 344, 412 340"
-        fill="none"
-        stroke="var(--haldi-deep)"
-        stroke-width="1.5"
-        opacity="0.4"
-        stroke-linecap="round"/>
-
-  <!-- BRISTLE TEXTURE — a few thin lighter strokes laid along the stroke direction.
-       Subtle, suggests the direction the brush was dragged. -->
-  <g fill="none" stroke="var(--haldi-deep)"
-     stroke-width="1.3" stroke-linecap="round"
-     opacity="0.28">
-    <path d="M 100 200 C 240 168, 400 168, 560 232"/>
-    <path d="M 90 240 C 240 210, 420 210, 560 278"/>
-  </g>
-  <g fill="none" stroke="var(--haldi-soft)"
-     stroke-width="1.1" stroke-linecap="round"
-     opacity="0.4">
-    <path d="M 110 220 C 240 188, 400 188, 540 244"/>
-  </g>
-
-  <!-- PAPER-GRAIN TEXTURE OVERLAY — very subtle (3-4% perceived opacity).
-       Uses the clip path so the grain only appears inside the stroke shape. -->
-  <g clip-path="url(#pbs-clip)" opacity="0.06">
-    <rect x="0" y="0" width="640" height="420" fill="url(#pbs-grain)"/>
-  </g>
-
-</svg></div>
+</svg>
+      </div>
+      <p class="error-page__code">404</p>
+      <p class="error-page__deva">गौरीकृत</p>
+      <h1 class="error-page__msg" id="error-title">
+        This wall hasn't been painted yet.
+      </h1>
+      <p class="error-page__sub">
+        The page you were looking for is not here. The wall it would have
+        painted hasn't been finished — or the URL has moved. Head back to the
+        Gaurikrit homepage, or explore Prakritik Paint directly.
+      </p>
+      <div class="error-page__actions">
+        <a class="btn btn--primary btn--lg" href="./">Back to Home</a>
+        <a class="btn btn--outline" href="./products/">Explore Products</a>
+      </div>
     </div>
+  </div>
 </section>
     </main>
 
@@ -718,10 +629,7 @@
     <!--
       Module scripts. Order matters: each module registers
       window.GaurikritApp.<Name> = { init: fn, ... } and app.js
-      (loaded last) calls .init() on each. calculator.js is included
-      after forms.js so it can reuse the toast helper if needed, and
-      before app.js so app.js can include 'Calculator' in its boot
-      sequence.
+      (loaded last) calls .init() on each.
     -->
     <script src="./assets/js/navigation.js?v=static"></script>
     <script src="./assets/js/animations.js?v=static"></script>

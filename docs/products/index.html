@@ -4,19 +4,19 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="../assets/brand/gaurikrit-logo-mark.png" type="image/png" onerror="this.onerror=null;this.href='../assets/brand/gaurikrit-mark-temp.svg'">
-    <title>Prakritik Paint — Distemper &amp; Emulsion — Gaurikrit Bio Products</title>
-    <meta name="description" content="Prakritik Paint from Gaurikrit — cow dung-based paint in Distemper and Emulsion formats for interior and exterior walls. Specifications, packaging and coverage.">
+    <title>Prakritik Paint Products — Distemper &amp; Emulsion | Gaurikrit</title>
+    <meta name="description" content="Two formats of Prakritik Paint: Distemper (powder, 1-20 kg packs) and Emulsion (liquid, 1-20 litre packs). Matt finish, interior &amp; exterior use. Cow-dung-based, from Gaurikrit Bio Products.">
     <link rel="canonical" href="https://hello-aditya-dev.github.io/gaurikrit-website/products/">
     <meta name="robots" content="index, follow">
-    <meta property="og:title" content="Prakritik Paint — Distemper &amp; Emulsion — Gaurikrit Bio Products">
-    <meta property="og:description" content="Prakritik Paint from Gaurikrit — cow dung-based paint in Distemper and Emulsion formats for interior and exterior walls. Specifications, packaging and coverage.">
+    <meta property="og:title" content="Prakritik Paint Products — Distemper &amp; Emulsion | Gaurikrit">
+    <meta property="og:description" content="Two formats of Prakritik Paint: Distemper (powder, 1-20 kg packs) and Emulsion (liquid, 1-20 litre packs). Matt finish, interior &amp; exterior use. Cow-dung-based, from Gaurikrit Bio Products.">
     <meta property="og:url" content="https://hello-aditya-dev.github.io/gaurikrit-website/products/">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Gaurikrit Bio Products">
     <meta property="og:image" content="https://hello-aditya-dev.github.io/gaurikrit-website/assets/brand/gaurikrit-logo-mark.png">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Prakritik Paint — Distemper &amp; Emulsion — Gaurikrit Bio Products">
-    <meta name="twitter:description" content="Prakritik Paint from Gaurikrit — cow dung-based paint in Distemper and Emulsion formats for interior and exterior walls. Specifications, packaging and coverage.">
+    <meta name="twitter:title" content="Prakritik Paint Products — Distemper &amp; Emulsion | Gaurikrit">
+    <meta name="twitter:description" content="Two formats of Prakritik Paint: Distemper (powder, 1-20 kg packs) and Emulsion (liquid, 1-20 litre packs). Matt finish, interior &amp; exterior use. Cow-dung-based, from Gaurikrit Bio Products.">
     <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -49,7 +49,7 @@
 
     <link rel="stylesheet" href="../assets/css/app.css?v=static">
 </head>
-<body class="page-products-overview">
+<body class="page-products">
     <a href="#main" class="skip-link">Skip to content</a>
 
     <!-- ===== Site header ===== -->
@@ -192,220 +192,107 @@
 
     <main id="main" class="site-main">
 <style>
-  /* HERO */
-  .products-hero { padding-top: calc(var(--header-h) + 2.5rem); padding-bottom: 2rem; }
-  .products-hero__inner { max-width: 56rem; }
-  .products-hero__eyebrow { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.3125rem 0.75rem; border: 1px solid var(--border); border-radius: var(--radius-full); background: var(--bg-card); font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--primary); }
-  .products-hero__eyebrow-dot { width: 0.375rem; height: 0.375rem; border-radius: 50%; background: var(--haldi); }
-  .products-hero__title { margin-top: 1rem; font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.25rem); line-height: 1.1; letter-spacing: -0.02em; text-wrap: balance; }
-  .products-hero__sub { margin-top: 1rem; max-width: 40rem; color: var(--fg-muted); font-size: clamp(1rem, 2vw, 1.125rem); line-height: 1.65; }
-  .products-hero__rule { width: 4rem; height: 2px; background: var(--haldi); margin-top: 1.5rem; border: 0; }
-
-  /* CATALOGUE — large presentation blocks (not cards) */
-  .catalogue { padding-block: clamp(3rem, 6vw, 5rem); }
-  .catalogue-block { display: grid; gap: 2rem; align-items: center; padding-block: clamp(2rem, 4vw, 3.5rem); border-bottom: 1px solid var(--border); }
-  .catalogue-block:last-of-type { border-bottom: 0; }
-  @media (min-width: 1024px) { .catalogue-block { grid-template-columns: 1fr 1fr; gap: 4rem; } }
-  .catalogue-block--reverse > :first-child { order: 2; }
-  @media (min-width: 1024px) { .catalogue-block--reverse > :first-child { order: 0; } }
-  .catalogue-media { position: relative; aspect-ratio: 1; background: var(--secondary-bg); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-soft); }
-  .catalogue-media .product-media { width: 100%; height: 100%; }
-  .catalogue-media .product-media__official { object-fit: contain; padding: 2.5rem; }
-  .catalogue-media .product-media__fallback { padding: 2rem; }
-  .catalogue-media__chip { position: absolute; top: 1rem; left: 1rem; padding: 0.3125rem 0.75rem; border-radius: var(--radius-full); font-size: 0.625rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; background: var(--bg-card); color: var(--primary); border: 1px solid var(--border); z-index: 3; }
-  .catalogue-text__eyebrow { font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--primary); }
-  .catalogue-text__name { font-family: var(--font-display); font-size: clamp(1.75rem, 4vw, 2.75rem); line-height: 1.1; margin-top: 0.75rem; letter-spacing: -0.02em; }
-  .catalogue-text__desc { margin-top: 0.75rem; color: var(--fg-muted); line-height: 1.65; }
-  .catalogue-text__spec-row { display: flex; flex-wrap: wrap; gap: 0.375rem; margin-top: 1.25rem; }
-  .catalogue-text__spec { padding: 0.3125rem 0.75rem; border-radius: var(--radius-full); background: var(--secondary-bg); font-size: 0.75rem; font-weight: 500; border: 1px solid var(--border); }
-  .catalogue-text__cta { margin-top: 1.5rem; }
-  .catalogue-block--distemper .catalogue-media { border-top: 4px solid var(--indigo); }
-  .catalogue-block--emulsion .catalogue-media { border-top: 4px solid var(--haldi-deep); }
-
-  /* SPEC COMPARISON TABLE */
-  .spec-table-section { padding-block: clamp(3rem, 6vw, 5rem); background: var(--secondary-bg); }
-  .spec-table-section__head { text-align: center; max-width: 48rem; margin-inline: auto; margin-bottom: 2.5rem; }
-  .spec-table-section__title { font-family: var(--font-display); font-size: clamp(1.75rem, 4vw, 2.5rem); letter-spacing: -0.02em; }
-  .spec-table { width: 100%; border-collapse: collapse; background: var(--bg-card); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-soft); border: 1px solid var(--border); }
-  .spec-table thead th { background: var(--forest); color: var(--primary-fg); padding: 1rem 1.25rem; text-align: left; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
-  .spec-table thead th:first-child { width: 9rem; }
-  .spec-table tbody td { padding: 0.875rem 1.25rem; border-top: 1px solid var(--border); font-size: 0.9375rem; vertical-align: top; }
-  .spec-table tbody th { padding: 0.875rem 1.25rem; border-top: 1px solid var(--border); font-size: 0.8125rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--fg-muted); text-align: left; }
-  @media (max-width: 640px) {
-    .spec-table thead { display: none; }
-    .spec-table, .spec-table tbody, .spec-table tr, .spec-table td, .spec-table th { display: block; width: 100%; }
-    .spec-table tr { border-bottom: 1px solid var(--border); padding: 0.5rem 0; }
-    .spec-table tbody td, .spec-table tbody th { border: 0; padding: 0.375rem 1rem; }
-    .spec-table tbody th { background: var(--secondary-bg); }
-    .spec-table tbody td[data-col]::before { content: attr(data-col) ' — '; font-weight: 700; color: var(--fg-muted); text-transform: uppercase; font-size: 0.6875rem; letter-spacing: 0.1em; }
+  /* ===== 1. PRODUCTS HERO (45 / 55) ===== */
+  .products-hero {
+    padding-top: calc(var(--header-h) + 2rem);
+    padding-bottom: 1.5rem;
   }
-  .disclaimer-note { margin-top: 1.5rem; padding: 1rem 1.25rem; background: var(--bg-card); border-left: 3px solid var(--haldi); border-radius: var(--radius); font-size: 0.8125rem; color: var(--fg-muted); line-height: 1.65; }
+  .products-hero__grid {
+    display: grid; gap: 2.5rem; align-items: center;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 1024px) {
+    .products-hero__grid { grid-template-columns: 45fr 55fr; gap: clamp(2rem, 4vw, 4rem); }
+  }
+  .products-hero__lockup { max-width: 42rem; }
+  .products-hero__visual {
+    position: relative; min-height: 22rem; width: 100%;
+    background: var(--paper-warm);
+    border-radius: var(--r-panel);
+    overflow: hidden; display: flex; align-items: center; justify-content: center;
+    padding: 2rem;
+  }
+  @media (min-width: 768px) { .products-hero__visual { min-height: 28rem; } }
+  @media (min-width: 1024px) { .products-hero__visual { min-height: 32rem; } }
+  .products-hero__visual .product-media { width: 100%; height: 100%; }
+  .products-hero__visual .product-media__official { object-fit: contain; }
+  .products-hero__visual .product-media__fallback { padding: 2rem; }
 
-  /* ASHTA LAABH compact */
-  .ashta-compact { padding-block: clamp(3rem, 6vw, 5rem); }
-  .ashta-compact__head { text-align: center; max-width: 48rem; margin-inline: auto; margin-bottom: 2.5rem; }
-  .ashta-compact__deva { font-family: var(--font-deva); font-weight: 700; font-size: clamp(1.5rem, 3vw, 2rem); color: var(--haldi-deep); }
-  .ashta-compact__title { font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2rem); margin-top: 0.5rem; }
-  .ashta-compact__grid { display: grid; gap: 0.75rem; }
-  @media (min-width: 640px) { .ashta-compact__grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (min-width: 1024px) { .ashta-compact__grid { grid-template-columns: repeat(4, 1fr); } }
-  .ashta-compact__item { padding: 1rem 1.25rem; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); display: flex; flex-direction: column; gap: 0.25rem; }
-  .ashta-compact__num { font-family: var(--font-display); font-size: 0.75rem; font-weight: 700; color: var(--haldi-deep); }
-  .ashta-compact__name { font-weight: 600; font-size: 0.9375rem; }
-  .ashta-compact__deva-item { font-family: var(--font-deva); font-size: 0.8125rem; color: var(--fg-muted); }
+  /* ===== SPEC MATRIX (no card, borderless) ===== */
+  .spec-matrix-section { padding-block: clamp(3rem, 6vw, 5rem); }
+  .spec-matrix-section__head { max-width: 48rem; margin-bottom: 2.5rem; }
+  .spec-matrix__row { grid-template-columns: 1fr; gap: 0.75rem; padding: 1.5rem 0; }
+  @media (min-width: 768px) {
+    .spec-matrix__row {
+      grid-template-columns: 12rem 1fr 1fr; gap: 1.5rem; padding: 1.5rem 0;
+    }
+  }
+  .spec-matrix__col-head {
+    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--fg-muted);
+  }
+  .spec-matrix__col-head--distemper { color: var(--indigo); }
+  .spec-matrix__col-head--emulsion { color: var(--leaf); }
 
-  /* CTA STRIP */
-  .help-cta { padding-block: clamp(3rem, 6vw, 5rem); background: var(--forest); color: var(--primary-fg); text-align: center; }
-  .help-cta__title { font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2.25rem); }
-  .help-cta__sub { margin-top: 0.5rem; color: oklch(0.85 0.01 75); }
-  .help-cta__btn { margin-top: 1.5rem; }
+  /* ===== BENEFITS STRIP ===== */
+  .benefits-strip { padding-block: clamp(3rem, 6vw, 5rem); }
+  .benefits-strip__head { max-width: 48rem; margin-bottom: 2rem; }
+  .benefits-strip__list {
+    display: grid; gap: 0;
+    border-top: 1px solid var(--border);
+    counter-reset: benefit;
+  }
+  @media (min-width: 640px) { .benefits-strip__list { grid-template-columns: 1fr 1fr; column-gap: 3rem; } }
+  @media (min-width: 1024px) { .benefits-strip__list { grid-template-columns: repeat(4, 1fr); } }
+  .benefits-strip__item {
+    padding: 1.25rem 0; border-bottom: 1px solid var(--border);
+    display: grid; grid-template-columns: 2.5rem 1fr; gap: 1rem;
+    align-items: baseline; counter-increment: benefit;
+  }
+  .benefits-strip__item::before {
+    content: counter(benefit, decimal-leading-zero);
+    font-family: var(--font-display); font-weight: 700;
+    color: var(--haldi-deep); font-size: 0.875rem; letter-spacing: 0.04em;
+  }
+  .benefits-strip__name { font-weight: 600; font-size: 0.9375rem; color: var(--fg); }
+  .benefits-strip__deva {
+    font-family: var(--font-deva); font-size: 0.8125rem; color: var(--fg-muted);
+    display: block; margin-top: 0.25rem;
+  }
+
+  /* ===== FAQ ===== */
+  .faq-section { padding-block: clamp(3rem, 6vw, 5rem); }
+  .faq-section__head { max-width: 48rem; margin-bottom: 2rem; }
 </style>
 
-<!-- ===== HERO ===== -->
-<section class="products-hero" id="products-hero" data-reveal>
-    <div class="container products-hero__inner">
-        <span class="products-hero__eyebrow"><span class="products-hero__eyebrow-dot" aria-hidden="true"></span>Prakritik Paint</span>
-        <h1 class="products-hero__title">Cow dung-based paint in Distemper and Emulsion formats.</h1>
-        <p class="products-hero__sub">Two Prakritik Paint formats — both matt, both suitable for interior and exterior walls, both carrying the same material lineage.</p>
+<!-- ============================================================
+     1. HERO — 45 / 55 (text / product group visual)
+     ============================================================ -->
+<section class="products-hero bg-limewash" aria-labelledby="products-hero-title">
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="../">Home</a><span>›</span>
+      <span>Products</span>
+    </nav>
+    <div class="products-hero__grid">
+      <div class="products-hero__lockup" data-reveal>
+        <span class="eyebrow"><span class="products-hero__eyebrow-dot" aria-hidden="true"></span>Prakritik Paint</span>
         <hr class="products-hero__rule">
-    </div>
-</section>
-
-<!-- ===== CATALOGUE ===== -->
-<section class="catalogue" id="catalogue" data-reveal>
-    <div class="container">
-
-        <!-- Distemper -->
-        <article class="catalogue-block catalogue-block--distemper" id="prakritik-distemper">
-            <div class="catalogue-media">
-                <span class="catalogue-media__chip">01 · Distemper</span>
-                <div class="product-media" data-official-image="../assets/products/prakritik-distemper.png">
-                    <img class="product-media__official" src="../assets/products/prakritik-distemper.png" alt="Prakritik Distemper Paint" width="640" height="640">
-                    <div class="product-media__fallback"><svg viewBox="0 0 220 280" xmlns="http://www.w3.org/2000/svg"
-     class=""
-     role="img" aria-hidden="true"
-     preserveAspectRatio="xMidYMid meet"
-     width="100%" height="100%">
-  <title>Prakritik Distemper bucket</title>
-
-  <!-- BAIL / HANDLE — metal arch (drawn first, behind the rim) -->
-  <path d="M 42 62 Q 110 22, 178 62"
-        fill="none" stroke="var(--forest)"
-        stroke-width="1.8" stroke-linecap="round"/>
-  <!-- Handle inner line — subtle wire-thickness suggestion -->
-  <path d="M 46 62 Q 110 28, 174 62"
-        fill="none" stroke="var(--forest)"
-        stroke-width="1" opacity="0.5"/>
-
-  <!-- HANDLE ATTACHMENT LUGS — on the rim -->
-  <circle cx="42" cy="62" r="3" fill="var(--forest)"/>
-  <circle cx="178" cy="62" r="3" fill="var(--forest)"/>
-
-  <!-- BUCKET BODY — tapered cylinder, paper-white fill.
-       Top corners at the rim (x=40, x=180), bottom corners narrower (x=52, x=168) -->
-  <path d="M 40 62
-           L 52 250
-           C 60 256, 160 256, 168 250
-           L 180 62 Z"
-        fill="var(--paper)" stroke="var(--forest)"
-        stroke-width="1.5" stroke-linejoin="round"/>
-
-  <!-- SUBTLE VERTICAL HIGHLIGHT on the LEFT side of the cylinder (curve suggestion).
-       No glossy gradient — just a faint single line at 0.12 opacity. -->
-  <path d="M 56 80 L 64 240"
-        stroke="var(--forest)" stroke-width="0.8" opacity="0.12"/>
-
-  <!-- SUBTLE VERTICAL SHADOW on the RIGHT side (even fainter) -->
-  <path d="M 162 80 L 156 240"
-        stroke="var(--forest)" stroke-width="0.8" opacity="0.08"/>
-
-  <!-- TOP RIM ELLIPSE — dark green, seen at slight angle -->
-  <ellipse cx="110" cy="60" rx="70" ry="9"
-           fill="var(--forest)" stroke="var(--forest)"
-           stroke-width="1.5"/>
-
-  <!-- INNER OPENING — limewash-toned, showing the inside of the bucket -->
-  <ellipse cx="110" cy="59" rx="62" ry="6"
-           fill="var(--limewash)" opacity="0.85"/>
-
-  <!-- INNER PAINT SURFACE — very subtle haldi tint inside the rim (suggesting paint residue) -->
-  <ellipse cx="110" cy="59" rx="56" ry="4.5"
-           fill="var(--haldi)" opacity="0.18"/>
-
-  <!-- HALDI ACCENT STRIPE ABOVE LABEL BAND — thin line following the cylinder curve -->
-  <path d="M 46 128 L 50 130 C 80 134, 140 134, 170 130 L 174 128"
-        fill="none" stroke="var(--haldi-deep)"
-        stroke-width="1.6" stroke-linecap="round"/>
-
-  <!-- DARK-GREEN LABEL BAND — curved to follow the cylinder surface (not a flat rectangle).
-       The top and bottom edges have a slight curve suggesting the wrap-around of the band. -->
-  <path d="M 46 132
-           L 50 180
-           C 80 184, 140 184, 170 180
-           L 174 132
-           C 140 136, 80 136, 46 132 Z"
-        fill="var(--forest)" stroke="var(--forest)"
-        stroke-width="1.4" stroke-linejoin="round"/>
-
-  <!-- HALDI ACCENT STRIPE BELOW LABEL BAND -->
-  <path d="M 50 184 L 54 186 C 80 189, 140 189, 166 186 L 170 184"
-        fill="none" stroke="var(--haldi-deep)"
-        stroke-width="1.6" stroke-linecap="round"/>
-
-  <!-- SMALL GEOMETRIC MARK above the wordmark — haldi dot (replaces cartoon cow motif) -->
-  <circle cx="110" cy="138" r="2.2" fill="var(--haldi)"/>
-
-  <!-- WORDMARK TEXT -->
-  <text x="110" y="151" text-anchor="middle"
-        font-family="var(--font-display)" font-weight="700"
-        font-size="11" fill="var(--haldi)" letter-spacing="1.4">GAURIKRIT</text>
-
-  <!-- PRODUCT NAME TEXT -->
-  <text x="110" y="168" text-anchor="middle"
-        font-family="var(--font-display)" font-weight="700"
-        font-size="5.5" fill="var(--haldi)" letter-spacing="1.2">PRAKRITIK DISTEMPER</text>
-
-  <!-- SMALL UNDERLINE MARK beneath wordmark -->
-  <path d="M 86 174 L 134 174"
-        stroke="var(--haldi)" stroke-width="0.8" opacity="0.5"/>
-
-  <!-- BOTTOM FRONT CURVE — base of cylinder visible from the front -->
-  <path d="M 52 250 C 60 256, 160 256, 168 250"
-        fill="none" stroke="var(--forest)"
-        stroke-width="1.5" opacity="0.85"/>
-
-  <!-- SUBTLE BASE SHADOW ELLIPSE — very faint ground contact -->
-  <ellipse cx="110" cy="256" rx="56" ry="3"
-           fill="var(--forest)" opacity="0.08"/>
-
-</svg></div>
-                </div>
-            </div>
-            <div class="catalogue-text">
-                <span class="catalogue-text__eyebrow">Eco-Friendly Cow Dung Paint</span>
-                <h2 class="catalogue-text__name">Prakritik Distemper Paint</h2>
-                <p class="catalogue-text__desc">A powdered cow dung-based paint format. Packaged in kilograms, suitable for interior and exterior walls, with a matt finish.</p>
-                <div class="catalogue-text__spec-row">
-                    <span class="catalogue-text__spec">1, 5, 10 &amp; 20 kg</span>
-                    <span class="catalogue-text__spec">Finish: Matt</span>
-                    <span class="catalogue-text__spec">Interior &amp; Exterior</span>
-                    <span class="catalogue-text__spec">Coverage: 200 sq.ft.**</span>
-                </div>
-                <div class="catalogue-text__cta">
-                    <a href="../products/prakritik-distemper/" class="btn btn--primary btn--lg">Explore Distemper
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                    </a>
-                </div>
-            </div>
-        </article>
-
-        <!-- Emulsion (reversed) -->
-        <article class="catalogue-block catalogue-block--emulsion catalogue-block--reverse" id="prakritik-emulsion">
-            <div class="catalogue-media">
-                <span class="catalogue-media__chip">02 · Emulsion</span>
-                <div class="product-media" data-official-image="../assets/products/prakritik-emulsion.png">
-                    <img class="product-media__official" src="../assets/products/prakritik-emulsion.png" alt="Prakritik Emulsion Paint" width="640" height="640">
-                    <div class="product-media__fallback"><svg viewBox="0 0 220 300" xmlns="http://www.w3.org/2000/svg"
+        <h1 class="products-hero__title" id="products-hero-title">Two formats of Prakritik Paint.</h1>
+        <p class="products-hero__sub">
+          Cow dung-based paint, made for interior and exterior walls. Prakritik
+          Distemper (powder) and Prakritik Emulsion (liquid). Two formats, one
+          material idea.
+        </p>
+      </div>
+      <div class="products-hero__visual" data-reveal>
+        <div class="product-media" data-official-image="../assets/products/prakritik-group.png">
+          <img class="product-media__official"
+               src="../assets/products/prakritik-group.png"
+               alt="Prakritik Distemper and Emulsion paint packs"
+               width="800" height="600" loading="eager" decoding="async">
+          <div class="product-media__fallback">
+            <svg viewBox="0 0 220 300" xmlns="http://www.w3.org/2000/svg"
      class=""
      role="img" aria-hidden="true"
      preserveAspectRatio="xMidYMid meet"
@@ -512,149 +399,541 @@
   <ellipse cx="110" cy="276" rx="56" ry="3"
            fill="var(--forest)" opacity="0.08"/>
 
-</svg></div>
-                </div>
-            </div>
-            <div class="catalogue-text">
-                <span class="catalogue-text__eyebrow">Eco-Friendly Cow Dung Paint</span>
-                <h2 class="catalogue-text__name">Prakritik Emulsion Paint</h2>
-                <p class="catalogue-text__desc">A liquid cow dung-based paint format. Packaged in litres, suitable for interior and exterior walls, with a matt finish.</p>
-                <div class="catalogue-text__spec-row">
-                    <span class="catalogue-text__spec">1, 4, 10 &amp; 20 litre</span>
-                    <span class="catalogue-text__spec">Finish: Matt</span>
-                    <span class="catalogue-text__spec">Interior &amp; Exterior</span>
-                    <span class="catalogue-text__spec">Coverage: 300 sq.ft.**</span>
-                </div>
-                <div class="catalogue-text__cta">
-                    <a href="../products/prakritik-emulsion/" class="btn btn--primary btn--lg">Explore Emulsion
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                    </a>
-                </div>
-            </div>
-        </article>
+</svg>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </section>
 
-<!-- ===== SPEC COMPARISON TABLE ===== -->
-<section class="spec-table-section" id="spec-comparison" data-reveal>
-    <div class="container">
-        <div class="spec-table-section__head">
-            <span class="section-heading__eyebrow">Specifications side by side</span>
-            <h2 class="spec-table-section__title">Compare the two formats.</h2>
+<!-- ============================================================
+     2. DISTEMPER PRODUCT CHAPTER
+     ============================================================ -->
+<section class="product-chapter product-chapter--distemper" aria-labelledby="distemper-chapter-title">
+  <span class="product-chapter__ghost" aria-hidden="true">DISTEMPER</span>
+  <div class="container">
+    <div class="product-chapter__inner" data-reveal>
+      <div class="product-chapter__visual">
+        <div class="product-media" data-official-image="../assets/products/prakritik-distemper.png">
+          <img class="product-media__official"
+               src="../assets/products/prakritik-distemper.png"
+               alt="Prakritik Distemper Paint pack"
+               width="800" height="600" loading="lazy" decoding="async">
+          <div class="product-media__fallback">
+            <svg viewBox="0 0 220 280" xmlns="http://www.w3.org/2000/svg"
+     class=""
+     role="img" aria-hidden="true"
+     preserveAspectRatio="xMidYMid meet"
+     width="100%" height="100%">
+  <title>Prakritik Distemper bucket</title>
+
+  <!-- BAIL / HANDLE — metal arch (drawn first, behind the rim) -->
+  <path d="M 42 62 Q 110 22, 178 62"
+        fill="none" stroke="var(--forest)"
+        stroke-width="1.8" stroke-linecap="round"/>
+  <!-- Handle inner line — subtle wire-thickness suggestion -->
+  <path d="M 46 62 Q 110 28, 174 62"
+        fill="none" stroke="var(--forest)"
+        stroke-width="1" opacity="0.5"/>
+
+  <!-- HANDLE ATTACHMENT LUGS — on the rim -->
+  <circle cx="42" cy="62" r="3" fill="var(--forest)"/>
+  <circle cx="178" cy="62" r="3" fill="var(--forest)"/>
+
+  <!-- BUCKET BODY — tapered cylinder, paper-white fill.
+       Top corners at the rim (x=40, x=180), bottom corners narrower (x=52, x=168) -->
+  <path d="M 40 62
+           L 52 250
+           C 60 256, 160 256, 168 250
+           L 180 62 Z"
+        fill="var(--paper)" stroke="var(--forest)"
+        stroke-width="1.5" stroke-linejoin="round"/>
+
+  <!-- SUBTLE VERTICAL HIGHLIGHT on the LEFT side of the cylinder (curve suggestion).
+       No glossy gradient — just a faint single line at 0.12 opacity. -->
+  <path d="M 56 80 L 64 240"
+        stroke="var(--forest)" stroke-width="0.8" opacity="0.12"/>
+
+  <!-- SUBTLE VERTICAL SHADOW on the RIGHT side (even fainter) -->
+  <path d="M 162 80 L 156 240"
+        stroke="var(--forest)" stroke-width="0.8" opacity="0.08"/>
+
+  <!-- TOP RIM ELLIPSE — dark green, seen at slight angle -->
+  <ellipse cx="110" cy="60" rx="70" ry="9"
+           fill="var(--forest)" stroke="var(--forest)"
+           stroke-width="1.5"/>
+
+  <!-- INNER OPENING — limewash-toned, showing the inside of the bucket -->
+  <ellipse cx="110" cy="59" rx="62" ry="6"
+           fill="var(--limewash)" opacity="0.85"/>
+
+  <!-- INNER PAINT SURFACE — very subtle haldi tint inside the rim (suggesting paint residue) -->
+  <ellipse cx="110" cy="59" rx="56" ry="4.5"
+           fill="var(--haldi)" opacity="0.18"/>
+
+  <!-- HALDI ACCENT STRIPE ABOVE LABEL BAND — thin line following the cylinder curve -->
+  <path d="M 46 128 L 50 130 C 80 134, 140 134, 170 130 L 174 128"
+        fill="none" stroke="var(--haldi-deep)"
+        stroke-width="1.6" stroke-linecap="round"/>
+
+  <!-- DARK-GREEN LABEL BAND — curved to follow the cylinder surface (not a flat rectangle).
+       The top and bottom edges have a slight curve suggesting the wrap-around of the band. -->
+  <path d="M 46 132
+           L 50 180
+           C 80 184, 140 184, 170 180
+           L 174 132
+           C 140 136, 80 136, 46 132 Z"
+        fill="var(--forest)" stroke="var(--forest)"
+        stroke-width="1.4" stroke-linejoin="round"/>
+
+  <!-- HALDI ACCENT STRIPE BELOW LABEL BAND -->
+  <path d="M 50 184 L 54 186 C 80 189, 140 189, 166 186 L 170 184"
+        fill="none" stroke="var(--haldi-deep)"
+        stroke-width="1.6" stroke-linecap="round"/>
+
+  <!-- SMALL GEOMETRIC MARK above the wordmark — haldi dot (replaces cartoon cow motif) -->
+  <circle cx="110" cy="138" r="2.2" fill="var(--haldi)"/>
+
+  <!-- WORDMARK TEXT -->
+  <text x="110" y="151" text-anchor="middle"
+        font-family="var(--font-display)" font-weight="700"
+        font-size="11" fill="var(--haldi)" letter-spacing="1.4">GAURIKRIT</text>
+
+  <!-- PRODUCT NAME TEXT -->
+  <text x="110" y="168" text-anchor="middle"
+        font-family="var(--font-display)" font-weight="700"
+        font-size="5.5" fill="var(--haldi)" letter-spacing="1.2">PRAKRITIK DISTEMPER</text>
+
+  <!-- SMALL UNDERLINE MARK beneath wordmark -->
+  <path d="M 86 174 L 134 174"
+        stroke="var(--haldi)" stroke-width="0.8" opacity="0.5"/>
+
+  <!-- BOTTOM FRONT CURVE — base of cylinder visible from the front -->
+  <path d="M 52 250 C 60 256, 160 256, 168 250"
+        fill="none" stroke="var(--forest)"
+        stroke-width="1.5" opacity="0.85"/>
+
+  <!-- SUBTLE BASE SHADOW ELLIPSE — very faint ground contact -->
+  <ellipse cx="110" cy="256" rx="56" ry="3"
+           fill="var(--forest)" opacity="0.08"/>
+
+</svg>
+          </div>
         </div>
-        <div style="overflow-x:auto;">
-            <table class="spec-table">
-                <thead>
-                    <tr>
-                        <th scope="col">Specification</th>
-                        <th scope="col">Prakritik Distemper Paint</th>
-                        <th scope="col">Prakritik Emulsion Paint</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">Packaging</th>
-                        <td data-col="Distemper">1, 5, 10 &amp; 20 kg</td>
-                        <td data-col="Emulsion">1, 4, 10 &amp; 20 litre</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Colour</th>
-                        <td data-col="Distemper">White</td>
-                        <td data-col="Emulsion">White</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Finish</th>
-                        <td data-col="Distemper">Matt</td>
-                        <td data-col="Emulsion">Matt</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Drying time</th>
-                        <td data-col="Distemper">4 hrs</td>
-                        <td data-col="Emulsion">4 hrs</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Coverage</th>
-                        <td data-col="Distemper">200 sq.ft.**</td>
-                        <td data-col="Emulsion">300 sq.ft.**</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">V.O.C.</th>
-                        <td data-col="Distemper">Negligible</td>
-                        <td data-col="Emulsion">Negligible</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Usage</th>
-                        <td data-col="Distemper">Interior &amp; Exterior</td>
-                        <td data-col="Emulsion">Interior &amp; Exterior</td>
-                    </tr>
-                </tbody>
-            </table>
+      </div>
+      <div class="product-chapter__copy">
+        <span class="product-chapter__eyebrow">Format 01 — Distemper</span>
+        <h2 class="product-chapter__name" id="distemper-chapter-title">
+          Prakritik Distemper Paint
+        </h2>
+        <p class="product-chapter__desc">
+          Eco-Friendly Cow Dung Paint. A powder-format paint, brushed on
+          interior and exterior walls. Supplied in 1, 5, 10 &amp; 20 kg packs.
+        </p>
+        <dl class="product-chapter__specs">
+          <div class="duo-panel__row"><dt>Finish</dt><dd>Matt</dd></div>
+          <div class="duo-panel__row"><dt>Drying time</dt><dd>4 hrs</dd></div>
+          <div class="duo-panel__row"><dt>Coverage</dt><dd>200 sq.ft.**</dd></div>
+          <div class="duo-panel__row"><dt>V.O.C.</dt><dd>Negligible</dd></div>
+        </dl>
+        <div class="product-chapter__cta">
+          <a class="btn btn--secondary" href="../products/prakritik-distemper/">View Distemper</a>
+          <a class="btn btn--outline" href="../contact/?interest=prakritik-distemper">Enquire About Distemper</a>
         </div>
-        <p class="disclaimer-note"><strong>Coverage note —</strong> Actual coverage may vary from mentioned coverage due to factors such as method, condition of application surface, roughness and porosity.</p>
+      </div>
     </div>
+  </div>
 </section>
 
-<!-- ===== ASHTA LAABH (compact) ===== -->
-<section class="ashta-compact" id="ashta-laabh" data-reveal>
-    <div class="container">
-        <div class="ashta-compact__head">
-            <div class="ashta-compact__deva" lang="hi">अष्ट लाभ</div>
-            <h2 class="ashta-compact__title">Eight benefits presented in Prakritik Paint.</h2>
+<!-- ============================================================
+     3. EMULSION PRODUCT CHAPTER (reversed)
+     ============================================================ -->
+<section class="product-chapter product-chapter--emulsion" aria-labelledby="emulsion-chapter-title">
+  <span class="product-chapter__ghost" aria-hidden="true">EMULSION</span>
+  <div class="container">
+    <div class="product-chapter__inner" data-reveal>
+      <div class="product-chapter__visual">
+        <div class="product-media" data-official-image="../assets/products/prakritik-emulsion.png">
+          <img class="product-media__official"
+               src="../assets/products/prakritik-emulsion.png"
+               alt="Prakritik Emulsion Paint pack"
+               width="800" height="600" loading="lazy" decoding="async">
+          <div class="product-media__fallback">
+            <svg viewBox="0 0 220 300" xmlns="http://www.w3.org/2000/svg"
+     class=""
+     role="img" aria-hidden="true"
+     preserveAspectRatio="xMidYMid meet"
+     width="100%" height="100%">
+  <title>Prakritik Emulsion bucket</title>
+
+  <!-- BAIL / HANDLE — metal arch (drawn first, behind the rim) -->
+  <path d="M 42 62 Q 110 22, 178 62"
+        fill="none" stroke="var(--forest)"
+        stroke-width="1.8" stroke-linecap="round"/>
+  <!-- Handle inner line — subtle wire-thickness suggestion -->
+  <path d="M 46 62 Q 110 28, 174 62"
+        fill="none" stroke="var(--forest)"
+        stroke-width="1" opacity="0.5"/>
+
+  <!-- HANDLE ATTACHMENT LUGS — on the rim -->
+  <circle cx="42" cy="62" r="3" fill="var(--forest)"/>
+  <circle cx="178" cy="62" r="3" fill="var(--forest)"/>
+
+  <!-- BUCKET BODY — TALLER tapered cylinder, paper-white fill.
+       Top corners at the rim (x=40, x=180), bottom corners narrower (x=52, x=168).
+       Taller body — base at y=270 (vs y=250 for distemper). -->
+  <path d="M 40 62
+           L 52 270
+           C 60 276, 160 276, 168 270
+           L 180 62 Z"
+        fill="var(--paper)" stroke="var(--forest)"
+        stroke-width="1.5" stroke-linejoin="round"/>
+
+  <!-- SUBTLE VERTICAL HIGHLIGHT on the LEFT side of the cylinder -->
+  <path d="M 56 80 L 64 260"
+        stroke="var(--forest)" stroke-width="0.8" opacity="0.12"/>
+
+  <!-- SUBTLE VERTICAL SHADOW on the RIGHT side -->
+  <path d="M 162 80 L 156 260"
+        stroke="var(--forest)" stroke-width="0.8" opacity="0.08"/>
+
+  <!-- TOP RIM ELLIPSE — dark green -->
+  <ellipse cx="110" cy="60" rx="70" ry="9"
+           fill="var(--forest)" stroke="var(--forest)"
+           stroke-width="1.5"/>
+
+  <!-- INNER OPENING — limewash-toned inside -->
+  <ellipse cx="110" cy="59" rx="62" ry="6"
+           fill="var(--limewash)" opacity="0.85"/>
+
+  <!-- LIQUID LINE AT RIM — a subtle haldi-toned ellipse just inside the rim,
+       suggesting the liquid paint surface filling up to the rim -->
+  <ellipse cx="110" cy="58" rx="58" ry="5"
+           fill="var(--haldi)" opacity="0.32"/>
+
+  <!-- SURFACE RIPPLE on the liquid — very subtle line suggesting liquid surface tension -->
+  <path d="M 56 57 C 80 55, 140 55, 164 57"
+        fill="none" stroke="var(--haldi-deep)"
+        stroke-width="0.8" opacity="0.55"/>
+
+  <!-- HALDI ACCENT STRIPE ABOVE LABEL BAND -->
+  <path d="M 46 128 L 50 130 C 80 134, 140 134, 170 130 L 174 128"
+        fill="none" stroke="var(--haldi-deep)"
+        stroke-width="1.6" stroke-linecap="round"/>
+
+  <!-- DARK-GREEN LABEL BAND — taller band (emulsion pack), curved to follow cylinder -->
+  <path d="M 46 132
+           L 50 204
+           C 80 208, 140 208, 170 204
+           L 174 132
+           C 140 136, 80 136, 46 132 Z"
+        fill="var(--forest)" stroke="var(--forest)"
+        stroke-width="1.4" stroke-linejoin="round"/>
+
+  <!-- HALDI ACCENT STRIPE BELOW LABEL BAND -->
+  <path d="M 50 208 L 54 210 C 80 213, 140 213, 166 210 L 170 208"
+        fill="none" stroke="var(--haldi-deep)"
+        stroke-width="1.6" stroke-linecap="round"/>
+
+  <!-- SMALL GEOMETRIC MARK above the wordmark — haldi dot -->
+  <circle cx="110" cy="138" r="2.2" fill="var(--haldi)"/>
+
+  <!-- WORDMARK TEXT -->
+  <text x="110" y="153" text-anchor="middle"
+        font-family="var(--font-display)" font-weight="700"
+        font-size="12" fill="var(--haldi)" letter-spacing="1.5">GAURIKRIT</text>
+
+  <!-- SUBTITLE LINE 1 -->
+  <text x="110" y="174" text-anchor="middle"
+        font-family="var(--font-display)" font-weight="700"
+        font-size="7" fill="var(--haldi)" letter-spacing="1.6">PRAKRITIK</text>
+
+  <!-- SUBTITLE LINE 2 -->
+  <text x="110" y="190" text-anchor="middle"
+        font-family="var(--font-display)" font-weight="700"
+        font-size="7" fill="var(--haldi)" letter-spacing="1.6">EMULSION</text>
+
+  <!-- SMALL UNDERLINE MARK beneath wordmark -->
+  <path d="M 86 160 L 134 160"
+        stroke="var(--haldi)" stroke-width="0.8" opacity="0.5"/>
+
+  <!-- BOTTOM FRONT CURVE — base of cylinder -->
+  <path d="M 52 270 C 60 276, 160 276, 168 270"
+        fill="none" stroke="var(--forest)"
+        stroke-width="1.5" opacity="0.85"/>
+
+  <!-- SUBTLE BASE SHADOW ELLIPSE — very faint ground contact -->
+  <ellipse cx="110" cy="276" rx="56" ry="3"
+           fill="var(--forest)" opacity="0.08"/>
+
+</svg>
+          </div>
         </div>
-        <ol class="ashta-compact__grid" data-reveal-stagger>
-            <li class="ashta-compact__item">
-                <span class="ashta-compact__num">01</span>
-                <span class="ashta-compact__name">Antibacterial</span>
-                <span class="ashta-compact__deva-item" lang="hi">जीवाणुरोधी</span>
-            </li>
-            <li class="ashta-compact__item">
-                <span class="ashta-compact__num">02</span>
-                <span class="ashta-compact__name">Antifungal</span>
-                <span class="ashta-compact__deva-item" lang="hi">कवकरोधी</span>
-            </li>
-            <li class="ashta-compact__item">
-                <span class="ashta-compact__num">03</span>
-                <span class="ashta-compact__name">Eco-Friendly</span>
-                <span class="ashta-compact__deva-item" lang="hi">पर्यावरण-मित्र</span>
-            </li>
-            <li class="ashta-compact__item">
-                <span class="ashta-compact__num">04</span>
-                <span class="ashta-compact__name">Natural Thermal Insulator</span>
-                <span class="ashta-compact__deva-item" lang="hi">प्राकृतिक ऊष्मीय इन्सुलेटर</span>
-            </li>
-            <li class="ashta-compact__item">
-                <span class="ashta-compact__num">05</span>
-                <span class="ashta-compact__name">Cost-Effective</span>
-                <span class="ashta-compact__deva-item" lang="hi">किफ़ायती</span>
-            </li>
-            <li class="ashta-compact__item">
-                <span class="ashta-compact__num">06</span>
-                <span class="ashta-compact__name">Free from Heavy Metals</span>
-                <span class="ashta-compact__deva-item" lang="hi">भारी धातुओं से मुक्त</span>
-            </li>
-            <li class="ashta-compact__item">
-                <span class="ashta-compact__num">07</span>
-                <span class="ashta-compact__name">Non-Toxic</span>
-                <span class="ashta-compact__deva-item" lang="hi">गैर-विषाक्त</span>
-            </li>
-            <li class="ashta-compact__item">
-                <span class="ashta-compact__num">08</span>
-                <span class="ashta-compact__name">Odourless</span>
-                <span class="ashta-compact__deva-item" lang="hi">गंधरहित</span>
-            </li>
-        </ol>
+      </div>
+      <div class="product-chapter__copy">
+        <span class="product-chapter__eyebrow">Format 02 — Emulsion</span>
+        <h2 class="product-chapter__name" id="emulsion-chapter-title">
+          Prakritik Emulsion Paint
+        </h2>
+        <p class="product-chapter__desc">
+          Eco-Friendly Cow Dung Paint. A liquid-format paint, brushed on
+          interior and exterior walls. Supplied in 1, 4, 10 &amp; 20 litre packs.
+        </p>
+        <dl class="product-chapter__specs">
+          <div class="duo-panel__row"><dt>Finish</dt><dd>Matt</dd></div>
+          <div class="duo-panel__row"><dt>Drying time</dt><dd>4 hrs</dd></div>
+          <div class="duo-panel__row"><dt>Coverage</dt><dd>300 sq.ft.**</dd></div>
+          <div class="duo-panel__row"><dt>V.O.C.</dt><dd>Negligible</dd></div>
+        </dl>
+        <div class="product-chapter__cta">
+          <a class="btn btn--secondary" href="../products/prakritik-emulsion/">View Emulsion</a>
+          <a class="btn btn--outline" href="../contact/?interest=prakritik-emulsion">Enquire About Emulsion</a>
+        </div>
+      </div>
     </div>
+  </div>
 </section>
 
-<!-- ===== HELP CTA ===== -->
-<section class="help-cta" id="help-cta" data-reveal>
-    <div class="container">
-        <h2 class="help-cta__title">Need help choosing?</h2>
-        <p class="help-cta__sub">Talk to Gaurikrit about your project and we'll help you compare formats.</p>
-        <div class="help-cta__btn">
-            <a href="../contact/" class="btn btn--haldi btn--lg">Talk to Gaurikrit</a>
+<!-- ============================================================
+     4. SPEC MATRIX — large ruled comparison, NO outer card
+     ============================================================ -->
+<section class="section section--paper spec-matrix-section" aria-labelledby="compare-title">
+  <div class="container">
+    <div class="spec-matrix-section__head section-heading section-heading--left" data-reveal>
+      <span class="section-heading__eyebrow">Side by side</span>
+      <h2 class="section-heading__title" id="compare-title">Compare the two formats.</h2>
+    </div>
+
+    <div class="spec-matrix" data-reveal>
+      <!-- Column header row -->
+      <div class="spec-matrix__row">
+        <span class="spec-matrix__col-head">Specification</span>
+        <span class="spec-matrix__col-head spec-matrix__col-head--distemper">Prakritik Distemper</span>
+        <span class="spec-matrix__col-head spec-matrix__col-head--emulsion">Prakritik Emulsion</span>
+      </div>
+      <div class="spec-matrix__row">
+        <span class="spec-matrix__label">Pack sizes</span>
+        <span class="spec-matrix__value">1, 5, 10 &amp; 20 kg</span>
+        <span class="spec-matrix__value">1, 4, 10 &amp; 20 litre</span>
+      </div>
+      <div class="spec-matrix__row">
+        <span class="spec-matrix__label">Colour</span>
+        <span class="spec-matrix__value">White</span>
+        <span class="spec-matrix__value">White</span>
+      </div>
+      <div class="spec-matrix__row">
+        <span class="spec-matrix__label">Finish</span>
+        <span class="spec-matrix__value">Matt</span>
+        <span class="spec-matrix__value">Matt</span>
+      </div>
+      <div class="spec-matrix__row">
+        <span class="spec-matrix__label">Drying time</span>
+        <span class="spec-matrix__value">4 hrs</span>
+        <span class="spec-matrix__value">4 hrs</span>
+      </div>
+      <div class="spec-matrix__row">
+        <span class="spec-matrix__label">Coverage</span>
+        <span class="spec-matrix__value">200 sq.ft.**</span>
+        <span class="spec-matrix__value">300 sq.ft.**</span>
+      </div>
+      <div class="spec-matrix__row">
+        <span class="spec-matrix__label">V.O.C.</span>
+        <span class="spec-matrix__value">Negligible</span>
+        <span class="spec-matrix__value">Negligible</span>
+      </div>
+      <div class="spec-matrix__row">
+        <span class="spec-matrix__label">Usage</span>
+        <span class="spec-matrix__value">Interior &amp; Exterior</span>
+        <span class="spec-matrix__value">Interior &amp; Exterior</span>
+      </div>
+    </div>
+
+    <p class="coverage-disclaimer" style="margin-top: 2rem;">
+      <span class="coverage-disclaimer__label">Coverage note</span>
+      <span class="coverage-disclaimer__text">Actual coverage may vary from mentioned coverage due to factors such as method, condition of application surface, roughness and porosity.</span>
+    </p>
+  </div>
+</section>
+
+<!-- ============================================================
+     5. BENEFITS STRIP — numbered typographic list, NO 8 cards
+     ============================================================ -->
+<section class="section section--limewash benefits-strip" aria-labelledby="benefits-title">
+  <div class="container">
+    <div class="benefits-strip__head section-heading section-heading--left" data-reveal>
+      <span class="section-heading__eyebrow">Ashta Laabh — अष्ट लाभ</span>
+      <h2 class="section-heading__title" id="benefits-title">Eight benefits of Prakritik Paint.</h2>
+      <p class="section-heading__desc">
+        Client-supplied product benefits, not independently tested claims.
+      </p>
+    </div>
+    <ol class="benefits-strip__list" data-reveal-stagger>
+        <li class="benefits-strip__item">
+          <span>
+            <span class="benefits-strip__name">Antibacterial</span>
+            <span class="benefits-strip__deva">जीवाणुरोधी</span>
+          </span>
+        </li>
+        <li class="benefits-strip__item">
+          <span>
+            <span class="benefits-strip__name">Antifungal</span>
+            <span class="benefits-strip__deva">कवकरोधी</span>
+          </span>
+        </li>
+        <li class="benefits-strip__item">
+          <span>
+            <span class="benefits-strip__name">Eco-Friendly</span>
+            <span class="benefits-strip__deva">पर्यावरण-मित्र</span>
+          </span>
+        </li>
+        <li class="benefits-strip__item">
+          <span>
+            <span class="benefits-strip__name">Natural Thermal Insulator</span>
+            <span class="benefits-strip__deva">प्राकृतिक ऊष्मीय इन्सुलेटर</span>
+          </span>
+        </li>
+        <li class="benefits-strip__item">
+          <span>
+            <span class="benefits-strip__name">Cost-Effective</span>
+            <span class="benefits-strip__deva">किफ़ायती</span>
+          </span>
+        </li>
+        <li class="benefits-strip__item">
+          <span>
+            <span class="benefits-strip__name">Free from Heavy Metals</span>
+            <span class="benefits-strip__deva">भारी धातुओं से मुक्त</span>
+          </span>
+        </li>
+        <li class="benefits-strip__item">
+          <span>
+            <span class="benefits-strip__name">Non-Toxic</span>
+            <span class="benefits-strip__deva">गैर-विषाक्त</span>
+          </span>
+        </li>
+        <li class="benefits-strip__item">
+          <span>
+            <span class="benefits-strip__name">Odourless</span>
+            <span class="benefits-strip__deva">गंधरहित</span>
+          </span>
+        </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============================================================
+     6. FAQ (consumed here per spec — only styled for Products / Why-Prakritik)
+     ============================================================ -->
+<section class="section section--paper faq-section" aria-labelledby="faq-title">
+  <div class="container">
+    <div class="faq-section__head section-heading section-heading--left" data-reveal>
+      <span class="section-heading__eyebrow">Common questions</span>
+      <h2 class="section-heading__title" id="faq-title">Frequently asked.</h2>
+    </div>
+    <div class="faq-list" data-reveal>
+        <div class="faq-item">
+          <button type="button" class="faq-item__q" aria-expanded="false">
+            <span>What products are available?</span>
+            <svg class="faq-item__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-item__a">
+            <div class="faq-item__a-inner">Prakritik Distemper Paint and Prakritik Emulsion Paint.</div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button type="button" class="faq-item__q" aria-expanded="false">
+            <span>What is the finish?</span>
+            <svg class="faq-item__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-item__a">
+            <div class="faq-item__a-inner">Matt.</div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button type="button" class="faq-item__q" aria-expanded="false">
+            <span>What is the drying time?</span>
+            <svg class="faq-item__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-item__a">
+            <div class="faq-item__a-inner">4 hrs.</div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button type="button" class="faq-item__q" aria-expanded="false">
+            <span>Can they be used indoors and outdoors?</span>
+            <svg class="faq-item__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-item__a">
+            <div class="faq-item__a-inner">The supplied product specifications list usage as Interior &amp; Exterior.</div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button type="button" class="faq-item__q" aria-expanded="false">
+            <span>What pack sizes are available for Distemper?</span>
+            <svg class="faq-item__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-item__a">
+            <div class="faq-item__a-inner">1 kg, 5 kg, 10 kg and 20 kg.</div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button type="button" class="faq-item__q" aria-expanded="false">
+            <span>What pack sizes are available for Emulsion?</span>
+            <svg class="faq-item__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-item__a">
+            <div class="faq-item__a-inner">1 litre, 4 litre, 10 litre and 20 litre.</div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button type="button" class="faq-item__q" aria-expanded="false">
+            <span>What coverage is listed for Distemper?</span>
+            <svg class="faq-item__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-item__a">
+            <div class="faq-item__a-inner">200 sq.ft.**</div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button type="button" class="faq-item__q" aria-expanded="false">
+            <span>What coverage is listed for Emulsion?</span>
+            <svg class="faq-item__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-item__a">
+            <div class="faq-item__a-inner">300 sq.ft.**</div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button type="button" class="faq-item__q" aria-expanded="false">
+            <span>What is the listed V.O.C. information?</span>
+            <svg class="faq-item__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-item__a">
+            <div class="faq-item__a-inner">V.O.C.: Negligible.</div>
+          </div>
         </div>
     </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     7. NEED HELP CHOOSING — CTA
+     ============================================================ -->
+<section class="section section--forest" aria-labelledby="choose-cta-title">
+  <div class="container">
+    <div class="why-cta" data-reveal>
+      <span class="why-cta__eyebrow">Still deciding?</span>
+      <h2 class="why-cta__title" id="choose-cta-title">Need help choosing? Talk to Gaurikrit.</h2>
+      <p class="why-cta__sub">
+        We can walk through your project — interior or exterior, fresh walls or
+        repainting — and help you pick the right Prakritik format.
+      </p>
+      <div class="why-cta__actions">
+        <a class="btn btn--haldi" href="../contact/">Talk to Us</a>
+        <a class="btn btn--secondary" href="../paint-calculator/">Estimate Your Project</a>
+      </div>
+    </div>
+  </div>
 </section>
     </main>
 
@@ -798,10 +1077,7 @@
     <!--
       Module scripts. Order matters: each module registers
       window.GaurikritApp.<Name> = { init: fn, ... } and app.js
-      (loaded last) calls .init() on each. calculator.js is included
-      after forms.js so it can reuse the toast helper if needed, and
-      before app.js so app.js can include 'Calculator' in its boot
-      sequence.
+      (loaded last) calls .init() on each.
     -->
     <script src="../assets/js/navigation.js?v=static"></script>
     <script src="../assets/js/animations.js?v=static"></script>

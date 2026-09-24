@@ -1,262 +1,410 @@
 <?php
 /**
- * Gaurikrit Bio Products — Why Prakritik.
- * Task PAGES-LOCK. Illustrated editorial essay.
- * 7 numbered sections: 01 THE MATERIAL / 02 THE TRADITION / 03 FROM
- * MATERIAL TO PAINT / 04 ASHTA LAABH / 05 TWO FORMATS / 06 SUSTAINABILITY
- * CONTEXT / 07 CTA.
+ * Gaurikrit Bio Products — Why Prakritik (V3 rebuild).
+ * Task V3-PAGES.
+ *
+ * Illustrated editorial essay. Hero with Indian cow + real wall/material
+ * sample. Six numbered chapters (each visually distinct):
+ *   01 MATERIAL    — physical material sample graphic
+ *   02 TRADITION   — large indian-courtyard illustration
+ *   03 MATERIAL TO WALL — full-width material-to-wall diagram
+ *   04 ASHTA       — full-size ashta-laabh-seal
+ *   05 FORMATS     — real Distemper + Emulsion product visual (image-handoff)
+ *   06 CONTEXT     — rural-landscape with annotations
+ * CTA "Explore Products" → /products/.
  */
 declare(strict_types=1);
 
-$pageTitle       = 'Why Prakritik Paint — Gaurikrit Bio Products';
-$pageDescription = 'Why Prakritik Paint — an old Indian material idea, reconsidered for modern walls. Cow dung-based paint from Gaurikrit Bio Products.';
+$pageTitle       = 'Why Prakritik Paint — An Old Material, Reconsidered | Gaurikrit';
+$pageDescription = 'Cow dung has been used on Indian walls for generations. Prakritik Paint carries that material into a contemporary paint format. The material, the tradition, the wall.';
 $pageCanonical   = '/why-prakritik/';
-$pageClass       = 'why-prakritik';
+$pageClass        = 'why-prakritik';
 
-require_once __DIR__ . '/../../includes/bootstrap.php';
+require_once __DIR__ . '/../includes/bootstrap.php';
 require ROOT_PATH . '/includes/header.php';
 
 global $COMPANY, $PRODUCTS, $ASHTA_LAABH, $MATERIAL_JOURNEY;
 
 $distemper = get_product('prakritik-distemper');
 $emulsion  = get_product('prakritik-emulsion');
+
+$ashtaIds = [
+    'Antibacterial'              => 'antibacterial',
+    'Antifungal'                 => 'antifungal',
+    'Eco-Friendly'               => 'eco-friendly',
+    'Natural Thermal Insulator'  => 'thermal-insulator',
+    'Cost-Effective'             => 'cost-effective',
+    'Free from Heavy Metals'     => 'heavy-metal-free',
+    'Non-Toxic'                  => 'non-toxic',
+    'Odourless'                  => 'odourless',
+];
 ?>
 <style>
-  /* HERO */
-  .why-hero { padding-top: calc(var(--header-h) + 2.5rem); padding-bottom: clamp(2.5rem, 5vw, 4rem); position: relative; overflow: hidden; }
+  /* ===== HERO (cow + wall sample) ===== */
+  .why-hero { padding-top: calc(var(--header-h) + 2rem); padding-bottom: 1.5rem; }
   .why-hero__container { display: grid; gap: 2rem; align-items: center; }
-  @media (min-width: 1024px) { .why-hero__container { grid-template-columns: 1fr 1fr; gap: 4rem; } }
-  .why-hero__eyebrow { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.3125rem 0.75rem; border: 1px solid var(--border); border-radius: var(--radius-full); background: var(--bg-card); font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--primary); width: fit-content; }
-  .why-hero__eyebrow-dot { width: 0.375rem; height: 0.375rem; border-radius: 50%; background: var(--haldi); }
-  .why-hero__title { margin-top: 1.25rem; font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.05; letter-spacing: -0.02em; text-wrap: balance; }
-  .why-hero__sub { margin-top: 1.25rem; max-width: 36rem; color: var(--fg-muted); font-size: clamp(1rem, 2vw, 1.125rem); line-height: 1.65; }
-  .why-hero__rule { width: 4rem; height: 2px; background: var(--haldi); margin-top: 1.5rem; border: 0; }
-  .why-hero__art { position: relative; aspect-ratio: 4/3; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-soft); }
-  .why-hero__art .why-hero__cow { position: absolute; left: 1.5rem; bottom: 1rem; width: 50%; opacity: 0.9; }
-  .why-hero__art .why-hero__wall { position: absolute; right: 1rem; top: 1rem; bottom: 1rem; width: 38%; border-radius: var(--radius); background: linear-gradient(135deg, var(--haldi-light), var(--haldi)); border: 1px solid var(--haldi-deep); overflow: hidden; }
-  .why-hero__art .why-hero__wall::after { content: ''; position: absolute; inset: 0; background-image: radial-gradient(circle at 1px 1px, oklch(0.28 0.04 150 / 0.08) 0.5px, transparent 0); background-size: 14px 14px; }
+  @media (min-width: 1024px) {
+    .why-hero__container { grid-template-columns: 5fr 7fr; gap: 3rem; }
+  }
+  .why-hero__lockup { max-width: 42rem; }
+  .why-hero__art {
+    position: relative; aspect-ratio: 5/4; background: var(--limewash);
+    border-radius: var(--r-panel); overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .why-hero__art .why-cow {
+    position: absolute; left: 6%; bottom: 8%; width: 46%; opacity: 0.85;
+  }
+  .why-hero__art .why-wall {
+    position: absolute; right: 8%; top: 8%; bottom: 8%; width: 42%;
+    background: linear-gradient(135deg, var(--limewash), color-mix(in srgb, var(--kraft) 35%, var(--limewash)));
+    overflow: hidden;
+  }
+  .why-hero__art .why-wall::after {
+    content: ''; position: absolute; inset: 0;
+    background-image: radial-gradient(circle at 1px 1px, rgba(32, 30, 25, 0.08) 0.5px, transparent 0);
+    background-size: 14px 14px;
+  }
+  .why-hero__title { font-size: clamp(2.2rem, 5vw, 4rem); }
 
-  /* ESSAY */
-  .essay { padding-block: clamp(3rem, 6vw, 5rem); }
-  .essay__section { display: grid; gap: 1.5rem; padding-block: clamp(2rem, 4vw, 3rem); border-top: 1px solid var(--border); }
-  .essay__section:first-of-type { border-top: 0; }
-  @media (min-width: 1024px) { .essay__section { grid-template-columns: 0.85fr 1.15fr; gap: 4rem; align-items: start; } }
-  .essay__section--reverse > :first-child { order: 2; }
-  @media (min-width: 1024px) { .essay__section--reverse > :first-child { order: 0; } }
-  .essay__num { font-family: var(--font-display); font-size: clamp(3rem, 7vw, 5rem); font-weight: 700; color: var(--haldi-deep); line-height: 0.9; opacity: 0.85; }
-  .essay__eyebrow { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--primary); margin-top: 0.75rem; }
-  .essay__title { font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2.25rem); line-height: 1.15; margin-top: 0.5rem; letter-spacing: -0.02em; }
-  .essay__body { color: var(--fg-muted); font-size: clamp(1rem, 1.5vw, 1.125rem); line-height: 1.75; }
-  .essay__body p + p { margin-top: 1.25rem; }
-  .essay__pull { font-family: var(--font-display); font-style: italic; font-size: clamp(1.125rem, 2vw, 1.5rem); color: var(--primary); padding-left: 1.25rem; border-left: 3px solid var(--haldi); margin: 1.5rem 0; }
-  .essay__body ul { list-style: disc; padding-left: 1.5rem; margin: 1rem 0; }
-  .essay__body li { color: var(--fg-muted); margin-bottom: 0.5rem; line-height: 1.65; }
-  .essay__rule { width: 4rem; height: 2px; background: var(--haldi); margin-block: 1.5rem; border: 0; }
+  /* ===== NUMBERED CHAPTERS ===== */
+  .why-chapter {
+    display: grid; gap: 2rem; padding-block: clamp(3.5rem, 6vw, 5rem);
+  }
+  @media (min-width: 1024px) {
+    .why-chapter { grid-template-columns: 4fr 8fr; gap: 3rem; align-items: start; }
+  }
+  .why-chapter--reverse > :first-child { order: 2; }
+  @media (min-width: 1024px) {
+    .why-chapter--reverse > :first-child { order: 0; }
+  }
+  .why-chapter__num {
+    font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 700; color: var(--haldi-deep); line-height: 1;
+  }
+  .why-chapter__eyebrow {
+    display: block; margin-top: 0.875rem; font-size: 0.75rem;
+    font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--primary);
+  }
+  .why-chapter__title {
+    margin-top: 0.5rem; font-family: var(--font-display);
+    font-size: clamp(1.75rem, 4vw, 2.75rem); line-height: 1.1;
+    letter-spacing: -0.02em; text-wrap: balance;
+  }
+  .why-chapter__body {
+    margin-top: 1.25rem; color: var(--fg-muted);
+    font-size: 1.0625rem; line-height: 1.75; max-width: 60ch;
+  }
+  .why-chapter__body p + p { margin-top: 1.25rem; }
+  .why-chapter__pull {
+    margin-top: 1.5rem; font-family: var(--font-display);
+    font-style: italic; font-size: clamp(1.25rem, 2.5vw, 1.625rem);
+    line-height: 1.4; color: var(--primary);
+    padding-left: 1.5rem; border-left: 3px solid var(--haldi);
+  }
 
-  /* MATERIAL JOURNEY inline */
-  .journey-inline { padding: 1.5rem; background: var(--secondary-bg); border: 1px solid var(--border); border-radius: var(--radius-lg); margin-top: 1rem; }
-  .journey-inline .material-journey__svg { max-height: 8rem; margin-inline: auto; }
-  .journey-inline__steps { display: grid; gap: 0.75rem; margin-top: 1.5rem; }
-  @media (min-width: 768px) { .journey-inline__steps { grid-template-columns: repeat(5, 1fr); } }
-  .journey-inline__step { padding: 0.5rem; }
-  .journey-inline__num { font-family: var(--font-display); font-size: 1rem; font-weight: 700; color: var(--haldi-deep); }
-  .journey-inline__title { font-size: 0.8125rem; font-weight: 700; margin-top: 0.25rem; }
-  .journey-inline__desc { font-size: 0.75rem; color: var(--fg-muted); margin-top: 0.125rem; }
+  /* === Chapter 01 — MATERIAL: physical material sample === */
+  .why-material-sample {
+    position: relative; aspect-ratio: 4/3;
+    background: var(--paper); border: 1px solid var(--border);
+    border-radius: var(--r-panel); overflow: hidden; padding: 2rem;
+  }
+  .why-material-sample__patch {
+    position: absolute; left: 12%; top: 12%; right: 12%; bottom: 12%;
+    background:
+      radial-gradient(ellipse 70% 60% at 40% 35%, var(--mitti) 0%, color-mix(in srgb, var(--mitti) 80%, var(--charcoal)) 65%, transparent 92%),
+      linear-gradient(135deg, var(--kraft), var(--mitti));
+    border-radius: 4px;
+  }
+  .why-material-sample__patch::after {
+    content: ''; position: absolute; inset: 0;
+    background-image: radial-gradient(circle at 1px 1px, rgba(32, 30, 25, 0.12) 0.5px, transparent 0);
+    background-size: 12px 12px;
+  }
+  .why-material-sample__tag {
+    position: absolute; bottom: 1rem; left: 1rem;
+    font-family: var(--font-display); font-style: italic;
+    font-size: 0.875rem; color: var(--fg-muted);
+    background: rgba(250, 248, 241, 0.85); padding: 0.25rem 0.75rem;
+    border-radius: var(--r-pill);
+  }
 
-  /* ASHTA LAABH full */
-  .ashta-essay { padding-block: clamp(2rem, 4vw, 3rem); }
-  .ashta-essay__grid { display: grid; gap: 2rem; align-items: center; }
-  @media (min-width: 1024px) { .ashta-essay__grid { grid-template-columns: 1fr 1fr; } }
-  .ashta-essay__diagram { max-width: 28rem; margin-inline: auto; width: 100%; aspect-ratio: 1; }
-  .ashta-essay__diagram svg { width: 100%; height: 100%; }
-  .ashta-essay__list { display: grid; gap: 0.625rem; }
-  .ashta-essay__item { padding: 0.875rem 1.125rem; background: var(--bg-card); border-left: 3px solid var(--haldi); border-radius: var(--radius); display: grid; grid-template-columns: 2rem 1fr auto; gap: 0.75rem; align-items: center; box-shadow: var(--shadow-soft); cursor: pointer; transition: background var(--dur), border-color var(--dur), transform var(--dur); }
-  .ashta-essay__item:hover, .ashta-essay__item:focus-visible, .ashta-essay__item[data-active="true"] { background: oklch(0.42 0.05 150 / 0.06); border-left-color: var(--forest); transform: translateX(2px); outline: none; }
-  .ashta-essay__item:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
-  .ashta-essay__num { font-family: var(--font-display); font-size: 0.75rem; font-weight: 700; color: var(--haldi-deep); }
-  .ashta-essay__name { font-weight: 600; font-size: 0.9375rem; }
-  .ashta-essay__deva { font-family: var(--font-deva); font-size: 0.8125rem; color: var(--fg-muted); }
+  /* === Chapter 02 — TRADITION: large courtyard === */
+  .why-tradition-art {
+    width: 100%; aspect-ratio: 16/9;
+    background: var(--limewash); border-radius: var(--r-panel);
+    overflow: hidden;
+  }
+  .why-tradition-art svg { width: 100%; height: 100%; display: block; }
 
-  /* TWO FORMATS mini */
-  .two-formats-mini { display: grid; gap: 1rem; margin-top: 1.25rem; }
-  @media (min-width: 640px) { .two-formats-mini { grid-template-columns: 1fr 1fr; } }
-  .two-formats-mini__item { padding: 1rem 1.25rem; border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg-card); }
-  .two-formats-mini__name { font-family: var(--font-display); font-size: 1.125rem; font-weight: 700; }
-  .two-formats-mini__desc { font-size: 0.8125rem; color: var(--fg-muted); margin-top: 0.25rem; }
-  .two-formats-mini__link { display: inline-flex; align-items: center; gap: 0.25rem; margin-top: 0.5rem; font-size: 0.8125rem; font-weight: 600; color: var(--primary); }
-  .two-formats-mini__link:hover { gap: 0.5rem; }
+  /* === Chapter 03 — MATERIAL TO WALL: full-width diagram === */
+  .why-flow-section { padding-block: clamp(3.5rem, 6vw, 5rem); }
+  .why-flow-svg { width: 100%; margin-inline: 0; }
+  .why-flow-svg svg { width: 100%; height: auto; display: block; }
 
-  /* CTA */
-  .why-cta { padding-block: clamp(3rem, 6vw, 5rem); background: var(--forest); color: var(--primary-fg); text-align: center; }
-  .why-cta__eyebrow { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--haldi); }
-  .why-cta__title { font-family: var(--font-display); font-size: clamp(1.75rem, 4vw, 2.75rem); margin-top: 0.75rem; letter-spacing: -0.02em; text-wrap: balance; }
-  .why-cta__sub { margin-top: 0.75rem; color: oklch(0.85 0.01 75); max-width: 36rem; margin-inline: auto; }
-  .why-cta__actions { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center; }
+  /* === Chapter 04 — ASHTA: full-size seal === */
+  .why-ashta-section { padding-block: clamp(3.5rem, 6vw, 5rem); }
+  .why-ashta-section__head { max-width: 48rem; margin-bottom: 2.5rem; }
+  .ashta-section__seal { max-width: 38rem; margin-inline: auto; }
+
+  /* === Chapter 05 — FORMATS: two real product visuals === */
+  .why-formats-section { padding-block: clamp(3.5rem, 6vw, 5rem); }
+  .why-formats {
+    display: grid; gap: 2rem; margin-top: 2rem;
+  }
+  @media (min-width: 768px) { .why-formats { grid-template-columns: 1fr 1fr; } }
+  .why-format-card {
+    position: relative; aspect-ratio: 4/5;
+    background: linear-gradient(160deg, var(--paper), var(--limewash));
+    border: 1px solid var(--border); border-top: 3px solid var(--indigo);
+    border-radius: var(--r-panel); overflow: hidden;
+    display: flex; align-items: center; justify-content: center; padding: 2rem;
+  }
+  .why-format-card--emulsion { border-top-color: var(--leaf); }
+  .why-format-card .product-media { width: 100%; height: 100%; }
+  .why-format-card .product-media__official { object-fit: contain; padding: 1.5rem; }
+  .why-format-card__caption {
+    position: absolute; bottom: 1rem; left: 1rem;
+    background: rgba(250, 248, 241, 0.9); padding: 0.5rem 0.875rem;
+    border-radius: var(--r-pill); font-size: 0.8125rem; font-weight: 600;
+  }
+  .why-format-card--distemper .why-format-card__caption { color: var(--indigo); }
+  .why-format-card--emulsion  .why-format-card__caption { color: var(--leaf); }
+
+  /* === Chapter 06 — CONTEXT: rural-landscape with annotations === */
+  .why-context-section { padding-block: clamp(3.5rem, 6vw, 5rem); }
+  .why-context-band {
+    position: relative; width: 100%; aspect-ratio: 16/5;
+    background: var(--limewash); border-radius: var(--r-panel);
+    overflow: hidden;
+  }
+  .why-context-band svg { width: 100%; height: 100%; display: block; }
+  .why-context-band__annot {
+    position: absolute; bottom: 1rem; left: 1rem;
+    background: rgba(250, 248, 241, 0.85);
+    padding: 0.5rem 0.875rem; border-radius: var(--r-pill);
+    font-size: 0.75rem; font-weight: 600;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--fg-muted);
+  }
 </style>
 
-<!-- HERO -->
-<section class="why-hero" id="why-hero" data-reveal>
-    <div class="container why-hero__container">
-        <div>
-            <span class="why-hero__eyebrow"><span class="why-hero__eyebrow-dot" aria-hidden="true"></span>Why Prakritik</span>
-            <h1 class="why-hero__title">An old material idea, reconsidered for modern walls.</h1>
-            <hr class="why-hero__rule">
-            <p class="why-hero__sub">A short reading of where Prakritik Paint comes from — the material, the tradition it carries, and the contemporary paint format it has become.</p>
-        </div>
-        <div class="why-hero__art" aria-hidden="true">
-            <div class="why-hero__cow"><?php render_illustration('indian-cow'); ?></div>
-            <div class="why-hero__wall"></div>
-        </div>
+<!-- ===== HERO ===== -->
+<section class="why-hero bg-limewash" aria-labelledby="why-title">
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/">Home</a><span>›</span>
+      <span>Why Prakritik</span>
+    </nav>
+    <div class="why-hero__container" data-reveal>
+      <div class="why-hero__lockup">
+        <span class="why-hero__eyebrow"><span class="why-hero__eyebrow-dot" aria-hidden="true"></span>An old Indian material idea</span>
+        <hr class="why-hero__rule">
+        <h1 class="why-hero__title" id="why-title">An old material idea, reconsidered for modern walls.</h1>
+        <p class="why-hero__sub">
+          Cow dung has been used on Indian walls and floors for generations — as
+          surface treatment, renewal ritual, and a quiet form of care. Prakritik
+          Paint carries that material into a contemporary paint format.
+        </p>
+      </div>
+      <div class="why-hero__art" aria-hidden="true">
+        <div class="why-wall"></div>
+        <?php render_illustration('indian-cow', ['class' => 'why-cow']); ?>
+      </div>
     </div>
+  </div>
 </section>
 
-<!-- ESSAY (numbered sections) -->
-<section class="essay" id="essay">
-
-    <!-- 01 THE MATERIAL -->
-    <article class="container essay__section" id="material" data-reveal>
-        <div>
-            <div class="essay__num">01</div>
-            <div class="essay__eyebrow">The material</div>
-            <h2 class="essay__title">Cow dung, as a wall-coating material.</h2>
+<!-- ===== 01 MATERIAL ===== -->
+<section class="section section--paper" aria-labelledby="chapter-01-title">
+  <div class="container">
+    <div class="why-chapter" data-reveal>
+      <div>
+        <span class="why-chapter__num">01</span>
+        <span class="why-chapter__eyebrow">The material</span>
+        <h2 class="why-chapter__title" id="chapter-01-title">A natural material, with provenance.</h2>
+        <div class="why-chapter__body">
+          <p>
+            The material begins with the cow. Cow dung, gathered and prepared —
+            a substance with a long Indian tradition of being applied to walls
+            and floors.
+          </p>
+          <p>
+            Prakritik Paint works with that same material, processed into a
+            workable binder for a contemporary paint format.
+          </p>
         </div>
-        <div class="essay__body">
-            <p>Cow dung is a familiar material in Indian domestic life. It has long been used as a wall and floor coating — a way of refreshing a surface and bringing an everyday material back into the home.</p>
-            <p class="essay__pull">The material idea is older than the paint format.</p>
-            <p>Prakritik Paint begins with this material — gathered, prepared, and brought into a paint format that can be applied with a brush.</p>
-        </div>
-    </article>
-
-    <!-- 02 THE TRADITION -->
-    <article class="container essay__section" id="tradition" data-reveal>
-        <div>
-            <div class="essay__num">02</div>
-            <div class="essay__eyebrow">The tradition</div>
-            <h2 class="essay__title">A traditional Indian wall practice.</h2>
-        </div>
-        <div class="essay__body">
-            <p>Traditional Indian homes have long used cow-dung-based wall coatings. The practice is domestic — part of cleaning and refreshing living spaces — and rural, tied to the rhythms of the household and the herd.</p>
-            <p>Prakritik Paint does not replace the practice. It carries the material idea into a contemporary paint format that can be applied to interior and exterior walls.</p>
-        </div>
-    </article>
-
-    <!-- 03 FROM MATERIAL TO PAINT -->
-    <article class="container essay__section essay__section--reverse" id="from-material-to-paint" data-reveal>
-        <div>
-            <div class="essay__num">03</div>
-            <div class="essay__eyebrow">From material to paint</div>
-            <h2 class="essay__title">Five stages, from nature to the wall.</h2>
-        </div>
-        <div>
-            <div class="essay__body">
-                <p>The journey from cow dung to painted wall passes through five stages — gathered, prepared, blended, applied.</p>
-                <hr class="essay__rule">
-            </div>
-            <div class="journey-inline" data-material-journey>
-                <div class="material-journey__svg" aria-hidden="true"><?php render_illustration('material-journey'); ?></div>
-                <ol class="journey-inline__steps">
-                    <?php foreach ($MATERIAL_JOURNEY as $stage): ?>
-                    <li class="journey-inline__step">
-                        <div class="journey-inline__num"><?= e($stage['num']) ?></div>
-                        <div class="journey-inline__title"><?= e($stage['title']) ?></div>
-                        <div class="journey-inline__desc"><?= e($stage['desc']) ?></div>
-                    </li>
-                    <?php endforeach; ?>
-                </ol>
-            </div>
-        </div>
-    </article>
-
-    <!-- 04 ASHTA LAABH (full interaction) -->
-    <article class="container essay__section" id="ashta-laabh" data-reveal>
-        <div>
-            <div class="essay__num">04</div>
-            <div class="essay__eyebrow">Ashta Laabh</div>
-            <h2 class="essay__title">Eight benefits presented in Prakritik Paint.</h2>
-            <div class="essay__body">
-                <p style="margin-top: 1rem;">A reading of the material, not a verified claim.</p>
-                <ul>
-                    <li>Antibacterial, Antifungal — material qualities presented as benefits.</li>
-                    <li>Eco-Friendly, Non-Toxic, Odourless — read alongside the cow-dung lineage.</li>
-                    <li>Cost-Effective, Free from Heavy Metals, Natural Thermal Insulator.</li>
-                </ul>
-            </div>
-        </div>
-        <div class="ashta-essay">
-            <div class="ashta-essay__grid" data-ashta-laabh>
-                <div class="ashta-essay__diagram" aria-hidden="true"><?php render_illustration('ashta-laabh-diagram'); ?></div>
-                <ol class="ashta-essay__list" data-reveal-stagger>
-                    <?php foreach ($ASHTA_LAABH as $i => $benefit): $bid = 'wp-al-' . ($i + 1); ?>
-                    <li class="ashta-essay__item" data-ashta-node="<?= e($bid) ?>">
-                        <span class="ashta-essay__num"><?= sprintf('%02d', $i + 1) ?></span>
-                        <span class="ashta-essay__name"><?= e($benefit['name']) ?></span>
-                        <span class="ashta-essay__deva" lang="hi"><?= e($benefit['hindi']) ?></span>
-                    </li>
-                    <?php endforeach; ?>
-                </ol>
-            </div>
-        </div>
-    </article>
-
-    <!-- 05 TWO FORMATS -->
-    <article class="container essay__section essay__section--reverse" id="two-formats" data-reveal>
-        <div>
-            <div class="essay__num">05</div>
-            <div class="essay__eyebrow">Two formats</div>
-            <h2 class="essay__title">Distemper and Emulsion.</h2>
-        </div>
-        <div class="essay__body">
-            <p>Prakritik Paint is presented in two formats — Distemper (powder, sold by kilogram) and Emulsion (liquid, sold by litre). Both are white, matt, and suitable for interior and exterior walls.</p>
-            <div class="two-formats-mini">
-                <div class="two-formats-mini__item">
-                    <div class="two-formats-mini__name"><?= e($distemper['name']) ?></div>
-                    <div class="two-formats-mini__desc"><?= e($distemper['packagingShort']) ?> · <?= e($distemper['finish']) ?> · <?= e($distemper['usage']) ?></div>
-                    <a href="<?= e($distemper['route']) ?>" class="two-formats-mini__link">Explore Distemper
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                    </a>
-                </div>
-                <div class="two-formats-mini__item">
-                    <div class="two-formats-mini__name"><?= e($emulsion['name']) ?></div>
-                    <div class="two-formats-mini__desc"><?= e($emulsion['packagingShort']) ?> · <?= e($emulsion['finish']) ?> · <?= e($emulsion['usage']) ?></div>
-                    <a href="<?= e($emulsion['route']) ?>" class="two-formats-mini__link">Explore Emulsion
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </article>
-
-    <!-- 06 SUSTAINABILITY CONTEXT -->
-    <article class="container essay__section" id="sustainability-context" data-reveal>
-        <div>
-            <div class="essay__num">06</div>
-            <div class="essay__eyebrow">Sustainability context</div>
-            <h2 class="essay__title">Where the work sits.</h2>
-        </div>
-        <div class="essay__body">
-            <p>Prakritik Paint sits at the intersection of a few threads — without quantifying any of them.</p>
-            <ul>
-                <li><strong>Agricultural-waste reuse.</strong> Cow dung is repurposed into a wall-coating material.</li>
-                <li><strong>Gaushala context.</strong> A natural fit with gaushala-led bio-product conversations.</li>
-                <li><strong>Rural opportunity.</strong> The material and the work sit close to rural India.</li>
-                <li><strong>Eco-friendly framing.</strong> A wall coating read alongside the wider eco-friendly conversation.</li>
-            </ul>
-            <p class="essay__pull">Material reuse, not a quantified claim.</p>
-        </div>
-    </article>
-</section>
-
-<!-- 07 CTA -->
-<section class="why-cta" id="explore" data-reveal>
-    <div class="container">
-        <span class="why-cta__eyebrow">07 · Next step</span>
-        <h2 class="why-cta__title">See the formats, then talk to Gaurikrit.</h2>
-        <p class="why-cta__sub">Explore the two Prakritik Paint formats — Distemper and Emulsion — or send an enquiry with your project in mind.</p>
-        <div class="why-cta__actions">
-            <a href="/products/" class="btn btn--haldi btn--lg">Explore Products</a>
-            <a href="/contact/" class="btn btn--outline btn--lg" style="border-color: var(--haldi); color: var(--haldi);">Talk to Us</a>
-        </div>
+        <p class="why-chapter__pull">
+          Not a novelty. A useful material, reconsidered.
+        </p>
+      </div>
+      <div class="why-material-sample" aria-hidden="true">
+        <div class="why-material-sample__patch"></div>
+        <span class="why-material-sample__tag">Material sample — cow dung binder</span>
+      </div>
     </div>
+  </div>
 </section>
 
+<!-- ===== 02 TRADITION — large courtyard ===== -->
+<section class="section section--limewash" aria-labelledby="chapter-02-title">
+  <div class="container">
+    <div class="why-chapter why-chapter--reverse" data-reveal>
+      <div class="why-tradition-art" aria-hidden="true">
+        <?php render_illustration('indian-courtyard'); ?>
+      </div>
+      <div>
+        <span class="why-chapter__num">02</span>
+        <span class="why-chapter__eyebrow">The tradition</span>
+        <h2 class="why-chapter__title" id="chapter-02-title">Limewashed walls, courtyard elevations.</h2>
+        <div class="why-chapter__body">
+          <p>
+            Indian vernacular architecture is full of limewashed walls, plinths,
+            verandahs, and rectangular openings — a discipline of plaster, lime,
+            and earth that Prakritik Paint inherits materially.
+          </p>
+          <p>
+            The paint belongs to that lineage. It is not imported. It is not
+            decorative. It is local material, on local walls.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 03 MATERIAL TO WALL — full-width diagram ===== -->
+<section class="section section--paper why-flow-section" aria-labelledby="chapter-03-title">
+  <div class="container">
+    <div data-reveal>
+      <span class="why-chapter__num">03</span>
+      <span class="why-chapter__eyebrow">Material to wall</span>
+      <h2 class="why-chapter__title" id="chapter-03-title">From a natural material to a finished wall.</h2>
+      <p class="why-chapter__body">
+        Three conceptual stages. Not a process diagram — a narrative one.
+      </p>
+    </div>
+    <div class="why-flow-svg" data-reveal>
+      <?php render_illustration('material-to-wall'); ?>
+    </div>
+    <ol class="material-journey__steps" data-reveal-stagger>
+      <?php foreach ($MATERIAL_JOURNEY as $step): ?>
+        <li class="material-journey__step">
+          <span class="material-journey__num"><?= e($step['num']) ?></span>
+          <h3 class="material-journey__title"><?= e($step['title']) ?></h3>
+          <p class="material-journey__desc"><?= e($step['desc']) ?></p>
+        </li>
+      <?php endforeach; ?>
+    </ol>
+  </div>
+</section>
+
+<!-- ===== 04 ASHTA — full-size seal ===== -->
+<section class="section section--limewash why-ashta-section" aria-labelledby="chapter-04-title" data-ashta-laabh>
+  <div class="container">
+    <div class="why-ashta-section__head section-heading section-heading--left" data-reveal>
+      <span class="section-heading__eyebrow">अष्ट लाभ</span>
+      <h2 class="section-heading__title" id="chapter-04-title">Eight benefits.</h2>
+      <p class="section-heading__desc">
+        Client-supplied product benefits, not independently tested claims.
+      </p>
+    </div>
+    <div class="ashta-section__grid" data-reveal>
+      <div class="ashta-section__seal">
+        <?php render_illustration('ashta-laabh-seal'); ?>
+      </div>
+      <ol class="ashta-section__support" data-reveal-stagger>
+        <?php foreach ($ASHTA_LAABH as $i => $benefit): ?>
+          <?php $bid = $ashtaIds[$benefit['name']] ?? ('benefit-' . ($i + 1)); ?>
+          <li class="ashta-benefit" data-ashta-node="<?= e($bid) ?>">
+            <span class="ashta-benefit__num"><?= e(sprintf('%02d', $i + 1)) ?></span>
+            <span class="ashta-benefit__name"><?= e($benefit['name']) ?></span>
+            <span class="ashta-benefit__deva"><?= e($benefit['hindi']) ?></span>
+          </li>
+        <?php endforeach; ?>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 05 FORMATS — real product visuals ===== -->
+<section class="section section--paper why-formats-section" aria-labelledby="chapter-05-title">
+  <div class="container">
+    <div data-reveal>
+      <span class="why-chapter__num">05</span>
+      <span class="why-chapter__eyebrow">Two formats</span>
+      <h2 class="why-chapter__title" id="chapter-05-title">Distemper and Emulsion.</h2>
+      <p class="why-chapter__body">
+        Two paint formats, one material idea. Powder and liquid, both for
+        interior and exterior walls.
+      </p>
+    </div>
+
+    <div class="why-formats" data-reveal-stagger>
+      <div class="why-format-card why-format-card--distemper">
+        <div class="product-media" data-official-image="<?= e($distemper['officialImage']) ?>">
+          <img class="product-media__official"
+               src="<?= e($distemper['officialImage']) ?>"
+               alt="<?= e($distemper['name']) ?> pack"
+               width="600" height="750" loading="lazy" decoding="async">
+          <div class="product-media__fallback">
+            <?php render_illustration('prakritik-distemper-bucket'); ?>
+          </div>
+        </div>
+        <span class="why-format-card__caption"><?= e($distemper['packagingShort']) ?> packs</span>
+      </div>
+      <div class="why-format-card why-format-card--emulsion">
+        <div class="product-media" data-official-image="<?= e($emulsion['officialImage']) ?>">
+          <img class="product-media__official"
+               src="<?= e($emulsion['officialImage']) ?>"
+               alt="<?= e($emulsion['name']) ?> pack"
+               width="600" height="750" loading="lazy" decoding="async">
+          <div class="product-media__fallback">
+            <?php render_illustration('prakritik-emulsion-bucket'); ?>
+          </div>
+        </div>
+        <span class="why-format-card__caption"><?= e($emulsion['packagingShort']) ?> packs</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 06 CONTEXT — rural-landscape with annotation ===== -->
+<section class="section section--limewash why-context-section" aria-labelledby="chapter-06-title">
+  <div class="container">
+    <div class="why-chapter" data-reveal>
+      <div>
+        <span class="why-chapter__num">06</span>
+        <span class="why-chapter__eyebrow">Context</span>
+        <h2 class="why-chapter__title" id="chapter-06-title">From Bulandshahr, Uttar Pradesh.</h2>
+        <div class="why-chapter__body">
+          <p>
+            Prakritik Paint is made by <?= e($COMPANY['legalName']) ?>, in
+            <?= e($COMPANY['address'][3] ?? '') ?>, <?= e($COMPANY['address'][4] ?? '') ?>.
+            A rural material, made in a rural context — the landscape it
+            belongs to.
+          </p>
+        </div>
+        <div class="mission-band__cta" style="margin-top: 1.5rem;">
+          <a class="btn btn--primary" href="/products/">Explore Products</a>
+          <a class="btn btn--outline" href="/about/">About Gaurikrit</a>
+        </div>
+      </div>
+      <div class="why-context-band" aria-hidden="true">
+        <?php render_illustration('rural-landscape'); ?>
+        <span class="why-context-band__annot"><?= e($COMPANY['address'][4] ?? '') ?>, <?= e($COMPANY['address'][5] ?? '') ?></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  (function () {
+    'use strict';
+    document.querySelectorAll('[data-ashta-laabh] svg [data-benefit]').forEach(function (node) {
+      node.setAttribute('data-ashta-node', node.getAttribute('data-benefit'));
+    });
+  })();
+</script>
 <?php require ROOT_PATH . '/includes/footer.php';

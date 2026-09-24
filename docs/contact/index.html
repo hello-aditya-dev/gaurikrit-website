@@ -4,19 +4,19 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="../assets/brand/gaurikrit-logo-mark.png" type="image/png" onerror="this.onerror=null;this.href='../assets/brand/gaurikrit-mark-temp.svg'">
-    <title>Contact — Gaurikrit Bio Products</title>
-    <meta name="description" content="Talk to Gaurikrit. Send an enquiry about Prakritik Paint products, projects or partnerships. Based in Khurja, District Bulandshahr, Uttar Pradesh.">
+    <title>Talk to Gaurikrit — Contact | Gaurikrit Bio Products</title>
+    <meta name="description" content="Email, phones, address and GSTIN for Gaurikrit Bio Products (OPC) Private Limited. Send an enquiry about Prakritik Distemper, Emulsion, bulk projects, partnerships or Gaushala collaboration.">
     <link rel="canonical" href="https://hello-aditya-dev.github.io/gaurikrit-website/contact/">
     <meta name="robots" content="index, follow">
-    <meta property="og:title" content="Contact — Gaurikrit Bio Products">
-    <meta property="og:description" content="Talk to Gaurikrit. Send an enquiry about Prakritik Paint products, projects or partnerships. Based in Khurja, District Bulandshahr, Uttar Pradesh.">
+    <meta property="og:title" content="Talk to Gaurikrit — Contact | Gaurikrit Bio Products">
+    <meta property="og:description" content="Email, phones, address and GSTIN for Gaurikrit Bio Products (OPC) Private Limited. Send an enquiry about Prakritik Distemper, Emulsion, bulk projects, partnerships or Gaushala collaboration.">
     <meta property="og:url" content="https://hello-aditya-dev.github.io/gaurikrit-website/contact/">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Gaurikrit Bio Products">
     <meta property="og:image" content="https://hello-aditya-dev.github.io/gaurikrit-website/assets/brand/gaurikrit-logo-mark.png">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Contact — Gaurikrit Bio Products">
-    <meta name="twitter:description" content="Talk to Gaurikrit. Send an enquiry about Prakritik Paint products, projects or partnerships. Based in Khurja, District Bulandshahr, Uttar Pradesh.">
+    <meta name="twitter:title" content="Talk to Gaurikrit — Contact | Gaurikrit Bio Products">
+    <meta name="twitter:description" content="Email, phones, address and GSTIN for Gaurikrit Bio Products (OPC) Private Limited. Send an enquiry about Prakritik Distemper, Emulsion, bulk projects, partnerships or Gaushala collaboration.">
     <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -192,360 +192,197 @@
 
     <main id="main" class="site-main">
 <style>
-  /* HERO */
-  .contact-hero { padding-top: calc(var(--header-h) + 2.5rem); padding-bottom: clamp(2rem, 4vw, 3rem); }
-  .contact-hero__container { display: grid; gap: 2rem; align-items: center; }
-  @media (min-width: 1024px) { .contact-hero__container { grid-template-columns: 1.1fr 0.9fr; } }
-  .contact-hero__lockup { display: flex; flex-direction: column; gap: 0.625rem; }
-  .contact-hero__eyebrow { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.3125rem 0.75rem; border: 1px solid var(--border); border-radius: var(--radius-full); background: var(--bg-card); font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--primary); width: fit-content; }
-  .contact-hero__eyebrow-dot { width: 0.375rem; height: 0.375rem; border-radius: 50%; background: var(--haldi); }
-  .contact-hero__title { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.25rem); line-height: 1.1; letter-spacing: -0.02em; text-wrap: balance; }
-  .contact-hero__sub { max-width: 36rem; font-size: clamp(1rem, 2vw, 1.125rem); color: var(--fg-muted); line-height: 1.65; }
-  .contact-hero__art { aspect-ratio: 4/3; border-radius: var(--radius-lg); background: var(--bg-card); border: 1px solid var(--border); box-shadow: var(--shadow-soft); overflow: hidden; display: flex; align-items: center; justify-content: center; padding: 2rem; }
+  /* ===== HERO ===== */
+  .contact-hero { padding-top: calc(var(--header-h) + 2rem); padding-bottom: 1.5rem; }
+  .contact-hero__container { display: grid; gap: 2rem; align-items: start; }
+  .contact-hero__lockup { max-width: 42rem; }
+  .contact-hero__title {
+    font-family: var(--font-display); font-size: clamp(2.2rem, 5vw, 4rem);
+    line-height: 1.05; letter-spacing: -0.02em; text-wrap: balance;
+    margin-top: 0.5rem;
+  }
+  .contact-hero__sub {
+    margin-top: 1rem; color: var(--fg-muted);
+    font-size: clamp(1rem, 2vw, 1.125rem); line-height: 1.65; max-width: 60ch;
+  }
 
-  /* CONTACT INFO CARD */
-  .contact-info-card { padding: clamp(1.5rem, 4vw, 2.5rem); border: 1px solid var(--border); border-radius: var(--radius-lg); background: var(--bg-card); box-shadow: var(--shadow-soft); }
-  .contact-info-card h2 { font-size: 1.5rem; margin-bottom: 1rem; }
-  .contact-info-card dl { display: grid; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
-  .contact-info-card__row { display: grid; grid-template-columns: 8rem 1fr; background: var(--bg-card); }
-  @media (max-width: 480px) { .contact-info-card__row { grid-template-columns: 1fr; } .contact-info-card__row dt { background: var(--secondary-bg); } }
-  .contact-info-card__row dt, .contact-info-card__row dd { padding: 0.75rem 1rem; }
-  .contact-info-card__row dt { font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--fg-muted); }
-  .contact-info-card__row dd { font-size: 0.9375rem; }
-  .contact-info-card__row dd a { color: var(--primary); font-weight: 600; }
-  .contact-info-card__address { white-space: pre-line; }
+  /* ===== CONTACT SECTION (5 / 7 — info left, form right) ===== */
+  .contact-section { padding-top: clamp(1.5rem, 3vw, 2.5rem); }
 
-  /* FORM */
-  .contact-form-card { padding: clamp(1.5rem, 4vw, 2.5rem); border: 1px solid var(--border); border-radius: var(--radius-lg); background: var(--bg-card); box-shadow: var(--shadow-soft); }
-  .contact-form-card h2 { font-size: 1.5rem; margin-bottom: 0.5rem; }
-  .contact-form-card__intro { font-size: 0.9375rem; color: var(--fg-muted); margin-bottom: 1.5rem; }
-  .contact-form-card .form-grid { display: grid; gap: 1rem; grid-template-columns: 1fr; }
-  @media (min-width: 640px) { .contact-form-card .form-grid { grid-template-columns: 1fr 1fr; } }
-  .contact-form-card .form-field--full { grid-column: 1 / -1; }
+  /* Contact info as a modern plate / ledger (ruled rows, no card chrome). */
+  .contact-info {
+    padding: 0; background: transparent; border: 0;
+    border-top: 1px solid var(--border); border-radius: 0; box-shadow: none;
+  }
+  .contact-info__row {
+    padding-block: 1rem; border-bottom: 1px solid var(--border);
+    display: grid; grid-template-columns: 1fr; gap: 0.25rem;
+    align-items: baseline;
+  }
+  @media (min-width: 640px) {
+    .contact-info__row { grid-template-columns: 11rem 1fr; gap: 1rem; }
+  }
+  .contact-info__row dt {
+    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--fg-muted);
+  }
+  .contact-info__row dd { font-size: 0.9375rem; color: var(--fg); }
+  .contact-info__address { white-space: pre-line; }
+  .contact-info__actions {
+    display: flex; flex-wrap: wrap; gap: 0.625rem; margin-top: 1.5rem;
+  }
 
-  /* FAQ */
-  .contact-faq { padding-block: clamp(3rem, 6vw, 5rem); background: var(--secondary-bg); }
-  .contact-faq__head { text-align: center; max-width: 48rem; margin-inline: auto; margin-bottom: 2.5rem; }
-  .contact-faq__title { font-family: var(--font-display); font-size: clamp(1.75rem, 4vw, 2.5rem); letter-spacing: -0.02em; }
-  .contact-faq__list { max-width: 48rem; margin-inline: auto; }
+  /* Form (right). */
+  .contact-form {
+    background: var(--paper); border: 1px solid var(--border);
+    border-radius: var(--r-panel); padding: 1.5rem;
+  }
+  @media (min-width: 768px) { .contact-form { padding: 2rem; } }
+  .contact-form-card__intro {
+    font-size: 0.875rem; color: var(--fg-muted); margin-bottom: 1.5rem;
+  }
+  .contact-form-card__intro .req { color: var(--mitti); }
+  .form-grid { gap: 1.25rem; }
 </style>
 
-<!-- HERO -->
-<section class="contact-hero" id="contact-hero" data-reveal>
-    <div class="container contact-hero__container">
-        <div class="contact-hero__lockup">
-            <span class="contact-hero__eyebrow"><span class="contact-hero__eyebrow-dot" aria-hidden="true"></span>Contact</span>
-            <h1 class="contact-hero__title">Talk to Gaurikrit.</h1>
-            <p class="contact-hero__sub">Product questions, project requirements or partnership conversations — send an enquiry or contact Gaurikrit directly.</p>
-        </div>
-        <div class="contact-hero__art" aria-hidden="true">
-            <svg viewBox="0 0 360 280" xmlns="http://www.w3.org/2000/svg"
-     class=""
-     role="img" aria-hidden="true"
-     preserveAspectRatio="xMidYMid meet"
-     width="100%" height="100%">
-  <title>Indian courtyard wall</title>
-
-  <!-- WALL SURFACE — limewash fill (subtle ground for the whole elevation) -->
-  <rect x="20" y="30" width="320" height="190"
-        fill="var(--limewash)" stroke="none"/>
-
-  <!-- PAINTED COLOUR FIELD — haldi colorwash section on the right portion of wall.
-       Suggests a painted wall surface (the colour of India). -->
-  <rect x="240" y="36" width="92" height="178"
-        fill="var(--haldi)" opacity="0.55" stroke="none"/>
-
-  <!-- WALL OUTLINE — single clean stroke around the whole wall -->
-  <rect x="20" y="30" width="320" height="190"
-        fill="none" stroke="var(--forest)"
-        stroke-width="1.5" stroke-linejoin="miter"/>
-
-  <!-- WALL TOP — DOUBLE LINE suggesting physical wall thickness (parapet/cornice) -->
-  <path d="M 20 30 L 340 30"
-        stroke="var(--forest)" stroke-width="1.5"
-        stroke-linecap="square"/>
-  <path d="M 20 36 L 340 36"
-        stroke="var(--forest)" stroke-width="1.2" opacity="0.65"
-        stroke-linecap="square"/>
-
-  <!-- WALL SURFACE ARTICULATION — subtle horizontal limewash plaster layer lines.
-       Scattered, short segments (not full lines) for restraint. -->
-  <g stroke="var(--forest)" stroke-width="0.5" opacity="0.18"
-     stroke-linecap="round">
-    <!-- Left side of wall (limewash section) -->
-    <path d="M 30 60 L 130 60"/>
-    <path d="M 30 90 L 50 90"/>
-    <path d="M 100 90 L 130 90"/>
-    <path d="M 30 120 L 50 120"/>
-    <path d="M 30 150 L 50 150"/>
-    <path d="M 30 180 L 50 180"/>
-    <!-- Right side (haldi colorwash section) — slightly more visible against the colour -->
-    <path d="M 250 60 L 330 60" opacity="0.6"/>
-    <path d="M 250 90 L 330 90" opacity="0.6"/>
-    <path d="M 250 120 L 330 120" opacity="0.6"/>
-    <path d="M 250 150 L 330 150" opacity="0.6"/>
-    <path d="M 250 180 L 330 180" opacity="0.6"/>
-  </g>
-
-  <!-- PAINTED FIELD BORDER — subtle vertical edge where colorwash meets limewash -->
-  <path d="M 240 36 L 240 214"
-        stroke="var(--forest)" stroke-width="0.8" opacity="0.4"/>
-
-  <!-- ARCHED OPENING — cusped ogee arch (Indian/Sultanate style).
-       Opening: x=140 to x=220 (width 80), y=60 apex to y=220 base (height 160).
-       Door height ~2x width ✓. Spring line at y=124 (60% of height from base) ✓.
-       Fill with background tone to suggest a recessed void. -->
-  <path d="M 140 124
-           C 148 100, 152 92, 162 88
-           C 172 84, 176 76, 180 60
-           C 184 76, 188 84, 198 88
-           C 208 92, 212 100, 220 124
-           L 220 220
-           L 140 220
-           Z"
-        fill="var(--background)" stroke="var(--forest)"
-        stroke-width="1.5" stroke-linejoin="round"/>
-
-  <!-- ARCH INNER EDGE — second stroke suggesting jamb depth (recessed opening) -->
-  <path d="M 144 124
-           C 150 102, 154 94, 162 90
-           C 172 86, 176 78, 180 64
-           C 184 78, 188 86, 198 90
-           C 206 94, 210 102, 216 124
-           L 216 220"
-        fill="none" stroke="var(--forest)"
-        stroke-width="0.8" opacity="0.45"/>
-
-  <!-- THRESHOLD LINE — at the base of the opening (slight step) -->
-  <path d="M 138 220 L 222 220"
-        stroke="var(--forest)" stroke-width="1.4" opacity="0.7"/>
-
-  <!-- INNER SHADOW LINE — at the back of the recessed opening, suggesting depth -->
-  <path d="M 146 220 L 146 130"
-        stroke="var(--forest)" stroke-width="0.5" opacity="0.18"/>
-
-  <!-- PLINTH AT BASE OF WALL — double line suggesting base thickness -->
-  <path d="M 20 220 L 340 220"
-        stroke="var(--forest)" stroke-width="1.5"
-        stroke-linecap="square"/>
-  <path d="M 20 228 L 340 228"
-        stroke="var(--forest)" stroke-width="1.2" opacity="0.65"
-        stroke-linecap="square"/>
-
-  <!-- FLOOR GROUND LINE — at very bottom -->
-  <path d="M 0 240 L 360 240"
-        stroke="var(--forest)" stroke-width="1" opacity="0.4"/>
-
-  <!-- SMALL GRASS TUFTS at base of step — restrained, deliberate -->
-  <g stroke="var(--forest)" stroke-width="1" opacity="0.6"
-     stroke-linecap="round">
-    <path d="M 40 240 L 40 244"/>
-    <path d="M 42 240 L 42 244"/>
-    <path d="M 44 240 L 44 245"/>
-    <path d="M 280 240 L 280 244"/>
-    <path d="M 282 240 L 282 244"/>
-    <path d="M 284 240 L 284 245"/>
-  </g>
-
-</svg>
-        </div>
+<!-- ===== HERO ===== -->
+<section class="contact-hero bg-limewash" aria-labelledby="contact-title">
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="../">Home</a><span>›</span>
+      <span>Contact</span>
+    </nav>
+    <div class="contact-hero__container" data-reveal>
+      <div class="contact-hero__lockup">
+        <span class="contact-hero__eyebrow">
+          <span class="contact-hero__eyebrow-dot" aria-hidden="true"></span>
+          Get in touch
+        </span>
+        <hr class="contact-hero__rule">
+        <h1 class="contact-hero__title" id="contact-title">Talk to Gaurikrit.</h1>
+        <p class="contact-hero__sub">
+          A short message and a phone number are usually enough. Tell us what
+          you are painting — home, site, Gaushala collaboration — and we will
+          respond.
+        </p>
+      </div>
     </div>
+  </div>
 </section>
 
-<!-- CONTACT INFO + FORM -->
-<section class="section section--paper" id="reach" data-reveal>
-    <div class="container">
-        <div class="contact-grid">
-            <div class="contact-info-card">
-                <h2>Company information</h2>
-                <dl>
-                    <div class="contact-info-card__row">
-                        <dt>Legal name</dt>
-                        <dd>Gaurikrit Bio Products (OPC) Private Limited</dd>
-                    </div>
-                    <div class="contact-info-card__row">
-                        <dt>Address</dt>
-                        <dd class="contact-info-card__address">House No. 55
+<!-- ===== CONTACT SECTION — 5 / 7 (info left / form right) ===== -->
+<section class="section section--paper" style="padding-top: clamp(2rem, 4vw, 3rem);">
+  <div class="container">
+    <div class="contact-section" data-reveal>
+      <!-- LEFT — company info / contact plate -->
+      <aside>
+        <span class="contact-hero__eyebrow">Direct lines</span>
+        <h2 class="spec-sheet__title" style="margin-top: 0.5rem;">Company &amp; contact.</h2>
+
+        <dl class="contact-info">
+          <div class="contact-info__row">
+            <dt>Legal name</dt>
+            <dd>Gaurikrit Bio Products (OPC) Private Limited</dd>
+          </div>
+          <div class="contact-info__row">
+            <dt>GSTIN</dt>
+            <dd>09AAMCG8400F1ZK</dd>
+          </div>
+          <div class="contact-info__row">
+            <dt>Email</dt>
+            <dd>
+              <a href="mailto:seva@gaurikrit.com">seva@gaurikrit.com</a>
+            </dd>
+          </div>
+          <div class="contact-info__row">
+            <dt>Phone</dt>
+            <dd>
+              <a href="tel:+919999624446">+91 9999624446</a>
+            </dd>
+          </div>
+          <div class="contact-info__row">
+            <dt>Phone</dt>
+            <dd>
+              <a href="tel:+919837638842">+91 9837638842</a>
+            </dd>
+          </div>
+          <div class="contact-info__row">
+            <dt>Address</dt>
+            <dd class="contact-info__address">House No. 55
 Village Khuriyawali
 Post Arniya
 Khurja
 District Bulandshahr
 Uttar Pradesh – 203131
 India</dd>
-                    </div>
-                    <div class="contact-info-card__row">
-                        <dt>GSTIN</dt>
-                        <dd>09AAMCG8400F1ZK</dd>
-                    </div>
-                    <div class="contact-info-card__row">
-                        <dt>Email</dt>
-                        <dd><a href="mailto:seva@gaurikrit.com">seva@gaurikrit.com</a></dd>
-                    </div>
-                    <div class="contact-info-card__row">
-                        <dt>Phone</dt>
-                        <dd>
-                                <a href="tel:+919999624446">+91 9999624446</a><br>
-                                <a href="tel:+919837638842">+91 9837638842</a><br>
-                        </dd>
-                    </div>
-                </dl>
-                <div style="margin-top:1.25rem; display:flex; flex-direction:column; gap:0.75rem;">
-                    <a href="mailto:seva@gaurikrit.com" class="btn btn--outline btn--block">Email Gaurikrit</a>
-                    <a href="tel:+919999624446" class="btn btn--primary btn--block">Call Gaurikrit</a>
-                </div>
-            </div>
+          </div>
+        </dl>
 
-            <div class="contact-form-card">
-                <h2>Send an enquiry</h2>
-                <p class="contact-form-card__intro">Fields marked <span class="req" style="color: var(--mitti);">*</span> are required.</p>
-                <!-- Replace the form action with your Formspree ID or deploy to Hostinger for PHP backend -->
-                <form data-contact-form method="post" action="https://formspree.io/f/your-form-id" novalidate>
-                    <div class="form-grid">
-                        <div class="form-field">
-                            <label class="form-label" for="ct-name">Name <span class="req">*</span></label>
-                            <input class="form-input" type="text" id="ct-name" name="name" required maxlength="80" autocomplete="name">
-                            <div class="form-error" data-error-for="name"></div>
-                        </div>
-                        <div class="form-field">
-                            <label class="form-label" for="ct-email">Email <span class="req">*</span></label>
-                            <input class="form-input" type="email" id="ct-email" name="email" required maxlength="254" autocomplete="email">
-                            <div class="form-error" data-error-for="email"></div>
-                        </div>
-                        <div class="form-field">
-                            <label class="form-label" for="ct-phone">Phone</label>
-                            <input class="form-input" type="tel" id="ct-phone" name="phone" maxlength="20" autocomplete="tel">
-                            <div class="form-error" data-error-for="phone"></div>
-                        </div>
-                        <div class="form-field">
-                            <label class="form-label" for="ct-interest">Interest</label>
-                            <select class="form-select" id="ct-interest" name="interest">
-                                <option value="">Select…</option>
-                                <option value="general">General enquiry</option>
-                                <option value="prakritik-distemper">Prakritik Distemper</option>
-                                <option value="prakritik-emulsion">Prakritik Emulsion</option>
-                                <option value="bulk-project">Bulk / Project</option>
-                                <option value="business-partnership">Business Partnership</option>
-                                <option value="gaushala-collaboration">Gaushala Collaboration</option>
-                            </select>
-                            <div class="form-error" data-error-for="interest"></div>
-                        </div>
-                        <div class="form-field form-field--full">
-                            <label class="form-label" for="ct-message">Message <span class="req">*</span></label>
-                            <textarea class="form-textarea" id="ct-message" name="message" required minlength="10" maxlength="2000" rows="6" placeholder="Tell us a little about your question or project."></textarea>
-                            <div class="form-error" data-error-for="message"></div>
-                        </div>
-                    </div>
-                    <div style="margin-top:1rem; display:flex; flex-direction:column; gap:0.75rem;">
-                        <button type="submit" class="btn btn--primary btn--lg btn--block">
-                            <span data-submit-label>Send Enquiry</span>
-                            <svg data-submit-spinner hidden width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-6.219-8.56" style="animation: spin 1s linear infinite"/></svg>
-                        </button>
-                        <p style="font-size:0.75rem; color:var(--fg-muted); text-align:center;">This form requires a backend. Deploy to Hostinger for full functionality, or connect a Formspree form ID.</p>
-                    </div>
-                </form>
-            </div>
+        <div class="contact-info__actions">
+          <a class="btn btn--secondary" href="../for-business/">For Business</a>
+          <a class="btn btn--outline" href="../paint-calculator/">Estimate Your Project</a>
         </div>
+      </aside>
+
+      <!-- RIGHT — enquiry form -->
+      <!-- Static fallback: replace the action URL with your Formspree ID. No
+           CSRF / honeypot needed for static — forms.js handles fetch + toast. -->
+      <form class="contact-form" action="https://formspree.io/f/your-form-id" method="post"
+            data-contact-form novalidate>
+        <p class="contact-form-card__intro">
+          Fields marked <span class="req">*</span> are required.
+        </p>
+
+        <div class="form-grid">
+          <div class="form-field">
+            <label class="form-label" for="contact-name">Name <span class="req">*</span></label>
+            <input class="form-input" type="text" id="contact-name" name="name"
+                   required maxlength="80" autocomplete="name">
+            <div class="form-error" data-error-for="name" role="alert"></div>
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="contact-phone">Phone</label>
+            <input class="form-input" type="tel" id="contact-phone" name="phone"
+                   maxlength="20" autocomplete="tel" placeholder="+91 ...">
+            <div class="form-error" data-error-for="phone" role="alert"></div>
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="contact-email">Email <span class="req">*</span></label>
+            <input class="form-input" type="email" id="contact-email" name="email"
+                   required maxlength="254" autocomplete="email">
+            <div class="form-error" data-error-for="email" role="alert"></div>
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="contact-interest">Enquiry is about <span class="req">*</span></label>
+            <select class="form-select" id="contact-interest" name="interest" required>
+              <option value="" disabled selected>Choose…</option>
+                <option value="general">General enquiry</option>
+                <option value="prakritik-distemper">Prakritik Distemper</option>
+                <option value="prakritik-emulsion">Prakritik Emulsion</option>
+                <option value="bulk-project">Bulk / Project</option>
+                <option value="business-partnership">Business Partnership</option>
+                <option value="gaushala-collaboration">Gaushala Collaboration</option>
+            </select>
+            <div class="form-error" data-error-for="interest" role="alert"></div>
+          </div>
+          <div class="form-field form-field--full">
+            <label class="form-label" for="contact-message">Message <span class="req">*</span></label>
+            <textarea class="form-textarea" id="contact-message" name="message" required
+                      maxlength="2000" rows="6"
+                      placeholder="Tell us a bit about what you are painting."></textarea>
+            <div class="form-error" data-error-for="message" role="alert"></div>
+          </div>
+        </div>
+
+        <div class="calc-actions">
+          <button type="submit" class="btn btn--primary btn--lg">
+            <span data-submit-label>Send Enquiry</span>
+          </button>
+        </div>
+      </form>
     </div>
+  </div>
 </section>
-
-<!-- FAQ -->
-<section class="contact-faq" id="faq" data-reveal>
-    <div class="container">
-        <div class="contact-faq__head">
-            <span class="section-heading__eyebrow">Quick answers</span>
-            <h2 class="contact-faq__title">Frequently asked questions.</h2>
-            <p class="section-heading__desc">A short list of questions the supplied product information can answer.</p>
-        </div>
-        <div class="faq-list contact-faq__list" data-reveal-stagger>
-                <div class="faq-item" data-faq-item>
-                    <button type="button" class="faq-item__q" aria-expanded="false" aria-controls="faq-1-a" id="faq-1-q">
-                        <span>What products are available?</span>
-                        <svg class="faq-item__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-                    </button>
-                    <div class="faq-item__a" id="faq-1-a" role="region" aria-labelledby="faq-1-q">
-                        <div class="faq-item__a-inner">Prakritik Distemper Paint and Prakritik Emulsion Paint.</div>
-                    </div>
-                </div>
-                <div class="faq-item" data-faq-item>
-                    <button type="button" class="faq-item__q" aria-expanded="false" aria-controls="faq-2-a" id="faq-2-q">
-                        <span>What is the finish?</span>
-                        <svg class="faq-item__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-                    </button>
-                    <div class="faq-item__a" id="faq-2-a" role="region" aria-labelledby="faq-2-q">
-                        <div class="faq-item__a-inner">Matt.</div>
-                    </div>
-                </div>
-                <div class="faq-item" data-faq-item>
-                    <button type="button" class="faq-item__q" aria-expanded="false" aria-controls="faq-3-a" id="faq-3-q">
-                        <span>What is the drying time?</span>
-                        <svg class="faq-item__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-                    </button>
-                    <div class="faq-item__a" id="faq-3-a" role="region" aria-labelledby="faq-3-q">
-                        <div class="faq-item__a-inner">4 hrs.</div>
-                    </div>
-                </div>
-                <div class="faq-item" data-faq-item>
-                    <button type="button" class="faq-item__q" aria-expanded="false" aria-controls="faq-4-a" id="faq-4-q">
-                        <span>Can they be used indoors and outdoors?</span>
-                        <svg class="faq-item__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-                    </button>
-                    <div class="faq-item__a" id="faq-4-a" role="region" aria-labelledby="faq-4-q">
-                        <div class="faq-item__a-inner">The supplied product specifications list usage as Interior &amp; Exterior.</div>
-                    </div>
-                </div>
-                <div class="faq-item" data-faq-item>
-                    <button type="button" class="faq-item__q" aria-expanded="false" aria-controls="faq-5-a" id="faq-5-q">
-                        <span>What pack sizes are available for Distemper?</span>
-                        <svg class="faq-item__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-                    </button>
-                    <div class="faq-item__a" id="faq-5-a" role="region" aria-labelledby="faq-5-q">
-                        <div class="faq-item__a-inner">1 kg, 5 kg, 10 kg and 20 kg.</div>
-                    </div>
-                </div>
-                <div class="faq-item" data-faq-item>
-                    <button type="button" class="faq-item__q" aria-expanded="false" aria-controls="faq-6-a" id="faq-6-q">
-                        <span>What pack sizes are available for Emulsion?</span>
-                        <svg class="faq-item__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-                    </button>
-                    <div class="faq-item__a" id="faq-6-a" role="region" aria-labelledby="faq-6-q">
-                        <div class="faq-item__a-inner">1 litre, 4 litre, 10 litre and 20 litre.</div>
-                    </div>
-                </div>
-                <div class="faq-item" data-faq-item>
-                    <button type="button" class="faq-item__q" aria-expanded="false" aria-controls="faq-7-a" id="faq-7-q">
-                        <span>What coverage is listed for Distemper?</span>
-                        <svg class="faq-item__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-                    </button>
-                    <div class="faq-item__a" id="faq-7-a" role="region" aria-labelledby="faq-7-q">
-                        <div class="faq-item__a-inner">200 sq.ft.**</div>
-                    </div>
-                </div>
-                <div class="faq-item" data-faq-item>
-                    <button type="button" class="faq-item__q" aria-expanded="false" aria-controls="faq-8-a" id="faq-8-q">
-                        <span>What coverage is listed for Emulsion?</span>
-                        <svg class="faq-item__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-                    </button>
-                    <div class="faq-item__a" id="faq-8-a" role="region" aria-labelledby="faq-8-q">
-                        <div class="faq-item__a-inner">300 sq.ft.**</div>
-                    </div>
-                </div>
-                <div class="faq-item" data-faq-item>
-                    <button type="button" class="faq-item__q" aria-expanded="false" aria-controls="faq-9-a" id="faq-9-q">
-                        <span>What is the listed V.O.C. information?</span>
-                        <svg class="faq-item__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-                    </button>
-                    <div class="faq-item__a" id="faq-9-a" role="region" aria-labelledby="faq-9-q">
-                        <div class="faq-item__a-inner">V.O.C.: Negligible.</div>
-                    </div>
-                </div>
-        </div>
-        <div style="text-align:center; margin-top:2rem;" data-reveal>
-            <a href="../downloads/" class="btn btn--outline btn--lg">See the brochure</a>
-        </div>
-    </div>
-</section>
-
-<style>@keyframes spin { to { transform: rotate(360deg); } }</style>
     </main>
 
     <!-- ===== Site footer ===== -->
@@ -688,10 +525,7 @@ India</dd>
     <!--
       Module scripts. Order matters: each module registers
       window.GaurikritApp.<Name> = { init: fn, ... } and app.js
-      (loaded last) calls .init() on each. calculator.js is included
-      after forms.js so it can reuse the toast helper if needed, and
-      before app.js so app.js can include 'Calculator' in its boot
-      sequence.
+      (loaded last) calls .init() on each.
     -->
     <script src="../assets/js/navigation.js?v=static"></script>
     <script src="../assets/js/animations.js?v=static"></script>
