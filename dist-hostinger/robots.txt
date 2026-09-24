@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /includes/
+
+Sitemap: https://gaurikrit.com/sitemap.xml
+Host: https://gaurikrit.com

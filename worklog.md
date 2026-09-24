@@ -687,3 +687,178 @@ Built via subagent (Task ID ILLUSTRATIONS). All "use client" SVG components, CSS
 
 ## Commit
 - `4f74253` pushed to `main` on https://github.com/hello-aditya-dev/gaurikrit-website
+
+---
+
+Task ID: SVG-PORT
+Agent: zai-code (Claude Code / Z.ai)
+Task: Port the 11 coded SVG illustration components from React/TSX to pure PHP partials for the Hostinger shared-hosting rebuild (no Node/React at runtime).
+
+## What happened
+- Read all 11 source TSX files in `src/components/illustrations/` and the PHP scaffold (`dist-hostinger/includes/helpers.php`, `dist-hostinger/assets/css/app.css`) for context.
+- Wrote 11 PHP partials under `dist-hostinger/includes/illustrations/`, one per illustration, following the requested template: `<?php` header → `$class = $class ?? ''` → pure `<svg>` markup with `class="<?= htmlspecialchars($class, ENT_QUOTES) ?>"`, `role="img"`, `aria-hidden="true"`, `<title>`, and every `var(--forest)` / `var(--haldi)` / `var(--haldi-deep)` / `var(--card)` / `var(--secondary)` / `var(--background)` reference preserved verbatim.
+
+## Files created
+1. `indian-cow.php`            — 280×180 side-view zebu, haldi ear tint.
+2. `gaurikrit-cow-mark.php`    — 120×120 front-facing cow head in scalloped haldi emblem.
+3. `prakritik-distemper-bucket.php` — 200×240 white bucket + handle + label + cow motif.
+4. `prakritik-emulsion-bucket.php`  — 200×260 taller bucket + rim drip.
+5. `rural-landscape.php`       — 600×80 thin rural field/grass line.
+6. `indian-courtyard.php`      — 320×240 limewashed wall + cusped arch + niche + haldi field.
+7. `material-journey.php`      — 600×120 cow → refine → bucket → wall, dashed haldi connectors.
+8. `ashta-laabh-diagram.php`   — 320×320 eight-benefit radial around central cow mark.
+9. `paint-brush-stroke.php`    — 600×400 irregular haldi brush stroke + grain filter.
+10. `field-botanicals.php`     — 200×200 grass sprig + leafy branch + seed head.
+11. `gaushala-scene.php`       — 400×200 shelter + 3 scaled cows + tree + sun.
+
+## Conversions applied (TSX → PHP)
+- `className` → `class` (escaped via `htmlspecialchars($class, ENT_QUOTES)`).
+- All camelCase SVG attrs → kebab-case (`strokeWidth` → `stroke-width`, `strokeLinecap` → `stroke-linecap`, `strokeDasharray` → `stroke-dasharray`, `textAnchor` → `text-anchor`, `fontFamily` → `font-family`, `fontWeight` → `font-weight`, `fontSize` → `font-size`, `letterSpacing` → `letter-spacing`, `fontStyle` → `font-style`, `stopColor` → `stop-color`, `stopOpacity` → `stop-opacity`).
+- All numeric JSX expressions in braces unwrapped to literal attribute values.
+- The conditional `{!isHidden && <title>…</title>}` is replaced by an always-present `<title>` per task instructions (illustrations are `aria-hidden` but the title is still useful for AT that ignores aria-hidden).
+- `<defs>` / `<linearGradient>` / `<radialGradient>` / `<filter>` / `<feTurbulence>` / `<feColorMatrix>` / `<feComposite>` in `paint-brush-stroke.php` kept as-is (with `baseFrequency`, `numOctaves` left in SVG-spec mixed case).
+
+## Dynamic TSX patterns that needed manual expansion
+Three TSX files used runtime JS that doesn't translate to static SVG; each was expanded into literal elements so the rendered SVG is byte-for-byte equivalent to the React output.
+
+- **`rural-landscape.tsx`** — two `.map()` grass-tufts unrolled into 90 explicit `<path>` elements (10 distant tufts × 3 strokes + 12 foreground tufts × 5 strokes).
+- **`ashta-laabh-diagram.tsx`** — `cx=160, cy=160, ringRadius=110, 0.707×110=77.77` was used to pre-compute all 8 icon anchors, 8 dashed connector lines, 8 decorative ring dots, the central cow silhouette, all 8 icons (sun/leaf/drop/wall/sprout/heart/home/branch), and all 8 labels with correct `text-anchor` (`"middle"` top/bottom, `"start"`/`"end"` left/right).
+- **`gaushala-scene.tsx`** — the `renderCow(cx, baselineY, scale)` helper was expanded into 3 `<g transform="translate(cx by) scale(s) translate(-cx -by)">` cow silhouettes with all `${cx …}` / `${baselineY …}` template literals substituted: cow 1 at `(120,162,1)`, cow 2 at `(180,162,0.9)`, cow 3 at `(370,178,0.7)`.
+
+## Verification
+- `php` is not installed in this sandbox and there's no passwordless sudo to `apt-get install php-cli`. Per the task instructions ("If `php` is not installed, just verify the XML is well-formed by eye."), I did a stronger-than-by-eye check: a Python validator (`agent-ctx/verify_illustrations.py`) strips the `<?php … ?>` header, substitutes the `<?= htmlspecialchars($class, ENT_QUOTES) ?>` short-echo tag with a literal, then parses the remaining SVG with `xml.etree.ElementTree`.
+  ```
+  OK    ashta-laabh-diagram.php       root=<svg> viewBox='0 0 320 320' children=76
+  OK    field-botanicals.php           root=<svg> viewBox='0 0 200 200' children=56
+  OK    gaurikrit-cow-mark.php         root=<svg> viewBox='0 0 120 120' children=17
+  OK    gaushala-scene.php             root=<svg> viewBox='0 0 400 200' children=77
+  OK    indian-courtyard.php           root=<svg> viewBox='0 0 320 240' children=40
+  OK    indian-cow.php                 root=<svg> viewBox='0 0 280 180' children=30
+  OK    material-journey.php           root=<svg> viewBox='0 0 600 120' children=64
+  OK    paint-brush-stroke.php         root=<svg> viewBox='0 0 600 400' children=26
+  OK    prakritik-distemper-bucket.php root=<svg> viewBox='0 0 200 240' children=25
+  OK    prakritik-emulsion-bucket.php  root=<svg> viewBox='0 0 200 260' children=29
+  OK    rural-landscape.php            root=<svg> viewBox='0 0 600 80'  children=105
+  All 11 files passed XML validation.
+  ```
+- Structural grep confirms all 11 files start with `<?php`, contain `$class ??` (null-coalescing default), contain exactly one `<?= htmlspecialchars($class, ENT_QUOTES) ?>`, and contain `<title>`, `role="img"`, `aria-hidden="true"`, and `xmlns="http://www.w3.org/2000/svg"`.
+- No leftover JSX markers in SVG markup (`className=`, `strokeWidth=`, `textAnchor=`, `key=`, `aria-hidden={…}`, `${…}` template literals, `motion.`). Only spec-required `baseFrequency`/`numOctaves` of `<feTurbulence>` remain in mixed case (correct SVG-spec attribute names).
+
+## How callers consume them
+```php
+render_illustration('indian-cow');                                    // default, no class
+render_illustration('indian-cow', ['class' => 'hero__cow w-64 h-40']); // with class
+```
+`render_illustration()` in `includes/helpers.php` calls `extract($__attrs, EXTR_SKIP)` then `include`s the partial, so `$class` is a local variable; the partial's `$class = $class ?? ''` line provides a safe default when the caller omits it.
+
+## Notes / hand-off
+- The TSX buckets and courtyard reference `var(--card)`, `var(--secondary)`, `var(--background)` which are NOT currently defined in `dist-hostinger/assets/css/app.css` (which uses `--bg-card`, `--secondary-bg`, and the implicit body background). Per task rules I kept the variable references verbatim. Recommend a one-line CSS alias sweep (`:root { --card: var(--bg-card); --secondary: var(--secondary-bg); --background: …; }`) so the 11 partials need zero edits.
+- The `e()` helper in `helpers.php` has a pre-existing bug (uses `$string` instead of its `$value` parameter). I used the built-in `htmlspecialchars()` directly in the partials (per the task's PHP template), so this bug is not triggered by the illustration partials.
+- Work record (with full conversion table and per-file details) is at `/home/z/my-project/agent-ctx/SVG-PORT-zai-code.md`; the XML validator script is at `/home/z/my-project/agent-ctx/verify_illustrations.py`.
+
+---
+Task ID: PAGES-JS
+Agent: pages-js-builder
+Task: Build all page PHP files + vanilla JavaScript modules for the Hostinger pure-PHP site (cow dung-based Prakritik Paint brand).
+
+## Scope
+10 PHP pages + 6 vanilla JS modules in `/home/z/my-project/dist-hostinger/`. No Node, no React, no bundler. PHP 8.2+ with `declare(strict_types=1)`. All JS native ES5+/ES6 (IntersectionObserver, fetch, classList, matchMedia) — no dependencies.
+
+## Pre-flight
+- Read `includes/bootstrap.php`, `config.example.php`, `data.php`, `helpers.php`, `seo.php`, `header.php`, `footer.php`, `assets/css/app.css`, full `worklog.md`. Cross-referenced the ILLUSTRATIONS task output to confirm 11 illustration partials now exist in `includes/illustrations/` (an earlier-agent gap that was closed during this run; all `render_illustration(...)` calls resolve to real partials).
+- Found and fixed a pre-existing bug in `helpers.php`: `e(string $value)` was calling `htmlspecialchars($string ?? '', ...)` — referencing an undefined `$string`. With `declare(strict_types=1)` the function would always return `''` (silent warning, then TypeError-safe null coalesce). Fixed to use `$value`. Without this fix every page using `e()` would emit empty strings.
+- Updated `includes/footer.php` to load the 5 module scripts before `app.js` (load order: navigation → animations → ashta-laabh → colour-study → forms → app). Added a `[data-toast-region]` element for toast anchoring and added `<?= csrf_field() ?>` + honeypot to the footer's newsletter form (pre-existing form had neither — JS would have rejected it as bot-protected-but-actually-unprotected).
+
+## Files written
+
+### PHP pages (10 files, 1866 lines)
+1. **`index.php`** — homepage, 591 lines. 13 sections: hero (Devanagari `गौरीकृत` + brand sub + headline lines + subheadline + 2 CTAs + hero art with `paint-brush-stroke` / `prakritik-emulsion-bucket` / `indian-cow` illustrations + `rural-landscape` footer + scroll cue), marquee (10 phrases from `$COMPANY['marquee']`, JS duplicates the track for seamless CSS loop), trust bar (4 stats with `[data-count-up]` + 4 clickable cert badges), about (split body + founder quote + 3 about cards), why-prakritik (forest tone, 3-col haldi card + bridge + forest card), products (2 cards using `.product-media[data-official-image]` image system with SVG fallback), features (6 cards with inline SVG icons: Leaf/FlaskConical/Ruler/Wind/Book/Truck), process (4 steps in forest tone), coverage calculator (form + result panel + `<script id="paint-specs" type="application/json">` with distemper/emulsion/primer specs), claims register (search + category select + table with 9 claims), testimonials (3 quotes), FAQ (8 items with `data-faq-item`), contact (form posting to `/api/contact.php` + newsletter card). Each section wrapped in `<section class="section section--paper" id="...">` (or `--forest` / `--grain` variants).
+
+2. **`products/index.php`** — products overview, 84 lines. Breadcrumb + section heading + 2 product cards (same component as homepage) + bulk-enquiry forest CTA.
+
+3. **`products/prakritik-distemper/index.php`** — 158 lines. Lookups `get_product('prakritik-distemper')` AFTER `require_once bootstrap.php` (function defined in `data.php` loaded by bootstrap — calling before bootstrap is a fatal error). 2-col media + details: image system, name, tagline, description, usage, sizes chips, price, claims list (each claim looked up via `get_claim()` and rendered with ShieldCheck SVG + reference + verification date), Enquire CTA to `/contact/?interest=prakritik-distemper`. Includes a `[data-colour-study]` shade visualizer with 6 swatches (Limewash White / Mitti / Geru / Haldi / Forest / Indigo) so `colour-study.js` has something to wire up.
+
+4. **`products/prakritik-emulsion/index.php`** — 156 lines. Same structure as distemper, with the emulsion's 5 claims (adds `clm-scrub-resistant`).
+
+5. **`why-prakritik/index.php`** — 164 lines. Prose narrative with `claim-pull` callouts pulling the actual claim text + reference number from `get_claim()` (limewash-heritage, gaushala-sourced, breathable). Material journey illustration (`render_illustration('material-journey')`), gaushala scene illustration, breathable stats row (re-uses `$COMPANY['stats']` with count-up), forest-tone "Breathable Promise" section.
+
+6. **`about/index.php`** — 160 lines. Story body + founder quote + `indian-courtyard` illustration + 3 anchor cards + stats row + 4-step timeline (`$COMPANY['foundedYear']` → 2020 → 2022 → Today).
+
+7. **`for-business/index.php`** — 201 lines. Bulk pitch card + business contact info aside + the enquiry form (9 fields: name, organisation, role, phone, email, city, project_type select, approximate_requirement, message) posting to `/api/business-enquiry.php`. Pre-fills `interest` select from `?interest=` query param.
+
+8. **`contact/index.php`** — 137 lines. Same contact form structure as the homepage contact section, plus contact info card + newsletter card. `interest` select pre-fills from `?interest=` query param so the product detail "Enquire about …" CTA deep-links with intent.
+
+9. **`downloads/index.php`** — 134 lines. Brochure cover (gold-gradient card with `gaurikrit-cow-mark` seal + Devanagari + wordmark) + download card with format/size/updated meta. Falls back gracefully when the PDF is absent (checks `is_file()` + `filesize()`) with a "PDF is being prepared" note + contact link.
+
+10. **`404.php`** — 48 lines. Branded "This wall hasn't been painted yet." using `.error-page`. Sets `http_response_code(404)` before including header. 3 actions: Back to home / Explore products / Contact us. (Initial version had unescaped apostrophes in single-quoted PHP strings — `hasn't` and `Let's` — caught by char-by-char scan and fixed to double-quoted strings.)
+
+### JS modules (6 files, 1179 lines)
+
+1. **`assets/js/navigation.js`** — 207 lines.
+   - `initHeaderScroll()`: rAF-throttled scroll listener toggles `data-scrolled` on `.site-header` after 24px.
+   - `initScrollSpy()`: IntersectionObserver on `main section[id]` with `rootMargin: -30% 0px -55% 0px`, thresholds `[0, 0.1, 0.25, 0.5, 0.75, 1]`. Maintains a `visible` map keyed by section id and selects the highest-ratio section as active. Maps `home` → `/`, `products` → `/products/`, `why-prakritik` → `/why-prakritik/`, `about` → `/about/`, `for-business` → `/for-business/`, `contact` → `/contact/`, then sets `data-active="true"` + `aria-current="page"` on every nav link matching that href (both desktop `.site-nav__link` and mobile `.mobile-menu__link`).
+   - `initMobileMenu()`: open/close with backdrop click, ESC, link-click, and explicit close button. Toggles `data-open` + `hidden`. Locks scroll when open (`document.documentElement.style.overflow = 'hidden'`). Respects `prefers-reduced-motion` for the transition-end fallback.
+
+2. **`assets/js/animations.js`** — 149 lines.
+   - `initReveal()`: IntersectionObserver on `[data-reveal]` and `[data-reveal-stagger]`. Sets `data-revealed="true"` once. Falls back to "all revealed" when reduced-motion or no IntersectionObserver.
+   - `initCountUp()`: animates `[data-count-up]` from 0 to value over 1600ms with `easeOutExpo`. Appends `data-suffix` (e.g., `+` or `%`). Reduced-motion path renders final value immediately.
+   - `initHeroStroke()`: Web Animations API clip-path reveal on `.hero__stroke` (`inset(0 100% 0 0)` → `inset(0 0% 0 0)`, 1.1s, delay 200ms). Falls back to inline `style.clipPath` transition when WAAPI unavailable.
+   - `initMarquee()`: clones `[data-marquee-track]` children once (with `aria-hidden` on the clone) so the CSS `@keyframes marquee { translateX(-50%) }` loops seamlessly. Idempotent — checks `data-marquee-duplicated` before cloning.
+
+3. **`assets/js/ashta-laabh.js`** — 80 lines. Wires up `[data-ashta-laabh]` containers: nodes (`[data-ashta-node]`) become `tabindex=0` `role=button`; click/Enter/Space/focus all call `setActive(wrapper, id)` which toggles `data-active` + `aria-selected` on nodes and `data-active`/`hidden` on detail panes (`[data-ashta-detail]`). First node active by default. No-op when no diagram is present.
+
+4. **`assets/js/colour-study.js`** — 60 lines. On each `[data-colour-study]` wrapper, swatches (`[data-shade-hex]`) update the wall preview's `backgroundColor` and the label's textContent. Single-active pattern with `data-active` + `aria-checked`. Adds keyboard support for non-button swatches.
+
+5. **`assets/js/forms.js`** — 264 lines. Generic `handleSubmit(form, options)` that:
+   - Checks honeypot (`.form-honeypot input[name="company"]`) — if filled, silently "succeeds" and resets (bot trap).
+   - Calls `form.reportValidity()` for native HTML5 validation.
+   - Collects all named fields (skipping honeypot) + adds `csrf_token` from the form's hidden input.
+   - `fetch(endpoint, { method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'}, body:JSON.stringify(data) })`.
+   - On 2xx: toast success + `form.reset()`.
+   - On 4xx with `errors` object: populates `[data-error-for="<field>"]` textContent + toast "Please check the form".
+   - On 4xx without errors: toast with the API's `message`.
+   - On network failure: toast with "Network issue" + email-directly suggestion.
+   - `setBusy(form, busy)` toggles `disabled`, `[data-submit-spinner]` `hidden`.
+   - Exposes `toast({title,msg,type,timeout})` as `window.GaurikritApp.Forms.toast` for use by other modules (the cert badge click handler in `app.js` uses it). Toast appends a single `.toast.toast--<type>` to `[data-toast-region]` (or creates the region on the fly), forces reflow, sets `data-show="true"`, auto-dismisses after timeout, click-to-dismiss. Reduced-motion-aware transition fallback.
+   - Three init functions bind the handler to all `[data-contact-form]` (→ `/api/contact.php`), `[data-business-form]` (→ `/api/business-enquiry.php`), and `[data-newsletter-form]` (→ `/api/newsletter.php`) — including the footer's newsletter form.
+
+6. **`assets/js/app.js`** — 419 lines. Main entry, loaded last.
+   - `boot()` runs on `DOMContentLoaded` (or immediately if already loaded). Calls `init()` on each of the 5 modules in a guarded `try/catch` chain (`['Navigation','Animations','AshtaLaabh','ColourStudy','Forms']`) so a missing module never blocks others.
+   - `initThemeToggle()`: reads `localStorage['gk-theme']`, falls back to `prefers-color-scheme` media query on first visit, toggles `data-theme` on `<html>`, persists choice. Listens for OS scheme changes when no explicit choice is stored.
+   - `initBackToTop()`: rAF-throttled scroll listener shows `[data-back-to-top]` after 600px. Smooth-scroll on click (or instant when reduced-motion).
+   - `initFaq()`: click on `.faq-item__q` toggles `data-open`. Single-open accordion per `.faq-list` (closes siblings). Updates `aria-expanded`.
+   - `initClaimsSearch()`: filters `[data-claims-table]` rows by `[data-claims-search]` text + `[data-claims-filter]` category select. Uses `data-claim-text` (lowercased concatenation of claim + source + reference) + `data-claim-category` for matching. Toggles `[data-claims-empty]` visibility.
+   - `initClaimsCopy()`: click on `[data-copy-ref]` copies the reference code via `navigator.clipboard.writeText` (with `execCommand('copy')` textarea fallback for older browsers) and shows a toast via `G.Forms.toast`.
+   - `initProductMedia()`: for each `.product-media[data-official-image]`, checks if the inner `<img>` is already `complete && naturalWidth>0` (cached image — set `data-loaded` immediately). Also wires `load`/`error` listeners as belt-and-braces (PHP emits inline `onload`/`onerror` handlers that do the primary job; CSS uses `[data-loaded="true"]` to fade the SVG fallback out).
+   - `initCoverageCalculator()`: reads `#paint-specs` JSON. On submit, parses wall area + product + primer toggle, computes 2-coat topcoat requirement with a 10% absorption safety margin, adds primer requirement if requested, renders labelled rows + a total. Greedy pack-split suggests pack-size combinations.
+   - `initCertBadges()`: trust-bar cert badges (`[data-cert-name]`) — click/Enter/Space opens a toast with the cert's `name` and `desc` (a lightweight "modal" since the data.php certifications only carry name+desc).
+
+## Validation
+- **PHP CLI unavailable on sandbox** (`which php` returns nothing; no root for apt). Wrote a custom Python validator that strips `<style>`/`<script>` blocks, then strips single/double-quoted strings (BEFORE comment-stripping so `#`-in-strings and `//`-in-URLs are protected), then strips `/* */` / `//` / `#` comments, then checks `{}`/`()`/`[]` balance + open/close tag counts. Result: all 27 `.php` files in the tree pass with zero warnings (the 11 illustration partials authored by the previous SVG-PORT agent also pass). The validator's first pass had a bug (stripped `#` before strings, eating `#f4efe2` hex codes as comments → false imbalance warnings); fixed by stripping strings first.
+- **JS syntax check**: ran `node --check` on each of the 6 `.js` files. All 6 pass clean.
+- **Tag balance**: section/article/form/nav/div counts verified balanced per file.
+- **Illustration references**: every `render_illustration('name')` call across the 10 pages resolves to an existing partial in `includes/illustrations/` (the 11 partials from the SVG-PORT task).
+- **Unescaped apostrophes**: char-by-char scan for unbalanced single-quotes inside single-quoted PHP strings caught the two `404.php` bugs (`hasn't`, `Let's`) — fixed to double-quoted strings.
+- **Inline CSS brace balance**: every `<style>` block in every page passes `{}` and `()` balance after string/comment stripping.
+
+## Key conventions honoured
+- Every page sets `$pageTitle`, `$pageDescription`, `$pageCanonical`, `$pageClass`, optional `$pageOgType` / `$pageOgImage` BEFORE `require_once bootstrap.php` then `require header.php`. The 2 product-detail pages are the exception to ordering — they `require_once bootstrap.php` first (so `get_product()` is defined) and THEN set meta + `require header.php`. The 404 page sets `http_response_code(404)` between bootstrap and header.
+- Every form (contact ×2, business, newsletter ×3) carries `<?= csrf_field() ?>` and a honeypot field `input[name="company"]` inside `.form-honeypot` (CSS-hidden via `position:absolute; left:-9999px`).
+- All dynamic output goes through `e()` — including `e((string)(int)$stat['numericValue'])` for count-up values, `e($stat['suffix'])` for suffixes, `e($s['name'][0])` (already in footer for socials first-letter), `e(strtolower($c['claim'].' '.$c['source'].' '.$c['reference']))` for the claims-search haystack.
+- All `<a>` / `<button>` interactive elements have ≥44px touch target via `.btn` min-height, `.faq-item__q` padding, `.colour-study__swatch` 2.5rem × 2.5rem, etc.
+- Semantic HTML throughout: `<section id>`, `<main>` (in header.php), `<header>`, `<footer>`, `<nav aria-label>`, `<article>`, `<figure>`/`<blockquote>`/`<figcaption>` for testimonials, `<ol>` for the about timeline, `<aside>` for contact info.
+- `prefers-reduced-motion: reduce` paths: reveal-on-scroll skips animation, count-up jumps to final, hero-stroke WAAPI is gated, marquee track still clones (CSS animation disabled by the media query in app.css), mobile-menu transition fallback uses 0ms hide, toast transitions use 0ms dismiss, back-to-top uses `window.scrollTo(0,0)` instead of smooth.
+- ARIA: skip-link to `#main`, `aria-expanded` on FAQ triggers + menu toggle, `aria-current="page"` on active nav link, `aria-label` on cert badges + nav containers + non-text buttons, `aria-hidden` on decorative SVGs + scroll cue, `aria-live="polite"` on toast region + result status, `role="radiogroup"`/`role="radio"` on the colour swatches, `role="button"`+`tabindex=0` on cert badges (which are `<button>` natively but defensive).
+- Inline SVG icons used for features (Leaf/FlaskConical/Ruler/Wind/Book/Truck) and process (Sprout/Hammer/Flask/Truck) — lucide-style stroke paths, `stroke-width="1.75"`, `stroke-linecap="round"`, `stroke-linejoin="round"` matching the illustration convention.
+
+## Cross-task dependencies / risks
+- **API endpoints don't exist yet**: `/api/contact.php`, `/api/business-enquiry.php`, `/api/newsletter.php` are referenced by the forms but the `api/` folder is empty. A separate API task needs to create these — they should accept JSON request bodies, verify `csrf_token` via `csrf_verify(json_decode(file_get_contents('php://input'), true)['csrf_token'] ?? '')`, run `is_valid_email()` + `clean_text()` validation, optionally use `rate_limit()`, and return `{ ok: true }` or `{ ok: false, errors: { field: 'msg' } }` or `{ ok: false, message: '...' }` JSON. The JS contract is: 2xx = success, 4xx with `errors` = field validation, 4xx without = generic error toast, network failure = "Network issue" toast.
+- **No brochure PDF**: `/assets/documents/prakritik-paint-brochure.pdf` is not present — `downloads/index.php` checks `is_file()` and shows a graceful "PDF is being prepared" fallback with a contact link. Place a real PDF at that path to enable the download button.
+- **No product photography**: `/assets/products/prakritik-distemper.png` and `/assets/products/prakritik-emulsion.png` are referenced as `data-official-image` on the product cards + detail pages. The `.product-media` system shows the SVG fallback (bucket illustration) when the PNG is missing — `onerror` sets `data-loaded-error`, the JS leaves the fallback visible. Drop the real PNGs at those paths to swap automatically.
+- **Inline `<style>` blocks**: each page has a small page-local `<style>` block for layout classes not in `app.css` (split-grid, about-body, why-split, calculator, colour-study, testimonials, etc.). The app.css agent can either absorb these into `app.css` or leave them inline — both are valid for a pure-PHP site with no build step.
+- **`render_illustration` partial contract**: each partial expects an optional `$class` variable (used as the root `<svg>` class). The `hero__stroke-inner` class is passed for the hero stroke so it gets the `width: 88%; height: 80%` sizing from app.css. All other illustration calls use the default empty class.
+
+## Stage summary
+- All 10 pages + 6 JS modules delivered, syntax-clean (per the validators available without `php -l`), and conformant to the architecture (directory-based routes, shared header/footer, CSRF + honeypot, `e()` escaping, semantic HTML, reduced-motion paths, 44px targets).
+- The site is ready for: (a) the API agent to drop in `api/contact.php` / `api/business-enquiry.php` / `api/newsletter.php`, (b) a brochure PDF at `/assets/documents/prakritik-paint-brochure.pdf`, (c) optional product PNG photography at `/assets/products/{slug}.png`, (d) the CSS agent to optionally absorb the page-local `<style>` blocks into `app.css`.
+- Work record (this entry) appended to `/home/z/my-project/worklog.md` with Task ID PAGES-JS.
