@@ -1,74 +1,58 @@
 import { ImageResponse } from "next/og"
 import { readFile } from "node:fs/promises"
+import path from "node:path"
 import { company } from "@/lib/data"
 
-export const alt = "Gaurikrit — Naturally Crafted Haldi & Premium Paint"
+export const alt = "Gaurikrit Bio Products — Prakritik Paint. Walls that breathe sustainability."
 export const size = { width: 1200, height: 630 }
 export const contentType = "image/png"
 
+// Prevent build-time prerender — the OG image renders on-demand at request
+// time, where the serverless function has filesystem access to the bundled
+// fonts. (Build machines like Vercel's iad1 don't have the CDN reachable
+// during prerender, which crashed the previous build.)
+export const dynamic = "force-dynamic"
+
 /**
- * Dynamic OpenGraph image with real brand fonts.
+ * Dynamic OpenGraph image for Gaurikrit Bio Products.
  *
- * Tries to fetch Playfair Display + Inter from a CDN; if that fails (e.g. no
- * outbound network in a sandbox), falls back to local Liberation Serif + Sans
- * read from the filesystem so Satori always has a font to calculate layout.
+ * Fonts: bundled Liberation Serif (display) + Sans (body) travel with the
+ * repo so the route never depends on a CDN fetch or a system font install.
+ * On Vercel/Node the serverless function reads them via fs at request time.
  *
  * Route: /opengraph-image (Next.js convention — auto-wired into metadata).
  *
- * Note: Satori (the renderer) requires every <div> with more than one child
- * to have an explicit `display: "flex"` (or "none"). Single-text divs are fine.
+ * Satori requires every <div> with >1 child to have explicit `display: flex`.
  */
 
-async function loadFonts(): Promise<{ name: string; data: ArrayBuffer; weight: 400 | 700; style: "normal" | "italic" }[]> {
-  // 1. Try CDN fonts (Playfair Display + Inter) — on-brand.
-  try {
-    const base = "https://cdn.jsdelivr.net/fontsource/fonts"
-    const [playfairRes, interRes] = await Promise.all([
-      fetch(`${base}/playfair-display@1.2.0/latin-700-normal.woff2`, { cache: "no-store" }),
-      fetch(`${base}/inter@1.1.0/latin-400-normal.woff2`, { cache: "no-store" }),
-    ])
-    if (playfairRes.ok && interRes.ok) {
-      const [playfairData, interData] = await Promise.all([
-        playfairRes.arrayBuffer(),
-        interRes.arrayBuffer(),
-      ])
-      return [
-        { name: "Playfair Display", data: playfairData, weight: 700, style: "normal" },
-        { name: "Inter", data: interData, weight: 400, style: "normal" },
-        { name: "Inter", data: interData, weight: 700, style: "normal" },
-      ]
-    }
-  } catch {
-    // fall through to local fonts
-  }
+let cachedFonts:
+  | { name: string; data: Buffer; weight: 400 | 700; style: "normal" | "italic" }[]
+  | null = null
 
-  // 2. Fallback: local Liberation Serif (display) + Sans (body).
-  try {
-    const [serifData, sansData] = await Promise.all([
-      readFile("/usr/share/fonts/truetype/liberation/LiberationSerif-Bold.ttf"),
-      readFile("/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf"),
-    ])
-    return [
-      { name: "Liberation Serif", data: serifData.buffer.slice(0), weight: 700, style: "normal" },
-      { name: "Liberation Sans", data: sansData.buffer.slice(0), weight: 400, style: "normal" },
-      { name: "Liberation Sans", data: sansData.buffer.slice(0), weight: 700, style: "normal" },
-    ]
-  } catch {
-    // 3. Last resort: return empty — Satori will throw but we've tried.
-    return []
-  }
+async function loadFonts() {
+  if (cachedFonts) return cachedFonts
+  const fontDir = path.join(process.cwd(), "src/app/_fonts")
+  const [serifBold, sansReg, sansBold] = await Promise.all([
+    readFile(path.join(fontDir, "LiberationSerif-Bold.ttf")),
+    readFile(path.join(fontDir, "LiberationSans-Regular.ttf")),
+    readFile(path.join(fontDir, "LiberationSans-Bold.ttf")),
+  ])
+  cachedFonts = [
+    { name: "Liberation Serif", data: serifBold, weight: 700, style: "normal" },
+    { name: "Liberation Sans", data: sansReg, weight: 400, style: "normal" },
+    { name: "Liberation Sans", data: sansBold, weight: 700, style: "normal" },
+  ]
+  return cachedFonts
 }
 
 export default async function OpengraphImage() {
-  const gold = "#c8901f" // approx of oklch(0.72 0.15 75) in sRGB
-  const goldLight = "#e7c171"
-  const charcoal = "#1a1816"
-  const paper = "#fdfaf2"
   const fonts = await loadFonts()
-  const hasFonts = fonts.length > 0
-  // Use the display font name for headings, body font name for the rest.
-  const displayFont = hasFonts ? fonts[0].name : "sans-serif"
-  const bodyFont = hasFonts ? fonts[1].name : "sans-serif"
+  const forest = "#1c2a1e"
+  const forestMid = "#34503a"
+  const haldi = "#d4a017"
+  const haldiLight = "#e9c76b"
+  const mitti = "#a86a3a"
+  const paper = "#f7f3eb"
 
   return new ImageResponse(
     (
@@ -79,53 +63,55 @@ export default async function OpengraphImage() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          background: charcoal,
+          background: paper,
           padding: "72px",
-          fontFamily: bodyFont,
+          fontFamily: "Liberation Sans",
           position: "relative",
         }}
       >
-        {/* Gold radial glows (decorative) */}
+        {/* Soft haldi wash top-right */}
         <div
           style={{
             position: "absolute",
-            top: "-180px",
-            right: "-160px",
-            width: "640px",
-            height: "640px",
+            top: "-160px",
+            right: "-140px",
+            width: "620px",
+            height: "620px",
             borderRadius: "50%",
-            background: `radial-gradient(closest-side, ${gold}55, transparent)`,
+            background: `radial-gradient(closest-side, ${haldi}33, transparent)`,
             display: "flex",
           }}
         />
+        {/* Soft forest wash bottom-left */}
         <div
           style={{
             position: "absolute",
-            bottom: "-220px",
-            left: "-140px",
+            bottom: "-200px",
+            left: "-120px",
             width: "540px",
             height: "540px",
             borderRadius: "50%",
-            background: `radial-gradient(closest-side, ${goldLight}33, transparent)`,
+            background: `radial-gradient(closest-side, ${forest}22, transparent)`,
             display: "flex",
           }}
         />
 
-        {/* Top row — brand mark */}
-        <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
+        {/* Top row — Devanagari + brand lockup */}
+        <div style={{ display: "flex", alignItems: "center", gap: "24px" }}>
+          {/* Cow-mark emblem (gold circle with forest G) */}
           <div
             style={{
-              width: "72px",
-              height: "72px",
+              width: "80px",
+              height: "80px",
               borderRadius: "50%",
-              background: `linear-gradient(135deg, ${goldLight}, ${gold})`,
+              background: `linear-gradient(135deg, ${haldiLight}, ${haldi})`,
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              fontSize: "40px",
+              fontSize: "44px",
               fontWeight: 700,
-              fontFamily: displayFont,
-              color: charcoal,
+              fontFamily: "Liberation Serif",
+              color: forest,
             }}
           >
             G
@@ -133,10 +119,10 @@ export default async function OpengraphImage() {
           <div style={{ display: "flex", flexDirection: "column" }}>
             <div
               style={{
-                fontSize: "34px",
+                fontSize: "38px",
                 fontWeight: 700,
-                fontFamily: displayFont,
-                color: paper,
+                fontFamily: "Liberation Serif",
+                color: forest,
                 letterSpacing: "-0.01em",
                 display: "flex",
               }}
@@ -145,15 +131,16 @@ export default async function OpengraphImage() {
             </div>
             <div
               style={{
-                fontSize: "15px",
-                color: "#a8a09a",
-                letterSpacing: "0.18em",
+                fontSize: "16px",
+                color: forestMid,
+                letterSpacing: "0.22em",
                 textTransform: "uppercase",
                 marginTop: "4px",
+                fontWeight: 700,
                 display: "flex",
               }}
             >
-              {`Haldi & Paint · Since ${company.foundedYear}`}
+              BIO PRODUCTS · PRAKRITIK PAINT
             </div>
           </div>
         </div>
@@ -163,17 +150,17 @@ export default async function OpengraphImage() {
           style={{
             display: "flex",
             flexDirection: "column",
-            gap: "16px",
-            maxWidth: "980px",
+            gap: "14px",
+            maxWidth: "1000px",
           }}
         >
           <div
             style={{
-              fontSize: "20px",
-              color: gold,
-              letterSpacing: "0.22em",
+              fontSize: "22px",
+              color: haldi,
+              letterSpacing: "0.2em",
               textTransform: "uppercase",
-              fontWeight: 600,
+              fontWeight: 700,
               display: "flex",
             }}
           >
@@ -183,28 +170,34 @@ export default async function OpengraphImage() {
             style={{
               display: "flex",
               flexDirection: "column",
-              fontSize: "72px",
+              fontSize: "78px",
               fontWeight: 700,
-              fontFamily: displayFont,
-              color: paper,
-              lineHeight: 1.08,
+              fontFamily: "Liberation Serif",
+              color: forest,
+              lineHeight: 1.04,
               letterSpacing: "-0.025em",
             }}
           >
-            <span style={{ display: "flex" }}>The golden warmth of</span>
+            <span style={{ display: "flex" }}>Walls that breathe</span>
             <span style={{ display: "flex" }}>
-              <span style={{ color: gold, fontStyle: "italic" }}>{`haldi`}</span>
-              <span>{`, the precision`}</span>
-            </span>
-            <span style={{ display: "flex" }}>
-              <span>{`of premium `}</span>
-              <span style={{ color: gold, fontStyle: "italic" }}>{`paint`}</span>
+              <span style={{ color: haldi }}>{`sustainability`}</span>
               <span>{`.`}</span>
             </span>
           </div>
+          <div
+            style={{
+              display: "flex",
+              fontSize: "24px",
+              color: forestMid,
+              maxWidth: "880px",
+              lineHeight: 1.35,
+            }}
+          >
+            Cow dung-based Prakritik Paint in distemper and emulsion formats. Naturally breathable, naturally Indian.
+          </div>
         </div>
 
-        {/* Bottom — certifications + seal */}
+        {/* Bottom — product + cert row */}
         <div
           style={{
             display: "flex",
@@ -212,8 +205,8 @@ export default async function OpengraphImage() {
             justifyContent: "space-between",
           }}
         >
-          <div style={{ display: "flex", gap: "14px", alignItems: "center" }}>
-            {["FSSAI", "NABL", "ISO 9001", "GreenPro"].map((c) => (
+          <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
+            {["Lead-Free", "Low-VOC", "Breathable", "Gaushala-Sourced"].map((c) => (
               <div
                 key={c}
                 style={{
@@ -222,14 +215,14 @@ export default async function OpengraphImage() {
                   gap: "8px",
                   padding: "10px 18px",
                   borderRadius: "999px",
-                  border: `1px solid ${gold}55`,
-                  background: `${gold}11`,
-                  color: paper,
+                  border: `1.5px solid ${forest}44`,
+                  background: `${forest}08`,
+                  color: forest,
                   fontSize: "16px",
-                  fontWeight: 600,
+                  fontWeight: 700,
                 }}
               >
-                <span style={{ color: gold, fontSize: "18px", display: "flex" }}>
+                <span style={{ color: haldi, fontSize: "18px", display: "flex" }}>
                   •
                 </span>
                 {c}
@@ -243,13 +236,13 @@ export default async function OpengraphImage() {
               gap: "12px",
               padding: "14px 22px",
               borderRadius: "999px",
-              background: `linear-gradient(135deg, ${goldLight}, ${gold})`,
-              color: charcoal,
+              background: forest,
+              color: paper,
               fontSize: "18px",
               fontWeight: 700,
             }}
           >
-            {`${company.hero.seal.label} · ${company.hero.seal.sublabel}`}
+            {`प्राकृतिक Paint`}
           </div>
         </div>
       </div>
