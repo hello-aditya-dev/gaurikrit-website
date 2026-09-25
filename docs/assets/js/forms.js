@@ -317,22 +317,51 @@
         if (!window.URLSearchParams) return;
         var params = new URLSearchParams(window.location.search);
         var interest = params.get('interest');
-        if (!interest) return;
 
         var contactForm = document.querySelector('[data-contact-form]');
         if (!contactForm) return;
-        var select = contactForm.querySelector('select[name="interest"]');
-        if (!select) return;
 
-        // Only pre-fill if the value is one of the offered options —
-        // otherwise leave the select blank and let the user choose.
-        var options = select.querySelectorAll('option');
-        for (var i = 0; i < options.length; i++) {
-            if (options[i].value === interest) {
-                select.value = interest;
-                return;
+        if (interest) {
+            var select = contactForm.querySelector('select[name="interest"]');
+            // Only pre-fill if the value is one of the offered options —
+            // otherwise leave the select blank and let the user choose.
+            if (select) {
+                var options = select.querySelectorAll('option');
+                for (var i = 0; i < options.length; i++) {
+                    if (options[i].value === interest) {
+                        select.value = interest;
+                        break;
+                    }
+                }
             }
         }
+
+        // V13: when the visitor arrives from the paint calculator
+        // (?painting_type=&location=&paint=&area=), pre-fill the message
+        // textarea with the same summary the result panel showed. Never
+        // overwrites text the visitor has already typed (or that the
+        // server template pre-filled).
+        var msg = contactForm.querySelector('textarea[name="message"]');
+        if (!msg || msg.value.trim() !== '') return;
+        var parts = [
+            detailLine(params, 'painting_type', { fresh: 'Fresh Painting', repaint: 'Repainting' }),
+            detailLine(params, 'location', { interior: 'Interior', exterior: 'Exterior' }),
+            detailLine(params, 'paint', { distemper: 'Prakritik Distemper', emulsion: 'Prakritik Emulsion' })
+        ].filter(Boolean);
+        var area = params.get('area');
+        if (area && isFinite(Number(area)) && Number(area) > 0) {
+            parts.push('Wall area: ' + Number(area).toLocaleString('en-IN') + ' sq.ft.');
+        }
+        if (!parts.length) return;
+        // The last part ("… sq.ft.") already closes with a period.
+        msg.value = 'I used the paint calculator on your website. Project details — ' +
+            parts.join('; ') + ' Please share a quote for this project.';
+    }
+
+    function detailLine(params, key, labels) {
+        var v = params.get(key);
+        if (!v) return null;
+        return labels[v] || null;
     }
 
     G.Forms = {

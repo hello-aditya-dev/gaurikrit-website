@@ -3157,8 +3157,10 @@ ${phoneAsideRows}
       <!-- RIGHT 8 col: form fields -->
       
            
+      <!-- data-static-preview: forms.js opens a pre-filled mailto draft
+           instead of POSTing (no PHP endpoint on the static build). -->
       <form class="biz-form-card" action="mailto:seva@gaurikrit.com" method="post"
-            data-business-form novalidate>
+            data-business-form data-static-preview novalidate>
         <p class="biz-form-card__intro">
           Fields marked <span class="req">*</span> are required.
         </p>
@@ -3910,9 +3912,11 @@ ${phoneRows}
         </p>
       </aside>
 
-      <!-- RIGHT — enquiry form. Static demo uses a safe email fallback. -->
+      <!-- RIGHT — enquiry form. Static demo uses a safe email fallback
+           (data-static-preview: forms.js opens a pre-filled mailto draft
+           instead of POSTing — no PHP endpoint on the static build). -->
       <form class="contact-form" action="mailto:seva@gaurikrit.com" method="post"
-            data-contact-form novalidate>
+            data-contact-form data-static-preview novalidate>
         <p class="contact-form-card__intro">
           Fields marked <span class="req">*</span> are required.
         </p>

@@ -245,9 +245,27 @@
         var cta = el('a', {
             class: 'btn btn--primary btn--lg',
             'data-calc-cta': '',
-            href: '/contact/?interest=bulk-project',
+            // Relative to the calculator page (/paint-calculator/) — works
+            // on Hostinger, GitHub Pages and any sub-directory preview.
+            href: '../contact/?interest=bulk-project',
             text: 'Request Estimate'
         });
+        // V13: Copy-summary button — reuses the shared [data-copy]
+        // clipboard handler from app.js (label swaps to "Copied" for 2s,
+        // hidden automatically when the Clipboard API is unavailable).
+        // The data-copy payload is refreshed every time a result renders.
+        var copyBtn = el('button', {
+            type: 'button',
+            class: 'btn btn--outline',
+            'data-calc-copy': '',
+            'data-copy': '',
+            'aria-label': 'Copy project summary to clipboard'
+        });
+        copyBtn.innerHTML = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" ' +
+            'stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ' +
+            'aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/>' +
+            '<path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>' +
+            '<span class="copy-btn__label">Copy summary</span>';
         var reset = el('button', {
             type: 'button',
             class: 'btn btn--outline',
@@ -255,6 +273,7 @@
             text: 'Start over'
         });
         ctaWrap.appendChild(cta);
+        ctaWrap.appendChild(copyBtn);
         ctaWrap.appendChild(reset);
         result.appendChild(ctaWrap);
 
@@ -268,7 +287,8 @@
             errBox: errBox,
             calcBtn: calcBtn,
             result: result,
-            cta: cta
+            cta: cta,
+            copyBtn: copyBtn
         };
     }
 
@@ -460,12 +480,22 @@
             renderRateLine(cfg);
 
             // Build the CTA URL with the project details.
-            var url = '/contact/?interest=bulk-project' +
+            var url = '../contact/?interest=bulk-project' +
                 '&painting_type=' + encodeURIComponent(state.painting_type || '') +
                 '&location=' + encodeURIComponent(state.location || '') +
                 '&paint=' + encodeURIComponent(state.paint || '') +
                 '&area=' + encodeURIComponent(state.area || '');
             ui.cta.setAttribute('href', url);
+
+            // V13: refresh the copy-summary payload to match this result.
+            if (ui.copyBtn) {
+                ui.copyBtn.setAttribute('data-copy',
+                    'Prakritik Paint project details\n' +
+                    'Painting type: ' + formatValue('painting_type', state.painting_type) + '\n' +
+                    'Location: ' + formatValue('location', state.location) + '\n' +
+                    'Paint: ' + formatValue('paint', state.paint) + '\n' +
+                    'Wall area: ' + formatValue('area', state.area));
+            }
 
             // Hide all step panels; show the result.
             var steps = ui.root.querySelectorAll('[data-calc-step]');
