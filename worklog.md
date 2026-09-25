@@ -2749,3 +2749,25 @@ Stage Summary:
 - Every V6/V7 section directive applied to BOTH dist-hostinger/ (canonical PHP) and build-static.mjs (docs/ preview): hero integration, ghost restraint, ashta simplification, calculator teaser mini-UI, pathways de-artwork, contact/about/why/products/business art direction, responsive breakpoint system.
 - Outputs regenerated: docs/ (11 pages) + gaurikrit-hostinger-deploy.zip (121 files, extraction-verified).
 - Remaining known state: calculator remains 4-step summary (no cost math — rates were never supplied, per the locked-data policy); brochure PDF + cover ship from client original #1; future-products collage (#8) remains excluded.
+
+---
+Task ID: V8
+Agent: Z.ai Code (main agent)
+Task: "fix the images of the products, don't crop them" — user-reported product-photo cropping
+
+Work Log:
+- Diagnosed with in-browser geometry audit (uniform-scale + inside-parent test) at 6 viewports × 6 pages: CSS never clipped the product images — the crop was baked into the FILES.
+- Root cause in scripts/prepare_assets.py: prakritik-distemper.jpg (385,52,895,590) and prakritik-emulsion.jpg (895,56,1250,542) were hard pixel-rectangle crops of the 1280×621 group photo that sliced lids, bases and sides (vision QA confirmed).
+- Measured true bucket extents with HSV label-band segmentation (blue label x 432–859 centre; warm labels 72–473 left / 860–1199 right; objects from y=88; wood from y=514) + grid-reading vision QA.
+- Re-cut both derivatives as complete-bucket crops keeping FULL photo height: distemper (395,0,885,621)=490×621; emulsion (830,0,1280,621)=450×621. Verified main buckets complete (label margins 39/29px and 31/113px); neighbour slivers at edges are occlusion inherent to the client's shelf photo.
+- Evaluated alternatives and rejected: brochure p2 bucket cutouts (~170×350, too low-res), single-can original (label has no variant name — ambiguous), two-buckets graphic (pink marketing background).
+- Regenerated og-distemper/og-emulsion social cards from the new photos.
+- Updated width/height attrs 510×538→490×621 and 355×486→450×621 in 6 PHP templates + 10 build-static.mjs spots; corrected stale dimension comments; prepare_assets.py reproduces the new boxes; ASSET_PROVENANCE.md documents V8 mapping.
+- PARITY BUG found + fixed: generated Emulsion page lacked the V7 mobile min-height:0 rule (22rem + 4:3 aspect → 469px min width → overflow at 360–430px). Distemper template had it; PHP had it. Added to build-static.mjs.
+- Rebuilt docs/ (11 pages), re-synced sandbox preview, regenerated gaurikrit-hostinger-deploy.zip (122 entries, extraction-tested).
+- Verified: 6 pages × 6 viewports (1440/1024/768/430/390/360) — zero cropped product images, zero horizontal overflow; mobile/desktop screenshots + vision QA pass; dev server clean.
+
+Stage Summary:
+- Commit a80399f "v8: uncropped product photos — complete-bucket crops + parity fix" pushed to origin/main (87c2012..a80399f).
+- Product photos now show each bucket COMPLETE (lid, handle apex, base, both sides); only the honest shelf-photo context (neighbour sliver / wood) remains at photo edges.
+- Standing rule for future passes: never re-crop product derivatives tighter than the V8 boxes; if new product art arrives, prefer client originals with complete objects.
