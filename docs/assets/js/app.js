@@ -194,6 +194,80 @@
             });
     }
 
+    // ---------- Print spec sheet (V9) ----------
+    // Buttons marked [data-print-spec] call window.print(). On product
+    // detail pages the print stylesheet (app.css §36) turns the page into
+    // a printable specification sheet: product plate, numbered spec rows,
+    // coverage disclaimer, contact + GSTIN footer line.
+    function initPrintSpec() {
+        var btns = document.querySelectorAll('[data-print-spec]');
+        for (var i = 0; i < btns.length; i++) {
+            btns[i].addEventListener('click', function () {
+                window.print();
+            });
+        }
+    }
+
+    // ---------- Copy-to-clipboard (V9) ----------
+    // Buttons marked [data-copy="<text>"] copy their value to the
+    // clipboard and swap their label to "Copied" for 2 seconds.
+    // Progressive enhancement: hidden when the Clipboard API is
+    // unavailable (non-secure context or very old browsers) — the
+    // mailto:/tel: link beside the button remains the fallback.
+    // Legacy copy path for environments where the async Clipboard API
+    // exists but is denied (some in-app webviews, embedded browsers).
+    function legacyCopyText(text) {
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        ta.setAttribute('readonly', '');
+        ta.style.position = 'fixed';
+        ta.style.top = '-1000px';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        ta.setSelectionRange(0, text.length);
+        var ok = false;
+        try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+        document.body.removeChild(ta);
+        return ok;
+    }
+
+    function initCopyButtons() {
+        var btns = document.querySelectorAll('[data-copy]');
+        if (!btns.length) return;
+        var canCopy = (window.isSecureContext === true || window.isSecureContext === undefined);
+        for (var i = 0; i < btns.length; i++) {
+            (function (btn) {
+                if (!canCopy) {
+                    btn.hidden = true;
+                    return;
+                }
+                btn.addEventListener('click', function () {
+                    var text = btn.getAttribute('data-copy') || '';
+                    function markCopied() {
+                        var label = btn.querySelector('.copy-btn__label');
+                        var prev = label ? label.textContent : '';
+                        btn.setAttribute('data-copied', 'true');
+                        if (label) { label.textContent = 'Copied'; }
+                        setTimeout(function () {
+                            btn.removeAttribute('data-copied');
+                            if (label) { label.textContent = prev || 'Copy'; }
+                        }, 2000);
+                    }
+                    if (navigator.clipboard && navigator.clipboard.writeText) {
+                        navigator.clipboard.writeText(text).then(markCopied).catch(function () {
+                            if (!legacyCopyText(text)) {
+                                /* Both paths denied — silent: the link stays the fallback. */
+                            }
+                        });
+                    } else if (!legacyCopyText(text)) {
+                        /* No usable path — silent. */
+                    }
+                });
+            })(btns[i]);
+        }
+    }
+
     // ---------- Boot ----------
     function boot() {
         // Module init calls — guarded so a missing module never blocks others.
@@ -210,6 +284,8 @@
         try { initBackToTop(); } catch (e) { if (window.console) console.error('back-to-top:', e); }
         try { initFaq(); } catch (e) { if (window.console) console.error('faq:', e); }
         try { initBrochureDetection(); } catch (e) { if (window.console) console.error('brochure:', e); }
+        try { initPrintSpec(); } catch (e) { if (window.console) console.error('print spec:', e); }
+        try { initCopyButtons(); } catch (e) { if (window.console) console.error('copy buttons:', e); }
     }
 
     if (document.readyState === 'loading') {

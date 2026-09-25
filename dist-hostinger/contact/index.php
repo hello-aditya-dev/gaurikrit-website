@@ -221,12 +221,24 @@ if ($interestParam !== '' && array_key_exists($interestParam, $INTEREST_OPTIONS)
         </div>
         <div class="contact-direct__row">
           <dt>Email</dt>
-          <dd><a href="mailto:<?= e($COMPANY['email']) ?>"><?= e($COMPANY['email']) ?></a></dd>
+          <dd>
+            <a href="mailto:<?= e($COMPANY['email']) ?>"><?= e($COMPANY['email']) ?></a>
+            <button type="button" class="copy-btn" data-copy="<?= e($COMPANY['email']) ?>" aria-label="Copy email address">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              <span class="copy-btn__label">Copy</span>
+            </button>
+          </dd>
         </div>
         <?php foreach ($phones as $phone): ?>
           <div class="contact-direct__row">
             <dt>Phone</dt>
-            <dd><a href="tel:<?= e(str_replace(' ', '', $phone)) ?>"><?= e($phone) ?></a></dd>
+            <dd>
+              <a href="tel:<?= e(str_replace(' ', '', $phone)) ?>"><?= e($phone) ?></a>
+              <button type="button" class="copy-btn" data-copy="<?= e(str_replace(' ', '', $phone)) ?>" aria-label="Copy phone number">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                <span class="copy-btn__label">Copy</span>
+              </button>
+            </dd>
           </div>
         <?php endforeach; ?>
         <div class="contact-direct__row">

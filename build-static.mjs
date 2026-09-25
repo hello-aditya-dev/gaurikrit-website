@@ -712,6 +712,11 @@ function homeBody(depth) {
   @media (min-width: 1024px) {
     .product-chapter__visual { min-height: 30rem; }
   }
+  /* V9: on phones the 22rem min-height + 4/3 aspect forces a wider-than-
+     viewport panel (22rem x 4/3 = 469px on a 360px screen; body
+     overflow-x hides the damage but clips the product photo edge) —
+     let the aspect ratio govern the height instead. */
+  @media (max-width: 639px) { .product-chapter__visual { min-height: 0; } }
   .product-chapter__visual .chapter-env {
     position: absolute; inset: 0; width: 100%; height: 100%;
     object-fit: cover;
@@ -885,6 +890,11 @@ function homeBody(depth) {
   .calc-teaser__art {
     position: relative;
     background: var(--paper);
+    /* V9 fix: reset the legacy app.css .calc-teaser__art (flex + 4/3 aspect
+       meant for the old single-artwork composition). The V7 mini-calculator
+       sheet is a header + four stacked rows — block flow, content height. */
+    display: block;
+    aspect-ratio: auto;
     border: 1px solid var(--border);
     border-radius: var(--r-panel);
     overflow: hidden;
@@ -1373,6 +1383,10 @@ function productsBody(depth) {
     display: flex; align-items: center; justify-content: center;
   }
   @media (min-width: 1024px) { .product-chapter__visual { min-height: 30rem; } }
+  /* V9: on phones the 22rem min-height + 4/3 aspect forces a wider-than-
+     viewport panel (same fix as the detail pages + home chapters) —
+     let the aspect ratio govern the height instead. */
+  @media (max-width: 639px) { .product-chapter__visual { min-height: 0; } }
   .product-chapter__visual .chapter-env {
     position: absolute; inset: 0; width: 100%; height: 100%;
     object-fit: cover;
@@ -1936,6 +1950,12 @@ function distemperBody(depth) {
     <div class="spec-sheet__head section-heading section-heading--left" data-reveal>
       <span class="spec-sheet__eyebrow">Specifications</span>
       <h2 class="spec-sheet__title" id="specs-title">Product specifications.</h2>
+      <!-- V9: print affordance — window.print() + the app.css §36 print
+           stylesheet turns this page into a printable spec sheet. -->
+      <button type="button" class="spec-sheet__print" data-print-spec>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8" rx="1"/></svg>
+        <span>Print spec sheet</span>
+      </button>
     </div>
 
     <dl class="spec-sheet__list" data-reveal>
@@ -2163,6 +2183,12 @@ function emulsionBody(depth) {
     <div class="spec-sheet__head section-heading section-heading--left" data-reveal>
       <span class="spec-sheet__eyebrow">Specifications</span>
       <h2 class="spec-sheet__title" id="specs-title">Product specifications.</h2>
+      <!-- V9: print affordance — window.print() + the app.css §36 print
+           stylesheet turns this page into a printable spec sheet. -->
+      <button type="button" class="spec-sheet__print" data-print-spec>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8" rx="1"/></svg>
+        <span>Print spec sheet</span>
+      </button>
     </div>
 
     <dl class="spec-sheet__list" data-reveal>
@@ -3948,15 +3974,33 @@ function contactBody(depth) {
         </div>
         <div class="contact-direct__row">
           <dt>Email</dt>
-          <dd><a href="mailto:${e(COMPANY.email)}">${e(COMPANY.email)}</a></dd>
+          <dd>
+            <a href="mailto:${e(COMPANY.email)}">${e(COMPANY.email)}</a>
+            <button type="button" class="copy-btn" data-copy="${e(COMPANY.email)}" aria-label="Copy email address">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              <span class="copy-btn__label">Copy</span>
+            </button>
+          </dd>
         </div>
         <div class="contact-direct__row">
           <dt>Phone</dt>
-          <dd><a href="tel:${e(phones[0].replace(/ /g, ''))}">${e(phones[0])}</a></dd>
+          <dd>
+            <a href="tel:${e(phones[0].replace(/ /g, ''))}">${e(phones[0])}</a>
+            <button type="button" class="copy-btn" data-copy="${e(phones[0].replace(/ /g, ''))}" aria-label="Copy phone number">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              <span class="copy-btn__label">Copy</span>
+            </button>
+          </dd>
         </div>
         <div class="contact-direct__row">
           <dt>Phone</dt>
-          <dd><a href="tel:${e(phones[1].replace(/ /g, ''))}">${e(phones[1])}</a></dd>
+          <dd>
+            <a href="tel:${e(phones[1].replace(/ /g, ''))}">${e(phones[1])}</a>
+            <button type="button" class="copy-btn" data-copy="${e(phones[1].replace(/ /g, ''))}" aria-label="Copy phone number">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              <span class="copy-btn__label">Copy</span>
+            </button>
+          </dd>
         </div>
         <div class="contact-direct__row">
           <dt>Location</dt>

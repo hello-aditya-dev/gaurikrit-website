@@ -243,6 +243,10 @@
     display: flex; align-items: center; justify-content: center;
   }
   @media (min-width: 1024px) { .product-chapter__visual { min-height: 30rem; } }
+  /* V9: on phones the 22rem min-height + 4/3 aspect forces a wider-than-
+     viewport panel (same fix as the detail pages + home chapters) —
+     let the aspect ratio govern the height instead. */
+  @media (max-width: 639px) { .product-chapter__visual { min-height: 0; } }
   .product-chapter__visual .chapter-env {
     position: absolute; inset: 0; width: 100%; height: 100%;
     object-fit: cover;

@@ -4865,3 +4865,218 @@ ul, ol { list-style: none; }
     --paper-leaf:  #EFEDE5;
   }
 }
+
+/* ==========================================================================
+   35A. V9 affordances — print spec button + copy-to-clipboard buttons
+   --------------------------------------------------------------------------
+   Screen styles only. Both affordances are progressive enhancements:
+   the print button simply calls window.print(); the copy buttons hide
+   themselves when the Clipboard API is unavailable (non-secure context).
+   ========================================================================== */
+.spec-sheet__print {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.25rem;
+  padding: 0.5rem 1.125rem;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: var(--r-pill);
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+.spec-sheet__print:hover {
+  color: var(--primary);
+  border-color: var(--primary);
+  background: var(--limewash);
+}
+.spec-sheet__print:active { transform: translateY(1px); }
+.spec-sheet__print:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+.spec-sheet__print svg { width: 15px; height: 15px; flex: none; }
+@media (max-width: 639px) {
+  .spec-sheet__print { width: 100%; justify-content: center; }
+}
+
+.copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  margin-left: 0.5rem;
+  padding: 0.3125rem 0.6875rem;
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: var(--r-pill);
+  cursor: pointer;
+  vertical-align: middle;
+  transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+.copy-btn:hover {
+  color: var(--primary);
+  border-color: var(--primary);
+  background: var(--limewash);
+}
+.copy-btn:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+.copy-btn svg { width: 12px; height: 12px; flex: none; }
+.copy-btn[data-copied="true"] {
+  color: var(--forest);
+  border-color: var(--forest);
+  background: color-mix(in srgb, var(--forest) 8%, transparent);
+}
+@supports not (background: color-mix(in srgb, #000, #000)) {
+  .copy-btn[data-copied="true"] { background: #E7EEE7; }
+}
+/* Phone rows stack the copy affordance below the number on narrow viewports. */
+@media (max-width: 479px) {
+  .contact-direct__row dd { display: flex; flex-wrap: wrap; align-items: center; gap: 0.375rem; }
+  .contact-direct__row dd a { flex: none; }
+  .copy-btn { margin-left: 0; }
+}
+
+
+/* V9: focus refinement — the haldi ring reads on dark grounds (forest
+   sections, primary buttons) where the default forest outline vanishes. */
+.btn--primary:focus-visible,
+.section--forest .btn:focus-visible,
+.site-footer .btn:focus-visible,
+.why-cta .btn:focus-visible {
+  outline: 2px solid var(--haldi);
+  outline-offset: 2px;
+}
+
+/* V9: inline link texture — calmer, offset underlines in running copy. */
+main a {
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+
+/* ==========================================================================
+   36. Print stylesheet (V9) — printable product spec sheets
+   --------------------------------------------------------------------------
+   Purpose: architects / builders / institutions print the product detail
+   pages as reference spec sheets, and the contact page as a contact card.
+   Strategy: white ground, dark ink, reveal-gated content forced visible,
+   interactive chrome (header, menus, buttons, ghosts, back-to-top) hidden,
+   footer reduced to brand + contact + GSTIN line, small blocks protected
+   from page breaks, contact link URLs expanded inline.
+   ========================================================================== */
+@page { margin: 14mm; }
+
+@media print {
+  /* 36.1 Neutral ground — white paper, dark ink, compact rhythm. */
+  html, body {
+    background: #fff !important;
+    color: #20221b !important;
+  }
+  body { font-size: 10.5pt; line-height: 1.45; }
+  .section, .section--paper, .section--limewash, .section--forest,
+  .bg-limewash, .bg-paper {
+    background: transparent !important;
+    padding-block: 1.25rem !important;
+  }
+  .container { max-width: 100% !important; padding-inline: 0 !important; }
+  img, svg { filter: none !important; }
+  .media-product, .chapter-product, .about-product-photo, .format-product {
+    filter: none !important;
+    box-shadow: none !important;
+  }
+  .spec-sheet__print, .copy-btn, .btn, .site-header, .menu-toggle,
+  .mobile-menu, .site-header-placeholder, .back-to-top, .breadcrumb,
+  .product-chapter__ghost, .hero__paint-sample, .faq-item__icon,
+  .marquee, .calc-wall-scene, .toast {
+    display: none !important;
+  }
+
+  /* 36.2 Reveal-gated content must print. */
+  [data-reveal], [data-reveal-stagger] > * {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  /* 36.3 Product detail hero becomes a clean product plate. */
+  .product-detail__hero { padding-top: 0 !important; }
+  .product-detail__media {
+    aspect-ratio: auto !important;
+    min-height: 0 !important;
+    height: auto !important;
+    background: #fff !important;
+    border: 0.75pt solid #8c8574 !important;
+    border-top: 2pt solid #20221b !important;
+    border-radius: 0 !important;
+    display: block !important;
+    padding: 0.75rem !important;
+  }
+  .product-detail__media .media-env { display: none !important; }
+  .product-detail__media .media-product,
+  .product-detail__media .media-product__official {
+    max-width: 60% !important;
+    max-height: 3.25in !important;
+    margin: 0 auto !important;
+    display: block !important;
+  }
+  .product-detail__media__num { position: static !important; opacity: 0.35 !important; font-size: 14pt !important; }
+
+  /* 36.4 Editorial panels: flat, thin rules, no shadows or radii. */
+  .spec-matrix, .spec-matrix-mobile__block, .spec-sheet__list,
+  .why-format-card, .about-product-card__media, .duo-panel,
+  .contact-direct, .calc-result, .faq-item {
+    background: #fff !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    border: 0.75pt solid #8c8574 !important;
+  }
+  .spec-matrix__row, .spec-matrix-mobile__row, .spec-sheet__item,
+  .faq-item, .about-product-card, .why-format-card,
+  .duo-panel__row, .contact-direct__row, .contact-info__row {
+    break-inside: avoid;
+  }
+  h1, h2, h3, .section-heading, .spec-sheet__head { break-after: avoid; }
+
+  /* 36.5 Footer: keep brand + contact + legal line only. */
+  .site-footer {
+    border-top: 1.5pt solid #20221b !important;
+    background: #fff !important;
+    color: #20221b !important;
+    margin-top: 2rem !important;
+    padding-top: 1rem !important;
+  }
+  .site-footer .site-footer__main { display: block !important; }
+  .site-footer nav { display: none !important; }
+  .site-footer__brand, .site-footer__col,
+  .site-footer__bottom, .site-footer__bottom-inner {
+    display: block !important;
+    color: #20221b !important;
+  }
+  .site-footer__brand img, .site-footer__col img { filter: grayscale(1) contrast(1.05) !important; }
+
+  /* 36.6 Contact details: expand link URLs so they survive paper. */
+  .contact-direct__row a::after,
+  .contact-info__row a::after {
+    content: " (" attr(href) ")";
+    font-size: 8.5pt;
+    color: #4a4d42;
+    font-weight: 400;
+  }
+
+  /* 36.7 Copy affordances: hide buttons + their toast feedback. */
+  .copy-btn, .copy-btn__label { display: none !important; }
+  .contact-direct__row dd { font-size: 10.5pt; }
+}
