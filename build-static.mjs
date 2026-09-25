@@ -1,19 +1,20 @@
 /**
  * Gaurikrit Bio Products — Static HTML build script for GitHub Pages.
  *
- * Task ID: V5-FINISH
+ * Task ID: V12-FINISH
  *
- * Reads the PHP source in /home/z/my-project/dist-hostinger/ and produces
- * a static HTML site in /home/z/my-project/docs/ that can be deployed to
+ * Reads the PHP source in dist-hostinger/ and produces
+ * a static HTML site in docs/ that can be deployed to
  * GitHub Pages (served from a subdirectory, so all paths are relative).
  *
- * Mirrors the V5 page compositions: REAL client photography + high-quality
- * editorial artwork via `<picture>` tags (WebP source + JPEG fallback) with
- * correct intrinsic width/height on every `<img>`. Coded SVG illustrations
- * are kept ONLY for interactive elements (ashta-laabh-seal,
- * calculator-wall-scene) and the brand-mark fallback (gaurikrit-cow-mark)
- * and the 404 page decorative accent (field-botanicals) + the V5 inline
- * calc-teaser wall-with-dimension-lines SVG.
+ * V12 mirrors the finishing pass: the five-family section-background
+ * rhythm, the shared typographic eight-benefit grid (the radial
+ * ashta-laabh seal and the calculator wall-scene are RETIRED — their
+ * partials deleted; only gaurikrit-cow-mark (logo fallback) and
+ * field-botanicals (404 accent) remain), quiet catalogue plates for
+ * product photography, and the calculator page as a single-column tool.
+ * The eight benefits use the shared .benefits-grid classes from app.css
+ * §18 on every page that shows them.
  *
  * V10 asset policy (supersedes V5):
  *   - zebu-study           → RETIRED from all pages (decorative cow
@@ -159,19 +160,6 @@ const ASHTA_LAABH = [
     { name: 'Non-Toxic', hindi: 'गैर-विषाक्त' },
     { name: 'Odourless', hindi: 'गंधरहित' },
 ];
-
-// Map Ashta Laabh names to ashta-laabh-seal SVG node IDs (so the seal
-// reacts when the corresponding list row is hovered/active).
-const ASHTA_IDS = {
-    'Antibacterial': 'antibacterial',
-    'Antifungal': 'antifungal',
-    'Eco-Friendly': 'eco-friendly',
-    'Natural Thermal Insulator': 'thermal-insulator',
-    'Cost-Effective': 'cost-effective',
-    'Free from Heavy Metals': 'heavy-metal-free',
-    'Non-Toxic': 'non-toxic',
-    'Odourless': 'odourless',
-};
 
 const COLOUR_STUDY = [
     { name: 'Haldi', hex: '#E3A51A', label: 'Turmeric' },
@@ -539,7 +527,6 @@ ${phoneLinks}
     -->
     <script src="${jsBase}navigation.js?v=static"></script>
     <script src="${jsBase}animations.js?v=static"></script>
-    <script src="${jsBase}ashta-laabh.js?v=static"></script>
     <script src="${jsBase}colour-study.js?v=static"></script>
     <script src="${jsBase}forms.js?v=static"></script>
     <script src="${jsBase}calculator.js?v=static"></script>
@@ -568,12 +555,11 @@ function homeBody(depth) {
     const groupImg = assetUrl(groupImage, depth);
 
     const ashtaItems = ASHTA_LAABH.map((benefit, i) => {
-        const bid = ASHTA_IDS[benefit.name] || `benefit-${i + 1}`;
-        return `          <li class="ashta-benefit" data-ashta-node="${e(bid)}">
-            <span class="ashta-benefit__num">${pad2(i + 1)}</span>
-            <span class="ashta-benefit__name">${e(benefit.name)}</span>
-            <span class="ashta-benefit__deva">${e(benefit.hindi)}</span>
-          </li>`;
+        return `        <li class="benefits-grid__item">
+          <span class="benefits-grid__num" aria-hidden="true">${pad2(i + 1)}</span>
+          <span class="benefits-grid__name">${e(benefit.name)}</span>
+          <span class="benefits-grid__deva">${e(benefit.hindi)}</span>
+        </li>`;
     }).join('\n');
 
     const swatches = COLOUR_STUDY.map(
@@ -616,9 +602,6 @@ function homeBody(depth) {
         'Indian lime-plastered wall elevation with door and window', 1344, 768, depth, 'class="colours-wall__art"');
     const ruralMissionPic = pic('/assets/editorial/rural-landscape.webp', '/assets/editorial/rural-landscape.jpg',
         '', 1344, 768, depth, 'class="editorial-image"');
-    // V5: pathways uses business-context-study (connects to homes/architects/institutions).
-    const businessContextPathwaysPic = pic('/assets/editorial/business-context-study.webp', '/assets/editorial/business-context-study.jpg',
-        '', 1344, 768, depth, 'class="editorial-image"');
 
     return `<style>
   /* ===== Editorial image reset (V4 — NO mix-blend-mode, NO blur filters) ===== */
@@ -630,7 +613,7 @@ function homeBody(depth) {
   }
   .editorial-image--contain { object-fit: contain; }
 
-  /* ===== 1. HERO — group photo dominant + CSS haldi field + cow engraving ===== */
+  /* ===== 1. HERO — group photo dominant on a quiet catalogue plate ===== */
   .hero { padding-top: calc(var(--header-h) + 1.5rem); padding-bottom: 1.5rem; }
   @media (min-width: 1024px) {
     .hero { display: flex; align-items: center;
@@ -648,22 +631,21 @@ function homeBody(depth) {
     .hero__visual { order: 5; }
   }
   .hero__eyebrow-chip { margin-bottom: 0.875rem; }
-  .hero__title { font-size: clamp(2.5rem, 6vw, 5.5rem); line-height: 1.02; }
+  .hero__title { font-size: clamp(2.5rem, 6vw, 5.5rem); line-height: 1.04; }
   .hero__body { max-width: 38rem; }
   .hero__ctas { margin-top: 2.25rem; }
 
-  /* V7 hero visual: the real group photo deliberately placed inside a
-     paper/material plate whose background visually merges with the page.
-     No generic haldi semicircle, no faint cow engraving, no landscape band. */
+  /* V12 hero visual: the real group photo on a QUIET catalogue plate —
+     paper ground, ONE hairline border, no 3px accent stripe, no shadow,
+     no decorative paint swash. The photo keeps its own light studio
+     ground and is shown complete (contain, natural 1280/621 aspect). */
   .hero__visual { position: relative; min-height: 0; width: 100%; }
   .hero__plate {
     position: relative; z-index: 2;
     background: var(--paper);
     border: 1px solid var(--border);
-    border-top: 3px solid var(--haldi);
     border-radius: var(--r-panel);
-    padding: clamp(1rem, 2.5vw, 2rem);
-    box-shadow: 0 2px 12px -4px rgba(32, 30, 25, 0.06);
+    padding: clamp(0.75rem, 2vw, 1.5rem);
   }
   .hero__plate img.hero-group-photo {
     display: block;
@@ -671,22 +653,6 @@ function homeBody(depth) {
     object-fit: contain;
     aspect-ratio: 1280 / 621;
   }
-  /* A restrained, irregular haldi paint field — reads as a painted wall
-     sample (plaster swash), placed BEHIND the plate's bottom edge only. */
-  .hero__paint-sample {
-    position: absolute;
-    left: -4%; right: 6%; bottom: -1.25rem;
-    height: 34%;
-    z-index: 0;
-    pointer-events: none;
-    border-radius: 46% 54% 48% 52% / 60% 54% 46% 40%;
-    background:
-      radial-gradient(ellipse 70% 62% at 50% 40%,
-        color-mix(in srgb, var(--haldi) 26%, transparent) 0%,
-        transparent 78%);
-    opacity: 0.5;
-  }
-  @media (max-width: 899px) { .hero__paint-sample { display: none; } }
 
   /* ===== 2. MATERIAL STATEMENT — raw-material-study large right (58%) ===== */
   .material-statement__visual {
@@ -709,34 +675,10 @@ function homeBody(depth) {
   .material-flow { padding-block: clamp(3rem, 6vw, 5rem); }
   .material-flow__head { max-width: 48rem; margin-bottom: 2.5rem; }
 
-  /* ===== 6. ASHTA LAABH — strengthened (V5): darker warm bg, larger seal,
-     bolder benefit labels. SVG seal kept interactive. ===== */
-  .ashta-section {
-    position: relative; overflow: hidden;
-    /* Slightly darker warm tone — overrides section--limewash. */
-    background: color-mix(in srgb, var(--haldi) 10%, var(--limewash));
-  }
-  /* V7: the giant faded cow background is REMOVED — two clear layers only:
-     seal + list. Slightly stronger warm ground for the seal to read dark. */
-  .ashta-section { background: color-mix(in srgb, var(--haldi) 12%, var(--limewash)); }
-  .ashta-section__inner { position: relative; z-index: 1; }
-  .ashta-section__grid { position: relative; z-index: 1; }
-  /* V5: enlarge seal from 38rem → 44rem for more authority. */
-  .ashta-section__seal { max-width: 44rem; margin-inline: auto; }
-  .ashta-benefit__num { font-feature-settings: "tnum"; }
-  /* V5: bolder / larger benefit labels (page-local override). */
-  .ashta-benefit__name {
-    font-weight: 700 !important;
-    font-size: 1.0625rem !important;
-    letter-spacing: 0.005em;
-  }
-  .ashta-benefit__deva {
-    font-size: 0.9375rem !important;
-    color: color-mix(in srgb, var(--haldi-deep) 60%, var(--fg-muted)) !important;
-  }
-  .ashta-benefit {
-    padding: 1.25rem 0 !important;
-  }
+  /* ===== 6. ASHTA LAABH — the shared typographic benefits grid
+     (structure in app.css §18): numbered ruled entries, haldi numbering,
+     forest names, Hindi secondary. Section ground = soft warm wash.
+     No seal, no radial diagram, no page-local overrides needed. ===== */
 
   /* ===== 7. COLOURS OF INDIA — wall plane + SVG paint mask (structure in
      app.css §19: natural-aspect elevation photo + aligned mask path);
@@ -759,6 +701,7 @@ function homeBody(depth) {
     width: 2.75rem; height: 2.75rem; border-radius: 50%;
     border: 2px solid var(--border); padding: 0; cursor: pointer;
     position: relative; transition: transform var(--dur), border-color var(--dur);
+    flex: 0 0 auto;  /* V12: never let the swatch row flex-shrink the circles */
   }
   .colours-swatch:hover { transform: translateY(-2px); }
   .colours-swatch[data-active="true"] {
@@ -778,7 +721,7 @@ function homeBody(depth) {
     overflow: hidden;
   }
   .mission-band__bg {
-    position: absolute; inset: 0; opacity: 0.15; pointer-events: none;
+    position: absolute; inset: 0; opacity: 0.10; pointer-events: none;
     overflow: hidden;
   }
   .mission-band__bg .editorial-image { width: 100%; height: 100%; object-fit: cover; }
@@ -881,7 +824,6 @@ function homeBody(depth) {
       </div>
 
       <div class="hero__visual" data-reveal>
-        <div class="hero__paint-sample" aria-hidden="true"></div>
         <div class="hero__plate">
           <img class="hero-group-photo"
                src="${assetUrl(groupImage, depth)}"
@@ -1035,7 +977,7 @@ function homeBody(depth) {
 <!-- ============================================================
      5. MATERIAL JOURNEY — three equal step cards
      ============================================================ -->
-<section class="section section--limewash material-flow" aria-labelledby="journey-title">
+<section class="section section--paper material-flow" aria-labelledby="journey-title">
   <div class="container">
     <div class="material-flow__head section-heading section-heading--left" data-reveal>
       <span class="section-heading__eyebrow">Material to wall</span>
@@ -1090,26 +1032,16 @@ function homeBody(depth) {
 <!-- ============================================================
      6. ASHTA LAABH — interactive SVG seal + benefit list
      ============================================================ -->
-<section class="section ashta-section section--limewash" aria-labelledby="ashta-title" data-ashta-laabh>
-  <div class="container ashta-section__inner">
-    <div class="ashta-section__head section-heading section-heading--left" data-reveal>
-      <span class="ashta-section__deva">अष्ट लाभ</span>
+<section class="section section--haldi-wash ashta-section" aria-labelledby="ashta-title">
+  <div class="container">
+    <div class="section-heading section-heading--left" data-reveal>
+      <span class="section-heading__eyebrow">Ashta Laabh — अष्ट लाभ</span>
       <h2 class="section-heading__title" id="ashta-title">Eight benefits of Prakritik Paint.</h2>
-      <p class="ashta-section__sub">
-        Eight benefits listed in the supplied Prakritik Paint material.
-      </p>
-      <p class="ashta-section__note">
-        Benefits listed in the Prakritik Paint material.
-      </p>
+      <p class="section-heading__desc">Benefits listed in the supplied Prakritik Paint material.</p>
     </div>
-    <div class="ashta-section__grid" data-reveal>
-      <div class="ashta-section__seal">
-        ${loadSvg('ashta-laabh-seal')}
-      </div>
-      <ol class="ashta-section__support" data-reveal-stagger>
+    <ol class="benefits-grid" data-reveal-stagger>
 ${ashtaItems}
-      </ol>
-    </div>
+    </ol>
   </div>
 </section>
 
@@ -1245,20 +1177,10 @@ ${pathways}
   </div>
 </section>
 
-<!-- Inline bridge: copy the seal SVG node data-benefit → data-ashta-node
-     so ashta-laabh.js can drive the seal's active state. -->
-<script>
-  (function () {
-    'use strict';
-    document.querySelectorAll('[data-ashta-laabh] svg [data-benefit]').forEach(function (node) {
-      node.setAttribute('data-ashta-node', node.getAttribute('data-benefit'));
-    });
-  })();
-</script>
 `;
 }
 
-// ---- Products Overview (products/index.html) — V4 ----
+// ---- Products Overview (products/index.html) ----
 function productsBody(depth) {
     const distemper = getProduct('prakritik-distemper');
     const emulsion = getProduct('prakritik-emulsion');
@@ -1271,14 +1193,10 @@ function productsBody(depth) {
     // photo stays on the home + about heroes (prakritik-group.jpg).
 
     const benefitsItems = ASHTA_LAABH.map(
-        (benefit) => `        <li class="benefits-strip__item">
-          <span class="benefits-strip__num" aria-hidden="true">
-            <span class="benefits-strip__dot"></span>
-          </span>
-          <span>
-            <span class="benefits-strip__name">${e(benefit.name)}</span>
-            <span class="benefits-strip__deva">${e(benefit.hindi)}</span>
-          </span>
+        (benefit, i) => `        <li class="benefits-grid__item">
+          <span class="benefits-grid__num" aria-hidden="true">${pad2(i + 1)}</span>
+          <span class="benefits-grid__name">${e(benefit.name)}</span>
+          <span class="benefits-grid__deva">${e(benefit.hindi)}</span>
         </li>`,
     ).join('\n');
 
@@ -1309,7 +1227,9 @@ function productsBody(depth) {
     object-fit: cover;
   }
 
-  /* ===== 1. PRODUCTS HERO (45 / 55) — real group photo, no empty beige ===== */
+  /* ===== 1. PRODUCTS HERO (45 / 55) — the official pair photo on a quiet
+     catalogue plate: hairline border, paper ground, natural 1420/618
+     aspect. No min-height dead zones, no accent stripe, no shadow. ===== */
   .products-hero {
     padding-top: calc(var(--header-h) + 2rem);
     padding-bottom: 1.5rem;
@@ -1323,16 +1243,17 @@ function productsBody(depth) {
   }
   .products-hero__lockup { max-width: 42rem; }
   .products-hero__visual {
-    position: relative; min-height: 22rem; width: 100%;
-    background: transparent; border-radius: 0;
-    overflow: hidden; display: flex; align-items: center; justify-content: center;
-    padding: 0;
+    position: relative; width: 100%;
+    background: var(--paper);
+    border: 1px solid var(--border);
+    border-radius: var(--r-panel);
+    padding: clamp(0.75rem, 2vw, 1.5rem);
+    overflow: hidden;
   }
-  @media (min-width: 768px) { .products-hero__visual { min-height: 28rem; } }
-  @media (min-width: 1024px) { .products-hero__visual { min-height: 32rem; } }
   .products-hero__visual .hero-group-photo {
     display: block;
-    width: 100%; height: 100%;
+    width: 100%; height: auto;
+    aspect-ratio: 1420 / 618;
     object-fit: contain;
   }
 
@@ -1423,44 +1344,10 @@ function productsBody(depth) {
   }
   .spec-matrix-mobile__row .v { font-weight: 600; color: var(--fg); text-align: right; }
 
-  /* ===== BENEFITS STRIP (V5: haldi dot indicators + bolder name typography) ===== */
+  /* ===== BENEFITS — the shared typographic grid (structure in app.css
+     §18: identical to Home / Why / detail pages). Nothing page-local. ===== */
   .benefits-strip { padding-block: clamp(3rem, 6vw, 5rem); }
   .benefits-strip__head { max-width: 48rem; margin-bottom: 2rem; }
-  .benefits-strip__list {
-    display: grid; gap: 0;
-    border-top: 1px solid var(--border);
-    counter-reset: benefit;
-  }
-  @media (min-width: 640px) { .benefits-strip__list { grid-template-columns: 1fr 1fr; column-gap: 3rem; } }
-  @media (min-width: 1024px) { .benefits-strip__list { grid-template-columns: repeat(4, 1fr); } }
-  .benefits-strip__item {
-    padding: 1.5rem 0; border-bottom: 1px solid var(--border);
-    display: grid; grid-template-columns: 3rem 1fr; gap: 1rem;
-    align-items: center; counter-increment: benefit;
-  }
-  /* V5: number column now holds the counter + a haldi dot indicator. */
-  .benefits-strip__num {
-    display: inline-flex; align-items: center; gap: 0.5rem;
-    font-family: var(--font-display); font-weight: 700;
-    color: var(--haldi-deep); font-size: 0.9375rem; letter-spacing: 0.04em;
-  }
-  .benefits-strip__num::before {
-    content: counter(benefit, decimal-leading-zero);
-  }
-  .benefits-strip__dot {
-    display: inline-block;
-    width: 0.5rem; height: 0.5rem; border-radius: 50%;
-    background: var(--haldi);
-    box-shadow: 0 0 0 2px color-mix(in srgb, var(--haldi) 22%, transparent);
-  }
-  /* V5: bolder name typography (more memorable). */
-  .benefits-strip__name {
-    font-weight: 700; font-size: 1rem; color: var(--fg); line-height: 1.3;
-  }
-  .benefits-strip__deva {
-    font-family: var(--font-deva); font-size: 0.875rem; color: var(--fg-muted);
-    display: block; margin-top: 0.375rem;
-  }
 
   /* ===== FAQ (V5: more spacing above + haldi divider line) ===== */
   .faq-section {
@@ -1691,16 +1578,16 @@ function productsBody(depth) {
 <!-- ============================================================
      5. BENEFITS STRIP — numbered typographic list, NO 8 cards
      ============================================================ -->
-<section class="section section--limewash benefits-strip" aria-labelledby="benefits-title">
+<section class="section section--haldi-wash benefits-strip" aria-labelledby="benefits-title">
   <div class="container">
     <div class="benefits-strip__head section-heading section-heading--left" data-reveal>
       <span class="section-heading__eyebrow">Ashta Laabh — अष्ट लाभ</span>
       <h2 class="section-heading__title" id="benefits-title">Eight benefits of Prakritik Paint.</h2>
       <p class="section-heading__desc">
-        Benefits listed in the Prakritik Paint material.
+        Benefits listed in the supplied Prakritik Paint material.
       </p>
     </div>
-    <ol class="benefits-strip__list" data-reveal-stagger>
+    <ol class="benefits-grid" data-reveal-stagger>
 ${benefitsItems}
     </ol>
   </div>
@@ -1772,11 +1659,10 @@ function distemperBody(depth) {
     }).join('\n');
 
     const ashtaItems = ASHTA_LAABH.map((benefit, i) => {
-        const bid = ASHTA_IDS[benefit.name] || `benefit-${i + 1}`;
-        return `        <li class="ashta-benefit distemper-ashta__item" data-ashta-node="${e(bid)}">
-          <span class="ashta-benefit__num">${pad2(i + 1)}</span>
-          <span class="ashta-benefit__name">${e(benefit.name)}</span>
-          <span class="ashta-benefit__deva">${e(benefit.hindi)}</span>
+        return `        <li class="benefits-grid__item">
+          <span class="benefits-grid__num" aria-hidden="true">${pad2(i + 1)}</span>
+          <span class="benefits-grid__name">${e(benefit.name)}</span>
+          <span class="benefits-grid__deva">${e(benefit.hindi)}</span>
         </li>`;
     }).join('\n');
 
@@ -1806,30 +1692,32 @@ function distemperBody(depth) {
       grid-template-columns: 5fr 7fr; gap: clamp(2.5rem, 5vw, 4rem);
     }
   }
-  /* V10: media is a clean catalogue plate (same language as the home
-     product chapters) — white product stage + slim wall-finish strip.
-     The complete pack photo is shown at its natural proportion. */
+  /* V12: media is ONE designed catalogue panel (same language as the home
+     product chapters, app.css §14) — soft neutral wall plate tinted with
+     the format wash, complete pack anchored toward the base, slim
+     wall-finish strip. Hairline border only: no 3px accent stripe,
+     no shadow. */
   .product-detail__media {
     display: flex; flex-direction: column;
-    background: var(--paper);
-    border: 1px solid var(--border); border-top: 3px solid var(--indigo);
+    background: color-mix(in srgb, var(--paper-cool) 25%, var(--paper));
+    border: 1px solid var(--border);
     border-radius: var(--r-panel); overflow: hidden;
-    box-shadow: 0 2px 12px -4px rgba(32, 30, 25, 0.06);
   }
   .product-detail__stage {
     position: relative;
     height: clamp(17rem, 36vw, 25rem);
     display: grid; place-items: center;
-    padding: clamp(1.25rem, 3vw, 2.25rem);
+    padding: clamp(1.5rem, 3.5vw, 3rem) clamp(1.5rem, 3.5vw, 3rem) clamp(0.75rem, 1.5vw, 1.25rem);
   }
   .product-detail__stage .media-product {
     /* Absolute-fill + object-fit: contain — the pack photo stays
-       COMPLETE inside the fixed-height stage (never cropped). */
+       COMPLETE inside the fixed-height stage (never cropped). The box
+       is biased downward so the pack stands toward the panel's base. */
     position: absolute;
-    top: clamp(1.25rem, 3vw, 2.25rem);
-    left: clamp(1.25rem, 3vw, 2.25rem);
-    width: calc(100% - 2 * clamp(1.25rem, 3vw, 2.25rem));
-    height: calc(100% - 2 * clamp(1.25rem, 3vw, 2.25rem));
+    top: clamp(1.5rem, 3.5vw, 3rem);
+    left: clamp(1.5rem, 3.5vw, 3rem);
+    width: calc(100% - 2 * clamp(1.5rem, 3.5vw, 3rem));
+    height: calc(100% - clamp(1.5rem, 3.5vw, 3rem) - clamp(0.75rem, 1.5vw, 1.25rem));
     object-fit: contain;
   }
   .product-detail__strip {
@@ -1857,7 +1745,7 @@ function distemperBody(depth) {
   .coverage-disclaimer { margin-top: 2rem; border-left-color: var(--indigo); }
 
   /* ===== ASHTA LAABH GRID ===== */
-  .distemper-ashta-section { padding-block: clamp(3rem, 6vw, 5rem); position: relative; overflow: hidden; }
+  .distemper-ashta-section { padding-block: clamp(3rem, 6vw, 5rem); }
   .distemper-ashta-section__head { max-width: 48rem; margin-bottom: 2.5rem; }
 </style>
 
@@ -1930,25 +1818,20 @@ ${specItems}
   </div>
 </section>
 
-<!-- ===== ASHTA LAABH ===== -->
-<section class="section section--limewash distemper-ashta-section" aria-labelledby="distemper-ashta-title" data-ashta-laabh>
+<!-- ===== ASHTA LAABH — the shared typographic eight-benefit grid ===== -->
+<section class="section section--haldi-wash distemper-ashta-section" aria-labelledby="distemper-ashta-title">
   <div class="container">
     <div class="distemper-ashta-section__head section-heading section-heading--left" data-reveal>
-      <span class="section-heading__eyebrow">अष्ट लाभ — Eight benefits</span>
-      <h2 class="section-heading__title" id="distemper-ashta-title">Ashta Laabh.</h2>
+      <span class="section-heading__eyebrow">Ashta Laabh — अष्ट लाभ</span>
+      <h2 class="section-heading__title" id="distemper-ashta-title">Eight benefits of Prakritik Paint.</h2>
       <p class="section-heading__desc">
-        Benefits listed in the Prakritik Paint material.
+        Benefits listed in the supplied Prakritik Paint material.
       </p>
     </div>
 
-    <div class="ashta-section__grid" data-reveal>
-      <div class="ashta-section__seal">
-        ${loadSvg('ashta-laabh-seal')}
-      </div>
-      <ol class="ashta-section__support" data-reveal-stagger>
+    <ol class="benefits-grid" data-reveal-stagger>
 ${ashtaItems}
-      </ol>
-    </div>
+    </ol>
   </div>
 </section>
 
@@ -1973,14 +1856,6 @@ ${ashtaItems}
   </div>
 </section>
 
-<script>
-  (function () {
-    'use strict';
-    document.querySelectorAll('[data-ashta-laabh] svg [data-benefit]').forEach(function (node) {
-      node.setAttribute('data-ashta-node', node.getAttribute('data-benefit'));
-    });
-  })();
-</script>
 `;
 }
 
@@ -2013,11 +1888,10 @@ function emulsionBody(depth) {
     }).join('\n');
 
     const ashtaItems = ASHTA_LAABH.map((benefit, i) => {
-        const bid = ASHTA_IDS[benefit.name] || `benefit-${i + 1}`;
-        return `        <li class="ashta-benefit emulsion-ashta__item" data-ashta-node="${e(bid)}">
-          <span class="ashta-benefit__num">${pad2(i + 1)}</span>
-          <span class="ashta-benefit__name">${e(benefit.name)}</span>
-          <span class="ashta-benefit__deva">${e(benefit.hindi)}</span>
+        return `        <li class="benefits-grid__item">
+          <span class="benefits-grid__num" aria-hidden="true">${pad2(i + 1)}</span>
+          <span class="benefits-grid__name">${e(benefit.name)}</span>
+          <span class="benefits-grid__deva">${e(benefit.hindi)}</span>
         </li>`;
     }).join('\n');
 
@@ -2050,30 +1924,32 @@ function emulsionBody(depth) {
     .product-detail--warm .product-detail__hero > :first-child { order: 1; }
     .product-detail--warm .product-detail__hero > :last-child  { order: 2; }
   }
-  /* V10: media is a clean catalogue plate (same language as the home
-     product chapters) — white product stage + slim wall-finish strip.
-     The complete pack photo is shown at its natural proportion. */
+  /* V12: media is ONE designed catalogue panel (same language as the home
+     product chapters, app.css §14) — soft neutral wall plate tinted with
+     the format wash, complete pack anchored toward the base, slim
+     wall-finish strip. Hairline border only: no 3px accent stripe,
+     no shadow. */
   .product-detail__media {
     display: flex; flex-direction: column;
-    background: var(--paper);
-    border: 1px solid var(--border); border-top: 3px solid var(--leaf);
+    background: color-mix(in srgb, var(--paper-leaf) 25%, var(--paper));
+    border: 1px solid var(--border);
     border-radius: var(--r-panel); overflow: hidden;
-    box-shadow: 0 2px 12px -4px rgba(32, 30, 25, 0.06);
   }
   .product-detail__stage {
     position: relative;
     height: clamp(17rem, 36vw, 25rem);
     display: grid; place-items: center;
-    padding: clamp(1.25rem, 3vw, 2.25rem);
+    padding: clamp(1.5rem, 3.5vw, 3rem) clamp(1.5rem, 3.5vw, 3rem) clamp(0.75rem, 1.5vw, 1.25rem);
   }
   .product-detail__stage .media-product {
     /* Absolute-fill + object-fit: contain — the pack photo stays
-       COMPLETE inside the fixed-height stage (never cropped). */
+       COMPLETE inside the fixed-height stage (never cropped). The box
+       is biased downward so the pack stands toward the panel's base. */
     position: absolute;
-    top: clamp(1.25rem, 3vw, 2.25rem);
-    left: clamp(1.25rem, 3vw, 2.25rem);
-    width: calc(100% - 2 * clamp(1.25rem, 3vw, 2.25rem));
-    height: calc(100% - 2 * clamp(1.25rem, 3vw, 2.25rem));
+    top: clamp(1.5rem, 3.5vw, 3rem);
+    left: clamp(1.5rem, 3.5vw, 3rem);
+    width: calc(100% - 2 * clamp(1.5rem, 3.5vw, 3rem));
+    height: calc(100% - clamp(1.5rem, 3.5vw, 3rem) - clamp(0.75rem, 1.5vw, 1.25rem));
     object-fit: contain;
   }
   .product-detail__strip {
@@ -2099,7 +1975,7 @@ function emulsionBody(depth) {
   .coverage-disclaimer { margin-top: 2rem; border-left-color: var(--leaf); }
 
   /* ===== ASHTA LAABH ===== */
-  .emulsion-ashta-section { padding-block: clamp(3rem, 6vw, 5rem); position: relative; overflow: hidden; }
+  .emulsion-ashta-section { padding-block: clamp(3rem, 6vw, 5rem); }
   .emulsion-ashta-section__head { max-width: 48rem; margin-bottom: 2.5rem; }
 </style>
 
@@ -2172,25 +2048,20 @@ ${specItems}
   </div>
 </section>
 
-<!-- ===== ASHTA LAABH ===== -->
-<section class="section section--limewash emulsion-ashta-section" aria-labelledby="emulsion-ashta-title" data-ashta-laabh>
+<!-- ===== ASHTA LAABH — the shared typographic eight-benefit grid ===== -->
+<section class="section section--haldi-wash emulsion-ashta-section" aria-labelledby="emulsion-ashta-title">
   <div class="container">
     <div class="emulsion-ashta-section__head section-heading section-heading--left" data-reveal>
-      <span class="section-heading__eyebrow">अष्ट लाभ — Eight benefits</span>
-      <h2 class="section-heading__title" id="emulsion-ashta-title">Ashta Laabh.</h2>
+      <span class="section-heading__eyebrow">Ashta Laabh — अष्ट लाभ</span>
+      <h2 class="section-heading__title" id="emulsion-ashta-title">Eight benefits of Prakritik Paint.</h2>
       <p class="section-heading__desc">
-        Benefits listed in the Prakritik Paint material.
+        Benefits listed in the supplied Prakritik Paint material.
       </p>
     </div>
 
-    <div class="ashta-section__grid" data-reveal>
-      <div class="ashta-section__seal">
-        ${loadSvg('ashta-laabh-seal')}
-      </div>
-      <ol class="ashta-section__support" data-reveal-stagger>
+    <ol class="benefits-grid" data-reveal-stagger>
 ${ashtaItems}
-      </ol>
-    </div>
+    </ol>
   </div>
 </section>
 
@@ -2214,19 +2085,10 @@ ${ashtaItems}
     </div>
   </div>
 </section>
-
-<script>
-  (function () {
-    'use strict';
-    document.querySelectorAll('[data-ashta-laabh] svg [data-benefit]').forEach(function (node) {
-      node.setAttribute('data-ashta-node', node.getAttribute('data-benefit'));
-    });
-  })();
-</script>
 `;
 }
 
-// ---- Why Prakritik — V4 ----
+// ---- Why Prakritik ----
 function whyPrakritikBody(depth) {
     const distemper = getProduct('prakritik-distemper');
     const emulsion = getProduct('prakritik-emulsion');
@@ -2234,11 +2096,10 @@ function whyPrakritikBody(depth) {
     const groupImg = assetUrl(groupImage, depth);
 
     const ashtaItems = ASHTA_LAABH.map((benefit, i) => {
-        const bid = ASHTA_IDS[benefit.name] || `benefit-${i + 1}`;
-        return `        <li class="ashta-benefit" data-ashta-node="${e(bid)}">
-          <span class="ashta-benefit__num">${pad2(i + 1)}</span>
-          <span class="ashta-benefit__name">${e(benefit.name)}</span>
-          <span class="ashta-benefit__deva">${e(benefit.hindi)}</span>
+        return `        <li class="benefits-grid__item">
+          <span class="benefits-grid__num" aria-hidden="true">${pad2(i + 1)}</span>
+          <span class="benefits-grid__name">${e(benefit.name)}</span>
+          <span class="benefits-grid__deva">${e(benefit.hindi)}</span>
         </li>`;
     }).join('\n');
 
@@ -2256,10 +2117,6 @@ function whyPrakritikBody(depth) {
         'Raw lime-plastered wall surface — natural material', 1344, 768, depth, 'class="editorial-image"');
     const finishedSurfaceFlowPic = pic('/assets/editorial/finished-surface-study.webp', '/assets/editorial/finished-surface-study.jpg',
         'Finished matte limewash wall surface', 1344, 768, depth, 'class="editorial-image"');
-    // V5: context uses business-context-study (replaces rural-landscape).
-    const businessContextPic = pic('/assets/editorial/business-context-study.webp', '/assets/editorial/business-context-study.jpg',
-        '', 1344, 768, depth, 'class="editorial-image"');
-
         const ruralContextPic = pic('/assets/editorial/rural-landscape.webp', '/assets/editorial/rural-landscape.jpg',
         '', 1344, 768, depth, 'class="editorial-image"');
 
@@ -2285,7 +2142,6 @@ function whyPrakritikBody(depth) {
     background: var(--paper); border-radius: var(--r-panel);
     overflow: hidden;
     border: 1px solid var(--border);
-    box-shadow: 0 2px 12px -4px rgba(32, 30, 25, 0.06);
   }
   .why-hero__art .why-hero__img {
     position: absolute; inset: 0; width: 100%; height: 100%;
@@ -2300,9 +2156,11 @@ function whyPrakritikBody(depth) {
   @media (min-width: 1024px) {
     .why-chapter { grid-template-columns: 4fr 8fr; gap: 3rem; align-items: start; }
   }
-  .why-chapter--reverse > :first-child { order: 2; }
+  /* V12: Section 02 TRADITION — the courtyard elevation is the chapter's
+     dominant visual: copy ~45 / image ~55 on desktop; copy first, image
+     second at every breakpoint. */
   @media (min-width: 1024px) {
-    .why-chapter--reverse > :first-child { order: 0; }
+    .why-chapter--wide-art { grid-template-columns: 45fr 55fr; gap: 3rem; align-items: center; }
   }
   .why-chapter__num {
     font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 4rem);
@@ -2357,12 +2215,13 @@ function whyPrakritikBody(depth) {
   .why-flow-section { padding-block: clamp(3.5rem, 6vw, 5rem); }
   .why-flow-section .material-steps { margin-top: 2rem; }
 
-  /* === Chapter 04 — ASHTA: full-size seal === */
+  /* === Chapter 04 — ASHTA: the shared typographic grid (app.css §18) === */
   .why-ashta-section { padding-block: clamp(3.5rem, 6vw, 5rem); }
   .why-ashta-section__head { max-width: 48rem; margin-bottom: 2.5rem; }
-  .ashta-section__seal { max-width: 38rem; margin-inline: auto; }
 
-  /* === Chapter 05 — FORMATS: two real product visuals === */
+  /* === Chapter 05 — FORMATS: two real product visuals on quiet
+     format-wash grounds (hairline border, no gradient, no accent
+     stripe; soft grounded product shadow only). === */
   .why-formats-section { padding-block: clamp(3.5rem, 6vw, 5rem); }
   .why-formats {
     display: grid; gap: 2rem; margin-top: 2rem;
@@ -2370,19 +2229,21 @@ function whyPrakritikBody(depth) {
   @media (min-width: 768px) { .why-formats { grid-template-columns: 1fr 1fr; } }
   .why-format-card {
     position: relative;
-    background: linear-gradient(160deg, var(--paper), var(--limewash));
-    border: 1px solid var(--border); border-top: 3px solid var(--indigo);
+    background: color-mix(in srgb, var(--paper-cool) 25%, var(--paper));
+    border: 1px solid var(--border);
     border-radius: var(--r-panel); overflow: hidden;
     display: flex; align-items: center; justify-content: center; padding: 1.5rem;
     min-height: 22rem;
   }
-  .why-format-card--emulsion { border-top-color: var(--leaf); }
+  .why-format-card--emulsion {
+    background: color-mix(in srgb, var(--paper-leaf) 25%, var(--paper));
+  }
   .why-format-card .format-product {
     display: block;
     max-height: 26rem; max-width: 100%;
     width: auto; height: auto;
     object-fit: contain;
-    filter: drop-shadow(0 14px 20px rgba(34, 36, 27, 0.16));
+    filter: drop-shadow(0 10px 16px rgba(34, 36, 27, 0.12));
   }
   .why-format-card__caption {
     position: absolute; bottom: 1rem; left: 1rem;
@@ -2392,17 +2253,15 @@ function whyPrakritikBody(depth) {
   .why-format-card--distemper .why-format-card__caption { color: var(--indigo); }
   .why-format-card--emulsion  .why-format-card__caption { color: var(--leaf); }
 
-  /* === Chapter 06 — CONTEXT: rural-landscape with annotation === */
+  /* === Chapter 06 — CONTEXT: framed editorial band (rural-landscape
+     = regional context only, never company premises). Copy ~4 / band ~8. === */
   .why-context-section { padding-block: clamp(3.5rem, 6vw, 5rem); }
-  /* V7: no building artwork in the context chapter — a neutral rural
-     engraving at 0.08 opacity behind the text instead (no implied facility). */
-  .why-context-section { position: relative; overflow: hidden; }
   .why-context-bg {
-    position: absolute; inset: 0; opacity: 0.08;
-    pointer-events: none; overflow: hidden;
+    position: relative; width: 100%; aspect-ratio: 1344/768;
+    background: var(--limewash); border-radius: var(--r-panel);
+    border: 1px solid var(--border);
+    overflow: hidden; align-self: center;
   }
-  .why-context-bg .editorial-image { width: 100%; height: 100%; object-fit: cover; }
-  .why-context-section .why-chapter { position: relative; z-index: 1; }
 </style>
 
 <!-- ===== HERO ===== -->
@@ -2457,13 +2316,10 @@ function whyPrakritikBody(depth) {
   </div>
 </section>
 
-<!-- ===== 02 TRADITION — large courtyard ===== -->
-<section class="section section--limewash" aria-labelledby="chapter-02-title">
+<!-- ===== 02 TRADITION — courtyard elevation: copy ~45 / image ~55 ===== -->
+<section class="section section--haldi-wash" aria-labelledby="chapter-02-title">
   <div class="container">
-    <div class="why-chapter why-chapter--reverse" data-reveal>
-      <div class="why-tradition-art" aria-hidden="true">
-        ${courtyardCh2Pic}
-      </div>
+    <div class="why-chapter why-chapter--wide-art" data-reveal>
       <div>
         <span class="why-chapter__num">02</span>
         <span class="why-chapter__eyebrow">The tradition</span>
@@ -2477,6 +2333,9 @@ function whyPrakritikBody(depth) {
             The courtyard study shows a wall surface in an everyday Indian setting.
           </p>
         </div>
+      </div>
+      <div class="why-tradition-art" aria-hidden="true">
+        ${courtyardCh2Pic}
       </div>
     </div>
   </div>
@@ -2536,24 +2395,19 @@ function whyPrakritikBody(depth) {
   </div>
 </section>
 
-<!-- ===== 04 ASHTA — full-size seal (interactive SVG kept) ===== -->
-<section class="section section--limewash why-ashta-section" aria-labelledby="chapter-04-title" data-ashta-laabh>
+<!-- ===== 04 ASHTA — the shared typographic eight-benefit grid ===== -->
+<section class="section section--haldi-wash why-ashta-section" aria-labelledby="chapter-04-title">
   <div class="container">
     <div class="why-ashta-section__head section-heading section-heading--left" data-reveal>
-      <span class="section-heading__eyebrow">अष्ट लाभ</span>
-      <h2 class="section-heading__title" id="chapter-04-title">Eight benefits.</h2>
+      <span class="section-heading__eyebrow">Ashta Laabh — अष्ट लाभ</span>
+      <h2 class="section-heading__title" id="chapter-04-title">Eight benefits of Prakritik Paint.</h2>
       <p class="section-heading__desc">
-        Benefits listed in the Prakritik Paint material.
+        Benefits listed in the supplied Prakritik Paint material.
       </p>
     </div>
-    <div class="ashta-section__grid" data-reveal>
-      <div class="ashta-section__seal">
-        ${loadSvg('ashta-laabh-seal')}
-      </div>
-      <ol class="ashta-section__support" data-reveal-stagger>
+    <ol class="benefits-grid" data-reveal-stagger>
 ${ashtaItems}
-      </ol>
-    </div>
+    </ol>
   </div>
 </section>
 
@@ -2597,11 +2451,9 @@ ${ashtaItems}
   </div>
 </section>
 
-<!-- ===== 06 CONTEXT — rural-landscape with annotation ===== -->
+<!-- ===== 06 CONTEXT — framed editorial context band (regional context,
+     never company premises): copy ~4 / band ~8 on desktop ===== -->
 <section class="section section--limewash why-context-section" aria-labelledby="chapter-06-title">
-  <div class="why-context-bg" aria-hidden="true">
-    ${ruralContextPic}
-  </div>
   <div class="container">
     <div class="why-chapter" data-reveal>
       <div>
@@ -2620,18 +2472,12 @@ ${ashtaItems}
           <a class="btn btn--outline" href="${relUrl('/about/', depth)}">About Gaurikrit</a>
         </div>
       </div>
+      <div class="why-context-bg" aria-hidden="true">
+        ${ruralContextPic}
+      </div>
     </div>
   </div>
 </section>
-
-<script>
-  (function () {
-    'use strict';
-    document.querySelectorAll('[data-ashta-laabh] svg [data-benefit]').forEach(function (node) {
-      node.setAttribute('data-ashta-node', node.getAttribute('data-benefit'));
-    });
-  })();
-</script>
 `;
 }
 
@@ -2671,7 +2517,7 @@ function aboutBody(depth) {
   @media (min-width: 1024px) {
     .about-hero__container { grid-template-columns: 5fr 7fr; }
   }
-  .about-hero__lockup { display: flex; flex-direction: column; gap: 0.75rem; max-width: 42rem; }
+  .about-hero__lockup { display: flex; flex-direction: column; gap: 0.75rem; }
   .about-hero__deva {
     font-family: var(--font-deva); font-size: clamp(1.5rem, 3vw, 2rem);
     font-weight: 700; color: var(--haldi-deep);
@@ -2689,15 +2535,14 @@ function aboutBody(depth) {
     margin-top: 1rem; font-size: clamp(1rem, 2vw, 1.125rem);
     color: var(--fg-muted); line-height: 1.65; max-width: 60ch;
   }
-  /* V7: the hero shows WHO the brand is + WHAT it actually makes — the real
-     product group photo as a catalogue plate with the official mark. */
+  /* V12: the hero shows WHO the brand is + WHAT it actually makes — the
+     real product group photo on a quiet catalogue plate with the official
+     mark. Hairline border only: no accent stripe, no shadow. */
   .about-hero__plate {
     background: var(--paper);
     border: 1px solid var(--border);
-    border-top: 3px solid var(--haldi);
     border-radius: var(--r-panel);
     padding: clamp(1rem, 2vw, 1.5rem);
-    box-shadow: 0 2px 12px -4px rgba(32, 30, 25, 0.06);
   }
   .about-hero__plate-head {
     display: flex; align-items: center; gap: 0.625rem;
@@ -2734,16 +2579,15 @@ function aboutBody(depth) {
   }
   .about-product-card__media .about-product-photo {
     display: block;
-    max-height: 80%; max-width: 70%;
+    max-height: 88%;
+    max-width: 80%;
     width: auto; height: auto;
     object-fit: contain;
-    filter: drop-shadow(0 14px 20px rgba(34, 36, 27, 0.16));
+    filter: drop-shadow(0 10px 16px rgba(34, 36, 27, 0.12));
   }
-  .about-product-card__media--distemper .about-product-photo {
-    max-width: min(70%, 420px);
-  }
+  .about-product-card__media--distemper .about-product-photo,
   .about-product-card__media--emulsion .about-product-photo {
-    max-width: min(60%, 320px);
+    max-width: min(82%, 460px);
   }
 
   /* ===== MATERIAL DIRECTION (V10: raw plaster surface — the material
@@ -2768,7 +2612,7 @@ function aboutBody(depth) {
     overflow: hidden;
   }
   .about-mission__bg {
-    position: absolute; inset: 0; opacity: 0.15; pointer-events: none;
+    position: absolute; inset: 0; opacity: 0.10; pointer-events: none;
     overflow: hidden;
   }
   .about-mission__bg .editorial-image { width: 100%; height: 100%; object-fit: cover; }
@@ -2795,9 +2639,14 @@ function aboutBody(depth) {
   /* V7: a formal ledger reads at 56rem, not stretched across 1400px. */
   .company-plate { max-width: 56rem; }
   .company-plate__head { margin-bottom: 2rem; }
-  .company-plate dt { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fg-muted); }
+  .company-plate dt { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--fg-muted); }
   .company-plate dd { color: var(--fg); }
   .company-plate__address { white-space: pre-line; }
+  .company-plate__row {
+    border-top: 1px solid var(--border); border-bottom: 0;
+    padding: 1.25rem 0; align-items: baseline;
+  }
+  .company-plate__row:last-child { border-bottom: 1px solid var(--border); }
 </style>
 
 <!-- ===== HERO (V7: 5/7 — brand identity left, real product plate right) ===== -->
@@ -3057,7 +2906,7 @@ function forBusinessBody(depth) {
     ).join('\n');
 
     // V4 picture tags.
-    const archHeroPic = `<picture><source type="image/webp" srcset="${assetUrl('/assets/editorial/business-context-study.webp', depth)}"><img class="editorial-image" src="${assetUrl('/assets/editorial/business-context-study.jpg', depth)}" alt="Architectural building elevation study" width="1344" height="768" loading="eager" decoding="async"></picture>`;
+    const archHeroPic = `<picture><source type="image/webp" srcset="${assetUrl('/assets/editorial/business-context-study.webp', depth)}"><img class="editorial-image" src="${assetUrl('/assets/editorial/business-context-study.jpg', depth)}" alt="" width="1344" height="768" loading="eager" decoding="async"></picture>`;
 
     return `<style>
   /* ===== Editorial image reset (V4 — NO mix-blend-mode, NO blur filters) ===== */
@@ -3084,9 +2933,39 @@ function forBusinessBody(depth) {
     width: 100%; height: 100%; object-fit: cover; display: block;
   }
 
-  /* ===== AUDIENCES (shared editorial image + 4 ruled columns) ===== */
+  /* ===== AUDIENCES — 4-ruled-columns visual (no shared image; connects
+     directly to the four audience types) ===== */
   .biz-audiences-section { padding-block: clamp(3.5rem, 6vw, 5rem); }
   .biz-audiences__head { max-width: 48rem; margin-bottom: 2.5rem; }
+  .biz-audiences-rule {
+    display: grid; grid-template-columns: 1fr; gap: 0;
+    margin-bottom: 3rem;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  @media (min-width: 768px) {
+    .biz-audiences-rule { grid-template-columns: repeat(4, 1fr); }
+  }
+  .biz-audiences-rule__col {
+    padding: 1.25rem 1rem; border-top: 2px solid var(--haldi);
+    display: flex; align-items: baseline; gap: 0.625rem;
+  }
+  .biz-audiences-rule__col + .biz-audiences-rule__col {
+    border-left: 1px solid var(--border);
+  }
+  @media (max-width: 767px) {
+    .biz-audiences-rule__col + .biz-audiences-rule__col {
+      border-left: 0; border-top: 1px solid var(--border);
+    }
+  }
+  .biz-audiences-rule__num {
+    font-family: var(--font-display); font-weight: 700; font-size: 0.875rem;
+    color: var(--haldi-deep); letter-spacing: 0.04em;
+  }
+  .biz-audiences-rule__label {
+    font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--fg-muted);
+  }
 
   /* ===== PRACTICAL SECTION ===== */
   .biz-practical { padding-block: clamp(3.5rem, 6vw, 5rem); }
@@ -3128,12 +3007,25 @@ function forBusinessBody(depth) {
   .biz-form-layout__aside .help-cta { padding: 1.5rem; }
   .biz-form-card {
     background: var(--paper); border: 1px solid var(--border);
-    border-radius: var(--r-panel); padding: 1.5rem;
+    border-radius: var(--r-panel); padding: 2rem;
+    box-shadow: 0 8px 24px -8px rgba(34, 36, 27, 0.12);
   }
-  @media (min-width: 768px) { .biz-form-card { padding: 2rem; } }
-  .biz-form-card__intro { font-size: 0.875rem; color: var(--fg-muted); margin-bottom: 1.5rem; }
+  @media (min-width: 768px) { .biz-form-card { padding: 2.5rem; } }
+  .biz-form-card__intro { font-size: 0.875rem; color: var(--fg-muted); margin-bottom: 2rem; }
   .biz-form-card__intro .req { color: var(--mitti); }
-  .form-grid { gap: 1.25rem; }
+  .form-grid { gap: 1.5rem; }
+  .biz-form-card .form-input,
+  .biz-form-card .form-select,
+  .biz-form-card .form-textarea {
+    transition: border-color var(--dur), box-shadow var(--dur);
+  }
+  .biz-form-card .form-input:focus,
+  .biz-form-card .form-select:focus,
+  .biz-form-card .form-textarea:focus {
+    outline: 0;
+    border-color: var(--forest);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--haldi) 25%, transparent);
+  }
   .biz-aside-card {
     border-top: 1px solid var(--border); padding: 0; background: transparent;
   }
@@ -3171,12 +3063,31 @@ function forBusinessBody(depth) {
   </div>
 </section>
 
-<!-- ===== AUDIENCES — shared editorial image + 4 ruled columns ===== -->
+<!-- ===== AUDIENCES — 4-ruled-columns visual (no shared image) ===== -->
 <section class="section section--paper biz-audiences-section" aria-labelledby="audiences-title">
   <div class="container">
     <div class="biz-audiences__head section-heading section-heading--left" data-reveal>
       <span class="section-heading__eyebrow">Who this is for</span>
       <h2 class="section-heading__title" id="audiences-title">Audiences.</h2>
+    </div>
+
+    <div class="biz-audiences-rule" aria-hidden="true" data-reveal>
+      <div class="biz-audiences-rule__col">
+        <span class="biz-audiences-rule__num">01</span>
+        <span class="biz-audiences-rule__label">Architects</span>
+      </div>
+      <div class="biz-audiences-rule__col">
+        <span class="biz-audiences-rule__num">02</span>
+        <span class="biz-audiences-rule__label">Institutions</span>
+      </div>
+      <div class="biz-audiences-rule__col">
+        <span class="biz-audiences-rule__num">03</span>
+        <span class="biz-audiences-rule__label">CSR / NGOs</span>
+      </div>
+      <div class="biz-audiences-rule__col">
+        <span class="biz-audiences-rule__num">04</span>
+        <span class="biz-audiences-rule__label">Gaushalas</span>
+      </div>
     </div>
 
     <div class="biz-audiences" data-reveal-stagger>
@@ -3193,8 +3104,8 @@ ${audienceCards}
         <span class="biz-hero__eyebrow"><span class="biz-hero__eyebrow-dot" aria-hidden="true"></span>Practical</span>
         <h2 class="biz-practical__title" id="include-title">Include these details for a faster response.</h2>
         <p class="biz-practical__body">
-          A few project details help Gaurikrit understand your requirement
-          before responding.
+          A few practical details up front let us respond with what we can
+          supply — pack sizes, format, and how Prakritik Paint fits your project.
         </p>
       </div>
       <ul class="biz-practical__list">
@@ -3325,11 +3236,6 @@ ${projectTypeOptions}
 
 // ---- Paint Calculator — V4 ----
 function paintCalculatorBody(depth) {
-    // V4: real interior-wall-study background layer behind the interactive
-    // calculator-wall-scene SVG (kept). The picture loads eager so the
-    // environment is visible immediately; the SVG sits on top at z-index 1.
-    const interiorWallPic = `<picture><source type="image/webp" srcset="${assetUrl('/assets/editorial/interior-wall-study.webp', depth)}"><img class="visual-env" src="${assetUrl('/assets/editorial/interior-wall-study.jpg', depth)}" alt="" width="1344" height="768" loading="eager" decoding="async"></picture>`;
-
     return `<style>
   /* ===== Editorial image reset (V4 — NO mix-blend-mode, NO blur filters) ===== */
   .editorial-image {
@@ -3361,77 +3267,46 @@ function paintCalculatorBody(depth) {
     font-size: clamp(1rem, 2vw, 1.125rem); max-width: 60ch;
   }
 
-  /* ===== CALCULATOR PAGE — 42% sticky visual / 58% steps ===== */
+  /* ===== CALCULATOR PAGE — V12: the tool IS the page. The decorative
+     sticky wall-scene (photo + never-driven SVG) is retired — the UI is
+     more important than the picture. Single column, max 60rem. ===== */
   .calculator-page {
-    padding-top: clamp(2rem, 4vw, 3rem);
+    padding-top: clamp(1.5rem, 3vw, 2.5rem);
     padding-bottom: clamp(4rem, 7vw, 6rem);
     display: grid; gap: 2.5rem;
-  }
-  @media (min-width: 1024px) {
-    .calculator-page {
-      grid-template-columns: 42fr 58fr;
-      align-items: start;
-    }
-  }
-  @media (max-width: 1023px) {
-    .calculator-page { grid-template-columns: 1fr; }
-  }
-  /* V4: sticky visual = real interior-wall-study behind the interactive SVG.
-     The SVG stays interactive; the photo gives the wall environment. */
-  .calculator-page__visual {
-    position: sticky; top: calc(var(--header-h) + 1rem);
-    background: var(--limewash); border: 1px solid var(--border);
-    border-radius: var(--r-panel); aspect-ratio: 4/3;
-    display: flex; align-items: center; justify-content: center;
-    padding: 0; overflow: hidden;
-  }
-  @media (max-width: 1023px) {
-    .calculator-page__visual { position: relative; top: auto; aspect-ratio: 16/9; }
-  }
-  .calculator-page__visual .visual-env {
-    position: absolute; inset: 0; width: 100%; height: 100%;
-    object-fit: cover;
-    opacity: 0.55;
-    pointer-events: none;
-  }
-  .calculator-page__visual svg {
-    position: relative; z-index: 1;
-    width: 86%; height: 86%; display: block;
+    grid-template-columns: minmax(0, 60rem);
+    justify-content: center;
   }
 
   /* The actual calculator mount — JS builds the UI inside it. */
   .calculator-page__steps { display: grid; gap: 1.5rem; }
 
-  /* Override the JS-built .calc-step / .calc-result styles to match V3. */
-  .calc-step {
-    padding: 1.5rem; background: var(--paper);
-    border: 1px solid var(--border); border-radius: var(--r-panel);
-    transition: border-color var(--dur);
-  }
-  .calc-step[data-selected="true"] {
-    border-color: var(--forest);
-    background: color-mix(in srgb, var(--haldi) 6%, var(--paper));
-  }
-  .calc__cards { display: grid; gap: 0.75rem; margin-top: 1rem; }
+  .calc__cards { display: grid; gap: 0.875rem; margin-top: 1rem; }
   @media (min-width: 640px) { .calc__cards { grid-template-columns: 1fr 1fr; } }
   .calc__card {
-    padding: 1rem 1.25rem; border: 1.5px solid var(--border-strong);
+    padding: 1.25rem 1.5rem;
+    border: 2px solid var(--border-strong);
     background: var(--paper); border-radius: var(--r-btn);
     text-align: left; cursor: pointer; min-height: 44px;
     display: flex; flex-direction: column; gap: 0.25rem;
-    transition: background var(--dur), border-color var(--dur), color var(--dur);
+    transition: background var(--dur), border-color var(--dur), color var(--dur), transform var(--dur), box-shadow var(--dur);
   }
-  .calc__card:hover { border-color: var(--forest); color: var(--forest); }
-  .calc__card[aria-pressed="true"] {
-    background: color-mix(in srgb, var(--haldi) 18%, var(--paper));
+  .calc__card:hover {
     border-color: var(--forest); color: var(--forest);
+    transform: translateY(-1px);
   }
-  .calc__card-title { font-weight: 600; font-size: 1rem; }
+  .calc__card[aria-pressed="true"] {
+    background: color-mix(in srgb, var(--haldi) 22%, var(--paper));
+    border-color: var(--forest); color: var(--forest);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--haldi) 30%, transparent);
+    transform: translateY(-1px);
+  }
+  .calc__card-title { font-weight: 700; font-size: 1.0625rem; }
   .calc__card-desc  { font-size: 0.8125rem; color: var(--fg-muted); }
 
   /* Progress indicator styling */
   .calc__progress {
-    list-style: none; display: flex; gap: 0.5rem; margin: 0 0 1.5rem;
+    list-style: none; display: flex; gap: 0.75rem; margin: 0 0 2rem;
     padding: 0; flex-wrap: wrap;
   }
   .calc__progress-item { display: flex; align-items: center; gap: 0.5rem; }
@@ -3439,22 +3314,26 @@ function paintCalculatorBody(depth) {
     background: transparent; border: 0; padding: 0;
     display: flex; align-items: center; gap: 0.5rem;
     cursor: pointer; color: var(--fg-muted);
-    font-size: 0.875rem; font-weight: 500;
+    font-size: 0.9375rem; font-weight: 600;
   }
   .calc__progress-btn[disabled] { cursor: not-allowed; opacity: 0.5; }
   .calc__progress-dot {
     display: inline-flex; align-items: center; justify-content: center;
-    width: 1.5rem; height: 1.5rem; border-radius: 50%;
-    border: 1.5px solid var(--border-strong);
-    font-family: var(--font-display); font-weight: 700; font-size: 0.75rem;
+    width: 2rem; height: 2rem; border-radius: 50%;
+    border: 2px solid var(--border-strong);
+    font-family: var(--font-display); font-weight: 700; font-size: 0.8125rem;
     color: var(--fg-muted);
+    transition: background var(--dur), border-color var(--dur), color var(--dur), box-shadow var(--dur), transform var(--dur);
   }
   .calc__progress-item.is-current .calc__progress-dot {
     border-color: var(--forest); color: var(--forest);
-    background: color-mix(in srgb, var(--haldi) 18%, var(--paper));
+    background: color-mix(in srgb, var(--haldi) 22%, var(--paper));
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--haldi) 12%, transparent);
+    transform: scale(1.05);
   }
   .calc__progress-item.is-done .calc__progress-dot {
     background: var(--forest); border-color: var(--forest); color: var(--paper);
+    transform: scale(1.08);
   }
 
   .calc__step { padding: 0; background: transparent; border: 0; }
@@ -3519,17 +3398,12 @@ function paintCalculatorBody(depth) {
   </div>
 </section>
 
-<!-- ===== CALCULATOR PAGE — 42% sticky visual / 58% steps ===== -->
+<!-- ===== CALCULATOR PAGE — the tool is the page (V12: decorative
+     wall-scene visual retired; single quiet column) ===== -->
 <section class="bg-limewash" style="padding-top: 0;">
   <div class="container">
     <div class="calculator-page" data-reveal>
-      <!-- LEFT: sticky interactive wall scene (SVG kept) -->
-      <div class="calculator-page__visual" aria-hidden="true">
-        ${interiorWallPic}
-        ${loadSvg('calculator-wall-scene')}
-      </div>
-
-      <!-- RIGHT: 4-step calculator mount -->
+      <!-- 4-step calculator mount -->
       <div class="calculator-page__steps">
         <script type="application/json" id="calculator-config">{"enabled":false}</script>
         <div data-calculator></div>
@@ -3864,7 +3738,7 @@ function contactBody(depth) {
     border-top: 1px solid var(--border); border-radius: 0; box-shadow: none;
   }
   .contact-info__row {
-    padding-block: 1rem; border-bottom: 1px solid var(--border);
+    padding-block: 1.125rem; border-bottom: 1px solid var(--border);
     display: grid; grid-template-columns: 1fr; gap: 0.25rem;
     align-items: baseline;
   }
@@ -3872,10 +3746,12 @@ function contactBody(depth) {
     .contact-info__row { grid-template-columns: 11rem 1fr; gap: 1rem; }
   }
   .contact-info__row dt {
-    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em;
+    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.18em;
     text-transform: uppercase; color: var(--fg-muted);
   }
-  .contact-info__row dd { font-size: 0.9375rem; color: var(--fg); }
+  .contact-info__row dd { font-size: 1rem; color: var(--fg); }
+  .contact-info__row dd a { color: var(--primary); text-decoration: none; }
+  .contact-info__row dd a:hover { text-decoration: underline; }
   .contact-info__address { white-space: pre-line; }
   /* V7: subtle links instead of redundant CTA buttons. */
   .contact-info__links {
@@ -3890,10 +3766,15 @@ function contactBody(depth) {
   /* Form (right). */
   .contact-form {
     background: var(--paper); border: 1px solid var(--border);
-    border-radius: var(--r-panel); padding: 1.5rem;
+    border-radius: var(--r-panel); padding: 2rem;
     box-shadow: 0 8px 24px -8px rgba(34, 36, 27, 0.12);
   }
   @media (min-width: 768px) { .contact-form { padding: 2.5rem; } }
+  .contact-form .form-input,
+  .contact-form .form-select,
+  .contact-form .form-textarea {
+    transition: border-color var(--dur), box-shadow var(--dur);
+  }
   .contact-form .form-input:focus,
   .contact-form .form-select:focus,
   .contact-form .form-textarea:focus {
@@ -3905,7 +3786,18 @@ function contactBody(depth) {
     font-size: 0.875rem; color: var(--fg-muted); margin-bottom: 1.5rem;
   }
   .contact-form-card__intro .req { color: var(--mitti); }
-  .form-grid { gap: 1.25rem; }
+  .form-grid { gap: 1.5rem; }
+  .contact-form__foot-links {
+    margin-top: 1.5rem; padding-top: 1.25rem;
+    border-top: 1px solid var(--border);
+    display: flex; flex-wrap: wrap; gap: 0.625rem; align-items: center;
+    font-size: 0.875rem; color: var(--fg-muted);
+  }
+  .contact-form__foot-links a {
+    color: var(--primary); text-decoration: none; font-weight: 600;
+  }
+  .contact-form__foot-links a:hover { text-decoration: underline; }
+  .contact-form__foot-links span { color: var(--border-strong); }
 </style>
 
 <!-- ===== HERO (V7: 7/5 — copy left, direct-lines plate right) ===== -->
@@ -4066,6 +3958,14 @@ ${interestOptions}
             <span data-submit-label>Send Enquiry</span>
           </button>
         </div>
+
+        <!-- V5: supporting CTAs as small text links below the form — no
+             longer competing as buttons with the form's submit. -->
+        <p class="contact-form__foot-links">
+          <a href="${relUrl('/for-business/', depth)}">For Business</a>
+          <span aria-hidden="true">·</span>
+          <a href="${relUrl('/paint-calculator/', depth)}">Estimate Your Project</a>
+        </p>
       </form>
     </div>
   </div>
@@ -4073,7 +3973,7 @@ ${interestOptions}
 `;
 }
 
-// ---- 404 — V4 ----
+// ---- 404 ----
 function error404Body(depth) {
     return `<style>
   .error-page {

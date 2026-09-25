@@ -21,7 +21,6 @@
  *  - navigation.js: scroll-spy, mobile menu, header scroll state.
  *  - animations.js: reveal on scroll, marquee duplication, hero
  *    paint-stroke reveal, material journey draw-in.
- *  - ashta-laabh.js: radial diagram node interaction.
  *  - colour-study.js: clickable swatch dots.
  *  - forms.js: contact + business form submit, toast helper.
  *  - calculator.js: 4-step painting budget calculator.
@@ -271,7 +270,7 @@
     // ---------- Boot ----------
     function boot() {
         // Module init calls — guarded so a missing module never blocks others.
-        var mods = ['Navigation', 'Animations', 'AshtaLaabh', 'ColourStudy', 'Forms', 'Calculator'];
+        var mods = ['Navigation', 'Animations', 'ColourStudy', 'Forms', 'Calculator'];
         for (var i = 0; i < mods.length; i++) {
             var m = mods[i];
             if (G[m] && typeof G[m].init === 'function') {

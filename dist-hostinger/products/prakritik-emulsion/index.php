@@ -6,7 +6,7 @@
  * Composition unchanged from V3. This pass replaces coded SVG bucket
  * illustration with real product photography (450×621, NOT upscaled, complete bucket) and
  * uses exterior-wall-study-v2.webp as the hero environment. SVG kept only for
- * interactive ashta-laabh-seal.
+ * typographic benefits grid (app.css §18).
  *
  * Composition (REVERSED — product left, copy right):
  *   - Warm leaf / haldi material environment (.product-detail--warm).
@@ -35,17 +35,6 @@ if (!$product) {
 }
 
 $distemper = get_product('prakritik-distemper');
-
-$ashtaIds = [
-    'Antibacterial'              => 'antibacterial',
-    'Antifungal'                 => 'antifungal',
-    'Eco-Friendly'               => 'eco-friendly',
-    'Natural Thermal Insulator'  => 'thermal-insulator',
-    'Cost-Effective'             => 'cost-effective',
-    'Free from Heavy Metals'     => 'heavy-metal-free',
-    'Non-Toxic'                  => 'non-toxic',
-    'Odourless'                  => 'odourless',
-];
 
 $specRows = [
     ['num' => '01', 'label' => 'Packaging',   'value' => $product['packagingShort'], 'note' => '1 litre / 4 litre / 10 litre / 20 litre packs'],
@@ -80,30 +69,32 @@ $specRows = [
     .product-detail--warm .product-detail__hero > :first-child { order: 1; }
     .product-detail--warm .product-detail__hero > :last-child  { order: 2; }
   }
-  /* V10: media is a clean catalogue plate (same language as the home
-     product chapters) — white product stage + slim wall-finish strip.
-     The complete pack photo is shown at its natural proportion. */
+  /* V12: media is ONE designed catalogue panel (same language as the home
+     product chapters, app.css §14) — soft neutral wall plate tinted with
+     the format wash, complete pack anchored toward the base, slim
+     wall-finish strip. Hairline border only: no 3px accent stripe,
+     no shadow. */
   .product-detail__media {
     display: flex; flex-direction: column;
-    background: var(--paper);
-    border: 1px solid var(--border); border-top: 3px solid var(--leaf);
+    background: color-mix(in srgb, var(--paper-leaf) 25%, var(--paper));
+    border: 1px solid var(--border);
     border-radius: var(--r-panel); overflow: hidden;
-    box-shadow: 0 2px 12px -4px rgba(32, 30, 25, 0.06);
   }
   .product-detail__stage {
     position: relative;
     height: clamp(17rem, 36vw, 25rem);
     display: grid; place-items: center;
-    padding: clamp(1.25rem, 3vw, 2.25rem);
+    padding: clamp(1.5rem, 3.5vw, 3rem) clamp(1.5rem, 3.5vw, 3rem) clamp(0.75rem, 1.5vw, 1.25rem);
   }
   .product-detail__stage .media-product {
     /* Absolute-fill + object-fit: contain — the pack photo stays
-       COMPLETE inside the fixed-height stage (never cropped). */
+       COMPLETE inside the fixed-height stage (never cropped). The box
+       is biased downward so the pack stands toward the panel's base. */
     position: absolute;
-    top: clamp(1.25rem, 3vw, 2.25rem);
-    left: clamp(1.25rem, 3vw, 2.25rem);
-    width: calc(100% - 2 * clamp(1.25rem, 3vw, 2.25rem));
-    height: calc(100% - 2 * clamp(1.25rem, 3vw, 2.25rem));
+    top: clamp(1.5rem, 3.5vw, 3rem);
+    left: clamp(1.5rem, 3.5vw, 3rem);
+    width: calc(100% - 2 * clamp(1.5rem, 3.5vw, 3rem));
+    height: calc(100% - clamp(1.5rem, 3.5vw, 3rem) - clamp(0.75rem, 1.5vw, 1.25rem));
     object-fit: contain;
   }
   .product-detail__strip {
@@ -128,8 +119,8 @@ $specRows = [
   /* ===== COVERAGE DISCLAIMER ===== */
   .coverage-disclaimer { margin-top: 2rem; border-left-color: var(--leaf); }
 
-  /* ===== ASHTA LAABH ===== */
-  .emulsion-ashta-section { padding-block: clamp(3rem, 6vw, 5rem); position: relative; overflow: hidden; }
+  /* ===== ASHTA LAABH — the shared typographic grid (app.css §18) ===== */
+  .emulsion-ashta-section { padding-block: clamp(3rem, 6vw, 5rem); }
   .emulsion-ashta-section__head { max-width: 48rem; margin-bottom: 2.5rem; }
 </style>
 
@@ -222,32 +213,26 @@ $specRows = [
   </div>
 </section>
 
-<!-- ===== ASHTA LAABH ===== -->
-<section class="section section--limewash emulsion-ashta-section" aria-labelledby="emulsion-ashta-title" data-ashta-laabh>
+<!-- ===== ASHTA LAABH — the shared typographic eight-benefit grid ===== -->
+<section class="section section--haldi-wash emulsion-ashta-section" aria-labelledby="emulsion-ashta-title">
   <div class="container">
     <div class="emulsion-ashta-section__head section-heading section-heading--left" data-reveal>
-      <span class="section-heading__eyebrow">अष्ट लाभ — Eight benefits</span>
-      <h2 class="section-heading__title" id="emulsion-ashta-title">Ashta Laabh.</h2>
+      <span class="section-heading__eyebrow">Ashta Laabh — अष्ट लाभ</span>
+      <h2 class="section-heading__title" id="emulsion-ashta-title">Eight benefits of Prakritik Paint.</h2>
       <p class="section-heading__desc">
-        Benefits listed in the Prakritik Paint material.
+        Benefits listed in the supplied Prakritik Paint material.
       </p>
     </div>
 
-    <div class="ashta-section__grid" data-reveal>
-      <div class="ashta-section__seal">
-        <?php render_illustration('ashta-laabh-seal'); ?>
-      </div>
-      <ol class="ashta-section__support" data-reveal-stagger>
-        <?php foreach ($ASHTA_LAABH as $i => $benefit): ?>
-          <?php $bid = $ashtaIds[$benefit['name']] ?? ('benefit-' . ($i + 1)); ?>
-          <li class="ashta-benefit emulsion-ashta__item" data-ashta-node="<?= e($bid) ?>">
-            <span class="ashta-benefit__num"><?= e(sprintf('%02d', $i + 1)) ?></span>
-            <span class="ashta-benefit__name"><?= e($benefit['name']) ?></span>
-            <span class="ashta-benefit__deva"><?= e($benefit['hindi']) ?></span>
-          </li>
-        <?php endforeach; ?>
-      </ol>
-    </div>
+    <ol class="benefits-grid" data-reveal-stagger>
+      <?php foreach ($ASHTA_LAABH as $i => $benefit): ?>
+        <li class="benefits-grid__item">
+          <span class="benefits-grid__num" aria-hidden="true"><?= e(sprintf('%02d', $i + 1)) ?></span>
+          <span class="benefits-grid__name"><?= e($benefit['name']) ?></span>
+          <span class="benefits-grid__deva"><?= e($benefit['hindi']) ?></span>
+        </li>
+      <?php endforeach; ?>
+    </ol>
   </div>
 </section>
 
@@ -272,12 +257,4 @@ $specRows = [
   </div>
 </section>
 
-<script>
-  (function () {
-    'use strict';
-    document.querySelectorAll('[data-ashta-laabh] svg [data-benefit]').forEach(function (node) {
-      node.setAttribute('data-ashta-node', node.getAttribute('data-benefit'));
-    });
-  })();
-</script>
 <?php require ROOT_PATH . '/includes/footer.php';

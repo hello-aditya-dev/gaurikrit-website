@@ -49,7 +49,9 @@ $groupImageWebp = '/assets/products/prakritik-pair.webp';
     object-fit: cover;
   }
 
-  /* ===== 1. PRODUCTS HERO (45 / 55) — real group photo, no empty beige ===== */
+  /* ===== 1. PRODUCTS HERO (45 / 55) — the official pair photo on a quiet
+     catalogue plate: hairline border, paper ground, natural 1420/618
+     aspect. No min-height dead zones, no accent stripe, no shadow. ===== */
   .products-hero {
     padding-top: calc(var(--header-h) + 2rem);
     padding-bottom: 1.5rem;
@@ -63,16 +65,17 @@ $groupImageWebp = '/assets/products/prakritik-pair.webp';
   }
   .products-hero__lockup { max-width: 42rem; }
   .products-hero__visual {
-    position: relative; min-height: 22rem; width: 100%;
-    background: transparent; border-radius: 0;
-    overflow: hidden; display: flex; align-items: center; justify-content: center;
-    padding: 0;
+    position: relative; width: 100%;
+    background: var(--paper);
+    border: 1px solid var(--border);
+    border-radius: var(--r-panel);
+    padding: clamp(0.75rem, 2vw, 1.5rem);
+    overflow: hidden;
   }
-  @media (min-width: 768px) { .products-hero__visual { min-height: 28rem; } }
-  @media (min-width: 1024px) { .products-hero__visual { min-height: 32rem; } }
   .products-hero__visual .hero-group-photo {
     display: block;
-    width: 100%; height: 100%;
+    width: 100%; height: auto;
+    aspect-ratio: 1420 / 618;
     object-fit: contain;
   }
 
@@ -163,44 +166,10 @@ $groupImageWebp = '/assets/products/prakritik-pair.webp';
   }
   .spec-matrix-mobile__row .v { font-weight: 600; color: var(--fg); text-align: right; }
 
-  /* ===== BENEFITS STRIP (V5: haldi dot indicators + bolder name typography) ===== */
+  /* ===== BENEFITS — the shared typographic grid (structure in app.css
+     §18: identical to Home / Why / detail pages). Nothing page-local. ===== */
   .benefits-strip { padding-block: clamp(3rem, 6vw, 5rem); }
   .benefits-strip__head { max-width: 48rem; margin-bottom: 2rem; }
-  .benefits-strip__list {
-    display: grid; gap: 0;
-    border-top: 1px solid var(--border);
-    counter-reset: benefit;
-  }
-  @media (min-width: 640px) { .benefits-strip__list { grid-template-columns: 1fr 1fr; column-gap: 3rem; } }
-  @media (min-width: 1024px) { .benefits-strip__list { grid-template-columns: repeat(4, 1fr); } }
-  .benefits-strip__item {
-    padding: 1.5rem 0; border-bottom: 1px solid var(--border);
-    display: grid; grid-template-columns: 3rem 1fr; gap: 1rem;
-    align-items: center; counter-increment: benefit;
-  }
-  /* V5: number column now holds the counter + a haldi dot indicator. */
-  .benefits-strip__num {
-    display: inline-flex; align-items: center; gap: 0.5rem;
-    font-family: var(--font-display); font-weight: 700;
-    color: var(--haldi-deep); font-size: 0.9375rem; letter-spacing: 0.04em;
-  }
-  .benefits-strip__num::before {
-    content: counter(benefit, decimal-leading-zero);
-  }
-  .benefits-strip__dot {
-    display: inline-block;
-    width: 0.5rem; height: 0.5rem; border-radius: 50%;
-    background: var(--haldi);
-    box-shadow: 0 0 0 2px color-mix(in srgb, var(--haldi) 22%, transparent);
-  }
-  /* V5: bolder name typography (more memorable). */
-  .benefits-strip__name {
-    font-weight: 700; font-size: 1rem; color: var(--fg); line-height: 1.3;
-  }
-  .benefits-strip__deva {
-    font-family: var(--font-deva); font-size: 0.875rem; color: var(--fg-muted);
-    display: block; margin-top: 0.375rem;
-  }
 
   /* ===== FAQ (V5: more spacing above + haldi divider line) ===== */
   .faq-section {
@@ -444,27 +413,23 @@ $groupImageWebp = '/assets/products/prakritik-pair.webp';
 </section>
 
 <!-- ============================================================
-     5. BENEFITS STRIP — numbered typographic list, NO 8 cards
+     5. BENEFITS — the shared typographic eight-benefit grid
      ============================================================ -->
-<section class="section section--limewash benefits-strip" aria-labelledby="benefits-title">
+<section class="section section--haldi-wash benefits-strip" aria-labelledby="benefits-title">
   <div class="container">
     <div class="benefits-strip__head section-heading section-heading--left" data-reveal>
       <span class="section-heading__eyebrow">Ashta Laabh — अष्ट लाभ</span>
       <h2 class="section-heading__title" id="benefits-title">Eight benefits of Prakritik Paint.</h2>
       <p class="section-heading__desc">
-        Benefits listed in the Prakritik Paint material.
+        Benefits listed in the supplied Prakritik Paint material.
       </p>
     </div>
-    <ol class="benefits-strip__list" data-reveal-stagger>
-      <?php foreach ($ASHTA_LAABH as $benefit): ?>
-        <li class="benefits-strip__item">
-          <span class="benefits-strip__num" aria-hidden="true">
-            <span class="benefits-strip__dot"></span>
-          </span>
-          <span>
-            <span class="benefits-strip__name"><?= e($benefit['name']) ?></span>
-            <span class="benefits-strip__deva"><?= e($benefit['hindi']) ?></span>
-          </span>
+    <ol class="benefits-grid" data-reveal-stagger>
+      <?php foreach ($ASHTA_LAABH as $i => $benefit): ?>
+        <li class="benefits-grid__item">
+          <span class="benefits-grid__num" aria-hidden="true"><?= e(sprintf('%02d', $i + 1)) ?></span>
+          <span class="benefits-grid__name"><?= e($benefit['name']) ?></span>
+          <span class="benefits-grid__deva"><?= e($benefit['hindi']) ?></span>
         </li>
       <?php endforeach; ?>
     </ol>

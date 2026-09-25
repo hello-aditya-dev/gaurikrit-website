@@ -1,24 +1,18 @@
 <?php
 /**
- * Gaurikrit Bio Products — Why Prakritik (V5 finish pass).
- * Task V5-FINISH.
+ * Gaurikrit Bio Products — Why Prakritik (V12 finishing pass).
  *
- * V10 targeted fix pass — NOT a redesign. The decorative zebu
- * illustration is retired from this page: the hero now shows a single
- * quiet finished-wall study (where the material lands), and Section 01
- * grounds "the material" in a raw plaster surface study instead.
- * Section 03 uses the shared 3-step material cards (raw material /
- * paint / finished wall). Factual data unchanged from data.php.
- *
- * Illustrated editorial essay. Six numbered chapters (each visually
- * distinct):
- *   01 MATERIAL     — raw-material-study (plaster surface, 1344×768)
- *   02 TRADITION    — courtyard-study.webp (1942×809) enlarged (~75%)
- *   03 MATERIAL TO WALL — 3 step cards (raw material / paint / wall)
- *   04 ASHTA        — strengthened interactive ashta-laabh-seal SVG (kept)
- *   05 FORMATS      — real Distemper + Emulsion product photos
- *   06 CONTEXT      — rural-landscape engraving, annotated
- * CTA "Explore Products" → /products/.
+ * Illustrated editorial essay, one visual system:
+ *   - Section rhythm per the global five families: limewash hero → paper
+ *     material → warm-wash tradition → paper material-to-wall → warm-wash
+ *     benefits → paper formats → limewash context → forest footer.
+ *   - Chapter 02 imagery is large and deliberate (copy ~45 / courtyard
+ *     elevation ~55 on desktop; copy then image on mobile).
+ *   - Chapter 04 is the shared typographic eight-benefit grid (no radial
+ *     seal, no cow diagram) — identical to Home / Products / detail pages.
+ *   - Chapter 06 is a framed editorial context band (rural-landscape) —
+ *     regional context only, never presented as company premises.
+ * Factual data unchanged from data.php.
  */
 declare(strict_types=1);
 
@@ -34,17 +28,6 @@ global $COMPANY, $PRODUCTS, $ASHTA_LAABH;
 
 $distemper = get_product('prakritik-distemper');
 $emulsion  = get_product('prakritik-emulsion');
-
-$ashtaIds = [
-    'Antibacterial'              => 'antibacterial',
-    'Antifungal'                 => 'antifungal',
-    'Eco-Friendly'               => 'eco-friendly',
-    'Natural Thermal Insulator'  => 'thermal-insulator',
-    'Cost-Effective'             => 'cost-effective',
-    'Free from Heavy Metals'     => 'heavy-metal-free',
-    'Non-Toxic'                  => 'non-toxic',
-    'Odourless'                  => 'odourless',
-];
 ?>
 <style>
   /* ===== Editorial image reset (V4 — NO mix-blend-mode, NO blur filters) ===== */
@@ -69,7 +52,6 @@ $ashtaIds = [
     background: var(--paper); border-radius: var(--r-panel);
     overflow: hidden;
     border: 1px solid var(--border);
-    box-shadow: 0 2px 12px -4px rgba(32, 30, 25, 0.06);
   }
   .why-hero__art .why-hero__img {
     position: absolute; inset: 0; width: 100%; height: 100%;
@@ -88,14 +70,11 @@ $ashtaIds = [
   @media (min-width: 1024px) {
     .why-chapter { grid-template-columns: 4fr 8fr; gap: 3rem; align-items: start; }
   }
-  /* V5: Section 02 TRADITION — enlarge the courtyard image to ~75% of
-     the chapter width on desktop (overrides the 4fr/8fr default). */
+  /* V12: Section 02 TRADITION — the courtyard elevation is the chapter's
+     dominant visual: copy ~45 / image ~55 on desktop (image large enough
+     to matter); copy first, image second at every breakpoint. */
   @media (min-width: 1024px) {
-    .why-chapter--wide-art { grid-template-columns: 3fr 9fr; gap: 3rem; }
-  }
-  .why-chapter--reverse > :first-child { order: 2; }
-  @media (min-width: 1024px) {
-    .why-chapter--reverse > :first-child { order: 0; }
+    .why-chapter--wide-art { grid-template-columns: 45fr 55fr; gap: 3rem; align-items: center; }
   }
   .why-chapter__num {
     font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 4rem);
@@ -151,32 +130,14 @@ $ashtaIds = [
   .why-flow-section { padding-block: clamp(3.5rem, 6vw, 5rem); }
   .why-flow-section .material-steps { margin-top: 2rem; }
 
-  /* === Chapter 04 — ASHTA: V5 strengthened seal (44rem, darker warm
-     bg, bolder benefit labels). SVG seal kept interactive. === */
-  .why-ashta-section {
-    padding-block: clamp(3.5rem, 6vw, 5rem);
-    position: relative; overflow: hidden;
-    /* V5: slightly darker warm tone — overrides section--limewash. */
-    background: color-mix(in srgb, var(--haldi) 10%, var(--limewash));
-  }
+  /* === Chapter 04 — ASHTA: the shared typographic benefits grid
+     (structure in app.css §18 — identical to every other page). === */
+  .why-ashta-section { padding-block: clamp(3.5rem, 6vw, 5rem); }
   .why-ashta-section__head { max-width: 48rem; margin-bottom: 2.5rem; }
-  /* V5: enlarge seal from 38rem → 44rem for more authority. */
-  .ashta-section__seal { max-width: 44rem; margin-inline: auto; }
-  /* V5: bolder / larger benefit labels (page-local override). */
-  .ashta-benefit__name {
-    font-weight: 700 !important;
-    font-size: 1.0625rem !important;
-    letter-spacing: 0.005em;
-  }
-  .ashta-benefit__deva {
-    font-size: 0.9375rem !important;
-    color: color-mix(in srgb, var(--haldi-deep) 60%, var(--fg-muted)) !important;
-  }
-  .ashta-benefit {
-    padding: 1.25rem 0 !important;
-  }
 
-  /* === Chapter 05 — FORMATS: two real product visuals === */
+  /* === Chapter 05 — FORMATS: two real product visuals on quiet
+     format-wash grounds (hairline border, no gradient, no accent
+     stripe; soft grounded product shadow only). === */
   .why-formats-section { padding-block: clamp(3.5rem, 6vw, 5rem); }
   .why-formats {
     display: grid; gap: 2rem; margin-top: 2rem;
@@ -184,19 +145,21 @@ $ashtaIds = [
   @media (min-width: 768px) { .why-formats { grid-template-columns: 1fr 1fr; } }
   .why-format-card {
     position: relative;
-    background: linear-gradient(160deg, var(--paper), var(--limewash));
-    border: 1px solid var(--border); border-top: 3px solid var(--indigo);
+    background: color-mix(in srgb, var(--paper-cool) 25%, var(--paper));
+    border: 1px solid var(--border);
     border-radius: var(--r-panel); overflow: hidden;
     display: flex; align-items: center; justify-content: center; padding: 1.5rem;
     min-height: 22rem;
   }
-  .why-format-card--emulsion { border-top-color: var(--leaf); }
+  .why-format-card--emulsion {
+    background: color-mix(in srgb, var(--paper-leaf) 25%, var(--paper));
+  }
   .why-format-card .format-product {
     display: block;
     max-height: 26rem; max-width: 100%;
     width: auto; height: auto;
     object-fit: contain;
-    filter: drop-shadow(0 14px 20px rgba(34, 36, 27, 0.16));
+    filter: drop-shadow(0 10px 16px rgba(34, 36, 27, 0.12));
   }
   .why-format-card__caption {
     position: absolute; bottom: 1rem; left: 1rem;
@@ -206,12 +169,15 @@ $ashtaIds = [
   .why-format-card--distemper .why-format-card__caption { color: var(--indigo); }
   .why-format-card--emulsion  .why-format-card__caption { color: var(--leaf); }
 
-  /* === Chapter 06 — CONTEXT: rural-landscape with annotation === */
+  /* === Chapter 06 — CONTEXT: framed editorial band (rural-landscape
+     = regional context only, never company premises). V12 fixes the
+     legacy band/bg class drift: the framed band now matches the markup. === */
   .why-context-section { padding-block: clamp(3.5rem, 6vw, 5rem); }
-  .why-context-band {
+  .why-context-bg {
     position: relative; width: 100%; aspect-ratio: 1344/768;
     background: var(--limewash); border-radius: var(--r-panel);
-    overflow: hidden;
+    border: 1px solid var(--border);
+    overflow: hidden; align-self: center;
   }
 </style>
 
@@ -281,20 +247,10 @@ $ashtaIds = [
   </div>
 </section>
 
-<!-- ===== 02 TRADITION — V5 enlarged courtyard (~75% on desktop) ===== -->
-<section class="section section--limewash" aria-labelledby="chapter-02-title">
+<!-- ===== 02 TRADITION — courtyard elevation: copy ~45 / image ~55 ===== -->
+<section class="section section--haldi-wash" aria-labelledby="chapter-02-title">
   <div class="container">
-    <div class="why-chapter why-chapter--reverse why-chapter--wide-art" data-reveal>
-      <div class="why-tradition-art" aria-hidden="true">
-        <picture>
-          <source type="image/webp" srcset="<?= asset_url('/assets/editorial/courtyard-study.webp') ?>">
-          <img class="editorial-image"
-               src="<?= asset_url('/assets/editorial/courtyard-study.jpg') ?>"
-               alt="Indian limewashed courtyard elevation"
-               width="1942" height="809"
-               loading="lazy" decoding="async">
-        </picture>
-      </div>
+    <div class="why-chapter why-chapter--wide-art" data-reveal>
       <div>
         <span class="why-chapter__num">02</span>
         <span class="why-chapter__eyebrow">The tradition</span>
@@ -308,6 +264,16 @@ $ashtaIds = [
             The courtyard study shows a wall surface in an everyday Indian setting.
           </p>
         </div>
+      </div>
+      <div class="why-tradition-art" aria-hidden="true">
+        <picture>
+          <source type="image/webp" srcset="<?= asset_url('/assets/editorial/courtyard-study.webp') ?>">
+          <img class="editorial-image"
+               src="<?= asset_url('/assets/editorial/courtyard-study.jpg') ?>"
+               alt="Indian limewashed courtyard elevation"
+               width="1942" height="809"
+               loading="lazy" decoding="async">
+        </picture>
       </div>
     </div>
   </div>
@@ -380,31 +346,25 @@ $ashtaIds = [
   </div>
 </section>
 
-<!-- ===== 04 ASHTA — V5 strengthened seal (interactive SVG kept) ===== -->
-<section class="section section--limewash why-ashta-section" aria-labelledby="chapter-04-title" data-ashta-laabh>
+<!-- ===== 04 ASHTA — the shared typographic eight-benefit grid ===== -->
+<section class="section section--haldi-wash why-ashta-section" aria-labelledby="chapter-04-title">
   <div class="container">
     <div class="why-ashta-section__head section-heading section-heading--left" data-reveal>
-      <span class="section-heading__eyebrow">अष्ट लाभ</span>
-      <h2 class="section-heading__title" id="chapter-04-title">Eight benefits.</h2>
+      <span class="section-heading__eyebrow">Ashta Laabh — अष्ट लाभ</span>
+      <h2 class="section-heading__title" id="chapter-04-title">Eight benefits of Prakritik Paint.</h2>
       <p class="section-heading__desc">
-        Benefits listed in the Prakritik Paint material.
+        Benefits listed in the supplied Prakritik Paint material.
       </p>
     </div>
-    <div class="ashta-section__grid" data-reveal>
-      <div class="ashta-section__seal">
-        <?php render_illustration('ashta-laabh-seal'); ?>
-      </div>
-      <ol class="ashta-section__support" data-reveal-stagger>
-        <?php foreach ($ASHTA_LAABH as $i => $benefit): ?>
-          <?php $bid = $ashtaIds[$benefit['name']] ?? ('benefit-' . ($i + 1)); ?>
-          <li class="ashta-benefit" data-ashta-node="<?= e($bid) ?>">
-            <span class="ashta-benefit__num"><?= e(sprintf('%02d', $i + 1)) ?></span>
-            <span class="ashta-benefit__name"><?= e($benefit['name']) ?></span>
-            <span class="ashta-benefit__deva"><?= e($benefit['hindi']) ?></span>
-          </li>
-        <?php endforeach; ?>
-      </ol>
-    </div>
+    <ol class="benefits-grid" data-reveal-stagger>
+      <?php foreach ($ASHTA_LAABH as $i => $benefit): ?>
+        <li class="benefits-grid__item">
+          <span class="benefits-grid__num" aria-hidden="true"><?= e(sprintf('%02d', $i + 1)) ?></span>
+          <span class="benefits-grid__name"><?= e($benefit['name']) ?></span>
+          <span class="benefits-grid__deva"><?= e($benefit['hindi']) ?></span>
+        </li>
+      <?php endforeach; ?>
+    </ol>
   </div>
 </section>
 
@@ -448,18 +408,9 @@ $ashtaIds = [
   </div>
 </section>
 
-<!-- ===== 06 CONTEXT — V5: business-context-study with annotation ===== -->
+<!-- ===== 06 CONTEXT — framed editorial context band (regional context,
+     never company premises): copy ~4 / band ~8 on desktop ===== -->
 <section class="section section--limewash why-context-section" aria-labelledby="chapter-06-title">
-  <div class="why-context-bg" aria-hidden="true">
-    <picture>
-      <source type="image/webp" srcset="<?= asset_url('/assets/editorial/rural-landscape.webp') ?>">
-      <img class="editorial-image"
-           src="<?= asset_url('/assets/editorial/rural-landscape.jpg') ?>"
-           alt=""
-           width="1344" height="768"
-           loading="lazy" decoding="async">
-    </picture>
-  </div>
   <div class="container">
     <div class="why-chapter" data-reveal>
       <div>
@@ -478,17 +429,18 @@ $ashtaIds = [
           <a class="btn btn--outline" href="/about/">About Gaurikrit</a>
         </div>
       </div>
-
+      <div class="why-context-bg" aria-hidden="true">
+        <picture>
+          <source type="image/webp" srcset="<?= asset_url('/assets/editorial/rural-landscape.webp') ?>">
+          <img class="editorial-image"
+               src="<?= asset_url('/assets/editorial/rural-landscape.jpg') ?>"
+               alt=""
+               width="1344" height="768"
+               loading="lazy" decoding="async">
+        </picture>
+      </div>
     </div>
   </div>
 </section>
 
-<script>
-  (function () {
-    'use strict';
-    document.querySelectorAll('[data-ashta-laabh] svg [data-benefit]').forEach(function (node) {
-      node.setAttribute('data-ashta-node', node.getAttribute('data-benefit'));
-    });
-  })();
-</script>
 <?php require ROOT_PATH . '/includes/footer.php';

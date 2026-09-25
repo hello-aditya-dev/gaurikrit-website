@@ -76,15 +76,14 @@ $addressLine = implode("\n", $address);
     margin-top: 1rem; font-size: clamp(1rem, 2vw, 1.125rem);
     color: var(--fg-muted); line-height: 1.65; max-width: 60ch;
   }
-  /* V7: the hero shows WHO the brand is + WHAT it actually makes — the real
-     product group photo as a catalogue plate with the official mark. */
+  /* V12: the hero shows WHO the brand is + WHAT it actually makes — the
+     real product group photo on a quiet catalogue plate with the official
+     mark. Hairline border only: no accent stripe, no shadow. */
   .about-hero__plate {
     background: var(--paper);
     border: 1px solid var(--border);
-    border-top: 3px solid var(--haldi);
     border-radius: var(--r-panel);
     padding: clamp(1rem, 2vw, 1.5rem);
-    box-shadow: 0 2px 12px -4px rgba(32, 30, 25, 0.06);
   }
   .about-hero__plate-head {
     display: flex; align-items: center; gap: 0.625rem;
@@ -112,7 +111,9 @@ $addressLine = implode("\n", $address);
   .about-wrap { padding-block: clamp(3.5rem, 6vw, 5rem); }
   .about-section .about-section__body { max-width: 65ch; }
 
-  /* ===== WHAT WE PRESENT (V5: larger product image CSS footprint) ===== */
+  /* ===== WHAT WE PRESENT — two-format cards with matched scale, baseline
+     and visual weight (the two pack photos are nearly identical in natural
+     size, so both cards share the same cap and a soft grounded shadow). ===== */
   .about-products-section { padding-block: clamp(3.5rem, 6vw, 5rem); }
   .about-products { margin-top: 2rem; }
   .about-product-card__media {
@@ -123,18 +124,15 @@ $addressLine = implode("\n", $address);
   }
   .about-product-card__media .about-product-photo {
     display: block;
-    max-height: 88%;  /* V5: increased from 80% → 88% */
-    max-width: 80%;   /* V5: default larger cap */
+    max-height: 88%;
+    max-width: 80%;
     width: auto; height: auto;
     object-fit: contain;
-    filter: drop-shadow(0 14px 20px rgba(34, 36, 27, 0.16));
+    filter: drop-shadow(0 10px 16px rgba(34, 36, 27, 0.12));
   }
-  /* V5: increased caps — closer to natural image sizes. */
-  .about-product-card__media--distemper .about-product-photo {
-    max-width: min(85%, 500px);  /* was min(70%, 420px) */
-  }
+  .about-product-card__media--distemper .about-product-photo,
   .about-product-card__media--emulsion .about-product-photo {
-    max-width: min(80%, 350px);  /* was min(60%, 320px) */
+    max-width: min(82%, 460px);
   }
 
   /* ===== MATERIAL DIRECTION (V10: raw plaster surface — the material

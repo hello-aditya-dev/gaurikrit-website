@@ -222,9 +222,39 @@
     width: 100%; height: 100%; object-fit: cover; display: block;
   }
 
-  /* ===== AUDIENCES (shared editorial image + 4 ruled columns) ===== */
+  /* ===== AUDIENCES — 4-ruled-columns visual (no shared image; connects
+     directly to the four audience types) ===== */
   .biz-audiences-section { padding-block: clamp(3.5rem, 6vw, 5rem); }
   .biz-audiences__head { max-width: 48rem; margin-bottom: 2.5rem; }
+  .biz-audiences-rule {
+    display: grid; grid-template-columns: 1fr; gap: 0;
+    margin-bottom: 3rem;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  @media (min-width: 768px) {
+    .biz-audiences-rule { grid-template-columns: repeat(4, 1fr); }
+  }
+  .biz-audiences-rule__col {
+    padding: 1.25rem 1rem; border-top: 2px solid var(--haldi);
+    display: flex; align-items: baseline; gap: 0.625rem;
+  }
+  .biz-audiences-rule__col + .biz-audiences-rule__col {
+    border-left: 1px solid var(--border);
+  }
+  @media (max-width: 767px) {
+    .biz-audiences-rule__col + .biz-audiences-rule__col {
+      border-left: 0; border-top: 1px solid var(--border);
+    }
+  }
+  .biz-audiences-rule__num {
+    font-family: var(--font-display); font-weight: 700; font-size: 0.875rem;
+    color: var(--haldi-deep); letter-spacing: 0.04em;
+  }
+  .biz-audiences-rule__label {
+    font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--fg-muted);
+  }
 
   /* ===== PRACTICAL SECTION ===== */
   .biz-practical { padding-block: clamp(3.5rem, 6vw, 5rem); }
@@ -266,12 +296,25 @@
   .biz-form-layout__aside .help-cta { padding: 1.5rem; }
   .biz-form-card {
     background: var(--paper); border: 1px solid var(--border);
-    border-radius: var(--r-panel); padding: 1.5rem;
+    border-radius: var(--r-panel); padding: 2rem;
+    box-shadow: 0 8px 24px -8px rgba(34, 36, 27, 0.12);
   }
-  @media (min-width: 768px) { .biz-form-card { padding: 2rem; } }
-  .biz-form-card__intro { font-size: 0.875rem; color: var(--fg-muted); margin-bottom: 1.5rem; }
+  @media (min-width: 768px) { .biz-form-card { padding: 2.5rem; } }
+  .biz-form-card__intro { font-size: 0.875rem; color: var(--fg-muted); margin-bottom: 2rem; }
   .biz-form-card__intro .req { color: var(--mitti); }
-  .form-grid { gap: 1.25rem; }
+  .form-grid { gap: 1.5rem; }
+  .biz-form-card .form-input,
+  .biz-form-card .form-select,
+  .biz-form-card .form-textarea {
+    transition: border-color var(--dur), box-shadow var(--dur);
+  }
+  .biz-form-card .form-input:focus,
+  .biz-form-card .form-select:focus,
+  .biz-form-card .form-textarea:focus {
+    outline: 0;
+    border-color: var(--forest);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--haldi) 25%, transparent);
+  }
   .biz-aside-card {
     border-top: 1px solid var(--border); padding: 0; background: transparent;
   }
@@ -303,18 +346,37 @@
         </div>
       </div>
       <div class="biz-hero__art" aria-hidden="true">
-        <picture><source type="image/webp" srcset="../assets/editorial/business-context-study.webp"><img class="editorial-image" src="../assets/editorial/business-context-study.jpg" alt="Architectural building elevation study" width="1344" height="768" loading="eager" decoding="async"></picture>
+        <picture><source type="image/webp" srcset="../assets/editorial/business-context-study.webp"><img class="editorial-image" src="../assets/editorial/business-context-study.jpg" alt="" width="1344" height="768" loading="eager" decoding="async"></picture>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===== AUDIENCES — shared editorial image + 4 ruled columns ===== -->
+<!-- ===== AUDIENCES — 4-ruled-columns visual (no shared image) ===== -->
 <section class="section section--paper biz-audiences-section" aria-labelledby="audiences-title">
   <div class="container">
     <div class="biz-audiences__head section-heading section-heading--left" data-reveal>
       <span class="section-heading__eyebrow">Who this is for</span>
       <h2 class="section-heading__title" id="audiences-title">Audiences.</h2>
+    </div>
+
+    <div class="biz-audiences-rule" aria-hidden="true" data-reveal>
+      <div class="biz-audiences-rule__col">
+        <span class="biz-audiences-rule__num">01</span>
+        <span class="biz-audiences-rule__label">Architects</span>
+      </div>
+      <div class="biz-audiences-rule__col">
+        <span class="biz-audiences-rule__num">02</span>
+        <span class="biz-audiences-rule__label">Institutions</span>
+      </div>
+      <div class="biz-audiences-rule__col">
+        <span class="biz-audiences-rule__num">03</span>
+        <span class="biz-audiences-rule__label">CSR / NGOs</span>
+      </div>
+      <div class="biz-audiences-rule__col">
+        <span class="biz-audiences-rule__num">04</span>
+        <span class="biz-audiences-rule__label">Gaushalas</span>
+      </div>
     </div>
 
     <div class="biz-audiences" data-reveal-stagger>
@@ -350,8 +412,8 @@
         <span class="biz-hero__eyebrow"><span class="biz-hero__eyebrow-dot" aria-hidden="true"></span>Practical</span>
         <h2 class="biz-practical__title" id="include-title">Include these details for a faster response.</h2>
         <p class="biz-practical__body">
-          A few project details help Gaurikrit understand your requirement
-          before responding.
+          A few practical details up front let us respond with what we can
+          supply — pack sizes, format, and how Prakritik Paint fits your project.
         </p>
       </div>
       <ul class="biz-practical__list">
@@ -654,7 +716,6 @@
     -->
     <script src="../assets/js/navigation.js?v=static"></script>
     <script src="../assets/js/animations.js?v=static"></script>
-    <script src="../assets/js/ashta-laabh.js?v=static"></script>
     <script src="../assets/js/colour-study.js?v=static"></script>
     <script src="../assets/js/forms.js?v=static"></script>
     <script src="../assets/js/calculator.js?v=static"></script>

@@ -212,7 +212,7 @@
   @media (min-width: 1024px) {
     .about-hero__container { grid-template-columns: 5fr 7fr; }
   }
-  .about-hero__lockup { display: flex; flex-direction: column; gap: 0.75rem; max-width: 42rem; }
+  .about-hero__lockup { display: flex; flex-direction: column; gap: 0.75rem; }
   .about-hero__deva {
     font-family: var(--font-deva); font-size: clamp(1.5rem, 3vw, 2rem);
     font-weight: 700; color: var(--haldi-deep);
@@ -230,15 +230,14 @@
     margin-top: 1rem; font-size: clamp(1rem, 2vw, 1.125rem);
     color: var(--fg-muted); line-height: 1.65; max-width: 60ch;
   }
-  /* V7: the hero shows WHO the brand is + WHAT it actually makes — the real
-     product group photo as a catalogue plate with the official mark. */
+  /* V12: the hero shows WHO the brand is + WHAT it actually makes — the
+     real product group photo on a quiet catalogue plate with the official
+     mark. Hairline border only: no accent stripe, no shadow. */
   .about-hero__plate {
     background: var(--paper);
     border: 1px solid var(--border);
-    border-top: 3px solid var(--haldi);
     border-radius: var(--r-panel);
     padding: clamp(1rem, 2vw, 1.5rem);
-    box-shadow: 0 2px 12px -4px rgba(32, 30, 25, 0.06);
   }
   .about-hero__plate-head {
     display: flex; align-items: center; gap: 0.625rem;
@@ -275,16 +274,15 @@
   }
   .about-product-card__media .about-product-photo {
     display: block;
-    max-height: 80%; max-width: 70%;
+    max-height: 88%;
+    max-width: 80%;
     width: auto; height: auto;
     object-fit: contain;
-    filter: drop-shadow(0 14px 20px rgba(34, 36, 27, 0.16));
+    filter: drop-shadow(0 10px 16px rgba(34, 36, 27, 0.12));
   }
-  .about-product-card__media--distemper .about-product-photo {
-    max-width: min(70%, 420px);
-  }
+  .about-product-card__media--distemper .about-product-photo,
   .about-product-card__media--emulsion .about-product-photo {
-    max-width: min(60%, 320px);
+    max-width: min(82%, 460px);
   }
 
   /* ===== MATERIAL DIRECTION (V10: raw plaster surface — the material
@@ -309,7 +307,7 @@
     overflow: hidden;
   }
   .about-mission__bg {
-    position: absolute; inset: 0; opacity: 0.15; pointer-events: none;
+    position: absolute; inset: 0; opacity: 0.10; pointer-events: none;
     overflow: hidden;
   }
   .about-mission__bg .editorial-image { width: 100%; height: 100%; object-fit: cover; }
@@ -336,9 +334,14 @@
   /* V7: a formal ledger reads at 56rem, not stretched across 1400px. */
   .company-plate { max-width: 56rem; }
   .company-plate__head { margin-bottom: 2rem; }
-  .company-plate dt { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fg-muted); }
+  .company-plate dt { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--fg-muted); }
   .company-plate dd { color: var(--fg); }
   .company-plate__address { white-space: pre-line; }
+  .company-plate__row {
+    border-top: 1px solid var(--border); border-bottom: 0;
+    padding: 1.25rem 0; align-items: baseline;
+  }
+  .company-plate__row:last-child { border-bottom: 1px solid var(--border); }
 </style>
 
 <!-- ===== HERO (V7: 5/7 — brand identity left, real product plate right) ===== -->
@@ -714,7 +717,6 @@ India</dd>
     -->
     <script src="../assets/js/navigation.js?v=static"></script>
     <script src="../assets/js/animations.js?v=static"></script>
-    <script src="../assets/js/ashta-laabh.js?v=static"></script>
     <script src="../assets/js/colour-study.js?v=static"></script>
     <script src="../assets/js/forms.js?v=static"></script>
     <script src="../assets/js/calculator.js?v=static"></script>

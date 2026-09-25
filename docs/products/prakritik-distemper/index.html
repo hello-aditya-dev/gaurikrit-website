@@ -217,30 +217,32 @@
       grid-template-columns: 5fr 7fr; gap: clamp(2.5rem, 5vw, 4rem);
     }
   }
-  /* V10: media is a clean catalogue plate (same language as the home
-     product chapters) — white product stage + slim wall-finish strip.
-     The complete pack photo is shown at its natural proportion. */
+  /* V12: media is ONE designed catalogue panel (same language as the home
+     product chapters, app.css §14) — soft neutral wall plate tinted with
+     the format wash, complete pack anchored toward the base, slim
+     wall-finish strip. Hairline border only: no 3px accent stripe,
+     no shadow. */
   .product-detail__media {
     display: flex; flex-direction: column;
-    background: var(--paper);
-    border: 1px solid var(--border); border-top: 3px solid var(--indigo);
+    background: color-mix(in srgb, var(--paper-cool) 25%, var(--paper));
+    border: 1px solid var(--border);
     border-radius: var(--r-panel); overflow: hidden;
-    box-shadow: 0 2px 12px -4px rgba(32, 30, 25, 0.06);
   }
   .product-detail__stage {
     position: relative;
     height: clamp(17rem, 36vw, 25rem);
     display: grid; place-items: center;
-    padding: clamp(1.25rem, 3vw, 2.25rem);
+    padding: clamp(1.5rem, 3.5vw, 3rem) clamp(1.5rem, 3.5vw, 3rem) clamp(0.75rem, 1.5vw, 1.25rem);
   }
   .product-detail__stage .media-product {
     /* Absolute-fill + object-fit: contain — the pack photo stays
-       COMPLETE inside the fixed-height stage (never cropped). */
+       COMPLETE inside the fixed-height stage (never cropped). The box
+       is biased downward so the pack stands toward the panel's base. */
     position: absolute;
-    top: clamp(1.25rem, 3vw, 2.25rem);
-    left: clamp(1.25rem, 3vw, 2.25rem);
-    width: calc(100% - 2 * clamp(1.25rem, 3vw, 2.25rem));
-    height: calc(100% - 2 * clamp(1.25rem, 3vw, 2.25rem));
+    top: clamp(1.5rem, 3.5vw, 3rem);
+    left: clamp(1.5rem, 3.5vw, 3rem);
+    width: calc(100% - 2 * clamp(1.5rem, 3.5vw, 3rem));
+    height: calc(100% - clamp(1.5rem, 3.5vw, 3rem) - clamp(0.75rem, 1.5vw, 1.25rem));
     object-fit: contain;
   }
   .product-detail__strip {
@@ -268,7 +270,7 @@
   .coverage-disclaimer { margin-top: 2rem; border-left-color: var(--indigo); }
 
   /* ===== ASHTA LAABH GRID ===== */
-  .distemper-ashta-section { padding-block: clamp(3rem, 6vw, 5rem); position: relative; overflow: hidden; }
+  .distemper-ashta-section { padding-block: clamp(3rem, 6vw, 5rem); }
   .distemper-ashta-section__head { max-width: 48rem; margin-bottom: 2.5rem; }
 </style>
 
@@ -405,299 +407,59 @@
   </div>
 </section>
 
-<!-- ===== ASHTA LAABH ===== -->
-<section class="section section--limewash distemper-ashta-section" aria-labelledby="distemper-ashta-title" data-ashta-laabh>
+<!-- ===== ASHTA LAABH — the shared typographic eight-benefit grid ===== -->
+<section class="section section--haldi-wash distemper-ashta-section" aria-labelledby="distemper-ashta-title">
   <div class="container">
     <div class="distemper-ashta-section__head section-heading section-heading--left" data-reveal>
-      <span class="section-heading__eyebrow">अष्ट लाभ — Eight benefits</span>
-      <h2 class="section-heading__title" id="distemper-ashta-title">Ashta Laabh.</h2>
+      <span class="section-heading__eyebrow">Ashta Laabh — अष्ट लाभ</span>
+      <h2 class="section-heading__title" id="distemper-ashta-title">Eight benefits of Prakritik Paint.</h2>
       <p class="section-heading__desc">
-        Benefits listed in the Prakritik Paint material.
+        Benefits listed in the supplied Prakritik Paint material.
       </p>
     </div>
 
-    <div class="ashta-section__grid" data-reveal>
-      <div class="ashta-section__seal">
-        <svg viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg"
-     class=""
-     role="img" aria-hidden="true"
-     preserveAspectRatio="xMidYMid meet"
-     width="100%" height="100%">
-  <title>Ashta Laabh seal — eight benefits</title>
-
-  <defs>
-    <style>
-      /* ===== Default node state ===== */
-      .al-node {
-        opacity: 1;
-        transition: opacity 0.3s ease, transform 0.3s ease;
-      }
-      .al-node__line {
-        stroke: var(--forest);
-        stroke-width: 1;
-        opacity: 0.62;
-        stroke-linecap: round;
-        transition: stroke 0.3s ease, stroke-width 0.3s ease, opacity 0.3s ease;
-      }
-      .al-node__num {
-        fill: var(--forest);
-        font-family: var(--font-display);
-        font-size: 20px;
-        font-weight: 700;
-        text-anchor: middle;
-        dominant-baseline: central;
-        letter-spacing: 0.5px;
-        transition: fill 0.3s ease;
-      }
-      .al-node__name {
-        fill: var(--forest);
-        font-family: var(--font-sans);
-        font-size: 11px;
-        font-weight: 700;
-        text-anchor: middle;
-        dominant-baseline: central;
-        letter-spacing: 1.1px;
-        text-transform: uppercase;
-        opacity: 1;
-        transition: fill 0.3s ease, opacity 0.3s ease;
-      }
-
-      /* ===== When ANY node is active, dim the other nodes ===== */
-      svg:has(.al-node[data-active="true"]) .al-node:not([data-active="true"]) {
-        opacity: 0.4;
-      }
-
-      /* ===== Active node — radial line turns haldi, label pops ===== */
-      .al-node[data-active="true"] .al-node__line {
-        stroke: var(--haldi);
-        stroke-width: 1.35;
-        opacity: 1;
-      }
-      .al-node[data-active="true"] .al-node__num {
-        fill: var(--forest-deep);
-      }
-      .al-node[data-active="true"] .al-node__name {
-        fill: var(--forest);
-        opacity: 1;
-      }
-
-      /* ===== Active label moves 3px outward along its angle ===== */
-      .al-node-1[data-active="true"] { transform: translate(0px, -3px); }
-      .al-node-2[data-active="true"] { transform: translate(2.12px, -2.12px); }
-      .al-node-3[data-active="true"] { transform: translate(3px, 0px); }
-      .al-node-4[data-active="true"] { transform: translate(2.12px, 2.12px); }
-      .al-node-5[data-active="true"] { transform: translate(0px, 3px); }
-      .al-node-6[data-active="true"] { transform: translate(-2.12px, 2.12px); }
-      .al-node-7[data-active="true"] { transform: translate(-3px, 0px); }
-      .al-node-8[data-active="true"] { transform: translate(-2.12px, -2.12px); }
-    </style>
-  </defs>
-
-  <!-- ============================================================
-       OUTER SUBTLE RING — connects all label positions visually
-       ============================================================ -->
-  <circle cx="300" cy="300" r="215"
-          fill="none" stroke="var(--forest)"
-          stroke-width="1" opacity="0.3" stroke-dasharray="2 4"/>
-
-  <!-- ============================================================
-       CENTRAL MEDALLION — circular, with a small cow-mark inside
-       ============================================================ -->
-  <circle cx="300" cy="300" r="80"
-          fill="var(--limewash)" stroke="var(--forest)" stroke-width="1.35"/>
-  <!-- Inner accent ring -->
-  <circle cx="300" cy="300" r="73"
-          fill="none" stroke="var(--forest)"
-          stroke-width="1" opacity="0.55"/>
-
-  <!-- Central cow-mark — small side-view silhouette, facing LEFT
-       (consistent with the brand signature cow). Drawn with the same
-       separate-paths discipline: body barrel, hump, neck top, head,
-       horn, ear, eye, 4 legs, tail. -->
-  <g fill="none" stroke="var(--forest)"
-     stroke-linecap="round" stroke-linejoin="round">
-    <!-- FAR HORN — behind head, lighter -->
-    <path d="M 252 286 C 248 280, 244 278, 240 280" stroke-width="0.85" opacity="0.65"/>
-    <!-- FAR EAR — small leaf behind head, lighter -->
-    <path d="M 256 294 C 252 304, 248 312, 244 316" stroke-width="0.85" opacity="0.65"/>
-    <!-- BODY BARREL — closed contour -->
-    <path d="M 268 288
-             C 260 286, 252 285, 246 287
-             C 240 289, 236 292, 234 296
-             L 234 318
-             L 322 320
-             C 326 314, 326 304, 324 296
-             C 320 290, 314 288, 308 288
-             C 296 286, 282 286, 268 288 Z"
-          stroke-width="1.35"/>
-    <!-- HUMP — open curve rising above the back line -->
-    <path d="M 266 288
-             C 262 278, 256 272, 252 270
-             C 248 268, 246 270, 246 274
-             C 248 280, 252 285, 256 288"
-          stroke-width="1.35"/>
-    <!-- NECK TOP — from withers forward-down to poll -->
-    <path d="M 268 288 C 262 287, 256 286, 252 284" stroke-width="1.35"/>
-    <!-- HEAD — small wedge extending left to muzzle -->
-    <path d="M 252 284
-             C 248 286, 244 290, 240 294
-             C 236 298, 232 302, 230 304
-             C 230 306, 232 308, 236 308
-             C 240 310, 244 312, 248 312
-             C 252 312, 252 312, 252 310
-             C 252 302, 252 294, 252 284 Z"
-          stroke-width="1.35"/>
-    <!-- NEAR HORN — over head, prominent -->
-    <path d="M 252 284 C 248 278, 244 274, 240 276" stroke-width="1.35"/>
-    <!-- NEAR EAR — small leaf hanging down -->
-    <path d="M 258 292 C 254 302, 250 310, 246 314
-             C 250 310, 254 302, 258 296 Z" stroke-width="1.35"/>
-    <!-- EYE — small filled circle -->
-    <circle cx="240" cy="294" r="1.4" fill="var(--forest)" stroke="none"/>
-    <!-- NOSTRIL — small dot -->
-    <circle cx="232" cy="302" r="1" fill="var(--forest)" stroke="none"/>
-    <!-- FRONT LEGS (left side, paired slender strokes) -->
-    <path d="M 244 320 L 244 338" stroke-width="1.35"/>
-    <path d="M 248 320 L 248 338" stroke-width="1.35"/>
-    <path d="M 254 320 L 254 338" stroke-width="1.35" opacity="0.65"/>
-    <path d="M 258 320 L 258 338" stroke-width="1.35" opacity="0.65"/>
-    <!-- BACK LEGS (right side, paired slender strokes) -->
-    <path d="M 308 320 L 308 338" stroke-width="1.35"/>
-    <path d="M 312 320 L 312 338" stroke-width="1.35"/>
-    <path d="M 318 320 L 318 338" stroke-width="1.35" opacity="0.65"/>
-    <path d="M 322 320 L 322 338" stroke-width="1.35" opacity="0.65"/>
-    <!-- HOOF TICKS -->
-    <path d="M 243 339 L 259 339" stroke-width="0.85"/>
-    <path d="M 307 339 L 323 339" stroke-width="0.85"/>
-    <!-- TAIL — from rump curving down with small tuft -->
-    <path d="M 322 292 C 328 300, 332 314, 332 326
-             C 332 332, 330 336, 328 338" stroke-width="1.35"/>
-    <path d="M 328 338 C 326 342, 324 344, 326 346" stroke-width="0.85"/>
-    <path d="M 328 338 C 328 342, 328 344, 330 346" stroke-width="0.85"/>
-  </g>
-
-  <!-- Small haldi dot accent in the medallion corner (the brand mark) -->
-  <circle cx="300" cy="248" r="2.5" fill="var(--haldi)" stroke="none"/>
-
-  <!-- ============================================================
-       8 RADIAL NODES — at 45° intervals around centre (300, 300)
-       Line: r=80 (medallion edge) → r=215 (label position)
-       Labels: number (top) + name (bottom), centred at r=240
-       ============================================================ -->
-
-  <!-- ===== NODE 1: Antibacterial (top, angle -90°) =====
-       Line: (300, 220) → (300, 85), Label centre: (300, 60) -->
-  <g class="al-node al-node-1" data-benefit="antibacterial">
-    <line class="al-node__line" x1="300" y1="220" x2="300" y2="85"/>
-    <text class="al-node__num" x="300" y="50">01</text>
-    <text class="al-node__name" x="300" y="70">Antibacterial</text>
-  </g>
-
-  <!-- ===== NODE 2: Antifungal (top-right, angle -45°) =====
-       Line: (357, 243) → (452, 148), Label centre: (470, 130) -->
-  <g class="al-node al-node-2" data-benefit="antifungal">
-    <line class="al-node__line" x1="357" y1="243" x2="452" y2="148"/>
-    <text class="al-node__num" x="470" y="120">02</text>
-    <text class="al-node__name" x="470" y="140">Antifungal</text>
-  </g>
-
-  <!-- ===== NODE 3: Eco-Friendly (right, angle 0°) =====
-       Line: (380, 300) → (515, 300), Label centre: (540, 300) -->
-  <g class="al-node al-node-3" data-benefit="eco-friendly">
-    <line class="al-node__line" x1="380" y1="300" x2="515" y2="300"/>
-    <text class="al-node__num" x="540" y="290">03</text>
-    <text class="al-node__name" x="540" y="310">Eco-Friendly</text>
-  </g>
-
-  <!-- ===== NODE 4: Natural Thermal Insulator (bottom-right, angle 45°) =====
-       Line: (357, 357) → (452, 452), Label centre: (470, 470)
-       Long name split across two lines. -->
-  <g class="al-node al-node-4" data-benefit="thermal-insulator">
-    <line class="al-node__line" x1="357" y1="357" x2="452" y2="452"/>
-    <text class="al-node__num" x="470" y="460">04</text>
-    <text class="al-node__name" x="470" y="478">Natural Thermal</text>
-    <text class="al-node__name" x="470" y="492">Insulator</text>
-  </g>
-
-  <!-- ===== NODE 5: Cost-Effective (bottom, angle 90°) =====
-       Line: (300, 380) → (300, 515), Label centre: (300, 540) -->
-  <g class="al-node al-node-5" data-benefit="cost-effective">
-    <line class="al-node__line" x1="300" y1="380" x2="300" y2="515"/>
-    <text class="al-node__num" x="300" y="530">05</text>
-    <text class="al-node__name" x="300" y="550">Cost-Effective</text>
-  </g>
-
-  <!-- ===== NODE 6: Free from Heavy Metals (bottom-left, angle 135°) =====
-       Line: (243, 357) → (148, 452), Label centre: (130, 470)
-       Long name split across two lines. -->
-  <g class="al-node al-node-6" data-benefit="heavy-metal-free">
-    <line class="al-node__line" x1="243" y1="357" x2="148" y2="452"/>
-    <text class="al-node__num" x="130" y="460">06</text>
-    <text class="al-node__name" x="130" y="478">Free from Heavy</text>
-    <text class="al-node__name" x="130" y="492">Metals</text>
-  </g>
-
-  <!-- ===== NODE 7: Non-Toxic (left, angle 180°) =====
-       Line: (220, 300) → (85, 300), Label centre: (60, 300) -->
-  <g class="al-node al-node-7" data-benefit="non-toxic">
-    <line class="al-node__line" x1="220" y1="300" x2="85" y2="300"/>
-    <text class="al-node__num" x="60" y="290">07</text>
-    <text class="al-node__name" x="60" y="310">Non-Toxic</text>
-  </g>
-
-  <!-- ===== NODE 8: Odourless (top-left, angle 225°) =====
-       Line: (243, 243) → (148, 148), Label centre: (130, 130) -->
-  <g class="al-node al-node-8" data-benefit="odourless">
-    <line class="al-node__line" x1="243" y1="243" x2="148" y2="148"/>
-    <text class="al-node__num" x="130" y="120">08</text>
-    <text class="al-node__name" x="130" y="140">Odourless</text>
-  </g>
-
-</svg>
-      </div>
-      <ol class="ashta-section__support" data-reveal-stagger>
-        <li class="ashta-benefit distemper-ashta__item" data-ashta-node="antibacterial">
-          <span class="ashta-benefit__num">01</span>
-          <span class="ashta-benefit__name">Antibacterial</span>
-          <span class="ashta-benefit__deva">जीवाणुरोधी</span>
+    <ol class="benefits-grid" data-reveal-stagger>
+        <li class="benefits-grid__item">
+          <span class="benefits-grid__num" aria-hidden="true">01</span>
+          <span class="benefits-grid__name">Antibacterial</span>
+          <span class="benefits-grid__deva">जीवाणुरोधी</span>
         </li>
-        <li class="ashta-benefit distemper-ashta__item" data-ashta-node="antifungal">
-          <span class="ashta-benefit__num">02</span>
-          <span class="ashta-benefit__name">Antifungal</span>
-          <span class="ashta-benefit__deva">कवकरोधी</span>
+        <li class="benefits-grid__item">
+          <span class="benefits-grid__num" aria-hidden="true">02</span>
+          <span class="benefits-grid__name">Antifungal</span>
+          <span class="benefits-grid__deva">कवकरोधी</span>
         </li>
-        <li class="ashta-benefit distemper-ashta__item" data-ashta-node="eco-friendly">
-          <span class="ashta-benefit__num">03</span>
-          <span class="ashta-benefit__name">Eco-Friendly</span>
-          <span class="ashta-benefit__deva">पर्यावरण-मित्र</span>
+        <li class="benefits-grid__item">
+          <span class="benefits-grid__num" aria-hidden="true">03</span>
+          <span class="benefits-grid__name">Eco-Friendly</span>
+          <span class="benefits-grid__deva">पर्यावरण-मित्र</span>
         </li>
-        <li class="ashta-benefit distemper-ashta__item" data-ashta-node="thermal-insulator">
-          <span class="ashta-benefit__num">04</span>
-          <span class="ashta-benefit__name">Natural Thermal Insulator</span>
-          <span class="ashta-benefit__deva">प्राकृतिक ऊष्मीय इन्सुलेटर</span>
+        <li class="benefits-grid__item">
+          <span class="benefits-grid__num" aria-hidden="true">04</span>
+          <span class="benefits-grid__name">Natural Thermal Insulator</span>
+          <span class="benefits-grid__deva">प्राकृतिक ऊष्मीय इन्सुलेटर</span>
         </li>
-        <li class="ashta-benefit distemper-ashta__item" data-ashta-node="cost-effective">
-          <span class="ashta-benefit__num">05</span>
-          <span class="ashta-benefit__name">Cost-Effective</span>
-          <span class="ashta-benefit__deva">किफ़ायती</span>
+        <li class="benefits-grid__item">
+          <span class="benefits-grid__num" aria-hidden="true">05</span>
+          <span class="benefits-grid__name">Cost-Effective</span>
+          <span class="benefits-grid__deva">किफ़ायती</span>
         </li>
-        <li class="ashta-benefit distemper-ashta__item" data-ashta-node="heavy-metal-free">
-          <span class="ashta-benefit__num">06</span>
-          <span class="ashta-benefit__name">Free from Heavy Metals</span>
-          <span class="ashta-benefit__deva">भारी धातुओं से मुक्त</span>
+        <li class="benefits-grid__item">
+          <span class="benefits-grid__num" aria-hidden="true">06</span>
+          <span class="benefits-grid__name">Free from Heavy Metals</span>
+          <span class="benefits-grid__deva">भारी धातुओं से मुक्त</span>
         </li>
-        <li class="ashta-benefit distemper-ashta__item" data-ashta-node="non-toxic">
-          <span class="ashta-benefit__num">07</span>
-          <span class="ashta-benefit__name">Non-Toxic</span>
-          <span class="ashta-benefit__deva">गैर-विषाक्त</span>
+        <li class="benefits-grid__item">
+          <span class="benefits-grid__num" aria-hidden="true">07</span>
+          <span class="benefits-grid__name">Non-Toxic</span>
+          <span class="benefits-grid__deva">गैर-विषाक्त</span>
         </li>
-        <li class="ashta-benefit distemper-ashta__item" data-ashta-node="odourless">
-          <span class="ashta-benefit__num">08</span>
-          <span class="ashta-benefit__name">Odourless</span>
-          <span class="ashta-benefit__deva">गंधरहित</span>
+        <li class="benefits-grid__item">
+          <span class="benefits-grid__num" aria-hidden="true">08</span>
+          <span class="benefits-grid__name">Odourless</span>
+          <span class="benefits-grid__deva">गंधरहित</span>
         </li>
-      </ol>
-    </div>
+    </ol>
   </div>
 </section>
 
@@ -722,14 +484,6 @@
   </div>
 </section>
 
-<script>
-  (function () {
-    'use strict';
-    document.querySelectorAll('[data-ashta-laabh] svg [data-benefit]').forEach(function (node) {
-      node.setAttribute('data-ashta-node', node.getAttribute('data-benefit'));
-    });
-  })();
-</script>
     </main>
 
     <!-- ===== Site footer ===== -->
@@ -876,7 +630,6 @@
     -->
     <script src="../../assets/js/navigation.js?v=static"></script>
     <script src="../../assets/js/animations.js?v=static"></script>
-    <script src="../../assets/js/ashta-laabh.js?v=static"></script>
     <script src="../../assets/js/colour-study.js?v=static"></script>
     <script src="../../assets/js/forms.js?v=static"></script>
     <script src="../../assets/js/calculator.js?v=static"></script>

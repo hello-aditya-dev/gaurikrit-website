@@ -100,3 +100,40 @@ For product/brand imagery:
 4. generated editorial art (only when needed)
 
 Never re-compress an already-compressed derivative to make another file.
+
+## V12 finishing pass (visual system)
+
+1. **Illustration partials retired + deleted** (files removed from the repo,
+   not just unreferenced): `ashta-laabh-seal` (radial cow seal),
+   `calculator-wall-scene` (dormant wall SVG), `indian-cow`, `gaushala-scene`,
+   `material-to-wall`, `indian-courtyard`, `paint-brush-stroke`,
+   `rural-landscape` (SVG), `prakritik-distemper-bucket`,
+   `prakritik-emulsion-bucket`, `architectural-elevation`. Only
+   `gaurikrit-cow-mark` (official logo fallback) and `field-botanicals`
+   (404 decorative accent) remain. `assets/js/ashta-laabh.js` deleted too.
+2. **Ashta Laabh is now the shared typographic `.benefits-grid`** (app.css
+   §18) on Home, Products, Why-Prakritik and both detail pages — numbers as
+   real text (01–08), haldi numbering, forest names, Hindi secondary lines.
+   No seal, no diagram, no interactivity needed.
+3. **Product presentation = quiet catalogue panels** (app.css §14 +
+   page-local detail-hero styles): hairline border only (no 3px accent
+   stripe, no shadow, no gradient), a whisper of the format wash in the
+   paper ground, the complete pack anchored toward the panel base, and the
+   format's wall-finish study as the panel's base strip. V11 crop geometry
+   unchanged (packs stay complete).
+4. **Hero plates**: home (prakritik-group) and products (prakritik-pair)
+   sit on quiet hairline-bordered paper plates — no accent stripe, no
+   shadow, no decorative paint swash (removed). About hero plate: same
+   treatment (brand-head strip kept).
+5. **Calculator page**: the decorative sticky wall-scene (photo +
+   never-driven SVG) was removed — the tool is the page (single column,
+   max 60rem). `.calc__result` is now a styled forest panel matching the
+   classes calculator.js actually emits.
+6. **Why ch06 context**: the rural-landscape now renders as a framed
+   editorial band inside the chapter grid (regional context only) — the
+   PHP↔static class drift (`why-context-band` vs `-bg`) was fixed.
+7. **Editorial imagery unchanged**: raw-material-study, interior/exterior
+   finish studies, colour-wall-study, courtyard-study, business-context-
+   study, rural-landscape (raster) all keep their V10 roles; zebu-study,
+   exterior-wall-study, finished-wall-study, architectural-elevation
+   (raster) remain on disk but unreferenced.

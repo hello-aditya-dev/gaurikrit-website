@@ -11,7 +11,7 @@
  *
  * Composition:
  *   - Hero (intro) — V5: tighter top spacing.
- *   - Calculator page: 42% sticky calculator-wall-scene (SVG kept) /
+ *   - Calculator page: the tool is the page — single quiet column
  *     58% steps. Interior-wall-study as background layer.
  *   - Steps: 01 PAINTING / 02 LOCATION / 03 PRODUCT / 04 AREA.
  *     V5: larger progress dots + clearer selected card state.
@@ -66,58 +66,21 @@ $calcConfigJson = json_encode($calcConfig, JSON_UNESCAPED_SLASHES | JSON_UNESCAP
     font-size: clamp(1rem, 2vw, 1.125rem); max-width: 60ch;
   }
 
-  /* ===== CALCULATOR PAGE — 42% sticky visual / 58% steps ===== */
+  /* ===== CALCULATOR PAGE — V12: the tool IS the page. The decorative
+     sticky wall-scene (photo + never-driven SVG) is retired — the UI is
+     more important than the picture. Single column, max 60rem, generous
+     vertical rhythm; the four steps + result read as one quiet flow. ===== */
   .calculator-page {
-    padding-top: clamp(2rem, 4vw, 3rem);
+    padding-top: clamp(1.5rem, 3vw, 2.5rem);
     padding-bottom: clamp(4rem, 7vw, 6rem);
     display: grid; gap: 2.5rem;
-  }
-  @media (min-width: 1024px) {
-    .calculator-page {
-      grid-template-columns: 42fr 58fr;
-      align-items: start;
-    }
-  }
-  @media (max-width: 1023px) {
-    .calculator-page { grid-template-columns: 1fr; }
-  }
-  /* V4: sticky visual = real interior-wall-study behind the interactive SVG.
-     The SVG stays interactive; the photo gives the wall environment. */
-  .calculator-page__visual {
-    position: sticky; top: calc(var(--header-h) + 1rem);
-    background: var(--limewash); border: 1px solid var(--border);
-    border-radius: var(--r-panel); aspect-ratio: 4/3;
-    display: flex; align-items: center; justify-content: center;
-    padding: 0; overflow: hidden;
-  }
-  @media (max-width: 1023px) {
-    .calculator-page__visual { position: relative; top: auto; aspect-ratio: 16/9; }
-  }
-  .calculator-page__visual .visual-env {
-    position: absolute; inset: 0; width: 100%; height: 100%;
-    object-fit: cover;
-    opacity: 0.55;
-    pointer-events: none;
-  }
-  .calculator-page__visual svg {
-    position: relative; z-index: 1;
-    width: 86%; height: 86%; display: block;
+    grid-template-columns: minmax(0, 60rem);
+    justify-content: center;
   }
 
   /* The actual calculator mount — JS builds the UI inside it. */
   .calculator-page__steps { display: grid; gap: 1.5rem; }
 
-  /* Override the JS-built .calc-step / .calc-result styles to match V3. */
-  .calc-step {
-    padding: 1.5rem; background: var(--paper);
-    border: 1px solid var(--border); border-radius: var(--r-panel);
-    transition: border-color var(--dur);
-  }
-  .calc-step[data-selected="true"] {
-    border-color: var(--forest);
-    background: color-mix(in srgb, var(--haldi) 6%, var(--paper));
-  }
-  /* V5: cards get more padding + clearer selected state (haldi ring + lift). */
   .calc__cards { display: grid; gap: 0.875rem; margin-top: 1rem; }
   @media (min-width: 640px) { .calc__cards { grid-template-columns: 1fr 1fr; } }
   .calc__card {
@@ -240,24 +203,12 @@ $calcConfigJson = json_encode($calcConfig, JSON_UNESCAPED_SLASHES | JSON_UNESCAP
   </div>
 </section>
 
-<!-- ===== CALCULATOR PAGE — 42% sticky visual / 58% steps ===== -->
+<!-- ===== CALCULATOR PAGE — the tool is the page (V12: decorative
+     wall-scene visual retired; single quiet column) ===== -->
 <section class="bg-limewash" style="padding-top: 0;">
   <div class="container">
     <div class="calculator-page" data-reveal>
-      <!-- LEFT: sticky interactive wall scene (SVG kept) -->
-      <div class="calculator-page__visual" aria-hidden="true">
-        <picture>
-          <source type="image/webp" srcset="<?= asset_url('/assets/editorial/interior-wall-study.webp') ?>">
-          <img class="visual-env"
-               src="<?= asset_url('/assets/editorial/interior-wall-study.jpg') ?>"
-               alt=""
-               width="1344" height="768"
-               loading="eager" decoding="async">
-        </picture>
-        <?php render_illustration('calculator-wall-scene'); ?>
-      </div>
-
-      <!-- RIGHT: 4-step calculator mount -->
+      <!-- 4-step calculator mount -->
       <div class="calculator-page__steps">
         <script type="application/json" id="calculator-config"><?= $calcConfigJson /* raw JSON */ ?></script>
         <div data-calculator></div>

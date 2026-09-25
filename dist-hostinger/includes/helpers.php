@@ -59,7 +59,7 @@ function csrf_verify(string $submitted): bool
 
 /**
  * Render a coded SVG illustration partial.
- *   render_illustration('indian-cow', ['class' => 'hero-cow'])
+ *   render_illustration('gaurikrit-cow-mark', ['class' => 'brand-cow'])
  */
 function render_illustration(string $name, array $attrs = []): void
 {

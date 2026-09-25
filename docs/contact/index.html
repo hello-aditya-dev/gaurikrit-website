@@ -262,7 +262,7 @@
     border-top: 1px solid var(--border); border-radius: 0; box-shadow: none;
   }
   .contact-info__row {
-    padding-block: 1rem; border-bottom: 1px solid var(--border);
+    padding-block: 1.125rem; border-bottom: 1px solid var(--border);
     display: grid; grid-template-columns: 1fr; gap: 0.25rem;
     align-items: baseline;
   }
@@ -270,10 +270,12 @@
     .contact-info__row { grid-template-columns: 11rem 1fr; gap: 1rem; }
   }
   .contact-info__row dt {
-    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em;
+    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.18em;
     text-transform: uppercase; color: var(--fg-muted);
   }
-  .contact-info__row dd { font-size: 0.9375rem; color: var(--fg); }
+  .contact-info__row dd { font-size: 1rem; color: var(--fg); }
+  .contact-info__row dd a { color: var(--primary); text-decoration: none; }
+  .contact-info__row dd a:hover { text-decoration: underline; }
   .contact-info__address { white-space: pre-line; }
   /* V7: subtle links instead of redundant CTA buttons. */
   .contact-info__links {
@@ -288,10 +290,15 @@
   /* Form (right). */
   .contact-form {
     background: var(--paper); border: 1px solid var(--border);
-    border-radius: var(--r-panel); padding: 1.5rem;
+    border-radius: var(--r-panel); padding: 2rem;
     box-shadow: 0 8px 24px -8px rgba(34, 36, 27, 0.12);
   }
   @media (min-width: 768px) { .contact-form { padding: 2.5rem; } }
+  .contact-form .form-input,
+  .contact-form .form-select,
+  .contact-form .form-textarea {
+    transition: border-color var(--dur), box-shadow var(--dur);
+  }
   .contact-form .form-input:focus,
   .contact-form .form-select:focus,
   .contact-form .form-textarea:focus {
@@ -303,7 +310,18 @@
     font-size: 0.875rem; color: var(--fg-muted); margin-bottom: 1.5rem;
   }
   .contact-form-card__intro .req { color: var(--mitti); }
-  .form-grid { gap: 1.25rem; }
+  .form-grid { gap: 1.5rem; }
+  .contact-form__foot-links {
+    margin-top: 1.5rem; padding-top: 1.25rem;
+    border-top: 1px solid var(--border);
+    display: flex; flex-wrap: wrap; gap: 0.625rem; align-items: center;
+    font-size: 0.875rem; color: var(--fg-muted);
+  }
+  .contact-form__foot-links a {
+    color: var(--primary); text-decoration: none; font-weight: 600;
+  }
+  .contact-form__foot-links a:hover { text-decoration: underline; }
+  .contact-form__foot-links span { color: var(--border-strong); }
 </style>
 
 <!-- ===== HERO (V7: 7/5 — copy left, direct-lines plate right) ===== -->
@@ -486,6 +504,14 @@ India</dd>
             <span data-submit-label>Send Enquiry</span>
           </button>
         </div>
+
+        <!-- V5: supporting CTAs as small text links below the form — no
+             longer competing as buttons with the form's submit. -->
+        <p class="contact-form__foot-links">
+          <a href="../for-business/">For Business</a>
+          <span aria-hidden="true">·</span>
+          <a href="../paint-calculator/">Estimate Your Project</a>
+        </p>
       </form>
     </div>
   </div>
@@ -636,7 +662,6 @@ India</dd>
     -->
     <script src="../assets/js/navigation.js?v=static"></script>
     <script src="../assets/js/animations.js?v=static"></script>
-    <script src="../assets/js/ashta-laabh.js?v=static"></script>
     <script src="../assets/js/colour-study.js?v=static"></script>
     <script src="../assets/js/forms.js?v=static"></script>
     <script src="../assets/js/calculator.js?v=static"></script>

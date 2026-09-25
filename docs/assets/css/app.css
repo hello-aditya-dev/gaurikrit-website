@@ -10,6 +10,19 @@
    Authored CSS. No Tailwind. No build step. No preprocessor.
    Works on Hostinger shared hosting.
 
+   V12 finishing pass — one visual system end-to-end:
+   - Section backgrounds locked to FIVE families (§4): limewash cream,
+     paper, soft warm wash, restrained format washes (distemper cool /
+     emulsion warm), forest. Per-section colour inventions removed.
+   - The eight Ashta Laabh benefits are ONE shared typographic grid (§18)
+     — no radial seal, no cow diagram, identical on every page.
+   - Product chapters are one designed visual panel (§14): soft neutral
+     wall plate + complete pack + wall-finish base, hairline border only.
+   - Calculator result panel styled for the classes the JS emits (§22).
+   - Retired systems deleted: radial-seal CSS, journey diagram, V2
+     product cards, ghost numerals, hyphen-named calculator rules,
+     nav dropdown, compact ashta tiles.
+
    V3-CSS pass — what changed:
    - 12-column editorial grid system (.grid-12 + .col-4/5/7/8/12).
      Desktop >=1200px uses 12 columns, tablet 768-1199px recomposes
@@ -267,18 +280,25 @@ ul, ol { list-style: none; }
 .section--large { padding-block: var(--section-y-large); }
 .section--tight { padding-block: var(--section-y-tight); }
 
-/* --- Section background rhythm (V3 chapter system) --- */
-.section--paper        { background: var(--paper);        color: var(--fg); }
+/* --- Section background rhythm (V12 five-family system) ----------------
+   ONE global rhythm, used consistently on every page. Only these families
+   exist; no per-section colour inventions.
+     A  LIMEWASH  base warm cream      .section--limewash (+ .bg-limewash)
+     B  PAPER     lighter neutral      .section--paper
+     C  WARM WASH soft haldi warmth    .section--haldi-wash
+     D  FORMAT WASH (restrained; only where the two paint formats genuinely
+        need differentiation)  .section--cool (distemper) .section--warm (emulsion)
+     E  FOREST    strong CTA/mission   .section--forest / .section--forest-deep
+   A long page reads: cream → paper → soft warm wash → paper → cream →
+   forest → cream. Adjacent families stay tonally close so sections connect
+   rather than announce themselves. --------------------------------------- */
 .section--limewash     { background: var(--limewash);    color: var(--fg); }
-.section--forest       { background: var(--forest);      color: var(--primary-fg); }
-.section--forest-deep  { background: var(--forest-deep); color: var(--primary-fg); }
+.section--paper        { background: var(--paper);       color: var(--fg); }
 .section--haldi-wash   { background: var(--paper-warm);  color: var(--fg); }
 .section--cool         { background: var(--paper-cool);  color: var(--fg); }
 .section--warm         { background: var(--paper-leaf);  color: var(--fg); }
-.section--haldi        { background: linear-gradient(135deg, var(--haldi-soft), var(--haldi)); color: var(--charcoal); }
-.section--mitti        { background: var(--kraft); }
-.section--paper-grain  { background: var(--paper); }
-.section--paper-grain.bg-paper-grain { background-image: var(--bg-paper-grain, none); }
+.section--forest       { background: var(--forest);      color: var(--primary-fg); }
+.section--forest-deep  { background: var(--forest-deep); color: var(--primary-fg); }
 
 /* ==========================================================================
    5. 12-column editorial grid system
@@ -664,40 +684,6 @@ ul, ol { list-style: none; }
 }
 .site-nav__link[data-active="true"]::after,
 .site-nav__link:hover::after { transform: scaleX(1); }
-
-/* --- Products dropdown (hover/focus to reveal) --- */
-.site-nav__item { position: relative; }
-.site-nav__dropdown {
-  position: absolute;
-  top: calc(100% + 0.5rem);
-  left: 0;
-  min-width: 14rem;
-  background: var(--paper);
-  border: 1px solid var(--border);
-  border-radius: var(--r-card);
-  box-shadow: var(--shadow-soft);
-  padding: 0.5rem;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(6px);
-  transition: opacity var(--dur), transform var(--dur), visibility var(--dur);
-}
-.site-nav__item:hover .site-nav__dropdown,
-.site-nav__item:focus-within .site-nav__dropdown {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
-.site-nav__dropdown a {
-  display: block;
-  padding: 0.5rem 0.75rem;
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: var(--fg);
-  border-radius: var(--r-input);
-  transition: background var(--dur), color var(--dur);
-}
-.site-nav__dropdown a:hover { background: var(--limewash); color: var(--primary); }
 
 /* --- Mobile menu toggle (mobile only) --- */
 .menu-toggle {
@@ -1278,41 +1264,42 @@ ul, ol { list-style: none; }
   .product-chapter--emulsion .product-chapter__copy { order: 1; }
 }
 
-/* V10 catalogue plate: a bordered paper plate with (1) a white product
-   stage that shows the complete pack at its natural proportion — never
-   cropped, never floating over a photo — and (2) a slim wall-finish strip
-   below that grounds the format in its wall context. Distemper gets an
-   indigo accent (its pack colour) + an interior finish strip; Emulsion a
-   leaf accent + an exterior finish strip. */
+/* V12: ONE designed visual panel — a soft neutral wall plate (a whisper of
+   the format wash mixed into paper) with the COMPLETE pack anchored toward
+   the bottom/front, and the format's wall-finish study as the panel's base.
+   Hairline border only: no shadow, no 3px accent stripe — the format colour
+   lives in the eyebrow and the section wash, never in container chrome.
+   The pack is never cropped (absolute inset + object-fit: contain). */
 .product-chapter__visual {
   position: relative;
   display: flex;
   flex-direction: column;
-  background: var(--paper);
+  background: color-mix(in srgb, var(--paper-cool) 25%, var(--paper));
   border: 1px solid var(--border);
-  border-top: 3px solid var(--indigo);
   border-radius: var(--r-panel);
   overflow: hidden;
-  box-shadow: 0 2px 12px -4px rgba(32, 30, 25, 0.06);
 }
-.product-chapter--emulsion .product-chapter__visual { border-top-color: var(--leaf); }
+.product-chapter--emulsion .product-chapter__visual {
+  background: color-mix(in srgb, var(--paper-leaf) 25%, var(--paper));
+}
 .product-chapter__stage {
   position: relative;
   height: clamp(17rem, 36vw, 25rem);
   display: grid;
   place-items: center;
-  padding: clamp(1.25rem, 3vw, 2.25rem);
+  padding: clamp(1.5rem, 3.5vw, 3rem) clamp(1.5rem, 3.5vw, 3rem) clamp(0.75rem, 1.5vw, 1.25rem);
 }
 /* Absolute-fill + object-fit: contain — the one bulletproof way to keep
    the pack photo COMPLETE inside a fixed-height stage (percentage
    max-height on grid items does not constrain replaced elements
-   reliably; absolute inset + object-fit always does). */
+   reliably; absolute inset + object-fit always does). The box is biased
+   downward so the pack stands toward the panel's base. */
 .product-chapter__stage .chapter-product {
   position: absolute;
-  top: clamp(1.25rem, 3vw, 2.25rem);
-  left: clamp(1.25rem, 3vw, 2.25rem);
-  width: calc(100% - 2 * clamp(1.25rem, 3vw, 2.25rem));
-  height: calc(100% - 2 * clamp(1.25rem, 3vw, 2.25rem));
+  top: clamp(1.5rem, 3.5vw, 3rem);
+  left: clamp(1.5rem, 3.5vw, 3rem);
+  width: calc(100% - 2 * clamp(1.5rem, 3.5vw, 3rem));
+  height: calc(100% - clamp(1.5rem, 3.5vw, 3rem) - clamp(0.75rem, 1.5vw, 1.25rem));
   object-fit: contain;
 }
 .product-chapter__strip {
@@ -1365,145 +1352,11 @@ ul, ol { list-style: none; }
 }
 
 /* ==========================================================================
-   15. Products preview — legacy duo material panels (kept simple, no glow)
+   15. Spec rows — the ruled dt/dd rows used inside product chapter specs
+       (the retired V2 products-preview / duo-panel / product-panel card
+       systems were removed in V12; only the live spec-row rules remain).
    ========================================================================== */
-.products-preview {
-  display: grid;
-  gap: 2rem;
-  padding-block: clamp(3rem, 6vw, 5rem);
-}
-@media (min-width: 1024px) {
-  .products-preview { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
-}
-
-.product-panel {
-  background: var(--paper);
-  border: 1px solid var(--border);
-  border-radius: var(--r-panel);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  transition: transform var(--dur) var(--ease), border-color var(--dur);
-}
-.product-panel:hover {
-  transform: translateY(-2px);
-  border-color: var(--border-strong);
-}
-.product-panel--distemper { border-top: 3px solid var(--indigo); }
-.product-panel--emulsion  { border-top: 3px solid var(--leaf); }
-
-.product-panel__media {
-  position: relative;
-  aspect-ratio: 4/3;
-  background: var(--limewash);
-  border-bottom: 1px solid var(--border);
-}
-.product-panel__media .product-media { width: 100%; height: 100%; }
-.product-panel__media .product-media__official { object-fit: contain; padding: 1.5rem; }
-.product-panel__media .product-media__fallback { padding: 1.5rem; }
-
-.product-panel__body {
-  padding: 1.75rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  flex: 1;
-}
-.product-panel__name {
-  font-family: var(--font-display);
-  font-size: clamp(1.5rem, 3vw, 2rem);
-  font-weight: 700;
-  line-height: 1.1;
-}
-.product-panel__specs {
-  margin-top: 0.5rem;
-  display: grid;
-  gap: 0.625rem;
-}
-.product-panel__cta {
-  margin-top: auto;
-  padding-top: 1rem;
-}
-.product-panel__cta a {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.25rem;
-  font-weight: 600;
-  color: var(--primary);
-  transition: gap var(--dur);
-}
-.product-panel__cta a:hover { gap: 0.5rem; }
-
-/* Legacy aliases used by inline home page <style> + products list page. */
-.duo-grid,
-.products-duo,
-.two-products__grid,
-.catalogue,
-.two-formats-mini__item {
-  display: grid;
-  gap: 2rem;
-}
-@media (min-width: 1024px) {
-  .duo-grid, .products-duo, .two-products__grid { grid-template-columns: 1fr 1fr; }
-}
-.duo-panel,
-.pp-panel,
-.mat-panel,
-.catalogue-block {
-  background: var(--paper);
-  border: 1px solid var(--border);
-  border-radius: var(--r-panel);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  transition: transform var(--dur) var(--ease), border-color var(--dur);
-}
-.duo-panel:hover, .pp-panel:hover, .mat-panel:hover, .catalogue-block:hover {
-  transform: translateY(-2px);
-  border-color: var(--border-strong);
-}
-.duo-panel__media, .pp-panel__media, .mat-panel__media,
-.catalogue-media {
-  position: relative;
-  aspect-ratio: 4/3;
-  background: var(--limewash);
-  border-bottom: 1px solid var(--border);
-}
-.duo-panel__media .product-media, .pp-panel__media .product-media,
-.mat-panel__media .product-media, .catalogue-media .product-media {
-  width: 100%; height: 100%;
-}
-.duo-panel__body, .pp-panel__body, .mat-panel__body,
-.catalogue-text {
-  padding: 1.75rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  flex: 1;
-}
-.duo-panel__tag, .pp-panel__tag, .mat-panel__eyebrow,
-.catalogue-text__eyebrow {
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--primary);
-}
-.duo-panel__name, .pp-panel__name, .mat-panel__name,
-.catalogue-text__name {
-  font-family: var(--font-display);
-  font-size: clamp(1.5rem, 3vw, 2rem);
-  font-weight: 700;
-  line-height: 1.1;
-}
-.duo-panel__rows, .pp-panel__rows, .mat-panel__specs,
-.catalogue-text__spec {
-  margin-top: 0.5rem;
-  display: grid;
-  gap: 0.625rem;
-}
-.duo-panel__row, .pp-panel__row, .mat-panel__spec,
-.catalogue-text__spec-row {
+.duo-panel__row {
   display: flex;
   justify-content: space-between;
   gap: 1rem;
@@ -1511,41 +1364,18 @@ ul, ol { list-style: none; }
   border-bottom: 1px solid var(--border);
   font-size: 0.875rem;
 }
-.duo-panel__row:last-child, .pp-panel__row:last-child, .mat-panel__spec:last-child,
-.catalogue-text__spec-row:last-child {
+.duo-panel__row:last-child {
   border-bottom: 0;
   padding-bottom: 0;
 }
-.duo-panel__row dt, .pp-panel__row dt, .mat-panel__spec dt,
-.catalogue-text__spec-row dt {
+.duo-panel__row dt {
   font-weight: 600;
   color: var(--fg);
 }
-.duo-panel__row dd, .pp-panel__row dd, .mat-panel__spec dd,
-.catalogue-text__spec-row dd {
+.duo-panel__row dd {
   color: var(--fg-muted);
   text-align: right;
 }
-.duo-panel__foot, .pp-panel__foot, .mat-panel__cta,
-.catalogue-text__cta {
-  margin-top: auto;
-  padding-top: 1rem;
-}
-.duo-panel__foot a, .pp-panel__foot a, .mat-panel__cta a,
-.catalogue-text__cta a {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.25rem;
-  font-weight: 600;
-  color: var(--primary);
-  transition: gap var(--dur);
-}
-.duo-panel__foot a:hover, .pp-panel__foot a:hover, .mat-panel__cta a:hover,
-.catalogue-text__cta a:hover { gap: 0.5rem; }
-
-/* Distemper / emulsion chapter visual accent overrides. */
-.mat-panel--distemper { border-top: 3px solid var(--indigo); }
-.mat-panel--emulsion  { border-top: 3px solid var(--leaf); }
 
 /* Products-list page hero + CTA. */
 .products-hero,
@@ -1686,12 +1516,11 @@ ul, ol { list-style: none; }
 }
 
 /* ==========================================================================
-   17. Material flow — full-width 3-stage diagram, no border/card
+   17. Material flow — V10 "From a natural material to a finished wall"
+       step cards (the legacy V3 five-column journey diagram was removed in
+       V12 — no template used it).
    ========================================================================== */
-.material-flow,
-.material-journey,
-.journey-wrap,
-.journey-inline {
+.material-flow {
   position: relative;
   padding: 0;
   background: transparent;
@@ -1699,81 +1528,8 @@ ul, ol { list-style: none; }
   border-radius: 0;
   overflow: visible;
 }
-.material-journey__svg {
-  width: 100%;
-  height: auto;
-  max-height: 10rem;
-  margin-inline: auto;
-  display: block;
-}
-.material-journey__steps,
-.material-journey__list,
-.journey-steps,
-.journey-inline__steps {
-  display: grid;
-  gap: 1rem;
-  margin-top: 2rem;
-}
-@media (min-width: 768px) {
-  .material-journey__steps,
-  .material-journey__list,
-  .journey-steps,
-  .journey-inline__steps {
-    grid-template-columns: repeat(5, 1fr);
-    position: relative;
-  }
-}
-.material-journey__step,
-.journey-step,
-.journey-inline__step {
-  padding: 0.75rem 0;
-  position: relative;
-}
-.material-journey__num,
-.material-journey__step-num,
-.journey-step__num,
-.journey-inline__num {
-  font-family: var(--font-display);
-  font-size: 1.75rem;
-  font-weight: 700;
-  color: var(--haldi-deep);
-  line-height: 1;
-}
-.material-journey__title,
-.material-journey__step-title,
-.journey-step__title,
-.journey-inline__title {
-  font-size: 0.9375rem;
-  font-weight: 700;
-  margin-top: 0.375rem;
-}
-.material-journey__desc,
-.material-journey__step-desc,
-.journey-step__desc,
-.journey-inline__desc {
-  font-size: 0.8125rem;
-  color: var(--fg-muted);
-  margin-top: 0.25rem;
-  line-height: 1.5;
-}
-/* Thin haldi hairline connecting stages — not a card border. */
-@media (min-width: 768px) {
-  .material-journey__step:not(:last-child)::after,
-  .journey-step:not(:last-child)::after,
-  .journey-inline__step:not(:last-child)::after {
-    content: '';
-    position: absolute;
-    top: 1.5rem;
-    right: -0.5rem;
-    width: 1rem;
-    height: 1px;
-    background: var(--haldi-deep);
-    opacity: 0.6;
-  }
-}
 
-/* V10 — "From a natural material to a finished wall" step cards.
-   Three equal catalogue cards: a 4/3 figure zone with ONE consistent crop
+/* Three equal catalogue cards: a 4/3 figure zone with ONE consistent crop
    logic, plus a ruled caption bar (number + title + one grounded line)
    beneath. The product card keeps its pack photo COMPLETE (object-fit
    contain on a paper ground) — never cropped. Shared by the homepage
@@ -1846,262 +1602,82 @@ ul, ol { list-style: none; }
   color: var(--fg-muted);
 }
 
-.journey-section,
-.journey-section__head {
-  padding-block: clamp(2.5rem, 5vw, 4rem);
-}
-.journey-section__head {
-  text-align: left;
-  max-width: 48rem;
-  margin-bottom: 2.5rem;
-}
-.journey-section__title {
-  font-family: var(--font-display);
-  font-size: clamp(1.75rem, 4vw, 2.75rem);
-  letter-spacing: -0.02em;
-}
-
 /* ==========================================================================
-   18. Ashta Laabh — V3: large seal (60% width desktop) + numbered list (40%)
+   18. Ashta Laabh — the shared eight-benefit typographic grid (V12).
+       ONE system used identically wherever the eight benefits appear
+       (Home, Products, Why-Prakritik, both product detail pages):
+       numbered ruled entries — haldi numbering, forest name, Hindi
+       secondary line, thin rules, generous spacing. No seal, no radial
+       diagram, no cow, no icons, no card shadows.
+       Desktop 4 × 2 · tablet 2 × 4 · mobile 1 column.
    ========================================================================== */
 .ashta-section,
 .ashta-wrap {
   padding-block: clamp(3.5rem, 6vw, 5rem);
 }
-.ashta-section__head,
 .ashta-section__head {
   text-align: left;
   max-width: 48rem;
-  margin-bottom: 3rem;
+  margin-bottom: 2.5rem;
 }
-.ashta-section__deva {
-  font-family: var(--font-deva);
-  font-weight: 700;
-  font-size: clamp(2rem, 5vw, 3rem);
-  color: var(--haldi-deep);
-  line-height: 1;
+
+.benefits-grid,
+.ashta-section__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  border-top: 1px solid var(--border);
 }
-.ashta-section__sub {
-  margin-top: 0.75rem;
+@media (min-width: 640px) {
+  .benefits-grid,
+  .ashta-section__grid { grid-template-columns: 1fr 1fr; column-gap: 3rem; }
+}
+@media (min-width: 1024px) {
+  .benefits-grid,
+  .ashta-section__grid { grid-template-columns: repeat(4, 1fr); column-gap: 2.5rem; }
+}
+
+/* Each benefit: number, English name, Hindi secondary — a ruled entry,
+   never a card. The number is real text (markup), haldi-deep. */
+.benefits-grid__item {
+  padding: 1.375rem 0 1.5rem;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  background: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+.benefits-grid__num {
   font-family: var(--font-display);
-  font-size: clamp(1.125rem, 2vw, 1.375rem);
-  color: var(--fg);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--haldi-deep);
+  letter-spacing: 0.04em;
+  font-feature-settings: "tnum";
 }
-.ashta-section__note {
-  margin-top: 0.5rem;
+.benefits-grid__name {
+  font-weight: 700;
+  font-size: 1.0625rem;
+  color: var(--forest);
+  line-height: 1.3;
+}
+.benefits-grid__deva {
+  font-family: var(--font-deva);
   font-size: 0.875rem;
   color: var(--fg-muted);
 }
 
-/* V3 split: seal 60% / support 40%. */
-.ashta-section__grid,
-.ashta-laabh,
-.ashta-grid,
-.ashta-grid,
-.ashta-essay {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2.5rem;
-  align-items: center;
-}
-@media (min-width: 1024px) {
-  .ashta-section__grid,
-  .ashta-laabh,
-  .ashta-grid,
-  .ashta-essay {
-    grid-template-columns: 6fr 4fr;
-  }
-}
-
-/* V7: mobile — a compact seal, then the 8 stacked numbered rows. */
-@media (max-width: 639px) {
-  .ashta-section__seal,
-  .ashta-laabh__radial,
-  .ashta-grid__diagram,
-  .ashta-essay__diagram,
-  .ashta__art { max-width: 18rem !important; margin-inline: auto; }
-}
-
-/* Large radial seal — 60% width on desktop, full on mobile. */
-.ashta-section__seal,
-.ashta-laabh__radial,
-.ashta-grid__diagram,
-.ashta-essay__diagram,
-.ashta__art {
-  position: relative;
-  width: 100%;
-  max-width: 38rem;
-  margin-inline: auto;
-  aspect-ratio: 1;
-}
-.ashta-section__seal svg,
-.ashta-laabh__radial svg,
-.ashta-grid__diagram svg,
-.ashta-essay__diagram svg,
-.ashta__art svg { width: 100%; height: 100%; }
-.ashta-laabh__center {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-deva);
-  font-weight: 700;
-  font-size: clamp(1.5rem, 3vw, 2.25rem);
-  color: var(--forest);
-  text-align: center;
-  pointer-events: none;
-}
-.ashta-laabh__node {
-  cursor: pointer;
-  transition: transform var(--dur) var(--ease);
-  transform-origin: center;
-  transform-box: fill-box;
-}
-.ashta-laabh__node:hover,
-.ashta-laabh__node:focus-visible,
-.ashta-laabh__node[data-active="true"] {
-  transform: scale(1.08);
-}
-.ashta-laabh__node:focus-visible { outline: none; }
-.ashta-laabh__node-label {
-  font-family: var(--font-sans);
-  font-size: 0.75rem;
-  font-weight: 600;
-  fill: var(--charcoal);
-}
-
-/* V3 support column: numbered list, NO card backgrounds. */
-.ashta-section__support,
+/* Legacy ashta aliases kept ONLY where page templates still reference them.
+   The retired radial-seal system (seal containers, node scaling, interactive
+   hover tints, compact tiles) was removed in V12 — the benefits are now the
+   shared .benefits-grid above. */
 .ashta-benefit-list,
-.ashta-grid__list,
-.ashta-essay__list,
 .ashta__grid {
   display: grid;
   gap: 0;
   border-top: 1px solid var(--border);
-}
-
-/* Each benefit is a numbered ruled row, not a card. */
-.ashta-benefit,
-.ashta-benefit-list__item,
-.ashta__node,
-.ashta-grid__list .ashta-benefit,
-.ashta-essay__item,
-.ashta-essay__list .ashta-essay__item,
-.distemper-ashta__item,
-.emulsion-ashta__item {
-  display: grid;
-  grid-template-columns: 2.5rem 1fr auto;
-  gap: 1rem;
-  align-items: baseline;
-  padding: 1rem 0;
-  border-bottom: 1px solid var(--border);
-  background: none;
-  border-left: 0;
-  border-radius: 0;
-  box-shadow: none;
-  cursor: default;
-  transition: background var(--dur);
-}
-.ashta-benefit[data-active="true"],
-.ashta-benefit:hover,
-.ashta__node[data-active="true"],
-.ashta__node:hover,
-.distemper-ashta__item:hover,
-.emulsion-ashta__item:hover {
-  background: color-mix(in srgb, var(--haldi) 4%, transparent);
-}
-.ashta-benefit__num,
-.ashta__node-num,
-.distemper-ashta__num,
-.emulsion-ashta__num,
-.ashta-essay__num {
-  font-family: var(--font-display);
-  font-size: 0.875rem;
-  font-weight: 700;
-  color: var(--haldi-deep);
-  letter-spacing: 0.04em;
-}
-.ashta-benefit__name,
-.ashta__node-name,
-.distemper-ashta__name,
-.emulsion-ashta__name,
-.ashta-essay__name {
-  font-weight: 600;
-  font-size: 0.9375rem;
-  color: var(--fg);
-}
-.ashta-benefit__deva,
-.ashta-essay__deva,
-.distemper-ashta__deva,
-.emulsion-ashta__deva {
-  font-family: var(--font-deva);
-  font-size: 0.8125rem;
-  color: var(--fg-muted);
-}
-
-/* Distemper / Emulsion ashta grids on detail pages. */
-.distemper-ashta__grid,
-.emulsion-ashta__grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 0;
-  border-top: 1px solid var(--border);
-}
-@media (min-width: 640px)  {
-  .distemper-ashta__grid,
-  .emulsion-ashta__grid { grid-template-columns: 1fr 1fr; }
-}
-@media (min-width: 1024px) {
-  .distemper-ashta__grid,
-  .emulsion-ashta__grid { grid-template-columns: repeat(2, 1fr); column-gap: 3rem; }
-}
-.distemper-ashta__item,
-.emulsion-ashta__item {
-  border-left: 0;
-  border-radius: 0;
-  background: none;
-}
-
-/* Legacy ashta-tile / pd-ashta tiles (compact tiles for product pages). */
-.ashta-compact,
-.pd-ashta {
-  display: grid;
-  gap: 1rem;
-  counter-reset: ashta;
-}
-@media (min-width: 640px) {
-  .ashta-compact, .pd-ashta { grid-template-columns: repeat(2, 1fr); }
-}
-@media (min-width: 1024px) {
-  .ashta-compact, .pd-ashta { grid-template-columns: repeat(4, 1fr); }
-}
-.ashta-tile,
-.pd-ashta-tile {
-  padding: 1.25rem 0;
-  background: none;
-  border: 0;
-  border-top: 1px solid var(--border);
-  border-radius: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-.ashta-tile-num,
-.pd-ashta-tile-num {
-  font-family: var(--font-display);
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: var(--haldi-deep);
-  letter-spacing: 0.1em;
-}
-.ashta-tile-name,
-.pd-ashta-tile-name {
-  font-family: var(--font-display);
-  font-size: 1.0625rem;
-  font-weight: 700;
-  line-height: 1.3;
 }
 
 /* ==========================================================================
@@ -2356,61 +1932,9 @@ ul, ol { list-style: none; }
 }
 .calc-teaser__cta { margin-top: 1.5rem; }
 
-/* V3: small project summary card (painting type / location / paint / area). */
-.calc-teaser__preview {
-  border: 1px solid var(--border);
-  border-radius: var(--r-panel);
-  background: var(--paper);
-  padding: 1.5rem;
-  display: grid;
-  gap: 0.625rem;
-}
-.calc-teaser__preview-row {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  padding-block: 0.5rem;
-  border-bottom: 1px solid var(--border);
-  font-size: 0.875rem;
-}
-.calc-teaser__preview-row:last-child { border-bottom: 0; }
-.calc-teaser__preview-label {
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--fg-muted);
-}
-.calc-teaser__preview-value {
-  font-family: var(--font-display);
-  font-weight: 700;
-  color: var(--fg);
-}
-
-/* V10: legacy .calc-teaser__art rules REMOVED (old single-artwork
-   composition + the haldi gradient ::before placeholder that drew a
-   solid yellow block behind the V7 mini-calculator sheet). The sheet
-   itself is styled page-locally in index.php / build-static.mjs. */
-.calc-teaser__steps {
-  display: grid;
-  gap: 0.5rem;
-  margin-top: 1rem;
-  font-size: 0.8125rem;
-  color: var(--fg-muted);
-  counter-reset: step;
-}
-.calc-teaser__steps span {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-.calc-teaser__steps span::before {
-  content: counter(step, decimal-leading-zero);
-  counter-increment: step;
-  font-family: var(--font-display);
-  font-weight: 700;
-  color: var(--haldi-deep);
-}
+/* V10/V12: the teaser's mini-calculator sheet is styled page-locally in
+   index.php / build-static.mjs (the retired V3 preview-card + steps-list
+   rules were removed — no template used them). */
 
 /* ==========================================================================
    21. Project pathways — V3: ruled editorial columns, NOT cards.
@@ -2580,166 +2104,17 @@ ul, ol { list-style: none; }
   gap: 1.5rem;
 }
 
-/* V3 calc-step — numbered step with clear selected state. */
-.calc-step,
-.calculator__step {
-  padding: 1.5rem;
-  background: var(--paper);
-  border: 1px solid var(--border);
-  border-radius: var(--r-panel);
-  transition: border-color var(--dur);
-}
-.calc-step[data-selected="true"],
-.calc-step--active,
-.calculator__step[data-selected="true"] {
-  border-color: var(--forest);
-  background: color-mix(in srgb, var(--haldi) 6%, var(--paper));
-}
-.calc-step__head,
-.calculator__step-num {
-  display: flex;
-  align-items: baseline;
-  gap: 0.75rem;
-  font-family: var(--font-display);
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--haldi-deep);
-}
-.calc-step__label,
-.calculator__step-title {
-  font-family: var(--font-display);
-  font-size: 1.25rem;
-  font-weight: 700;
-  margin-top: 0.375rem;
-}
-.calc-step__sub {
-  font-size: 0.875rem;
-  color: var(--fg-muted);
-  margin-top: 0.25rem;
-}
-
-/* V3 calc-option — selectable card with 6-8px radius, NOT rounded-full. */
-.calc-option,
-.calculator__option,
-.radio-card {
-  padding: 0.625rem 1.125rem;
-  border: 1.5px solid var(--border-strong);
-  background: var(--paper);
-  border-radius: var(--r-btn);
-  font-weight: 600;
-  font-size: 0.875rem;
-  color: var(--fg);
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  transition: background var(--dur), border-color var(--dur), color var(--dur);
-}
-.calc-option:hover,
-.calculator__option:hover,
-.radio-card:hover {
-  border-color: var(--primary);
-  color: var(--primary);
-}
-.calc-option--active,
-.calculator__option--active,
-.calculator__option[aria-pressed="true"],
-.radio-card[aria-pressed="true"],
-.radio-card--active {
-  background: color-mix(in srgb, var(--haldi) 18%, var(--paper));
-  border-color: var(--forest);
-  color: var(--forest);
-}
-.radio-card-grid,
-.calculator__options {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.625rem;
-  margin-top: 1rem;
-}
-.radio-card__check { color: var(--primary); }
-.radio-card__desc {
-  font-size: 0.8125rem;
-  color: var(--fg-muted);
-  font-weight: 400;
-}
-
-.calculator__input,
-.wall-input-wrap input,
-.wall-input-wrap select {
-  width: 100%;
-  margin-top: 1rem;
-  padding: 0.625rem 0.875rem;
-  border: 1px solid var(--border-strong);
-  border-radius: var(--r-input);
-  background: var(--paper);
-  font-family: inherit;
-  font-size: 1rem;
-  color: var(--fg);
-  transition: border-color var(--dur), box-shadow var(--dur);
-}
-.calculator__input:focus,
-.wall-input-wrap input:focus,
-.wall-input-wrap select:focus {
-  border-color: var(--primary);
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(23, 63, 43, 0.12);
-}
-.wall-input-wrap {
-  display: flex;
-  align-items: stretch;
-  gap: 0.5rem;
-  margin-top: 1rem;
-}
-.wall-input-unit {
-  display: inline-flex;
-  align-items: center;
-  padding: 0 0.875rem;
-  background: var(--limewash);
-  border: 1px solid var(--border-strong);
-  border-radius: var(--r-input);
-  font-size: 0.8125rem;
-  color: var(--fg-muted);
-}
-.wall-input-hint {
-  font-size: 0.75rem;
-  color: var(--fg-muted);
-  margin-top: 0.375rem;
-}
-
-/* V3 calc-result — project summary (no prices). */
-.calc-result,
-.calculator__result {
-  padding: 1.75rem;
+/* V12 — the calculator UI classes the JS actually emits (.calc__*).
+   The result panel is a quiet forest ground: the tool's summary moment.
+   (Replaces the retired V3 hyphen-named .calc-step/.calc-option/
+   .calc-result rules — the JS never emitted those class names.) */
+.calc__result {
+  padding: clamp(1.5rem, 3vw, 2.25rem);
   background: var(--forest);
   color: var(--primary-fg);
   border-radius: var(--r-panel);
-  position: sticky;
-  top: calc(var(--header-h) + 1rem);
 }
-@media (max-width: 1023px) {
-  .calc-result, .calculator__result { position: relative; top: auto; }
-}
-.calc-result__eyebrow {
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--haldi);
-}
-.calc-result__title {
-  font-family: var(--font-display);
-  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
-  margin-top: 0.375rem;
-}
-.calc-result__grid {
-  display: grid;
-  gap: 0;
-  margin-top: 1.25rem;
-}
-.calc-result__cell,
-.calculator__result-row {
+.calc__result-row {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
@@ -2747,31 +2122,36 @@ ul, ol { list-style: none; }
   padding-block: 0.625rem;
   border-bottom: 1px solid rgba(250, 248, 241, 0.18);
 }
-.calc-result__cell:last-child,
-.calculator__result-row:last-child { border-bottom: 0; }
-.calc-result__cell-label,
-.calculator__result-label {
+.calc__result-row:last-child { border-bottom: 0; }
+.calc__result-key {
   font-size: 0.875rem;
   color: rgba(250, 248, 241, 0.78);
 }
-.calc-result__cell-value,
-.calculator__result-value {
+.calc__result-val {
   font-family: var(--font-display);
   font-size: 1.25rem;
   font-weight: 700;
   color: var(--haldi);
 }
-.calc-result__note {
+.calc__result-rate {
+  margin-top: 1rem;
+  font-size: 0.875rem;
+  color: var(--haldi-soft);
+}
+.calc__result-note {
   margin-top: 1rem;
   font-size: 0.75rem;
   color: rgba(250, 248, 241, 0.6);
   line-height: 1.5;
 }
-.calc-result__cta {
-  margin-top: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.625rem;
+.calc__result-cta-copy { margin-top: 1rem; }
+.calc__result-actions { margin-top: 1.5rem; display: flex; flex-wrap: wrap; gap: 0.75rem; }
+.calc__result-eyebrow {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--haldi);
 }
 .calc-actions {
   display: flex;
@@ -4062,26 +3442,6 @@ ul, ol { list-style: none; }
 .pd-hero__media .product-media__fallback,
 .distemper-media .product-media__fallback,
 .emulsion-hero__media .product-media__fallback { padding: 2rem; }
-.distemper-media__num,
-.emulsion-hero__media__num {
-  position: absolute;
-  top: 1rem;
-  right: 1.25rem;
-  font-family: var(--font-display);
-  font-size: clamp(3rem, 8vw, 5rem);
-  font-weight: 700;
-  color: var(--indigo);
-  opacity: 0.12;
-  line-height: 1;
-}
-.emulsion-hero__media__num,
-.emulsion-hero__media .emulsion-hero__media__num { color: var(--leaf); }
-.emulsion-hero__media__leaf {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.15;
-}
 
 .product-detail__info,
 .pd-hero__lockup,
@@ -4134,24 +3494,6 @@ ul, ol { list-style: none; }
   line-height: 1.65;
   max-width: 40rem;
 }
-.distemper-hero__chips,
-.emulsion-hero__chips {
-  margin-top: 1.5rem;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-.distemper-hero__chip,
-.emulsion-hero__chip {
-  padding: 0.3125rem 0.875rem;
-  border-radius: var(--r-pill);
-  background: var(--paper);
-  border: 1px solid var(--border);
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: var(--indigo);
-}
-.emulsion-hero__chip { color: var(--leaf); }
 .distemper-hero__cta-row,
 .emulsion-hero__cta-row,
 .product-detail__cta,
@@ -5081,8 +4423,7 @@ main a {
   }
   .spec-sheet__print, .copy-btn, .btn, .site-header, .menu-toggle,
   .mobile-menu, .site-header-placeholder, .back-to-top, .breadcrumb,
-  .product-chapter__ghost, .hero__paint-sample, .faq-item__icon,
-  .marquee, .calc-wall-scene, .toast {
+  .faq-item__icon, .toast {
     display: none !important;
   }
 
@@ -5114,12 +4455,11 @@ main a {
     margin: 0 auto !important;
     display: block !important;
   }
-  .product-detail__media__num { position: static !important; opacity: 0.35 !important; font-size: 14pt !important; }
 
   /* 36.4 Editorial panels: flat, thin rules, no shadows or radii. */
   .spec-matrix, .spec-matrix-mobile__block, .spec-sheet__list,
   .why-format-card, .about-product-card__media, .duo-panel,
-  .contact-direct, .calc-result, .faq-item {
+  .contact-direct, .calc__result, .faq-item {
     background: #fff !important;
     box-shadow: none !important;
     border-radius: 0 !important;

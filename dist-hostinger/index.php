@@ -1,33 +1,33 @@
 <?php
 /**
- * Gaurikrit Bio Products — Homepage (V10 targeted fix pass).
+ * Gaurikrit Bio Products — Homepage (V12 finishing pass).
  *
- * Section-by-section quality correction pass — NOT a redesign:
- *   - Material statement grounded in a real raw-plaster surface study
- *     (the decorative zebu illustration is retired from this page).
- *   - Product chapters are clean catalogue plates: complete pack photo on
- *     a white stage + a slim wall-finish strip. No ghost background words,
- *     no photo-on-photo layering.
- *   - "From a natural material to a finished wall" is a deliberate 3-step
- *     sequence of equal cards (01 material / 02 paint / 03 wall).
+ * One visual system, end to end:
+ *   - Section rhythm locked to the global five families (app.css §4):
+ *     limewash hero → paper material → cool distemper → warm emulsion →
+ *     paper material-flow → warm-wash benefits → paper colours → forest
+ *     mission → limewash calculator → paper pathways → forest footer.
+ *   - Ashta Laabh is the shared typographic eight-benefit grid (no radial
+ *     seal, no cow diagram) — identical to Products / Why / detail pages.
+ *   - Hero group photo on a quiet catalogue plate: hairline border, paper
+ *     ground, no accent stripe, no shadow; shown complete.
  *   - Colours of India recolours ONLY the wall plane via an SVG paint mask
  *     aligned to the elevation photo (door + window stay untouched).
  * Factual data unchanged from data.php.
  *
  * Composition:
  *   1. Hero — text 5 / visual 7. Real group photo (1280×621) eager+
- *      high-priority inside the paper plate + restrained haldi swash.
+ *      high-priority on the catalogue plate.
  *   2. Material Statement — 42/58. raw-material-study (plaster surface).
- *   3. Distemper chapter — catalogue plate (complete pack, natural size,
- *      uncropped) + interior-finish strip. Cool section, indigo accent.
- *   4. Emulsion chapter — catalogue plate + exterior-finish strip. Warm,
- *      leaf accent. Reversed.
+ *   3. Distemper chapter — catalogue plate + interior-finish strip (cool).
+ *   4. Emulsion chapter — catalogue plate + exterior-finish strip (warm,
+ *      reversed).
  *   5. Material Journey — 3 equal step cards (raw material / paint /
  *      finished wall) with ruled caption bars.
- *   6. Ashta Laabh — seal (44rem), darker warm bg, bolder labels. SVG kept.
- *   7. Colours of India — colour-wall-study elevation (1344×768) with an
- *      SVG wall-plane paint mask driven by --wall-color.
- *   8. Mission — forest band, rural-landscape engraving at 0.15 opacity.
+ *   6. Ashta Laabh — the shared typographic benefits grid.
+ *   7. Colours of India — colour-wall-study elevation with the SVG
+ *      wall-plane paint mask driven by --wall-color.
+ *   8. Mission — forest band, rural-landscape engraving at 0.10 opacity.
  *   9. Calculator Teaser — miniature of the real calculator UI.
  *  10. Pathways — 4 ruled columns.
  */
@@ -46,18 +46,6 @@ global $COMPANY, $PRODUCTS, $ASHTA_LAABH, $COLOUR_STUDY, $PROJECT_PATHWAYS;
 $distemper   = get_product('prakritik-distemper');
 $emulsion    = get_product('prakritik-emulsion');
 $groupImage  = '/assets/products/prakritik-group.jpg';
-
-// Map Ashta Laabh names to seal SVG node IDs (so the radial seal reacts).
-$ashtaIds = [
-    'Antibacterial'              => 'antibacterial',
-    'Antifungal'                 => 'antifungal',
-    'Eco-Friendly'               => 'eco-friendly',
-    'Natural Thermal Insulator'  => 'thermal-insulator',
-    'Cost-Effective'             => 'cost-effective',
-    'Free from Heavy Metals'     => 'heavy-metal-free',
-    'Non-Toxic'                  => 'non-toxic',
-    'Odourless'                  => 'odourless',
-];
 ?>
 <style>
   /* ===== Editorial image reset (V4 — NO mix-blend-mode, NO blur filters) ===== */
@@ -69,7 +57,7 @@ $ashtaIds = [
   }
   .editorial-image--contain { object-fit: contain; }
 
-  /* ===== 1. HERO — group photo dominant + CSS haldi field + cow engraving ===== */
+  /* ===== 1. HERO — group photo dominant on a quiet catalogue plate ===== */
   .hero { padding-top: calc(var(--header-h) + 1.5rem); padding-bottom: 1.5rem; }
   @media (min-width: 1024px) {
     .hero { display: flex; align-items: center;
@@ -87,22 +75,21 @@ $ashtaIds = [
     .hero__visual { order: 5; }
   }
   .hero__eyebrow-chip { margin-bottom: 0.875rem; }
-  .hero__title { font-size: clamp(2.5rem, 6vw, 5.5rem); line-height: 1.02; }
+  .hero__title { font-size: clamp(2.5rem, 6vw, 5.5rem); line-height: 1.04; }
   .hero__body { max-width: 38rem; }
   .hero__ctas { margin-top: 2.25rem; }
 
-  /* V7 hero visual: the real group photo deliberately placed inside a
-     paper/material plate whose background visually merges with the page.
-     No generic haldi semicircle, no faint cow engraving, no landscape band. */
+  /* V12 hero visual: the real group photo on a QUIET catalogue plate —
+     paper ground, ONE hairline border, no 3px accent stripe, no shadow,
+     no decorative paint swash. The photo keeps its own light studio
+     ground and is shown complete (contain, natural 1280/621 aspect). */
   .hero__visual { position: relative; min-height: 0; width: 100%; }
   .hero__plate {
     position: relative; z-index: 2;
     background: var(--paper);
     border: 1px solid var(--border);
-    border-top: 3px solid var(--haldi);
     border-radius: var(--r-panel);
-    padding: clamp(1rem, 2.5vw, 2rem);
-    box-shadow: 0 2px 12px -4px rgba(32, 30, 25, 0.06);
+    padding: clamp(0.75rem, 2vw, 1.5rem);
   }
   .hero__plate img.hero-group-photo {
     display: block;
@@ -110,22 +97,6 @@ $ashtaIds = [
     object-fit: contain;
     aspect-ratio: 1280 / 621;
   }
-  /* A restrained, irregular haldi paint field — reads as a painted wall
-     sample (plaster swash), placed BEHIND the plate's bottom edge only. */
-  .hero__paint-sample {
-    position: absolute;
-    left: -4%; right: 6%; bottom: -1.25rem;
-    height: 34%;
-    z-index: 0;
-    pointer-events: none;
-    border-radius: 46% 54% 48% 52% / 60% 54% 46% 40%;
-    background:
-      radial-gradient(ellipse 70% 62% at 50% 40%,
-        color-mix(in srgb, var(--haldi) 26%, transparent) 0%,
-        transparent 78%);
-    opacity: 0.5;
-  }
-  @media (max-width: 899px) { .hero__paint-sample { display: none; } }
 
   /* ===== 2. MATERIAL STATEMENT — raw-material-study large right (58%) ===== */
   .material-statement__visual {
@@ -134,6 +105,8 @@ $ashtaIds = [
     overflow: hidden;
     padding: 0;
     position: relative;
+    border: 1px solid var(--border);
+    border-radius: var(--r-panel);
   }
   .material-statement__visual .editorial-image {
     position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
@@ -147,34 +120,10 @@ $ashtaIds = [
   .material-flow { padding-block: clamp(3rem, 6vw, 5rem); }
   .material-flow__head { max-width: 48rem; margin-bottom: 2.5rem; }
 
-  /* ===== 6. ASHTA LAABH — strengthened (V5): darker warm bg, larger seal,
-     bolder benefit labels. SVG seal kept interactive. ===== */
-  .ashta-section {
-    position: relative; overflow: hidden;
-    /* Slightly darker warm tone — overrides section--limewash. */
-    background: color-mix(in srgb, var(--haldi) 10%, var(--limewash));
-  }
-  /* V7: the giant faded cow background is REMOVED — two clear layers only:
-     seal + list. Slightly stronger warm ground for the seal to read dark. */
-  .ashta-section { background: color-mix(in srgb, var(--haldi) 12%, var(--limewash)); }
-  .ashta-section__inner { position: relative; z-index: 1; }
-  .ashta-section__grid { position: relative; z-index: 1; }
-  /* V5: enlarge seal from 38rem → 44rem for more authority. */
-  .ashta-section__seal { max-width: 44rem; margin-inline: auto; }
-  .ashta-benefit__num { font-feature-settings: "tnum"; }
-  /* V5: bolder / larger benefit labels (page-local override). */
-  .ashta-benefit__name {
-    font-weight: 700 !important;
-    font-size: 1.0625rem !important;
-    letter-spacing: 0.005em;
-  }
-  .ashta-benefit__deva {
-    font-size: 0.9375rem !important;
-    color: color-mix(in srgb, var(--haldi-deep) 60%, var(--fg-muted)) !important;
-  }
-  .ashta-benefit {
-    padding: 1.25rem 0 !important;
-  }
+  /* ===== 6. ASHTA LAABH — the shared typographic benefits grid
+     (structure in app.css §18): numbered ruled entries, haldi numbering,
+     forest names, Hindi secondary. Section ground = soft warm wash.
+     No seal, no radial diagram, no page-local overrides needed. ===== */
 
   /* ===== 7. COLOURS OF INDIA — wall plane + SVG paint mask (structure in
      app.css §19: natural-aspect elevation photo + aligned mask path);
@@ -197,6 +146,7 @@ $ashtaIds = [
     width: 2.75rem; height: 2.75rem; border-radius: 50%;
     border: 2px solid var(--border); padding: 0; cursor: pointer;
     position: relative; transition: transform var(--dur), border-color var(--dur);
+    flex: 0 0 auto;  /* V12: never let the swatch row flex-shrink the circles */
   }
   .colours-swatch:hover { transform: translateY(-2px); }
   .colours-swatch[data-active="true"] {
@@ -216,7 +166,7 @@ $ashtaIds = [
     overflow: hidden;
   }
   .mission-band__bg {
-    position: absolute; inset: 0; opacity: 0.15; pointer-events: none;
+    position: absolute; inset: 0; opacity: 0.10; pointer-events: none;
     overflow: hidden;
   }
   .mission-band__bg .editorial-image { width: 100%; height: 100%; object-fit: cover; }
@@ -323,7 +273,6 @@ $ashtaIds = [
       </div>
 
       <div class="hero__visual" data-reveal>
-        <div class="hero__paint-sample" aria-hidden="true"></div>
         <div class="hero__plate">
           <img class="hero-group-photo"
                src="<?= asset_url($groupImage) ?>"
@@ -498,7 +447,7 @@ $ashtaIds = [
 <!-- ============================================================
      5. MATERIAL JOURNEY — three equal step cards
      ============================================================ -->
-<section class="section section--limewash material-flow" aria-labelledby="journey-title">
+<section class="section section--paper material-flow" aria-labelledby="journey-title">
   <div class="container">
     <div class="material-flow__head section-heading section-heading--left" data-reveal>
       <span class="section-heading__eyebrow">Material to wall</span>
@@ -565,35 +514,24 @@ $ashtaIds = [
 </section>
 
 <!-- ============================================================
-     6. ASHTA LAABH — interactive SVG seal + benefit list
+     6. ASHTA LAABH — the shared typographic eight-benefit grid
      ============================================================ -->
-<section class="section ashta-section section--limewash" aria-labelledby="ashta-title" data-ashta-laabh>
-  <div class="container ashta-section__inner">
-    <div class="ashta-section__head section-heading section-heading--left" data-reveal>
-      <span class="ashta-section__deva">अष्ट लाभ</span>
+<section class="section section--haldi-wash ashta-section" aria-labelledby="ashta-title">
+  <div class="container">
+    <div class="section-heading section-heading--left" data-reveal>
+      <span class="section-heading__eyebrow">Ashta Laabh — अष्ट लाभ</span>
       <h2 class="section-heading__title" id="ashta-title">Eight benefits of Prakritik Paint.</h2>
-      <p class="ashta-section__sub">
-        Eight benefits listed in the supplied Prakritik Paint material.
-      </p>
-      <p class="ashta-section__note">
-        Benefits listed in the Prakritik Paint material.
-      </p>
+      <p class="section-heading__desc">Benefits listed in the supplied Prakritik Paint material.</p>
     </div>
-    <div class="ashta-section__grid" data-reveal>
-      <div class="ashta-section__seal">
-        <?php render_illustration('ashta-laabh-seal'); ?>
-      </div>
-      <ol class="ashta-section__support" data-reveal-stagger>
-        <?php foreach ($ASHTA_LAABH as $i => $benefit): ?>
-          <?php $bid = $ashtaIds[$benefit['name']] ?? ('benefit-' . ($i + 1)); ?>
-          <li class="ashta-benefit" data-ashta-node="<?= e($bid) ?>">
-            <span class="ashta-benefit__num"><?= e(sprintf('%02d', $i + 1)) ?></span>
-            <span class="ashta-benefit__name"><?= e($benefit['name']) ?></span>
-            <span class="ashta-benefit__deva"><?= e($benefit['hindi']) ?></span>
-          </li>
-        <?php endforeach; ?>
-      </ol>
-    </div>
+    <ol class="benefits-grid" data-reveal-stagger>
+      <?php foreach ($ASHTA_LAABH as $i => $benefit): ?>
+        <li class="benefits-grid__item">
+          <span class="benefits-grid__num" aria-hidden="true"><?= e(sprintf('%02d', $i + 1)) ?></span>
+          <span class="benefits-grid__name"><?= e($benefit['name']) ?></span>
+          <span class="benefits-grid__deva"><?= e($benefit['hindi']) ?></span>
+        </li>
+      <?php endforeach; ?>
+    </ol>
   </div>
 </section>
 
@@ -760,14 +698,4 @@ $ashtaIds = [
   </div>
 </section>
 
-<!-- Inline bridge: copy the seal SVG node data-benefit → data-ashta-node
-     so ashta-laabh.js can drive the seal's active state. -->
-<script>
-  (function () {
-    'use strict';
-    document.querySelectorAll('[data-ashta-laabh] svg [data-benefit]').forEach(function (node) {
-      node.setAttribute('data-ashta-node', node.getAttribute('data-benefit'));
-    });
-  })();
-</script>
 <?php require ROOT_PATH . '/includes/footer.php';
