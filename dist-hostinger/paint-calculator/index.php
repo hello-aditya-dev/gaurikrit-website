@@ -208,6 +208,20 @@ $calcConfigJson = json_encode($calcConfig, JSON_UNESCAPED_SLASHES | JSON_UNESCAP
 <section class="bg-limewash" style="padding-top: 0;">
   <div class="container">
     <div class="calculator-page" data-reveal>
+      <!-- V15: print-only estimate sheet header — hidden on screen
+           (app.css §41.4), revealed in print (§36.8). calculator.js
+           stamps the "Prepared on" date line when a result is computed;
+           the result panel below it prints the project values. -->
+      <div class="calc-print-sheet">
+        <p class="calc-print-sheet__brand">Gaurikrit Bio Products (OPC) Pvt Ltd</p>
+        <p class="calc-print-sheet__meta">seva@gaurikrit.com &middot; +91 9999624446 &middot; +91 9837638842</p>
+        <p class="calc-print-sheet__meta">Khurja, Bulandshahr, Uttar Pradesh 203131 &middot; GSTIN 09AAMCG8400F1ZK</p>
+        <hr class="calc-print-sheet__rule">
+        <p class="calc-print-sheet__title">Paint requirement summary</p>
+        <p class="calc-print-sheet__meta" data-print-date></p>
+        <p class="calc-print-sheet__foot">Generated from the Gaurikrit paint calculator. Coverage per listed product specifications. For an accurate estimate, contact Gaurikrit with these project details.</p>
+      </div>
+
       <!-- 4-step calculator mount -->
       <div class="calculator-page__steps">
         <script type="application/json" id="calculator-config"><?= $calcConfigJson /* raw JSON */ ?></script>

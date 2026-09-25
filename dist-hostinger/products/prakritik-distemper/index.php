@@ -208,6 +208,16 @@ $specRows = [
       <span class="coverage-disclaimer__label">Coverage note</span>
       <span class="coverage-disclaimer__text"><?= e($COVERAGE_DISCLAIMER) ?></span>
     </p>
+
+    <!-- V15: calculator partial-prefill deep link (?paint=distemper) —
+         opens the tool with step 3 already chosen. -->
+    <p class="spec-plan" data-reveal>
+      <span class="spec-plan__label">Plan your quantity</span>
+      <a class="spec-plan__link" href="/paint-calculator/?paint=distemper">
+        Open the paint calculator, pre-set for Prakritik Distemper
+        <span class="spec-plan__arrow" aria-hidden="true">→</span>
+      </a>
+    </p>
   </div>
 </section>
 

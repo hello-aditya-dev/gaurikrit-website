@@ -16,6 +16,11 @@
  * The eight benefits use the shared .benefits-grid classes from app.css
  * §18 on every page that shows them.
  *
+ * V15 mirrors: the "Plan your quantity" calculator deep-link row on both
+ * product detail pages (?paint=distemper / ?paint=emulsion), the
+ * chapter-index contents block on why-prakritik, and the print-only
+ * estimate sheet header (.calc-print-sheet) on the calculator page.
+ *
  * V10 asset policy (supersedes V5):
  *   - zebu-study           → RETIRED from all pages (decorative cow
  *     illustration removed per art-direction pass; files kept on disk).
@@ -1891,6 +1896,16 @@ ${specItems}
       <span class="coverage-disclaimer__label">Coverage note</span>
       <span class="coverage-disclaimer__text">${e(COVERAGE_DISCLAIMER)}</span>
     </p>
+
+    <!-- V15: calculator partial-prefill deep link (?paint=distemper) —
+         opens the tool with step 3 already chosen. -->
+    <p class="spec-plan" data-reveal>
+      <span class="spec-plan__label">Plan your quantity</span>
+      <a class="spec-plan__link" href="${relUrl('/paint-calculator/', depth)}?paint=distemper">
+        Open the paint calculator, pre-set for Prakritik Distemper
+        <span class="spec-plan__arrow" aria-hidden="true">→</span>
+      </a>
+    </p>
   </div>
 </section>
 
@@ -2120,6 +2135,16 @@ ${specItems}
     <p class="coverage-disclaimer" data-reveal>
       <span class="coverage-disclaimer__label">Coverage note</span>
       <span class="coverage-disclaimer__text">${e(COVERAGE_DISCLAIMER)}</span>
+    </p>
+
+    <!-- V15: calculator partial-prefill deep link (?paint=emulsion) —
+         opens the tool with step 3 already chosen. -->
+    <p class="spec-plan" data-reveal>
+      <span class="spec-plan__label">Plan your quantity</span>
+      <a class="spec-plan__link" href="${relUrl('/paint-calculator/', depth)}?paint=emulsion">
+        Open the paint calculator, pre-set for Prakritik Emulsion
+        <span class="spec-plan__arrow" aria-hidden="true">→</span>
+      </a>
     </p>
   </div>
 </section>
@@ -2362,6 +2387,57 @@ function whyPrakritikBody(depth) {
         ${heroFinishPic}
       </div>
     </div>
+
+    <!-- V15: chapter index — a quiet book-style contents list linking the
+         six chapter headings below. Stays inside the limewash hero band
+         (no new section background family). -->
+    <nav class="chapter-index" aria-label="Page contents" data-reveal>
+      <p class="chapter-index__eyebrow">Contents</p>
+      <ol class="chapter-index__list">
+        <li class="chapter-index__item">
+          <a class="chapter-index__link" href="#chapter-01-title">
+            <span class="chapter-index__num" aria-hidden="true">01</span>
+            <span class="chapter-index__name">A natural material for modern walls.</span>
+            <span class="chapter-index__arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+        <li class="chapter-index__item">
+          <a class="chapter-index__link" href="#chapter-02-title">
+            <span class="chapter-index__num" aria-hidden="true">02</span>
+            <span class="chapter-index__name">Limewashed walls, courtyard elevations.</span>
+            <span class="chapter-index__arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+        <li class="chapter-index__item">
+          <a class="chapter-index__link" href="#chapter-03-title">
+            <span class="chapter-index__num" aria-hidden="true">03</span>
+            <span class="chapter-index__name">From a natural material to a finished wall.</span>
+            <span class="chapter-index__arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+        <li class="chapter-index__item">
+          <a class="chapter-index__link" href="#chapter-04-title">
+            <span class="chapter-index__num" aria-hidden="true">04</span>
+            <span class="chapter-index__name">Eight benefits of Prakritik Paint.</span>
+            <span class="chapter-index__arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+        <li class="chapter-index__item">
+          <a class="chapter-index__link" href="#chapter-05-title">
+            <span class="chapter-index__num" aria-hidden="true">05</span>
+            <span class="chapter-index__name">Distemper and Emulsion.</span>
+            <span class="chapter-index__arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+        <li class="chapter-index__item">
+          <a class="chapter-index__link" href="#chapter-06-title">
+            <span class="chapter-index__num" aria-hidden="true">06</span>
+            <span class="chapter-index__name">From Bulandshahr, Uttar Pradesh.</span>
+            <span class="chapter-index__arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+      </ol>
+    </nav>
   </div>
 </section>
 
@@ -3481,6 +3557,20 @@ function paintCalculatorBody(depth) {
 <section class="bg-limewash" style="padding-top: 0;">
   <div class="container">
     <div class="calculator-page" data-reveal>
+      <!-- V15: print-only estimate sheet header — hidden on screen
+           (app.css §41.4), revealed in print (§36.8). calculator.js
+           stamps the "Prepared on" date line when a result is computed;
+           the result panel below it prints the project values. -->
+      <div class="calc-print-sheet">
+        <p class="calc-print-sheet__brand">Gaurikrit Bio Products (OPC) Pvt Ltd</p>
+        <p class="calc-print-sheet__meta">seva@gaurikrit.com &middot; +91 9999624446 &middot; +91 9837638842</p>
+        <p class="calc-print-sheet__meta">Khurja, Bulandshahr, Uttar Pradesh 203131 &middot; GSTIN 09AAMCG8400F1ZK</p>
+        <hr class="calc-print-sheet__rule">
+        <p class="calc-print-sheet__title">Paint requirement summary</p>
+        <p class="calc-print-sheet__meta" data-print-date></p>
+        <p class="calc-print-sheet__foot">Generated from the Gaurikrit paint calculator. Coverage per listed product specifications. For an accurate estimate, contact Gaurikrit with these project details.</p>
+      </div>
+
       <!-- 4-step calculator mount -->
       <div class="calculator-page__steps">
         <script type="application/json" id="calculator-config">{"enabled":false}</script>

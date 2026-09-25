@@ -272,9 +272,24 @@
             'data-calc-reset': '',
             text: 'Start over'
         });
+        // V15: Print-summary button — window.print() plus the app.css
+        // §36.8 print rules turn the computed result into an estimate
+        // sheet (the page's .calc-print-sheet block provides the company
+        // header; the date line is stamped before printing).
+        var printBtn = el('button', {
+            type: 'button',
+            class: 'btn btn--outline',
+            'data-calc-print': '',
+            'aria-label': 'Print this project summary'
+        });
+        printBtn.innerHTML = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" ' +
+            'stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ' +
+            'aria-hidden="true"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8" rx="1"/></svg>' +
+            '<span class="copy-btn__label">Print summary</span>';
         ctaWrap.appendChild(cta);
         ctaWrap.appendChild(copyBtn);
         ctaWrap.appendChild(reset);
+        ctaWrap.appendChild(printBtn);
         result.appendChild(ctaWrap);
 
         root.appendChild(result);
@@ -288,7 +303,8 @@
             calcBtn: calcBtn,
             result: result,
             cta: cta,
-            copyBtn: copyBtn
+            copyBtn: copyBtn,
+            printBtn: printBtn
         };
     }
 
@@ -441,6 +457,25 @@
             return map[value] || String(value);
         }
 
+        // V15: stamp the "Prepared on" line of the page's print-only
+        // estimate header (.calc-print-sheet). Called on every calculated
+        // result (so Ctrl/Cmd+P users get it too) and right before the
+        // print button fires.
+        function stampPrintDate() {
+            var line = document.querySelector('[data-print-date]');
+            if (!line) return;
+            var d = new Date();
+            var text;
+            try {
+                text = d.toLocaleDateString('en-IN', {
+                    day: 'numeric', month: 'long', year: 'numeric'
+                });
+            } catch (err) {
+                text = d.toDateString();
+            }
+            line.textContent = 'Prepared on ' + text;
+        }
+
         function calculate() {
             // Validate all 4 steps.
             ui.errBox.textContent = '';
@@ -503,6 +538,8 @@
                 steps[k].setAttribute('hidden', '');
             }
             ui.result.removeAttribute('hidden');
+            // V15: keep the print-sheet date in sync with this result.
+            stampPrintDate();
             // Mark every progress dot as done.
             var items = ui.progress.querySelectorAll('.calc__progress-item');
             for (var m = 0; m < items.length; m++) {
@@ -575,6 +612,14 @@
             var resetHit = e.target.closest('[data-calc-reset]');
             if (resetHit) {
                 reset();
+                return;
+            }
+            // V15: print the estimate sheet (steps/hero chrome drop away
+            // via app.css §36.8; the date line is stamped first).
+            var printHit = e.target.closest('[data-calc-print]');
+            if (printHit) {
+                stampPrintDate();
+                if (window.print) window.print();
                 return;
             }
             var gotoHit = e.target.closest('[data-goto-step]');

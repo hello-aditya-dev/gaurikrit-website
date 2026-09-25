@@ -130,6 +130,19 @@
             for (var h = 0; h < swatches.length; h++) {
                 if (swatches[h].getAttribute('data-colour-id') === m[1]) {
                     applySwatch(swatches[h], { fromHash: true });
+                    // V15: the hash matches no element id, so the browser
+                    // keeps deep-link arrivals at the top of the page —
+                    // quietly bring the study into view instead. Honors
+                    // prefers-reduced-motion; scroll-margin-top (app.css
+                    // §41.1) keeps the sticky header clear of it.
+                    var reduce = window.matchMedia &&
+                        window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                    try {
+                        wrapper.scrollIntoView({
+                            behavior: reduce ? 'auto' : 'smooth',
+                            block: 'start'
+                        });
+                    } catch (err) { /* older engines: scrollIntoView() only */ }
                     break;
                 }
             }

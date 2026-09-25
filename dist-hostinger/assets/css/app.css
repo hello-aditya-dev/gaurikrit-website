@@ -4535,4 +4535,175 @@ main a {
   /* 36.7 Copy affordances: hide buttons + their toast feedback. */
   .copy-btn, .copy-btn__label { display: none !important; }
   .contact-direct__row dd { font-size: 10.5pt; }
+
+  /* 36.8 (V15) Calculator page — print the computed result as an estimate
+     sheet. Steps, progress and hero copy drop away; the result panel
+     (forest on screen) becomes ink-on-white like the spec sheets above.
+     The screen-hidden .calc-print-sheet (built by calculator.js, §41.5)
+     carries the company lockup + contact + date lines. */
+  .calc-hero { padding-block: 0.25rem !important; }
+  .calc-hero__sub, .calc-hero__rule, .calc-hero__eyebrow-dot { display: none !important; }
+  .calc-hero__inner { padding-top: 0 !important; }
+  .calculator-page__steps .calc__progress,
+  .calculator-page__steps .calc__step,
+  .calc-helper { display: none !important; }
+  .calc-print-sheet { display: block !important; }
+  .calc__result {
+    background: #fff !important;
+    color: #20221b !important;
+    border: 0.75pt solid #8c8574 !important;
+    border-top: 2pt solid #20221b !important;
+    padding: 1rem !important;
+  }
+  .calc__result-eyebrow,
+  .calc__result-cta-copy,
+  .calc__result-actions { display: none !important; }
+  .calc__result-key { color: #4a4d42 !important; }
+  .calc__result-val { color: #20221b !important; }
+  .calc__result-row { border-bottom: 0.5pt solid #8c8574 !important; }
+  .calc__result-note { color: #4a4d42 !important; font-size: 9.5pt !important; }
+  .calc-print-sheet__brand {
+    font-weight: 700; font-size: 12pt; letter-spacing: 0.02em;
+    color: #20221b !important; margin: 0 0 2mm 0;
+  }
+  .calc-print-sheet__meta {
+    font-size: 9.5pt; color: #4a4d42 !important; margin: 0 0 1mm 0;
+  }
+  .calc-print-sheet__rule {
+    border: 0; border-top: 1.5pt solid #20221b; margin: 3mm 0 4mm;
+  }
+  .calc-print-sheet__title {
+    font-size: 13pt; font-weight: 700; margin: 0 0 3mm;
+    color: #20221b !important;
+  }
+  .calc-print-sheet__foot {
+    margin-top: 4mm; padding-top: 2mm;
+    border-top: 0.5pt solid #8c8574;
+    font-size: 8.5pt; color: #4a4d42 !important;
+  }
+  .calc__result, .calc-print-sheet__rule, .calc-print-sheet__foot { break-inside: avoid; }
+}
+
+/* ==========================================================================
+   39. V15 — "Plan your quantity" row (product detail spec sections)
+   ========================================================================== */
+/* Quiet action row directly under the coverage note. Mirrors the
+   .coverage-disclaimer geometry (left rule + small caps label) so it
+   reads as part of the spec sheet, and carries the V14 calculator
+   partial-prefill deep link (?paint=distemper / ?paint=emulsion).
+   Purely typographic — no new section background family. */
+.spec-plan {
+  margin: 1.75rem 0 0;
+  padding: 0 0 0 1.25rem;
+  border-left: 1px solid var(--border-strong);
+  max-width: 64rem;
+  display: flex; flex-direction: column; gap: 0.375rem;
+}
+.spec-plan__label {
+  font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--fg-muted);
+}
+.spec-plan__link {
+  display: inline-flex; align-items: baseline; gap: 0.5rem;
+  font-weight: 600; font-size: 0.9375rem; line-height: 1.5;
+  color: var(--primary);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
+  text-decoration-color: color-mix(in srgb, var(--forest) 35%, transparent);
+  transition: color var(--dur) var(--ease),
+              text-decoration-color var(--dur) var(--ease);
+}
+.spec-plan__link:hover,
+.spec-plan__link:focus-visible {
+  color: var(--forest);
+  text-decoration-color: var(--forest);
+  text-decoration-thickness: 2px;
+}
+.spec-plan__arrow {
+  display: inline-block; transition: transform var(--dur) var(--ease);
+  text-decoration: none; /* the arrow never underlines */
+}
+.spec-plan__link:hover .spec-plan__arrow,
+.spec-plan__link:focus-visible .spec-plan__arrow { transform: translateX(4px); }
+
+/* ==========================================================================
+   40. V15 — Chapter index (Why Prakritik contents block)
+   ========================================================================== */
+/* A quiet book-style contents list closing the why-hero (limewash, so no
+   new background family). Six numbered links to the existing chapter h2
+   ids — desktop 2 columns, tablet/mobile 1. Numbers echo .benefits-grid
+   numerals (display serif, haldi-deep, tabular). */
+.chapter-index { margin-top: clamp(2.5rem, 5vw, 3.5rem); max-width: 56rem; }
+.chapter-index__eyebrow {
+  font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--fg-muted);
+}
+.chapter-index__list {
+  list-style: none; margin: 1rem 0 0; padding: 0;
+  display: grid; grid-template-columns: 1fr 1fr; column-gap: clamp(2rem, 4vw, 3.5rem);
+}
+.chapter-index__item { border-top: 1px solid var(--border); }
+.chapter-index__link {
+  display: flex; align-items: baseline; gap: 0.875rem;
+  padding: 0.9375rem 0.25rem;
+  text-decoration: none; color: var(--fg);
+  transition: color var(--dur) var(--ease);
+}
+.chapter-index__num {
+  font-family: var(--font-display);
+  font-size: 0.9375rem; font-weight: 700;
+  color: var(--haldi-deep);
+  letter-spacing: 0.04em;
+  font-feature-settings: "tnum";
+  flex: 0 0 2ch;
+}
+.chapter-index__name {
+  font-family: var(--font-display);
+  font-size: 1.0625rem; font-weight: 500; line-height: 1.4;
+  transition: color var(--dur) var(--ease);
+}
+.chapter-index__arrow {
+  margin-left: auto; flex: none;
+  color: var(--fg-muted);
+  transition: transform var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+.chapter-index__link:hover,
+.chapter-index__link:focus-visible { color: var(--forest); }
+.chapter-index__link:hover .chapter-index__name,
+.chapter-index__link:focus-visible .chapter-index__name { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.25em; }
+.chapter-index__link:hover .chapter-index__arrow,
+.chapter-index__link:focus-visible .chapter-index__arrow {
+  transform: translateX(4px); color: var(--forest);
+}
+
+/* ==========================================================================
+   41. V15 — Micro-detail refinements (quiet, system-compliant)
+   ========================================================================== */
+/* 41.1 Anchored targets clear the sticky header (h2/h3/section ids used
+   by the chapter index, #colour= deep links, skip-link, …). */
+section[id], h1[id], h2[id], h3[id] { scroll-margin-top: calc(var(--header-h) + 1.25rem); }
+
+/* 41.2 Rag refinement on long-form copy (progressive enhancement —
+   ignored where unsupported; short labels are unaffected). */
+p, li, dd, blockquote { text-wrap: pretty; }
+
+/* 41.3 Quiet row feedback on the ruled spec tables (desktop matrices and
+   the detail-page numbered rows). Very low-alpha warm tint only. */
+@media (hover: hover) {
+  .spec-matrix__row:hover,
+  .spec-sheet__item:hover {
+    background: color-mix(in srgb, var(--haldi) 3%, transparent);
+  }
+}
+
+/* 41.4 V15 print-summary sheet — hidden on screen (§36.8 reveals it in
+   print only; calculator.js fills/refreshes it with every result). */
+.calc-print-sheet { display: none; }
+
+/* 41.5 Responsive settling for the V15 blocks. */
+@media (max-width: 767px) {
+  .chapter-index__list { grid-template-columns: 1fr; column-gap: 0; }
+  .chapter-index__name { font-size: 1rem; }
+  .spec-plan { margin-top: 1.25rem; padding-left: 1rem; }
 }
