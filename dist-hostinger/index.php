@@ -19,7 +19,7 @@
  */
 declare(strict_types=1);
 
-$pageTitle       = 'Gaurikrit Bio Products — Prakritik Paint & Bio Products';
+$pageTitle       = 'Gaurikrit — Prakritik Paint & Bio Products';
 $pageDescription = 'Cow dung-based Prakritik Paint in Distemper and Emulsion formats for interior and exterior walls. Gaurikrit Bio Products, Khurja, District Bulandshahr, Uttar Pradesh.';
 $pageCanonical   = '/';
 $pageClass       = 'home';
@@ -31,7 +31,7 @@ global $COMPANY, $PRODUCTS, $ASHTA_LAABH, $COLOUR_STUDY, $MATERIAL_JOURNEY, $PRO
 
 $distemper   = get_product('prakritik-distemper');
 $emulsion    = get_product('prakritik-emulsion');
-$groupImage  = '/assets/products/prakritik-group.png';
+$groupImage  = '/assets/products/prakritik-group.jpg';
 
 // Map Ashta Laabh names to seal SVG node IDs (so the radial seal reacts).
 $ashtaIds = [
@@ -218,18 +218,16 @@ $ashtaIds = [
       <div class="hero__lockup">
         <span class="hero__eyebrow-chip">
           <span class="hero__eyebrow-dot" aria-hidden="true"></span>
-          <?= e($COMPANY['hindiTagline']) ?>
+          GAURIKRIT BIO PRODUCTS
         </span>
         <span class="hero__devanagari" aria-hidden="true"><?= e($COMPANY['devanagari']) ?></span>
         <h1 class="hero__title" id="hero-title"><?= e($COMPANY['headline']) ?></h1>
         <p class="hero__body">
-          Cow dung-based Prakritik Paint in two formats — Distemper and Emulsion — for
-          interior and exterior walls. From <?= e($COMPANY['name']) ?>, made in
-          <?= e($COMPANY['address'][4] ?? '') ?>.
+          Cow dung-based Prakritik Paint in Distemper and Emulsion formats for interior and exterior walls.
         </p>
         <div class="hero__ctas">
           <a class="btn btn--primary btn--lg" href="/products/">Explore Prakritik Paint</a>
-          <a class="btn btn--secondary btn--lg" href="/contact/">Talk to Us</a>
+          <a class="btn btn--secondary btn--lg" href="/why-prakritik/">Why Prakritik?</a>
         </div>
       </div>
 
@@ -251,7 +249,7 @@ $ashtaIds = [
           </div>
         </div>
         <!-- Cow line art at 0.16 opacity — secondary line, not the hero -->
-        <?php render_illustration('indian-cow', ['class' => 'hero__cow']); ?>
+
       </div>
     </div>
   </div>
@@ -277,13 +275,12 @@ $ashtaIds = [
             for brushing on interior and exterior walls.
           </p>
           <p>
-            Not a novelty. Not a throwback. A useful material, reconsidered.
+            Two paint formats for interior and exterior walls.
           </p>
         </div>
       </div>
       <div class="material-statement__visual" aria-hidden="true">
-        <div class="ms-wall"></div>
-        <?php render_illustration('indian-cow', ['class' => 'ms-cow']); ?>
+        <img class="editorial-cow" src="/assets/illustrations/zebu-study.jpg" alt="" loading="lazy" width="1536" height="1024">
       </div>
     </div>
   </div>
@@ -313,7 +310,7 @@ $ashtaIds = [
           <?= e($distemper['name']) ?>
         </h3>
         <p class="product-chapter__desc">
-          <?= e($distemper['descriptor']) ?>. A powder-format paint, brushed on interior
+          <?= e($distemper['descriptor']) ?>. A paint listed for interior
           and exterior walls. Supplied in <?= e($distemper['packagingShort']) ?> packs.
         </p>
         <dl class="product-chapter__specs">
@@ -363,7 +360,7 @@ $ashtaIds = [
           <?= e($emulsion['name']) ?>
         </h3>
         <p class="product-chapter__desc">
-          <?= e($emulsion['descriptor']) ?>. A liquid-format paint, brushed on interior
+          <?= e($emulsion['descriptor']) ?>. A paint listed for interior
           and exterior walls. Supplied in <?= e($emulsion['packagingShort']) ?> packs.
         </p>
         <dl class="product-chapter__specs">
@@ -398,11 +395,11 @@ $ashtaIds = [
       <span class="section-heading__eyebrow">Material to wall</span>
       <h2 class="section-heading__title" id="journey-title">From a natural material to a finished wall.</h2>
       <p class="section-heading__desc">
-        Three conceptual stages. Not a process diagram — a narrative one.
+        Natural material, Prakritik Paint, finished walls.
       </p>
     </div>
     <div class="material-flow__svg-wrap" data-reveal>
-      <?php render_illustration('material-to-wall', ['class' => 'material-journey__svg']); ?>
+
     </div>
     <ol class="material-journey__steps" data-reveal-stagger>
       <?php foreach ($MATERIAL_JOURNEY as $step): ?>
@@ -428,7 +425,7 @@ $ashtaIds = [
         The eight benefits Gaurikrit associates with Prakritik Paint.
       </p>
       <p class="ashta-section__note">
-        These are client-supplied product benefits, not independently tested claims.
+        Benefits listed in the Prakritik Paint material.
       </p>
     </div>
     <div class="ashta-section__grid" data-reveal>
@@ -464,7 +461,7 @@ $ashtaIds = [
     </div>
 
     <div class="colours-wall" data-colour-wall data-reveal>
-      <?php render_illustration('indian-courtyard', ['class' => 'colours-wall__svg']); ?>
+      <img class="courtyard-study" src="/assets/illustrations/courtyard-study.jpg" alt="" loading="lazy" width="1942" height="809"><span class="courtyard-tint" aria-hidden="true"></span>
       <span class="colours-wall__label">
         <span data-colour-label>Limewash</span>
         <small>Editorial colour study</small>
@@ -524,7 +521,7 @@ $ashtaIds = [
         <p class="calc-teaser__body">
           Walk through four quick choices — what you are painting, where, which
           Prakritik format, and the wall area. We summarise the project for you to
-          send to Gaurikrit. Automatic commercial rates have not yet been configured.
+          send to Gaurikrit to discuss your project.
         </p>
         <div class="calc-teaser__cta">
           <a class="btn btn--primary btn--lg" href="/paint-calculator/">Estimate Your Project</a>

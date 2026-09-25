@@ -15,7 +15,7 @@
  * Run with: `bun run build-static.mjs`
  */
 
-import { readFileSync, writeFileSync, mkdirSync, copyFileSync, existsSync, readdirSync, rmSync } from 'fs';
+import { readFileSync, writeFileSync, mkdirSync, copyFileSync, existsSync, readdirSync, rmSync, cpSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
@@ -52,7 +52,7 @@ const COMPANY = {
     siteUrl: SITE_URL,
 };
 
-const BRAND_PHRASES = ['100% Natural', 'Chemical Free', 'Eco Friendly', 'Sustainable Living'];
+
 
 const PRODUCTS = [
     {
@@ -68,7 +68,7 @@ const PRODUCTS = [
         coverage: '200 sq.ft.**',
         voc: 'Negligible',
         usage: 'Interior & Exterior',
-        officialImage: '/assets/products/prakritik-distemper.png',
+        officialImage: '/assets/products/prakritik-distemper.jpg',
         image: 'prakritik-distemper',
         accent: 'indigo',
         route: '/products/prakritik-distemper/',
@@ -86,7 +86,7 @@ const PRODUCTS = [
         coverage: '300 sq.ft.**',
         voc: 'Negligible',
         usage: 'Interior & Exterior',
-        officialImage: '/assets/products/prakritik-emulsion.png',
+        officialImage: '/assets/products/prakritik-emulsion.jpg',
         image: 'prakritik-emulsion',
         accent: 'haldi',
         route: '/products/prakritik-emulsion/',
@@ -130,11 +130,9 @@ const COLOUR_STUDY = [
 ];
 
 const MATERIAL_JOURNEY = [
-    { num: '01', title: 'Natural origin', desc: 'The material begins with the cow.' },
-    { num: '02', title: 'Raw material', desc: 'Cow dung, gathered and prepared.' },
-    { num: '03', title: 'Preparation', desc: 'Processed into a workable binder.' },
-    { num: '04', title: 'Prakritik Paint', desc: 'Blended into a contemporary paint format.' },
-    { num: '05', title: 'Finished wall', desc: 'Applied to interior and exterior walls.' },
+    { num: '01', title: 'Natural material', desc: 'Cow dung is the material inspiration.' },
+    { num: '02', title: 'Prakritik Paint', desc: 'Available as Distemper and Emulsion.' },
+    { num: '03', title: 'Finished wall', desc: 'Both are listed for interior and exterior use.' },
 ];
 
 const PROJECT_PATHWAYS = [
@@ -259,7 +257,14 @@ function renderHeader(pageMeta, depth) {
     const desc = e(pageMeta.description);
     const canonical = relUrl(pageMeta.canonical, depth);
     const fullCanonical = SITE_URL.replace(/\/$/, '') + pageMeta.canonical;
-    const ogImage = SITE_URL.replace(/\/$/, '') + '/assets/brand/gaurikrit-logo-mark.png';
+    const socialSlug = ({'/':'home','/products/':'products',
+        '/products/prakritik-distemper/':'distemper',
+        '/products/prakritik-emulsion/':'emulsion',
+        '/why-prakritik/':'why-prakritik','/about/':'about',
+        '/for-business/':'for-business','/paint-calculator/':'calculator',
+        '/downloads/':'downloads','/contact/':'contact'})[pageMeta.canonical] || 'home';
+    const ogImage = SITE_URL.replace(/\/$/, '') + '/assets/social/og-' + socialSlug + '.jpg';
+    const ogAlt = 'Gaurikrit — ' + pageMeta.title;
 
     const addr = COMPANY.address;
     const streetAddress = addr.slice(0, 3).filter(Boolean).join(', ');
@@ -286,7 +291,7 @@ function renderHeader(pageMeta, depth) {
 
     const cssHref = assetUrl('/assets/css/app.css', depth) + '?v=static';
     const brandMarkHref = assetUrl('/assets/brand/gaurikrit-logo-mark.png', depth);
-    const fallbackMarkHref = assetUrl('/assets/brand/gaurikrit-mark-temp.svg', depth);
+    const faviconHref = assetUrl('/favicon.ico', depth);
     const navLinks = NAV.map(
         (link) =>
             `        <a href="${relUrl(link.href, depth)}" class="site-nav__link" data-nav-link="${e(link.href)}">${e(link.label)}</a>`,
@@ -302,29 +307,35 @@ function renderHeader(pageMeta, depth) {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="${brandMarkHref}" type="image/png" onerror="this.onerror=null;this.href='${fallbackMarkHref}'">
+    <link rel="icon" href="${faviconHref}" sizes="any">
+    <link rel="icon" href="${assetUrl('/favicon-32x32.png', depth)}" type="image/png" sizes="32x32">
+    <link rel="icon" href="${assetUrl('/favicon-16x16.png', depth)}" type="image/png" sizes="16x16">
+    <link rel="apple-touch-icon" href="${assetUrl('/apple-touch-icon.png', depth)}">
+    <link rel="manifest" href="${assetUrl('/site.webmanifest', depth)}">
     <title>${title}</title>
     <meta name="description" content="${desc}">
     <link rel="canonical" href="${e(fullCanonical)}">
-    <meta name="robots" content="index, follow">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="theme-color" content="#173F2B">
     <meta property="og:title" content="${title}">
     <meta property="og:description" content="${desc}">
     <meta property="og:url" content="${e(fullCanonical)}">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Gaurikrit Bio Products">
     <meta property="og:image" content="${e(ogImage)}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="${e(ogAlt)}">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="${title}">
     <meta name="twitter:description" content="${desc}">
+    <meta name="twitter:image" content="${e(ogImage)}">
+    <meta name="twitter:image:alt" content="${e(ogAlt)}">
     <script type="application/ld+json">
 ${JSON.stringify(ld, null, 2)}
     </script>
 
-    <!-- Fonts: Manrope (sans), Newsreader (display), Noto Serif Devanagari -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,600;6..72,700&family=Noto+Serif+Devanagari:wght@400;700&display=swap" rel="stylesheet">
-
+    <!-- Fonts are served locally from assets/fonts. -->
     <link rel="stylesheet" href="${cssHref}">
 </head>
 <body class="page-${e(pageMeta.pageClass)}">
@@ -479,7 +490,7 @@ function generatePage(pageMeta, depth, bodyContent) {
 function homeBody(depth) {
     const distemper = getProduct('prakritik-distemper');
     const emulsion = getProduct('prakritik-emulsion');
-    const groupImage = '/assets/products/prakritik-group.png';
+    const groupImage = '/assets/products/prakritik-group.jpg';
     const groupImg = assetUrl(groupImage, depth);
 
     const ashtaItems = ASHTA_LAABH.map((benefit, i) => {
@@ -688,18 +699,16 @@ function homeBody(depth) {
       <div class="hero__lockup">
         <span class="hero__eyebrow-chip">
           <span class="hero__eyebrow-dot" aria-hidden="true"></span>
-          ${e(COMPANY.hindiTagline)}
+          GAURIKRIT BIO PRODUCTS
         </span>
         <span class="hero__devanagari" aria-hidden="true">${e(COMPANY.devanagari)}</span>
         <h1 class="hero__title" id="hero-title">${e(COMPANY.headline)}</h1>
         <p class="hero__body">
-          Cow dung-based Prakritik Paint in two formats — Distemper and Emulsion — for
-          interior and exterior walls. From ${e(COMPANY.name)}, made in
-          ${e(COMPANY.address[4] || '')}.
+          Cow dung-based Prakritik Paint in Distemper and Emulsion formats for interior and exterior walls.
         </p>
         <div class="hero__ctas">
           <a class="btn btn--primary btn--lg" href="${relUrl('/products/', depth)}">Explore Prakritik Paint</a>
-          <a class="btn btn--secondary btn--lg" href="${relUrl('/contact/', depth)}">Talk to Us</a>
+          <a class="btn btn--secondary btn--lg" href="${relUrl('/why-prakritik/', depth)}">Why Prakritik?</a>
         </div>
       </div>
 
@@ -721,7 +730,7 @@ function homeBody(depth) {
           </div>
         </div>
         <!-- Cow line art at 0.16 opacity — secondary line, not the hero -->
-        ${loadSvg('indian-cow', 'hero__cow')}
+
       </div>
     </div>
   </div>
@@ -747,13 +756,12 @@ function homeBody(depth) {
             for brushing on interior and exterior walls.
           </p>
           <p>
-            Not a novelty. Not a throwback. A useful material, reconsidered.
+            Two paint formats for interior and exterior walls.
           </p>
         </div>
       </div>
       <div class="material-statement__visual" aria-hidden="true">
-        <div class="ms-wall"></div>
-        ${loadSvg('indian-cow', 'ms-cow')}
+        <img class="editorial-cow" src="${assetUrl('/assets/illustrations/zebu-study.jpg', depth)}" alt="" loading="lazy" width="1536" height="1024">
       </div>
     </div>
   </div>
@@ -783,7 +791,7 @@ function homeBody(depth) {
           ${e(distemper.name)}
         </h3>
         <p class="product-chapter__desc">
-          ${e(distemper.descriptor)}. A powder-format paint, brushed on interior
+          ${e(distemper.descriptor)}. A paint listed for interior
           and exterior walls. Supplied in ${e(distemper.packagingShort)} packs.
         </p>
         <dl class="product-chapter__specs">
@@ -833,7 +841,7 @@ function homeBody(depth) {
           ${e(emulsion.name)}
         </h3>
         <p class="product-chapter__desc">
-          ${e(emulsion.descriptor)}. A liquid-format paint, brushed on interior
+          ${e(emulsion.descriptor)}. A paint listed for interior
           and exterior walls. Supplied in ${e(emulsion.packagingShort)} packs.
         </p>
         <dl class="product-chapter__specs">
@@ -868,11 +876,11 @@ function homeBody(depth) {
       <span class="section-heading__eyebrow">Material to wall</span>
       <h2 class="section-heading__title" id="journey-title">From a natural material to a finished wall.</h2>
       <p class="section-heading__desc">
-        Three conceptual stages. Not a process diagram — a narrative one.
+        Natural material, Prakritik Paint, finished walls.
       </p>
     </div>
     <div class="material-flow__svg-wrap" data-reveal>
-      ${loadSvg('material-to-wall', 'material-journey__svg')}
+
     </div>
     <ol class="material-journey__steps" data-reveal-stagger>
 ${journeySteps}
@@ -892,7 +900,7 @@ ${journeySteps}
         The eight benefits Gaurikrit associates with Prakritik Paint.
       </p>
       <p class="ashta-section__note">
-        These are client-supplied product benefits, not independently tested claims.
+        Benefits listed in the Prakritik Paint material.
       </p>
     </div>
     <div class="ashta-section__grid" data-reveal>
@@ -921,7 +929,7 @@ ${ashtaItems}
     </div>
 
     <div class="colours-wall" data-colour-wall data-reveal>
-      ${loadSvg('indian-courtyard', 'colours-wall__svg')}
+      <img class="courtyard-study" src="${assetUrl('/assets/illustrations/courtyard-study.jpg', depth)}" alt="" loading="lazy" width="1942" height="809"><span class="courtyard-tint" aria-hidden="true"></span>
       <span class="colours-wall__label">
         <span data-colour-label>Limewash</span>
         <small>Editorial colour study</small>
@@ -970,7 +978,7 @@ ${swatches}
         <p class="calc-teaser__body">
           Walk through four quick choices — what you are painting, where, which
           Prakritik format, and the wall area. We summarise the project for you to
-          send to Gaurikrit. Automatic commercial rates have not yet been configured.
+          send to Gaurikrit to discuss your project.
         </p>
         <div class="calc-teaser__cta">
           <a class="btn btn--primary btn--lg" href="${relUrl('/paint-calculator/', depth)}">Estimate Your Project</a>
@@ -1066,7 +1074,7 @@ ${pathways}
 function productsBody(depth) {
     const distemper = getProduct('prakritik-distemper');
     const emulsion = getProduct('prakritik-emulsion');
-    const groupImage = '/assets/products/prakritik-group.png';
+    const groupImage = '/assets/products/prakritik-group.jpg';
     const groupImg = assetUrl(groupImage, depth);
 
     const benefitsItems = ASHTA_LAABH.map(
@@ -1180,7 +1188,7 @@ function productsBody(depth) {
         <h1 class="products-hero__title" id="products-hero-title">Two formats of Prakritik Paint.</h1>
         <p class="products-hero__sub">
           Cow dung-based paint, made for interior and exterior walls. Prakritik
-          Distemper (powder) and Prakritik Emulsion (liquid). Two formats, one
+          Distemper and Prakritik Emulsion. Two formats, one
           material idea.
         </p>
       </div>
@@ -1223,7 +1231,7 @@ function productsBody(depth) {
           ${e(distemper.name)}
         </h2>
         <p class="product-chapter__desc">
-          ${e(distemper.descriptor)}. A powder-format paint, brushed on
+          ${e(distemper.descriptor)}. A paint listed for
           interior and exterior walls. Supplied in ${e(distemper.packagingShort)} packs.
         </p>
         <dl class="product-chapter__specs">
@@ -1265,7 +1273,7 @@ function productsBody(depth) {
           ${e(emulsion.name)}
         </h2>
         <p class="product-chapter__desc">
-          ${e(emulsion.descriptor)}. A liquid-format paint, brushed on
+          ${e(emulsion.descriptor)}. A paint listed for
           interior and exterior walls. Supplied in ${e(emulsion.packagingShort)} packs.
         </p>
         <dl class="product-chapter__specs">
@@ -1353,7 +1361,7 @@ function productsBody(depth) {
       <span class="section-heading__eyebrow">Ashta Laabh — अष्ट लाभ</span>
       <h2 class="section-heading__title" id="benefits-title">Eight benefits of Prakritik Paint.</h2>
       <p class="section-heading__desc">
-        Client-supplied product benefits, not independently tested claims.
+        Benefits listed in the Prakritik Paint material.
       </p>
     </div>
     <ol class="benefits-strip__list" data-reveal-stagger>
@@ -1500,7 +1508,7 @@ function distemperBody(depth) {
         <h1 class="product-detail__name" id="distemper-title">${e(product.name)}</h1>
         <p class="product-detail__descriptor">${e(product.descriptor)}</p>
         <p class="distemper-hero__body">
-          A powder-format cow dung-based paint, brushed on interior and exterior
+          Cow dung-based paint listed for interior and exterior
           walls. Supplied in ${e(product.packagingShort)} packs.
         </p>
         <div class="distemper-hero__cta-row">
@@ -1552,7 +1560,7 @@ ${specItems}
       <span class="section-heading__eyebrow">अष्ट लाभ — Eight benefits</span>
       <h2 class="section-heading__title" id="distemper-ashta-title">Ashta Laabh.</h2>
       <p class="section-heading__desc">
-        Client-supplied product benefits, not independently tested claims.
+        Benefits listed in the Prakritik Paint material.
       </p>
     </div>
 
@@ -1576,7 +1584,7 @@ ${ashtaItems}
           <span class="distemper-hero__eyebrow">Looking at the other format?</span>
           <h2 class="distemper-cta__title" id="cross-title">Prakritik Emulsion.</h2>
           <p class="distemper-cta__body">
-            A liquid-format cow dung-based paint. Coverage ${e(emulsion.coverage)}.
+            Cow dung-based Emulsion Paint. Coverage ${e(emulsion.coverage)}.
             Supplied in ${e(emulsion.packagingShort)} packs.
           </p>
         </div>
@@ -1714,7 +1722,7 @@ function emulsionBody(depth) {
         <h1 class="product-detail__name" id="emulsion-title">${e(product.name)}</h1>
         <p class="product-detail__descriptor">${e(product.descriptor)}</p>
         <p class="emulsion-hero__body">
-          A liquid-format cow dung-based paint, brushed on interior and exterior
+          Cow dung-based paint listed for interior and exterior
           walls. Supplied in ${e(product.packagingShort)} packs.
         </p>
         <div class="emulsion-hero__cta-row">
@@ -1753,7 +1761,7 @@ ${specItems}
       <span class="section-heading__eyebrow">अष्ट लाभ — Eight benefits</span>
       <h2 class="section-heading__title" id="emulsion-ashta-title">Ashta Laabh.</h2>
       <p class="section-heading__desc">
-        Client-supplied product benefits, not independently tested claims.
+        Benefits listed in the Prakritik Paint material.
       </p>
     </div>
 
@@ -1777,7 +1785,7 @@ ${ashtaItems}
           <span class="emulsion-hero__eyebrow">Looking at the other format?</span>
           <h2 class="emulsion-cta__title" id="cross-title">Prakritik Distemper.</h2>
           <p class="emulsion-cta__body">
-            A powder-format cow dung-based paint. Coverage ${e(distemper.coverage)}.
+            Cow dung-based Distemper Paint. Coverage ${e(distemper.coverage)}.
             Supplied in ${e(distemper.packagingShort)} packs.
           </p>
         </div>
@@ -1992,8 +2000,7 @@ function whyPrakritikBody(depth) {
         </p>
       </div>
       <div class="why-hero__art" aria-hidden="true">
-        <div class="why-wall"></div>
-        ${loadSvg('indian-cow', 'why-cow')}
+        <img class="editorial-cow" src="${assetUrl('/assets/illustrations/zebu-study.jpg', depth)}" alt="" width="1536" height="1024">
       </div>
     </div>
   </div>
@@ -2006,16 +2013,13 @@ function whyPrakritikBody(depth) {
       <div>
         <span class="why-chapter__num">01</span>
         <span class="why-chapter__eyebrow">The material</span>
-        <h2 class="why-chapter__title" id="chapter-01-title">A natural material, with provenance.</h2>
+        <h2 class="why-chapter__title" id="chapter-01-title">A natural material for modern walls.</h2>
         <div class="why-chapter__body">
           <p>
-            The material begins with the cow. Cow dung, gathered and prepared —
-            a substance with a long Indian tradition of being applied to walls
-            and floors.
+            Cow dung has a long history of use on walls and floors in India.
           </p>
           <p>
-            Prakritik Paint works with that same material, processed into a
-            workable binder for a contemporary paint format.
+            Gaurikrit offers cow dung-based Prakritik Paint in Distemper and Emulsion formats.
           </p>
         </div>
         <p class="why-chapter__pull">
@@ -2023,8 +2027,7 @@ function whyPrakritikBody(depth) {
         </p>
       </div>
       <div class="why-material-sample" aria-hidden="true">
-        <div class="why-material-sample__patch"></div>
-        <span class="why-material-sample__tag">Material sample — cow dung binder</span>
+        <img class="editorial-cow" src="${assetUrl('/assets/illustrations/zebu-study.jpg', depth)}" alt="" loading="lazy" width="1536" height="1024">
       </div>
     </div>
   </div>
@@ -2035,7 +2038,7 @@ function whyPrakritikBody(depth) {
   <div class="container">
     <div class="why-chapter why-chapter--reverse" data-reveal>
       <div class="why-tradition-art" aria-hidden="true">
-        ${loadSvg('indian-courtyard')}
+        <img class="editorial-courtyard" src="${assetUrl('/assets/illustrations/courtyard-study.jpg', depth)}" alt="" loading="lazy" width="1942" height="809">
       </div>
       <div>
         <span class="why-chapter__num">02</span>
@@ -2044,12 +2047,10 @@ function whyPrakritikBody(depth) {
         <div class="why-chapter__body">
           <p>
             Indian vernacular architecture is full of limewashed walls, plinths,
-            verandahs, and rectangular openings — a discipline of plaster, lime,
-            and earth that Prakritik Paint inherits materially.
+            verandahs, and rectangular openings — plaster, lime and earth.
           </p>
           <p>
-            The paint belongs to that lineage. It is not imported. It is not
-            decorative. It is local material, on local walls.
+            The courtyard study shows a wall surface in an everyday Indian setting.
           </p>
         </div>
       </div>
@@ -2065,11 +2066,11 @@ function whyPrakritikBody(depth) {
       <span class="why-chapter__eyebrow">Material to wall</span>
       <h2 class="why-chapter__title" id="chapter-03-title">From a natural material to a finished wall.</h2>
       <p class="why-chapter__body">
-        Three conceptual stages. Not a process diagram — a narrative one.
+        Natural material, Prakritik Paint, finished walls.
       </p>
     </div>
     <div class="why-flow-svg" data-reveal>
-      ${loadSvg('material-to-wall')}
+
     </div>
     <ol class="material-journey__steps" data-reveal-stagger>
 ${journeySteps}
@@ -2084,7 +2085,7 @@ ${journeySteps}
       <span class="section-heading__eyebrow">अष्ट लाभ</span>
       <h2 class="section-heading__title" id="chapter-04-title">Eight benefits.</h2>
       <p class="section-heading__desc">
-        Client-supplied product benefits, not independently tested claims.
+        Benefits listed in the Prakritik Paint material.
       </p>
     </div>
     <div class="ashta-section__grid" data-reveal>
@@ -2106,7 +2107,7 @@ ${ashtaItems}
       <span class="why-chapter__eyebrow">Two formats</span>
       <h2 class="why-chapter__title" id="chapter-05-title">Distemper and Emulsion.</h2>
       <p class="why-chapter__body">
-        Two paint formats, one material idea. Powder and liquid, both for
+        Two paint formats, one material idea. Both are listed for
         interior and exterior walls.
       </p>
     </div>
@@ -2152,8 +2153,7 @@ ${ashtaItems}
           <p>
             Prakritik Paint is made by ${e(COMPANY.legalName)}, in
             ${e(COMPANY.address[3] || '')}, ${e(COMPANY.address[4] || '')}.
-            A rural material, made in a rural context — the landscape it
-            belongs to.
+            The company address is in Bulandshahr, Uttar Pradesh.
           </p>
         </div>
         <div class="mission-band__cta" style="margin-top: 1.5rem;">
@@ -2186,7 +2186,7 @@ function aboutBody(depth) {
     const emulsion = getProduct('prakritik-emulsion');
     const address = COMPANY.address;
     const addressLine = address.join('\n');
-    const groupImage = '/assets/products/prakritik-group.png';
+    const groupImage = '/assets/products/prakritik-group.jpg';
 
     const phoneRows = COMPANY.phones.map((phone) => `        <div class="company-plate__row">
           <dt>Phone</dt>
@@ -2302,16 +2302,8 @@ function aboutBody(depth) {
           exterior walls. From ${e(address[3] || '')}, ${e(address[4] || '')}.
         </p>
       </div>
-      <div class="about-hero__art">
-        <div class="product-media" data-official-image="${assetUrl(groupImage, depth)}">
-          <img class="product-media__official"
-               src="${assetUrl(groupImage, depth)}"
-               alt="Prakritik Distemper and Emulsion paint packs"
-               width="800" height="600" loading="eager" decoding="async">
-          <div class="product-media__fallback">
-            ${loadSvg('prakritik-emulsion-bucket')}
-          </div>
-        </div>
+      <div class="about-hero__art about-hero__art--brand">
+        <img class="about-hero__logo" src="${assetUrl('/assets/brand/gaurikrit-logo-full.png', depth)}" alt="Gaurikrit official emblem and wordmark" width="550" height="690">
       </div>
     </div>
   </div>
@@ -2331,13 +2323,13 @@ function aboutBody(depth) {
       <div class="about-section__body">
         <p>
           ${e(COMPANY.name)} makes Prakritik Paint, a cow dung-based
-          paint in two formats: Prakritik Distemper (powder) and Prakritik
-          Emulsion (liquid). Both are matt finish, listed for interior and
+          paint in two formats: Prakritik Distemper and Prakritik
+          Emulsion. Both are matt finish, listed for interior and
           exterior use.
         </p>
         <p>
           The company carries an old Indian material idea — cow dung on walls —
-          into a contemporary paint format. Not nostalgia. Not novelty. A useful
+          into a contemporary paint format. A useful
           material, reconsidered for modern walls.
         </p>
       </div>
@@ -2409,8 +2401,7 @@ function aboutBody(depth) {
         <div class="about-section__body">
           <p>
             Cow dung has been used on Indian walls and floors for generations.
-            Prakritik Paint takes that material and processes it into a workable
-            binder, blended into a modern paint.
+            Gaurikrit offers cow dung-based Prakritik Paint in two formats.
           </p>
           <p>
             The cow is in the material. The wall is where it goes.
@@ -2421,8 +2412,7 @@ function aboutBody(depth) {
         </div>
       </div>
       <div class="about-direction__visual" aria-hidden="true">
-        <div class="ms-wall"></div>
-        ${loadSvg('indian-cow', 'ms-cow')}
+        <img class="editorial-cow" src="${assetUrl('/assets/illustrations/zebu-study.jpg', depth)}" alt="" loading="lazy" width="1536" height="1024">
       </div>
     </div>
   </div>
@@ -2681,8 +2671,7 @@ ${practicalItems}
 </section>
 
 <!-- ===== FORM (12-col) ===== -->
-<!-- Static fallback: replace the action with your Formspree ID. No CSRF /
-     honeypot needed for static — forms.js handles fetch + toast. -->
+
 <section class="section section--paper biz-form-section" id="enquire" aria-labelledby="form-title">
   <div class="container">
     <div class="biz-form-layout" data-reveal>
@@ -2722,9 +2711,8 @@ ${asidePhoneRows}
       </aside>
 
       <!-- RIGHT 8 col: form fields -->
-      <!-- Replace the action URL with your Formspree form ID for static deployment -->
-      <form class="biz-form-card" action="https://formspree.io/f/your-form-id" method="post"
-            data-business-form novalidate>
+      <form class="biz-form-card" action="mailto:${e(COMPANY.email)}" method="get"
+            data-business-form data-static-preview novalidate>
         <p class="biz-form-card__intro">
           Fields marked <span class="req">*</span> are required.
         </p>
@@ -2790,7 +2778,7 @@ ${projectTypeOptions}
 
         <div class="calc-actions">
           <button type="submit" class="btn btn--primary btn--lg">
-            <span data-submit-label>Discuss a Project</span>
+            <span data-submit-label>Send via Email</span>
           </button>
         </div>
       </form>
@@ -3003,7 +2991,7 @@ function paintCalculatorBody(depth) {
 
 // ---- Downloads — V3 ----
 function downloadsBody(depth) {
-    const coverImage = '/assets/documents/prakritik-paint-brochure-cover.png';
+    const coverImage = '/assets/documents/prakritik-paint-brochure-cover.jpg';
     const brochureUrl = '/assets/documents/prakritik-paint-brochure.pdf';
     const brochureCover = assetUrl(coverImage, depth);
     const brochurePdf = assetUrl(brochureUrl, depth);
@@ -3128,8 +3116,7 @@ function downloadsBody(depth) {
       <hr class="dl-hero__rule">
       <h1 class="dl-hero__title" id="dl-title">Prakritik Paint brochure.</h1>
       <p class="dl-hero__sub">
-        One brochure, when published. The current edition is checked at render
-        time — if the PDF is present you can view or download it directly.
+        Browse the supplied Prakritik Paint brochure or download a copy.
       </p>
     </div>
   </div>
@@ -3163,34 +3150,13 @@ function downloadsBody(depth) {
         </div>
       </div>
 
-      <!-- RIGHT — title + details + actions -->
-      <!-- Static build: assume the brochure PDF is missing. JS brochure-detection
-           module does a HEAD fetch and can flip data-brochure-state accordingly.
-           On GitHub Pages this will 404 and show the "Contact Gaurikrit"
-           message — correct behaviour. -->
-      <div class="dl-card" data-brochure-detect="${brochurePdf}" data-brochure-state="missing">
-        <div data-brochure-if-missing>
-          <span class="brochure__detail-eyebrow">Brochure pending</span>
-          <h2 class="brochure__detail-title">The current brochure is not yet published here.</h2>
-          <p class="brochure__detail-desc">
-            The brochure PDF was not detected on the server at render time.
-            Gaurikrit will provide the current edition directly on request.
-          </p>
-          <div class="brochure__detail-actions">
-            <a class="btn btn--primary btn--lg" href="${relUrl('/contact/', depth)}?interest=general">Contact Gaurikrit for the current product brochure</a>
-          </div>
-          <p class="brochure__detail-note">
-            In the meantime, product specifications for both formats are listed
-            on the Distemper and Emulsion detail pages.
-          </p>
-          <div class="dl-missing" style="margin-top: 1.5rem;">
-            <strong>Checked path:</strong>
-            <code>${e(brochureUrl)}</code> — file not found at render time.
-          </div>
-        </div>
-        <div class="brochure__detail-actions" data-brochure-if-available hidden>
-          <a class="btn btn--primary btn--lg" href="${brochurePdf}"
-             target="_blank" rel="noopener">View Brochure</a>
+      <!-- RIGHT — supplied brochure -->
+      <div class="dl-card">
+        <span class="brochure__detail-eyebrow">Product document</span>
+        <h2 class="brochure__detail-title">Prakritik Paint brochure</h2>
+        <p class="brochure__detail-desc">Read the Prakritik Paint brochure for both product formats.</p>
+        <div class="brochure__detail-actions">
+          <a class="btn btn--primary btn--lg" href="${brochurePdf}" target="_blank" rel="noopener">View Brochure</a>
           <a class="btn btn--outline" href="${brochurePdf}" download>Download PDF</a>
         </div>
       </div>
@@ -3334,10 +3300,8 @@ ${phoneRows}
       </aside>
 
       <!-- RIGHT — enquiry form -->
-      <!-- Static fallback: replace the action URL with your Formspree ID. No
-           CSRF / honeypot needed for static — forms.js handles fetch + toast. -->
-      <form class="contact-form" action="https://formspree.io/f/your-form-id" method="post"
-            data-contact-form novalidate>
+      <form class="contact-form" action="mailto:${e(COMPANY.email)}" method="get"
+            data-contact-form data-static-preview novalidate>
         <p class="contact-form-card__intro">
           Fields marked <span class="req">*</span> are required.
         </p>
@@ -3380,7 +3344,7 @@ ${interestOptions}
 
         <div class="calc-actions">
           <button type="submit" class="btn btn--primary btn--lg">
-            <span data-submit-label>Send Enquiry</span>
+            <span data-submit-label>Send via Email</span>
           </button>
         </div>
       </form>
@@ -3485,7 +3449,7 @@ const PAGES = [
         route: 'index.html',
         depth: 0,
         pageMeta: {
-            title: 'Gaurikrit Bio Products — Prakritik Paint & Bio Products',
+            title: 'Gaurikrit — Prakritik Paint & Bio Products',
             description:
                 'Cow dung-based Prakritik Paint in Distemper and Emulsion formats for interior and exterior walls. Gaurikrit Bio Products, Khurja, District Bulandshahr, Uttar Pradesh.',
             canonical: '/',
@@ -3499,7 +3463,7 @@ const PAGES = [
         pageMeta: {
             title: 'Prakritik Paint Products — Distemper & Emulsion | Gaurikrit',
             description:
-                'Two formats of Prakritik Paint: Distemper (powder, 1-20 kg packs) and Emulsion (liquid, 1-20 litre packs). Matt finish, interior & exterior use. Cow-dung-based, from Gaurikrit Bio Products.',
+                'Two formats of Prakritik Paint: Distemper (1, 5, 10 and 20 kg packs) and Emulsion (1, 4, 10 and 20 litre packs). Matt finish, interior & exterior use. Cow-dung-based, from Gaurikrit Bio Products.',
             canonical: '/products/',
             pageClass: 'products',
         },
@@ -3583,7 +3547,7 @@ const PAGES = [
         pageMeta: {
             title: 'Downloads — Prakritik Paint Brochure | Gaurikrit',
             description:
-                'View or download the Prakritik Paint product brochure. If the current PDF is not yet published, contact Gaurikrit directly for the latest brochure.',
+                'View or download the Prakritik Paint brochure for Distemper and Emulsion.',
             canonical: '/downloads/',
             pageClass: 'downloads',
         },
@@ -3656,28 +3620,26 @@ function build() {
         console.log('STATIC-BUILD (V3): copied assets/js/' + f);
     }
 
+    // Exact same public image and document bytes as the Hostinger build.
+    for (const dir of ['brand','products','documents','illustrations','social','fonts']) {
+        cpSync(join(SRC,'assets',dir), join(OUT,'assets',dir), {recursive:true});
+    }
+    for (const file of ['favicon.ico','favicon-16x16.png','favicon-32x32.png','favicon-48x48.png',
+        'apple-touch-icon.png','android-chrome-192x192.png','android-chrome-512x512.png','site.webmanifest']) {
+        copyFileSync(join(SRC,file),join(OUT,file));
+    }
     // .nojekyll — tells GitHub Pages NOT to process the site with Jekyll
     // (Jekyll ignores folders starting with `_` and would skip assets).
     writeFileSync(join(OUT, '.nojekyll'), '', 'utf8');
     console.log('STATIC-BUILD (V3): wrote .nojekyll');
 
-    // robots.txt + sitemap.xml for SEO. Use relative-friendly paths
-    // (absolute URLs that point at the GitHub Pages deployment).
+    // The GitHub Pages copy is a noindex demonstration, not a second site.
     writeFileSync(
         join(OUT, 'robots.txt'),
-        `User-agent: *\nAllow: /\nSitemap: ${SITE_URL}/sitemap.xml\n`,
+        `User-agent: *\nDisallow: /\n`,
         'utf8',
     );
     console.log('STATIC-BUILD (V3): wrote robots.txt');
-
-    const sitemapUrls = ['', 'products/', 'products/prakritik-distemper/', 'products/prakritik-emulsion/',
-        'why-prakritik/', 'about/', 'for-business/', 'paint-calculator/', 'downloads/', 'contact/'];
-    const today = new Date().toISOString().slice(0, 10);
-    const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sitemapUrls
-        .map((u) => `  <url><loc>${SITE_URL}/${u}</loc><lastmod>${today}</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>`)
-        .join('\n')}\n</urlset>\n`;
-    writeFileSync(join(OUT, 'sitemap.xml'), sitemapXml, 'utf8');
-    console.log('STATIC-BUILD (V3): wrote sitemap.xml');
 
     console.log('STATIC-BUILD (V3): done — ' + generated + ' HTML files generated.');
 }

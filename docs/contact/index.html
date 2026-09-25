@@ -3,20 +3,30 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="../assets/brand/gaurikrit-logo-mark.png" type="image/png" onerror="this.onerror=null;this.href='../assets/brand/gaurikrit-mark-temp.svg'">
+    <link rel="icon" href="../favicon.ico" sizes="any">
+    <link rel="icon" href="../favicon-32x32.png" type="image/png" sizes="32x32">
+    <link rel="icon" href="../favicon-16x16.png" type="image/png" sizes="16x16">
+    <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+    <link rel="manifest" href="../site.webmanifest">
     <title>Talk to Gaurikrit — Contact | Gaurikrit Bio Products</title>
     <meta name="description" content="Email, phones, address and GSTIN for Gaurikrit Bio Products (OPC) Private Limited. Send an enquiry about Prakritik Distemper, Emulsion, bulk projects, partnerships or Gaushala collaboration.">
     <link rel="canonical" href="https://hello-aditya-dev.github.io/gaurikrit-website/contact/">
-    <meta name="robots" content="index, follow">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="theme-color" content="#173F2B">
     <meta property="og:title" content="Talk to Gaurikrit — Contact | Gaurikrit Bio Products">
     <meta property="og:description" content="Email, phones, address and GSTIN for Gaurikrit Bio Products (OPC) Private Limited. Send an enquiry about Prakritik Distemper, Emulsion, bulk projects, partnerships or Gaushala collaboration.">
     <meta property="og:url" content="https://hello-aditya-dev.github.io/gaurikrit-website/contact/">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Gaurikrit Bio Products">
-    <meta property="og:image" content="https://hello-aditya-dev.github.io/gaurikrit-website/assets/brand/gaurikrit-logo-mark.png">
+    <meta property="og:image" content="https://hello-aditya-dev.github.io/gaurikrit-website/assets/social/og-contact.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Gaurikrit — Talk to Gaurikrit — Contact | Gaurikrit Bio Products">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Talk to Gaurikrit — Contact | Gaurikrit Bio Products">
     <meta name="twitter:description" content="Email, phones, address and GSTIN for Gaurikrit Bio Products (OPC) Private Limited. Send an enquiry about Prakritik Distemper, Emulsion, bulk projects, partnerships or Gaushala collaboration.">
+    <meta name="twitter:image" content="https://hello-aditya-dev.github.io/gaurikrit-website/assets/social/og-contact.jpg">
+    <meta name="twitter:image:alt" content="Gaurikrit — Talk to Gaurikrit — Contact | Gaurikrit Bio Products">
     <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -42,11 +52,7 @@
 }
     </script>
 
-    <!-- Fonts: Manrope (sans), Newsreader (display), Noto Serif Devanagari -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,600;6..72,700&family=Noto+Serif+Devanagari:wght@400;700&display=swap" rel="stylesheet">
-
+    <!-- Fonts are served locally from assets/fonts. -->
     <link rel="stylesheet" href="../assets/css/app.css?v=static">
 </head>
 <body class="page-contact">
@@ -325,10 +331,8 @@ India</dd>
       </aside>
 
       <!-- RIGHT — enquiry form -->
-      <!-- Static fallback: replace the action URL with your Formspree ID. No
-           CSRF / honeypot needed for static — forms.js handles fetch + toast. -->
-      <form class="contact-form" action="https://formspree.io/f/your-form-id" method="post"
-            data-contact-form novalidate>
+      <form class="contact-form" action="mailto:seva@gaurikrit.com" method="get"
+            data-contact-form data-static-preview novalidate>
         <p class="contact-form-card__intro">
           Fields marked <span class="req">*</span> are required.
         </p>
@@ -376,7 +380,7 @@ India</dd>
 
         <div class="calc-actions">
           <button type="submit" class="btn btn--primary btn--lg">
-            <span data-submit-label>Send Enquiry</span>
+            <span data-submit-label>Send via Email</span>
           </button>
         </div>
       </form>

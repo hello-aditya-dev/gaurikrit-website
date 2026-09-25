@@ -209,8 +209,7 @@ $ashtaIds = [
         </p>
       </div>
       <div class="why-hero__art" aria-hidden="true">
-        <div class="why-wall"></div>
-        <?php render_illustration('indian-cow', ['class' => 'why-cow']); ?>
+        <img class="editorial-cow" src="/assets/illustrations/zebu-study.jpg" alt="" width="1536" height="1024">
       </div>
     </div>
   </div>
@@ -223,16 +222,13 @@ $ashtaIds = [
       <div>
         <span class="why-chapter__num">01</span>
         <span class="why-chapter__eyebrow">The material</span>
-        <h2 class="why-chapter__title" id="chapter-01-title">A natural material, with provenance.</h2>
+        <h2 class="why-chapter__title" id="chapter-01-title">A natural material for modern walls.</h2>
         <div class="why-chapter__body">
           <p>
-            The material begins with the cow. Cow dung, gathered and prepared —
-            a substance with a long Indian tradition of being applied to walls
-            and floors.
+            Cow dung has a long history of use on walls and floors in India.
           </p>
           <p>
-            Prakritik Paint works with that same material, processed into a
-            workable binder for a contemporary paint format.
+            Gaurikrit offers cow dung-based Prakritik Paint in Distemper and Emulsion formats.
           </p>
         </div>
         <p class="why-chapter__pull">
@@ -240,8 +236,7 @@ $ashtaIds = [
         </p>
       </div>
       <div class="why-material-sample" aria-hidden="true">
-        <div class="why-material-sample__patch"></div>
-        <span class="why-material-sample__tag">Material sample — cow dung binder</span>
+        <img class="editorial-cow" src="/assets/illustrations/zebu-study.jpg" alt="" loading="lazy" width="1536" height="1024">
       </div>
     </div>
   </div>
@@ -252,7 +247,7 @@ $ashtaIds = [
   <div class="container">
     <div class="why-chapter why-chapter--reverse" data-reveal>
       <div class="why-tradition-art" aria-hidden="true">
-        <?php render_illustration('indian-courtyard'); ?>
+        <img class="editorial-courtyard" src="/assets/illustrations/courtyard-study.jpg" alt="" loading="lazy" width="1942" height="809">
       </div>
       <div>
         <span class="why-chapter__num">02</span>
@@ -261,12 +256,10 @@ $ashtaIds = [
         <div class="why-chapter__body">
           <p>
             Indian vernacular architecture is full of limewashed walls, plinths,
-            verandahs, and rectangular openings — a discipline of plaster, lime,
-            and earth that Prakritik Paint inherits materially.
+            verandahs, and rectangular openings — plaster, lime and earth.
           </p>
           <p>
-            The paint belongs to that lineage. It is not imported. It is not
-            decorative. It is local material, on local walls.
+            The courtyard study shows a wall surface in an everyday Indian setting.
           </p>
         </div>
       </div>
@@ -282,11 +275,11 @@ $ashtaIds = [
       <span class="why-chapter__eyebrow">Material to wall</span>
       <h2 class="why-chapter__title" id="chapter-03-title">From a natural material to a finished wall.</h2>
       <p class="why-chapter__body">
-        Three conceptual stages. Not a process diagram — a narrative one.
+        Natural material, Prakritik Paint, finished walls.
       </p>
     </div>
     <div class="why-flow-svg" data-reveal>
-      <?php render_illustration('material-to-wall'); ?>
+
     </div>
     <ol class="material-journey__steps" data-reveal-stagger>
       <?php foreach ($MATERIAL_JOURNEY as $step): ?>
@@ -307,7 +300,7 @@ $ashtaIds = [
       <span class="section-heading__eyebrow">अष्ट लाभ</span>
       <h2 class="section-heading__title" id="chapter-04-title">Eight benefits.</h2>
       <p class="section-heading__desc">
-        Client-supplied product benefits, not independently tested claims.
+        Benefits listed in the Prakritik Paint material.
       </p>
     </div>
     <div class="ashta-section__grid" data-reveal>
@@ -336,7 +329,7 @@ $ashtaIds = [
       <span class="why-chapter__eyebrow">Two formats</span>
       <h2 class="why-chapter__title" id="chapter-05-title">Distemper and Emulsion.</h2>
       <p class="why-chapter__body">
-        Two paint formats, one material idea. Powder and liquid, both for
+        Two paint formats, one material idea. Both are listed for
         interior and exterior walls.
       </p>
     </div>
@@ -382,8 +375,7 @@ $ashtaIds = [
           <p>
             Prakritik Paint is made by <?= e($COMPANY['legalName']) ?>, in
             <?= e($COMPANY['address'][3] ?? '') ?>, <?= e($COMPANY['address'][4] ?? '') ?>.
-            A rural material, made in a rural context — the landscape it
-            belongs to.
+            The company address is in Bulandshahr, Uttar Pradesh.
           </p>
         </div>
         <div class="mission-band__cta" style="margin-top: 1.5rem;">

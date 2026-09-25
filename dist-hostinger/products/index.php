@@ -15,7 +15,7 @@
 declare(strict_types=1);
 
 $pageTitle       = 'Prakritik Paint Products — Distemper & Emulsion | Gaurikrit';
-$pageDescription = 'Two formats of Prakritik Paint: Distemper (powder, 1-20 kg packs) and Emulsion (liquid, 1-20 litre packs). Matt finish, interior & exterior use. Cow-dung-based, from Gaurikrit Bio Products.';
+$pageDescription = 'Two formats of Prakritik Paint: Distemper (1, 5, 10 and 20 kg packs) and Emulsion (1, 4, 10 and 20 litre packs). Matt finish, interior & exterior use. Cow-dung-based, from Gaurikrit Bio Products.';
 $pageCanonical   = '/products/';
 $pageClass       = 'products';
 
@@ -26,7 +26,7 @@ global $COMPANY, $PRODUCTS, $ASHTA_LAABH, $FAQ, $COVERAGE_DISCLAIMER;
 
 $distemper   = get_product('prakritik-distemper');
 $emulsion    = get_product('prakritik-emulsion');
-$groupImage  = '/assets/products/prakritik-group.png';
+$groupImage  = '/assets/products/prakritik-group.jpg';
 
 $ashtaIds = [
     'Antibacterial'              => 'antibacterial',
@@ -129,7 +129,7 @@ $ashtaIds = [
         <h1 class="products-hero__title" id="products-hero-title">Two formats of Prakritik Paint.</h1>
         <p class="products-hero__sub">
           Cow dung-based paint, made for interior and exterior walls. Prakritik
-          Distemper (powder) and Prakritik Emulsion (liquid). Two formats, one
+          Distemper and Prakritik Emulsion. Two formats, one
           material idea.
         </p>
       </div>
@@ -172,7 +172,7 @@ $ashtaIds = [
           <?= e($distemper['name']) ?>
         </h2>
         <p class="product-chapter__desc">
-          <?= e($distemper['descriptor']) ?>. A powder-format paint, brushed on
+          <?= e($distemper['descriptor']) ?>. A paint listed for
           interior and exterior walls. Supplied in <?= e($distemper['packagingShort']) ?> packs.
         </p>
         <dl class="product-chapter__specs">
@@ -214,7 +214,7 @@ $ashtaIds = [
           <?= e($emulsion['name']) ?>
         </h2>
         <p class="product-chapter__desc">
-          <?= e($emulsion['descriptor']) ?>. A liquid-format paint, brushed on
+          <?= e($emulsion['descriptor']) ?>. A paint listed for
           interior and exterior walls. Supplied in <?= e($emulsion['packagingShort']) ?> packs.
         </p>
         <dl class="product-chapter__specs">
@@ -302,7 +302,7 @@ $ashtaIds = [
       <span class="section-heading__eyebrow">Ashta Laabh — अष्ट लाभ</span>
       <h2 class="section-heading__title" id="benefits-title">Eight benefits of Prakritik Paint.</h2>
       <p class="section-heading__desc">
-        Client-supplied product benefits, not independently tested claims.
+        Benefits listed in the Prakritik Paint material.
       </p>
     </div>
     <ol class="benefits-strip__list" data-reveal-stagger>

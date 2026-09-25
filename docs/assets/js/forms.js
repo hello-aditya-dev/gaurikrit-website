@@ -209,6 +209,20 @@
                 return;
             }
 
+            // The GitHub Pages preview cannot run the PHP mail endpoint.
+            // Open an email draft and let the visitor send it explicitly.
+            if (form.hasAttribute('data-static-preview')) {
+                var parts = collectFormEntries(form).filter(function (entry) {
+                    return entry[0] !== 'csrf_token' && entry[0] !== 'consent';
+                }).map(function (entry) { return entry[0] + ': ' + entry[1]; });
+                var subject = form.hasAttribute('data-business-form') ?
+                    'Gaurikrit business enquiry' : 'Gaurikrit product enquiry';
+                window.location.href = 'mailto:seva@gaurikrit.com?subject=' +
+                    encodeURIComponent(subject) + '&body=' + encodeURIComponent(parts.join('\n'));
+                toast({title:'Email draft opened',msg:'Please send the draft from your email app.',type:'success'});
+                return;
+            }
+
             var body = urlEncode(collectFormEntries(form));
 
             setBusy(form, true);

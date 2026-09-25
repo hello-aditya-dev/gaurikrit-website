@@ -19,8 +19,11 @@ $pageOgImage     = $pageOgImage     ?? null;
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="/assets/brand/gaurikrit-logo-mark.png" type="image/png"
-          onerror="this.onerror=null;this.href='/assets/brand/gaurikrit-mark-temp.svg'">
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32">
+    <link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
     <?php render_meta([
         'title'       => $pageTitle,
         'description' => $pageDescription,
@@ -28,11 +31,7 @@ $pageOgImage     = $pageOgImage     ?? null;
         'ogImage'     => $pageOgImage,
     ], $COMPANY); ?>
 
-    <!-- Fonts: Manrope (sans), Newsreader (display), Noto Serif Devanagari -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,600;6..72,700&family=Noto+Serif+Devanagari:wght@400;700&display=swap" rel="stylesheet">
-
+    <!-- Fonts are served locally from assets/fonts for reliable Hindi rendering. -->
     <link rel="stylesheet" href="<?= asset_url('/assets/css/app.css') ?>">
 </head>
 <body class="page-<?= e($pageClass) ?>">

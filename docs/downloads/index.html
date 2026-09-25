@@ -3,20 +3,30 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="../assets/brand/gaurikrit-logo-mark.png" type="image/png" onerror="this.onerror=null;this.href='../assets/brand/gaurikrit-mark-temp.svg'">
+    <link rel="icon" href="../favicon.ico" sizes="any">
+    <link rel="icon" href="../favicon-32x32.png" type="image/png" sizes="32x32">
+    <link rel="icon" href="../favicon-16x16.png" type="image/png" sizes="16x16">
+    <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+    <link rel="manifest" href="../site.webmanifest">
     <title>Downloads — Prakritik Paint Brochure | Gaurikrit</title>
-    <meta name="description" content="View or download the Prakritik Paint product brochure. If the current PDF is not yet published, contact Gaurikrit directly for the latest brochure.">
+    <meta name="description" content="View or download the Prakritik Paint brochure for Distemper and Emulsion.">
     <link rel="canonical" href="https://hello-aditya-dev.github.io/gaurikrit-website/downloads/">
-    <meta name="robots" content="index, follow">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="theme-color" content="#173F2B">
     <meta property="og:title" content="Downloads — Prakritik Paint Brochure | Gaurikrit">
-    <meta property="og:description" content="View or download the Prakritik Paint product brochure. If the current PDF is not yet published, contact Gaurikrit directly for the latest brochure.">
+    <meta property="og:description" content="View or download the Prakritik Paint brochure for Distemper and Emulsion.">
     <meta property="og:url" content="https://hello-aditya-dev.github.io/gaurikrit-website/downloads/">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Gaurikrit Bio Products">
-    <meta property="og:image" content="https://hello-aditya-dev.github.io/gaurikrit-website/assets/brand/gaurikrit-logo-mark.png">
+    <meta property="og:image" content="https://hello-aditya-dev.github.io/gaurikrit-website/assets/social/og-downloads.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Gaurikrit — Downloads — Prakritik Paint Brochure | Gaurikrit">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Downloads — Prakritik Paint Brochure | Gaurikrit">
-    <meta name="twitter:description" content="View or download the Prakritik Paint product brochure. If the current PDF is not yet published, contact Gaurikrit directly for the latest brochure.">
+    <meta name="twitter:description" content="View or download the Prakritik Paint brochure for Distemper and Emulsion.">
+    <meta name="twitter:image" content="https://hello-aditya-dev.github.io/gaurikrit-website/assets/social/og-downloads.jpg">
+    <meta name="twitter:image:alt" content="Gaurikrit — Downloads — Prakritik Paint Brochure | Gaurikrit">
     <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -42,11 +52,7 @@
 }
     </script>
 
-    <!-- Fonts: Manrope (sans), Newsreader (display), Noto Serif Devanagari -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,600;6..72,700&family=Noto+Serif+Devanagari:wght@400;700&display=swap" rel="stylesheet">
-
+    <!-- Fonts are served locally from assets/fonts. -->
     <link rel="stylesheet" href="../assets/css/app.css?v=static">
 </head>
 <body class="page-downloads">
@@ -311,8 +317,7 @@
       <hr class="dl-hero__rule">
       <h1 class="dl-hero__title" id="dl-title">Prakritik Paint brochure.</h1>
       <p class="dl-hero__sub">
-        One brochure, when published. The current edition is checked at render
-        time — if the PDF is present you can view or download it directly.
+        Browse the supplied Prakritik Paint brochure or download a copy.
       </p>
     </div>
   </div>
@@ -325,9 +330,9 @@
       <!-- LEFT — large brochure cover -->
       <div class="dl-cover">
         <div class="dl-cover__media" aria-hidden="true">
-          <div class="product-media" data-official-image="../assets/documents/prakritik-paint-brochure-cover.png">
+          <div class="product-media" data-official-image="../assets/documents/prakritik-paint-brochure-cover.jpg">
             <img class="product-media__official"
-                 src="../assets/documents/prakritik-paint-brochure-cover.png"
+                 src="../assets/documents/prakritik-paint-brochure-cover.jpg"
                  alt="Prakritik Paint brochure cover"
                  width="800" height="1000" loading="lazy" decoding="async">
             <div class="product-media__fallback" style="display: flex; align-items: center; justify-content: center; width: 100%; height: 100%;">
@@ -427,34 +432,13 @@
         </div>
       </div>
 
-      <!-- RIGHT — title + details + actions -->
-      <!-- Static build: assume the brochure PDF is missing. JS brochure-detection
-           module does a HEAD fetch and can flip data-brochure-state accordingly.
-           On GitHub Pages this will 404 and show the "Contact Gaurikrit"
-           message — correct behaviour. -->
-      <div class="dl-card" data-brochure-detect="../assets/documents/prakritik-paint-brochure.pdf" data-brochure-state="missing">
-        <div data-brochure-if-missing>
-          <span class="brochure__detail-eyebrow">Brochure pending</span>
-          <h2 class="brochure__detail-title">The current brochure is not yet published here.</h2>
-          <p class="brochure__detail-desc">
-            The brochure PDF was not detected on the server at render time.
-            Gaurikrit will provide the current edition directly on request.
-          </p>
-          <div class="brochure__detail-actions">
-            <a class="btn btn--primary btn--lg" href="../contact/?interest=general">Contact Gaurikrit for the current product brochure</a>
-          </div>
-          <p class="brochure__detail-note">
-            In the meantime, product specifications for both formats are listed
-            on the Distemper and Emulsion detail pages.
-          </p>
-          <div class="dl-missing" style="margin-top: 1.5rem;">
-            <strong>Checked path:</strong>
-            <code>/assets/documents/prakritik-paint-brochure.pdf</code> — file not found at render time.
-          </div>
-        </div>
-        <div class="brochure__detail-actions" data-brochure-if-available hidden>
-          <a class="btn btn--primary btn--lg" href="../assets/documents/prakritik-paint-brochure.pdf"
-             target="_blank" rel="noopener">View Brochure</a>
+      <!-- RIGHT — supplied brochure -->
+      <div class="dl-card">
+        <span class="brochure__detail-eyebrow">Product document</span>
+        <h2 class="brochure__detail-title">Prakritik Paint brochure</h2>
+        <p class="brochure__detail-desc">Read the Prakritik Paint brochure for both product formats.</p>
+        <div class="brochure__detail-actions">
+          <a class="btn btn--primary btn--lg" href="../assets/documents/prakritik-paint-brochure.pdf" target="_blank" rel="noopener">View Brochure</a>
           <a class="btn btn--outline" href="../assets/documents/prakritik-paint-brochure.pdf" download>Download PDF</a>
         </div>
       </div>
