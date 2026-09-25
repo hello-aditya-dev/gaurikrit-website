@@ -293,9 +293,9 @@ $ashtaIds = [
         <hr class="why-hero__rule">
         <h1 class="why-hero__title" id="why-title">An old material idea, reconsidered for modern walls.</h1>
         <p class="why-hero__sub">
-          Cow dung has been used on Indian walls and floors for generations — as
-          surface treatment, renewal ritual, and a quiet form of care. Prakritik
-          Paint carries that material into a contemporary paint format.
+          Traditional Indian homes have long used cow-dung-based coatings on
+          walls and floors. Prakritik Paint brings that material idea into a
+          contemporary paint format.
         </p>
       </div>
       <div class="why-hero__art" aria-hidden="true">

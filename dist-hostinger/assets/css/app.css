@@ -127,7 +127,7 @@
   --dur:  0.3s;
 
   /* --- Section vertical rhythm (V3: tightened) --- */
-  --section-y:       clamp(4rem, 6vw, 7rem);
+  --section-y:       clamp(3.5rem, 6vw, 8rem);
   --section-y-large: clamp(7.5rem, 12vw, 10rem);
   --section-y-tight: clamp(2.5rem, 4vw, 4rem);
 }
@@ -247,9 +247,9 @@ ul, ol { list-style: none; }
    ========================================================================== */
 .container {
   width: 100%;
-  max-width: var(--max-w);
+  max-width: 1320px;
   margin-inline: auto;
-  padding-inline: 1.25rem;     /* 20px mobile */
+  padding-inline: clamp(1rem, 3vw, 3rem);
 }
 @media (min-width: 768px)  { .container { padding-inline: 2rem; } }    /* 32px tablet */
 @media (min-width: 1024px) { .container { padding-inline: 3rem; } }    /* 48px desktop */
@@ -1248,7 +1248,7 @@ ul, ol { list-style: none; }
   justify-content: center;
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: clamp(8rem, 22vw, 22rem);
+  font-size: clamp(3.5rem, 9vw, 8rem);
   line-height: 1;
   letter-spacing: -0.04em;
   color: var(--forest);

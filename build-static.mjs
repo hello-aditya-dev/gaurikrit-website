@@ -1034,10 +1034,10 @@ function homeBody(depth) {
         <hr class="material-statement__rule">
         <div class="material-statement__body">
           <p>
-            Cow dung has been used on Indian walls and floors for generations — as a
-            surface treatment, a renewal ritual, and a quiet form of care. Prakritik
-            Paint carries that material into a contemporary format: two paints, made
-            for brushing on interior and exterior walls.
+            Traditional Indian homes have long used cow-dung-based coatings on
+            walls and floors. Prakritik Paint brings that material idea into
+            contemporary Distemper and Emulsion formats.
+            Both formats are listed for interior and exterior use.
           </p>
           <p>
             Two paint formats for interior and exterior walls.
@@ -2473,7 +2473,7 @@ function whyPrakritikBody(depth) {
         <h1 class="why-hero__title" id="why-title">An old material idea, reconsidered for modern walls.</h1>
         <p class="why-hero__sub">
           Cow dung has been used on Indian walls and floors for generations — as
-          surface treatment, renewal ritual, and a quiet form of care. Prakritik
+          Traditional Indian homes have long used cow-dung-based coatings on walls and floors. Prakritik Paint brings that material idea into contemporary
           Paint carries that material into a contemporary paint format.
         </p>
       </div>
