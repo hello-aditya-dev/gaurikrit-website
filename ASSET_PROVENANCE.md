@@ -3,9 +3,9 @@
 Maps each client original to its public derivatives. Client originals in
 `source-assets/client-originals/` are immutable — never modify them.
 
-Last verified: V7 pass — all 10 originals opened and inspected (vision-model
-review + PDF page renders). Commit of record for the originals:
-`215f5df47d41fc18c332ff3505a5ab0e16126741`.
+Last verified: V8 pass — product derivatives re-cut as complete-bucket crops
+(no sliced lids/bases/sides) after the V7 inspection. Commit of record for
+the originals: `215f5df47d41fc18c332ff3505a5ab0e16126741`.
 
 ## 10 Client Originals — inspected & classified
 
@@ -29,8 +29,8 @@ review + PDF page renders). Commit of record for the originals:
 | `assets/brand/gaurikrit-logo-full.png` | #4 Gaurikrit_Haldi & Black.pdf | Extracted via pdftoppm + alpha |
 | `assets/brand/gaurikrit-logo-mark.png` | #4 Gaurikrit_Haldi & Black.pdf | Cropped from full logo |
 | `assets/products/prakritik-group.jpg` | #10 WhatsApp 10.22.06 | Full 3-bucket group photo (1280×621) |
-| `assets/products/prakritik-distemper.jpg` | #10 WhatsApp 10.22.06 | Crop (385,52,895,590) = 510×538 |
-| `assets/products/prakritik-emulsion.jpg` | #10 WhatsApp 10.22.06 | Crop (895,56,1250,542) = 355×486 |
+| `assets/products/prakritik-distemper.jpg` | #10 WhatsApp 10.22.06 | **V8 complete-bucket crop** (395,0,885,621) = 490×621 — full photo height kept; centre Distemper bucket complete (lid, handle, base, sides); narrow neighbour slivers at both edges are part of the original shelf photo (never slice the main bucket to remove them) |
+| `assets/products/prakritik-emulsion.jpg` | #10 WhatsApp 10.22.06 | **V8 complete-bucket crop** (830,0,1280,621) = 450×621 — right Emulsion bucket complete to the photo's natural right edge (wood); centre-bucket sliver at left is occlusion present in the original photo |
 | `assets/documents/prakritik-paint-brochure.pdf` | #1 Broucher-paint.pdf | Direct copy |
 | `assets/documents/prakritik-paint-brochure-cover.jpg` | #1 Broucher-paint.pdf | Rendered page 1 at 120 DPI |
 | `assets/editorial/zebu-study.webp` | `source-assets/zebu-study.png` (1536×1024) | Generated editorial artwork |

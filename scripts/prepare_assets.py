@@ -57,8 +57,12 @@ icon(512).save(OUT/'favicon.ico',format='ICO',sizes=[(16,16),(32,32),(48,48)])
 
 group=Image.open(SRC/'prakritik-group.jpg').convert('RGB')
 group.save(ASSETS/'products'/'prakritik-group.jpg',quality=88,optimize=True,progressive=True)
-# These are crops of the client photograph; every label stays untouched.
-for name,box in [('prakritik-distemper.jpg',(385,52,895,590)),('prakritik-emulsion.jpg',(895,56,1250,542))]:
+# V8: COMPLETE-BUCKET crops of the client photograph. Boxes were verified with
+# pixel segmentation (label bands) + vision QA — each bucket is fully inside
+# its crop (lid, handle apex, base, both sides); the full photo height is kept
+# so nothing is ever sliced. A narrow sliver of the neighbouring bucket stays
+# visible at one edge — natural for a real shelf photo.
+for name,box in [('prakritik-distemper.jpg',(395,0,885,621)),('prakritik-emulsion.jpg',(830,0,1280,621))]:
     group.crop(box).save(ASSETS/'products'/name,quality=90,optimize=True,progressive=True)
 
 brochure=SRC/'Broucher-paint.pdf'

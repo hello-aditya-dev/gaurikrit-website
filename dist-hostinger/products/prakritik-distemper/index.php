@@ -4,7 +4,7 @@
  * Task V4-ASSETS.
  *
  * Composition unchanged from V3. This pass replaces coded SVG bucket
- * illustration with real product photography (510×538, NOT upscaled) and
+ * illustration with real product photography (490×621, NOT upscaled, complete bucket) and
  * uses interior-wall-study.webp as the hero environment. SVG kept only for
  * interactive ashta-laabh-seal.
  *
@@ -99,7 +99,7 @@ $specRows = [
     display: block;
     max-height: 84%;
     width: auto;
-    max-width: min(60%, 480px);   /* 510×538 photo — never wider than 480px CSS */
+    max-width: min(60%, 480px);   /* 490×621 photo — never wider than 480px CSS */
     object-fit: contain;
     filter: drop-shadow(0 18px 28px rgba(34, 36, 27, 0.20));
   }
@@ -166,7 +166,7 @@ $specRows = [
         <img class="media-product"
              src="<?= asset_url($product['officialImage']) ?>"
              alt="<?= e($product['name']) ?>"
-             width="510" height="538"
+             width="490" height="621"
              loading="eager" fetchpriority="high" decoding="async">
       </div>
     </div>

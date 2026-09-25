@@ -32,8 +32,8 @@
  *     to-wall triptych right panel + Why Prakritik Section 03 right panel.
  *   - business-context-study → NEW in V5 (1344×768) — used on Home
  *     pathways, Why Prakritik Section 06 context, For Business hero.
- *   - prakritik-distemper-bucket → real product photo prakritik-distemper.jpg (510×538)
- *   - prakritik-emulsion-bucket  → real product photo prakritik-emulsion.jpg (355×486)
+ *   - prakritik-distemper-bucket → real product photo prakritik-distemper.jpg (490×621, complete bucket)
+ *   - prakritik-emulsion-bucket  → real product photo prakritik-emulsion.jpg (450×621, complete bucket)
  *   - ashta-laabh-seal           → SVG KEPT (interactive radial seal)
  *   - calculator-wall-scene      → SVG KEPT (interactive wall scene, with photo bg)
  *   - gaurikrit-cow-mark          → SVG KEPT (logo fallback in header/footer + 404)
@@ -1011,7 +1011,7 @@ function homeBody(depth) {
         <img class="chapter-product chapter-product--distemper"
              src="${assetUrl(distemper.officialImage, depth)}"
              alt="${e(distemper.name)}"
-             width="510" height="538"
+             width="490" height="621"
              loading="lazy" decoding="async">
       </div>
       <div class="product-chapter__copy">
@@ -1058,7 +1058,7 @@ function homeBody(depth) {
         <img class="chapter-product chapter-product--emulsion"
              src="${assetUrl(emulsion.officialImage, depth)}"
              alt="${e(emulsion.name)}"
-             width="355" height="486"
+             width="450" height="621"
              loading="lazy" decoding="async">
       </div>
       <div class="product-chapter__copy">
@@ -1575,7 +1575,7 @@ function productsBody(depth) {
         <img class="chapter-product chapter-product--distemper"
              src="${assetUrl(distemper.officialImage, depth)}"
              alt="${e(distemper.name)}"
-             width="510" height="538"
+             width="490" height="621"
              loading="lazy" decoding="async">
       </div>
       <div class="product-chapter__copy">
@@ -1614,7 +1614,7 @@ function productsBody(depth) {
         <img class="chapter-product chapter-product--emulsion"
              src="${assetUrl(emulsion.officialImage, depth)}"
              alt="${e(emulsion.name)}"
-             width="355" height="486"
+             width="450" height="621"
              loading="lazy" decoding="async">
       </div>
       <div class="product-chapter__copy">
@@ -1817,7 +1817,7 @@ function distemperBody(depth) {
     }).join('\n');
 
     // V4: hero media is a real interior-wall-study environment (eager) with the
-    // real product photo (510×538, eager+high-priority) overlaid at natural size.
+    // real product photo (490×621, eager+high-priority) overlaid at natural size.
     const interiorWallPic = `<picture><source type="image/webp" srcset="${assetUrl('/assets/editorial/interior-wall-study.webp', depth)}"><img class="media-env" src="${assetUrl('/assets/editorial/interior-wall-study.jpg', depth)}" alt="" width="1344" height="768" loading="eager" decoding="async"></picture>`;
 
     return `<style>
@@ -1863,7 +1863,7 @@ function distemperBody(depth) {
     display: block;
     max-height: 84%;
     width: auto;
-    max-width: min(60%, 480px);   /* 510×538 photo — never wider than 480px CSS */
+    max-width: min(60%, 480px);   /* 490×621 photo — never wider than 480px CSS */
     object-fit: contain;
     filter: drop-shadow(0 18px 28px rgba(34, 36, 27, 0.20));
   }
@@ -1923,7 +1923,7 @@ function distemperBody(depth) {
         <img class="media-product"
              src="${assetUrl(product.officialImage, depth)}"
              alt="${e(product.name)}"
-             width="510" height="538"
+             width="490" height="621"
              loading="eager" fetchpriority="high" decoding="async">
       </div>
     </div>
@@ -2041,7 +2041,7 @@ function emulsionBody(depth) {
     }).join('\n');
 
     // V4: hero media is a real exterior-wall-study environment (eager) with the
-    // real product photo (355×486, eager+high-priority) overlaid at natural size.
+    // real product photo (450×621, eager+high-priority) overlaid at natural size.
     const exteriorWallPic = `<picture><source type="image/webp" srcset="${assetUrl('/assets/editorial/exterior-wall-study-v2.webp', depth)}"><img class="media-env" src="${assetUrl('/assets/editorial/exterior-wall-study-v2.jpg', depth)}" alt="" width="1344" height="768" loading="eager" decoding="async"></picture>`;
 
     return `<style>
@@ -2078,6 +2078,11 @@ function emulsionBody(depth) {
     display: flex; align-items: center; justify-content: center;
   }
   @media (min-width: 1024px) { .product-detail__media { min-height: 30rem; } }
+  /* V7: on phones the 22rem min-height + 4/3 aspect forces a wider-than-viewport
+     box — let the aspect ratio govern the height instead. (PHP↔static parity
+     fix: this rule existed in dist-hostinger but was missing here, overflowing
+     mobile viewports on the Emulsion page.) */
+  @media (max-width: 639px) { .product-detail__media { min-height: 0; } }
   .product-detail__media .media-env {
     position: absolute; inset: 0; width: 100%; height: 100%;
     object-fit: cover;
@@ -2087,7 +2092,7 @@ function emulsionBody(depth) {
     display: block;
     max-height: 84%;
     width: auto;
-    max-width: min(55%, 340px);   /* 355×486 photo — never wider than 340px CSS */
+    max-width: min(55%, 340px);   /* 450×621 photo — never wider than 340px CSS */
     object-fit: contain;
     filter: drop-shadow(0 18px 28px rgba(34, 36, 27, 0.20));
   }
@@ -2130,7 +2135,7 @@ function emulsionBody(depth) {
         <img class="media-product"
              src="${assetUrl(product.officialImage, depth)}"
              alt="${e(product.name)}"
-             width="355" height="486"
+             width="450" height="621"
              loading="eager" fetchpriority="high" decoding="async">
       </div>
 
@@ -2587,7 +2592,7 @@ ${ashtaItems}
         <img class="format-product"
              src="${assetUrl(distemper.officialImage, depth)}"
              alt="${e(distemper.name)}"
-             width="510" height="538"
+             width="490" height="621"
              loading="lazy" decoding="async">
         <span class="why-format-card__caption">${e(distemper.packagingShort)} packs</span>
       </div>
@@ -2595,7 +2600,7 @@ ${ashtaItems}
         <img class="format-product"
              src="${assetUrl(emulsion.officialImage, depth)}"
              alt="${e(emulsion.name)}"
-             width="355" height="486"
+             width="450" height="621"
              loading="lazy" decoding="async">
         <span class="why-format-card__caption">${e(emulsion.packagingShort)} packs</span>
       </div>
@@ -2893,7 +2898,7 @@ function aboutBody(depth) {
           <img class="about-product-photo"
                src="${assetUrl(distemper.officialImage, depth)}"
                alt="${e(distemper.name)}"
-               width="510" height="538"
+               width="490" height="621"
                loading="lazy" decoding="async">
         </div>
         <h3 class="about-product-card__name">${e(distemper.name)}</h3>
@@ -2907,7 +2912,7 @@ function aboutBody(depth) {
           <img class="about-product-photo"
                src="${assetUrl(emulsion.officialImage, depth)}"
                alt="${e(emulsion.name)}"
-               width="355" height="486"
+               width="450" height="621"
                loading="lazy" decoding="async">
         </div>
         <h3 class="about-product-card__name">${e(emulsion.name)}</h3>

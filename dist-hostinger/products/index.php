@@ -290,7 +290,7 @@ $groupImage  = '/assets/products/prakritik-group.jpg';
         <img class="chapter-product chapter-product--distemper"
              src="<?= asset_url($distemper['officialImage']) ?>"
              alt="<?= e($distemper['name']) ?>"
-             width="510" height="538"
+             width="490" height="621"
              loading="lazy" decoding="async">
       </div>
       <div class="product-chapter__copy">
@@ -336,7 +336,7 @@ $groupImage  = '/assets/products/prakritik-group.jpg';
         <img class="chapter-product chapter-product--emulsion"
              src="<?= asset_url($emulsion['officialImage']) ?>"
              alt="<?= e($emulsion['name']) ?>"
-             width="355" height="486"
+             width="450" height="621"
              loading="lazy" decoding="async">
       </div>
       <div class="product-chapter__copy">

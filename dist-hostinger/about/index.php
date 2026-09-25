@@ -294,7 +294,7 @@ $addressLine = implode("\n", $address);
           <img class="about-product-photo"
                src="<?= asset_url($distemper['officialImage']) ?>"
                alt="<?= e($distemper['name']) ?>"
-               width="510" height="538"
+               width="490" height="621"
                loading="lazy" decoding="async">
         </div>
         <h3 class="about-product-card__name"><?= e($distemper['name']) ?></h3>
@@ -308,7 +308,7 @@ $addressLine = implode("\n", $address);
           <img class="about-product-photo"
                src="<?= asset_url($emulsion['officialImage']) ?>"
                alt="<?= e($emulsion['name']) ?>"
-               width="355" height="486"
+               width="450" height="621"
                loading="lazy" decoding="async">
         </div>
         <h3 class="about-product-card__name"><?= e($emulsion['name']) ?></h3>

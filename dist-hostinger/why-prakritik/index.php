@@ -480,7 +480,7 @@ $ashtaIds = [
         <img class="format-product"
              src="<?= asset_url($distemper['officialImage']) ?>"
              alt="<?= e($distemper['name']) ?>"
-             width="510" height="538"
+             width="490" height="621"
              loading="lazy" decoding="async">
         <span class="why-format-card__caption"><?= e($distemper['packagingShort']) ?> packs</span>
       </div>
@@ -488,7 +488,7 @@ $ashtaIds = [
         <img class="format-product"
              src="<?= asset_url($emulsion['officialImage']) ?>"
              alt="<?= e($emulsion['name']) ?>"
-             width="355" height="486"
+             width="450" height="621"
              loading="lazy" decoding="async">
         <span class="why-format-card__caption"><?= e($emulsion['packagingShort']) ?> packs</span>
       </div>

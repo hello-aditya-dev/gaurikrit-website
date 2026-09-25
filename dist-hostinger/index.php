@@ -16,9 +16,9 @@
  *      0.14 opacity. Rural landscape band at 0.12 opacity.
  *   2. Material Statement — 42/58. Zebu-study.webp large right (58%).
  *   3. Distemper chapter — interior-wall-study as env + real product
- *      photo (510×538, natural size). Ghost "DISTEMPER". Cool section.
+ *      photo (490×621, natural size, complete bucket). Ghost "DISTEMPER". Cool section.
  *   4. Emulsion chapter — exterior-wall-study-v2 as env + real product
- *      photo (355×486, natural size). Ghost "EMULSION". Warm. Reversed.
+ *      photo (450×621, natural size, complete bucket). Ghost "EMULSION". Warm. Reversed.
  *   5. Material Journey — 3-panel composition (interior + group +
  *      finished-wall-study).
  *   6. Ashta Laabh — strengthened seal (44rem), darker warm bg, bolder
@@ -171,11 +171,11 @@ $ashtaIds = [
     /* Subtle drop shadow lifts the product off the environment. */
     filter: drop-shadow(0 18px 28px rgba(34, 36, 27, 0.18));
   }
-  /* Distemper product cap: 510×538 — never wider than 480px CSS. */
+  /* Distemper product cap: 490×621 — never wider than 480px CSS. */
   .product-chapter__visual .chapter-product--distemper {
     max-width: min(70%, 480px);
   }
-  /* Emulsion product cap: 355×486 — never wider than 340px CSS. */
+  /* Emulsion product cap: 450×621 — never wider than 340px CSS. */
   .product-chapter__visual .chapter-product--emulsion {
     max-width: min(60%, 340px);
   }
@@ -478,7 +478,7 @@ $ashtaIds = [
         <img class="chapter-product chapter-product--distemper"
              src="<?= asset_url($distemper['officialImage']) ?>"
              alt="<?= e($distemper['name']) ?>"
-             width="510" height="538"
+             width="490" height="621"
              loading="lazy" decoding="async">
       </div>
       <div class="product-chapter__copy">
@@ -533,7 +533,7 @@ $ashtaIds = [
         <img class="chapter-product chapter-product--emulsion"
              src="<?= asset_url($emulsion['officialImage']) ?>"
              alt="<?= e($emulsion['name']) ?>"
-             width="355" height="486"
+             width="450" height="621"
              loading="lazy" decoding="async">
       </div>
       <div class="product-chapter__copy">
