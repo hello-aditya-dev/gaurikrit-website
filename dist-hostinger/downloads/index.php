@@ -14,7 +14,7 @@
 declare(strict_types=1);
 
 $pageTitle       = 'Downloads — Prakritik Paint Brochure | Gaurikrit';
-$pageDescription = 'View or download the Prakritik Paint product brochure. If the current PDF is not yet published, contact Gaurikrit directly for the latest brochure.';
+$pageDescription = 'View or download the Prakritik Paint brochure for Distemper and Emulsion.';
 $pageCanonical   = '/downloads/';
 $pageClass        = 'downloads';
 
@@ -23,7 +23,7 @@ require ROOT_PATH . '/includes/header.php';
 
 global $COMPANY;
 
-$coverImage = '/assets/documents/prakritik-paint-brochure-cover.png';
+$coverImage = '/assets/documents/prakritik-paint-brochure-cover.jpg';
 $brochureUrl = '/assets/documents/prakritik-paint-brochure.pdf';
 $brochurePath = ROOT_PATH . $brochureUrl;
 $hasBrochure = is_file($brochurePath);
@@ -148,8 +148,7 @@ $hasBrochure = is_file($brochurePath);
       <hr class="dl-hero__rule">
       <h1 class="dl-hero__title" id="dl-title">Prakritik Paint brochure.</h1>
       <p class="dl-hero__sub">
-        One brochure, when published. The current edition is checked at render
-        time — if the PDF is present you can view or download it directly.
+        Browse the supplied Prakritik Paint brochure or download a copy.
       </p>
     </div>
   </div>
@@ -223,8 +222,7 @@ $hasBrochure = is_file($brochurePath);
             <span class="brochure__detail-eyebrow">Brochure pending</span>
             <h2 class="brochure__detail-title">The current brochure is not yet published here.</h2>
             <p class="brochure__detail-desc">
-              The brochure PDF was not detected on the server at render time.
-              Gaurikrit will provide the current edition directly on request.
+              Please contact Gaurikrit for a copy of the product brochure.
             </p>
             <div class="brochure__detail-actions">
               <a class="btn btn--primary btn--lg" href="/contact/?interest=general">Contact Gaurikrit for the current product brochure</a>
@@ -233,10 +231,7 @@ $hasBrochure = is_file($brochurePath);
               In the meantime, product specifications for both formats are listed
               on the Distemper and Emulsion detail pages.
             </p>
-            <div class="dl-missing" style="margin-top: 1.5rem;">
-              <strong>Checked path:</strong>
-              <code><?= e($brochureUrl) ?></code> — file not found at render time.
-            </div>
+
           </div>
         <?php endif; ?>
       </div>

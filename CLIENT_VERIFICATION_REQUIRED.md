@@ -42,7 +42,7 @@ No founding year, founder name, or company timeline supplied. The website
 publishes NONE of these. Record history here when confirmed.
 
 ## 9. Real project photographs
-No project photographs supplied. The site uses coded SVG illustrations.
+No project photographs supplied. The site uses illustrative editorial artwork.
 Insert real photos at the predefined paths (see IMAGE_HANDOFF.md) when supplied.
 
 ## 10. Factory/manufacturing photographs
@@ -73,3 +73,6 @@ counts, or primer recommendations. The FAQ does NOT answer these questions.
 
 ## 16. Office hours / shipping coverage
 Not supplied. The website does NOT publish office hours or shipping coverage.
+
+## 17. Production launch configuration
+Confirm that `https://gaurikrit.com` is the final owned production domain before indexing. The production configuration and sitemap currently use this value. Supply and test SMTP credentials on Hostinger; a static GitHub Pages form opens an email draft and does not send server-side. Confirm the brochure PDF is the approved public edition before deploying the package.

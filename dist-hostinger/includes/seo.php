@@ -12,7 +12,17 @@ function render_meta(array $meta, array $company = []): void
     $title     = $meta['title'] ?? 'Gaurikrit — Prakritik Paint & Bio Products';
     $desc      = $meta['description'] ?? 'Gaurikrit Bio Products offers cow dung-based Prakritik Distemper and Emulsion Paint for interior and exterior walls from Bulandshahr, Uttar Pradesh.';
     $canonical = $meta['canonical'] ?? '/';
-    $ogImage   = $meta['ogImage'] ?? ($siteUrl . '/assets/brand/gaurikrit-logo-mark.png');
+    $ogNames = [
+        '/' => 'home', '/products/' => 'products',
+        '/products/prakritik-distemper/' => 'distemper',
+        '/products/prakritik-emulsion/' => 'emulsion',
+        '/why-prakritik/' => 'why-prakritik', '/about/' => 'about',
+        '/for-business/' => 'for-business', '/paint-calculator/' => 'calculator',
+        '/downloads/' => 'downloads', '/contact/' => 'contact',
+    ];
+    $slug = $ogNames[$canonical] ?? 'home';
+    $ogImage = $meta['ogImage'] ?: rtrim($siteUrl, '/') . '/assets/social/og-' . $slug . '.jpg';
+    $ogAlt = 'Gaurikrit — ' . $title;
 
     $fullCanonical = rtrim($siteUrl, '/') . $canonical;
 
@@ -26,9 +36,15 @@ function render_meta(array $meta, array $company = []): void
     echo '<meta property="og:type" content="website">' . "\n";
     echo '<meta property="og:site_name" content="Gaurikrit Bio Products">' . "\n";
     echo '<meta property="og:image" content="' . e($ogImage) . '">' . "\n";
+    echo '<meta property="og:image:width" content="1200">' . "\n";
+    echo '<meta property="og:image:height" content="630">' . "\n";
+    echo '<meta property="og:image:alt" content="' . e($ogAlt) . '">' . "\n";
     echo '<meta name="twitter:card" content="summary_large_image">' . "\n";
     echo '<meta name="twitter:title" content="' . e($title) . '">' . "\n";
     echo '<meta name="twitter:description" content="' . e($desc) . '">' . "\n";
+    echo '<meta name="twitter:image" content="' . e($ogImage) . '">' . "\n";
+    echo '<meta name="twitter:image:alt" content="' . e($ogAlt) . '">' . "\n";
+    echo '<meta name="theme-color" content="#173F2B">' . "\n";
 
     // Accurate Organization JSON-LD — only supplied factual data.
     $addr = $company['address'] ?? [];

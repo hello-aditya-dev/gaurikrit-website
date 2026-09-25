@@ -31,7 +31,7 @@
                                  swatch.getAttribute('data-shade-hex') || '';
                     var name = swatch.getAttribute('data-shade-name') ||
                                swatch.getAttribute('aria-label') || '';
-                    if (colour) wall.style.backgroundColor = colour;
+                    if (colour) wall.style.setProperty('--wall-color', colour);
                     if (label && name) label.textContent = name;
 
                     for (var k = 0; k < swatches.length; k++) {

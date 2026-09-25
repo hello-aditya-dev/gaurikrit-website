@@ -10,7 +10,7 @@ Emulsion formats).
 - **HTML5**
 - **CSS3** (authored, no Tailwind, no build step)
 - **Vanilla JavaScript** (no React, no framework, no bundler)
-- **SVG** (coded illustration system — no photography dependency)
+- **Client-supplied product imagery and official logo** with two editorial studies
 - **SMTP** (zero-Composer built-in mailer)
 - **Optional MySQL** (PDO, for enquiry storage — email works without it)
 
@@ -53,17 +53,17 @@ Extract the contents directly into `public_html/`. See
 404                                 Custom branded 404
 ```
 
-## Official visual assets
+## Visual assets
 
-Official client photography, logo, and brochure will be inserted later by
-ChatGPT Work at predefined paths. The website uses coded SVG fallbacks
-until then — no redesign needed when assets arrive.
+The official logo, exact-label product packaging images and client brochure are integrated in both outputs. Local font files cover Latin and Devanagari text without a third-party font request. The generated cow and courtyard studies are illustrations of context; neither depicts a product, manufacturing process or built client project. See `ASSET_PROVENANCE.md` for the source-to-output mapping.
 
-See **IMAGE_HANDOFF.md** for exact paths and fallbacks.
+Regenerate the prepared public assets with `python3 scripts/prepare_assets.py` (requires Pillow and Poppler). Regenerate the static preview with `node build-static.mjs`; regenerate the Hostinger ZIP from `dist-hostinger/` using the command in `dist-hostinger/HOSTINGER_DEPLOYMENT.md`.
+
+The GitHub Pages preview has `noindex,nofollow`; production uses indexable metadata. The preview forms open an email draft. Hostinger forms require SMTP credentials in the untracked `config.php` and must be tested on that server before launch.
 
 ## Documentation
 
-- `IMAGE_HANDOFF.md` — official asset paths + fallback system
+- `IMAGE_HANDOFF.md` — public asset paths
 - `CLIENT_VERIFICATION_REQUIRED.md` — items pending client confirmation
 - `SECURITY_ACTION_REQUIRED.md` — credential rotation notes
 - `REBUILD_AUDIT.md` — summary of corrections made
@@ -77,10 +77,7 @@ See **IMAGE_HANDOFF.md** for exact paths and fallbacks.
 - **Vanilla JS modules**: `app`, `navigation`, `animations`, `ashta-laabh`,
   `colour-study`, `calculator`, `forms`
 - **Authored CSS**: `assets/css/app.css` with locked design tokens
-- **11 coded SVG illustrations**: IndianCow, GaurikritCowMark,
-  PrakritikDistemperBucket, PrakritikEmulsionBucket, RuralLandscape,
-  IndianCourtyard, MaterialJourney, AshtaLaabhDiagram, PaintBrushStroke,
-  FieldBotanicals, GaushalaScene
+- **Official asset + illustration system**: real packages and logo, an architectural SVG, and contextual studies
 
 ## Archived code
 

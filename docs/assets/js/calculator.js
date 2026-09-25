@@ -233,7 +233,7 @@
         // Truthful copy: rates not configured.
         result.appendChild(el('p', {
             class: 'calc__result-note',
-            text: 'Automatic commercial rates have not yet been configured.'
+            text: 'Share this summary with Gaurikrit to discuss your project.'
         }));
         result.appendChild(el('p', {
             class: 'calc__result-cta-copy',

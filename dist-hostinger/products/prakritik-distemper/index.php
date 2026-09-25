@@ -115,7 +115,7 @@ $specRows = [
         <h1 class="product-detail__name" id="distemper-title"><?= e($product['name']) ?></h1>
         <p class="product-detail__descriptor"><?= e($product['descriptor']) ?></p>
         <p class="distemper-hero__body">
-          A powder-format cow dung-based paint, brushed on interior and exterior
+          Cow dung-based paint listed for interior and exterior
           walls. Supplied in <?= e($product['packagingShort']) ?> packs.
         </p>
         <div class="distemper-hero__cta-row">
@@ -180,7 +180,7 @@ $specRows = [
       <span class="section-heading__eyebrow">अष्ट लाभ — Eight benefits</span>
       <h2 class="section-heading__title" id="distemper-ashta-title">Ashta Laabh.</h2>
       <p class="section-heading__desc">
-        Client-supplied product benefits, not independently tested claims.
+        Benefits listed in the Prakritik Paint material.
       </p>
     </div>
 
@@ -211,7 +211,7 @@ $specRows = [
           <span class="distemper-hero__eyebrow">Looking at the other format?</span>
           <h2 class="distemper-cta__title" id="cross-title">Prakritik Emulsion.</h2>
           <p class="distemper-cta__body">
-            A liquid-format cow dung-based paint. Coverage <?= e($emulsion['coverage']) ?>.
+            Cow dung-based Emulsion Paint. Coverage <?= e($emulsion['coverage']) ?>.
             Supplied in <?= e($emulsion['packagingShort']) ?> packs.
           </p>
         </div>

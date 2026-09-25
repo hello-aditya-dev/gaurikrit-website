@@ -1,3 +1,2 @@
 User-agent: *
-Allow: /
-Sitemap: https://hello-aditya-dev.github.io/gaurikrit-website/sitemap.xml
+Disallow: /

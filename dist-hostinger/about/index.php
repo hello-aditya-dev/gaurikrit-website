@@ -139,16 +139,8 @@ $addressLine = implode("\n", $address);
           exterior walls. From <?= e($address[3] ?? '') ?>, <?= e($address[4] ?? '') ?>.
         </p>
       </div>
-      <div class="about-hero__art">
-        <div class="product-media" data-official-image="/assets/products/prakritik-group.png">
-          <img class="product-media__official"
-               src="/assets/products/prakritik-group.png"
-               alt="Prakritik Distemper and Emulsion paint packs"
-               width="800" height="600" loading="eager" decoding="async">
-          <div class="product-media__fallback">
-            <?php render_illustration('prakritik-emulsion-bucket'); ?>
-          </div>
-        </div>
+      <div class="about-hero__art about-hero__art--brand">
+        <img class="about-hero__logo" src="/assets/brand/gaurikrit-logo-full.png" alt="Gaurikrit official emblem and wordmark" width="550" height="690">
       </div>
     </div>
   </div>
@@ -168,13 +160,13 @@ $addressLine = implode("\n", $address);
       <div class="about-section__body">
         <p>
           <?= e($COMPANY['name']) ?> makes Prakritik Paint, a cow dung-based
-          paint in two formats: Prakritik Distemper (powder) and Prakritik
-          Emulsion (liquid). Both are matt finish, listed for interior and
+          paint in two formats: Prakritik Distemper and Prakritik
+          Emulsion. Both are matt finish, listed for interior and
           exterior use.
         </p>
         <p>
           The company carries an old Indian material idea — cow dung on walls —
-          into a contemporary paint format. Not nostalgia. Not novelty. A useful
+          into a contemporary paint format. A useful
           material, reconsidered for modern walls.
         </p>
       </div>
@@ -246,8 +238,7 @@ $addressLine = implode("\n", $address);
         <div class="about-section__body">
           <p>
             Cow dung has been used on Indian walls and floors for generations.
-            Prakritik Paint takes that material and processes it into a workable
-            binder, blended into a modern paint.
+            Gaurikrit offers cow dung-based Prakritik Paint in two formats.
           </p>
           <p>
             The cow is in the material. The wall is where it goes.
@@ -258,8 +249,7 @@ $addressLine = implode("\n", $address);
         </div>
       </div>
       <div class="about-direction__visual" aria-hidden="true">
-        <div class="ms-wall"></div>
-        <?php render_illustration('indian-cow', ['class' => 'ms-cow']); ?>
+        <img class="editorial-cow" src="/assets/illustrations/zebu-study.jpg" alt="" loading="lazy" width="1536" height="1024">
       </div>
     </div>
   </div>

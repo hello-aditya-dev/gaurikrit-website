@@ -13,7 +13,7 @@ $COMPANY = [
     'legalName'         => 'Gaurikrit Bio Products (OPC) Private Limited',
     'brandLine'         => 'Good for Nature. Good for Life.',
     'mission'           => 'Transforming waste into wonder, one wall at a time.',
-    'hindiTagline'      => 'प्रकृति से, दीवारों ंतक.',
+    'hindiTagline'      => 'गौरीकृत',
     'headline'          => 'Walls that Breathe Sustainability',
     'email'             => 'seva@gaurikrit.com',
     'phones'            => ['+91 9999624446', '+91 9837638842'],
@@ -33,7 +33,7 @@ $COMPANY = [
 /**
  * Client-supplied brand positioning phrases (use sparingly, NOT as certified claims).
  */
-$BRAND_PHRASES = ['100% Natural', 'Chemical Free', 'Eco Friendly', 'Sustainable Living'];
+
 
 /**
  * Exactly two confirmed products. No prices. No primer.
@@ -53,7 +53,7 @@ $PRODUCTS = [
         'coverage'      => '200 sq.ft.**',
         'voc'           => 'Negligible',
         'usage'         => 'Interior & Exterior',
-        'officialImage' => '/assets/products/prakritik-distemper.png',
+        'officialImage' => '/assets/products/prakritik-distemper.jpg',
         'image'         => 'prakritik-distemper',
         'accent'        => 'indigo',
         'route'         => '/products/prakritik-distemper/',
@@ -71,7 +71,7 @@ $PRODUCTS = [
         'coverage'      => '300 sq.ft.**',
         'voc'           => 'Negligible',
         'usage'         => 'Interior & Exterior',
-        'officialImage' => '/assets/products/prakritik-emulsion.png',
+        'officialImage' => '/assets/products/prakritik-emulsion.jpg',
         'image'         => 'prakritik-emulsion',
         'accent'        => 'haldi',
         'route'         => '/products/prakritik-emulsion/',
@@ -111,11 +111,9 @@ $COLOUR_STUDY = [
  * Material journey stages (high-level only).
  */
 $MATERIAL_JOURNEY = [
-    ['num' => '01', 'title' => 'Natural origin', 'desc' => 'The material begins with the cow.'],
-    ['num' => '02', 'title' => 'Raw material', 'desc' => 'Cow dung, gathered and prepared.'],
-    ['num' => '03', 'title' => 'Preparation', 'desc' => 'Processed into a workable binder.'],
-    ['num' => '04', 'title' => 'Prakritik Paint', 'desc' => 'Blended into a contemporary paint format.'],
-    ['num' => '05', 'title' => 'Finished wall', 'desc' => 'Applied to interior and exterior walls.'],
+    ['num' => '01', 'title' => 'Natural material', 'desc' => 'Cow dung is the material inspiration.'],
+    ['num' => '02', 'title' => 'Prakritik Paint', 'desc' => 'Available as Distemper and Emulsion.'],
+    ['num' => '03', 'title' => 'Finished wall', 'desc' => 'Both are listed for interior and exterior use.'],
 ];
 
 /**
