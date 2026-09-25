@@ -158,6 +158,15 @@ $groupImage  = '/assets/products/prakritik-group.jpg';
     font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.14em;
     text-transform: uppercase; color: var(--fg-muted);
   }
+  /* V14: quiet share row under the swatches — only the copy button,
+     revealed after a colour is chosen (no layout shift: reserved height). */
+  .colours-share {
+    min-height: 2rem;
+    margin: 3.5rem 0 0;
+    display: flex;
+    align-items: center;
+  }
+  .colours-share .copy-btn { margin-left: 0; }
 
   /* ===== 8. MISSION — forest band with rural-landscape engraving ===== */
   .mission-band {
@@ -585,11 +594,22 @@ $groupImage  = '/assets/products/prakritik-group.jpg';
                 style="background: <?= e($sw['hex']) ?>;"
                 data-shade="<?= e($sw['hex']) ?>"
                 data-shade-name="<?= e($sw['name']) ?> (<?= e($sw['label']) ?>)"
+                data-colour-id="<?= e(strtolower($sw['name'])) ?>"
                 aria-label="<?= e($sw['name']) ?> — <?= e($sw['label']) ?>">
           <span class="colours-swatch__label"><?= e($sw['name']) ?></span>
         </button>
       <?php endforeach; ?>
     </div>
+
+    <!-- V14: quiet share affordance — revealed by colour-study.js once a
+         colour is selected; copies the current URL incl. #colour=<id>. -->
+    <p class="colours-share">
+      <button type="button" class="copy-btn" data-colour-copy data-copy="" hidden
+              aria-label="Copy a link to this wall colour">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        <span class="copy-btn__label">Copy link to this colour</span>
+      </button>
+    </p>
   </div>
 </section>
 

@@ -17,6 +17,12 @@
  * radio behaviour). Roving tabindex: only the checked (or first)
  * swatch is tabbable; every other one is reached via arrow keys.
  *
+ * Deep links (V14): selecting a swatch writes #colour=<id> to the URL
+ * (history.replaceState — no history spam, no scroll jump). Opening
+ * the page with a matching #colour=<id> applies that swatch on load,
+ * so a chosen wall colour can be shared as a link. Swatches without
+ * a data-colour-id simply skip the URL sync.
+ *
  * Exposes: window.GaurikritApp.ColourStudy.init()
  */
 (function () {
@@ -30,7 +36,7 @@
         var label = wrapper.querySelector('[data-colour-label]');
         if (!swatches.length || !wall) return;
 
-        function applySwatch(swatch) {
+        function applySwatch(swatch, opts) {
             var colour = swatch.getAttribute('data-shade') ||
                          swatch.getAttribute('data-shade-hex') || '';
             var name = swatch.getAttribute('data-shade-name') ||
@@ -46,6 +52,30 @@
             swatch.setAttribute('data-active', 'true');
             swatch.setAttribute('aria-checked', 'true');
             swatch.setAttribute('tabindex', '0');
+
+            // V14: reflect the selection in the URL so the chosen wall
+            // colour is shareable. replaceState = no history entry, no
+            // scroll. Skipped silently when called from the initial hash
+            // restore (nothing to change) or for id-less swatches.
+            var id = swatch.getAttribute('data-colour-id');
+            if (id && !(opts && opts.fromHash) && window.history && history.replaceState) {
+                history.replaceState(null, '',
+                    location.pathname + location.search + '#colour=' + id);
+            }
+
+            // V14: reveal the quiet "Copy link to this colour" button and
+            // point the shared [data-copy] clipboard handler (app.js) at
+            // the full URL — the handler reads data-copy at click time,
+            // so refreshing the attribute here is enough. The canCopy
+            // guard mirrors app.js: on non-secure contexts app.js hides
+            // every copy button, so we must not re-reveal this one.
+            var copyBtn = wrapper.querySelector('[data-colour-copy]');
+            var canCopy = (window.isSecureContext === true || window.isSecureContext === undefined);
+            if (copyBtn && id && canCopy) {
+                copyBtn.setAttribute('data-copy',
+                    location.origin + location.pathname + location.search + '#colour=' + id);
+                copyBtn.removeAttribute('hidden');
+            }
         }
 
         // Roving tabindex: before any selection, only the first swatch
@@ -92,6 +122,17 @@
                     swatches[next].focus();
                 });
             })(swatches[i], i);
+        }
+
+        // V14: restore a shared wall colour from #colour=<id> on load.
+        var m = /^#colour=([a-z-]+)$/.exec(location.hash || '');
+        if (m) {
+            for (var h = 0; h < swatches.length; h++) {
+                if (swatches[h].getAttribute('data-colour-id') === m[1]) {
+                    applySwatch(swatches[h], { fromHash: true });
+                    break;
+                }
+            }
         }
     }
 

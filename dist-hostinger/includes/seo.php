@@ -69,4 +69,61 @@ function render_meta(array $meta, array $company = []): void
         ],
     ];
     echo '<script type="application/ld+json">' . json_encode($ld, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) . '</script>' . "\n";
+
+    // ---- V14: BreadcrumbList JSON-LD (every page except home) ----
+    // Mirrors the visible breadcrumb trail. Product detail pages get the
+    // intermediate "Products" level, exactly like the on-page breadcrumb.
+    $crumbNames = [
+        '/products/'                   => 'Products',
+        '/products/prakritik-distemper/' => 'Prakritik Distemper Paint',
+        '/products/prakritik-emulsion/'  => 'Prakritik Emulsion Paint',
+        '/why-prakritik/'              => 'Why Prakritik',
+        '/about/'                      => 'About',
+        '/for-business/'               => 'For Business',
+        '/paint-calculator/'           => 'Paint Calculator',
+        '/downloads/'                  => 'Downloads',
+        '/contact/'                    => 'Contact',
+    ];
+    if ($canonical !== '/' && isset($crumbNames[$canonical])) {
+        $items = [
+            ['@type' => 'ListItem', 'position' => 1, 'name' => 'Home', 'item' => rtrim($siteUrl, '/') . '/'],
+        ];
+        if (strpos($canonical, '/products/prakritik-') === 0) {
+            $items[] = ['@type' => 'ListItem', 'position' => 2, 'name' => 'Products', 'item' => rtrim($siteUrl, '/') . '/products/'];
+            $items[] = ['@type' => 'ListItem', 'position' => 3, 'name' => $crumbNames[$canonical], 'item' => $fullCanonical];
+        } else {
+            $items[] = ['@type' => 'ListItem', 'position' => 2, 'name' => $crumbNames[$canonical], 'item' => $fullCanonical];
+        }
+        $ldCrumb = [
+            '@context' => 'https://schema.org',
+            '@type' => 'BreadcrumbList',
+            'itemListElement' => $items,
+        ];
+        echo '<script type="application/ld+json">' . json_encode($ldCrumb, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) . '</script>' . "\n";
+    }
+
+    // ---- V14: Product JSON-LD on the two product detail pages ----
+    // Factual fields only: name, description (the page meta description),
+    // brand, category (the paint format), url and image (the OG card).
+    // No offers/price/aggregateRating — those would be fabricated data.
+    $productSlugs = [
+        '/products/prakritik-distemper/' => 'prakritik-distemper',
+        '/products/prakritik-emulsion/'  => 'prakritik-emulsion',
+    ];
+    if (isset($productSlugs[$canonical]) && function_exists('get_product')) {
+        $p = get_product($productSlugs[$canonical]);
+        if ($p) {
+            $ldProduct = [
+                '@context' => 'https://schema.org',
+                '@type' => 'Product',
+                'name' => $p['name'],
+                'description' => $desc,
+                'brand' => ['@type' => 'Brand', 'name' => 'Gaurikrit'],
+                'category' => $p['name'],
+                'url' => $fullCanonical,
+                'image' => rtrim($siteUrl, '/') . '/assets/social/og-' . $slug . '.jpg',
+            ];
+            echo '<script type="application/ld+json">' . json_encode($ldProduct, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) . '</script>' . "\n";
+        }
+    }
 }

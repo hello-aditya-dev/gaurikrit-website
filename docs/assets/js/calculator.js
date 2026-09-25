@@ -596,6 +596,48 @@
         // Initial state.
         showStep(1);
 
+        // ---- V14: deep links (?painting_type=&location=&paint=&area=) ----
+        // A shared link (or the contact page's "recalculate" journey) can
+        // open the calculator pre-filled. Same param names the result CTA
+        // sends to the contact page. All four present → jump straight to
+        // the computed result; partial → open the first unfilled step.
+        function applyQueryDefaults() {
+            if (!window.URLSearchParams) return;
+            var params = new URLSearchParams(window.location.search);
+            var VALID = {
+                painting_type: ['fresh', 'repaint'],
+                location: ['interior', 'exterior'],
+                paint: ['distemper', 'emulsion']
+            };
+            var provided = {};
+            for (var key in VALID) {
+                if (!Object.prototype.hasOwnProperty.call(VALID, key)) continue;
+                var v = params.get(key);
+                if (v && VALID[key].indexOf(v) >= 0) provided[key] = v;
+            }
+            var areaRaw = params.get('area');
+            var areaNum = areaRaw !== null ? parseFloat(areaRaw) : NaN;
+            var hasArea = isFinite(areaNum) && areaNum > 0;
+
+            var any = hasArea;
+            for (var k in provided) { any = true; selectOption(k, provided[k]); }
+            if (!any) return; // plain visit — normal step-1 start
+
+            if (hasArea) ui.input.value = String(Math.floor(areaNum));
+
+            if (provided.painting_type && provided.location && provided.paint && hasArea) {
+                calculate();
+                return;
+            }
+            // Partial prefill → land on the first missing step.
+            var order = ['painting_type', 'location', 'paint'];
+            for (var i = 0; i < order.length; i++) {
+                if (!provided[order[i]]) { showStep(i + 1); return; }
+            }
+            showStep(4);
+        }
+        applyQueryDefaults();
+
         return {
             reset: reset,
             showStep: showStep,

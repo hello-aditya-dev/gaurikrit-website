@@ -351,6 +351,62 @@ function renderHeader(pageMeta, depth) {
         },
     };
 
+    // ---- V14: BreadcrumbList JSON-LD (every page except home). Mirrors the
+    // visible breadcrumb; product detail pages include the Products level. ----
+    const crumbNames = {
+        '/products/': 'Products',
+        '/products/prakritik-distemper/': 'Prakritik Distemper Paint',
+        '/products/prakritik-emulsion/': 'Prakritik Emulsion Paint',
+        '/why-prakritik/': 'Why Prakritik',
+        '/about/': 'About',
+        '/for-business/': 'For Business',
+        '/paint-calculator/': 'Paint Calculator',
+        '/downloads/': 'Downloads',
+        '/contact/': 'Contact',
+    };
+    let ldExtra = '';
+    if (pageMeta.canonical !== '/' && crumbNames[pageMeta.canonical]) {
+        const items = [
+            { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL.replace(/\/$/, '') + '/' },
+        ];
+        if (pageMeta.canonical.indexOf('/products/prakritik-') === 0) {
+            items.push({ '@type': 'ListItem', position: 2, name: 'Products', item: SITE_URL.replace(/\/$/, '') + '/products/' });
+            items.push({ '@type': 'ListItem', position: 3, name: crumbNames[pageMeta.canonical], item: fullCanonical });
+        } else {
+            items.push({ '@type': 'ListItem', position: 2, name: crumbNames[pageMeta.canonical], item: fullCanonical });
+        }
+        ldExtra += `
+    <script type="application/ld+json">
+${JSON.stringify({ '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: items }, null, 2)}
+    </script>`;
+    }
+
+    // ---- V14: Product JSON-LD on the two product detail pages. Factual
+    // fields only (no offers/price/rating — those would be fabricated). ----
+    const productSlugs = {
+        '/products/prakritik-distemper/': 'prakritik-distemper',
+        '/products/prakritik-emulsion/': 'prakritik-emulsion',
+    };
+    if (productSlugs[pageMeta.canonical]) {
+        const p = getProduct(productSlugs[pageMeta.canonical]);
+        if (p) {
+            const ldProduct = {
+                '@context': 'https://schema.org',
+                '@type': 'Product',
+                name: p.name,
+                description: pageMeta.description,
+                brand: { '@type': 'Brand', name: 'Gaurikrit' },
+                category: p.name,
+                url: fullCanonical,
+                image: SITE_URL.replace(/\/$/, '') + '/assets/social/og-' + socialSlug + '.jpg',
+            };
+            ldExtra += `
+    <script type="application/ld+json">
+${JSON.stringify(ldProduct, null, 2)}
+    </script>`;
+        }
+    }
+
     const cssHref = assetUrl('/assets/css/app.css', depth) + '?v=static';
     const brandMarkHref = assetUrl('/assets/brand/gaurikrit-logo-mark.png', depth);
     const faviconHref = assetUrl('/favicon.ico', depth);
@@ -395,7 +451,7 @@ function renderHeader(pageMeta, depth) {
     <meta name="twitter:image:alt" content="${e(ogAlt)}">
     <script type="application/ld+json">
 ${JSON.stringify(ld, null, 2)}
-    </script>
+    </script>${ldExtra}
 
     <!-- Fonts are served locally from assets/fonts. -->
     <link rel="stylesheet" href="${cssHref}">
@@ -570,6 +626,7 @@ function homeBody(depth) {
                 style="background: ${e(sw.hex)};"
                 data-shade="${e(sw.hex)}"
                 data-shade-name="${e(sw.name)} (${e(sw.label)})"
+                data-colour-id="${e(sw.name.toLowerCase())}"
                 aria-label="${e(sw.name)} — ${e(sw.label)}">
           <span class="colours-swatch__label">${e(sw.name)}</span>
         </button>`,
@@ -713,6 +770,15 @@ function homeBody(depth) {
     font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.14em;
     text-transform: uppercase; color: var(--fg-muted);
   }
+  /* V14: quiet share row under the swatches — only the copy button,
+     revealed after a colour is chosen (no layout shift: reserved height). */
+  .colours-share {
+    min-height: 2rem;
+    margin: 3.5rem 0 0;
+    display: flex;
+    align-items: center;
+  }
+  .colours-share .copy-btn { margin-left: 0; }
 
   /* ===== 8. MISSION — forest band with rural-landscape engraving ===== */
   .mission-band {
@@ -1082,6 +1148,16 @@ ${ashtaItems}
     <div class="colours-swatches" data-reveal-stagger role="radiogroup" aria-label="Wall colour swatches">
 ${swatches}
     </div>
+
+    <!-- V14: quiet share affordance — revealed by colour-study.js once a
+         colour is selected; copies the current URL incl. #colour=<id>. -->
+    <p class="colours-share">
+      <button type="button" class="copy-btn" data-colour-copy data-copy="" hidden
+              aria-label="Copy a link to this wall colour">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        <span class="copy-btn__label">Copy link to this colour</span>
+      </button>
+    </p>
   </div>
 </section>
 
