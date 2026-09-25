@@ -224,16 +224,6 @@
 
   /* ===== AUDIENCES (shared editorial image + 4 ruled columns) ===== */
   .biz-audiences-section { padding-block: clamp(3.5rem, 6vw, 5rem); }
-  .biz-audiences-illustration {
-    position: relative;
-    margin-bottom: 3rem;
-    aspect-ratio: 1344/768;
-    width: 100%; overflow: hidden;
-    border-radius: var(--r-panel);
-  }
-  .biz-audiences-illustration .editorial-image {
-    width: 100%; height: 100%; object-fit: cover; display: block;
-  }
   .biz-audiences__head { max-width: 48rem; margin-bottom: 2.5rem; }
 
   /* ===== PRACTICAL SECTION ===== */
@@ -327,10 +317,6 @@
       <h2 class="section-heading__title" id="audiences-title">Audiences.</h2>
     </div>
 
-    <div class="biz-audiences-illustration" aria-hidden="true" data-reveal>
-      <picture><source type="image/webp" srcset="../assets/editorial/rural-landscape.webp"><img class="editorial-image" src="../assets/editorial/rural-landscape.jpg" alt="" width="1344" height="768" loading="lazy" decoding="async"></picture>
-    </div>
-
     <div class="biz-audiences" data-reveal-stagger>
         <div class="audience-card">
           <span class="audience-card__num">01</span>
@@ -362,10 +348,10 @@
     <div class="biz-practical__grid" data-reveal>
       <div class="biz-practical__head">
         <span class="biz-hero__eyebrow"><span class="biz-hero__eyebrow-dot" aria-hidden="true"></span>Practical</span>
-        <h2 class="biz-practical__title" id="include-title">When you enquire, it helps to include.</h2>
+        <h2 class="biz-practical__title" id="include-title">Include these details for a faster response.</h2>
         <p class="biz-practical__body">
-          A few practical details up front let us give you a useful response —
-          not a "we will get back to you" placeholder.
+          A few project details help Gaurikrit understand your requirement
+          before responding.
         </p>
       </div>
       <ul class="biz-practical__list">
@@ -387,7 +373,7 @@
         </li>
         <li class="biz-practical__item">
           <span class="biz-practical__item-label">Approximate requirement</span>
-          <span class="biz-practical__item-hint">Number of packs or litres you expect to need</span>
+          <span class="biz-practical__item-hint">Approximate quantity, if known</span>
         </li>
       </ul>
     </div>

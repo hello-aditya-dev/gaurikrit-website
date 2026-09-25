@@ -206,29 +206,63 @@
     object-fit: cover;
   }
 
-  /* ===== HERO ===== */
-  .about-hero { padding-top: calc(var(--header-h) + 2rem); padding-bottom: 1.5rem; }
-  .about-hero__container { display: grid; gap: 2rem; align-items: center; }
+  /* ===== HERO (V7: 5/7 — brand identity left, real product plate right) ===== */
+  .about-hero { padding-top: calc(var(--header-h) + clamp(1.25rem, 3vw, 2rem)); padding-bottom: clamp(1.25rem, 3vw, 2rem); }
+  .about-hero__container { display: grid; gap: clamp(1.5rem, 4vw, 3rem); align-items: center; }
   @media (min-width: 1024px) {
-    .about-hero__container { grid-template-columns: 5fr 7fr; gap: 3rem; }
+    .about-hero__container { grid-template-columns: 5fr 7fr; }
   }
-  .about-hero__lockup { max-width: 42rem; }
-  /* V4: real official logo (537×620) prominent on a soft cream background. */
-  .about-hero__art {
-    position: relative; aspect-ratio: 537/620;
-    background: radial-gradient(circle at 50% 45%, #f9f5eb, #e7ebdf);
-    border-radius: var(--r-panel); overflow: hidden;
-    display: flex; align-items: center; justify-content: center;
-    padding: 0;
+  .about-hero__lockup { display: flex; flex-direction: column; gap: 0.75rem; max-width: 42rem; }
+  .about-hero__deva {
+    font-family: var(--font-deva); font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 700; color: var(--haldi-deep);
   }
-  .about-hero__art .about-hero__logo {
-    display: block;
-    width: min(75%, 380px); height: auto;
-    object-fit: contain;
+  .about-hero__brand-sub {
+    font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--primary);
+  }
+  .about-hero__title {
+    font-family: var(--font-display); font-size: clamp(2.2rem, 5vw, 4rem);
+    line-height: 1.05; letter-spacing: -0.02em; text-wrap: balance;
+    margin-top: 0.5rem;
+  }
+  .about-hero__body {
+    margin-top: 1rem; font-size: clamp(1rem, 2vw, 1.125rem);
+    color: var(--fg-muted); line-height: 1.65; max-width: 60ch;
+  }
+  /* V7: the hero shows WHO the brand is + WHAT it actually makes — the real
+     product group photo as a catalogue plate with the official mark. */
+  .about-hero__plate {
+    background: var(--paper);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--haldi);
+    border-radius: var(--r-panel);
+    padding: clamp(1rem, 2vw, 1.5rem);
+    box-shadow: 0 2px 12px -4px rgba(32, 30, 25, 0.06);
+  }
+  .about-hero__plate-head {
+    display: flex; align-items: center; gap: 0.625rem;
+    padding-bottom: 0.75rem; margin-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .about-hero__plate-mark { width: 40px; height: 40px; flex: none; object-fit: contain; }
+  .about-hero__plate-brand {
+    font-family: var(--font-deva); font-size: 0.9375rem; color: var(--haldi-deep);
+    line-height: 1.2;
+  }
+  .about-hero__plate-brand small {
+    display: block; font-family: var(--font-sans); font-size: 0.5625rem;
+    font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--fg-muted); margin-top: 0.125rem;
+  }
+  .about-hero__plate-photo {
+    display: block; width: 100%; height: auto;
+    object-fit: contain; aspect-ratio: 1280 / 621;
   }
 
-  /* ===== WHO WE ARE ===== */
-  .about-section { padding-block: clamp(3.5rem, 6vw, 5rem); }
+  /* ===== WHO WE ARE (V7: 35/65 ledger-left, body right) ===== */
+  .about-wrap { padding-block: clamp(3.5rem, 6vw, 5rem); }
+  .about-section .about-section__body { max-width: 65ch; }
 
   /* ===== WHAT WE PRESENT ===== */
   .about-products-section { padding-block: clamp(3.5rem, 6vw, 5rem); }
@@ -253,18 +287,21 @@
     max-width: min(60%, 320px);
   }
 
-  /* ===== MATERIAL DIRECTION — zebu-study beside wall ===== */
+  /* ===== MATERIAL DIRECTION (V7: zebu printed onto the page — no box) ===== */
   .about-direction-section { padding-block: clamp(3.5rem, 6vw, 5rem); }
   .about-direction__visual {
-    position: relative; aspect-ratio: 1536/1024; background: var(--limewash);
-    border-radius: var(--r-panel); overflow: hidden;
+    /* No panel chrome: the artwork's cream ground matches the paper
+       background so the cow reads as printed onto the page. */
+    background: transparent;
+    border-radius: 0;
+    overflow: hidden;
+    position: relative;
+    aspect-ratio: 1536 / 1126;  /* V7: cow ~10% larger — crop bottom margin */
   }
   .about-direction__visual .editorial-image {
-    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; object-position: 20% 20%;  /* V7: head + horns + hump */
   }
-  .about-direction__visual .ms-wall,
-  .about-direction__visual .ms-cow,
-  .about-direction__visual .ms-arrow { display: none; }
 
   /* ===== MISSION BAND ===== */
   .about-mission {
@@ -297,13 +334,15 @@
 
   /* ===== COMPANY PLATE ===== */
   .company-plate-section { padding-block: clamp(3.5rem, 6vw, 5rem); }
+  /* V7: a formal ledger reads at 56rem, not stretched across 1400px. */
+  .company-plate { max-width: 56rem; }
   .company-plate__head { margin-bottom: 2rem; }
   .company-plate dt { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fg-muted); }
   .company-plate dd { color: var(--fg); }
   .company-plate__address { white-space: pre-line; }
 </style>
 
-<!-- ===== HERO ===== -->
+<!-- ===== HERO (V7: 5/7 — brand identity left, real product plate right) ===== -->
 <section class="about-hero bg-limewash" aria-labelledby="about-title">
   <div class="container">
     <nav class="breadcrumb" aria-label="Breadcrumb">
@@ -318,23 +357,34 @@
         <p class="about-hero__body">
           Gaurikrit Bio Products (OPC) Private Limited makes Prakritik Paint — a cow dung-based
           paint in two formats, Distemper and Emulsion, for interior and
-          exterior walls. From Khurja, District Bulandshahr.
+          exterior walls. The company is based in Khurja,
+          District Bulandshahr, Uttar Pradesh.
         </p>
       </div>
-      <div class="about-hero__art">
-        <img class="about-hero__mark-img"
-             src="../assets/brand/gaurikrit-logo-mark.png"
-             alt="Gaurikrit brand mark"
-             width="696" height="700"
-             style="max-width:96px;height:auto;"
-             loading="eager" decoding="async">
+      <div class="about-hero__plate">
+        <div class="about-hero__plate-head">
+          <img class="about-hero__plate-mark"
+               src="../assets/brand/gaurikrit-logo-mark.png"
+               alt="Gaurikrit brand mark"
+               width="40" height="40"
+               loading="eager" decoding="async">
+          <div class="about-hero__plate-brand">
+            गौरीकृत
+            <small>Prakritik Paint</small>
+          </div>
+        </div>
+        <img class="about-hero__plate-photo"
+             src="../assets/products/prakritik-group.jpg"
+             alt="Prakritik Distemper and Emulsion paint packs"
+             width="1280" height="621"
+             loading="eager" fetchpriority="high" decoding="async">
       </div>
     </div>
   </div>
 </section>
 
 <!-- ===== WHO WE ARE — legal identity ===== -->
-<section class="section section--paper about-section" aria-labelledby="who-title">
+<section class="section section--paper about-wrap" aria-labelledby="who-title">
   <div class="container">
     <div class="about-section" data-reveal>
       <div>

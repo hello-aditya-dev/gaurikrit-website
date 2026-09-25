@@ -351,22 +351,15 @@
 
   /* === Chapter 06 — CONTEXT: rural-landscape with annotation === */
   .why-context-section { padding-block: clamp(3.5rem, 6vw, 5rem); }
-  .why-context-band {
-    position: relative; width: 100%; aspect-ratio: 1344/768;
-    background: var(--limewash); border-radius: var(--r-panel);
-    overflow: hidden;
+  /* V7: no building artwork in the context chapter — a neutral rural
+     engraving at 0.08 opacity behind the text instead (no implied facility). */
+  .why-context-section { position: relative; overflow: hidden; }
+  .why-context-bg {
+    position: absolute; inset: 0; opacity: 0.08;
+    pointer-events: none; overflow: hidden;
   }
-  .why-context-band .editorial-image {
-    width: 100%; height: 100%; object-fit: cover; display: block;
-  }
-  .why-context-band__annot {
-    position: absolute; bottom: 1rem; left: 1rem;
-    background: rgba(250, 248, 241, 0.88);
-    padding: 0.5rem 0.875rem; border-radius: var(--r-pill);
-    font-size: 0.75rem; font-weight: 600;
-    letter-spacing: 0.14em; text-transform: uppercase;
-    color: var(--fg-muted);
-  }
+  .why-context-bg .editorial-image { width: 100%; height: 100%; object-fit: cover; }
+  .why-context-section .why-chapter { position: relative; z-index: 1; }
 </style>
 
 <!-- ===== HERO ===== -->
@@ -523,15 +516,15 @@
       }
       .al-node__line {
         stroke: var(--forest);
-        stroke-width: 0.85;
-        opacity: 0.45;
+        stroke-width: 1;
+        opacity: 0.62;
         stroke-linecap: round;
         transition: stroke 0.3s ease, stroke-width 0.3s ease, opacity 0.3s ease;
       }
       .al-node__num {
         fill: var(--forest);
         font-family: var(--font-display);
-        font-size: 18px;
+        font-size: 20px;
         font-weight: 700;
         text-anchor: middle;
         dominant-baseline: central;
@@ -541,13 +534,13 @@
       .al-node__name {
         fill: var(--forest);
         font-family: var(--font-sans);
-        font-size: 10px;
-        font-weight: 600;
+        font-size: 11px;
+        font-weight: 700;
         text-anchor: middle;
         dominant-baseline: central;
-        letter-spacing: 1.2px;
+        letter-spacing: 1.1px;
         text-transform: uppercase;
-        opacity: 0.85;
+        opacity: 1;
         transition: fill 0.3s ease, opacity 0.3s ease;
       }
 
@@ -587,7 +580,7 @@
        ============================================================ -->
   <circle cx="300" cy="300" r="215"
           fill="none" stroke="var(--forest)"
-          stroke-width="0.85" opacity="0.18" stroke-dasharray="2 4"/>
+          stroke-width="1" opacity="0.3" stroke-dasharray="2 4"/>
 
   <!-- ============================================================
        CENTRAL MEDALLION — circular, with a small cow-mark inside
@@ -597,7 +590,7 @@
   <!-- Inner accent ring -->
   <circle cx="300" cy="300" r="73"
           fill="none" stroke="var(--forest)"
-          stroke-width="0.85" opacity="0.4"/>
+          stroke-width="1" opacity="0.55"/>
 
   <!-- Central cow-mark — small side-view silhouette, facing LEFT
        (consistent with the brand signature cow). Drawn with the same
@@ -826,6 +819,9 @@
 
 <!-- ===== 06 CONTEXT — rural-landscape with annotation ===== -->
 <section class="section section--limewash why-context-section" aria-labelledby="chapter-06-title">
+  <div class="why-context-bg" aria-hidden="true">
+    <picture><source type="image/webp" srcset="../assets/editorial/rural-landscape.webp"><img class="editorial-image" src="../assets/editorial/rural-landscape.jpg" alt="" width="1344" height="768" loading="lazy" decoding="async"></picture>
+  </div>
   <div class="container">
     <div class="why-chapter" data-reveal>
       <div>
@@ -843,10 +839,6 @@
           <a class="btn btn--primary" href="../products/">Explore Products</a>
           <a class="btn btn--outline" href="../about/">About Gaurikrit</a>
         </div>
-      </div>
-      <div class="why-context-band" aria-hidden="true">
-        <picture><source type="image/webp" srcset="../assets/editorial/business-context-study.webp"><img class="editorial-image" src="../assets/editorial/business-context-study.jpg" alt="" width="1344" height="768" loading="lazy" decoding="async"></picture>
-        <span class="why-context-band__annot">District Bulandshahr, Uttar Pradesh – 203131</span>
       </div>
     </div>
   </div>

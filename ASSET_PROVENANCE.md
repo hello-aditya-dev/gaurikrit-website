@@ -3,20 +3,24 @@
 Maps each client original to its public derivatives. Client originals in
 `source-assets/client-originals/` are immutable — never modify them.
 
-## 10 Client Originals
+Last verified: V7 pass — all 10 originals opened and inspected (vision-model
+review + PDF page renders). Commit of record for the originals:
+`215f5df47d41fc18c332ff3505a5ab0e16126741`.
 
-| # | File | Dimensions | Classification | Public use? |
+## 10 Client Originals — inspected & classified
+
+| # | File | Dimensions | Classification (V7 inspection) | Public use? |
 |---|------|------------|----------------|-------------|
-| 1 | `Broucher-paint(2).pdf` | 4 pages | Paint brochure (specs, benefits, launch) | Yes — brochure PDF + cover |
-| 2 | `Company Board3(2).pdf` | 1 page | Company board (brand presentation) | No — internal reference |
-| 3 | `Gaurikrit_Black & White(2).pdf` | 1 page | Brand identity (B&W variant) | No — internal reference |
-| 4 | `Gaurikrit_Haldi & Black(2).pdf` | 1 page | Brand identity (haldi+black variant) | Yes — logo extracted |
-| 5 | `WhatsApp …10.11.56 PM(2).jpeg` | 853×1280 | **Official Gaurikrit logo** (yellow scalloped badge + cow head) | Yes — logo reference |
-| 6 | `WhatsApp …10.14.15 PM(2).jpeg` | 853×1280 | **Single paint can** (Khadi India Prakritik Paint) | Yes — product photo |
-| 7 | `WhatsApp …10.15.03 PM(2).jpeg` | 1280×1024 | Gaurikrit Bio Products cardboard box | No — packaging reference |
-| 8 | `WhatsApp …10.20.10 PM(2).jpeg` | 1024×1024 | **Collage with unsupported future products** (cow dung logs, bio-fertilizer, utility items) | **NO — contains unconfirmed products** |
-| 9 | `WhatsApp …10.21.44 PM(2).jpeg` | 800×400 | Two buckets: Distemper (blue) + Emulsion (orange) | Yes — product comparison |
-| 10 | `WhatsApp …10.22.06 PM(2).jpeg` | 1280×621 | Three-bucket group photo | Yes — hero product image |
+| 1 | `Broucher-paint(2).pdf` | 4 pages, A4 portrait | Official product brochure: cover (Gaurikrit logo + "Prakritik Paint" + "Colours of INDIA"), product details (both formats + specs + BIS note + coverage disclaimer), about paint (Ashta Laabh 8-benefit infographic + cows), back cover (12 Aug 2023 launch, BIS 15489:2013 / 428:2013 mention, contact details). No prices. | Yes — brochure PDF + cover |
+| 2 | `Company Board3(2).pdf` | 1 page, A4 | Company signboard: legal name, गौरीकृत, address, GSTIN, email, phones. Highest-quality source of the legal/contact data. | No — internal reference (data only) |
+| 3 | `Gaurikrit_Black & White(2).pdf` | 1 page, A4 landscape | Official logo, B&W vector variant (scalloped badge + cow head + laurel + "Gaurikrit" serif wordmark). | No — internal reference |
+| 4 | `Gaurikrit_Haldi & Black(2).pdf` | 1 page, A4 landscape | Official logo, haldi+black vector variant. Best-quality logo source (vector). | Yes — logo extracted |
+| 5 | `WhatsApp …10.11.56 PM(2).jpeg` | 853×1280 | Official Gaurikrit logo raster (badge + wordmark, portrait) on transparent-style background. | Yes — logo reference |
+| 6 | `WhatsApp …10.14.15 PM(2).jpeg` | 853×1280 | Single Prakritik paint can (Khadi India branding, red cow icon, "ECO-FRIENDLY COW DUNG PAINT"), transparent-style background. | Yes — product photo (single-can reference) |
+| 7 | `WhatsApp …10.15.03 PM(2).jpeg` | 1280×1024 | Gaurikrit kraft-box packaging shot with official logo ("NATURAL • PURE • SUSTAINABLE", www.gaurikrit.com) on blurred plant background. | No — packaging reference only |
+| 8 | `WhatsApp …10.20.10 PM(2).jpeg` | 1024×1024 | **Collage with UNSUPPORTED future products** (cow dung logs, bio-fertilizer mix, "Future Line" utility products: diyas, cups, mosquito coils). | **NO — contains unconfirmed products; never publish** |
+| 9 | `WhatsApp …10.21.44 PM(2).jpeg` | 800×400 | Two-bucket comparison graphic ("INDIA'S FIRST KHADI PRAKRITIK PAINT", Distemper blue + Emulsion orange) on light pink ground. | Yes — product comparison (not currently used; group photo used instead) |
+| 10 | `WhatsApp …10.22.06 PM(2).jpeg` | 1280×621 | **Three-bucket group photo** (2 Emulsion + 1 Distemper centre) on wooden surface, white ground. Highest-quality current hero product image. | Yes — hero product image |
 
 ## Derivative mapping
 
@@ -36,6 +40,23 @@ Maps each client original to its public derivatives. Client originals in
 | `assets/editorial/finished-wall-study.webp` | `source-assets/editorial/finished-wall-study.png` | Generated editorial artwork |
 | `assets/editorial/business-context-study.webp` | `source-assets/editorial/business-context-study.png` | Generated editorial artwork |
 | `assets/editorial/rural-landscape.webp` | `source-assets/editorial/rural-landscape.png` | Generated editorial artwork |
+
+## V7 usage rules (enforced by this pass)
+
+1. **Real product photography is used for products only** (hero, product
+   chapters, detail pages, about hero, formats sections). Never replaced
+   with generated art.
+2. **Natural-history cow art** (zebu-study) is reserved for the material
+   origin narrative; the V7 home hero and Ashta section no longer layer it
+   as background noise.
+3. **Architectural art** (business-context / architectural studies) appears
+   only as editorial context on For-Business; the Why-Prakritik context
+   chapter now uses the neutral rural engraving at 0.08 opacity instead of
+   a building that could imply a facility.
+4. **The official logo** is used only for branding (header, footer, direct
+   contact plate, product plate heads, 404 seal) — never as substitute
+   imagery for a section.
+5. File #8 (future-products collage) is excluded from all public outputs.
 
 ## Priority rule
 

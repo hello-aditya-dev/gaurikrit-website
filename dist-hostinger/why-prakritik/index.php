@@ -93,7 +93,7 @@ $ashtaIds = [
   }
   .why-hero__zebu-img {
     position: absolute; inset: 0; width: 100%; height: 100%;
-    object-fit: cover; object-position: 50% 18%;
+    object-fit: cover; object-position: 20% 20%;  /* V7: head + horns + hump */
   }
   @media (max-width: 767px) {
     .why-hero__zebu-crop { width: 72%; right: 7%; top: 9%; height: 82%; }
@@ -103,9 +103,6 @@ $ashtaIds = [
   .why-material-sample .editorial-image,
   .why-tradition-art .editorial-image,
   .why-flow-panel .editorial-image,
-  .why-context-band .editorial-image {
-    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
-  }
   /* Remove the legacy cow/wall composition — single editorial photo replaces it. */
   .why-hero__art .why-cow,
   .why-hero__art .why-wall { display: none; }
@@ -266,17 +263,6 @@ $ashtaIds = [
     position: relative; width: 100%; aspect-ratio: 1344/768;
     background: var(--limewash); border-radius: var(--r-panel);
     overflow: hidden;
-  }
-  .why-context-band .editorial-image {
-    width: 100%; height: 100%; object-fit: cover; display: block;
-  }
-  .why-context-band__annot {
-    position: absolute; bottom: 1rem; left: 1rem;
-    background: rgba(250, 248, 241, 0.88);
-    padding: 0.5rem 0.875rem; border-radius: var(--r-pill);
-    font-size: 0.75rem; font-weight: 600;
-    letter-spacing: 0.14em; text-transform: uppercase;
-    color: var(--fg-muted);
   }
 </style>
 
@@ -512,6 +498,16 @@ $ashtaIds = [
 
 <!-- ===== 06 CONTEXT — V5: business-context-study with annotation ===== -->
 <section class="section section--limewash why-context-section" aria-labelledby="chapter-06-title">
+  <div class="why-context-bg" aria-hidden="true">
+    <picture>
+      <source type="image/webp" srcset="<?= asset_url('/assets/editorial/rural-landscape.webp') ?>">
+      <img class="editorial-image"
+           src="<?= asset_url('/assets/editorial/rural-landscape.jpg') ?>"
+           alt=""
+           width="1344" height="768"
+           loading="lazy" decoding="async">
+    </picture>
+  </div>
   <div class="container">
     <div class="why-chapter" data-reveal>
       <div>
@@ -530,17 +526,7 @@ $ashtaIds = [
           <a class="btn btn--outline" href="/about/">About Gaurikrit</a>
         </div>
       </div>
-      <div class="why-context-band" aria-hidden="true">
-        <picture>
-          <source type="image/webp" srcset="<?= asset_url('/assets/editorial/business-context-study.webp') ?>">
-          <img class="editorial-image"
-               src="<?= asset_url('/assets/editorial/business-context-study.jpg') ?>"
-               alt=""
-               width="1344" height="768"
-               loading="lazy" decoding="async">
-        </picture>
-        <span class="why-context-band__annot"><?= e($COMPANY['address'][4] ?? '') ?>, <?= e($COMPANY['address'][5] ?? '') ?></span>
-      </div>
+
     </div>
   </div>
 </section>

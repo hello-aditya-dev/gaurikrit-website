@@ -1,6 +1,6 @@
 <?php
 /**
- * Gaurikrit Bio Products — About (V5 finish pass).
+ * Gaurikrit Bio Products — About (V7 rebuild — product plate hero + 35/65 ledger).
  * Task V5-FINISH.
  *
  * Refines the V4 composition: hero is typographic (small 96px logo mark +
@@ -47,33 +47,18 @@ $addressLine = implode("\n", $address);
     object-fit: cover;
   }
 
-  /* ===== HERO (V5: typographic, small logo mark + faded wall bg — NO giant logo panel) ===== */
+  /* ===== HERO (V7: 5/7 — brand identity left, real product plate right) ===== */
   .about-hero {
-    padding-top: calc(var(--header-h) + 2rem); padding-bottom: 1.5rem;
-    position: relative; overflow: hidden;
+    padding-top: calc(var(--header-h) + clamp(1.25rem, 3vw, 2rem));
+    padding-bottom: clamp(1.25rem, 3vw, 2rem);
   }
-  @media (min-width: 1024px) { .about-hero { padding-bottom: 2.5rem; } }
-  /* V5: subtle interior-wall-study background at 0.08 opacity. */
-  .about-hero__bg {
-    position: absolute; inset: 0; opacity: 0.08;
-    pointer-events: none; overflow: hidden;
+  .about-hero__container {
+    display: grid; gap: clamp(1.5rem, 4vw, 3rem); align-items: center;
   }
-  .about-hero__bg .editorial-image { width: 100%; height: 100%; object-fit: cover; }
-  /* V5: single-column inner (no 5fr/7fr split — the hero is typographic). */
-  .about-hero__inner { position: relative; z-index: 1; max-width: 48rem; }
+  @media (min-width: 1024px) {
+    .about-hero__container { grid-template-columns: 5fr 7fr; }
+  }
   .about-hero__lockup { display: flex; flex-direction: column; gap: 0.75rem; }
-  /* V5: small 96px logo mark beside the devanagari/brand-sub text. */
-  .about-hero__brand-row {
-    display: flex; align-items: center; gap: 1.25rem;
-    margin-bottom: 1.5rem;
-  }
-  .about-hero__mark {
-    display: block;
-    width: 96px; height: 96px;  /* V5: small logo mark */
-    object-fit: contain; flex-shrink: 0;
-    filter: drop-shadow(0 4px 10px rgba(34, 36, 27, 0.10));
-  }
-  .about-hero__brand-text { display: flex; flex-direction: column; gap: 0.25rem; }
   .about-hero__deva {
     font-family: var(--font-deva); font-size: clamp(1.5rem, 3vw, 2rem);
     font-weight: 700; color: var(--haldi-deep);
@@ -91,26 +76,41 @@ $addressLine = implode("\n", $address);
     margin-top: 1rem; font-size: clamp(1rem, 2vw, 1.125rem);
     color: var(--fg-muted); line-height: 1.65; max-width: 60ch;
   }
+  /* V7: the hero shows WHO the brand is + WHAT it actually makes — the real
+     product group photo as a catalogue plate with the official mark. */
+  .about-hero__plate {
+    background: var(--paper);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--haldi);
+    border-radius: var(--r-panel);
+    padding: clamp(1rem, 2vw, 1.5rem);
+    box-shadow: 0 2px 12px -4px rgba(32, 30, 25, 0.06);
+  }
+  .about-hero__plate-head {
+    display: flex; align-items: center; gap: 0.625rem;
+    padding-bottom: 0.75rem; margin-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .about-hero__plate-mark {
+    width: 40px; height: 40px; flex: none; object-fit: contain;
+  }
+  .about-hero__plate-brand {
+    font-family: var(--font-deva); font-size: 0.9375rem; color: var(--haldi-deep);
+    line-height: 1.2;
+  }
+  .about-hero__plate-brand small {
+    display: block; font-family: var(--font-sans); font-size: 0.5625rem;
+    font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--fg-muted); margin-top: 0.125rem;
+  }
+  .about-hero__plate-photo {
+    display: block; width: 100%; height: auto;
+    object-fit: contain; aspect-ratio: 1280 / 621;
+  }
 
-  /* ===== WHO WE ARE (V5: 65ch body, line-height 1.7, more breathing room) ===== */
-  .about-section { padding-block: clamp(3.5rem, 6vw, 5rem); }
-  /* V5: override the 4fr/8fr grid for the who-we-are section so the body
-     can breathe in a single-column reading layout (no narrow column that
-     breaks awkwardly). */
-  .about-section--prose {
-    display: grid; grid-template-columns: 1fr; gap: 1.5rem;
-  }
-  .about-section--prose .about-section__lead {
-    max-width: 65ch;
-  }
-  .about-section--prose .about-section__body {
-    max-width: 65ch;  /* V5: widened to 65ch for readability */
-    line-height: 1.7;  /* V5: increased (shared default is 1.75; this stays
-                         within the spec's 1.7 target — kept looser than the
-                         spec to maintain the editorial feel) */
-    font-size: 1.0625rem;
-  }
-  .about-section--prose .about-section__body p + p { margin-top: 1.25rem; }
+  /* ===== WHO WE ARE (V7: 35/65 ledger-left, body right) ===== */
+  .about-wrap { padding-block: clamp(3.5rem, 6vw, 5rem); }
+  .about-section .about-section__body { max-width: 65ch; }
 
   /* ===== WHAT WE PRESENT (V5: larger product image CSS footprint) ===== */
   .about-products-section { padding-block: clamp(3.5rem, 6vw, 5rem); }
@@ -137,19 +137,21 @@ $addressLine = implode("\n", $address);
     max-width: min(80%, 350px);  /* was min(60%, 320px) */
   }
 
-  /* ===== MATERIAL DIRECTION — zebu-study beside wall ===== */
+  /* ===== MATERIAL DIRECTION (V7: zebu printed onto the page — no box) ===== */
   .about-direction-section { padding-block: clamp(3.5rem, 6vw, 5rem); }
   .about-direction__visual {
-    position: relative; aspect-ratio: 1536/1024; background: var(--limewash);
-    border-radius: var(--r-panel); overflow: hidden;
+    /* No panel chrome: the artwork's cream ground matches the paper
+       background so the cow reads as printed onto the page. */
+    background: transparent;
+    border-radius: 0;
+    overflow: hidden;
+    position: relative;
+    aspect-ratio: 1536 / 1126;  /* V7: cow ~10% larger — crop bottom margin */
   }
   .about-direction__visual .editorial-image {
-    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; object-position: 50% 35%;
   }
-  /* Legacy cow/wall composition — replaced by single editorial photo. */
-  .about-direction__visual .ms-wall,
-  .about-direction__visual .ms-cow,
-  .about-direction__visual .ms-arrow { display: none; }
 
   /* ===== MISSION BAND (V5: rural-landscape at 0.10 opacity — was 0.15) ===== */
   .about-mission {
@@ -183,6 +185,8 @@ $addressLine = implode("\n", $address);
   /* ===== COMPANY PLATE (V5: premium feel — border-top per row, bumped label
      letter-spacing, aligned values column) ===== */
   .company-plate-section { padding-block: clamp(3.5rem, 6vw, 5rem); }
+  /* V7: a formal ledger reads at 56rem, not stretched across 1400px. */
+  .company-plate { max-width: 56rem; }
   .company-plate__head { margin-bottom: 2rem; }
   /* V5: remove the parent's border-top so each row's border-top reads as a
      clean separator (no double line on the first row). */
@@ -204,53 +208,51 @@ $addressLine = implode("\n", $address);
   .company-plate__address { white-space: pre-line; }
 </style>
 
-<!-- ===== HERO (V5: typographic — small logo mark + faded wall bg) ===== -->
+<!-- ===== HERO (V7: 5/7 — brand identity left, real product plate right) ===== -->
 <section class="about-hero bg-limewash" aria-labelledby="about-title">
-  <!-- V5: subtle interior-wall-study at 0.08 opacity as background. -->
-  <div class="about-hero__bg" aria-hidden="true">
-    <picture>
-      <source type="image/webp" srcset="<?= asset_url('/assets/editorial/interior-wall-study.webp') ?>">
-      <img class="editorial-image"
-           src="<?= asset_url('/assets/editorial/interior-wall-study.jpg') ?>"
-           alt=""
-           width="1344" height="768"
-           loading="eager" decoding="async">
-    </picture>
-  </div>
   <div class="container">
     <nav class="breadcrumb" aria-label="Breadcrumb">
       <a href="/">Home</a><span>›</span>
       <span>About</span>
     </nav>
-    <div class="about-hero__inner" data-reveal>
+    <div class="about-hero__container" data-reveal>
       <div class="about-hero__lockup">
-        <!-- V5: small 96px logo mark beside the devanagari + brand-sub text. -->
-        <div class="about-hero__brand-row">
-          <img class="about-hero__mark"
-               src="<?= asset_url('/assets/brand/gaurikrit-logo-mark.png') ?>"
-               alt="Gaurikrit brand mark"
-               width="696" height="700"
-               loading="eager" decoding="async">
-          <div class="about-hero__brand-text">
-            <span class="about-hero__deva"><?= e($COMPANY['devanagari']) ?></span>
-            <span class="about-hero__brand-sub">Gaurikrit Bio Products</span>
-          </div>
-        </div>
+        <span class="about-hero__deva"><?= e($COMPANY['devanagari']) ?></span>
+        <span class="about-hero__brand-sub">Gaurikrit Bio Products</span>
         <h1 class="about-hero__title" id="about-title">Nature. Culture. Useful materials.</h1>
         <p class="about-hero__body">
           <?= e($COMPANY['legalName']) ?> makes Prakritik Paint — a cow dung-based
           paint in two formats, Distemper and Emulsion, for interior and
-          exterior walls. From <?= e($address[3] ?? '') ?>, <?= e($address[4] ?? '') ?>.
+          exterior walls. The company is based in <?= e($address[3] ?? '') ?>,
+          <?= e($address[4] ?? '') ?>, Uttar Pradesh.
         </p>
+      </div>
+      <div class="about-hero__plate">
+        <div class="about-hero__plate-head">
+          <img class="about-hero__plate-mark"
+               src="<?= asset_url('/assets/brand/gaurikrit-logo-mark.png') ?>"
+               alt="Gaurikrit brand mark"
+               width="40" height="40"
+               loading="eager" decoding="async">
+          <div class="about-hero__plate-brand">
+            गौरीकृत
+            <small>Prakritik Paint</small>
+          </div>
+        </div>
+        <img class="about-hero__plate-photo"
+             src="<?= asset_url('/assets/products/prakritik-group.jpg') ?>"
+             alt="Prakritik Distemper and Emulsion paint packs"
+             width="1280" height="621"
+             loading="eager" fetchpriority="high" decoding="async">
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===== WHO WE ARE (V5: 65ch body, line-height 1.7) ===== -->
-<section class="section section--paper about-section" aria-labelledby="who-title">
+<!-- ===== WHO WE ARE (V7: 35/65 — identity left, body right) ===== -->
+<section class="section section--paper about-wrap" aria-labelledby="who-title">
   <div class="container">
-    <div class="about-section about-section--prose" data-reveal>
+    <div class="about-section" data-reveal>
       <div>
         <span class="about-section__eyebrow">Who we are</span>
         <p class="about-section__lead">

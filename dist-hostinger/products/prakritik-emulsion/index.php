@@ -91,6 +91,9 @@ $specRows = [
     display: flex; align-items: center; justify-content: center;
   }
   @media (min-width: 1024px) { .product-detail__media { min-height: 30rem; } }
+  /* V7: on phones the 22rem min-height + 4/3 aspect forces a wider-than-viewport
+     box — let the aspect ratio govern the height instead. */
+  @media (max-width: 639px) { .product-detail__media { min-height: 0; } }
   .product-detail__media .media-env {
     position: absolute; inset: 0; width: 100%; height: 100%;
     object-fit: cover;

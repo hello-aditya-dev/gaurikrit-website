@@ -48,7 +48,7 @@ $helpfulInclude = [
     ['label' => 'City',              'hint' => 'Where the site is located'],
     ['label' => 'Approximate wall area', 'hint' => 'In sq.ft. if you have a number'],
     ['label' => 'Paint format',      'hint' => 'Distemper, Emulsion, or not sure yet'],
-    ['label' => 'Approximate requirement', 'hint' => 'Number of packs or litres you expect to need'],
+    ['label' => 'Approximate requirement', 'hint' => 'Approximate quantity, if known'],
 ];
 ?>
 <style>

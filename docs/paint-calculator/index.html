@@ -352,12 +352,15 @@
   }
   .calc__result-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.5rem; }
 
-  /* Helper / contact aside at the bottom */
+  /* Helper / contact aside — V7: hidden by default, revealed ONLY after
+     the user completes all four calculator steps. */
   .calc-helper {
+    display: none;
     margin-top: 2.5rem; padding: 1.5rem;
     background: var(--limewash); border-left: 3px solid var(--haldi);
     border-radius: var(--r-input);
   }
+  .calc-helper.is-shown { display: block; }
 </style>
 
 <!-- ===== HERO ===== -->
@@ -729,7 +732,7 @@
         <script type="application/json" id="calculator-config">{"enabled":false}</script>
         <div data-calculator></div>
 
-        <div class="calc-helper">
+        <div class="calc-helper" data-calc-helper>
           <h2 class="calc-helper__title">Need a more specific estimate?</h2>
           <p class="calc-helper__body">
             Send the project summary to Gaurikrit and we will respond with what
@@ -744,6 +747,30 @@
     </div>
   </div>
 </section>
+
+<!-- V7: reveal the calc-helper only after the result panel becomes visible. -->
+<script>
+(function () {
+  'use strict';
+  var helper = document.querySelector('[data-calc-helper]');
+  if (!helper) return;
+  var shown = false;
+  function check() {
+    if (shown) return;
+    var result = document.querySelector('[data-calc-result]');
+    if (result && !result.hidden) {
+      shown = true;
+      helper.classList.add('is-shown');
+    }
+  }
+  if (window.MutationObserver) {
+    var mo = new MutationObserver(check);
+    mo.observe(document.body, { attributes: true, attributeFilter: ['hidden'], subtree: true });
+  }
+  setInterval(check, 700);
+  check();
+})();
+</script>
     </main>
 
     <!-- ===== Site footer ===== -->

@@ -44,15 +44,15 @@ $class = $class ?? '';
       }
       .al-node__line {
         stroke: var(--forest);
-        stroke-width: 0.85;
-        opacity: 0.45;
+        stroke-width: 1;
+        opacity: 0.62;
         stroke-linecap: round;
         transition: stroke 0.3s ease, stroke-width 0.3s ease, opacity 0.3s ease;
       }
       .al-node__num {
         fill: var(--forest);
         font-family: var(--font-display);
-        font-size: 18px;
+        font-size: 20px;
         font-weight: 700;
         text-anchor: middle;
         dominant-baseline: central;
@@ -62,13 +62,13 @@ $class = $class ?? '';
       .al-node__name {
         fill: var(--forest);
         font-family: var(--font-sans);
-        font-size: 10px;
-        font-weight: 600;
+        font-size: 11px;
+        font-weight: 700;
         text-anchor: middle;
         dominant-baseline: central;
-        letter-spacing: 1.2px;
+        letter-spacing: 1.1px;
         text-transform: uppercase;
-        opacity: 0.85;
+        opacity: 1;
         transition: fill 0.3s ease, opacity 0.3s ease;
       }
 
@@ -108,7 +108,7 @@ $class = $class ?? '';
        ============================================================ -->
   <circle cx="300" cy="300" r="215"
           fill="none" stroke="var(--forest)"
-          stroke-width="0.85" opacity="0.18" stroke-dasharray="2 4"/>
+          stroke-width="1" opacity="0.3" stroke-dasharray="2 4"/>
 
   <!-- ============================================================
        CENTRAL MEDALLION — circular, with a small cow-mark inside
@@ -118,7 +118,7 @@ $class = $class ?? '';
   <!-- Inner accent ring -->
   <circle cx="300" cy="300" r="73"
           fill="none" stroke="var(--forest)"
-          stroke-width="0.85" opacity="0.4"/>
+          stroke-width="1" opacity="0.55"/>
 
   <!-- Central cow-mark — small side-view silhouette, facing LEFT
        (consistent with the brand signature cow). Drawn with the same

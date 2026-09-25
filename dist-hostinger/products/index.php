@@ -126,15 +126,15 @@ $groupImage  = '/assets/products/prakritik-group.jpg';
   .spec-matrix__row:nth-child(even) {
     background: color-mix(in srgb, var(--haldi) 3%, transparent);
   }
-  /* Header row: stronger underline, no striping, sticky-feel bg. */
+  /* V7: header row clearly legible — forest text, tinted ground, strong rule. */
   .spec-matrix__row:first-child {
-    border-bottom: 2px solid var(--border-strong);
-    background: color-mix(in srgb, var(--limewash) 50%, var(--paper));
+    border-bottom: 2px solid var(--forest);
+    background: color-mix(in srgb, var(--limewash) 80%, var(--paper));
   }
   .spec-matrix__row:last-child { border-bottom: 0; }
   .spec-matrix__col-head {
-    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.16em;
-    text-transform: uppercase; color: var(--fg-muted);
+    font-size: 0.8125rem; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--forest);
   }
   .spec-matrix__col-head--distemper { color: var(--indigo); }
   .spec-matrix__col-head--emulsion { color: var(--leaf); }
@@ -149,6 +149,40 @@ $groupImage  = '/assets/products/prakritik-group.jpg';
     font-weight: 600 !important;
     color: var(--fg) !important;
   }
+  /* V7: below 640px the 3-column matrix is unreadable — two stacked spec
+     sheets instead (Distemper block + Emulsion block). */
+  .spec-matrix-mobile { display: none; }
+  @media (max-width: 639px) {
+    .spec-matrix { display: none; }
+    .spec-matrix-mobile { display: grid; gap: 1.5rem; }
+  }
+  .spec-matrix-mobile__block {
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--forest);
+    border-radius: var(--r-panel);
+    background: var(--paper);
+    overflow: hidden;
+  }
+  .spec-matrix-mobile__block--emulsion { border-top-color: var(--leaf); }
+  .spec-matrix-mobile__name {
+    padding: 1rem 1.25rem;
+    font-size: 0.8125rem; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--forest);
+    background: color-mix(in srgb, var(--limewash) 80%, var(--paper));
+    border-bottom: 1px solid var(--border);
+  }
+  .spec-matrix-mobile__block--emulsion .spec-matrix-mobile__name { color: var(--leaf); }
+  .spec-matrix-mobile__row {
+    display: flex; justify-content: space-between; align-items: baseline; gap: 1rem;
+    padding: 0.75rem 1.25rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .spec-matrix-mobile__row:last-child { border-bottom: 0; }
+  .spec-matrix-mobile__row .k {
+    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--fg-muted);
+  }
+  .spec-matrix-mobile__row .v { font-weight: 600; color: var(--fg); text-align: right; }
 
   /* ===== BENEFITS STRIP (V5: haldi dot indicators + bolder name typography) ===== */
   .benefits-strip { padding-block: clamp(3rem, 6vw, 5rem); }
@@ -194,14 +228,16 @@ $groupImage  = '/assets/products/prakritik-group.jpg';
     padding-block: clamp(4.5rem, 8vw, 6.5rem);  /* V5: increased from clamp(3rem, 6vw, 5rem) */
     position: relative;
   }
-  /* V5: subtle haldi divider line at the top of the FAQ section. */
-  .faq-section::before {
+  /* V7: haldi divider line aligned to the content grid (container), never
+     the viewport edge. FAQ constrained to a readable 64rem measure. */
+  .faq-section .container::before {
     content: ''; display: block;
     width: 4rem; height: 2px;
     background: var(--haldi);
     margin: 0 0 3rem;
   }
   .faq-section__head { max-width: 48rem; margin-bottom: 2rem; }
+  .faq-section .faq-list { max-width: 64rem; }
 </style>
 
 <!-- ============================================================
@@ -378,6 +414,29 @@ $groupImage  = '/assets/products/prakritik-group.jpg';
         <span class="spec-matrix__label">Usage</span>
         <span class="spec-matrix__value"><?= e($distemper['usage']) ?></span>
         <span class="spec-matrix__value"><?= e($emulsion['usage']) ?></span>
+      </div>
+    </div>
+
+    <div class="spec-matrix-mobile" data-reveal>
+      <div class="spec-matrix-mobile__block">
+        <div class="spec-matrix-mobile__name"><?= e($distemper['name']) ?></div>
+        <div class="spec-matrix-mobile__row"><span class="k">Pack sizes</span><span class="v"><?= e($distemper['packagingShort']) ?></span></div>
+        <div class="spec-matrix-mobile__row"><span class="k">Colour</span><span class="v"><?= e($distemper['colour']) ?></span></div>
+        <div class="spec-matrix-mobile__row"><span class="k">Finish</span><span class="v"><?= e($distemper['finish']) ?></span></div>
+        <div class="spec-matrix-mobile__row"><span class="k">Drying time</span><span class="v"><?= e($distemper['dryingTime']) ?></span></div>
+        <div class="spec-matrix-mobile__row"><span class="k">Coverage</span><span class="v"><?= e($distemper['coverage']) ?></span></div>
+        <div class="spec-matrix-mobile__row"><span class="k">V.O.C.</span><span class="v"><?= e($distemper['voc']) ?></span></div>
+        <div class="spec-matrix-mobile__row"><span class="k">Usage</span><span class="v"><?= e($distemper['usage']) ?></span></div>
+      </div>
+      <div class="spec-matrix-mobile__block spec-matrix-mobile__block--emulsion">
+        <div class="spec-matrix-mobile__name"><?= e($emulsion['name']) ?></div>
+        <div class="spec-matrix-mobile__row"><span class="k">Pack sizes</span><span class="v"><?= e($emulsion['packagingShort']) ?></span></div>
+        <div class="spec-matrix-mobile__row"><span class="k">Colour</span><span class="v"><?= e($emulsion['colour']) ?></span></div>
+        <div class="spec-matrix-mobile__row"><span class="k">Finish</span><span class="v"><?= e($emulsion['finish']) ?></span></div>
+        <div class="spec-matrix-mobile__row"><span class="k">Drying time</span><span class="v"><?= e($emulsion['dryingTime']) ?></span></div>
+        <div class="spec-matrix-mobile__row"><span class="k">Coverage</span><span class="v"><?= e($emulsion['coverage']) ?></span></div>
+        <div class="spec-matrix-mobile__row"><span class="k">V.O.C.</span><span class="v"><?= e($emulsion['voc']) ?></span></div>
+        <div class="spec-matrix-mobile__row"><span class="k">Usage</span><span class="v"><?= e($emulsion['usage']) ?></span></div>
       </div>
     </div>
 

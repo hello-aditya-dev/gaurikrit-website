@@ -1,6 +1,6 @@
 <?php
 /**
- * Gaurikrit Bio Products — Contact (V5 finish pass).
+ * Gaurikrit Bio Products — Contact (V7 rebuild — direct-lines plate + form fix).
  * Task V5-FINISH.
  *
  * Refines the V4 composition: hero drops the giant logo-mark panel for a
@@ -46,21 +46,18 @@ if ($interestParam !== '' && array_key_exists($interestParam, $INTEREST_OPTIONS)
 }
 ?>
 <style>
-  /* ===== HERO (V5: calm typographic — no giant logo panel; subtle wall bg) ===== */
+  /* ===== HERO (V7: 7/5 — copy left, direct-lines plate right) ===== */
   .contact-hero {
-    padding-top: calc(var(--header-h) + 2rem); padding-bottom: 1.5rem;
-    position: relative; overflow: hidden;
+    padding-top: calc(var(--header-h) + clamp(1.25rem, 3vw, 2rem));
+    padding-bottom: clamp(1.25rem, 3vw, 2rem);
   }
-  /* V5: subtle interior-wall-study at 0.06 opacity as background. */
-  .contact-hero__bg {
-    position: absolute; inset: 0; opacity: 0.06;
-    pointer-events: none; overflow: hidden;
+  .contact-hero__container {
+    display: grid; gap: clamp(1.5rem, 4vw, 3rem); align-items: start;
   }
-  .contact-hero__bg .editorial-image { width: 100%; height: 100%; object-fit: cover; }
-  /* V5: single-column inner (no 7fr/5fr split — the hero is typographic
-     with company details immediately visible below the heading). */
-  .contact-hero__inner { position: relative; z-index: 1; max-width: 60rem; }
-  .contact-hero__lockup { display: flex; flex-direction: column; gap: 0.625rem; max-width: 70ch; }
+  @media (min-width: 1024px) {
+    .contact-hero__container { grid-template-columns: 7fr 5fr; align-items: center; }
+  }
+  .contact-hero__lockup { max-width: 42rem; display: flex; flex-direction: column; gap: 0.625rem; }
   .contact-hero__eyebrow {
     font-size: 0.75rem; font-weight: 700; letter-spacing: 0.22em;
     text-transform: uppercase; color: var(--primary);
@@ -74,26 +71,46 @@ if ($interestParam !== '' && array_key_exists($interestParam, $INTEREST_OPTIONS)
     margin-top: 1rem; font-size: clamp(1rem, 2vw, 1.125rem);
     color: var(--fg-muted); line-height: 1.65; max-width: 60ch;
   }
-  /* V5: company details immediately visible below the heading + body. */
-  .contact-hero__quick {
-    margin-top: 2rem; border-top: 1px solid var(--border);
+  /* V7: direct contact information as a visual object — more useful than
+     decorative art. Visible at ALL viewports (mobile users need it first). */
+  .contact-direct {
+    display: flex; flex-direction: column; gap: 0;
+    background: var(--paper);
+    border: 1px solid var(--border);
+    border-radius: var(--r-panel);
+    box-shadow: 0 2px 12px -4px rgba(32, 30, 25, 0.06);
+    padding: 1.5rem 1.5rem 1.25rem;
   }
-  .contact-hero__quick-row {
-    padding: 1rem 0; border-bottom: 1px solid var(--border);
-    display: grid; grid-template-columns: 1fr; gap: 0.25rem;
-    align-items: baseline;
+  @media (min-width: 768px) { .contact-direct { padding: 2rem 2rem 1.5rem; } }
+  .contact-direct__head {
+    display: flex; align-items: center; gap: 0.75rem;
+    padding-bottom: 1rem; border-bottom: 1px solid var(--border);
   }
-  @media (min-width: 640px) {
-    .contact-hero__quick-row { grid-template-columns: 9rem 1fr; gap: 1rem; }
+  .contact-direct__mark { width: 44px; height: 44px; flex: none; object-fit: contain; }
+  .contact-direct__brand {
+    font-family: var(--font-deva); font-size: 1rem; color: var(--haldi-deep);
+    line-height: 1.2;
   }
-  .contact-hero__quick-row dt {
-    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.18em;  /* V5 */
+  .contact-direct__brand small {
+    display: block; font-family: var(--font-sans); font-size: 0.625rem;
+    font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--fg-muted); margin-top: 0.125rem;
+  }
+  .contact-direct__row {
+    padding: 0.875rem 0; border-bottom: 1px solid var(--border);
+    display: grid; grid-template-columns: 1fr; gap: 0.125rem;
+  }
+  .contact-direct__row:last-child { border-bottom: 0; }
+  .contact-direct__row dt {
+    font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.18em;
     text-transform: uppercase; color: var(--fg-muted);
   }
-  .contact-hero__quick-row dd { font-size: 1rem; color: var(--fg); }
-  .contact-hero__quick-row dd a { color: var(--primary); text-decoration: none; }
-  .contact-hero__quick-row dd a:hover { text-decoration: underline; }
-  .contact-hero__quick-address { white-space: pre-line; }
+  .contact-direct__row dd { font-size: 1rem; color: var(--fg); }
+  .contact-direct__row dd a {
+    color: var(--primary); text-decoration: none; font-weight: 600;
+    min-height: 24px; display: inline-block;
+  }
+  .contact-direct__row dd a:hover { text-decoration: underline; }
 
   /* ===== CONTACT SECTION (5 / 7 — info left, form right) ===== */
   .contact-section { padding-top: clamp(1.5rem, 3vw, 2.5rem); }
@@ -120,6 +137,15 @@ if ($interestParam !== '' && array_key_exists($interestParam, $INTEREST_OPTIONS)
   .contact-info__row dd a { color: var(--primary); text-decoration: none; }
   .contact-info__row dd a:hover { text-decoration: underline; }
   .contact-info__address { white-space: pre-line; }
+  /* V7: subtle links instead of redundant CTA buttons. */
+  .contact-info__links {
+    margin-top: 1.25rem; padding-top: 1.25rem; border-top: 1px solid var(--border);
+    display: flex; flex-wrap: wrap; gap: 0.625rem; align-items: center;
+    font-size: 0.875rem; color: var(--fg-muted);
+  }
+  .contact-info__links a { color: var(--primary); text-decoration: none; font-weight: 600; }
+  .contact-info__links a:hover { text-decoration: underline; }
+  .contact-info__links span { color: var(--border-strong); }
 
   /* Form (right). V5: subtle border + soft shadow to distinguish from
      the left plate; clearer focus states on inputs. */
@@ -161,25 +187,14 @@ if ($interestParam !== '' && array_key_exists($interestParam, $INTEREST_OPTIONS)
   .contact-form__foot-links span { color: var(--border-strong); }
 </style>
 
-<!-- ===== HERO (V5: calm typographic — no giant logo panel; subtle wall bg) ===== -->
+<!-- ===== HERO (V7: 7/5 — copy left, direct-lines plate right) ===== -->
 <section class="contact-hero bg-limewash" aria-labelledby="contact-title">
-  <!-- V5: subtle interior-wall-study at 0.06 opacity as background. -->
-  <div class="contact-hero__bg" aria-hidden="true">
-    <picture>
-      <source type="image/webp" srcset="<?= asset_url('/assets/editorial/interior-wall-study.webp') ?>">
-      <img class="editorial-image"
-           src="<?= asset_url('/assets/editorial/interior-wall-study.jpg') ?>"
-           alt=""
-           width="1344" height="768"
-           loading="eager" decoding="async">
-    </picture>
-  </div>
   <div class="container">
     <nav class="breadcrumb" aria-label="Breadcrumb">
       <a href="/">Home</a><span>›</span>
       <span>Contact</span>
     </nav>
-    <div class="contact-hero__inner" data-reveal>
+    <div class="contact-hero__container" data-reveal>
       <div class="contact-hero__lockup">
         <span class="contact-hero__eyebrow">
           <span class="contact-hero__eyebrow-dot" aria-hidden="true"></span>
@@ -188,26 +203,35 @@ if ($interestParam !== '' && array_key_exists($interestParam, $INTEREST_OPTIONS)
         <hr class="contact-hero__rule">
         <h1 class="contact-hero__title" id="contact-title">Talk to Gaurikrit.</h1>
         <p class="contact-hero__sub">
-          A short message and a phone number are usually enough. Tell us what
-          you are painting — home, site, Gaushala collaboration — and we will
-          respond.
+          For product questions, project requirements or partnership enquiries,
+          contact Gaurikrit directly or send a message below.
         </p>
       </div>
-      <!-- V5: company details immediately visible below the heading + body. -->
-      <dl class="contact-hero__quick">
-        <div class="contact-hero__quick-row">
+      <dl class="contact-direct" data-reveal>
+        <div class="contact-direct__head">
+          <img class="contact-direct__mark"
+               src="<?= asset_url('/assets/brand/gaurikrit-logo-mark.png') ?>"
+               alt="Gaurikrit brand mark"
+               width="44" height="44"
+               loading="eager" decoding="async">
+          <div class="contact-direct__brand">
+            गौरीकृत
+            <small>Gaurikrit Bio Products</small>
+          </div>
+        </div>
+        <div class="contact-direct__row">
           <dt>Email</dt>
           <dd><a href="mailto:<?= e($COMPANY['email']) ?>"><?= e($COMPANY['email']) ?></a></dd>
         </div>
         <?php foreach ($phones as $phone): ?>
-          <div class="contact-hero__quick-row">
+          <div class="contact-direct__row">
             <dt>Phone</dt>
             <dd><a href="tel:<?= e(str_replace(' ', '', $phone)) ?>"><?= e($phone) ?></a></dd>
           </div>
         <?php endforeach; ?>
-        <div class="contact-hero__quick-row">
-          <dt>Address</dt>
-          <dd class="contact-hero__quick-address"><?= e($addressLine) ?></dd>
+        <div class="contact-direct__row">
+          <dt>Location</dt>
+          <dd>Khurja, District Bulandshahr<br>Uttar Pradesh</dd>
         </div>
       </dl>
     </div>
@@ -251,6 +275,13 @@ if ($interestParam !== '' && array_key_exists($interestParam, $INTEREST_OPTIONS)
             <dd class="contact-info__address"><?= e($addressLine) ?></dd>
           </div>
         </dl>
+
+        <!-- V7: one subtle link row instead of competing CTA buttons. -->
+        <p class="contact-info__links">
+          <a href="/for-business/">For Business</a>
+          <span aria-hidden="true">·</span>
+          <a href="/paint-calculator/">Painting Calculator</a>
+        </p>
       </aside>
 
       <!-- RIGHT — enquiry form -->

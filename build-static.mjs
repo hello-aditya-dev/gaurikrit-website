@@ -630,99 +630,60 @@ function homeBody(depth) {
   /* ===== 1. HERO — group photo dominant + CSS haldi field + cow engraving ===== */
   .hero { padding-top: calc(var(--header-h) + 1.5rem); padding-bottom: 1.5rem; }
   @media (min-width: 1024px) {
-    .hero { min-height: 92svh; min-height: 92vh; display: flex; align-items: center;
+    .hero { display: flex; align-items: center;
             padding-top: calc(var(--header-h) + 2rem); padding-bottom: 2rem; }
   }
   .hero__grid { align-items: center; position: relative; }
-  @media (min-width: 1024px) {
+  @media (min-width: 1200px) {
     .hero__grid { grid-template-columns: 5fr 7fr; gap: clamp(2rem, 4vw, 4rem); }
   }
-  @media (max-width: 1023px) {
+  @media (min-width: 900px) and (max-width: 1199px) {
+    .hero__grid { grid-template-columns: 6fr 6fr; gap: clamp(1.5rem, 3vw, 3rem); }
+  }
+  @media (max-width: 899px) {
     .hero__grid { grid-template-columns: 1fr; }
-    .hero__visual { order: 3; min-height: 22rem; }
+    .hero__visual { order: 5; }
   }
   .hero__eyebrow-chip { margin-bottom: 0.875rem; }
   .hero__title { font-size: clamp(2.5rem, 6vw, 5.5rem); line-height: 1.02; }
   .hero__body { max-width: 38rem; }
   .hero__ctas { margin-top: 2.25rem; }
 
-  /* V5 hero visual stack: organic CSS haldi field → group photo → zebu engraving. */
-  .hero__visual { position: relative; min-height: 22rem; width: 100%; }
-  @media (min-width: 768px)  { .hero__visual { min-height: 26rem; } }
-  @media (min-width: 1024px) { .hero__visual { min-height: 34rem; } }
-
-  /* CSS haldi field — irregular organic shape, layered gradients so it
-     reads as a painted wall surface (not a single blob). No SVG. */
-  .hero__haldi-field {
-    position: absolute; inset: -0.5rem -0.5rem 0.75rem; z-index: 0;
-    pointer-events: none;
-    display: flex; align-items: center; justify-content: center;
+  /* V7 hero visual: the real group photo deliberately placed inside a
+     paper/material plate whose background visually merges with the page.
+     No generic haldi semicircle, no faint cow engraving, no landscape band. */
+  .hero__visual { position: relative; min-height: 0; width: 100%; }
+  .hero__plate {
+    position: relative; z-index: 2;
+    background: var(--paper);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--haldi);
+    border-radius: var(--r-panel);
+    padding: clamp(1rem, 2.5vw, 2rem);
+    box-shadow: 0 2px 12px -4px rgba(32, 30, 25, 0.06);
   }
-  .hero__haldi-field::before {
-    content: ''; display: block;
-    width: 92%; height: 86%;
-    /* Irregular painted-edge border-radius (asymmetric, organic). */
-    border-radius: 46% 54% 48% 52% / 50% 46% 54% 50%;
-    /* Three layered radial gradients + an inset haldi glow = painted
-       wall texture, not a flat blob. */
-    background:
-      radial-gradient(ellipse 72% 60% at 50% 38%,
-        var(--haldi) 0%,
-        color-mix(in srgb, var(--haldi) 78%, transparent) 55%,
-        transparent 92%),
-      radial-gradient(ellipse 36% 30% at 32% 58%,
-        color-mix(in srgb, var(--haldi) 88%, transparent) 0%,
-        transparent 72%),
-      radial-gradient(ellipse 28% 24% at 68% 62%,
-        color-mix(in srgb, var(--haldi) 70%, transparent) 0%,
-        transparent 78%);
-    box-shadow: inset 0 0 60px color-mix(in srgb, var(--haldi) 22%, transparent);
-  }
-  .hero__haldi-field .hero__stroke-svg { display: none; }   /* V5: no SVG */
-  /* Subtle painted-surface grain via repeating-linear-gradient overlay.
-     No mix-blend-mode (kept V4 policy). */
-  .hero__haldi-field::after {
-    content: ''; position: absolute; inset: 0; pointer-events: none;
-    background: repeating-linear-gradient(115deg,
-      transparent 0 6px,
-      rgba(255, 250, 235, 0.05) 6px 7px,
-      transparent 7px 13px);
-    border-radius: inherit;
-  }
-
-  /* Real group photo — eager + high priority, dominant. */
-  .hero__bucket {
-    position: absolute; left: 50%; top: 50%;
-    width: 88%; height: 78%;
-    transform: translate(-50%, -50%);
-    z-index: 2;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .hero__bucket .hero-group-photo {
+  .hero__plate img.hero-group-photo {
     display: block;
-    width: 100%; height: 100%;
+    width: 100%; height: auto;
     object-fit: contain;
-    border-radius: 0.35rem;
+    aspect-ratio: 1280 / 621;
   }
-
-  /* Zebu cow engraving — low opacity background line art. */
-  .hero__cow {
-    position: absolute; right: -1.5rem; bottom: -1rem;
-    width: 48%; height: 38%;
-    z-index: 3; opacity: 0.14; pointer-events: none;
-    overflow: hidden;
+  /* A restrained, irregular haldi paint field — reads as a painted wall
+     sample (plaster swash), placed BEHIND the plate's bottom edge only. */
+  .hero__paint-sample {
+    position: absolute;
+    left: -4%; right: 6%; bottom: -1.25rem;
+    height: 34%;
+    z-index: 0;
+    pointer-events: none;
+    border-radius: 46% 54% 48% 52% / 60% 54% 46% 40%;
+    background:
+      radial-gradient(ellipse 70% 62% at 50% 40%,
+        color-mix(in srgb, var(--haldi) 26%, transparent) 0%,
+        transparent 78%);
+    opacity: 0.5;
   }
-  .hero__cow .editorial-image { object-fit: cover; }
-
-  /* Rural landscape band at the bottom of the hero visual. */
-  .hero__landscape {
-    position: absolute; left: 0; right: 0; bottom: 0;
-    height: 4.5rem;
-    z-index: 1; opacity: 0.12; pointer-events: none;
-    overflow: hidden;
-  }
-  .hero__landscape .editorial-image { object-fit: cover; }
-  @media (min-width: 1024px) { .hero__landscape { height: 5rem; } }
+  @media (max-width: 899px) { .hero__paint-sample { display: none; } }
 
   /* ===== 2. MATERIAL STATEMENT — zebu-study large right (58%) ===== */
   .material-statement__visual {
@@ -792,6 +753,8 @@ function homeBody(depth) {
   .material-flow__panel--group { aspect-ratio: 1280/621; }
   .material-flow__panel .editorial-image {
     position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+    /* V7: one shared colour grade so the triptych reads as one composition. */
+    filter: saturate(0.94) sepia(0.05);
   }
   .material-flow__panel-label {
     position: absolute; left: 0.875rem; bottom: 0.875rem;
@@ -810,12 +773,9 @@ function homeBody(depth) {
     /* Slightly darker warm tone — overrides section--limewash. */
     background: color-mix(in srgb, var(--haldi) 10%, var(--limewash));
   }
-  .ashta-section__bg {
-    position: absolute; right: -10%; top: 50%; transform: translateY(-50%);
-    width: 60%; height: 80%;
-    opacity: 0.10; pointer-events: none; overflow: hidden;
-  }
-  .ashta-section__bg .editorial-image { width: 100%; height: 100%; object-fit: cover; }
+  /* V7: the giant faded cow background is REMOVED — two clear layers only:
+     seal + list. Slightly stronger warm ground for the seal to read dark. */
+  .ashta-section { background: color-mix(in srgb, var(--haldi) 12%, var(--limewash)); }
   .ashta-section__inner { position: relative; z-index: 1; }
   .ashta-section__grid { position: relative; z-index: 1; }
   /* V5: enlarge seal from 38rem → 44rem for more authority. */
@@ -919,59 +879,57 @@ function homeBody(depth) {
   }
   .mission-band__cta { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 0.75rem; }
 
-  /* ===== 9. CALCULATOR TEASER (V5: inline SVG wall + dimension lines,
-     no photo, no poster styling) ===== */
+  /* ===== 9. CALCULATOR TEASER (V7: a miniature of the actual calculator
+     UI — 'this is an interactive estimator', not a W × H poster) ===== */
   .calc-teaser { padding-block: clamp(3.5rem, 6vw, 5.5rem); }
   .calc-teaser__art {
-    position: relative; aspect-ratio: 4/3;
+    position: relative;
     background: var(--paper);
     border: 1px solid var(--border);
     border-radius: var(--r-panel);
-    overflow: hidden; display: flex; align-items: center; justify-content: center;
-    padding: 1.5rem;
+    overflow: hidden;
+    padding: clamp(1.25rem, 2vw, 1.75rem);
+    box-shadow: 0 2px 12px -4px rgba(32, 30, 25, 0.06);
   }
-  .calc-teaser__wall-svg {
-    position: relative; z-index: 1;
-    display: block; width: 100%; max-width: 28rem; height: auto;
+  .calc-teaser__sheet-head {
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: 1rem; padding-bottom: 0.875rem; margin-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .calc-teaser__sheet-title {
+    font-family: var(--font-display); font-size: 1.125rem; font-weight: 700;
     color: var(--primary);
   }
-  .calc-teaser__art .calc-teaser__preview {
-    position: absolute; right: 1rem; bottom: 1rem; z-index: 2;
-    background: rgba(250, 248, 241, 0.96);
-    border: 1px solid var(--border);
-    border-radius: var(--r-card);
-    box-shadow: var(--shadow-soft, 0 8px 24px -8px rgba(34, 36, 27, 0.18));
-    padding: 1rem 1.125rem;
-    min-width: 13rem;
+  .calc-teaser__sheet-tag {
+    font-size: 0.625rem; font-weight: 700; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--fg-muted);
   }
-  .calc-teaser__preview-row {
-    display: flex; justify-content: space-between; align-items: baseline;
-    gap: 1rem; padding-block: 0.375rem;
+  .calc-teaser__step {
+    display: grid; grid-template-columns: 2.25rem 1fr auto; gap: 0.875rem;
+    align-items: center;
+    padding: 0.875rem 0;
     border-bottom: 1px dashed var(--border);
   }
-  .calc-teaser__preview-row:last-child { border-bottom: 0; }
-  .calc-teaser__preview-label {
+  .calc-teaser__step:last-child { border-bottom: 0; }
+  .calc-teaser__step-num {
+    width: 2rem; height: 2rem; display: flex; align-items: center; justify-content: center;
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--haldi) 22%, transparent);
+    border: 1px solid var(--forest);
+    font-size: 0.75rem; font-weight: 700; color: var(--forest);
+  }
+  .calc-teaser__step-label {
     font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.16em;
     text-transform: uppercase; color: var(--fg-muted);
   }
-  .calc-teaser__preview-value {
-    font-family: var(--font-display); font-weight: 700; font-size: 0.875rem;
-    color: var(--primary);
+  .calc-teaser__step-value {
+    font-family: var(--font-display); font-size: 0.9375rem; font-weight: 700;
+    color: var(--primary); text-align: right;
   }
 
-  /* ===== 10. PROJECT PATHWAYS (V5: business-context-study shared) ===== */
+  /* ===== 10. PROJECT PATHWAYS (V7: audiences are the design — no generic
+     suburban house artwork) ===== */
   .pathways-section { padding-block: clamp(3rem, 6vw, 5rem); }
-  .pathways-section__head { max-width: 48rem; margin-bottom: 2.5rem; }
-  .pathways-illustration {
-    position: relative;
-    margin-bottom: 3rem;
-    aspect-ratio: 1344/768;
-    width: 100%; overflow: hidden;
-    border-radius: var(--r-panel);
-  }
-  .pathways-illustration .editorial-image {
-    width: 100%; height: 100%; object-fit: cover; display: block;
-  }
 </style>
 
 <!-- ============================================================
@@ -997,23 +955,13 @@ function homeBody(depth) {
       </div>
 
       <div class="hero__visual" data-reveal>
-        <!-- CSS haldi paint field behind the product (no SVG) -->
-        <div class="hero__haldi-field" aria-hidden="true"></div>
-        <!-- Real product group photo — eager + high priority -->
-        <div class="hero__bucket">
+        <div class="hero__paint-sample" aria-hidden="true"></div>
+        <div class="hero__plate">
           <img class="hero-group-photo"
-               src="${groupImg}"
+               src="${assetUrl(groupImage, depth)}"
                alt="Prakritik Distemper and Emulsion paint packs"
                width="1280" height="621"
                loading="eager" fetchpriority="high" decoding="async">
-        </div>
-        <!-- Zebu cow engraving at 0.14 opacity — secondary line, not the hero -->
-        <div class="hero__cow" aria-hidden="true">
-          ${zebuCowPic}
-        </div>
-        <!-- Rural landscape band at the bottom — 0.12 opacity -->
-        <div class="hero__landscape" aria-hidden="true">
-          ${ruralLandscapePic}
         </div>
       </div>
     </div>
@@ -1185,15 +1133,12 @@ ${journeySteps}
      6. ASHTA LAABH — V5 strengthened seal + zebu-study bg engraving
      ============================================================ -->
 <section class="section ashta-section section--limewash" aria-labelledby="ashta-title" data-ashta-laabh>
-  <div class="ashta-section__bg" aria-hidden="true">
-    ${zebuAshtaBgPic}
-  </div>
   <div class="container ashta-section__inner">
     <div class="ashta-section__head section-heading section-heading--left" data-reveal>
       <span class="ashta-section__deva">अष्ट लाभ</span>
       <h2 class="section-heading__title" id="ashta-title">Eight benefits of Prakritik Paint.</h2>
       <p class="ashta-section__sub">
-        The eight benefits Gaurikrit associates with Prakritik Paint.
+        Eight benefits listed in the supplied Prakritik Paint material.
       </p>
       <p class="ashta-section__note">
         Benefits listed in the Prakritik Paint material.
@@ -1278,55 +1223,33 @@ ${swatches}
           send to Gaurikrit to discuss your project.
         </p>
         <div class="calc-teaser__cta">
-          <a class="btn btn--primary btn--lg" href="${relUrl('/paint-calculator/', depth)}">Estimate Your Project</a>
+          <a class="btn btn--primary btn--lg" href="${relUrl('/paint-calculator/', depth)}">Open Painting Calculator</a>
         </div>
       </div>
       <div class="calc-teaser__art" aria-hidden="true">
-        <!-- V5: inline SVG wall elevation with width + height dimension
-             lines. No photo, no poster styling — a real mini-tool preview. -->
-        <svg class="calc-teaser__wall-svg" viewBox="0 0 320 220" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <!-- Wall plane -->
-          <rect x="48" y="28" width="224" height="156" rx="2"
-                fill="var(--paper-warm)" stroke="currentColor" stroke-width="1.5"/>
-          <!-- Subtle plaster texture lines -->
-          <line x1="48" y1="64" x2="272" y2="64" stroke="currentColor" stroke-width="0.5" opacity="0.18"/>
-          <line x1="48" y1="108" x2="272" y2="108" stroke="currentColor" stroke-width="0.5" opacity="0.18"/>
-          <line x1="48" y1="148" x2="272" y2="148" stroke="currentColor" stroke-width="0.5" opacity="0.18"/>
-          <!-- Width dimension line (bottom) -->
-          <line x1="48" y1="200" x2="272" y2="200" stroke="currentColor" stroke-width="1"/>
-          <line x1="48" y1="196" x2="48" y2="204" stroke="currentColor" stroke-width="1"/>
-          <line x1="272" y1="196" x2="272" y2="204" stroke="currentColor" stroke-width="1"/>
-          <text x="160" y="214" text-anchor="middle" font-family="Manrope, sans-serif"
-                font-size="9" font-weight="700" letter-spacing="1.5"
-                fill="currentColor">WIDTH</text>
-          <!-- Height dimension line (left) -->
-          <line x1="32" y1="28" x2="32" y2="184" stroke="currentColor" stroke-width="1"/>
-          <line x1="28" y1="28" x2="36" y2="28" stroke="currentColor" stroke-width="1"/>
-          <line x1="28" y1="184" x2="36" y2="184" stroke="currentColor" stroke-width="1"/>
-          <text x="24" y="110" text-anchor="middle" font-family="Manrope, sans-serif"
-                font-size="9" font-weight="700" letter-spacing="1.5"
-                fill="currentColor" transform="rotate(-90 24 110)">HEIGHT</text>
-          <!-- Area label inside wall -->
-          <text x="160" y="112" text-anchor="middle" font-family="Newsreader, serif"
-                font-size="15" font-weight="700" fill="var(--haldi-deep)">W × H = area</text>
-        </svg>
-        <div class="calc-teaser__preview">
-          <div class="calc-teaser__preview-row">
-            <span class="calc-teaser__preview-label">Painting</span>
-            <span class="calc-teaser__preview-value">Fresh / Repaint</span>
-          </div>
-          <div class="calc-teaser__preview-row">
-            <span class="calc-teaser__preview-label">Location</span>
-            <span class="calc-teaser__preview-value">Interior / Exterior</span>
-          </div>
-          <div class="calc-teaser__preview-row">
-            <span class="calc-teaser__preview-label">Paint</span>
-            <span class="calc-teaser__preview-value">Distemper / Emulsion</span>
-          </div>
-          <div class="calc-teaser__preview-row">
-            <span class="calc-teaser__preview-label">Area</span>
-            <span class="calc-teaser__preview-value">sq.ft.</span>
-          </div>
+        <div class="calc-teaser__sheet-head">
+          <span class="calc-teaser__sheet-title">Your project</span>
+          <span class="calc-teaser__sheet-tag">4 steps</span>
+        </div>
+        <div class="calc-teaser__step">
+          <span class="calc-teaser__step-num">01</span>
+          <span class="calc-teaser__step-label">Painting type</span>
+          <span class="calc-teaser__step-value">Fresh / Repaint</span>
+        </div>
+        <div class="calc-teaser__step">
+          <span class="calc-teaser__step-num">02</span>
+          <span class="calc-teaser__step-label">Location</span>
+          <span class="calc-teaser__step-value">Interior / Exterior</span>
+        </div>
+        <div class="calc-teaser__step">
+          <span class="calc-teaser__step-num">03</span>
+          <span class="calc-teaser__step-label">Paint</span>
+          <span class="calc-teaser__step-value">Distemper / Emulsion</span>
+        </div>
+        <div class="calc-teaser__step">
+          <span class="calc-teaser__step-num">04</span>
+          <span class="calc-teaser__step-label">Wall area</span>
+          <span class="calc-teaser__step-value">sq.ft.</span>
         </div>
       </div>
     </div>
@@ -1341,10 +1264,6 @@ ${swatches}
     <div class="pathways-section__head section-heading section-heading--left" data-reveal>
       <span class="section-heading__eyebrow">Project pathways</span>
       <h2 class="pathways-section__title" id="pathways-title">Who is Prakritik Paint for?</h2>
-    </div>
-
-    <div class="pathways-illustration" aria-hidden="true" data-reveal>
-      ${businessContextPathwaysPic}
     </div>
 
     <div class="pathways" data-reveal-stagger>
@@ -1499,15 +1418,15 @@ function productsBody(depth) {
   .spec-matrix__row:nth-child(even) {
     background: color-mix(in srgb, var(--haldi) 3%, transparent);
   }
-  /* Header row: stronger underline, no striping, sticky-feel bg. */
+  /* V7: header row clearly legible — forest text, tinted ground, strong rule. */
   .spec-matrix__row:first-child {
-    border-bottom: 2px solid var(--border-strong);
-    background: color-mix(in srgb, var(--limewash) 50%, var(--paper));
+    border-bottom: 2px solid var(--forest);
+    background: color-mix(in srgb, var(--limewash) 80%, var(--paper));
   }
   .spec-matrix__row:last-child { border-bottom: 0; }
   .spec-matrix__col-head {
-    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.16em;
-    text-transform: uppercase; color: var(--fg-muted);
+    font-size: 0.8125rem; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--forest);
   }
   .spec-matrix__col-head--distemper { color: var(--indigo); }
   .spec-matrix__col-head--emulsion { color: var(--leaf); }
@@ -1522,6 +1441,40 @@ function productsBody(depth) {
     font-weight: 600 !important;
     color: var(--fg) !important;
   }
+  /* V7: below 640px the 3-column matrix is unreadable — two stacked spec
+     sheets instead (Distemper block + Emulsion block). */
+  .spec-matrix-mobile { display: none; }
+  @media (max-width: 639px) {
+    .spec-matrix { display: none; }
+    .spec-matrix-mobile { display: grid; gap: 1.5rem; }
+  }
+  .spec-matrix-mobile__block {
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--forest);
+    border-radius: var(--r-panel);
+    background: var(--paper);
+    overflow: hidden;
+  }
+  .spec-matrix-mobile__block--emulsion { border-top-color: var(--leaf); }
+  .spec-matrix-mobile__name {
+    padding: 1rem 1.25rem;
+    font-size: 0.8125rem; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--forest);
+    background: color-mix(in srgb, var(--limewash) 80%, var(--paper));
+    border-bottom: 1px solid var(--border);
+  }
+  .spec-matrix-mobile__block--emulsion .spec-matrix-mobile__name { color: var(--leaf); }
+  .spec-matrix-mobile__row {
+    display: flex; justify-content: space-between; align-items: baseline; gap: 1rem;
+    padding: 0.75rem 1.25rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .spec-matrix-mobile__row:last-child { border-bottom: 0; }
+  .spec-matrix-mobile__row .k {
+    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--fg-muted);
+  }
+  .spec-matrix-mobile__row .v { font-weight: 600; color: var(--fg); text-align: right; }
 
   /* ===== BENEFITS STRIP (V5: haldi dot indicators + bolder name typography) ===== */
   .benefits-strip { padding-block: clamp(3rem, 6vw, 5rem); }
@@ -1567,14 +1520,16 @@ function productsBody(depth) {
     padding-block: clamp(4.5rem, 8vw, 6.5rem);  /* V5: increased */
     position: relative;
   }
-  /* V5: subtle haldi divider line at the top of the FAQ section. */
-  .faq-section::before {
+  /* V7: haldi divider line aligned to the content grid (container), never
+     the viewport edge. FAQ constrained to a readable 64rem measure. */
+  .faq-section .container::before {
     content: ''; display: block;
     width: 4rem; height: 2px;
     background: var(--haldi);
     margin: 0 0 3rem;
   }
   .faq-section__head { max-width: 48rem; margin-bottom: 2rem; }
+  .faq-section .faq-list { max-width: 64rem; }
 </style>
 
 <!-- ============================================================
@@ -1739,6 +1694,29 @@ function productsBody(depth) {
       </div>
     </div>
 
+    <div class="spec-matrix-mobile" data-reveal>
+      <div class="spec-matrix-mobile__block">
+        <div class="spec-matrix-mobile__name">${e(distemper.name)}</div>
+        <div class="spec-matrix-mobile__row"><span class="k">Pack sizes</span><span class="v">${e(distemper.packagingShort)}</span></div>
+        <div class="spec-matrix-mobile__row"><span class="k">Colour</span><span class="v">${e(distemper.colour)}</span></div>
+        <div class="spec-matrix-mobile__row"><span class="k">Finish</span><span class="v">${e(distemper.finish)}</span></div>
+        <div class="spec-matrix-mobile__row"><span class="k">Drying time</span><span class="v">${e(distemper.dryingTime)}</span></div>
+        <div class="spec-matrix-mobile__row"><span class="k">Coverage</span><span class="v">${e(distemper.coverage)}</span></div>
+        <div class="spec-matrix-mobile__row"><span class="k">V.O.C.</span><span class="v">${e(distemper.voc)}</span></div>
+        <div class="spec-matrix-mobile__row"><span class="k">Usage</span><span class="v">${e(distemper.usage)}</span></div>
+      </div>
+      <div class="spec-matrix-mobile__block spec-matrix-mobile__block--emulsion">
+        <div class="spec-matrix-mobile__name">${e(emulsion.name)}</div>
+        <div class="spec-matrix-mobile__row"><span class="k">Pack sizes</span><span class="v">${e(emulsion.packagingShort)}</span></div>
+        <div class="spec-matrix-mobile__row"><span class="k">Colour</span><span class="v">${e(emulsion.colour)}</span></div>
+        <div class="spec-matrix-mobile__row"><span class="k">Finish</span><span class="v">${e(emulsion.finish)}</span></div>
+        <div class="spec-matrix-mobile__row"><span class="k">Drying time</span><span class="v">${e(emulsion.dryingTime)}</span></div>
+        <div class="spec-matrix-mobile__row"><span class="k">Coverage</span><span class="v">${e(emulsion.coverage)}</span></div>
+        <div class="spec-matrix-mobile__row"><span class="k">V.O.C.</span><span class="v">${e(emulsion.voc)}</span></div>
+        <div class="spec-matrix-mobile__row"><span class="k">Usage</span><span class="v">${e(emulsion.usage)}</span></div>
+      </div>
+    </div>
+
     <p class="coverage-disclaimer" style="margin-top: 2rem;">
       <span class="coverage-disclaimer__label">Coverage note</span>
       <span class="coverage-disclaimer__text">${e(COVERAGE_DISCLAIMER)}</span>
@@ -1873,6 +1851,9 @@ function distemperBody(depth) {
     display: flex; align-items: center; justify-content: center;
   }
   @media (min-width: 1024px) { .product-detail__media { min-height: 30rem; } }
+  /* V7: on phones the 22rem min-height + 4/3 aspect forces a wider-than-viewport
+     box — let the aspect ratio govern the height instead. */
+  @media (max-width: 639px) { .product-detail__media { min-height: 0; } }
   .product-detail__media .media-env {
     position: absolute; inset: 0; width: 100%; height: 100%;
     object-fit: cover;
@@ -2287,6 +2268,9 @@ function whyPrakritikBody(depth) {
     const businessContextPic = pic('/assets/editorial/business-context-study.webp', '/assets/editorial/business-context-study.jpg',
         '', 1344, 768, depth, 'class="editorial-image"');
 
+        const ruralContextPic = pic('/assets/editorial/rural-landscape.webp', '/assets/editorial/rural-landscape.jpg',
+        '', 1344, 768, depth, 'class="editorial-image"');
+
     return `<style>
   /* ===== Editorial image reset (V4 — NO mix-blend-mode, NO blur filters) ===== */
   .editorial-image {
@@ -2441,22 +2425,15 @@ function whyPrakritikBody(depth) {
 
   /* === Chapter 06 — CONTEXT: rural-landscape with annotation === */
   .why-context-section { padding-block: clamp(3.5rem, 6vw, 5rem); }
-  .why-context-band {
-    position: relative; width: 100%; aspect-ratio: 1344/768;
-    background: var(--limewash); border-radius: var(--r-panel);
-    overflow: hidden;
+  /* V7: no building artwork in the context chapter — a neutral rural
+     engraving at 0.08 opacity behind the text instead (no implied facility). */
+  .why-context-section { position: relative; overflow: hidden; }
+  .why-context-bg {
+    position: absolute; inset: 0; opacity: 0.08;
+    pointer-events: none; overflow: hidden;
   }
-  .why-context-band .editorial-image {
-    width: 100%; height: 100%; object-fit: cover; display: block;
-  }
-  .why-context-band__annot {
-    position: absolute; bottom: 1rem; left: 1rem;
-    background: rgba(250, 248, 241, 0.88);
-    padding: 0.5rem 0.875rem; border-radius: var(--r-pill);
-    font-size: 0.75rem; font-weight: 600;
-    letter-spacing: 0.14em; text-transform: uppercase;
-    color: var(--fg-muted);
-  }
+  .why-context-bg .editorial-image { width: 100%; height: 100%; object-fit: cover; }
+  .why-context-section .why-chapter { position: relative; z-index: 1; }
 </style>
 
 <!-- ===== HERO ===== -->
@@ -2628,6 +2605,9 @@ ${ashtaItems}
 
 <!-- ===== 06 CONTEXT — rural-landscape with annotation ===== -->
 <section class="section section--limewash why-context-section" aria-labelledby="chapter-06-title">
+  <div class="why-context-bg" aria-hidden="true">
+    ${ruralContextPic}
+  </div>
   <div class="container">
     <div class="why-chapter" data-reveal>
       <div>
@@ -2645,10 +2625,6 @@ ${ashtaItems}
           <a class="btn btn--primary" href="${relUrl('/products/', depth)}">Explore Products</a>
           <a class="btn btn--outline" href="${relUrl('/about/', depth)}">About Gaurikrit</a>
         </div>
-      </div>
-      <div class="why-context-band" aria-hidden="true">
-        ${businessContextPic}
-        <span class="why-context-band__annot">${e(COMPANY.address[4] || '')}, ${e(COMPANY.address[5] || '')}</span>
       </div>
     </div>
   </div>
@@ -2695,29 +2671,63 @@ function aboutBody(depth) {
     object-fit: cover;
   }
 
-  /* ===== HERO ===== */
-  .about-hero { padding-top: calc(var(--header-h) + 2rem); padding-bottom: 1.5rem; }
-  .about-hero__container { display: grid; gap: 2rem; align-items: center; }
+  /* ===== HERO (V7: 5/7 — brand identity left, real product plate right) ===== */
+  .about-hero { padding-top: calc(var(--header-h) + clamp(1.25rem, 3vw, 2rem)); padding-bottom: clamp(1.25rem, 3vw, 2rem); }
+  .about-hero__container { display: grid; gap: clamp(1.5rem, 4vw, 3rem); align-items: center; }
   @media (min-width: 1024px) {
-    .about-hero__container { grid-template-columns: 5fr 7fr; gap: 3rem; }
+    .about-hero__container { grid-template-columns: 5fr 7fr; }
   }
-  .about-hero__lockup { max-width: 42rem; }
-  /* V4: real official logo (537×620) prominent on a soft cream background. */
-  .about-hero__art {
-    position: relative; aspect-ratio: 537/620;
-    background: radial-gradient(circle at 50% 45%, #f9f5eb, #e7ebdf);
-    border-radius: var(--r-panel); overflow: hidden;
-    display: flex; align-items: center; justify-content: center;
-    padding: 0;
+  .about-hero__lockup { display: flex; flex-direction: column; gap: 0.75rem; max-width: 42rem; }
+  .about-hero__deva {
+    font-family: var(--font-deva); font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 700; color: var(--haldi-deep);
   }
-  .about-hero__art .about-hero__logo {
-    display: block;
-    width: min(75%, 380px); height: auto;
-    object-fit: contain;
+  .about-hero__brand-sub {
+    font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--primary);
+  }
+  .about-hero__title {
+    font-family: var(--font-display); font-size: clamp(2.2rem, 5vw, 4rem);
+    line-height: 1.05; letter-spacing: -0.02em; text-wrap: balance;
+    margin-top: 0.5rem;
+  }
+  .about-hero__body {
+    margin-top: 1rem; font-size: clamp(1rem, 2vw, 1.125rem);
+    color: var(--fg-muted); line-height: 1.65; max-width: 60ch;
+  }
+  /* V7: the hero shows WHO the brand is + WHAT it actually makes — the real
+     product group photo as a catalogue plate with the official mark. */
+  .about-hero__plate {
+    background: var(--paper);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--haldi);
+    border-radius: var(--r-panel);
+    padding: clamp(1rem, 2vw, 1.5rem);
+    box-shadow: 0 2px 12px -4px rgba(32, 30, 25, 0.06);
+  }
+  .about-hero__plate-head {
+    display: flex; align-items: center; gap: 0.625rem;
+    padding-bottom: 0.75rem; margin-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .about-hero__plate-mark { width: 40px; height: 40px; flex: none; object-fit: contain; }
+  .about-hero__plate-brand {
+    font-family: var(--font-deva); font-size: 0.9375rem; color: var(--haldi-deep);
+    line-height: 1.2;
+  }
+  .about-hero__plate-brand small {
+    display: block; font-family: var(--font-sans); font-size: 0.5625rem;
+    font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--fg-muted); margin-top: 0.125rem;
+  }
+  .about-hero__plate-photo {
+    display: block; width: 100%; height: auto;
+    object-fit: contain; aspect-ratio: 1280 / 621;
   }
 
-  /* ===== WHO WE ARE ===== */
-  .about-section { padding-block: clamp(3.5rem, 6vw, 5rem); }
+  /* ===== WHO WE ARE (V7: 35/65 ledger-left, body right) ===== */
+  .about-wrap { padding-block: clamp(3.5rem, 6vw, 5rem); }
+  .about-section .about-section__body { max-width: 65ch; }
 
   /* ===== WHAT WE PRESENT ===== */
   .about-products-section { padding-block: clamp(3.5rem, 6vw, 5rem); }
@@ -2742,18 +2752,21 @@ function aboutBody(depth) {
     max-width: min(60%, 320px);
   }
 
-  /* ===== MATERIAL DIRECTION — zebu-study beside wall ===== */
+  /* ===== MATERIAL DIRECTION (V7: zebu printed onto the page — no box) ===== */
   .about-direction-section { padding-block: clamp(3.5rem, 6vw, 5rem); }
   .about-direction__visual {
-    position: relative; aspect-ratio: 1536/1024; background: var(--limewash);
-    border-radius: var(--r-panel); overflow: hidden;
+    /* No panel chrome: the artwork's cream ground matches the paper
+       background so the cow reads as printed onto the page. */
+    background: transparent;
+    border-radius: 0;
+    overflow: hidden;
+    position: relative;
+    aspect-ratio: 1536 / 1126;  /* V7: cow ~10% larger — crop bottom margin */
   }
   .about-direction__visual .editorial-image {
-    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; object-position: 20% 20%;  /* V7: head + horns + hump */
   }
-  .about-direction__visual .ms-wall,
-  .about-direction__visual .ms-cow,
-  .about-direction__visual .ms-arrow { display: none; }
 
   /* ===== MISSION BAND ===== */
   .about-mission {
@@ -2786,13 +2799,15 @@ function aboutBody(depth) {
 
   /* ===== COMPANY PLATE ===== */
   .company-plate-section { padding-block: clamp(3.5rem, 6vw, 5rem); }
+  /* V7: a formal ledger reads at 56rem, not stretched across 1400px. */
+  .company-plate { max-width: 56rem; }
   .company-plate__head { margin-bottom: 2rem; }
   .company-plate dt { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fg-muted); }
   .company-plate dd { color: var(--fg); }
   .company-plate__address { white-space: pre-line; }
 </style>
 
-<!-- ===== HERO ===== -->
+<!-- ===== HERO (V7: 5/7 — brand identity left, real product plate right) ===== -->
 <section class="about-hero bg-limewash" aria-labelledby="about-title">
   <div class="container">
     <nav class="breadcrumb" aria-label="Breadcrumb">
@@ -2807,23 +2822,34 @@ function aboutBody(depth) {
         <p class="about-hero__body">
           ${e(COMPANY.legalName)} makes Prakritik Paint — a cow dung-based
           paint in two formats, Distemper and Emulsion, for interior and
-          exterior walls. From ${e(address[3] || '')}, ${e(address[4] || '')}.
+          exterior walls. The company is based in ${e(address[3] || '')},
+          ${e(address[4] || '')}, Uttar Pradesh.
         </p>
       </div>
-      <div class="about-hero__art">
-        <img class="about-hero__mark-img"
-             src="${assetUrl('/assets/brand/gaurikrit-logo-mark.png', depth)}"
-             alt="Gaurikrit brand mark"
-             width="696" height="700"
-             style="max-width:96px;height:auto;"
-             loading="eager" decoding="async">
+      <div class="about-hero__plate">
+        <div class="about-hero__plate-head">
+          <img class="about-hero__plate-mark"
+               src="${assetUrl('/assets/brand/gaurikrit-logo-mark.png', depth)}"
+               alt="Gaurikrit brand mark"
+               width="40" height="40"
+               loading="eager" decoding="async">
+          <div class="about-hero__plate-brand">
+            गौरीकृत
+            <small>Prakritik Paint</small>
+          </div>
+        </div>
+        <img class="about-hero__plate-photo"
+             src="${assetUrl('/assets/products/prakritik-group.jpg', depth)}"
+             alt="Prakritik Distemper and Emulsion paint packs"
+             width="1280" height="621"
+             loading="eager" fetchpriority="high" decoding="async">
       </div>
     </div>
   </div>
 </section>
 
 <!-- ===== WHO WE ARE — legal identity ===== -->
-<section class="section section--paper about-section" aria-labelledby="who-title">
+<section class="section section--paper about-wrap" aria-labelledby="who-title">
   <div class="container">
     <div class="about-section" data-reveal>
       <div>
@@ -3008,7 +3034,7 @@ function forBusinessBody(depth) {
         { label: 'City',              hint: 'Where the site is located' },
         { label: 'Approximate wall area', hint: 'In sq.ft. if you have a number' },
         { label: 'Paint format',      hint: 'Distemper, Emulsion, or not sure yet' },
-        { label: 'Approximate requirement', hint: 'Number of packs or litres you expect to need' },
+        { label: 'Approximate requirement', hint: 'Approximate quantity, if known' },
     ];
 
     const audienceCards = audiences.map((a) => `        <div class="audience-card">
@@ -3033,8 +3059,6 @@ function forBusinessBody(depth) {
 
     // V4 picture tags.
     const archHeroPic = `<picture><source type="image/webp" srcset="${assetUrl('/assets/editorial/business-context-study.webp', depth)}"><img class="editorial-image" src="${assetUrl('/assets/editorial/business-context-study.jpg', depth)}" alt="Architectural building elevation study" width="1344" height="768" loading="eager" decoding="async"></picture>`;
-    const ruralAudiencesPic = pic('/assets/editorial/rural-landscape.webp', '/assets/editorial/rural-landscape.jpg',
-        '', 1344, 768, depth, 'class="editorial-image"');
 
     return `<style>
   /* ===== Editorial image reset (V4 — NO mix-blend-mode, NO blur filters) ===== */
@@ -3063,16 +3087,6 @@ function forBusinessBody(depth) {
 
   /* ===== AUDIENCES (shared editorial image + 4 ruled columns) ===== */
   .biz-audiences-section { padding-block: clamp(3.5rem, 6vw, 5rem); }
-  .biz-audiences-illustration {
-    position: relative;
-    margin-bottom: 3rem;
-    aspect-ratio: 1344/768;
-    width: 100%; overflow: hidden;
-    border-radius: var(--r-panel);
-  }
-  .biz-audiences-illustration .editorial-image {
-    width: 100%; height: 100%; object-fit: cover; display: block;
-  }
   .biz-audiences__head { max-width: 48rem; margin-bottom: 2.5rem; }
 
   /* ===== PRACTICAL SECTION ===== */
@@ -3166,10 +3180,6 @@ function forBusinessBody(depth) {
       <h2 class="section-heading__title" id="audiences-title">Audiences.</h2>
     </div>
 
-    <div class="biz-audiences-illustration" aria-hidden="true" data-reveal>
-      ${ruralAudiencesPic}
-    </div>
-
     <div class="biz-audiences" data-reveal-stagger>
 ${audienceCards}
     </div>
@@ -3182,10 +3192,10 @@ ${audienceCards}
     <div class="biz-practical__grid" data-reveal>
       <div class="biz-practical__head">
         <span class="biz-hero__eyebrow"><span class="biz-hero__eyebrow-dot" aria-hidden="true"></span>Practical</span>
-        <h2 class="biz-practical__title" id="include-title">When you enquire, it helps to include.</h2>
+        <h2 class="biz-practical__title" id="include-title">Include these details for a faster response.</h2>
         <p class="biz-practical__body">
-          A few practical details up front let us give you a useful response —
-          not a "we will get back to you" placeholder.
+          A few project details help Gaurikrit understand your requirement
+          before responding.
         </p>
       </div>
       <ul class="biz-practical__list">
@@ -3476,12 +3486,15 @@ function paintCalculatorBody(depth) {
   }
   .calc__result-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.5rem; }
 
-  /* Helper / contact aside at the bottom */
+  /* Helper / contact aside — V7: hidden by default, revealed ONLY after
+     the user completes all four calculator steps. */
   .calc-helper {
+    display: none;
     margin-top: 2.5rem; padding: 1.5rem;
     background: var(--limewash); border-left: 3px solid var(--haldi);
     border-radius: var(--r-input);
   }
+  .calc-helper.is-shown { display: block; }
 </style>
 
 <!-- ===== HERO ===== -->
@@ -3522,7 +3535,7 @@ function paintCalculatorBody(depth) {
         <script type="application/json" id="calculator-config">{"enabled":false}</script>
         <div data-calculator></div>
 
-        <div class="calc-helper">
+        <div class="calc-helper" data-calc-helper>
           <h2 class="calc-helper__title">Need a more specific estimate?</h2>
           <p class="calc-helper__body">
             Send the project summary to Gaurikrit and we will respond with what
@@ -3537,6 +3550,30 @@ function paintCalculatorBody(depth) {
     </div>
   </div>
 </section>
+
+<!-- V7: reveal the calc-helper only after the result panel becomes visible. -->
+<script>
+(function () {
+  'use strict';
+  var helper = document.querySelector('[data-calc-helper]');
+  if (!helper) return;
+  var shown = false;
+  function check() {
+    if (shown) return;
+    var result = document.querySelector('[data-calc-result]');
+    if (result && !result.hidden) {
+      shown = true;
+      helper.classList.add('is-shown');
+    }
+  }
+  if (window.MutationObserver) {
+    var mo = new MutationObserver(check);
+    mo.observe(document.body, { attributes: true, attributeFilter: ['hidden'], subtree: true });
+  }
+  setInterval(check, 700);
+  check();
+})();
+</script>
 `;
 }
 
@@ -3764,11 +3801,11 @@ function contactBody(depth) {
     ).join('\n');
 
     return `<style>
-  /* ===== HERO ===== */
-  .contact-hero { padding-top: calc(var(--header-h) + 2rem); padding-bottom: 1.5rem; }
-  .contact-hero__container { display: grid; gap: 2rem; align-items: center; }
+  /* ===== HERO (V7: 7/5 — copy left, direct-lines plate right) ===== */
+  .contact-hero { padding-top: calc(var(--header-h) + clamp(1.25rem, 3vw, 2rem)); padding-bottom: clamp(1.25rem, 3vw, 2rem); }
+  .contact-hero__container { display: grid; gap: clamp(1.5rem, 4vw, 3rem); align-items: start; }
   @media (min-width: 1024px) {
-    .contact-hero__container { grid-template-columns: 7fr 5fr; gap: 3rem; }
+    .contact-hero__container { grid-template-columns: 7fr 5fr; align-items: center; }
   }
   .contact-hero__lockup { max-width: 42rem; }
   .contact-hero__title {
@@ -3780,23 +3817,44 @@ function contactBody(depth) {
     margin-top: 1rem; color: var(--fg-muted);
     font-size: clamp(1rem, 2vw, 1.125rem); line-height: 1.65; max-width: 60ch;
   }
-  /* V4: subtle logo mark as secondary visual — no large artwork. */
-  .contact-hero__mark {
-    display: flex; align-items: center; justify-content: center;
-    aspect-ratio: 696/700;
-    background: radial-gradient(circle at 50% 45%, #f9f5eb, #e7ebdf);
+  .contact-direct {
+    display: flex; flex-direction: column; gap: 0;
+    background: var(--paper);
+    border: 1px solid var(--border);
     border-radius: var(--r-panel);
-    overflow: hidden;
-    padding: 1.5rem;
+    box-shadow: 0 2px 12px -4px rgba(32, 30, 25, 0.06);
+    padding: 1.5rem 1.5rem 1.25rem;
   }
-  .contact-hero__mark .contact-hero__mark-img {
-    display: block;
-    width: min(75%, 220px); height: auto;
-    object-fit: contain;
+  @media (min-width: 768px) { .contact-direct { padding: 2rem 2rem 1.5rem; } }
+  .contact-direct__head {
+    display: flex; align-items: center; gap: 0.75rem;
+    padding-bottom: 1rem; border-bottom: 1px solid var(--border);
   }
-  @media (max-width: 1023px) {
-    .contact-hero__mark { display: none; }
+  .contact-direct__mark { width: 44px; height: 44px; flex: none; object-fit: contain; }
+  .contact-direct__brand {
+    font-family: var(--font-deva); font-size: 1rem; color: var(--haldi-deep);
+    line-height: 1.2;
   }
+  .contact-direct__brand small {
+    display: block; font-family: var(--font-sans); font-size: 0.625rem;
+    font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--fg-muted); margin-top: 0.125rem;
+  }
+  .contact-direct__row {
+    padding: 0.875rem 0; border-bottom: 1px solid var(--border);
+    display: grid; grid-template-columns: 1fr; gap: 0.125rem;
+  }
+  .contact-direct__row:last-child { border-bottom: 0; }
+  .contact-direct__row dt {
+    font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--fg-muted);
+  }
+  .contact-direct__row dd { font-size: 1rem; color: var(--fg); }
+  .contact-direct__row dd a {
+    color: var(--primary); text-decoration: none; font-weight: 600;
+    min-height: 24px; display: inline-block;
+  }
+  .contact-direct__row dd a:hover { text-decoration: underline; }
 
   /* ===== CONTACT SECTION (5 / 7 — info left, form right) ===== */
   .contact-section { padding-top: clamp(1.5rem, 3vw, 2.5rem); }
@@ -3820,16 +3878,30 @@ function contactBody(depth) {
   }
   .contact-info__row dd { font-size: 0.9375rem; color: var(--fg); }
   .contact-info__address { white-space: pre-line; }
-  .contact-info__actions {
-    display: flex; flex-wrap: wrap; gap: 0.625rem; margin-top: 1.5rem;
+  /* V7: subtle links instead of redundant CTA buttons. */
+  .contact-info__links {
+    margin-top: 1.25rem; padding-top: 1.25rem; border-top: 1px solid var(--border);
+    display: flex; flex-wrap: wrap; gap: 0.625rem; align-items: center;
+    font-size: 0.875rem; color: var(--fg-muted);
   }
+  .contact-info__links a { color: var(--primary); text-decoration: none; font-weight: 600; }
+  .contact-info__links a:hover { text-decoration: underline; }
+  .contact-info__links span { color: var(--border-strong); }
 
   /* Form (right). */
   .contact-form {
     background: var(--paper); border: 1px solid var(--border);
     border-radius: var(--r-panel); padding: 1.5rem;
+    box-shadow: 0 8px 24px -8px rgba(34, 36, 27, 0.12);
   }
-  @media (min-width: 768px) { .contact-form { padding: 2rem; } }
+  @media (min-width: 768px) { .contact-form { padding: 2.5rem; } }
+  .contact-form .form-input:focus,
+  .contact-form .form-select:focus,
+  .contact-form .form-textarea:focus {
+    outline: 0;
+    border-color: var(--forest);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--haldi) 25%, transparent);
+  }
   .contact-form-card__intro {
     font-size: 0.875rem; color: var(--fg-muted); margin-bottom: 1.5rem;
   }
@@ -3837,7 +3909,7 @@ function contactBody(depth) {
   .form-grid { gap: 1.25rem; }
 </style>
 
-<!-- ===== HERO ===== -->
+<!-- ===== HERO (V7: 7/5 — copy left, direct-lines plate right) ===== -->
 <section class="contact-hero bg-limewash" aria-labelledby="contact-title">
   <div class="container">
     <nav class="breadcrumb" aria-label="Breadcrumb">
@@ -3853,18 +3925,39 @@ function contactBody(depth) {
         <hr class="contact-hero__rule">
         <h1 class="contact-hero__title" id="contact-title">Talk to Gaurikrit.</h1>
         <p class="contact-hero__sub">
-          A short message and a phone number are usually enough. Tell us what
-          you are painting — home, site, Gaushala collaboration — and we will
-          respond.
+          For product questions, project requirements or partnership enquiries,
+          contact Gaurikrit directly or send a message below.
         </p>
       </div>
-      <div class="contact-hero__mark" aria-hidden="true">
-        <img class="contact-hero__mark-img"
-             src="${assetUrl('/assets/brand/gaurikrit-logo-mark.png', depth)}"
-             alt=""
-             width="696" height="700"
-             loading="eager" decoding="async">
-      </div>
+      <dl class="contact-direct" data-reveal>
+        <div class="contact-direct__head">
+          <img class="contact-direct__mark"
+               src="${assetUrl('/assets/brand/gaurikrit-logo-mark.png', depth)}"
+               alt="Gaurikrit brand mark"
+               width="44" height="44"
+               loading="eager" decoding="async">
+          <div class="contact-direct__brand">
+            गौरीकृत
+            <small>Gaurikrit Bio Products</small>
+          </div>
+        </div>
+        <div class="contact-direct__row">
+          <dt>Email</dt>
+          <dd><a href="mailto:${e(COMPANY.email)}">${e(COMPANY.email)}</a></dd>
+        </div>
+        <div class="contact-direct__row">
+          <dt>Phone</dt>
+          <dd><a href="tel:${e(phones[0].replace(/ /g, ''))}">${e(phones[0])}</a></dd>
+        </div>
+        <div class="contact-direct__row">
+          <dt>Phone</dt>
+          <dd><a href="tel:${e(phones[1].replace(/ /g, ''))}">${e(phones[1])}</a></dd>
+        </div>
+        <div class="contact-direct__row">
+          <dt>Location</dt>
+          <dd>Khurja, District Bulandshahr<br>Uttar Pradesh</dd>
+        </div>
+      </dl>
     </div>
   </div>
 </section>
@@ -3900,15 +3993,15 @@ ${phoneRows}
           </div>
         </dl>
 
-        <div class="contact-info__actions">
-          <a class="btn btn--secondary" href="${relUrl('/for-business/', depth)}">For Business</a>
-          <a class="btn btn--outline" href="${relUrl('/paint-calculator/', depth)}">Estimate Your Project</a>
-        </div>
+        <!-- V7: one subtle link row instead of competing CTA buttons. -->
+        <p class="contact-info__links">
+          <a href="${relUrl('/for-business/', depth)}">For Business</a>
+          <span aria-hidden="true">·</span>
+          <a href="${relUrl('/paint-calculator/', depth)}">Painting Calculator</a>
+        </p>
       </aside>
 
-      <!-- RIGHT — enquiry form.
-           Static fallback: mailto: placeholder action, no CSRF, no honeypot.
-           
+      <!-- RIGHT — enquiry form. Static demo uses a safe email fallback. -->
       <form class="contact-form" action="mailto:seva@gaurikrit.com" method="post"
             data-contact-form novalidate>
         <p class="contact-form-card__intro">

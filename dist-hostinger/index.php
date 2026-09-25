@@ -1,6 +1,6 @@
 <?php
 /**
- * Gaurikrit Bio Products — Homepage (V5 finish pass).
+ * Gaurikrit Bio Products — Homepage (V7 surgical repair + responsive rebuild).
  * Task V5-FINISH.
  *
  * Refines the V4 composition: organic haldi field, exterior-wall-study-v2
@@ -71,99 +71,60 @@ $ashtaIds = [
   /* ===== 1. HERO — group photo dominant + CSS haldi field + cow engraving ===== */
   .hero { padding-top: calc(var(--header-h) + 1.5rem); padding-bottom: 1.5rem; }
   @media (min-width: 1024px) {
-    .hero { min-height: 92svh; min-height: 92vh; display: flex; align-items: center;
+    .hero { display: flex; align-items: center;
             padding-top: calc(var(--header-h) + 2rem); padding-bottom: 2rem; }
   }
   .hero__grid { align-items: center; position: relative; }
-  @media (min-width: 1024px) {
+  @media (min-width: 1200px) {
     .hero__grid { grid-template-columns: 5fr 7fr; gap: clamp(2rem, 4vw, 4rem); }
   }
-  @media (max-width: 1023px) {
+  @media (min-width: 900px) and (max-width: 1199px) {
+    .hero__grid { grid-template-columns: 6fr 6fr; gap: clamp(1.5rem, 3vw, 3rem); }
+  }
+  @media (max-width: 899px) {
     .hero__grid { grid-template-columns: 1fr; }
-    .hero__visual { order: 3; min-height: 22rem; }
+    .hero__visual { order: 5; }
   }
   .hero__eyebrow-chip { margin-bottom: 0.875rem; }
   .hero__title { font-size: clamp(2.5rem, 6vw, 5.5rem); line-height: 1.02; }
   .hero__body { max-width: 38rem; }
   .hero__ctas { margin-top: 2.25rem; }
 
-  /* V5 hero visual stack: organic CSS haldi field → group photo → zebu engraving. */
-  .hero__visual { position: relative; min-height: 22rem; width: 100%; }
-  @media (min-width: 768px)  { .hero__visual { min-height: 26rem; } }
-  @media (min-width: 1024px) { .hero__visual { min-height: 34rem; } }
-
-  /* CSS haldi field — irregular organic shape, layered gradients so it
-     reads as a painted wall surface (not a single blob). No SVG. */
-  .hero__haldi-field {
-    position: absolute; inset: -0.5rem -0.5rem 0.75rem; z-index: 0;
-    pointer-events: none;
-    display: flex; align-items: center; justify-content: center;
+  /* V7 hero visual: the real group photo deliberately placed inside a
+     paper/material plate whose background visually merges with the page.
+     No generic haldi semicircle, no faint cow engraving, no landscape band. */
+  .hero__visual { position: relative; min-height: 0; width: 100%; }
+  .hero__plate {
+    position: relative; z-index: 2;
+    background: var(--paper);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--haldi);
+    border-radius: var(--r-panel);
+    padding: clamp(1rem, 2.5vw, 2rem);
+    box-shadow: 0 2px 12px -4px rgba(32, 30, 25, 0.06);
   }
-  .hero__haldi-field::before {
-    content: ''; display: block;
-    width: 92%; height: 86%;
-    /* Irregular painted-edge border-radius (asymmetric, organic). */
-    border-radius: 46% 54% 48% 52% / 50% 46% 54% 50%;
-    /* Three layered radial gradients + an inset haldi glow = painted
-       wall texture, not a flat blob. */
-    background:
-      radial-gradient(ellipse 72% 60% at 50% 38%,
-        var(--haldi) 0%,
-        color-mix(in srgb, var(--haldi) 78%, transparent) 55%,
-        transparent 92%),
-      radial-gradient(ellipse 36% 30% at 32% 58%,
-        color-mix(in srgb, var(--haldi) 88%, transparent) 0%,
-        transparent 72%),
-      radial-gradient(ellipse 28% 24% at 68% 62%,
-        color-mix(in srgb, var(--haldi) 70%, transparent) 0%,
-        transparent 78%);
-    box-shadow: inset 0 0 60px color-mix(in srgb, var(--haldi) 22%, transparent);
-  }
-  .hero__haldi-field .hero__stroke-svg { display: none; }   /* V5: no SVG */
-  /* Subtle painted-surface grain via repeating-linear-gradient overlay.
-     No mix-blend-mode (kept V4 policy). */
-  .hero__haldi-field::after {
-    content: ''; position: absolute; inset: 0; pointer-events: none;
-    background: repeating-linear-gradient(115deg,
-      transparent 0 6px,
-      rgba(255, 250, 235, 0.05) 6px 7px,
-      transparent 7px 13px);
-    border-radius: inherit;
-  }
-
-  /* Real group photo — eager + high priority, dominant. */
-  .hero__bucket {
-    position: absolute; left: 50%; top: 50%;
-    width: 88%; height: 78%;
-    transform: translate(-50%, -50%);
-    z-index: 2;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .hero__bucket .hero-group-photo {
+  .hero__plate img.hero-group-photo {
     display: block;
-    width: 100%; height: 100%;
+    width: 100%; height: auto;
     object-fit: contain;
-    border-radius: 0.35rem;
+    aspect-ratio: 1280 / 621;
   }
-
-  /* Zebu cow engraving — low opacity background line art. */
-  .hero__cow {
-    position: absolute; right: -1.5rem; bottom: -1rem;
-    width: 48%; height: 38%;
-    z-index: 3; opacity: 0.14; pointer-events: none;
-    overflow: hidden;
+  /* A restrained, irregular haldi paint field — reads as a painted wall
+     sample (plaster swash), placed BEHIND the plate's bottom edge only. */
+  .hero__paint-sample {
+    position: absolute;
+    left: -4%; right: 6%; bottom: -1.25rem;
+    height: 34%;
+    z-index: 0;
+    pointer-events: none;
+    border-radius: 46% 54% 48% 52% / 60% 54% 46% 40%;
+    background:
+      radial-gradient(ellipse 70% 62% at 50% 40%,
+        color-mix(in srgb, var(--haldi) 26%, transparent) 0%,
+        transparent 78%);
+    opacity: 0.5;
   }
-  .hero__cow .editorial-image { object-fit: cover; }
-
-  /* Rural landscape band at the bottom of the hero visual. */
-  .hero__landscape {
-    position: absolute; left: 0; right: 0; bottom: 0;
-    height: 4.5rem;
-    z-index: 1; opacity: 0.12; pointer-events: none;
-    overflow: hidden;
-  }
-  .hero__landscape .editorial-image { object-fit: cover; }
-  @media (min-width: 1024px) { .hero__landscape { height: 5rem; } }
+  @media (max-width: 899px) { .hero__paint-sample { display: none; } }
 
   /* ===== 2. MATERIAL STATEMENT — zebu-study large right (58%) ===== */
   .material-statement__visual {
@@ -240,6 +201,8 @@ $ashtaIds = [
   .material-flow__panel--group { aspect-ratio: 1280/621; }
   .material-flow__panel .editorial-image {
     position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+    /* V7: one shared colour grade so the triptych reads as one composition. */
+    filter: saturate(0.94) sepia(0.05);
   }
   .material-flow__panel-label {
     position: absolute; left: 0.875rem; bottom: 0.875rem;
@@ -258,12 +221,9 @@ $ashtaIds = [
     /* Slightly darker warm tone — overrides section--limewash. */
     background: color-mix(in srgb, var(--haldi) 10%, var(--limewash));
   }
-  .ashta-section__bg {
-    position: absolute; right: -10%; top: 50%; transform: translateY(-50%);
-    width: 60%; height: 80%;
-    opacity: 0.10; pointer-events: none; overflow: hidden;
-  }
-  .ashta-section__bg .editorial-image { width: 100%; height: 100%; object-fit: cover; }
+  /* V7: the giant faded cow background is REMOVED — two clear layers only:
+     seal + list. Slightly stronger warm ground for the seal to read dark. */
+  .ashta-section { background: color-mix(in srgb, var(--haldi) 12%, var(--limewash)); }
   .ashta-section__inner { position: relative; z-index: 1; }
   .ashta-section__grid { position: relative; z-index: 1; }
   /* V5: enlarge seal from 38rem → 44rem for more authority. */
@@ -369,59 +329,61 @@ $ashtaIds = [
   }
   .mission-band__cta { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 0.75rem; }
 
-  /* ===== 9. CALCULATOR TEASER (V5: inline SVG wall + dimension lines,
-     no photo, no poster styling) ===== */
+  /* ===== 9. CALCULATOR TEASER (V7: a miniature of the actual calculator
+     UI — 'this is an interactive estimator', not a W × H poster) ===== */
   .calc-teaser { padding-block: clamp(3.5rem, 6vw, 5.5rem); }
   .calc-teaser__art {
-    position: relative; aspect-ratio: 4/3;
+    position: relative;
     background: var(--paper);
     border: 1px solid var(--border);
     border-radius: var(--r-panel);
-    overflow: hidden; display: flex; align-items: center; justify-content: center;
-    padding: 1.5rem;
+    overflow: hidden;
+    padding: clamp(1.25rem, 2vw, 1.75rem);
+    box-shadow: 0 2px 12px -4px rgba(32, 30, 25, 0.06);
   }
-  .calc-teaser__wall-svg {
-    position: relative; z-index: 1;
-    display: block; width: 100%; max-width: 28rem; height: auto;
+  .calc-teaser__sheet-head {
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: 1rem; padding-bottom: 0.875rem; margin-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .calc-teaser__sheet-title {
+    font-family: var(--font-display); font-size: 1.125rem; font-weight: 700;
     color: var(--primary);
   }
-  .calc-teaser__art .calc-teaser__preview {
-    position: absolute; right: 1rem; bottom: 1rem; z-index: 2;
-    background: rgba(250, 248, 241, 0.96);
-    border: 1px solid var(--border);
-    border-radius: var(--r-card);
-    box-shadow: var(--shadow-soft, 0 8px 24px -8px rgba(34, 36, 27, 0.18));
-    padding: 1rem 1.125rem;
-    min-width: 13rem;
+  .calc-teaser__sheet-tag {
+    font-size: 0.625rem; font-weight: 700; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--fg-muted);
   }
-  .calc-teaser__preview-row {
-    display: flex; justify-content: space-between; align-items: baseline;
-    gap: 1rem; padding-block: 0.375rem;
+  .calc-teaser__step {
+    display: grid; grid-template-columns: 2.25rem 1fr auto; gap: 0.875rem;
+    align-items: center;
+    padding: 0.875rem 0;
     border-bottom: 1px dashed var(--border);
   }
-  .calc-teaser__preview-row:last-child { border-bottom: 0; }
-  .calc-teaser__preview-label {
+  .calc-teaser__step:last-child { border-bottom: 0; }
+  .calc-teaser__step-num {
+    width: 2rem; height: 2rem; display: flex; align-items: center; justify-content: center;
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--haldi) 22%, transparent);
+    border: 1px solid var(--forest);
+    font-size: 0.75rem; font-weight: 700; color: var(--forest);
+  }
+  .calc-teaser__step-label {
     font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.16em;
     text-transform: uppercase; color: var(--fg-muted);
   }
-  .calc-teaser__preview-value {
-    font-family: var(--font-display); font-weight: 700; font-size: 0.875rem;
-    color: var(--primary);
+  .calc-teaser__step-value {
+    font-family: var(--font-display); font-size: 0.9375rem; font-weight: 700;
+    color: var(--primary); text-align: right;
+  }
+  .calc-teaser__step-dot {
+    width: 0.5rem; height: 0.5rem; border-radius: 50%;
+    background: var(--haldi);
   }
 
-  /* ===== 10. PROJECT PATHWAYS (V5: business-context-study shared) ===== */
+  /* ===== 10. PROJECT PATHWAYS (V7: audiences are the design — no generic
+     suburban house artwork) ===== */
   .pathways-section { padding-block: clamp(3rem, 6vw, 5rem); }
-  .pathways-section__head { max-width: 48rem; margin-bottom: 2.5rem; }
-  .pathways-illustration {
-    position: relative;
-    margin-bottom: 3rem;
-    aspect-ratio: 1344/768;
-    width: 100%; overflow: hidden;
-    border-radius: var(--r-panel);
-  }
-  .pathways-illustration .editorial-image {
-    width: 100%; height: 100%; object-fit: cover; display: block;
-  }
 </style>
 
 <!-- ============================================================
@@ -447,37 +409,13 @@ $ashtaIds = [
       </div>
 
       <div class="hero__visual" data-reveal>
-        <!-- CSS haldi paint field behind the product (no SVG) -->
-        <div class="hero__haldi-field" aria-hidden="true"></div>
-        <!-- Real product group photo — eager + high priority -->
-        <div class="hero__bucket">
+        <div class="hero__paint-sample" aria-hidden="true"></div>
+        <div class="hero__plate">
           <img class="hero-group-photo"
                src="<?= asset_url($groupImage) ?>"
                alt="Prakritik Distemper and Emulsion paint packs"
                width="1280" height="621"
                loading="eager" fetchpriority="high" decoding="async">
-        </div>
-        <!-- Zebu cow engraving at 0.14 opacity — secondary line, not the hero -->
-        <div class="hero__cow" aria-hidden="true">
-          <picture>
-            <source type="image/webp" srcset="<?= asset_url('/assets/editorial/zebu-study.webp') ?>">
-            <img class="editorial-image"
-                 src="<?= asset_url('/assets/editorial/zebu-study.jpg') ?>"
-                 alt=""
-                 width="1536" height="1024"
-                 loading="lazy" decoding="async">
-          </picture>
-        </div>
-        <!-- Rural landscape band at the bottom — 0.12 opacity -->
-        <div class="hero__landscape" aria-hidden="true">
-          <picture>
-            <source type="image/webp" srcset="<?= asset_url('/assets/editorial/rural-landscape.webp') ?>">
-            <img class="editorial-image"
-                 src="<?= asset_url('/assets/editorial/rural-landscape.jpg') ?>"
-                 alt=""
-                 width="1344" height="768"
-                 loading="lazy" decoding="async">
-          </picture>
         </div>
       </div>
     </div>
@@ -690,22 +628,12 @@ $ashtaIds = [
      6. ASHTA LAABH — keep SVG seal + zebu-study bg engraving
      ============================================================ -->
 <section class="section ashta-section section--limewash" aria-labelledby="ashta-title" data-ashta-laabh>
-  <div class="ashta-section__bg" aria-hidden="true">
-    <picture>
-      <source type="image/webp" srcset="<?= asset_url('/assets/editorial/zebu-study.webp') ?>">
-      <img class="editorial-image"
-           src="<?= asset_url('/assets/editorial/zebu-study.jpg') ?>"
-           alt=""
-           width="1536" height="1024"
-           loading="lazy" decoding="async">
-    </picture>
-  </div>
   <div class="container ashta-section__inner">
     <div class="ashta-section__head section-heading section-heading--left" data-reveal>
       <span class="ashta-section__deva">अष्ट लाभ</span>
       <h2 class="section-heading__title" id="ashta-title">Eight benefits of Prakritik Paint.</h2>
       <p class="ashta-section__sub">
-        The eight benefits Gaurikrit associates with Prakritik Paint.
+        Eight benefits listed in the supplied Prakritik Paint material.
       </p>
       <p class="ashta-section__note">
         Benefits listed in the Prakritik Paint material.
@@ -808,7 +736,7 @@ $ashtaIds = [
 </section>
 
 <!-- ============================================================
-     9. CALCULATOR TEASER — mini project-summary + wall elevation
+     9. CALCULATOR TEASER (V7: miniature of the real calculator UI)
      ============================================================ -->
 <section class="section section--limewash calc-teaser" aria-labelledby="calc-teaser-title">
   <div class="container">
@@ -822,55 +750,33 @@ $ashtaIds = [
           send to Gaurikrit to discuss your project.
         </p>
         <div class="calc-teaser__cta">
-          <a class="btn btn--primary btn--lg" href="/paint-calculator/">Estimate Your Project</a>
+          <a class="btn btn--primary btn--lg" href="/paint-calculator/">Open Painting Calculator</a>
         </div>
       </div>
       <div class="calc-teaser__art" aria-hidden="true">
-        <!-- V5: inline SVG wall elevation with width + height dimension
-             lines. No photo, no poster styling — a real mini-tool preview. -->
-        <svg class="calc-teaser__wall-svg" viewBox="0 0 320 220" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <!-- Wall plane -->
-          <rect x="48" y="28" width="224" height="156" rx="2"
-                fill="var(--paper-warm)" stroke="currentColor" stroke-width="1.5"/>
-          <!-- Subtle plaster texture lines -->
-          <line x1="48" y1="64" x2="272" y2="64" stroke="currentColor" stroke-width="0.5" opacity="0.18"/>
-          <line x1="48" y1="108" x2="272" y2="108" stroke="currentColor" stroke-width="0.5" opacity="0.18"/>
-          <line x1="48" y1="148" x2="272" y2="148" stroke="currentColor" stroke-width="0.5" opacity="0.18"/>
-          <!-- Width dimension line (bottom) -->
-          <line x1="48" y1="200" x2="272" y2="200" stroke="currentColor" stroke-width="1"/>
-          <line x1="48" y1="196" x2="48" y2="204" stroke="currentColor" stroke-width="1"/>
-          <line x1="272" y1="196" x2="272" y2="204" stroke="currentColor" stroke-width="1"/>
-          <text x="160" y="214" text-anchor="middle" font-family="Manrope, sans-serif"
-                font-size="9" font-weight="700" letter-spacing="1.5"
-                fill="currentColor">WIDTH</text>
-          <!-- Height dimension line (left) -->
-          <line x1="32" y1="28" x2="32" y2="184" stroke="currentColor" stroke-width="1"/>
-          <line x1="28" y1="28" x2="36" y2="28" stroke="currentColor" stroke-width="1"/>
-          <line x1="28" y1="184" x2="36" y2="184" stroke="currentColor" stroke-width="1"/>
-          <text x="24" y="110" text-anchor="middle" font-family="Manrope, sans-serif"
-                font-size="9" font-weight="700" letter-spacing="1.5"
-                fill="currentColor" transform="rotate(-90 24 110)">HEIGHT</text>
-          <!-- Area label inside wall -->
-          <text x="160" y="112" text-anchor="middle" font-family="Newsreader, serif"
-                font-size="15" font-weight="700" fill="var(--haldi-deep)">W × H = area</text>
-        </svg>
-        <div class="calc-teaser__preview">
-          <div class="calc-teaser__preview-row">
-            <span class="calc-teaser__preview-label">Painting</span>
-            <span class="calc-teaser__preview-value">Fresh / Repaint</span>
-          </div>
-          <div class="calc-teaser__preview-row">
-            <span class="calc-teaser__preview-label">Location</span>
-            <span class="calc-teaser__preview-value">Interior / Exterior</span>
-          </div>
-          <div class="calc-teaser__preview-row">
-            <span class="calc-teaser__preview-label">Paint</span>
-            <span class="calc-teaser__preview-value">Distemper / Emulsion</span>
-          </div>
-          <div class="calc-teaser__preview-row">
-            <span class="calc-teaser__preview-label">Area</span>
-            <span class="calc-teaser__preview-value">sq.ft.</span>
-          </div>
+        <div class="calc-teaser__sheet-head">
+          <span class="calc-teaser__sheet-title">Your project</span>
+          <span class="calc-teaser__sheet-tag">4 steps</span>
+        </div>
+        <div class="calc-teaser__step">
+          <span class="calc-teaser__step-num">01</span>
+          <span class="calc-teaser__step-label">Painting type</span>
+          <span class="calc-teaser__step-value">Fresh / Repaint</span>
+        </div>
+        <div class="calc-teaser__step">
+          <span class="calc-teaser__step-num">02</span>
+          <span class="calc-teaser__step-label">Location</span>
+          <span class="calc-teaser__step-value">Interior / Exterior</span>
+        </div>
+        <div class="calc-teaser__step">
+          <span class="calc-teaser__step-num">03</span>
+          <span class="calc-teaser__step-label">Paint</span>
+          <span class="calc-teaser__step-value">Distemper / Emulsion</span>
+        </div>
+        <div class="calc-teaser__step">
+          <span class="calc-teaser__step-num">04</span>
+          <span class="calc-teaser__step-label">Wall area</span>
+          <span class="calc-teaser__step-value">sq.ft.</span>
         </div>
       </div>
     </div>
@@ -885,17 +791,6 @@ $ashtaIds = [
     <div class="pathways-section__head section-heading section-heading--left" data-reveal>
       <span class="section-heading__eyebrow">Project pathways</span>
       <h2 class="pathways-section__title" id="pathways-title">Who is Prakritik Paint for?</h2>
-    </div>
-
-    <div class="pathways-illustration" aria-hidden="true" data-reveal>
-      <picture>
-        <source type="image/webp" srcset="<?= asset_url('/assets/editorial/business-context-study.webp') ?>">
-        <img class="editorial-image"
-             src="<?= asset_url('/assets/editorial/business-context-study.jpg') ?>"
-             alt=""
-             width="1344" height="768"
-             loading="lazy" decoding="async">
-      </picture>
     </div>
 
     <div class="pathways" data-reveal-stagger>
