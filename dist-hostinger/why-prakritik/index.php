@@ -3,23 +3,21 @@
  * Gaurikrit Bio Products — Why Prakritik (V5 finish pass).
  * Task V5-FINISH.
  *
- * Refines the V4 composition: hero pairs a SMALLER zebu-study crop
- * (head + hump) over an interior-wall-study wall texture, so it
- * differentiates from Section 01 (which keeps the FULL zebu-study);
- * Section 02 courtyard is enlarged to ~75% of the chapter width on
- * desktop; Section 03 right panel uses finished-wall-study; Section 04
- * Ashta seal is strengthened (44rem, darker warm bg, bolder labels);
- * Section 06 context uses business-context-study instead of
- * rural-landscape. Factual data unchanged from data.php.
+ * V10 targeted fix pass — NOT a redesign. The decorative zebu
+ * illustration is retired from this page: the hero now shows a single
+ * quiet finished-wall study (where the material lands), and Section 01
+ * grounds "the material" in a raw plaster surface study instead.
+ * Section 03 uses the shared 3-step material cards (raw material /
+ * paint / finished wall). Factual data unchanged from data.php.
  *
- * Illustrated editorial essay. Hero with zebu-study crop. Six numbered
- * chapters (each visually distinct):
- *   01 MATERIAL     — full zebu-study.webp (1536×1024) large
- *   02 TRADITION     — courtyard-study.webp (1942×809) enlarged (~75%)
- *   03 MATERIAL TO WALL — 3-panel composition (interior + group + finished-wall)
- *   04 ASHTA         — strengthened interactive ashta-laabh-seal SVG (kept)
- *   05 FORMATS       — real Distemper + Emulsion product photos
- *   06 CONTEXT       — business-context-study with annotation
+ * Illustrated editorial essay. Six numbered chapters (each visually
+ * distinct):
+ *   01 MATERIAL     — raw-material-study (plaster surface, 1344×768)
+ *   02 TRADITION    — courtyard-study.webp (1942×809) enlarged (~75%)
+ *   03 MATERIAL TO WALL — 3 step cards (raw material / paint / wall)
+ *   04 ASHTA        — strengthened interactive ashta-laabh-seal SVG (kept)
+ *   05 FORMATS      — real Distemper + Emulsion product photos
+ *   06 CONTEXT      — rural-landscape engraving, annotated
  * CTA "Explore Products" → /products/.
  */
 declare(strict_types=1);
@@ -32,11 +30,10 @@ $pageClass        = 'why-prakritik';
 require_once __DIR__ . '/../includes/bootstrap.php';
 require ROOT_PATH . '/includes/header.php';
 
-global $COMPANY, $PRODUCTS, $ASHTA_LAABH, $MATERIAL_JOURNEY;
+global $COMPANY, $PRODUCTS, $ASHTA_LAABH;
 
 $distemper = get_product('prakritik-distemper');
 $emulsion  = get_product('prakritik-emulsion');
-$groupImage = '/assets/products/prakritik-group.jpg';
 
 $ashtaIds = [
     'Antibacterial'              => 'antibacterial',
@@ -59,53 +56,29 @@ $ashtaIds = [
   }
   .editorial-image--contain { object-fit: contain; }
 
-  /* ===== HERO (V5: smaller zebu-study crop paired with wall texture) ===== */
+  /* ===== HERO (V10: single quiet finished-wall study — where the
+     material lands; the zebu crop layering is retired) ===== */
   .why-hero { padding-top: calc(var(--header-h) + 2rem); padding-bottom: 1.5rem; }
   .why-hero__container { display: grid; gap: 2rem; align-items: center; }
   @media (min-width: 1024px) {
     .why-hero__container { grid-template-columns: 5fr 7fr; gap: 3rem; }
   }
   .why-hero__lockup { max-width: 42rem; }
-  /* V5: panel-like aspect (4/3) so the zebu crop + wall read as a
-     framed editorial composition, not a full-bleed photograph. */
   .why-hero__art {
-    position: relative; aspect-ratio: 4/3;
-    background: var(--limewash); border-radius: var(--r-panel);
+    position: relative; aspect-ratio: 1344/768;
+    background: var(--paper); border-radius: var(--r-panel);
     overflow: hidden;
-  }
-  /* Wall texture layer (interior-wall-study, faded) — pairs the
-     zebu crop with the wall context where the material lands. */
-  .why-hero__wall-texture .why-hero__wall-img {
-    position: absolute; inset: 0; width: 100%; height: 100%;
-    object-fit: cover; opacity: 0.25;
-  }
-  /* Zebu-study crop showing the head + hump detail (upper portion of
-     the 1536×1024 frame). Differentiates from Section 01 which keeps
-     the full zebu-study. */
-  .why-hero__zebu-crop {
-    position: absolute; right: 6%; top: 8%;
-    width: 56%; height: 84%;
-    overflow: hidden;
-    border-radius: var(--r-card);
-    box-shadow: 0 14px 28px rgba(34, 36, 27, 0.22);
     border: 1px solid var(--border);
-    background: var(--paper);
+    box-shadow: 0 2px 12px -4px rgba(32, 30, 25, 0.06);
   }
-  .why-hero__zebu-img {
+  .why-hero__art .why-hero__img {
     position: absolute; inset: 0; width: 100%; height: 100%;
-    object-fit: cover; object-position: 20% 20%;  /* V7: head + horns + hump */
-  }
-  @media (max-width: 767px) {
-    .why-hero__zebu-crop { width: 72%; right: 7%; top: 9%; height: 82%; }
+    object-fit: cover; display: block;
   }
   /* Legacy single-picture .editorial-image positioner (kept for
-     why-material-sample / why-tradition-art / why-flow-panel / etc.) */
+     why-material-sample / why-tradition-art / etc.) */
   .why-material-sample .editorial-image,
-  .why-tradition-art .editorial-image,
-  .why-flow-panel .editorial-image,
-  /* Remove the legacy cow/wall composition — single editorial photo replaces it. */
-  .why-hero__art .why-cow,
-  .why-hero__art .why-wall { display: none; }
+  .why-tradition-art .editorial-image { display: block; }
   .why-hero__title { font-size: clamp(2.2rem, 5vw, 4rem); }
 
   /* ===== NUMBERED CHAPTERS ===== */
@@ -150,9 +123,9 @@ $ashtaIds = [
     padding-left: 1.5rem; border-left: 3px solid var(--haldi);
   }
 
-  /* === Chapter 01 — MATERIAL: zebu-study large === */
+  /* === Chapter 01 — MATERIAL: raw-material-study (plaster surface) === */
   .why-material-sample {
-    position: relative; aspect-ratio: 1536/1024;
+    position: relative; aspect-ratio: 1344/768;
     background: var(--paper); border-radius: var(--r-panel);
     overflow: hidden;
   }
@@ -173,34 +146,10 @@ $ashtaIds = [
     width: 100%; height: 100%; object-fit: cover; display: block;
   }
 
-  /* === Chapter 03 — MATERIAL TO WALL: 3-panel composition === */
+  /* === Chapter 03 — MATERIAL TO WALL: 3 step cards (structure in
+     app.css §17 .material-step — same cards as the homepage journey) === */
   .why-flow-section { padding-block: clamp(3.5rem, 6vw, 5rem); }
-  .why-flow-panels {
-    display: grid; gap: 1rem; margin-top: 2rem;
-    grid-template-columns: 1fr;
-  }
-  @media (min-width: 768px) {
-    .why-flow-panels { grid-template-columns: 1fr 1fr 1fr; gap: 1.25rem; }
-  }
-  .why-flow-panel {
-    position: relative;
-    aspect-ratio: 1344/768;
-    background: var(--limewash);
-    overflow: hidden; border-radius: var(--r-panel);
-  }
-  .why-flow-panel--group { aspect-ratio: 1280/621; }
-  .why-flow-panel .editorial-image {
-    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
-  }
-  .why-flow-panel-label {
-    position: absolute; left: 0.875rem; bottom: 0.875rem;
-    background: rgba(250, 248, 241, 0.88);
-    padding: 0.375rem 0.75rem;
-    border-radius: var(--r-pill);
-    font-size: 0.6875rem; font-weight: 700;
-    letter-spacing: 0.18em; text-transform: uppercase;
-    color: var(--fg);
-  }
+  .why-flow-section .material-steps { margin-top: 2rem; }
 
   /* === Chapter 04 — ASHTA: V5 strengthened seal (44rem, darker warm
      bg, bolder benefit labels). SVG seal kept interactive. === */
@@ -266,7 +215,7 @@ $ashtaIds = [
   }
 </style>
 
-<!-- ===== HERO (V5: smaller zebu-study crop + interior-wall-study wall texture) ===== -->
+<!-- ===== HERO — single quiet finished-wall study ===== -->
 <section class="why-hero bg-limewash" aria-labelledby="why-title">
   <div class="container">
     <nav class="breadcrumb" aria-label="Breadcrumb">
@@ -284,30 +233,15 @@ $ashtaIds = [
           contemporary paint format.
         </p>
       </div>
-      <div class="why-hero__art" aria-hidden="true">
-        <!-- V5: wall texture layer (interior-wall-study, faded) pairs the
-             zebu detail crop with the wall where the material lands. -->
-        <picture class="why-hero__wall-texture">
-          <source type="image/webp" srcset="<?= asset_url('/assets/editorial/interior-wall-study.webp') ?>">
-          <img class="why-hero__wall-img"
-               src="<?= asset_url('/assets/editorial/interior-wall-study.jpg') ?>"
-               alt=""
+      <div class="why-hero__art">
+        <picture>
+          <source type="image/webp" srcset="<?= asset_url('/assets/editorial/interior-finish-study.webp') ?>">
+          <img class="why-hero__img"
+               src="<?= asset_url('/assets/editorial/interior-finish-study.jpg') ?>"
+               alt="Quiet interior wall with a matte mineral finish"
                width="1344" height="768"
                loading="eager" decoding="async">
         </picture>
-        <!-- V5: smaller zebu-study crop showing the head + hump detail
-             (object-position: 50% 18%). Differentiates from Section 01
-             which keeps the full zebu-study. -->
-        <div class="why-hero__zebu-crop">
-          <picture>
-            <source type="image/webp" srcset="<?= asset_url('/assets/editorial/zebu-study.webp') ?>">
-            <img class="why-hero__zebu-img"
-                 src="<?= asset_url('/assets/editorial/zebu-study.jpg') ?>"
-                 alt="Editorial study of an Indian zebu cow"
-                 width="1536" height="1024"
-                 loading="eager" decoding="async">
-          </picture>
-        </div>
       </div>
     </div>
   </div>
@@ -333,13 +267,13 @@ $ashtaIds = [
           Not a novelty. A useful material, reconsidered.
         </p>
       </div>
-      <div class="why-material-sample" aria-hidden="true">
+      <div class="why-material-sample">
         <picture>
-          <source type="image/webp" srcset="<?= asset_url('/assets/editorial/zebu-study.webp') ?>">
+          <source type="image/webp" srcset="<?= asset_url('/assets/editorial/raw-material-study.webp') ?>">
           <img class="editorial-image"
-               src="<?= asset_url('/assets/editorial/zebu-study.jpg') ?>"
-               alt=""
-               width="1536" height="1024"
+               src="<?= asset_url('/assets/editorial/raw-material-study.jpg') ?>"
+               alt="Raw lime-plastered wall surface — natural material"
+               width="1344" height="768"
                loading="lazy" decoding="async">
         </picture>
       </div>
@@ -390,47 +324,56 @@ $ashtaIds = [
         Natural material, Prakritik Paint, finished walls.
       </p>
     </div>
-    <div class="why-flow-panels" data-reveal>
-      <div class="why-flow-panel">
-        <picture>
-          <source type="image/webp" srcset="<?= asset_url('/assets/editorial/interior-wall-study.webp') ?>">
-          <img class="editorial-image"
-               src="<?= asset_url('/assets/editorial/interior-wall-study.jpg') ?>"
-               alt="Indian interior limewashed wall"
-               width="1344" height="768"
+    <div class="material-steps" data-reveal>
+      <article class="material-step">
+        <figure class="material-step__figure">
+          <picture>
+            <source type="image/webp" srcset="<?= asset_url('/assets/editorial/raw-material-study.webp') ?>">
+            <img class="editorial-image"
+                 src="<?= asset_url('/assets/editorial/raw-material-study.jpg') ?>"
+                 alt="Raw lime-plastered wall surface — natural material"
+                 width="1344" height="768"
+                 loading="lazy" decoding="async">
+          </picture>
+        </figure>
+        <div class="material-step__caption">
+          <span class="material-step__num">01</span>
+          <h3 class="material-step__title">Natural material</h3>
+          <p class="material-step__desc">Cow dung is the material inspiration.</p>
+        </div>
+      </article>
+      <article class="material-step material-step--product">
+        <figure class="material-step__figure">
+          <img class="material-step__product"
+               src="<?= asset_url($distemper['officialImage']) ?>"
+               alt="Prakritik Distemper paint pack"
+               width="490" height="621"
                loading="lazy" decoding="async">
-        </picture>
-        <span class="why-flow-panel-label">01 · Natural material</span>
-      </div>
-      <div class="why-flow-panel why-flow-panel--group">
-        <img class="editorial-image"
-             src="<?= asset_url($groupImage) ?>"
-             alt="Prakritik Distemper and Emulsion paint packs"
-             width="1280" height="621"
-             loading="lazy" decoding="async">
-        <span class="why-flow-panel-label">02 · Prakritik Paint</span>
-      </div>
-      <div class="why-flow-panel">
-        <picture>
-          <source type="image/webp" srcset="<?= asset_url('/assets/editorial/finished-wall-study.webp') ?>">
-          <img class="editorial-image"
-               src="<?= asset_url('/assets/editorial/finished-wall-study.jpg') ?>"
-               alt="Indian finished limewashed wall"
-               width="1344" height="768"
-               loading="lazy" decoding="async">
-        </picture>
-        <span class="why-flow-panel-label">03 · Finished wall</span>
-      </div>
+        </figure>
+        <div class="material-step__caption">
+          <span class="material-step__num">02</span>
+          <h3 class="material-step__title">Prakritik Paint</h3>
+          <p class="material-step__desc">Available as Distemper and Emulsion.</p>
+        </div>
+      </article>
+      <article class="material-step">
+        <figure class="material-step__figure">
+          <picture>
+            <source type="image/webp" srcset="<?= asset_url('/assets/editorial/finished-surface-study.webp') ?>">
+            <img class="editorial-image"
+                 src="<?= asset_url('/assets/editorial/finished-surface-study.jpg') ?>"
+                 alt="Finished matte limewash wall surface"
+                 width="1344" height="768"
+                 loading="lazy" decoding="async">
+          </picture>
+        </figure>
+        <div class="material-step__caption">
+          <span class="material-step__num">03</span>
+          <h3 class="material-step__title">Finished wall</h3>
+          <p class="material-step__desc">Both are listed for interior and exterior use.</p>
+        </div>
+      </article>
     </div>
-    <ol class="material-journey__steps" data-reveal-stagger>
-      <?php foreach ($MATERIAL_JOURNEY as $step): ?>
-        <li class="material-journey__step">
-          <span class="material-journey__num"><?= e($step['num']) ?></span>
-          <h3 class="material-journey__title"><?= e($step['title']) ?></h3>
-          <p class="material-journey__desc"><?= e($step['desc']) ?></p>
-        </li>
-      <?php endforeach; ?>
-    </ol>
   </div>
 </section>
 

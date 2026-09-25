@@ -287,20 +287,19 @@
     max-width: min(60%, 320px);
   }
 
-  /* ===== MATERIAL DIRECTION (V7: zebu printed onto the page — no box) ===== */
+  /* ===== MATERIAL DIRECTION (V10: raw plaster surface — the material
+     itself, printed onto the page with no panel chrome) ===== */
   .about-direction-section { padding-block: clamp(3.5rem, 6vw, 5rem); }
   .about-direction__visual {
-    /* No panel chrome: the artwork's cream ground matches the paper
-       background so the cow reads as printed onto the page. */
     background: transparent;
     border-radius: 0;
     overflow: hidden;
     position: relative;
-    aspect-ratio: 1536 / 1126;  /* V7: cow ~10% larger — crop bottom margin */
+    aspect-ratio: 1344 / 768;
   }
   .about-direction__visual .editorial-image {
     position: absolute; inset: 0; width: 100%; height: 100%;
-    object-fit: cover; object-position: 20% 20%;  /* V7: head + horns + hump */
+    object-fit: cover;
   }
 
   /* ===== MISSION BAND ===== */
@@ -455,7 +454,7 @@
   </div>
 </section>
 
-<!-- ===== MATERIAL DIRECTION — zebu-study beside wall ===== -->
+<!-- ===== MATERIAL DIRECTION — the raw material surface ===== -->
 <section class="section section--paper about-direction-section" aria-labelledby="direction-title">
   <div class="container">
     <div class="about-section" data-reveal>
@@ -477,8 +476,8 @@
           <a class="btn btn--primary" href="../why-prakritik/">Why Prakritik</a>
         </div>
       </div>
-      <div class="about-direction__visual" aria-hidden="true">
-        <picture><source type="image/webp" srcset="../assets/editorial/zebu-study.webp"><img class="editorial-image" src="../assets/editorial/zebu-study.jpg" alt="Editorial study of an Indian zebu cow" width="1536" height="1024" loading="lazy" decoding="async"></picture>
+      <div class="about-direction__visual">
+        <picture><source type="image/webp" srcset="../assets/editorial/raw-material-study.webp"><img class="editorial-image" src="../assets/editorial/raw-material-study.jpg" alt="Raw lime-plastered wall surface — an Indian natural wall material" width="1344" height="768" loading="lazy" decoding="async"></picture>
       </div>
     </div>
   </div>

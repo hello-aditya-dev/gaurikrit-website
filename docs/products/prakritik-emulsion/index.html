@@ -220,40 +220,41 @@
     .product-detail--warm .product-detail__hero > :first-child { order: 1; }
     .product-detail--warm .product-detail__hero > :last-child  { order: 2; }
   }
-  /* V4: media is a real environment (exterior-wall-study) with the real
-     product photo overlaid at its natural size. NO upscaling. */
+  /* V10: media is a clean catalogue plate (same language as the home
+     product chapters) — white product stage + slim wall-finish strip.
+     The complete pack photo is shown at its natural proportion. */
   .product-detail__media {
-    position: relative; aspect-ratio: 4/3;
-    background: var(--paper-leaf);
+    display: flex; flex-direction: column;
+    background: var(--paper);
     border: 1px solid var(--border); border-top: 3px solid var(--leaf);
     border-radius: var(--r-panel); overflow: hidden;
-    min-height: 22rem;
-    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 2px 12px -4px rgba(32, 30, 25, 0.06);
   }
-  @media (min-width: 1024px) { .product-detail__media { min-height: 30rem; } }
-  /* V7: on phones the 22rem min-height + 4/3 aspect forces a wider-than-viewport
-     box — let the aspect ratio govern the height instead. (PHP↔static parity
-     fix: this rule existed in dist-hostinger but was missing here, overflowing
-     mobile viewports on the Emulsion page.) */
-  @media (max-width: 639px) { .product-detail__media { min-height: 0; } }
-  .product-detail__media .media-env {
-    position: absolute; inset: 0; width: 100%; height: 100%;
-    object-fit: cover;
+  .product-detail__stage {
+    position: relative;
+    height: clamp(17rem, 36vw, 25rem);
+    display: grid; place-items: center;
+    padding: clamp(1.25rem, 3vw, 2.25rem);
   }
-  .product-detail__media .media-product {
-    position: relative; z-index: 2;
-    display: block;
-    max-height: 84%;
-    width: auto;
-    max-width: min(55%, 340px);   /* 450×621 photo — never wider than 340px CSS */
+  .product-detail__stage .media-product {
+    /* Absolute-fill + object-fit: contain — the pack photo stays
+       COMPLETE inside the fixed-height stage (never cropped). */
+    position: absolute;
+    top: clamp(1.25rem, 3vw, 2.25rem);
+    left: clamp(1.25rem, 3vw, 2.25rem);
+    width: calc(100% - 2 * clamp(1.25rem, 3vw, 2.25rem));
+    height: calc(100% - 2 * clamp(1.25rem, 3vw, 2.25rem));
     object-fit: contain;
-    filter: drop-shadow(0 18px 28px rgba(34, 36, 27, 0.20));
   }
-  .product-detail__media__num {
-    position: absolute; top: 1rem; right: 1.25rem; z-index: 3;
-    font-family: var(--font-display); font-size: clamp(3rem, 8vw, 5rem);
-    font-weight: 700; color: var(--leaf); opacity: 0.18;
-    line-height: 1; pointer-events: none;
+  .product-detail__strip {
+    height: clamp(6rem, 13vw, 9rem);
+    border-top: 1px solid var(--border);
+    overflow: hidden;
+    background: var(--limewash);
+  }
+  .product-detail__strip .media-strip {
+    display: block; width: 100%; height: 100%;
+    object-fit: cover;
   }
   .product-detail__info { display: flex; flex-direction: column; gap: 0.75rem; }
   .product-detail__name { margin-top: 0.5rem; }
@@ -282,15 +283,18 @@
     </nav>
 
     <div class="product-detail__hero" data-reveal>
-      <div class="product-detail__media">
-        <span class="product-detail__media__num" aria-hidden="true">02</span>
-        <picture><source type="image/webp" srcset="../../assets/editorial/exterior-wall-study-v2.webp"><img class="media-env" src="../../assets/editorial/exterior-wall-study-v2.jpg" alt="" width="1344" height="768" loading="eager" decoding="async"></picture>
-        <img class="media-product"
-             src="../../assets/products/prakritik-emulsion.jpg"
-             alt="Prakritik Emulsion Paint"
-             width="450" height="621"
-             loading="eager" fetchpriority="high" decoding="async">
-      </div>
+      <figure class="product-detail__media">
+        <div class="product-detail__stage">
+          <img class="media-product"
+               src="../../assets/products/prakritik-emulsion.jpg"
+               alt="Prakritik Emulsion Paint paint pack"
+               width="450" height="621"
+               loading="eager" fetchpriority="high" decoding="async">
+        </div>
+        <div class="product-detail__strip" aria-hidden="true">
+          <picture><source type="image/webp" srcset="../../assets/editorial/exterior-finish-study.webp"><img class="media-strip" src="../../assets/editorial/exterior-finish-study.jpg" alt="" width="1344" height="768" loading="lazy" decoding="async"></picture>
+        </div>
+      </figure>
 
       <div class="product-detail__info">
         <span class="emulsion-hero__eyebrow">Format 02 — Emulsion</span>

@@ -3,9 +3,10 @@
 Maps each client original to its public derivatives. Client originals in
 `source-assets/client-originals/` are immutable — never modify them.
 
-Last verified: V8 pass — product derivatives re-cut as complete-bucket crops
-(no sliced lids/bases/sides) after the V7 inspection. Commit of record for
-the originals: `215f5df47d41fc18c332ff3505a5ab0e16126741`.
+Last verified: V10 pass — zebu-study retired from all pages; five new
+surface-study editorial derivatives added (raw-material / finished-surface /
+interior-finish / exterior-finish / colour-wall). Commit of record for the
+originals: `215f5df47d41fc18c332ff3505a5ab0e16126741`.
 
 ## 10 Client Originals — inspected & classified
 
@@ -33,7 +34,12 @@ the originals: `215f5df47d41fc18c332ff3505a5ab0e16126741`.
 | `assets/products/prakritik-emulsion.jpg` | #10 WhatsApp 10.22.06 | **V8 complete-bucket crop** (830,0,1280,621) = 450×621 — right Emulsion bucket complete to the photo's natural right edge (wood); centre-bucket sliver at left is occlusion present in the original photo |
 | `assets/documents/prakritik-paint-brochure.pdf` | #1 Broucher-paint.pdf | Direct copy |
 | `assets/documents/prakritik-paint-brochure-cover.jpg` | #1 Broucher-paint.pdf | Rendered page 1 at 120 DPI |
-| `assets/editorial/zebu-study.webp` | `source-assets/zebu-study.png` (1536×1024) | Generated editorial artwork |
+| `assets/editorial/zebu-study.webp` | `source-assets/zebu-study.png` (1536×1024) | Generated editorial artwork — **RETIRED from all pages in V10** (decorative cow illustration removed; files kept on disk for history) |
+| `assets/editorial/raw-material-study.webp` | `source-assets/editorial/raw-material-study.png` (1344×768) | V10 generated editorial artwork — raw lime-plaster wall surface (home material statement, material step 01, why-prakritik 01, about direction) |
+| `assets/editorial/finished-surface-study.webp` | `source-assets/editorial/finished-surface-study.png` (1344×768) | V10 generated editorial artwork — finished matte wall surface (material step 03, why-prakritik 03) |
+| `assets/editorial/interior-finish-study.webp` | `source-assets/editorial/interior-finish-study.png` (1344×768) | V10 generated editorial artwork — interior wall-finish strip (Distemper chapter/detail plates) |
+| `assets/editorial/exterior-finish-study.webp` | `source-assets/editorial/exterior-finish-study.png` (1344×768) | V10 generated editorial artwork — exterior wall-finish strip (Emulsion chapter/detail plates) |
+| `assets/editorial/colour-wall-study.webp` | `source-assets/editorial/colour-wall-study.png` (1344×768) | V10 generated editorial artwork — purpose-built wall elevation for the Colours of India SVG paint mask (wall-plane geometry CV-verified: wall y 104–724, door x 80–304 y 370–768, window x 894–1180 y 346–654) |
 | `assets/editorial/courtyard-study.webp` | `source-assets/courtyard-study.png` (1942×809) | Generated editorial artwork |
 | `assets/editorial/interior-wall-study.webp` | `source-assets/editorial/interior-wall-study.png` | Generated editorial artwork |
 | `assets/editorial/exterior-wall-study-v2.webp` | `source-assets/editorial/exterior-wall-study-v2.png` | Generated editorial artwork |
@@ -46,9 +52,11 @@ the originals: `215f5df47d41fc18c332ff3505a5ab0e16126741`.
 1. **Real product photography is used for products only** (hero, product
    chapters, detail pages, about hero, formats sections). Never replaced
    with generated art.
-2. **Natural-history cow art** (zebu-study) is reserved for the material
-   origin narrative; the V7 home hero and Ashta section no longer layer it
-   as background noise.
+2. **Natural-history cow art** (zebu-study) is RETIRED (V10): the home
+   material statement, why-prakritik hero + chapter 01, and the about
+   material-direction section now use grounded surface studies instead.
+   The only remaining bovine imagery is the official brand logo (header/
+   footer cow-head mark, a branding element, not decoration).
 3. **Architectural art** (business-context / architectural studies) appears
    only as editorial context on For-Business; the Why-Prakritik context
    chapter now uses the neutral rural engraving at 0.08 opacity instead of

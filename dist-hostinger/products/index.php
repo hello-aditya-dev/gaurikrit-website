@@ -71,39 +71,9 @@ $groupImage  = '/assets/products/prakritik-group.jpg';
     object-fit: contain;
   }
 
-  /* ===== 2/3. PRODUCT CHAPTERS — editorial env + real product photo ===== */
-  .product-chapter__visual {
-    position: relative;
-    aspect-ratio: 4/3;
-    min-height: 22rem;
-    background: var(--paper);
-    overflow: hidden;
-    display: flex; align-items: center; justify-content: center;
-  }
-  @media (min-width: 1024px) { .product-chapter__visual { min-height: 30rem; } }
-  /* V9: on phones the 22rem min-height + 4/3 aspect forces a wider-than-
-     viewport panel (same fix as the detail pages + home chapters) —
-     let the aspect ratio govern the height instead. */
-  @media (max-width: 639px) { .product-chapter__visual { min-height: 0; } }
-  .product-chapter__visual .chapter-env {
-    position: absolute; inset: 0; width: 100%; height: 100%;
-    object-fit: cover;
-  }
-  .product-chapter__visual .chapter-product {
-    position: relative; z-index: 2;
-    display: block;
-    max-height: 80%;
-    width: auto;
-    max-width: 70%;
-    object-fit: contain;
-    filter: drop-shadow(0 18px 28px rgba(34, 36, 27, 0.18));
-  }
-  .product-chapter__visual .chapter-product--distemper {
-    max-width: min(70%, 480px);
-  }
-  .product-chapter__visual .chapter-product--emulsion {
-    max-width: min(60%, 340px);
-  }
+  /* ===== 2/3. PRODUCT CHAPTERS — catalogue plates (structure in
+     app.css §14: white product stage + wall-finish strip); nothing
+     page-local needed. ===== */
 
   /* ===== SPEC MATRIX (V5: header row + zebra striping + taller rows
      + bolder labels — a real product comparison, not a sparse list) ===== */
@@ -276,27 +246,31 @@ $groupImage  = '/assets/products/prakritik-group.jpg';
 </section>
 
 <!-- ============================================================
-     2. DISTEMPER PRODUCT CHAPTER
+     2. DISTEMPER PRODUCT CHAPTER — catalogue plate
+     (complete pack photo + interior-finish strip; structure in app.css §14)
      ============================================================ -->
 <section class="product-chapter product-chapter--distemper" aria-labelledby="distemper-chapter-title">
-  <span class="product-chapter__ghost" aria-hidden="true">DISTEMPER</span>
   <div class="container">
     <div class="product-chapter__inner" data-reveal>
-      <div class="product-chapter__visual">
-        <picture>
-          <source type="image/webp" srcset="<?= asset_url('/assets/editorial/interior-wall-study.webp') ?>">
-          <img class="chapter-env"
-               src="<?= asset_url('/assets/editorial/interior-wall-study.jpg') ?>"
-               alt=""
-               width="1344" height="768"
+      <figure class="product-chapter__visual">
+        <div class="product-chapter__stage">
+          <img class="chapter-product chapter-product--distemper"
+               src="<?= asset_url($distemper['officialImage']) ?>"
+               alt="<?= e($distemper['name']) ?> paint pack"
+               width="490" height="621"
                loading="lazy" decoding="async">
-        </picture>
-        <img class="chapter-product chapter-product--distemper"
-             src="<?= asset_url($distemper['officialImage']) ?>"
-             alt="<?= e($distemper['name']) ?>"
-             width="490" height="621"
-             loading="lazy" decoding="async">
-      </div>
+        </div>
+        <div class="product-chapter__strip" aria-hidden="true">
+          <picture>
+            <source type="image/webp" srcset="<?= asset_url('/assets/editorial/interior-finish-study.webp') ?>">
+            <img class="chapter-strip"
+                 src="<?= asset_url('/assets/editorial/interior-finish-study.jpg') ?>"
+                 alt=""
+                 width="1344" height="768"
+                 loading="lazy" decoding="async">
+          </picture>
+        </div>
+      </figure>
       <div class="product-chapter__copy">
         <span class="product-chapter__eyebrow">Format 01 — Distemper</span>
         <h2 class="product-chapter__name" id="distemper-chapter-title">
@@ -322,27 +296,31 @@ $groupImage  = '/assets/products/prakritik-group.jpg';
 </section>
 
 <!-- ============================================================
-     3. EMULSION PRODUCT CHAPTER (reversed)
+     3. EMULSION PRODUCT CHAPTER (reversed) — catalogue plate
+     (complete pack photo + exterior-finish strip; structure in app.css §14)
      ============================================================ -->
 <section class="product-chapter product-chapter--emulsion" aria-labelledby="emulsion-chapter-title">
-  <span class="product-chapter__ghost" aria-hidden="true">EMULSION</span>
   <div class="container">
     <div class="product-chapter__inner" data-reveal>
-      <div class="product-chapter__visual">
-        <picture>
-          <source type="image/webp" srcset="<?= asset_url('/assets/editorial/exterior-wall-study-v2.webp') ?>">
-          <img class="chapter-env"
-               src="<?= asset_url('/assets/editorial/exterior-wall-study-v2.jpg') ?>"
-               alt=""
-               width="1344" height="768"
+      <figure class="product-chapter__visual">
+        <div class="product-chapter__stage">
+          <img class="chapter-product chapter-product--emulsion"
+               src="<?= asset_url($emulsion['officialImage']) ?>"
+               alt="<?= e($emulsion['name']) ?> paint pack"
+               width="450" height="621"
                loading="lazy" decoding="async">
-        </picture>
-        <img class="chapter-product chapter-product--emulsion"
-             src="<?= asset_url($emulsion['officialImage']) ?>"
-             alt="<?= e($emulsion['name']) ?>"
-             width="450" height="621"
-             loading="lazy" decoding="async">
-      </div>
+        </div>
+        <div class="product-chapter__strip" aria-hidden="true">
+          <picture>
+            <source type="image/webp" srcset="<?= asset_url('/assets/editorial/exterior-finish-study.webp') ?>">
+            <img class="chapter-strip"
+                 src="<?= asset_url('/assets/editorial/exterior-finish-study.jpg') ?>"
+                 alt=""
+                 width="1344" height="768"
+                 loading="lazy" decoding="async">
+          </picture>
+        </div>
+      </figure>
       <div class="product-chapter__copy">
         <span class="product-chapter__eyebrow">Format 02 — Emulsion</span>
         <h2 class="product-chapter__name" id="emulsion-chapter-title">

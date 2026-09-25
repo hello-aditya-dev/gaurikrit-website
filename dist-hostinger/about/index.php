@@ -15,7 +15,7 @@
  *   1. Hero — V5: typographic, small logo mark + faded wall bg.
  *   2. WHO WE ARE (legal identity) — V5: 65ch body, line-height 1.7.
  *   3. WHAT WE CURRENTLY PRESENT — V5: larger product photo CSS footprint.
- *   4. MATERIAL DIRECTION — zebu-study.webp beside wall.
+ *   4. MATERIAL DIRECTION — raw-material-study (plaster surface).
  *   5. MISSION — V5: rural-landscape at 0.10 opacity (was 0.15).
  *   6. COMPANY INFORMATION — V5: border-top per row, bumped label
  *      letter-spacing, aligned values.
@@ -137,20 +137,19 @@ $addressLine = implode("\n", $address);
     max-width: min(80%, 350px);  /* was min(60%, 320px) */
   }
 
-  /* ===== MATERIAL DIRECTION (V7: zebu printed onto the page — no box) ===== */
+  /* ===== MATERIAL DIRECTION (V10: raw plaster surface — the material
+     itself, printed onto the page with no panel chrome) ===== */
   .about-direction-section { padding-block: clamp(3.5rem, 6vw, 5rem); }
   .about-direction__visual {
-    /* No panel chrome: the artwork's cream ground matches the paper
-       background so the cow reads as printed onto the page. */
     background: transparent;
     border-radius: 0;
     overflow: hidden;
     position: relative;
-    aspect-ratio: 1536 / 1126;  /* V7: cow ~10% larger — crop bottom margin */
+    aspect-ratio: 1344 / 768;
   }
   .about-direction__visual .editorial-image {
     position: absolute; inset: 0; width: 100%; height: 100%;
-    object-fit: cover; object-position: 50% 35%;
+    object-fit: cover;
   }
 
   /* ===== MISSION BAND (V5: rural-landscape at 0.10 opacity — was 0.15) ===== */
@@ -321,7 +320,7 @@ $addressLine = implode("\n", $address);
   </div>
 </section>
 
-<!-- ===== MATERIAL DIRECTION — zebu-study beside wall ===== -->
+<!-- ===== MATERIAL DIRECTION — the raw material surface ===== -->
 <section class="section section--paper about-direction-section" aria-labelledby="direction-title">
   <div class="container">
     <div class="about-section" data-reveal>
@@ -343,13 +342,13 @@ $addressLine = implode("\n", $address);
           <a class="btn btn--primary" href="/why-prakritik/">Why Prakritik</a>
         </div>
       </div>
-      <div class="about-direction__visual" aria-hidden="true">
+      <div class="about-direction__visual">
         <picture>
-          <source type="image/webp" srcset="<?= asset_url('/assets/editorial/zebu-study.webp') ?>">
+          <source type="image/webp" srcset="<?= asset_url('/assets/editorial/raw-material-study.webp') ?>">
           <img class="editorial-image"
-               src="<?= asset_url('/assets/editorial/zebu-study.jpg') ?>"
-               alt="Editorial study of an Indian zebu cow"
-               width="1536" height="1024"
+               src="<?= asset_url('/assets/editorial/raw-material-study.jpg') ?>"
+               alt="Raw lime-plastered wall surface — an Indian natural wall material"
+               width="1344" height="768"
                loading="lazy" decoding="async">
         </picture>
       </div>

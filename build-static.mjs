@@ -15,21 +15,31 @@
  * and the 404 page decorative accent (field-botanicals) + the V5 inline
  * calc-teaser wall-with-dimension-lines SVG.
  *
- * V5 asset policy (supersedes V4):
- *   - indian-cow           → zebu-study.webp/.jpg (1536×1024)
- *   - indian-courtyard     → courtyard-study.webp/.jpg (1942×809)
+ * V10 asset policy (supersedes V5):
+ *   - zebu-study           → RETIRED from all pages (decorative cow
+ *     illustration removed per art-direction pass; files kept on disk).
+ *   - raw-material-study   → NEW in V10 (1344×768) — natural material
+ *     texture. Home material statement + material step 01 + Why 01.
+ *   - finished-surface-study → NEW in V10 (1344×768) — finished wall
+ *     surface. Home material step 03 + Why 03.
+ *   - interior-finish-study → NEW in V10 (1344×768) — Distemper chapter /
+ *     detail plate wall-finish strip.
+ *   - exterior-finish-study → NEW in V10 (1344×768) — Emulsion chapter /
+ *     detail plate wall-finish strip.
+ *   - colour-wall-study    → NEW in V10 (1344×768) — purpose-built wall
+ *     elevation for the Colours of India SVG paint mask.
  *   - rural-landscape      → rural-landscape.webp/.jpg (1344×768)
  *   - architectural-elevation → REPLACED by business-context-study.webp/.jpg
  *     (1344×768) on For Business hero. architectural-elevation files are
  *     still copied to docs/assets/editorial/ for backward compatibility but
  *     are NOT referenced anywhere in V5.
  *   - interior-wall-study  → interior-wall-study.webp/.jpg (1344×768)
+ *     (detail hero + calculator scene + about hero)
  *   - exterior-wall-study  → REPLACED by exterior-wall-study-v2.webp/.jpg
- *     (1344×768) everywhere (Home emulsion chapter, Emulsion detail hero).
- *     exterior-wall-study files are still copied to docs/assets/editorial/
- *     for backward compatibility but are NOT referenced anywhere in V5.
- *   - finished-wall-study  → NEW in V5 (1344×768) — used on Home material-
- *     to-wall triptych right panel + Why Prakritik Section 03 right panel.
+ *     (1344×768) (Emulsion detail hero). exterior-wall-study files are
+ *     still copied to docs/assets/editorial/ for backward compatibility.
+ *   - finished-wall-study  → V5 (1344×768) — retired from Home/Why step
+ *     cards in V10 (replaced by finished-surface-study); file kept.
  *   - business-context-study → NEW in V5 (1344×768) — used on Home
  *     pathways, Why Prakritik Section 06 context, For Business hero.
  *   - prakritik-distemper-bucket → real product photo prakritik-distemper.jpg (490×621, complete bucket)
@@ -274,8 +284,8 @@ function loadSvg(name, className = '') {
  * Build a <picture> tag with WebP source + JPEG fallback for editorial
  * artwork. V4 standard image integration pattern.
  *
- *   pic('/assets/editorial/zebu-study.webp', '/assets/editorial/zebu-study.jpg',
- *       'Editorial study of an Indian zebu cow', 1536, 1024, depth,
+ *   pic('/assets/editorial/raw-material-study.webp', '/assets/editorial/raw-material-study.jpg',
+ *       'Raw lime-plastered wall surface', 1344, 768, depth,
  *       'class="editorial-image"')
  *
  * Default loading is "lazy" + decoding="async". For eager/above-the-fold
@@ -560,14 +570,6 @@ function homeBody(depth) {
           </li>`;
     }).join('\n');
 
-    const journeySteps = MATERIAL_JOURNEY.map(
-        (step) => `        <li class="material-journey__step">
-          <span class="material-journey__num">${e(step.num)}</span>
-          <h3 class="material-journey__title">${e(step.title)}</h3>
-          <p class="material-journey__desc">${e(step.desc)}</p>
-        </li>`,
-    ).join('\n');
-
     const swatches = COLOUR_STUDY.map(
         (sw) => `        <button type="button"
                 class="colours-swatch"
@@ -589,28 +591,23 @@ function homeBody(depth) {
         </div>`,
     ).join('\n');
 
-    // Picture tags (V5 — real editorial artwork + new replacements).
-    const zebuCowPic = pic('/assets/editorial/zebu-study.webp', '/assets/editorial/zebu-study.jpg',
-        '', 1536, 1024, depth, 'class="editorial-image"');
-    const zebuMaterialPic = pic('/assets/editorial/zebu-study.webp', '/assets/editorial/zebu-study.jpg',
-        'Editorial study of an Indian zebu cow', 1536, 1024, depth, 'class="editorial-image"');
+    // Picture tags (V10 — the zebu/courtyard editorial art is retired from
+    // the home page; the material story now uses surface studies and the
+    // colour study uses the purpose-built wall elevation).
+    const rawMaterialMaterialPic = pic('/assets/editorial/raw-material-study.webp', '/assets/editorial/raw-material-study.jpg',
+        'Raw lime-plastered wall surface — an Indian natural wall material', 1344, 768, depth, 'class="editorial-image"');
     const ruralLandscapePic = pic('/assets/editorial/rural-landscape.webp', '/assets/editorial/rural-landscape.jpg',
         '', 1344, 768, depth, 'class="editorial-image"');
-    const interiorWallDistemperPic = pic('/assets/editorial/interior-wall-study.webp', '/assets/editorial/interior-wall-study.jpg',
-        '', 1344, 768, depth, 'class="chapter-env"');
-    // V5: exterior-wall-study replaced with exterior-wall-study-v2 (less AI-looking).
-    const exteriorWallEmulsionPic = pic('/assets/editorial/exterior-wall-study-v2.webp', '/assets/editorial/exterior-wall-study-v2.jpg',
-        '', 1344, 768, depth, 'class="chapter-env"');
-    const interiorJourneyPic = pic('/assets/editorial/interior-wall-study.webp', '/assets/editorial/interior-wall-study.jpg',
-        'Indian interior limewashed wall', 1344, 768, depth, 'class="editorial-image"');
-    // V5: right panel of the material-to-wall triptych uses finished-wall-study
-    // (cleaner, more specific finished wall surface).
-    const finishedWallJourneyPic = pic('/assets/editorial/finished-wall-study.webp', '/assets/editorial/finished-wall-study.jpg',
-        'Indian finished limewashed wall', 1344, 768, depth, 'class="editorial-image"');
-    const zebuAshtaBgPic = pic('/assets/editorial/zebu-study.webp', '/assets/editorial/zebu-study.jpg',
-        '', 1536, 1024, depth, 'class="editorial-image"');
-    const courtyardColoursPic = pic('/assets/editorial/courtyard-study.webp', '/assets/editorial/courtyard-study.jpg',
-        'Indian limewashed courtyard elevation', 1942, 809, depth, 'class="colours-wall__art"');
+    const interiorFinishStripPic = pic('/assets/editorial/interior-finish-study.webp', '/assets/editorial/interior-finish-study.jpg',
+        '', 1344, 768, depth, 'class="chapter-strip"');
+    const exteriorFinishStripPic = pic('/assets/editorial/exterior-finish-study.webp', '/assets/editorial/exterior-finish-study.jpg',
+        '', 1344, 768, depth, 'class="chapter-strip"');
+    const rawMaterialJourneyPic = pic('/assets/editorial/raw-material-study.webp', '/assets/editorial/raw-material-study.jpg',
+        'Raw lime-plastered wall surface — natural material', 1344, 768, depth, 'class="editorial-image"');
+    const finishedSurfaceJourneyPic = pic('/assets/editorial/finished-surface-study.webp', '/assets/editorial/finished-surface-study.jpg',
+        'Finished matte limewash wall surface', 1344, 768, depth, 'class="editorial-image"');
+    const colourWallColoursPic = pic('/assets/editorial/colour-wall-study.webp', '/assets/editorial/colour-wall-study.jpg',
+        'Indian lime-plastered wall elevation with door and window', 1344, 768, depth, 'class="colours-wall__art"');
     const ruralMissionPic = pic('/assets/editorial/rural-landscape.webp', '/assets/editorial/rural-landscape.jpg',
         '', 1344, 768, depth, 'class="editorial-image"');
     // V5: pathways uses business-context-study (connects to homes/architects/institutions).
@@ -685,9 +682,9 @@ function homeBody(depth) {
   }
   @media (max-width: 899px) { .hero__paint-sample { display: none; } }
 
-  /* ===== 2. MATERIAL STATEMENT — zebu-study large right (58%) ===== */
+  /* ===== 2. MATERIAL STATEMENT — raw-material-study large right (58%) ===== */
   .material-statement__visual {
-    aspect-ratio: 1536/1024;
+    aspect-ratio: 1344/768;
     background: var(--limewash);
     overflow: hidden;
     padding: 0;
@@ -696,80 +693,15 @@ function homeBody(depth) {
   .material-statement__visual .editorial-image {
     position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
   }
-  .material-statement__visual .ms-wall,
-  .material-statement__visual .ms-cow,
-  .material-statement__visual .ms-arrow { display: none; }
 
-  /* ===== 3/4. PRODUCT CHAPTERS — editorial env + real product photo ===== */
-  .product-chapter__visual {
-    position: relative;
-    aspect-ratio: 4/3;
-    min-height: 22rem;
-    background: var(--paper);
-    overflow: hidden;
-    display: flex; align-items: center; justify-content: center;
-  }
-  @media (min-width: 1024px) {
-    .product-chapter__visual { min-height: 30rem; }
-  }
-  /* V9: on phones the 22rem min-height + 4/3 aspect forces a wider-than-
-     viewport panel (22rem x 4/3 = 469px on a 360px screen; body
-     overflow-x hides the damage but clips the product photo edge) —
-     let the aspect ratio govern the height instead. */
-  @media (max-width: 639px) { .product-chapter__visual { min-height: 0; } }
-  .product-chapter__visual .chapter-env {
-    position: absolute; inset: 0; width: 100%; height: 100%;
-    object-fit: cover;
-  }
-  .product-chapter__visual .chapter-product {
-    position: relative; z-index: 2;
-    display: block;
-    max-height: 80%;
-    width: auto;
-    max-width: 70%;
-    object-fit: contain;
-    filter: drop-shadow(0 18px 28px rgba(34, 36, 27, 0.18));
-  }
-  .product-chapter__visual .chapter-product--distemper {
-    max-width: min(70%, 480px);
-  }
-  .product-chapter__visual .chapter-product--emulsion {
-    max-width: min(60%, 340px);
-  }
+  /* ===== 3/4. PRODUCT CHAPTERS — catalogue plates. Structure lives in
+     app.css §14 (white product stage + wall-finish strip); nothing
+     page-local needed. ===== */
 
-  /* ===== 5. MATERIAL JOURNEY — 3-panel composition ===== */
+  /* ===== 5. MATERIAL JOURNEY — 3 equal step cards (structure in app.css
+     §17 .material-step); page-local rhythm only. ===== */
   .material-flow { padding-block: clamp(3rem, 6vw, 5rem); }
   .material-flow__head { max-width: 48rem; margin-bottom: 2.5rem; }
-  .material-flow__panels {
-    display: grid; gap: 1rem;
-    grid-template-columns: 1fr;
-    margin-bottom: 2.5rem;
-  }
-  @media (min-width: 768px) {
-    .material-flow__panels { grid-template-columns: 1fr 1fr 1fr; gap: 1.25rem; }
-  }
-  .material-flow__panel {
-    position: relative;
-    aspect-ratio: 1344/768;
-    background: var(--limewash);
-    overflow: hidden;
-    border-radius: var(--r-panel);
-  }
-  .material-flow__panel--group { aspect-ratio: 1280/621; }
-  .material-flow__panel .editorial-image {
-    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
-    /* V7: one shared colour grade so the triptych reads as one composition. */
-    filter: saturate(0.94) sepia(0.05);
-  }
-  .material-flow__panel-label {
-    position: absolute; left: 0.875rem; bottom: 0.875rem;
-    background: rgba(250, 248, 241, 0.88);
-    padding: 0.375rem 0.75rem;
-    border-radius: var(--r-pill);
-    font-size: 0.6875rem; font-weight: 700;
-    letter-spacing: 0.18em; text-transform: uppercase;
-    color: var(--fg);
-  }
 
   /* ===== 6. ASHTA LAABH — strengthened (V5): darker warm bg, larger seal,
      bolder benefit labels. SVG seal kept interactive. ===== */
@@ -800,34 +732,12 @@ function homeBody(depth) {
     padding: 1.25rem 0 !important;
   }
 
-  /* ===== 7. COLOURS OF INDIA — courtyard-study.jpg large wall plane ===== */
+  /* ===== 7. COLOURS OF INDIA — wall plane + SVG paint mask (structure in
+     app.css §19: natural-aspect elevation photo + aligned mask path);
+     page-local: label typography + swatch row only. ===== */
   .colours-section__head { max-width: 48rem; margin-bottom: 2.5rem; }
-  .colours-wall {
-    aspect-ratio: 1942/809;
-    background: var(--limewash);
-    border: 0; border-radius: 0;
-    overflow: hidden;
-    position: relative;
-  }
-  @media (min-width: 1024px) { .colours-wall { aspect-ratio: 21/9; } }
-  .colours-wall .colours-wall__art {
-    position: absolute; inset: 0; width: 100%; height: 100%;
-    display: block; object-fit: cover;
-  }
-  .colours-wall .colours-wall__tint {
-    position: absolute; inset: 0;
-    background: var(--wall-color, transparent);
-    opacity: 0.55;
-    pointer-events: none;
-    transition: background 0.45s var(--ease);
-  }
   .colours-wall__label {
-    position: absolute; bottom: 1rem; left: 1rem;
     font-family: var(--font-display); font-size: 1.125rem; font-weight: 700;
-    color: var(--charcoal);
-    background: rgba(250, 248, 241, 0.88);
-    padding: 0.5rem 1rem; border-radius: var(--r-pill);
-    -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
     z-index: 2;
   }
   .colours-wall__label small {
@@ -979,7 +889,7 @@ function homeBody(depth) {
 </section>
 
 <!-- ============================================================
-     2. MATERIAL STATEMENT — copy 42 / zebu-study 58
+     2. MATERIAL STATEMENT — copy 42 / raw-material-study 58
      ============================================================ -->
 <section class="section section--paper" aria-labelledby="material-title">
   <div class="container">
@@ -995,35 +905,38 @@ function homeBody(depth) {
             Traditional Indian homes have long used cow-dung-based coatings on
             walls and floors. Prakritik Paint brings that material idea into
             contemporary Distemper and Emulsion formats.
-            Both formats are listed for interior and exterior use.
           </p>
           <p>
-            Two paint formats for interior and exterior walls.
+            Both formats are listed for interior and exterior use.
           </p>
         </div>
       </div>
-      <div class="material-statement__visual" aria-hidden="true">
-        ${zebuMaterialPic}
+      <div class="material-statement__visual">
+        ${rawMaterialMaterialPic}
       </div>
     </div>
   </div>
 </section>
 
 <!-- ============================================================
-     3. DISTEMPER PRODUCT CHAPTER (cool / chuna / indigo env)
+     3. DISTEMPER PRODUCT CHAPTER (cool section, indigo accent)
+     Catalogue plate: complete pack photo + interior-finish strip.
      ============================================================ -->
 <section class="product-chapter product-chapter--distemper" aria-labelledby="distemper-chapter-title">
-  <span class="product-chapter__ghost" aria-hidden="true">DISTEMPER</span>
   <div class="container">
     <div class="product-chapter__inner" data-reveal>
-      <div class="product-chapter__visual">
-        ${interiorWallDistemperPic}
-        <img class="chapter-product chapter-product--distemper"
-             src="${assetUrl(distemper.officialImage, depth)}"
-             alt="${e(distemper.name)}"
-             width="490" height="621"
-             loading="lazy" decoding="async">
-      </div>
+      <figure class="product-chapter__visual">
+        <div class="product-chapter__stage">
+          <img class="chapter-product chapter-product--distemper"
+               src="${assetUrl(distemper.officialImage, depth)}"
+               alt="${e(distemper.name)} paint pack"
+               width="490" height="621"
+               loading="lazy" decoding="async">
+        </div>
+        <div class="product-chapter__strip" aria-hidden="true">
+          ${interiorFinishStripPic}
+        </div>
+      </figure>
       <div class="product-chapter__copy">
         <span class="product-chapter__eyebrow">Format 01 — Distemper</span>
         <h3 class="product-chapter__name" id="distemper-chapter-title">
@@ -1057,20 +970,24 @@ function homeBody(depth) {
 </section>
 
 <!-- ============================================================
-     4. EMULSION PRODUCT CHAPTER (warm / leaf / haldi env, reversed)
+     4. EMULSION PRODUCT CHAPTER (warm section, leaf accent, reversed)
+     Catalogue plate: complete pack photo + exterior-finish strip.
      ============================================================ -->
 <section class="product-chapter product-chapter--emulsion" aria-labelledby="emulsion-chapter-title">
-  <span class="product-chapter__ghost" aria-hidden="true">EMULSION</span>
   <div class="container">
     <div class="product-chapter__inner" data-reveal>
-      <div class="product-chapter__visual">
-        ${exteriorWallEmulsionPic}
-        <img class="chapter-product chapter-product--emulsion"
-             src="${assetUrl(emulsion.officialImage, depth)}"
-             alt="${e(emulsion.name)}"
-             width="450" height="621"
-             loading="lazy" decoding="async">
-      </div>
+      <figure class="product-chapter__visual">
+        <div class="product-chapter__stage">
+          <img class="chapter-product chapter-product--emulsion"
+               src="${assetUrl(emulsion.officialImage, depth)}"
+               alt="${e(emulsion.name)} paint pack"
+               width="450" height="621"
+               loading="lazy" decoding="async">
+        </div>
+        <div class="product-chapter__strip" aria-hidden="true">
+          ${exteriorFinishStripPic}
+        </div>
+      </figure>
       <div class="product-chapter__copy">
         <span class="product-chapter__eyebrow">Format 02 — Emulsion</span>
         <h3 class="product-chapter__name" id="emulsion-chapter-title">
@@ -1104,7 +1021,7 @@ function homeBody(depth) {
 </section>
 
 <!-- ============================================================
-     5. MATERIAL JOURNEY — full-width 3-panel composition
+     5. MATERIAL JOURNEY — three equal step cards
      ============================================================ -->
 <section class="section section--limewash material-flow" aria-labelledby="journey-title">
   <div class="container">
@@ -1112,35 +1029,51 @@ function homeBody(depth) {
       <span class="section-heading__eyebrow">Material to wall</span>
       <h2 class="section-heading__title" id="journey-title">From a natural material to a finished wall.</h2>
       <p class="section-heading__desc">
-        Natural material, Prakritik Paint, finished walls.
+        The raw material, the paint made from it, and the finished surface —
+        three steps, one material idea.
       </p>
     </div>
-    <div class="material-flow__panels" data-reveal>
-      <div class="material-flow__panel">
-        ${interiorJourneyPic}
-        <span class="material-flow__panel-label">01 · Natural material</span>
-      </div>
-      <div class="material-flow__panel material-flow__panel--group">
-        <img class="editorial-image"
-             src="${groupImg}"
-             alt="Prakritik Distemper and Emulsion paint packs"
-             width="1280" height="621"
-             loading="lazy" decoding="async">
-        <span class="material-flow__panel-label">02 · Prakritik Paint</span>
-      </div>
-      <div class="material-flow__panel">
-        ${finishedWallJourneyPic}
-        <span class="material-flow__panel-label">03 · Finished wall</span>
-      </div>
+    <div class="material-steps" data-reveal>
+      <article class="material-step">
+        <figure class="material-step__figure">
+          ${rawMaterialJourneyPic}
+        </figure>
+        <div class="material-step__caption">
+          <span class="material-step__num">01</span>
+          <h3 class="material-step__title">Natural material</h3>
+          <p class="material-step__desc">Cow dung is the material inspiration.</p>
+        </div>
+      </article>
+      <article class="material-step material-step--product">
+        <figure class="material-step__figure">
+          <img class="material-step__product"
+               src="${assetUrl(distemper.officialImage, depth)}"
+               alt="Prakritik Distemper paint pack"
+               width="490" height="621"
+               loading="lazy" decoding="async">
+        </figure>
+        <div class="material-step__caption">
+          <span class="material-step__num">02</span>
+          <h3 class="material-step__title">Prakritik Paint</h3>
+          <p class="material-step__desc">Available as Distemper and Emulsion.</p>
+        </div>
+      </article>
+      <article class="material-step">
+        <figure class="material-step__figure">
+          ${finishedSurfaceJourneyPic}
+        </figure>
+        <div class="material-step__caption">
+          <span class="material-step__num">03</span>
+          <h3 class="material-step__title">Finished wall</h3>
+          <p class="material-step__desc">Both are listed for interior and exterior use.</p>
+        </div>
+      </article>
     </div>
-    <ol class="material-journey__steps" data-reveal-stagger>
-${journeySteps}
-    </ol>
   </div>
 </section>
 
 <!-- ============================================================
-     6. ASHTA LAABH — V5 strengthened seal + zebu-study bg engraving
+     6. ASHTA LAABH — interactive SVG seal + benefit list
      ============================================================ -->
 <section class="section ashta-section section--limewash" aria-labelledby="ashta-title" data-ashta-laabh>
   <div class="container ashta-section__inner">
@@ -1166,7 +1099,11 @@ ${ashtaItems}
 </section>
 
 <!-- ============================================================
-     7. COLOURS OF INDIA — courtyard-study.jpg as the wall plane
+     7. COLOURS OF INDIA — wall-plane colour preview (SVG paint mask)
+     The mask path traces ONLY the wall plane of the elevation photo
+     (1344x768 pixel space); the door and window are cut out with
+     fill-rule evenodd so they never recolour. preserveAspectRatio
+     "xMidYMid slice" keeps the mask aligned with object-fit: cover.
      ============================================================ -->
 <section class="section section--paper colour-study colours-section" aria-labelledby="colours-title" data-colour-study>
   <div class="container">
@@ -1174,14 +1111,21 @@ ${ashtaItems}
       <span class="section-heading__eyebrow">Editorial colour study</span>
       <h2 class="colours-section__title" id="colours-title">Colours of India.</h2>
       <p class="colours-section__sub">
-        Click a swatch to recolour the wall plane. These are editorial design moods —
-        not currently available product shades.
+        Tap a swatch to preview the colour on the wall — only the wall plane
+        changes; the door, window and surroundings stay as they are. These are
+        editorial design moods — not currently available product shades.
       </p>
     </div>
 
     <div class="colours-wall" data-colour-wall data-reveal>
-      ${courtyardColoursPic}
-      <span class="colours-wall__tint" aria-hidden="true"></span>
+      ${colourWallColoursPic}
+      <svg class="colours-wall__tint" viewBox="0 0 1344 768"
+           preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+        <path class="colours-wall__paint" fill-rule="evenodd"
+              d="M0,104 H1344 V724 H0 Z
+                 M80,370 H304 V768 H80 Z
+                 M894,346 H1180 V654 H894 Z" />
+      </svg>
       <span class="colours-wall__label">
         <span data-colour-label>Limewash</span>
         <small>Editorial colour study</small>
@@ -1330,12 +1274,11 @@ function productsBody(depth) {
         </div>`,
     ).join('\n');
 
-    // V5 picture tags for product chapter envs.
-    const interiorWallPic = pic('/assets/editorial/interior-wall-study.webp', '/assets/editorial/interior-wall-study.jpg',
-        '', 1344, 768, depth, 'class="chapter-env"');
-    // V5: exterior-wall-study replaced with exterior-wall-study-v2 (less AI-looking).
-    const exteriorWallPic = pic('/assets/editorial/exterior-wall-study-v2.webp', '/assets/editorial/exterior-wall-study-v2.jpg',
-        '', 1344, 768, depth, 'class="chapter-env"');
+    // V10 picture tags for the catalogue-plate wall-finish strips.
+    const interiorFinishStripPic = pic('/assets/editorial/interior-finish-study.webp', '/assets/editorial/interior-finish-study.jpg',
+        '', 1344, 768, depth, 'class="chapter-strip"');
+    const exteriorFinishStripPic = pic('/assets/editorial/exterior-finish-study.webp', '/assets/editorial/exterior-finish-study.jpg',
+        '', 1344, 768, depth, 'class="chapter-strip"');
 
     return `<style>
   /* ===== Editorial image reset (V4 — NO mix-blend-mode, NO blur filters) ===== */
@@ -1373,39 +1316,9 @@ function productsBody(depth) {
     object-fit: contain;
   }
 
-  /* ===== 2/3. PRODUCT CHAPTERS — editorial env + real product photo ===== */
-  .product-chapter__visual {
-    position: relative;
-    aspect-ratio: 4/3;
-    min-height: 22rem;
-    background: var(--paper);
-    overflow: hidden;
-    display: flex; align-items: center; justify-content: center;
-  }
-  @media (min-width: 1024px) { .product-chapter__visual { min-height: 30rem; } }
-  /* V9: on phones the 22rem min-height + 4/3 aspect forces a wider-than-
-     viewport panel (same fix as the detail pages + home chapters) —
-     let the aspect ratio govern the height instead. */
-  @media (max-width: 639px) { .product-chapter__visual { min-height: 0; } }
-  .product-chapter__visual .chapter-env {
-    position: absolute; inset: 0; width: 100%; height: 100%;
-    object-fit: cover;
-  }
-  .product-chapter__visual .chapter-product {
-    position: relative; z-index: 2;
-    display: block;
-    max-height: 80%;
-    width: auto;
-    max-width: 70%;
-    object-fit: contain;
-    filter: drop-shadow(0 18px 28px rgba(34, 36, 27, 0.18));
-  }
-  .product-chapter__visual .chapter-product--distemper {
-    max-width: min(70%, 480px);
-  }
-  .product-chapter__visual .chapter-product--emulsion {
-    max-width: min(60%, 340px);
-  }
+  /* ===== 2/3. PRODUCT CHAPTERS — catalogue plates (structure in
+     app.css §14: white product stage + wall-finish strip); nothing
+     page-local needed. ===== */
 
   /* ===== SPEC MATRIX (V5: header row + zebra striping + taller rows
      + bolder labels — a real product comparison, not a sparse list) ===== */
@@ -1578,20 +1491,24 @@ function productsBody(depth) {
 </section>
 
 <!-- ============================================================
-     2. DISTEMPER PRODUCT CHAPTER
+     2. DISTEMPER PRODUCT CHAPTER — catalogue plate
+     (complete pack photo + interior-finish strip; structure in app.css §14)
      ============================================================ -->
 <section class="product-chapter product-chapter--distemper" aria-labelledby="distemper-chapter-title">
-  <span class="product-chapter__ghost" aria-hidden="true">DISTEMPER</span>
   <div class="container">
     <div class="product-chapter__inner" data-reveal>
-      <div class="product-chapter__visual">
-        ${interiorWallPic}
-        <img class="chapter-product chapter-product--distemper"
-             src="${assetUrl(distemper.officialImage, depth)}"
-             alt="${e(distemper.name)}"
-             width="490" height="621"
-             loading="lazy" decoding="async">
-      </div>
+      <figure class="product-chapter__visual">
+        <div class="product-chapter__stage">
+          <img class="chapter-product chapter-product--distemper"
+               src="${assetUrl(distemper.officialImage, depth)}"
+               alt="${e(distemper.name)} paint pack"
+               width="490" height="621"
+               loading="lazy" decoding="async">
+        </div>
+        <div class="product-chapter__strip" aria-hidden="true">
+          ${interiorFinishStripPic}
+        </div>
+      </figure>
       <div class="product-chapter__copy">
         <span class="product-chapter__eyebrow">Format 01 — Distemper</span>
         <h2 class="product-chapter__name" id="distemper-chapter-title">
@@ -1617,20 +1534,24 @@ function productsBody(depth) {
 </section>
 
 <!-- ============================================================
-     3. EMULSION PRODUCT CHAPTER (reversed)
+     3. EMULSION PRODUCT CHAPTER (reversed) — catalogue plate
+     (complete pack photo + exterior-finish strip; structure in app.css §14)
      ============================================================ -->
 <section class="product-chapter product-chapter--emulsion" aria-labelledby="emulsion-chapter-title">
-  <span class="product-chapter__ghost" aria-hidden="true">EMULSION</span>
   <div class="container">
     <div class="product-chapter__inner" data-reveal>
-      <div class="product-chapter__visual">
-        ${exteriorWallPic}
-        <img class="chapter-product chapter-product--emulsion"
-             src="${assetUrl(emulsion.officialImage, depth)}"
-             alt="${e(emulsion.name)}"
-             width="450" height="621"
-             loading="lazy" decoding="async">
-      </div>
+      <figure class="product-chapter__visual">
+        <div class="product-chapter__stage">
+          <img class="chapter-product chapter-product--emulsion"
+               src="${assetUrl(emulsion.officialImage, depth)}"
+               alt="${e(emulsion.name)} paint pack"
+               width="450" height="621"
+               loading="lazy" decoding="async">
+        </div>
+        <div class="product-chapter__strip" aria-hidden="true">
+          ${exteriorFinishStripPic}
+        </div>
+      </figure>
       <div class="product-chapter__copy">
         <span class="product-chapter__eyebrow">Format 02 — Emulsion</span>
         <h2 class="product-chapter__name" id="emulsion-chapter-title">
@@ -1830,9 +1751,11 @@ function distemperBody(depth) {
         </li>`;
     }).join('\n');
 
-    // V4: hero media is a real interior-wall-study environment (eager) with the
-    // real product photo (490×621, eager+high-priority) overlaid at natural size.
-    const interiorWallPic = `<picture><source type="image/webp" srcset="${assetUrl('/assets/editorial/interior-wall-study.webp', depth)}"><img class="media-env" src="${assetUrl('/assets/editorial/interior-wall-study.jpg', depth)}" alt="" width="1344" height="768" loading="eager" decoding="async"></picture>`;
+    // V10: hero media is a clean catalogue plate — white product stage (the
+    // real 490×621 pack photo, eager+high-priority, complete) + an
+    // interior-finish strip below.
+    const interiorFinishStripPic = pic('/assets/editorial/interior-finish-study.webp', '/assets/editorial/interior-finish-study.jpg',
+        '', 1344, 768, depth, 'class="media-strip"');
 
     return `<style>
   /* ===== Editorial image reset (V4 — NO mix-blend-mode, NO blur filters) ===== */
@@ -1854,38 +1777,41 @@ function distemperBody(depth) {
       grid-template-columns: 5fr 7fr; gap: clamp(2.5rem, 5vw, 4rem);
     }
   }
-  /* V4: media is a real environment (interior-wall-study) with the real
-     product photo overlaid at its natural size. NO upscaling. */
+  /* V10: media is a clean catalogue plate (same language as the home
+     product chapters) — white product stage + slim wall-finish strip.
+     The complete pack photo is shown at its natural proportion. */
   .product-detail__media {
-    position: relative; aspect-ratio: 4/3;
-    background: var(--paper-cool);
+    display: flex; flex-direction: column;
+    background: var(--paper);
     border: 1px solid var(--border); border-top: 3px solid var(--indigo);
     border-radius: var(--r-panel); overflow: hidden;
-    min-height: 22rem;
-    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 2px 12px -4px rgba(32, 30, 25, 0.06);
   }
-  @media (min-width: 1024px) { .product-detail__media { min-height: 30rem; } }
-  /* V7: on phones the 22rem min-height + 4/3 aspect forces a wider-than-viewport
-     box — let the aspect ratio govern the height instead. */
-  @media (max-width: 639px) { .product-detail__media { min-height: 0; } }
-  .product-detail__media .media-env {
-    position: absolute; inset: 0; width: 100%; height: 100%;
-    object-fit: cover;
+  .product-detail__stage {
+    position: relative;
+    height: clamp(17rem, 36vw, 25rem);
+    display: grid; place-items: center;
+    padding: clamp(1.25rem, 3vw, 2.25rem);
   }
-  .product-detail__media .media-product {
-    position: relative; z-index: 2;
-    display: block;
-    max-height: 84%;
-    width: auto;
-    max-width: min(60%, 480px);   /* 490×621 photo — never wider than 480px CSS */
+  .product-detail__stage .media-product {
+    /* Absolute-fill + object-fit: contain — the pack photo stays
+       COMPLETE inside the fixed-height stage (never cropped). */
+    position: absolute;
+    top: clamp(1.25rem, 3vw, 2.25rem);
+    left: clamp(1.25rem, 3vw, 2.25rem);
+    width: calc(100% - 2 * clamp(1.25rem, 3vw, 2.25rem));
+    height: calc(100% - 2 * clamp(1.25rem, 3vw, 2.25rem));
     object-fit: contain;
-    filter: drop-shadow(0 18px 28px rgba(34, 36, 27, 0.20));
   }
-  .product-detail__media__num {
-    position: absolute; top: 1rem; right: 1.25rem; z-index: 3;
-    font-family: var(--font-display); font-size: clamp(3rem, 8vw, 5rem);
-    font-weight: 700; color: var(--indigo); opacity: 0.12;
-    line-height: 1; pointer-events: none;
+  .product-detail__strip {
+    height: clamp(6rem, 13vw, 9rem);
+    border-top: 1px solid var(--border);
+    overflow: hidden;
+    background: var(--limewash);
+  }
+  .product-detail__strip .media-strip {
+    display: block; width: 100%; height: 100%;
+    object-fit: cover;
   }
   .product-detail__info { display: flex; flex-direction: column; gap: 0.75rem; }
   .product-detail__name { margin-top: 0.5rem; }
@@ -1931,15 +1857,18 @@ function distemperBody(depth) {
         </div>
       </div>
 
-      <div class="product-detail__media">
-        <span class="product-detail__media__num" aria-hidden="true">01</span>
-        ${interiorWallPic}
-        <img class="media-product"
-             src="${assetUrl(product.officialImage, depth)}"
-             alt="${e(product.name)}"
-             width="490" height="621"
-             loading="eager" fetchpriority="high" decoding="async">
-      </div>
+      <figure class="product-detail__media">
+        <div class="product-detail__stage">
+          <img class="media-product"
+               src="${assetUrl(product.officialImage, depth)}"
+               alt="${e(product.name)} paint pack"
+               width="490" height="621"
+               loading="eager" fetchpriority="high" decoding="async">
+        </div>
+        <div class="product-detail__strip" aria-hidden="true">
+          ${interiorFinishStripPic}
+        </div>
+      </figure>
     </div>
   </div>
 </section>
@@ -2060,9 +1989,11 @@ function emulsionBody(depth) {
         </li>`;
     }).join('\n');
 
-    // V4: hero media is a real exterior-wall-study environment (eager) with the
-    // real product photo (450×621, eager+high-priority) overlaid at natural size.
-    const exteriorWallPic = `<picture><source type="image/webp" srcset="${assetUrl('/assets/editorial/exterior-wall-study-v2.webp', depth)}"><img class="media-env" src="${assetUrl('/assets/editorial/exterior-wall-study-v2.jpg', depth)}" alt="" width="1344" height="768" loading="eager" decoding="async"></picture>`;
+    // V10: hero media is a clean catalogue plate — white product stage (the
+    // real 450×621 pack photo, eager+high-priority, complete) + an
+    // exterior-finish strip below.
+    const exteriorFinishStripPic = pic('/assets/editorial/exterior-finish-study.webp', '/assets/editorial/exterior-finish-study.jpg',
+        '', 1344, 768, depth, 'class="media-strip"');
 
     return `<style>
   /* ===== Editorial image reset (V4 — NO mix-blend-mode, NO blur filters) ===== */
@@ -2087,40 +2018,41 @@ function emulsionBody(depth) {
     .product-detail--warm .product-detail__hero > :first-child { order: 1; }
     .product-detail--warm .product-detail__hero > :last-child  { order: 2; }
   }
-  /* V4: media is a real environment (exterior-wall-study) with the real
-     product photo overlaid at its natural size. NO upscaling. */
+  /* V10: media is a clean catalogue plate (same language as the home
+     product chapters) — white product stage + slim wall-finish strip.
+     The complete pack photo is shown at its natural proportion. */
   .product-detail__media {
-    position: relative; aspect-ratio: 4/3;
-    background: var(--paper-leaf);
+    display: flex; flex-direction: column;
+    background: var(--paper);
     border: 1px solid var(--border); border-top: 3px solid var(--leaf);
     border-radius: var(--r-panel); overflow: hidden;
-    min-height: 22rem;
-    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 2px 12px -4px rgba(32, 30, 25, 0.06);
   }
-  @media (min-width: 1024px) { .product-detail__media { min-height: 30rem; } }
-  /* V7: on phones the 22rem min-height + 4/3 aspect forces a wider-than-viewport
-     box — let the aspect ratio govern the height instead. (PHP↔static parity
-     fix: this rule existed in dist-hostinger but was missing here, overflowing
-     mobile viewports on the Emulsion page.) */
-  @media (max-width: 639px) { .product-detail__media { min-height: 0; } }
-  .product-detail__media .media-env {
-    position: absolute; inset: 0; width: 100%; height: 100%;
-    object-fit: cover;
+  .product-detail__stage {
+    position: relative;
+    height: clamp(17rem, 36vw, 25rem);
+    display: grid; place-items: center;
+    padding: clamp(1.25rem, 3vw, 2.25rem);
   }
-  .product-detail__media .media-product {
-    position: relative; z-index: 2;
-    display: block;
-    max-height: 84%;
-    width: auto;
-    max-width: min(55%, 340px);   /* 450×621 photo — never wider than 340px CSS */
+  .product-detail__stage .media-product {
+    /* Absolute-fill + object-fit: contain — the pack photo stays
+       COMPLETE inside the fixed-height stage (never cropped). */
+    position: absolute;
+    top: clamp(1.25rem, 3vw, 2.25rem);
+    left: clamp(1.25rem, 3vw, 2.25rem);
+    width: calc(100% - 2 * clamp(1.25rem, 3vw, 2.25rem));
+    height: calc(100% - 2 * clamp(1.25rem, 3vw, 2.25rem));
     object-fit: contain;
-    filter: drop-shadow(0 18px 28px rgba(34, 36, 27, 0.20));
   }
-  .product-detail__media__num {
-    position: absolute; top: 1rem; right: 1.25rem; z-index: 3;
-    font-family: var(--font-display); font-size: clamp(3rem, 8vw, 5rem);
-    font-weight: 700; color: var(--leaf); opacity: 0.18;
-    line-height: 1; pointer-events: none;
+  .product-detail__strip {
+    height: clamp(6rem, 13vw, 9rem);
+    border-top: 1px solid var(--border);
+    overflow: hidden;
+    background: var(--limewash);
+  }
+  .product-detail__strip .media-strip {
+    display: block; width: 100%; height: 100%;
+    object-fit: cover;
   }
   .product-detail__info { display: flex; flex-direction: column; gap: 0.75rem; }
   .product-detail__name { margin-top: 0.5rem; }
@@ -2149,15 +2081,18 @@ function emulsionBody(depth) {
     </nav>
 
     <div class="product-detail__hero" data-reveal>
-      <div class="product-detail__media">
-        <span class="product-detail__media__num" aria-hidden="true">02</span>
-        ${exteriorWallPic}
-        <img class="media-product"
-             src="${assetUrl(product.officialImage, depth)}"
-             alt="${e(product.name)}"
-             width="450" height="621"
-             loading="eager" fetchpriority="high" decoding="async">
-      </div>
+      <figure class="product-detail__media">
+        <div class="product-detail__stage">
+          <img class="media-product"
+               src="${assetUrl(product.officialImage, depth)}"
+               alt="${e(product.name)} paint pack"
+               width="450" height="621"
+               loading="eager" fetchpriority="high" decoding="async">
+        </div>
+        <div class="product-detail__strip" aria-hidden="true">
+          ${exteriorFinishStripPic}
+        </div>
+      </figure>
 
       <div class="product-detail__info">
         <span class="emulsion-hero__eyebrow">Format 02 — Emulsion</span>
@@ -2272,29 +2207,20 @@ function whyPrakritikBody(depth) {
         </li>`;
     }).join('\n');
 
-    const journeySteps = MATERIAL_JOURNEY.map(
-        (step) => `        <li class="material-journey__step">
-          <span class="material-journey__num">${e(step.num)}</span>
-          <h3 class="material-journey__title">${e(step.title)}</h3>
-          <p class="material-journey__desc">${e(step.desc)}</p>
-        </li>`,
-    ).join('\n');
-
-    // V5 picture tags.
-    // zebuHeroPic is now a small CROP panel paired with interior-wall-study
-    // wall texture (differentiates from Section 01 which keeps the full
-    // zebu-study). Inline because the crop needs object-position.
-    const zebuHeroCropPic = `<picture><source type="image/webp" srcset="${assetUrl('/assets/editorial/zebu-study.webp', depth)}"><img class="why-hero__zebu-img" src="${assetUrl('/assets/editorial/zebu-study.jpg', depth)}" alt="Editorial study of an Indian zebu cow" width="1536" height="1024" loading="eager" decoding="async"></picture>`;
-    const heroWallTexturePic = `<picture class="why-hero__wall-texture"><source type="image/webp" srcset="${assetUrl('/assets/editorial/interior-wall-study.webp', depth)}"><img class="why-hero__wall-img" src="${assetUrl('/assets/editorial/interior-wall-study.jpg', depth)}" alt="" width="1344" height="768" loading="eager" decoding="async"></picture>`;
-    const zebuCh1Pic = pic('/assets/editorial/zebu-study.webp', '/assets/editorial/zebu-study.jpg',
-        '', 1536, 1024, depth, 'class="editorial-image"');
+    // V10 picture tags — the zebu art is retired from this page. The hero
+    // shows a single quiet finished-wall study; Section 01 grounds the
+    // material in a raw plaster surface; Section 03 uses the shared step
+    // cards (raw material / paint / finished wall).
+    const heroFinishPic = pic('/assets/editorial/interior-finish-study.webp', '/assets/editorial/interior-finish-study.jpg',
+        'Quiet interior wall with a matte mineral finish', 1344, 768, depth, 'class="why-hero__img"');
+    const rawMaterialCh1Pic = pic('/assets/editorial/raw-material-study.webp', '/assets/editorial/raw-material-study.jpg',
+        'Raw lime-plastered wall surface — natural material', 1344, 768, depth, 'class="editorial-image"');
     const courtyardCh2Pic = pic('/assets/editorial/courtyard-study.webp', '/assets/editorial/courtyard-study.jpg',
         'Indian limewashed courtyard elevation', 1942, 809, depth, 'class="editorial-image"');
-    const interiorFlowPic = pic('/assets/editorial/interior-wall-study.webp', '/assets/editorial/interior-wall-study.jpg',
-        'Indian interior limewashed wall', 1344, 768, depth, 'class="editorial-image"');
-    // V5: right panel uses finished-wall-study (cleaner finished wall surface).
-    const finishedWallFlowPic = pic('/assets/editorial/finished-wall-study.webp', '/assets/editorial/finished-wall-study.jpg',
-        'Indian finished limewashed wall', 1344, 768, depth, 'class="editorial-image"');
+    const rawMaterialFlowPic = pic('/assets/editorial/raw-material-study.webp', '/assets/editorial/raw-material-study.jpg',
+        'Raw lime-plastered wall surface — natural material', 1344, 768, depth, 'class="editorial-image"');
+    const finishedSurfaceFlowPic = pic('/assets/editorial/finished-surface-study.webp', '/assets/editorial/finished-surface-study.jpg',
+        'Finished matte limewash wall surface', 1344, 768, depth, 'class="editorial-image"');
     // V5: context uses business-context-study (replaces rural-landscape).
     const businessContextPic = pic('/assets/editorial/business-context-study.webp', '/assets/editorial/business-context-study.jpg',
         '', 1344, 768, depth, 'class="editorial-image"');
@@ -2312,7 +2238,7 @@ function whyPrakritikBody(depth) {
   }
   .editorial-image--contain { object-fit: contain; }
 
-  /* ===== HERO (zebu-study) ===== */
+  /* ===== HERO (V10: single quiet finished-wall study) ===== */
   .why-hero { padding-top: calc(var(--header-h) + 2rem); padding-bottom: 1.5rem; }
   .why-hero__container { display: grid; gap: 2rem; align-items: center; }
   @media (min-width: 1024px) {
@@ -2320,15 +2246,16 @@ function whyPrakritikBody(depth) {
   }
   .why-hero__lockup { max-width: 42rem; }
   .why-hero__art {
-    position: relative; aspect-ratio: 1536/1024;
-    background: var(--limewash); border-radius: var(--r-panel);
+    position: relative; aspect-ratio: 1344/768;
+    background: var(--paper); border-radius: var(--r-panel);
     overflow: hidden;
+    border: 1px solid var(--border);
+    box-shadow: 0 2px 12px -4px rgba(32, 30, 25, 0.06);
   }
-  .why-hero__art .editorial-image {
-    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  .why-hero__art .why-hero__img {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; display: block;
   }
-  .why-hero__art .why-cow,
-  .why-hero__art .why-wall { display: none; }
   .why-hero__title { font-size: clamp(2.2rem, 5vw, 4rem); }
 
   /* ===== NUMBERED CHAPTERS ===== */
@@ -2368,9 +2295,9 @@ function whyPrakritikBody(depth) {
     padding-left: 1.5rem; border-left: 3px solid var(--haldi);
   }
 
-  /* === Chapter 01 — MATERIAL: zebu-study large === */
+  /* === Chapter 01 — MATERIAL: raw-material-study (plaster surface) === */
   .why-material-sample {
-    position: relative; aspect-ratio: 1536/1024;
+    position: relative; aspect-ratio: 1344/768;
     background: var(--paper); border-radius: var(--r-panel);
     overflow: hidden;
   }
@@ -2390,34 +2317,10 @@ function whyPrakritikBody(depth) {
     width: 100%; height: 100%; object-fit: cover; display: block;
   }
 
-  /* === Chapter 03 — MATERIAL TO WALL: 3-panel composition === */
+  /* === Chapter 03 — MATERIAL TO WALL: 3 step cards (structure in
+     app.css §17 .material-step — same cards as the homepage journey) === */
   .why-flow-section { padding-block: clamp(3.5rem, 6vw, 5rem); }
-  .why-flow-panels {
-    display: grid; gap: 1rem; margin-top: 2rem;
-    grid-template-columns: 1fr;
-  }
-  @media (min-width: 768px) {
-    .why-flow-panels { grid-template-columns: 1fr 1fr 1fr; gap: 1.25rem; }
-  }
-  .why-flow-panel {
-    position: relative;
-    aspect-ratio: 1344/768;
-    background: var(--limewash);
-    overflow: hidden; border-radius: var(--r-panel);
-  }
-  .why-flow-panel--group { aspect-ratio: 1280/621; }
-  .why-flow-panel .editorial-image {
-    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
-  }
-  .why-flow-panel-label {
-    position: absolute; left: 0.875rem; bottom: 0.875rem;
-    background: rgba(250, 248, 241, 0.88);
-    padding: 0.375rem 0.75rem;
-    border-radius: var(--r-pill);
-    font-size: 0.6875rem; font-weight: 700;
-    letter-spacing: 0.18em; text-transform: uppercase;
-    color: var(--fg);
-  }
+  .why-flow-section .material-steps { margin-top: 2rem; }
 
   /* === Chapter 04 — ASHTA: full-size seal === */
   .why-ashta-section { padding-block: clamp(3.5rem, 6vw, 5rem); }
@@ -2480,13 +2383,13 @@ function whyPrakritikBody(depth) {
         <hr class="why-hero__rule">
         <h1 class="why-hero__title" id="why-title">An old material idea, reconsidered for modern walls.</h1>
         <p class="why-hero__sub">
-          Cow dung has been used on Indian walls and floors for generations — as
-          Traditional Indian homes have long used cow-dung-based coatings on walls and floors. Prakritik Paint brings that material idea into contemporary
-          Paint carries that material into a contemporary paint format.
+          Traditional Indian homes have long used cow-dung-based coatings on
+          walls and floors. Prakritik Paint brings that material idea into a
+          contemporary paint format.
         </p>
       </div>
-      <div class="why-hero__art" aria-hidden="true">
-        ${zebuHeroCropPic}
+      <div class="why-hero__art">
+        ${heroFinishPic}
       </div>
     </div>
   </div>
@@ -2512,8 +2415,8 @@ function whyPrakritikBody(depth) {
           Not a novelty. A useful material, reconsidered.
         </p>
       </div>
-      <div class="why-material-sample" aria-hidden="true">
-        ${zebuCh1Pic}
+      <div class="why-material-sample">
+        ${rawMaterialCh1Pic}
       </div>
     </div>
   </div>
@@ -2552,30 +2455,46 @@ function whyPrakritikBody(depth) {
       <span class="why-chapter__eyebrow">Material to wall</span>
       <h2 class="why-chapter__title" id="chapter-03-title">From a natural material to a finished wall.</h2>
       <p class="why-chapter__body">
-        Natural material, Prakritik Paint, finished walls.
+        The raw material, the paint made from it, and the finished surface —
+        three steps, one material idea.
       </p>
     </div>
-    <div class="why-flow-panels" data-reveal>
-      <div class="why-flow-panel">
-        ${interiorFlowPic}
-        <span class="why-flow-panel-label">01 · Natural material</span>
-      </div>
-      <div class="why-flow-panel why-flow-panel--group">
-        <img class="editorial-image"
-             src="${groupImg}"
-             alt="Prakritik Distemper and Emulsion paint packs"
-             width="1280" height="621"
-             loading="lazy" decoding="async">
-        <span class="why-flow-panel-label">02 · Prakritik Paint</span>
-      </div>
-      <div class="why-flow-panel">
-        ${finishedWallFlowPic}
-        <span class="why-flow-panel-label">03 · Finished wall</span>
-      </div>
+    <div class="material-steps" data-reveal>
+      <article class="material-step">
+        <figure class="material-step__figure">
+          ${rawMaterialFlowPic}
+        </figure>
+        <div class="material-step__caption">
+          <span class="material-step__num">01</span>
+          <h3 class="material-step__title">Natural material</h3>
+          <p class="material-step__desc">Cow dung is the material inspiration.</p>
+        </div>
+      </article>
+      <article class="material-step material-step--product">
+        <figure class="material-step__figure">
+          <img class="material-step__product"
+               src="${assetUrl(distemper.officialImage, depth)}"
+               alt="Prakritik Distemper paint pack"
+               width="490" height="621"
+               loading="lazy" decoding="async">
+        </figure>
+        <div class="material-step__caption">
+          <span class="material-step__num">02</span>
+          <h3 class="material-step__title">Prakritik Paint</h3>
+          <p class="material-step__desc">Available as Distemper and Emulsion.</p>
+        </div>
+      </article>
+      <article class="material-step">
+        <figure class="material-step__figure">
+          ${finishedSurfaceFlowPic}
+        </figure>
+        <div class="material-step__caption">
+          <span class="material-step__num">03</span>
+          <h3 class="material-step__title">Finished wall</h3>
+          <p class="material-step__desc">Both are listed for interior and exterior use.</p>
+        </div>
+      </article>
     </div>
-    <ol class="material-journey__steps" data-reveal-stagger>
-${journeySteps}
-    </ol>
   </div>
 </section>
 
@@ -2688,8 +2607,8 @@ function aboutBody(depth) {
         </div>`).join('\n');
 
     // V4 picture tags.
-    const zebuDirectionPic = pic('/assets/editorial/zebu-study.webp', '/assets/editorial/zebu-study.jpg',
-        'Editorial study of an Indian zebu cow', 1536, 1024, depth, 'class="editorial-image"');
+    const rawMaterialDirectionPic = pic('/assets/editorial/raw-material-study.webp', '/assets/editorial/raw-material-study.jpg',
+        'Raw lime-plastered wall surface — an Indian natural wall material', 1344, 768, depth, 'class="editorial-image"');
     const ruralMissionPic = pic('/assets/editorial/rural-landscape.webp', '/assets/editorial/rural-landscape.jpg',
         '', 1344, 768, depth, 'class="editorial-image"');
 
@@ -2783,20 +2702,19 @@ function aboutBody(depth) {
     max-width: min(60%, 320px);
   }
 
-  /* ===== MATERIAL DIRECTION (V7: zebu printed onto the page — no box) ===== */
+  /* ===== MATERIAL DIRECTION (V10: raw plaster surface — the material
+     itself, printed onto the page with no panel chrome) ===== */
   .about-direction-section { padding-block: clamp(3.5rem, 6vw, 5rem); }
   .about-direction__visual {
-    /* No panel chrome: the artwork's cream ground matches the paper
-       background so the cow reads as printed onto the page. */
     background: transparent;
     border-radius: 0;
     overflow: hidden;
     position: relative;
-    aspect-ratio: 1536 / 1126;  /* V7: cow ~10% larger — crop bottom margin */
+    aspect-ratio: 1344 / 768;
   }
   .about-direction__visual .editorial-image {
     position: absolute; inset: 0; width: 100%; height: 100%;
-    object-fit: cover; object-position: 20% 20%;  /* V7: head + horns + hump */
+    object-fit: cover;
   }
 
   /* ===== MISSION BAND ===== */
@@ -2951,7 +2869,7 @@ function aboutBody(depth) {
   </div>
 </section>
 
-<!-- ===== MATERIAL DIRECTION — zebu-study beside wall ===== -->
+<!-- ===== MATERIAL DIRECTION — the raw material surface ===== -->
 <section class="section section--paper about-direction-section" aria-labelledby="direction-title">
   <div class="container">
     <div class="about-section" data-reveal>
@@ -2973,8 +2891,8 @@ function aboutBody(depth) {
           <a class="btn btn--primary" href="${relUrl('/why-prakritik/', depth)}">Why Prakritik</a>
         </div>
       </div>
-      <div class="about-direction__visual" aria-hidden="true">
-        ${zebuDirectionPic}
+      <div class="about-direction__visual">
+        ${rawMaterialDirectionPic}
       </div>
     </div>
   </div>
