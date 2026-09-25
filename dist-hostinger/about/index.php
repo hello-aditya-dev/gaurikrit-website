@@ -1,20 +1,24 @@
 <?php
 /**
- * Gaurikrit Bio Products — About (V4 asset replacement pass).
- * Task V4-ASSETS.
+ * Gaurikrit Bio Products — About (V5 finish pass).
+ * Task V5-FINISH.
  *
- * Composition unchanged from V3. This pass replaces coded SVG illustrations
- * with real editorial artwork + the official Gaurikrit logo. NO gaushala
- * illustration. SVG kept only for the brand-mark fallback (handled in the
- * shared header/footer).
+ * Refines the V4 composition: hero is typographic (small 96px logo mark +
+ * गौरीकृत + GAURIKRIT BIO PRODUCTS) with a subtle interior-wall-study
+ * background at 0.08 opacity (NO giant logo panel); Who-we-are body
+ * constrained to 65ch with line-height 1.7 and more breathing room;
+ * product photos larger within their containers; company-plate rows
+ * get a border-top + bumped label letter-spacing for a premium feel;
+ * mission strip rural-landscape opacity reduced to 0.10. Factual data
+ * unchanged from data.php.
  *
- *   1. Hero — official Gaurikrit logo (537×620) prominent.
- *   2. WHO WE ARE (legal identity) — borderless editorial section.
- *   3. WHAT WE CURRENTLY PRESENT — 2 real product photos.
+ *   1. Hero — V5: typographic, small logo mark + faded wall bg.
+ *   2. WHO WE ARE (legal identity) — V5: 65ch body, line-height 1.7.
+ *   3. WHAT WE CURRENTLY PRESENT — V5: larger product photo CSS footprint.
  *   4. MATERIAL DIRECTION — zebu-study.webp beside wall.
- *   5. MISSION — deep forest full-width band + rural-landscape engraving.
- *   6. COMPANY INFORMATION — modern ledger/plate (.company-plate).
- *      Full address, GSTIN, email, both phones.
+ *   5. MISSION — V5: rural-landscape at 0.10 opacity (was 0.15).
+ *   6. COMPANY INFORMATION — V5: border-top per row, bumped label
+ *      letter-spacing, aligned values.
  */
 declare(strict_types=1);
 
@@ -43,31 +47,72 @@ $addressLine = implode("\n", $address);
     object-fit: cover;
   }
 
-  /* ===== HERO ===== */
-  .about-hero { padding-top: calc(var(--header-h) + 2rem); padding-bottom: 1.5rem; }
-  .about-hero__container { display: grid; gap: 2rem; align-items: center; }
-  @media (min-width: 1024px) {
-    .about-hero__container { grid-template-columns: 5fr 7fr; gap: 3rem; }
+  /* ===== HERO (V5: typographic, small logo mark + faded wall bg — NO giant logo panel) ===== */
+  .about-hero {
+    padding-top: calc(var(--header-h) + 2rem); padding-bottom: 1.5rem;
+    position: relative; overflow: hidden;
   }
-  .about-hero__lockup { max-width: 42rem; }
-  /* V4: real official logo (537×620) prominent on a soft cream background. */
-  .about-hero__art {
-    position: relative; aspect-ratio: 537/620;
-    background: radial-gradient(circle at 50% 45%, #f9f5eb, #e7ebdf);
-    border-radius: var(--r-panel); overflow: hidden;
-    display: flex; align-items: center; justify-content: center;
-    padding: 0;
+  @media (min-width: 1024px) { .about-hero { padding-bottom: 2.5rem; } }
+  /* V5: subtle interior-wall-study background at 0.08 opacity. */
+  .about-hero__bg {
+    position: absolute; inset: 0; opacity: 0.08;
+    pointer-events: none; overflow: hidden;
   }
-  .about-hero__art .about-hero__logo {
+  .about-hero__bg .editorial-image { width: 100%; height: 100%; object-fit: cover; }
+  /* V5: single-column inner (no 5fr/7fr split — the hero is typographic). */
+  .about-hero__inner { position: relative; z-index: 1; max-width: 48rem; }
+  .about-hero__lockup { display: flex; flex-direction: column; gap: 0.75rem; }
+  /* V5: small 96px logo mark beside the devanagari/brand-sub text. */
+  .about-hero__brand-row {
+    display: flex; align-items: center; gap: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+  .about-hero__mark {
     display: block;
-    width: min(75%, 380px); height: auto;
-    object-fit: contain;
+    width: 96px; height: 96px;  /* V5: small logo mark */
+    object-fit: contain; flex-shrink: 0;
+    filter: drop-shadow(0 4px 10px rgba(34, 36, 27, 0.10));
+  }
+  .about-hero__brand-text { display: flex; flex-direction: column; gap: 0.25rem; }
+  .about-hero__deva {
+    font-family: var(--font-deva); font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 700; color: var(--haldi-deep);
+  }
+  .about-hero__brand-sub {
+    font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--primary);
+  }
+  .about-hero__title {
+    font-family: var(--font-display); font-size: clamp(2.2rem, 5vw, 4rem);
+    line-height: 1.05; letter-spacing: -0.02em; text-wrap: balance;
+    margin-top: 0.5rem;
+  }
+  .about-hero__body {
+    margin-top: 1rem; font-size: clamp(1rem, 2vw, 1.125rem);
+    color: var(--fg-muted); line-height: 1.65; max-width: 60ch;
   }
 
-  /* ===== WHO WE ARE ===== */
+  /* ===== WHO WE ARE (V5: 65ch body, line-height 1.7, more breathing room) ===== */
   .about-section { padding-block: clamp(3.5rem, 6vw, 5rem); }
+  /* V5: override the 4fr/8fr grid for the who-we-are section so the body
+     can breathe in a single-column reading layout (no narrow column that
+     breaks awkwardly). */
+  .about-section--prose {
+    display: grid; grid-template-columns: 1fr; gap: 1.5rem;
+  }
+  .about-section--prose .about-section__lead {
+    max-width: 65ch;
+  }
+  .about-section--prose .about-section__body {
+    max-width: 65ch;  /* V5: widened to 65ch for readability */
+    line-height: 1.7;  /* V5: increased (shared default is 1.75; this stays
+                         within the spec's 1.7 target — kept looser than the
+                         spec to maintain the editorial feel) */
+    font-size: 1.0625rem;
+  }
+  .about-section--prose .about-section__body p + p { margin-top: 1.25rem; }
 
-  /* ===== WHAT WE PRESENT ===== */
+  /* ===== WHAT WE PRESENT (V5: larger product image CSS footprint) ===== */
   .about-products-section { padding-block: clamp(3.5rem, 6vw, 5rem); }
   .about-products { margin-top: 2rem; }
   .about-product-card__media {
@@ -78,18 +123,18 @@ $addressLine = implode("\n", $address);
   }
   .about-product-card__media .about-product-photo {
     display: block;
-    max-height: 80%; max-width: 70%;
+    max-height: 88%;  /* V5: increased from 80% → 88% */
+    max-width: 80%;   /* V5: default larger cap */
     width: auto; height: auto;
     object-fit: contain;
     filter: drop-shadow(0 14px 20px rgba(34, 36, 27, 0.16));
   }
-  /* Distemper crop: 510×538, cap at 420px CSS. */
+  /* V5: increased caps — closer to natural image sizes. */
   .about-product-card__media--distemper .about-product-photo {
-    max-width: min(70%, 420px);
+    max-width: min(85%, 500px);  /* was min(70%, 420px) */
   }
-  /* Emulsion crop: 355×486, cap at 320px CSS. */
   .about-product-card__media--emulsion .about-product-photo {
-    max-width: min(60%, 320px);
+    max-width: min(80%, 350px);  /* was min(60%, 320px) */
   }
 
   /* ===== MATERIAL DIRECTION — zebu-study beside wall ===== */
@@ -106,14 +151,14 @@ $addressLine = implode("\n", $address);
   .about-direction__visual .ms-cow,
   .about-direction__visual .ms-arrow { display: none; }
 
-  /* ===== MISSION BAND ===== */
+  /* ===== MISSION BAND (V5: rural-landscape at 0.10 opacity — was 0.15) ===== */
   .about-mission {
     position: relative; padding-block: clamp(4rem, 8vw, 6.5rem);
     background: var(--forest-deep); color: var(--primary-fg);
     overflow: hidden;
   }
   .about-mission__bg {
-    position: absolute; inset: 0; opacity: 0.15; pointer-events: none;
+    position: absolute; inset: 0; opacity: 0.10; pointer-events: none;
     overflow: hidden;
   }
   .about-mission__bg .editorial-image { width: 100%; height: 100%; object-fit: cover; }
@@ -135,25 +180,62 @@ $addressLine = implode("\n", $address);
   }
   .about-mission__cta { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 0.75rem; }
 
-  /* ===== COMPANY PLATE ===== */
+  /* ===== COMPANY PLATE (V5: premium feel — border-top per row, bumped label
+     letter-spacing, aligned values column) ===== */
   .company-plate-section { padding-block: clamp(3.5rem, 6vw, 5rem); }
   .company-plate__head { margin-bottom: 2rem; }
-  .company-plate dt { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fg-muted); }
+  /* V5: remove the parent's border-top so each row's border-top reads as a
+     clean separator (no double line on the first row). */
+  .company-plate { border-top: 0; margin-top: 0; }
+  .company-plate__row {
+    padding: 1.25rem 0;  /* V5: more breathing room (was 1rem 0) */
+    border-top: 1px solid var(--border);  /* V5: border-top (was border-bottom) */
+    border-bottom: 0;
+    align-items: baseline;
+  }
+  .company-plate__row:last-child {
+    border-bottom: 1px solid var(--border);  /* V5: closing line */
+  }
+  .company-plate dt {
+    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.18em;  /* V5: 0.14em → 0.18em */
+    text-transform: uppercase; color: var(--fg-muted);
+  }
   .company-plate dd { color: var(--fg); }
   .company-plate__address { white-space: pre-line; }
 </style>
 
-<!-- ===== HERO ===== -->
+<!-- ===== HERO (V5: typographic — small logo mark + faded wall bg) ===== -->
 <section class="about-hero bg-limewash" aria-labelledby="about-title">
+  <!-- V5: subtle interior-wall-study at 0.08 opacity as background. -->
+  <div class="about-hero__bg" aria-hidden="true">
+    <picture>
+      <source type="image/webp" srcset="<?= asset_url('/assets/editorial/interior-wall-study.webp') ?>">
+      <img class="editorial-image"
+           src="<?= asset_url('/assets/editorial/interior-wall-study.jpg') ?>"
+           alt=""
+           width="1344" height="768"
+           loading="eager" decoding="async">
+    </picture>
+  </div>
   <div class="container">
     <nav class="breadcrumb" aria-label="Breadcrumb">
       <a href="/">Home</a><span>›</span>
       <span>About</span>
     </nav>
-    <div class="about-hero__container" data-reveal>
+    <div class="about-hero__inner" data-reveal>
       <div class="about-hero__lockup">
-        <span class="about-hero__deva"><?= e($COMPANY['devanagari']) ?></span>
-        <span class="about-hero__brand-sub">Gaurikrit Bio Products</span>
+        <!-- V5: small 96px logo mark beside the devanagari + brand-sub text. -->
+        <div class="about-hero__brand-row">
+          <img class="about-hero__mark"
+               src="<?= asset_url('/assets/brand/gaurikrit-logo-mark.png') ?>"
+               alt="Gaurikrit brand mark"
+               width="696" height="700"
+               loading="eager" decoding="async">
+          <div class="about-hero__brand-text">
+            <span class="about-hero__deva"><?= e($COMPANY['devanagari']) ?></span>
+            <span class="about-hero__brand-sub">Gaurikrit Bio Products</span>
+          </div>
+        </div>
         <h1 class="about-hero__title" id="about-title">Nature. Culture. Useful materials.</h1>
         <p class="about-hero__body">
           <?= e($COMPANY['legalName']) ?> makes Prakritik Paint — a cow dung-based
@@ -161,21 +243,14 @@ $addressLine = implode("\n", $address);
           exterior walls. From <?= e($address[3] ?? '') ?>, <?= e($address[4] ?? '') ?>.
         </p>
       </div>
-      <div class="about-hero__art">
-        <img class="about-hero__logo"
-             src="<?= asset_url('/assets/brand/gaurikrit-logo-full.png') ?>"
-             alt="Gaurikrit official emblem and wordmark"
-             width="537" height="620"
-             loading="eager" fetchpriority="high" decoding="async">
-      </div>
     </div>
   </div>
 </section>
 
-<!-- ===== WHO WE ARE — legal identity ===== -->
+<!-- ===== WHO WE ARE (V5: 65ch body, line-height 1.7) ===== -->
 <section class="section section--paper about-section" aria-labelledby="who-title">
   <div class="container">
-    <div class="about-section" data-reveal>
+    <div class="about-section about-section--prose" data-reveal>
       <div>
         <span class="about-section__eyebrow">Who we are</span>
         <p class="about-section__lead">

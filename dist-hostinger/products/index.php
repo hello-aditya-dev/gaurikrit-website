@@ -1,19 +1,23 @@
 <?php
 /**
- * Gaurikrit Bio Products — Products Overview (V4 asset replacement pass).
- * Task V4-ASSETS.
+ * Gaurikrit Bio Products — Products Overview (V5 finish pass).
+ * Task V5-FINISH.
  *
- * Composition unchanged from V3. This pass replaces coded SVG with real
- * product photography + editorial artwork. SVG kept only for interactive
- * ashta-laabh-seal.
+ * Refines the V4 composition: spec-matrix gets a header row + zebra
+ * striping + taller padding + bolder labels; benefits strip gets haldi
+ * dot indicators beside each number + bolder name typography; FAQ gets
+ * more breathing room above + a haldi divider line. Factual data
+ * unchanged from data.php.
  *
  *   1. Hero — 45% text / 55% product group visual (real group photo).
  *   2. Distemper Product Chapter — interior-wall-study env + real photo.
  *   3. Emulsion Product Chapter — exterior-wall-study env + real photo (reversed).
- *   4. Spec Matrix — large ruled comparison across the page (no card).
- *   5. Benefits — numbered typographic strip using $ASHTA_LAABH.
- *   6. "Need help choosing?" CTA → /contact/.
- *   7. FAQ (consumed here per spec).
+ *   4. Spec Matrix — V5: ruled comparison with header row, zebra striping
+ *      at 0.03 opacity, taller rows, bolder labels.
+ *   5. Benefits — V5: haldi dot indicators beside each number + bolder
+ *      name typography, 4×2 grid on desktop.
+ *   6. FAQ — V5: more spacing above + haldi divider line before.
+ *   7. "Need help choosing?" CTA → /contact/.
  */
 declare(strict_types=1);
 
@@ -97,23 +101,56 @@ $groupImage  = '/assets/products/prakritik-group.jpg';
     max-width: min(60%, 340px);
   }
 
-  /* ===== SPEC MATRIX (no card, borderless) ===== */
+  /* ===== SPEC MATRIX (V5: header row + zebra striping + taller rows
+     + bolder labels — a real product comparison, not a sparse list) ===== */
   .spec-matrix-section { padding-block: clamp(3rem, 6vw, 5rem); }
   .spec-matrix-section__head { max-width: 48rem; margin-bottom: 2.5rem; }
-  .spec-matrix__row { grid-template-columns: 1fr; gap: 0.75rem; padding: 1.5rem 0; }
+  /* V5: wrap the matrix in a soft paper panel so the striping reads. */
+  .spec-matrix {
+    border: 1px solid var(--border);
+    border-radius: var(--r-panel);
+    overflow: hidden;
+    background: var(--paper);
+  }
+  .spec-matrix__row {
+    grid-template-columns: 1fr; gap: 0.75rem;
+    padding: 1.75rem 1.25rem;  /* V5: taller, more padding */
+    border-bottom: 1px solid var(--border);
+  }
   @media (min-width: 768px) {
     .spec-matrix__row {
-      grid-template-columns: 12rem 1fr 1fr; gap: 1.5rem; padding: 1.5rem 0;
+      grid-template-columns: 12rem 1fr 1fr; gap: 1.5rem; padding: 1.75rem 1.5rem;
     }
   }
+  /* V5: zebra striping — alternating rows at haldi 3% opacity. */
+  .spec-matrix__row:nth-child(even) {
+    background: color-mix(in srgb, var(--haldi) 3%, transparent);
+  }
+  /* Header row: stronger underline, no striping, sticky-feel bg. */
+  .spec-matrix__row:first-child {
+    border-bottom: 2px solid var(--border-strong);
+    background: color-mix(in srgb, var(--limewash) 50%, var(--paper));
+  }
+  .spec-matrix__row:last-child { border-bottom: 0; }
   .spec-matrix__col-head {
     font-size: 0.75rem; font-weight: 700; letter-spacing: 0.16em;
     text-transform: uppercase; color: var(--fg-muted);
   }
   .spec-matrix__col-head--distemper { color: var(--indigo); }
   .spec-matrix__col-head--emulsion { color: var(--leaf); }
+  /* V5: bolder spec labels. */
+  .spec-matrix__label {
+    font-weight: 700 !important;
+    font-size: 0.875rem !important;
+    color: var(--fg) !important;
+    letter-spacing: 0.02em;
+  }
+  .spec-matrix__value {
+    font-weight: 600 !important;
+    color: var(--fg) !important;
+  }
 
-  /* ===== BENEFITS STRIP ===== */
+  /* ===== BENEFITS STRIP (V5: haldi dot indicators + bolder name typography) ===== */
   .benefits-strip { padding-block: clamp(3rem, 6vw, 5rem); }
   .benefits-strip__head { max-width: 48rem; margin-bottom: 2rem; }
   .benefits-strip__list {
@@ -124,23 +161,46 @@ $groupImage  = '/assets/products/prakritik-group.jpg';
   @media (min-width: 640px) { .benefits-strip__list { grid-template-columns: 1fr 1fr; column-gap: 3rem; } }
   @media (min-width: 1024px) { .benefits-strip__list { grid-template-columns: repeat(4, 1fr); } }
   .benefits-strip__item {
-    padding: 1.25rem 0; border-bottom: 1px solid var(--border);
-    display: grid; grid-template-columns: 2.5rem 1fr; gap: 1rem;
-    align-items: baseline; counter-increment: benefit;
+    padding: 1.5rem 0; border-bottom: 1px solid var(--border);
+    display: grid; grid-template-columns: 3rem 1fr; gap: 1rem;
+    align-items: center; counter-increment: benefit;
   }
-  .benefits-strip__item::before {
-    content: counter(benefit, decimal-leading-zero);
+  /* V5: number column now holds the counter + a haldi dot indicator. */
+  .benefits-strip__num {
+    display: inline-flex; align-items: center; gap: 0.5rem;
     font-family: var(--font-display); font-weight: 700;
-    color: var(--haldi-deep); font-size: 0.875rem; letter-spacing: 0.04em;
+    color: var(--haldi-deep); font-size: 0.9375rem; letter-spacing: 0.04em;
   }
-  .benefits-strip__name { font-weight: 600; font-size: 0.9375rem; color: var(--fg); }
+  .benefits-strip__num::before {
+    content: counter(benefit, decimal-leading-zero);
+  }
+  .benefits-strip__dot {
+    display: inline-block;
+    width: 0.5rem; height: 0.5rem; border-radius: 50%;
+    background: var(--haldi);
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--haldi) 22%, transparent);
+  }
+  /* V5: bolder name typography (more memorable). */
+  .benefits-strip__name {
+    font-weight: 700; font-size: 1rem; color: var(--fg); line-height: 1.3;
+  }
   .benefits-strip__deva {
-    font-family: var(--font-deva); font-size: 0.8125rem; color: var(--fg-muted);
-    display: block; margin-top: 0.25rem;
+    font-family: var(--font-deva); font-size: 0.875rem; color: var(--fg-muted);
+    display: block; margin-top: 0.375rem;
   }
 
-  /* ===== FAQ ===== */
-  .faq-section { padding-block: clamp(3rem, 6vw, 5rem); }
+  /* ===== FAQ (V5: more spacing above + haldi divider line) ===== */
+  .faq-section {
+    padding-block: clamp(4.5rem, 8vw, 6.5rem);  /* V5: increased from clamp(3rem, 6vw, 5rem) */
+    position: relative;
+  }
+  /* V5: subtle haldi divider line at the top of the FAQ section. */
+  .faq-section::before {
+    content: ''; display: block;
+    width: 4rem; height: 2px;
+    background: var(--haldi);
+    margin: 0 0 3rem;
+  }
   .faq-section__head { max-width: 48rem; margin-bottom: 2rem; }
 </style>
 
@@ -230,9 +290,9 @@ $groupImage  = '/assets/products/prakritik-group.jpg';
     <div class="product-chapter__inner" data-reveal>
       <div class="product-chapter__visual">
         <picture>
-          <source type="image/webp" srcset="<?= asset_url('/assets/editorial/exterior-wall-study.webp') ?>">
+          <source type="image/webp" srcset="<?= asset_url('/assets/editorial/exterior-wall-study-v2.webp') ?>">
           <img class="chapter-env"
-               src="<?= asset_url('/assets/editorial/exterior-wall-study.jpg') ?>"
+               src="<?= asset_url('/assets/editorial/exterior-wall-study-v2.jpg') ?>"
                alt=""
                width="1344" height="768"
                loading="lazy" decoding="async">
@@ -343,6 +403,9 @@ $groupImage  = '/assets/products/prakritik-group.jpg';
     <ol class="benefits-strip__list" data-reveal-stagger>
       <?php foreach ($ASHTA_LAABH as $benefit): ?>
         <li class="benefits-strip__item">
+          <span class="benefits-strip__num" aria-hidden="true">
+            <span class="benefits-strip__dot"></span>
+          </span>
           <span>
             <span class="benefits-strip__name"><?= e($benefit['name']) ?></span>
             <span class="benefits-strip__deva"><?= e($benefit['hindi']) ?></span>

@@ -1,16 +1,20 @@
 <?php
 /**
- * Gaurikrit Bio Products — For Business (V4 asset replacement pass).
- * Task V4-ASSETS.
+ * Gaurikrit Bio Products — For Business (V5 finish pass).
+ * Task V5-FINISH.
  *
- * Composition unchanged from V3. This pass replaces coded SVG
- * illustrations with real editorial artwork. NO floating blob.
+ * Refines the V4 composition: hero replaces architectural-elevation with
+ * business-context-study (more Indian, contemporary); audiences section
+ * drops the shared illustration in favour of a CSS-only 4-ruled-columns
+ * visual that connects to the four audience types; enquiry copy is
+ * rewritten in calm, direct language; form gets more padding, looser
+ * field spacing, and clearer focus states. Factual data unchanged.
  *
  * Composition:
- *   1. Hero — text left / architectural-elevation right (NO floating blob).
- *   2. Audiences — shared rural-landscape + 4 ruled columns (NO cards).
- *   3. Practical section — "When you enquire, it helps to include" + list.
- *   4. Business Form — 12-col layout (left 4 help/contact, right 8 fields).
+ *   1. Hero — V5: business-context-study right (was architectural-elevation).
+ *   2. Audiences — V5: NO shared image; CSS 4-ruled-columns visual instead.
+ *   3. Practical section — V5: rewritten enquiry copy.
+ *   4. Business Form — V5: more padding, looser field spacing, clearer focus.
  *      CTA "Discuss a Project". Posts to /api/business-enquiry.php.
  *      csrf_field() + honeypot.
  */
@@ -56,7 +60,7 @@ $helpfulInclude = [
     object-fit: cover;
   }
 
-  /* ===== HERO (text left / architectural-elevation right — NO floating blob) ===== */
+  /* ===== HERO (V5: text left / business-context-study right — NO floating blob) ===== */
   .biz-hero { padding-top: calc(var(--header-h) + 2rem); padding-bottom: 1.5rem; }
   @media (min-width: 1024px) { .biz-hero { padding-bottom: 2.5rem; } }
   .biz-hero__container { display: grid; gap: 2rem; align-items: center; }
@@ -72,17 +76,39 @@ $helpfulInclude = [
     width: 100%; height: 100%; object-fit: cover; display: block;
   }
 
-  /* ===== AUDIENCES (shared editorial image + 4 ruled columns) ===== */
+  /* ===== AUDIENCES (V5: NO shared image; CSS 4-ruled-columns visual
+     instead — connects directly to the four audience types) ===== */
   .biz-audiences-section { padding-block: clamp(3.5rem, 6vw, 5rem); }
-  .biz-audiences-illustration {
-    position: relative;
+  /* V5: 4-column rule pattern above the cards — each column has a number
+     + a thin haldi underline, mirroring the four audience types below. */
+  .biz-audiences-rule {
+    display: grid; grid-template-columns: 1fr; gap: 0;
     margin-bottom: 3rem;
-    aspect-ratio: 1344/768;
-    width: 100%; overflow: hidden;
-    border-radius: var(--r-panel);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
   }
-  .biz-audiences-illustration .editorial-image {
-    width: 100%; height: 100%; object-fit: cover; display: block;
+  @media (min-width: 768px) {
+    .biz-audiences-rule { grid-template-columns: repeat(4, 1fr); }
+  }
+  .biz-audiences-rule__col {
+    padding: 1.25rem 1rem; border-top: 2px solid var(--haldi);
+    display: flex; align-items: baseline; gap: 0.625rem;
+  }
+  .biz-audiences-rule__col + .biz-audiences-rule__col {
+    border-left: 1px solid var(--border);
+  }
+  @media (max-width: 767px) {
+    .biz-audiences-rule__col + .biz-audiences-rule__col {
+      border-left: 0; border-top: 1px solid var(--border);
+    }
+  }
+  .biz-audiences-rule__num {
+    font-family: var(--font-display); font-weight: 700; font-size: 0.875rem;
+    color: var(--haldi-deep); letter-spacing: 0.04em;
+  }
+  .biz-audiences-rule__label {
+    font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--fg-muted);
   }
   .biz-audiences__head { max-width: 48rem; margin-bottom: 2.5rem; }
 
@@ -120,18 +146,33 @@ $helpfulInclude = [
   }
   .biz-practical__item-hint { font-size: 0.9375rem; color: var(--fg); }
 
-  /* ===== FORM (12-col: left 4 help/contact, right 8 fields) ===== */
+  /* ===== FORM (V5: more padding, looser field spacing, clearer focus states) ===== */
   .biz-form-section { padding-block: clamp(3.5rem, 6vw, 5rem); }
   .biz-form-layout__aside { display: flex; flex-direction: column; gap: 1.5rem; }
   .biz-form-layout__aside .help-cta { padding: 1.5rem; }
+  /* V5: more padding + soft shadow for premium feel. */
   .biz-form-card {
     background: var(--paper); border: 1px solid var(--border);
-    border-radius: var(--r-panel); padding: 1.5rem;
+    border-radius: var(--r-panel); padding: 2rem;  /* V5: was 1.5rem */
+    box-shadow: 0 8px 24px -8px rgba(34, 36, 27, 0.12);
   }
-  @media (min-width: 768px) { .biz-form-card { padding: 2rem; } }
-  .biz-form-card__intro { font-size: 0.875rem; color: var(--fg-muted); margin-bottom: 1.5rem; }
+  @media (min-width: 768px) { .biz-form-card { padding: 2.5rem; } }  /* V5: was 2rem */
+  .biz-form-card__intro { font-size: 0.875rem; color: var(--fg-muted); margin-bottom: 2rem; }  /* V5: more spacing */
   .biz-form-card__intro .req { color: var(--mitti); }
-  .form-grid { gap: 1.25rem; }
+  .form-grid { gap: 1.5rem; }  /* V5: was 1.25rem */
+  /* V5: clearer focus states on inputs / selects / textareas. */
+  .biz-form-card .form-input,
+  .biz-form-card .form-select,
+  .biz-form-card .form-textarea {
+    transition: border-color var(--dur), box-shadow var(--dur);
+  }
+  .biz-form-card .form-input:focus,
+  .biz-form-card .form-select:focus,
+  .biz-form-card .form-textarea:focus {
+    outline: 0;
+    border-color: var(--forest);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--haldi) 25%, transparent);
+  }
   .biz-aside-card {
     border-top: 1px solid var(--border); padding: 0; background: transparent;
   }
@@ -139,7 +180,7 @@ $helpfulInclude = [
   .biz-aside-card dt { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fg-muted); }
 </style>
 
-<!-- ===== HERO ===== -->
+<!-- ===== HERO (V5: business-context-study right) ===== -->
 <section class="biz-hero bg-limewash" aria-labelledby="biz-title">
   <div class="container">
     <nav class="breadcrumb" aria-label="Breadcrumb">
@@ -163,11 +204,13 @@ $helpfulInclude = [
         </div>
       </div>
       <div class="biz-hero__art" aria-hidden="true">
+        <!-- V5: business-context-study replaces architectural-elevation
+             (more Indian, more contemporary). -->
         <picture>
-          <source type="image/webp" srcset="<?= asset_url('/assets/editorial/architectural-elevation.webp') ?>">
+          <source type="image/webp" srcset="<?= asset_url('/assets/editorial/business-context-study.webp') ?>">
           <img class="editorial-image"
-               src="<?= asset_url('/assets/editorial/architectural-elevation.jpg') ?>"
-               alt="Architectural building elevation study"
+               src="<?= asset_url('/assets/editorial/business-context-study.jpg') ?>"
+               alt=""
                width="1344" height="768"
                loading="eager" decoding="async">
         </picture>
@@ -176,7 +219,7 @@ $helpfulInclude = [
   </div>
 </section>
 
-<!-- ===== AUDIENCES — shared editorial image + 4 ruled columns ===== -->
+<!-- ===== AUDIENCES — V5: CSS 4-ruled-columns visual (no shared image) ===== -->
 <section class="section section--paper biz-audiences-section" aria-labelledby="audiences-title">
   <div class="container">
     <div class="biz-audiences__head section-heading section-heading--left" data-reveal>
@@ -184,15 +227,25 @@ $helpfulInclude = [
       <h2 class="section-heading__title" id="audiences-title">Audiences.</h2>
     </div>
 
-    <div class="biz-audiences-illustration" aria-hidden="true" data-reveal>
-      <picture>
-        <source type="image/webp" srcset="<?= asset_url('/assets/editorial/rural-landscape.webp') ?>">
-        <img class="editorial-image"
-             src="<?= asset_url('/assets/editorial/rural-landscape.jpg') ?>"
-             alt=""
-             width="1344" height="768"
-             loading="lazy" decoding="async">
-      </picture>
+    <!-- V5: simple CSS visual — 4 ruled columns, one per audience type.
+         No shared image (avoids repeating business-context-study from hero). -->
+    <div class="biz-audiences-rule" aria-hidden="true" data-reveal>
+      <div class="biz-audiences-rule__col">
+        <span class="biz-audiences-rule__num">01</span>
+        <span class="biz-audiences-rule__label">Architects</span>
+      </div>
+      <div class="biz-audiences-rule__col">
+        <span class="biz-audiences-rule__num">02</span>
+        <span class="biz-audiences-rule__label">Institutions</span>
+      </div>
+      <div class="biz-audiences-rule__col">
+        <span class="biz-audiences-rule__num">03</span>
+        <span class="biz-audiences-rule__label">CSR / NGOs</span>
+      </div>
+      <div class="biz-audiences-rule__col">
+        <span class="biz-audiences-rule__num">04</span>
+        <span class="biz-audiences-rule__label">Gaushalas</span>
+      </div>
     </div>
 
     <div class="biz-audiences" data-reveal-stagger>
@@ -207,16 +260,16 @@ $helpfulInclude = [
   </div>
 </section>
 
-<!-- ===== PRACTICAL SECTION — "When you enquire, it helps to include" ===== -->
+<!-- ===== PRACTICAL SECTION — V5: rewritten enquiry copy ===== -->
 <section class="section section--limewash biz-practical" aria-labelledby="include-title">
   <div class="container">
     <div class="biz-practical__grid" data-reveal>
       <div class="biz-practical__head">
         <span class="biz-hero__eyebrow"><span class="biz-hero__eyebrow-dot" aria-hidden="true"></span>Practical</span>
-        <h2 class="biz-practical__title" id="include-title">When you enquire, it helps to include.</h2>
+        <h2 class="biz-practical__title" id="include-title">Include these details for a faster response.</h2>
         <p class="biz-practical__body">
-          A few practical details up front let us give you a useful response —
-          not a "we will get back to you" placeholder.
+          A few practical details up front let us respond with what we can
+          supply — pack sizes, format, and how Prakritik Paint fits your project.
         </p>
       </div>
       <ul class="biz-practical__list">

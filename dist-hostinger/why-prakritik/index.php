@@ -1,20 +1,25 @@
 <?php
 /**
- * Gaurikrit Bio Products — Why Prakritik (V4 asset replacement pass).
- * Task V4-ASSETS.
+ * Gaurikrit Bio Products — Why Prakritik (V5 finish pass).
+ * Task V5-FINISH.
  *
- * Composition unchanged from V3. This pass replaces coded SVG illustrations
- * with real editorial artwork. SVG kept only for interactive
- * ashta-laabh-seal.
+ * Refines the V4 composition: hero pairs a SMALLER zebu-study crop
+ * (head + hump) over an interior-wall-study wall texture, so it
+ * differentiates from Section 01 (which keeps the FULL zebu-study);
+ * Section 02 courtyard is enlarged to ~75% of the chapter width on
+ * desktop; Section 03 right panel uses finished-wall-study; Section 04
+ * Ashta seal is strengthened (44rem, darker warm bg, bolder labels);
+ * Section 06 context uses business-context-study instead of
+ * rural-landscape. Factual data unchanged from data.php.
  *
- * Illustrated editorial essay. Hero with zebu-study. Six numbered chapters
- * (each visually distinct):
- *   01 MATERIAL    — zebu-study.webp (1536×1024) large
- *   02 TRADITION    — courtyard-study.webp (1942×809) large
- *   03 MATERIAL TO WALL — 3-panel composition (interior + group + exterior)
- *   04 ASHTA        — full-size interactive ashta-laabh-seal SVG (kept)
- *   05 FORMATS      — real Distemper + Emulsion product photos
- *   06 CONTEXT      — rural-landscape.webp with annotation
+ * Illustrated editorial essay. Hero with zebu-study crop. Six numbered
+ * chapters (each visually distinct):
+ *   01 MATERIAL     — full zebu-study.webp (1536×1024) large
+ *   02 TRADITION     — courtyard-study.webp (1942×809) enlarged (~75%)
+ *   03 MATERIAL TO WALL — 3-panel composition (interior + group + finished-wall)
+ *   04 ASHTA         — strengthened interactive ashta-laabh-seal SVG (kept)
+ *   05 FORMATS       — real Distemper + Emulsion product photos
+ *   06 CONTEXT       — business-context-study with annotation
  * CTA "Explore Products" → /products/.
  */
 declare(strict_types=1);
@@ -54,19 +59,51 @@ $ashtaIds = [
   }
   .editorial-image--contain { object-fit: contain; }
 
-  /* ===== HERO (zebu-study) ===== */
+  /* ===== HERO (V5: smaller zebu-study crop paired with wall texture) ===== */
   .why-hero { padding-top: calc(var(--header-h) + 2rem); padding-bottom: 1.5rem; }
   .why-hero__container { display: grid; gap: 2rem; align-items: center; }
   @media (min-width: 1024px) {
     .why-hero__container { grid-template-columns: 5fr 7fr; gap: 3rem; }
   }
   .why-hero__lockup { max-width: 42rem; }
+  /* V5: panel-like aspect (4/3) so the zebu crop + wall read as a
+     framed editorial composition, not a full-bleed photograph. */
   .why-hero__art {
-    position: relative; aspect-ratio: 1536/1024;
+    position: relative; aspect-ratio: 4/3;
     background: var(--limewash); border-radius: var(--r-panel);
     overflow: hidden;
   }
-  .why-hero__art .editorial-image {
+  /* Wall texture layer (interior-wall-study, faded) — pairs the
+     zebu crop with the wall context where the material lands. */
+  .why-hero__wall-texture .why-hero__wall-img {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; opacity: 0.25;
+  }
+  /* Zebu-study crop showing the head + hump detail (upper portion of
+     the 1536×1024 frame). Differentiates from Section 01 which keeps
+     the full zebu-study. */
+  .why-hero__zebu-crop {
+    position: absolute; right: 6%; top: 8%;
+    width: 56%; height: 84%;
+    overflow: hidden;
+    border-radius: var(--r-card);
+    box-shadow: 0 14px 28px rgba(34, 36, 27, 0.22);
+    border: 1px solid var(--border);
+    background: var(--paper);
+  }
+  .why-hero__zebu-img {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; object-position: 50% 18%;
+  }
+  @media (max-width: 767px) {
+    .why-hero__zebu-crop { width: 72%; right: 7%; top: 9%; height: 82%; }
+  }
+  /* Legacy single-picture .editorial-image positioner (kept for
+     why-material-sample / why-tradition-art / why-flow-panel / etc.) */
+  .why-material-sample .editorial-image,
+  .why-tradition-art .editorial-image,
+  .why-flow-panel .editorial-image,
+  .why-context-band .editorial-image {
     position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
   }
   /* Remove the legacy cow/wall composition — single editorial photo replaces it. */
@@ -80,6 +117,11 @@ $ashtaIds = [
   }
   @media (min-width: 1024px) {
     .why-chapter { grid-template-columns: 4fr 8fr; gap: 3rem; align-items: start; }
+  }
+  /* V5: Section 02 TRADITION — enlarge the courtyard image to ~75% of
+     the chapter width on desktop (overrides the 4fr/8fr default). */
+  @media (min-width: 1024px) {
+    .why-chapter--wide-art { grid-template-columns: 3fr 9fr; gap: 3rem; }
   }
   .why-chapter--reverse > :first-child { order: 2; }
   @media (min-width: 1024px) {
@@ -163,10 +205,30 @@ $ashtaIds = [
     color: var(--fg);
   }
 
-  /* === Chapter 04 — ASHTA: full-size seal === */
-  .why-ashta-section { padding-block: clamp(3.5rem, 6vw, 5rem); }
+  /* === Chapter 04 — ASHTA: V5 strengthened seal (44rem, darker warm
+     bg, bolder benefit labels). SVG seal kept interactive. === */
+  .why-ashta-section {
+    padding-block: clamp(3.5rem, 6vw, 5rem);
+    position: relative; overflow: hidden;
+    /* V5: slightly darker warm tone — overrides section--limewash. */
+    background: color-mix(in srgb, var(--haldi) 10%, var(--limewash));
+  }
   .why-ashta-section__head { max-width: 48rem; margin-bottom: 2.5rem; }
-  .ashta-section__seal { max-width: 38rem; margin-inline: auto; }
+  /* V5: enlarge seal from 38rem → 44rem for more authority. */
+  .ashta-section__seal { max-width: 44rem; margin-inline: auto; }
+  /* V5: bolder / larger benefit labels (page-local override). */
+  .ashta-benefit__name {
+    font-weight: 700 !important;
+    font-size: 1.0625rem !important;
+    letter-spacing: 0.005em;
+  }
+  .ashta-benefit__deva {
+    font-size: 0.9375rem !important;
+    color: color-mix(in srgb, var(--haldi-deep) 60%, var(--fg-muted)) !important;
+  }
+  .ashta-benefit {
+    padding: 1.25rem 0 !important;
+  }
 
   /* === Chapter 05 — FORMATS: two real product visuals === */
   .why-formats-section { padding-block: clamp(3.5rem, 6vw, 5rem); }
@@ -218,7 +280,7 @@ $ashtaIds = [
   }
 </style>
 
-<!-- ===== HERO ===== -->
+<!-- ===== HERO (V5: smaller zebu-study crop + interior-wall-study wall texture) ===== -->
 <section class="why-hero bg-limewash" aria-labelledby="why-title">
   <div class="container">
     <nav class="breadcrumb" aria-label="Breadcrumb">
@@ -237,14 +299,29 @@ $ashtaIds = [
         </p>
       </div>
       <div class="why-hero__art" aria-hidden="true">
-        <picture>
-          <source type="image/webp" srcset="<?= asset_url('/assets/editorial/zebu-study.webp') ?>">
-          <img class="editorial-image"
-               src="<?= asset_url('/assets/editorial/zebu-study.jpg') ?>"
-               alt="Editorial study of an Indian zebu cow"
-               width="1536" height="1024"
+        <!-- V5: wall texture layer (interior-wall-study, faded) pairs the
+             zebu detail crop with the wall where the material lands. -->
+        <picture class="why-hero__wall-texture">
+          <source type="image/webp" srcset="<?= asset_url('/assets/editorial/interior-wall-study.webp') ?>">
+          <img class="why-hero__wall-img"
+               src="<?= asset_url('/assets/editorial/interior-wall-study.jpg') ?>"
+               alt=""
+               width="1344" height="768"
                loading="eager" decoding="async">
         </picture>
+        <!-- V5: smaller zebu-study crop showing the head + hump detail
+             (object-position: 50% 18%). Differentiates from Section 01
+             which keeps the full zebu-study. -->
+        <div class="why-hero__zebu-crop">
+          <picture>
+            <source type="image/webp" srcset="<?= asset_url('/assets/editorial/zebu-study.webp') ?>">
+            <img class="why-hero__zebu-img"
+                 src="<?= asset_url('/assets/editorial/zebu-study.jpg') ?>"
+                 alt="Editorial study of an Indian zebu cow"
+                 width="1536" height="1024"
+                 loading="eager" decoding="async">
+          </picture>
+        </div>
       </div>
     </div>
   </div>
@@ -284,10 +361,10 @@ $ashtaIds = [
   </div>
 </section>
 
-<!-- ===== 02 TRADITION — large courtyard ===== -->
+<!-- ===== 02 TRADITION — V5 enlarged courtyard (~75% on desktop) ===== -->
 <section class="section section--limewash" aria-labelledby="chapter-02-title">
   <div class="container">
-    <div class="why-chapter why-chapter--reverse" data-reveal>
+    <div class="why-chapter why-chapter--reverse why-chapter--wide-art" data-reveal>
       <div class="why-tradition-art" aria-hidden="true">
         <picture>
           <source type="image/webp" srcset="<?= asset_url('/assets/editorial/courtyard-study.webp') ?>">
@@ -349,10 +426,10 @@ $ashtaIds = [
       </div>
       <div class="why-flow-panel">
         <picture>
-          <source type="image/webp" srcset="<?= asset_url('/assets/editorial/exterior-wall-study.webp') ?>">
+          <source type="image/webp" srcset="<?= asset_url('/assets/editorial/finished-wall-study.webp') ?>">
           <img class="editorial-image"
-               src="<?= asset_url('/assets/editorial/exterior-wall-study.jpg') ?>"
-               alt="Indian exterior wall"
+               src="<?= asset_url('/assets/editorial/finished-wall-study.jpg') ?>"
+               alt="Indian finished limewashed wall"
                width="1344" height="768"
                loading="lazy" decoding="async">
         </picture>
@@ -371,7 +448,7 @@ $ashtaIds = [
   </div>
 </section>
 
-<!-- ===== 04 ASHTA — full-size seal (interactive SVG kept) ===== -->
+<!-- ===== 04 ASHTA — V5 strengthened seal (interactive SVG kept) ===== -->
 <section class="section section--limewash why-ashta-section" aria-labelledby="chapter-04-title" data-ashta-laabh>
   <div class="container">
     <div class="why-ashta-section__head section-heading section-heading--left" data-reveal>
@@ -433,7 +510,7 @@ $ashtaIds = [
   </div>
 </section>
 
-<!-- ===== 06 CONTEXT — rural-landscape with annotation ===== -->
+<!-- ===== 06 CONTEXT — V5: business-context-study with annotation ===== -->
 <section class="section section--limewash why-context-section" aria-labelledby="chapter-06-title">
   <div class="container">
     <div class="why-chapter" data-reveal>
@@ -455,10 +532,10 @@ $ashtaIds = [
       </div>
       <div class="why-context-band" aria-hidden="true">
         <picture>
-          <source type="image/webp" srcset="<?= asset_url('/assets/editorial/rural-landscape.webp') ?>">
+          <source type="image/webp" srcset="<?= asset_url('/assets/editorial/business-context-study.webp') ?>">
           <img class="editorial-image"
-               src="<?= asset_url('/assets/editorial/rural-landscape.jpg') ?>"
-               alt="Indian rural landscape"
+               src="<?= asset_url('/assets/editorial/business-context-study.jpg') ?>"
+               alt=""
                width="1344" height="768"
                loading="lazy" decoding="async">
         </picture>

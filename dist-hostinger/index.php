@@ -1,28 +1,34 @@
 <?php
 /**
- * Gaurikrit Bio Products — Homepage (V4 asset replacement pass).
- * Task V4-ASSETS.
+ * Gaurikrit Bio Products — Homepage (V5 finish pass).
+ * Task V5-FINISH.
  *
- * Factual architecture unchanged from V3. This pass replaces coded SVG
- * illustrations with REAL client photography + high-quality editorial
- * artwork. SVG is kept ONLY for interactive elements (ashta-laabh-seal).
+ * Refines the V4 composition: organic haldi field, exterior-wall-study-v2
+ * on the Emulsion chapter, finished-wall-study on the Material-to-wall
+ * triptych right panel, strengthened Ashta section, inline SVG wall-with-
+ * dimension-lines for the Calculator teaser, business-context-study on
+ * Pathways. Factual data unchanged from data.php.
  *
  * Composition:
- *   1. Hero — 12-col (text 5 / visual 7). Real group photo (1280×621)
- *      eager+high-priority. Behind: CSS haldi field (no SVG). Zebu cow
- *      engraving at 0.14 opacity. Rural landscape band at 0.12 opacity.
+ *   1. Hero — text 5 / visual 7. Real group photo (1280×621) eager+
+ *      high-priority. Behind: organic CSS haldi field (irregular border-
+ *      radius + layered radial gradients, no SVG). Zebu cow engraving at
+ *      0.14 opacity. Rural landscape band at 0.12 opacity.
  *   2. Material Statement — 42/58. Zebu-study.webp large right (58%).
  *   3. Distemper chapter — interior-wall-study as env + real product
  *      photo (510×538, natural size). Ghost "DISTEMPER". Cool section.
- *   4. Emulsion chapter — exterior-wall-study as env + real product
+ *   4. Emulsion chapter — exterior-wall-study-v2 as env + real product
  *      photo (355×486, natural size). Ghost "EMULSION". Warm. Reversed.
- *   5. Material Journey — 3-panel composition (interior + group + exterior).
- *   6. Ashta Laabh — keep SVG seal. Zebu-study at 0.14 opacity bg.
+ *   5. Material Journey — 3-panel composition (interior + group +
+ *      finished-wall-study).
+ *   6. Ashta Laabh — strengthened seal (44rem), darker warm bg, bolder
+ *      benefit labels. SVG seal kept.
  *   7. Colours of India — courtyard-study.webp (1942×809) large wall.
  *      Swatches recolor via --wall-color CSS var.
  *   8. Mission — forest section. Rural-landscape at 0.15 opacity.
- *   9. Calculator Teaser — mini project-summary + small wall elevation.
- *  10. Pathways — rural-landscape shared + 4 ruled columns.
+ *   9. Calculator Teaser — inline SVG wall with dimension lines
+ *      (no photo, no poster styling) + mini project-summary preview.
+ *  10. Pathways — business-context-study shared + 4 ruled columns.
  */
 declare(strict_types=1);
 
@@ -81,26 +87,49 @@ $ashtaIds = [
   .hero__body { max-width: 38rem; }
   .hero__ctas { margin-top: 2.25rem; }
 
-  /* V4 hero visual stack: CSS haldi field → group photo → zebu engraving. */
+  /* V5 hero visual stack: organic CSS haldi field → group photo → zebu engraving. */
   .hero__visual { position: relative; min-height: 22rem; width: 100%; }
   @media (min-width: 768px)  { .hero__visual { min-height: 26rem; } }
   @media (min-width: 1024px) { .hero__visual { min-height: 34rem; } }
 
-  /* CSS haldi field — a div with radial haldi gradient (NO SVG). */
+  /* CSS haldi field — irregular organic shape, layered gradients so it
+     reads as a painted wall surface (not a single blob). No SVG. */
   .hero__haldi-field {
-    position: absolute; inset: -1rem -1rem 1.5rem; z-index: 0;
+    position: absolute; inset: -0.5rem -0.5rem 0.75rem; z-index: 0;
     pointer-events: none;
     display: flex; align-items: center; justify-content: center;
   }
   .hero__haldi-field::before {
     content: ''; display: block;
-    width: 88%; height: 80%;
-    background: radial-gradient(ellipse 70% 60% at 50% 40%,
-                var(--haldi) 0%,
-                color-mix(in srgb, var(--haldi) 78%, transparent) 60%,
-                transparent 92%);
+    width: 92%; height: 86%;
+    /* Irregular painted-edge border-radius (asymmetric, organic). */
+    border-radius: 46% 54% 48% 52% / 50% 46% 54% 50%;
+    /* Three layered radial gradients + an inset haldi glow = painted
+       wall texture, not a flat blob. */
+    background:
+      radial-gradient(ellipse 72% 60% at 50% 38%,
+        var(--haldi) 0%,
+        color-mix(in srgb, var(--haldi) 78%, transparent) 55%,
+        transparent 92%),
+      radial-gradient(ellipse 36% 30% at 32% 58%,
+        color-mix(in srgb, var(--haldi) 88%, transparent) 0%,
+        transparent 72%),
+      radial-gradient(ellipse 28% 24% at 68% 62%,
+        color-mix(in srgb, var(--haldi) 70%, transparent) 0%,
+        transparent 78%);
+    box-shadow: inset 0 0 60px color-mix(in srgb, var(--haldi) 22%, transparent);
   }
-  .hero__haldi-field .hero__stroke-svg { display: none; }   /* V4: no SVG */
+  .hero__haldi-field .hero__stroke-svg { display: none; }   /* V5: no SVG */
+  /* Subtle painted-surface grain via repeating-linear-gradient overlay.
+     No mix-blend-mode (kept V4 policy). */
+  .hero__haldi-field::after {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background: repeating-linear-gradient(115deg,
+      transparent 0 6px,
+      rgba(255, 250, 235, 0.05) 6px 7px,
+      transparent 7px 13px);
+    border-radius: inherit;
+  }
 
   /* Real group photo — eager + high priority, dominant. */
   .hero__bucket {
@@ -222,18 +251,37 @@ $ashtaIds = [
     color: var(--fg);
   }
 
-  /* ===== 6. ASHTA LAABH — keep SVG seal + zebu-study bg engraving ===== */
-  .ashta-section { position: relative; overflow: hidden; }
+  /* ===== 6. ASHTA LAABH — strengthened (V5): darker warm bg, larger seal,
+     bolder benefit labels. SVG seal kept interactive. ===== */
+  .ashta-section {
+    position: relative; overflow: hidden;
+    /* Slightly darker warm tone — overrides section--limewash. */
+    background: color-mix(in srgb, var(--haldi) 10%, var(--limewash));
+  }
   .ashta-section__bg {
     position: absolute; right: -10%; top: 50%; transform: translateY(-50%);
     width: 60%; height: 80%;
-    opacity: 0.08; pointer-events: none; overflow: hidden;
+    opacity: 0.10; pointer-events: none; overflow: hidden;
   }
   .ashta-section__bg .editorial-image { width: 100%; height: 100%; object-fit: cover; }
   .ashta-section__inner { position: relative; z-index: 1; }
   .ashta-section__grid { position: relative; z-index: 1; }
-  .ashta-section__seal { max-width: 38rem; margin-inline: auto; }
+  /* V5: enlarge seal from 38rem → 44rem for more authority. */
+  .ashta-section__seal { max-width: 44rem; margin-inline: auto; }
   .ashta-benefit__num { font-feature-settings: "tnum"; }
+  /* V5: bolder / larger benefit labels (page-local override). */
+  .ashta-benefit__name {
+    font-weight: 700 !important;
+    font-size: 1.0625rem !important;
+    letter-spacing: 0.005em;
+  }
+  .ashta-benefit__deva {
+    font-size: 0.9375rem !important;
+    color: color-mix(in srgb, var(--haldi-deep) 60%, var(--fg-muted)) !important;
+  }
+  .ashta-benefit {
+    padding: 1.25rem 0 !important;
+  }
 
   /* ===== 7. COLOURS OF INDIA — courtyard-study.jpg large wall plane ===== */
   .colours-section__head { max-width: 48rem; margin-bottom: 2.5rem; }
@@ -321,19 +369,47 @@ $ashtaIds = [
   }
   .mission-band__cta { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 0.75rem; }
 
-  /* ===== 9. CALCULATOR TEASER ===== */
+  /* ===== 9. CALCULATOR TEASER (V5: inline SVG wall + dimension lines,
+     no photo, no poster styling) ===== */
   .calc-teaser { padding-block: clamp(3.5rem, 6vw, 5.5rem); }
-  .calc-teaser__preview { padding: 1.75rem; }
-  .calc-teaser__art { aspect-ratio: 4/3; position: relative; overflow: hidden; }
-  .calc-teaser__art .editorial-image {
-    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
-    opacity: 0.35;
+  .calc-teaser__art {
+    position: relative; aspect-ratio: 4/3;
+    background: var(--paper);
+    border: 1px solid var(--border);
+    border-radius: var(--r-panel);
+    overflow: hidden; display: flex; align-items: center; justify-content: center;
+    padding: 1.5rem;
+  }
+  .calc-teaser__wall-svg {
+    position: relative; z-index: 1;
+    display: block; width: 100%; max-width: 28rem; height: auto;
+    color: var(--primary);
   }
   .calc-teaser__art .calc-teaser__preview {
-    position: relative; z-index: 1; background: rgba(250, 248, 241, 0.95);
+    position: absolute; right: 1rem; bottom: 1rem; z-index: 2;
+    background: rgba(250, 248, 241, 0.96);
+    border: 1px solid var(--border);
+    border-radius: var(--r-card);
+    box-shadow: var(--shadow-soft, 0 8px 24px -8px rgba(34, 36, 27, 0.18));
+    padding: 1rem 1.125rem;
+    min-width: 13rem;
+  }
+  .calc-teaser__preview-row {
+    display: flex; justify-content: space-between; align-items: baseline;
+    gap: 1rem; padding-block: 0.375rem;
+    border-bottom: 1px dashed var(--border);
+  }
+  .calc-teaser__preview-row:last-child { border-bottom: 0; }
+  .calc-teaser__preview-label {
+    font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--fg-muted);
+  }
+  .calc-teaser__preview-value {
+    font-family: var(--font-display); font-weight: 700; font-size: 0.875rem;
+    color: var(--primary);
   }
 
-  /* ===== 10. PROJECT PATHWAYS ===== */
+  /* ===== 10. PROJECT PATHWAYS (V5: business-context-study shared) ===== */
   .pathways-section { padding-block: clamp(3rem, 6vw, 5rem); }
   .pathways-section__head { max-width: 48rem; margin-bottom: 2.5rem; }
   .pathways-illustration {
@@ -502,6 +578,7 @@ $ashtaIds = [
 
 <!-- ============================================================
      4. EMULSION PRODUCT CHAPTER (warm / leaf / haldi env, reversed)
+     V5: env replaced with exterior-wall-study-v2 (less AI-looking).
      ============================================================ -->
 <section class="product-chapter product-chapter--emulsion" aria-labelledby="emulsion-chapter-title">
   <span class="product-chapter__ghost" aria-hidden="true">EMULSION</span>
@@ -509,9 +586,9 @@ $ashtaIds = [
     <div class="product-chapter__inner" data-reveal>
       <div class="product-chapter__visual">
         <picture>
-          <source type="image/webp" srcset="<?= asset_url('/assets/editorial/exterior-wall-study.webp') ?>">
+          <source type="image/webp" srcset="<?= asset_url('/assets/editorial/exterior-wall-study-v2.webp') ?>">
           <img class="chapter-env"
-               src="<?= asset_url('/assets/editorial/exterior-wall-study.jpg') ?>"
+               src="<?= asset_url('/assets/editorial/exterior-wall-study-v2.jpg') ?>"
                alt=""
                width="1344" height="768"
                loading="lazy" decoding="async">
@@ -588,10 +665,10 @@ $ashtaIds = [
       </div>
       <div class="material-flow__panel">
         <picture>
-          <source type="image/webp" srcset="<?= asset_url('/assets/editorial/exterior-wall-study.webp') ?>">
+          <source type="image/webp" srcset="<?= asset_url('/assets/editorial/finished-wall-study.webp') ?>">
           <img class="editorial-image"
-               src="<?= asset_url('/assets/editorial/exterior-wall-study.jpg') ?>"
-               alt="Indian exterior wall"
+               src="<?= asset_url('/assets/editorial/finished-wall-study.jpg') ?>"
+               alt="Indian finished limewashed wall"
                width="1344" height="768"
                loading="lazy" decoding="async">
         </picture>
@@ -750,14 +827,34 @@ $ashtaIds = [
         </div>
       </div>
       <div class="calc-teaser__art" aria-hidden="true">
-        <picture>
-          <source type="image/webp" srcset="<?= asset_url('/assets/editorial/architectural-elevation.webp') ?>">
-          <img class="editorial-image"
-               src="<?= asset_url('/assets/editorial/architectural-elevation.jpg') ?>"
-               alt=""
-               width="1344" height="768"
-               loading="lazy" decoding="async">
-        </picture>
+        <!-- V5: inline SVG wall elevation with width + height dimension
+             lines. No photo, no poster styling — a real mini-tool preview. -->
+        <svg class="calc-teaser__wall-svg" viewBox="0 0 320 220" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <!-- Wall plane -->
+          <rect x="48" y="28" width="224" height="156" rx="2"
+                fill="var(--paper-warm)" stroke="currentColor" stroke-width="1.5"/>
+          <!-- Subtle plaster texture lines -->
+          <line x1="48" y1="64" x2="272" y2="64" stroke="currentColor" stroke-width="0.5" opacity="0.18"/>
+          <line x1="48" y1="108" x2="272" y2="108" stroke="currentColor" stroke-width="0.5" opacity="0.18"/>
+          <line x1="48" y1="148" x2="272" y2="148" stroke="currentColor" stroke-width="0.5" opacity="0.18"/>
+          <!-- Width dimension line (bottom) -->
+          <line x1="48" y1="200" x2="272" y2="200" stroke="currentColor" stroke-width="1"/>
+          <line x1="48" y1="196" x2="48" y2="204" stroke="currentColor" stroke-width="1"/>
+          <line x1="272" y1="196" x2="272" y2="204" stroke="currentColor" stroke-width="1"/>
+          <text x="160" y="214" text-anchor="middle" font-family="Manrope, sans-serif"
+                font-size="9" font-weight="700" letter-spacing="1.5"
+                fill="currentColor">WIDTH</text>
+          <!-- Height dimension line (left) -->
+          <line x1="32" y1="28" x2="32" y2="184" stroke="currentColor" stroke-width="1"/>
+          <line x1="28" y1="28" x2="36" y2="28" stroke="currentColor" stroke-width="1"/>
+          <line x1="28" y1="184" x2="36" y2="184" stroke="currentColor" stroke-width="1"/>
+          <text x="24" y="110" text-anchor="middle" font-family="Manrope, sans-serif"
+                font-size="9" font-weight="700" letter-spacing="1.5"
+                fill="currentColor" transform="rotate(-90 24 110)">HEIGHT</text>
+          <!-- Area label inside wall -->
+          <text x="160" y="112" text-anchor="middle" font-family="Newsreader, serif"
+                font-size="15" font-weight="700" fill="var(--haldi-deep)">W × H = area</text>
+        </svg>
         <div class="calc-teaser__preview">
           <div class="calc-teaser__preview-row">
             <span class="calc-teaser__preview-label">Painting</span>
@@ -793,9 +890,9 @@ $ashtaIds = [
 
     <div class="pathways-illustration" aria-hidden="true" data-reveal>
       <picture>
-        <source type="image/webp" srcset="<?= asset_url('/assets/editorial/rural-landscape.webp') ?>">
+        <source type="image/webp" srcset="<?= asset_url('/assets/editorial/business-context-study.webp') ?>">
         <img class="editorial-image"
-             src="<?= asset_url('/assets/editorial/rural-landscape.jpg') ?>"
+             src="<?= asset_url('/assets/editorial/business-context-study.jpg') ?>"
              alt=""
              width="1344" height="768"
              loading="lazy" decoding="async">

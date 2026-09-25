@@ -263,23 +263,56 @@
     max-width: min(60%, 340px);
   }
 
-  /* ===== SPEC MATRIX (no card, borderless) ===== */
+  /* ===== SPEC MATRIX (V5: header row + zebra striping + taller rows
+     + bolder labels — a real product comparison, not a sparse list) ===== */
   .spec-matrix-section { padding-block: clamp(3rem, 6vw, 5rem); }
   .spec-matrix-section__head { max-width: 48rem; margin-bottom: 2.5rem; }
-  .spec-matrix__row { grid-template-columns: 1fr; gap: 0.75rem; padding: 1.5rem 0; }
+  /* V5: wrap the matrix in a soft paper panel so the striping reads. */
+  .spec-matrix {
+    border: 1px solid var(--border);
+    border-radius: var(--r-panel);
+    overflow: hidden;
+    background: var(--paper);
+  }
+  .spec-matrix__row {
+    grid-template-columns: 1fr; gap: 0.75rem;
+    padding: 1.75rem 1.25rem;  /* V5: taller, more padding */
+    border-bottom: 1px solid var(--border);
+  }
   @media (min-width: 768px) {
     .spec-matrix__row {
-      grid-template-columns: 12rem 1fr 1fr; gap: 1.5rem; padding: 1.5rem 0;
+      grid-template-columns: 12rem 1fr 1fr; gap: 1.5rem; padding: 1.75rem 1.5rem;
     }
   }
+  /* V5: zebra striping — alternating rows at haldi 3% opacity. */
+  .spec-matrix__row:nth-child(even) {
+    background: color-mix(in srgb, var(--haldi) 3%, transparent);
+  }
+  /* Header row: stronger underline, no striping, sticky-feel bg. */
+  .spec-matrix__row:first-child {
+    border-bottom: 2px solid var(--border-strong);
+    background: color-mix(in srgb, var(--limewash) 50%, var(--paper));
+  }
+  .spec-matrix__row:last-child { border-bottom: 0; }
   .spec-matrix__col-head {
     font-size: 0.75rem; font-weight: 700; letter-spacing: 0.16em;
     text-transform: uppercase; color: var(--fg-muted);
   }
   .spec-matrix__col-head--distemper { color: var(--indigo); }
   .spec-matrix__col-head--emulsion { color: var(--leaf); }
+  /* V5: bolder spec labels. */
+  .spec-matrix__label {
+    font-weight: 700 !important;
+    font-size: 0.875rem !important;
+    color: var(--fg) !important;
+    letter-spacing: 0.02em;
+  }
+  .spec-matrix__value {
+    font-weight: 600 !important;
+    color: var(--fg) !important;
+  }
 
-  /* ===== BENEFITS STRIP ===== */
+  /* ===== BENEFITS STRIP (V5: haldi dot indicators + bolder name typography) ===== */
   .benefits-strip { padding-block: clamp(3rem, 6vw, 5rem); }
   .benefits-strip__head { max-width: 48rem; margin-bottom: 2rem; }
   .benefits-strip__list {
@@ -290,23 +323,46 @@
   @media (min-width: 640px) { .benefits-strip__list { grid-template-columns: 1fr 1fr; column-gap: 3rem; } }
   @media (min-width: 1024px) { .benefits-strip__list { grid-template-columns: repeat(4, 1fr); } }
   .benefits-strip__item {
-    padding: 1.25rem 0; border-bottom: 1px solid var(--border);
-    display: grid; grid-template-columns: 2.5rem 1fr; gap: 1rem;
-    align-items: baseline; counter-increment: benefit;
+    padding: 1.5rem 0; border-bottom: 1px solid var(--border);
+    display: grid; grid-template-columns: 3rem 1fr; gap: 1rem;
+    align-items: center; counter-increment: benefit;
   }
-  .benefits-strip__item::before {
-    content: counter(benefit, decimal-leading-zero);
+  /* V5: number column now holds the counter + a haldi dot indicator. */
+  .benefits-strip__num {
+    display: inline-flex; align-items: center; gap: 0.5rem;
     font-family: var(--font-display); font-weight: 700;
-    color: var(--haldi-deep); font-size: 0.875rem; letter-spacing: 0.04em;
+    color: var(--haldi-deep); font-size: 0.9375rem; letter-spacing: 0.04em;
   }
-  .benefits-strip__name { font-weight: 600; font-size: 0.9375rem; color: var(--fg); }
+  .benefits-strip__num::before {
+    content: counter(benefit, decimal-leading-zero);
+  }
+  .benefits-strip__dot {
+    display: inline-block;
+    width: 0.5rem; height: 0.5rem; border-radius: 50%;
+    background: var(--haldi);
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--haldi) 22%, transparent);
+  }
+  /* V5: bolder name typography (more memorable). */
+  .benefits-strip__name {
+    font-weight: 700; font-size: 1rem; color: var(--fg); line-height: 1.3;
+  }
   .benefits-strip__deva {
-    font-family: var(--font-deva); font-size: 0.8125rem; color: var(--fg-muted);
-    display: block; margin-top: 0.25rem;
+    font-family: var(--font-deva); font-size: 0.875rem; color: var(--fg-muted);
+    display: block; margin-top: 0.375rem;
   }
 
-  /* ===== FAQ ===== */
-  .faq-section { padding-block: clamp(3rem, 6vw, 5rem); }
+  /* ===== FAQ (V5: more spacing above + haldi divider line) ===== */
+  .faq-section {
+    padding-block: clamp(4.5rem, 8vw, 6.5rem);  /* V5: increased */
+    position: relative;
+  }
+  /* V5: subtle haldi divider line at the top of the FAQ section. */
+  .faq-section::before {
+    content: ''; display: block;
+    width: 4rem; height: 2px;
+    background: var(--haldi);
+    margin: 0 0 3rem;
+  }
   .faq-section__head { max-width: 48rem; margin-bottom: 2rem; }
 </style>
 
@@ -388,7 +444,7 @@
   <div class="container">
     <div class="product-chapter__inner" data-reveal>
       <div class="product-chapter__visual">
-        <picture><source type="image/webp" srcset="../assets/editorial/exterior-wall-study.webp"><img class="chapter-env" src="../assets/editorial/exterior-wall-study.jpg" alt="" width="1344" height="768" loading="lazy" decoding="async"></picture>
+        <picture><source type="image/webp" srcset="../assets/editorial/exterior-wall-study-v2.webp"><img class="chapter-env" src="../assets/editorial/exterior-wall-study-v2.jpg" alt="" width="1344" height="768" loading="lazy" decoding="async"></picture>
         <img class="chapter-product chapter-product--emulsion"
              src="../assets/products/prakritik-emulsion.jpg"
              alt="Prakritik Emulsion Paint"
@@ -493,48 +549,72 @@
     </div>
     <ol class="benefits-strip__list" data-reveal-stagger>
         <li class="benefits-strip__item">
+          <span class="benefits-strip__num" aria-hidden="true">
+            <span class="benefits-strip__dot"></span>
+          </span>
           <span>
             <span class="benefits-strip__name">Antibacterial</span>
             <span class="benefits-strip__deva">जीवाणुरोधी</span>
           </span>
         </li>
         <li class="benefits-strip__item">
+          <span class="benefits-strip__num" aria-hidden="true">
+            <span class="benefits-strip__dot"></span>
+          </span>
           <span>
             <span class="benefits-strip__name">Antifungal</span>
             <span class="benefits-strip__deva">कवकरोधी</span>
           </span>
         </li>
         <li class="benefits-strip__item">
+          <span class="benefits-strip__num" aria-hidden="true">
+            <span class="benefits-strip__dot"></span>
+          </span>
           <span>
             <span class="benefits-strip__name">Eco-Friendly</span>
             <span class="benefits-strip__deva">पर्यावरण-मित्र</span>
           </span>
         </li>
         <li class="benefits-strip__item">
+          <span class="benefits-strip__num" aria-hidden="true">
+            <span class="benefits-strip__dot"></span>
+          </span>
           <span>
             <span class="benefits-strip__name">Natural Thermal Insulator</span>
             <span class="benefits-strip__deva">प्राकृतिक ऊष्मीय इन्सुलेटर</span>
           </span>
         </li>
         <li class="benefits-strip__item">
+          <span class="benefits-strip__num" aria-hidden="true">
+            <span class="benefits-strip__dot"></span>
+          </span>
           <span>
             <span class="benefits-strip__name">Cost-Effective</span>
             <span class="benefits-strip__deva">किफ़ायती</span>
           </span>
         </li>
         <li class="benefits-strip__item">
+          <span class="benefits-strip__num" aria-hidden="true">
+            <span class="benefits-strip__dot"></span>
+          </span>
           <span>
             <span class="benefits-strip__name">Free from Heavy Metals</span>
             <span class="benefits-strip__deva">भारी धातुओं से मुक्त</span>
           </span>
         </li>
         <li class="benefits-strip__item">
+          <span class="benefits-strip__num" aria-hidden="true">
+            <span class="benefits-strip__dot"></span>
+          </span>
           <span>
             <span class="benefits-strip__name">Non-Toxic</span>
             <span class="benefits-strip__deva">गैर-विषाक्त</span>
           </span>
         </li>
         <li class="benefits-strip__item">
+          <span class="benefits-strip__num" aria-hidden="true">
+            <span class="benefits-strip__dot"></span>
+          </span>
           <span>
             <span class="benefits-strip__name">Odourless</span>
             <span class="benefits-strip__deva">गंधरहित</span>

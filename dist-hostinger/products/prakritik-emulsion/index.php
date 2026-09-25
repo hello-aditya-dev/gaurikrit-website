@@ -5,7 +5,7 @@
  *
  * Composition unchanged from V3. This pass replaces coded SVG bucket
  * illustration with real product photography (355×486, NOT upscaled) and
- * uses exterior-wall-study.webp as the hero environment. SVG kept only for
+ * uses exterior-wall-study-v2.webp as the hero environment. SVG kept only for
  * interactive ashta-laabh-seal.
  *
  * Composition (REVERSED — product left, copy right):
@@ -140,9 +140,9 @@ $specRows = [
       <div class="product-detail__media">
         <span class="product-detail__media__num" aria-hidden="true">02</span>
         <picture>
-          <source type="image/webp" srcset="<?= asset_url('/assets/editorial/exterior-wall-study.webp') ?>">
+          <source type="image/webp" srcset="<?= asset_url('/assets/editorial/exterior-wall-study-v2.webp') ?>">
           <img class="media-env"
-               src="<?= asset_url('/assets/editorial/exterior-wall-study.jpg') ?>"
+               src="<?= asset_url('/assets/editorial/exterior-wall-study-v2.jpg') ?>"
                alt=""
                width="1344" height="768"
                loading="eager" decoding="async">
