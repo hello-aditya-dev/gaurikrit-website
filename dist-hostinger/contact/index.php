@@ -1,7 +1,7 @@
 <?php
 /**
- * Gaurikrit Bio Products — Contact (V3 rebuild).
- * Task V3-PAGES.
+ * Gaurikrit Bio Products — Contact (V4 asset replacement pass).
+ * Task V4-ASSETS.
  *
  * Simplified. NO large architectural hero. NO newsletter. NO FAQ.
  *
@@ -10,6 +10,9 @@
  *
  *   Layout: .contact-section 5 col company/contact info (left) /
  *           7 col enquiry form (right). NO giant card.
+ *
+ *   The official logo mark (696×700) is used as a subtle secondary visual
+ *   in the hero — no large artwork.
  *
  *   Form: name, phone, email, interest (select 6 values from
  *   $INTEREST_OPTIONS), message. Posts to /api/contact.php.
@@ -42,7 +45,10 @@ if ($interestParam !== '' && array_key_exists($interestParam, $INTEREST_OPTIONS)
 <style>
   /* ===== HERO ===== */
   .contact-hero { padding-top: calc(var(--header-h) + 2rem); padding-bottom: 1.5rem; }
-  .contact-hero__container { display: grid; gap: 2rem; align-items: start; }
+  .contact-hero__container { display: grid; gap: 2rem; align-items: center; }
+  @media (min-width: 1024px) {
+    .contact-hero__container { grid-template-columns: 7fr 5fr; gap: 3rem; }
+  }
   .contact-hero__lockup { max-width: 42rem; }
   .contact-hero__title {
     font-family: var(--font-display); font-size: clamp(2.2rem, 5vw, 4rem);
@@ -52,6 +58,23 @@ if ($interestParam !== '' && array_key_exists($interestParam, $INTEREST_OPTIONS)
   .contact-hero__sub {
     margin-top: 1rem; color: var(--fg-muted);
     font-size: clamp(1rem, 2vw, 1.125rem); line-height: 1.65; max-width: 60ch;
+  }
+  /* V4: subtle logo mark as secondary visual — no large artwork. */
+  .contact-hero__mark {
+    display: flex; align-items: center; justify-content: center;
+    aspect-ratio: 696/700;
+    background: radial-gradient(circle at 50% 45%, #f9f5eb, #e7ebdf);
+    border-radius: var(--r-panel);
+    overflow: hidden;
+    padding: 1.5rem;
+  }
+  .contact-hero__mark .contact-hero__mark-img {
+    display: block;
+    width: min(75%, 220px); height: auto;
+    object-fit: contain;
+  }
+  @media (max-width: 1023px) {
+    .contact-hero__mark { display: none; }
   }
 
   /* ===== CONTACT SECTION (5 / 7 — info left, form right) ===== */
@@ -113,6 +136,13 @@ if ($interestParam !== '' && array_key_exists($interestParam, $INTEREST_OPTIONS)
           you are painting — home, site, Gaushala collaboration — and we will
           respond.
         </p>
+      </div>
+      <div class="contact-hero__mark" aria-hidden="true">
+        <img class="contact-hero__mark-img"
+             src="<?= asset_url('/assets/brand/gaurikrit-logo-mark.png') ?>"
+             alt=""
+             width="696" height="700"
+             loading="eager" decoding="async">
       </div>
     </div>
   </div>

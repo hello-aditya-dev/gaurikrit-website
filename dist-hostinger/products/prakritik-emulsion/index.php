@@ -1,11 +1,16 @@
 <?php
 /**
- * Gaurikrit Bio Products — Prakritik Emulsion Product Detail (V3 rebuild).
- * Task V3-PAGES.
+ * Gaurikrit Bio Products — Prakritik Emulsion Product Detail (V4 asset pass).
+ * Task V4-ASSETS.
+ *
+ * Composition unchanged from V3. This pass replaces coded SVG bucket
+ * illustration with real product photography (355×486, NOT upscaled) and
+ * uses exterior-wall-study.webp as the hero environment. SVG kept only for
+ * interactive ashta-laabh-seal.
  *
  * Composition (REVERSED — product left, copy right):
  *   - Warm leaf / haldi material environment (.product-detail--warm).
- *   - Hero: product 7 (left) / copy 5 (right).
+ *   - Hero: product 7 (left) / copy 5 (right) — real photo, natural size.
  *   - Spec sheet: same numbered ruled system, different layout.
  *   - Coverage disclaimer.
  *   - Ashta Laabh grid.
@@ -53,6 +58,14 @@ $specRows = [
 ];
 ?>
 <style>
+  /* ===== Editorial image reset (V4 — NO mix-blend-mode, NO blur filters) ===== */
+  .editorial-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
   /* ===== HERO — REVERSED (product left, copy right — warm env) ===== */
   .product-detail { padding-bottom: clamp(3rem, 6vw, 5rem); }
   .product-detail__hero {
@@ -67,19 +80,32 @@ $specRows = [
     .product-detail--warm .product-detail__hero > :first-child { order: 1; }
     .product-detail--warm .product-detail__hero > :last-child  { order: 2; }
   }
+  /* V4: media is a real environment (exterior-wall-study) with the real
+     product photo overlaid at its natural size. NO upscaling. */
   .product-detail__media {
-    position: relative; aspect-ratio: 1;
-    background: linear-gradient(160deg, var(--paper), var(--paper-warm));
+    position: relative; aspect-ratio: 4/3;
+    background: var(--paper-leaf);
     border: 1px solid var(--border); border-top: 3px solid var(--leaf);
     border-radius: var(--r-panel); overflow: hidden;
     min-height: 22rem;
+    display: flex; align-items: center; justify-content: center;
   }
   @media (min-width: 1024px) { .product-detail__media { min-height: 30rem; } }
-  .product-detail__media .product-media { width: 100%; height: 100%; }
-  .product-detail__media .product-media__official { object-fit: contain; padding: 2.5rem; }
-  .product-detail__media .product-media__fallback { padding: 2rem; }
+  .product-detail__media .media-env {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover;
+  }
+  .product-detail__media .media-product {
+    position: relative; z-index: 2;
+    display: block;
+    max-height: 84%;
+    width: auto;
+    max-width: min(55%, 340px);   /* 355×486 photo — never wider than 340px CSS */
+    object-fit: contain;
+    filter: drop-shadow(0 18px 28px rgba(34, 36, 27, 0.20));
+  }
   .product-detail__media__num {
-    position: absolute; top: 1rem; right: 1.25rem;
+    position: absolute; top: 1rem; right: 1.25rem; z-index: 3;
     font-family: var(--font-display); font-size: clamp(3rem, 8vw, 5rem);
     font-weight: 700; color: var(--leaf); opacity: 0.18;
     line-height: 1; pointer-events: none;
@@ -97,7 +123,7 @@ $specRows = [
   .coverage-disclaimer { margin-top: 2rem; border-left-color: var(--leaf); }
 
   /* ===== ASHTA LAABH ===== */
-  .emulsion-ashta-section { padding-block: clamp(3rem, 6vw, 5rem); }
+  .emulsion-ashta-section { padding-block: clamp(3rem, 6vw, 5rem); position: relative; overflow: hidden; }
   .emulsion-ashta-section__head { max-width: 48rem; margin-bottom: 2.5rem; }
 </style>
 
@@ -113,15 +139,19 @@ $specRows = [
     <div class="product-detail__hero" data-reveal>
       <div class="product-detail__media">
         <span class="product-detail__media__num" aria-hidden="true">02</span>
-        <div class="product-media" data-official-image="<?= e($product['officialImage']) ?>">
-          <img class="product-media__official"
-               src="<?= e($product['officialImage']) ?>"
-               alt="<?= e($product['name']) ?> pack"
-               width="800" height="800" loading="eager" decoding="async">
-          <div class="product-media__fallback">
-            <?php render_illustration('prakritik-emulsion-bucket'); ?>
-          </div>
-        </div>
+        <picture>
+          <source type="image/webp" srcset="<?= asset_url('/assets/editorial/exterior-wall-study.webp') ?>">
+          <img class="media-env"
+               src="<?= asset_url('/assets/editorial/exterior-wall-study.jpg') ?>"
+               alt=""
+               width="1344" height="768"
+               loading="eager" decoding="async">
+        </picture>
+        <img class="media-product"
+             src="<?= asset_url($product['officialImage']) ?>"
+             alt="<?= e($product['name']) ?>"
+             width="355" height="486"
+             loading="eager" fetchpriority="high" decoding="async">
       </div>
 
       <div class="product-detail__info">

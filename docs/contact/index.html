@@ -200,7 +200,10 @@
 <style>
   /* ===== HERO ===== */
   .contact-hero { padding-top: calc(var(--header-h) + 2rem); padding-bottom: 1.5rem; }
-  .contact-hero__container { display: grid; gap: 2rem; align-items: start; }
+  .contact-hero__container { display: grid; gap: 2rem; align-items: center; }
+  @media (min-width: 1024px) {
+    .contact-hero__container { grid-template-columns: 7fr 5fr; gap: 3rem; }
+  }
   .contact-hero__lockup { max-width: 42rem; }
   .contact-hero__title {
     font-family: var(--font-display); font-size: clamp(2.2rem, 5vw, 4rem);
@@ -210,6 +213,23 @@
   .contact-hero__sub {
     margin-top: 1rem; color: var(--fg-muted);
     font-size: clamp(1rem, 2vw, 1.125rem); line-height: 1.65; max-width: 60ch;
+  }
+  /* V4: subtle logo mark as secondary visual — no large artwork. */
+  .contact-hero__mark {
+    display: flex; align-items: center; justify-content: center;
+    aspect-ratio: 696/700;
+    background: radial-gradient(circle at 50% 45%, #f9f5eb, #e7ebdf);
+    border-radius: var(--r-panel);
+    overflow: hidden;
+    padding: 1.5rem;
+  }
+  .contact-hero__mark .contact-hero__mark-img {
+    display: block;
+    width: min(75%, 220px); height: auto;
+    object-fit: contain;
+  }
+  @media (max-width: 1023px) {
+    .contact-hero__mark { display: none; }
   }
 
   /* ===== CONTACT SECTION (5 / 7 — info left, form right) ===== */
@@ -272,6 +292,13 @@
           respond.
         </p>
       </div>
+      <div class="contact-hero__mark" aria-hidden="true">
+        <img class="contact-hero__mark-img"
+             src="../assets/brand/gaurikrit-logo-mark.png"
+             alt=""
+             width="696" height="700"
+             loading="eager" decoding="async">
+      </div>
     </div>
   </div>
 </section>
@@ -330,9 +357,11 @@ India</dd>
         </div>
       </aside>
 
-      <!-- RIGHT — enquiry form -->
-      <form class="contact-form" action="mailto:seva@gaurikrit.com" method="get"
-            data-contact-form data-static-preview novalidate>
+      <!-- RIGHT — enquiry form.
+           Static fallback: Formspree placeholder action, no CSRF, no honeypot.
+           Replace the form ID with a real Formspree endpoint before deploy. -->
+      <form class="contact-form" action="https://formspree.io/f/your-form-id" method="post"
+            data-contact-form novalidate>
         <p class="contact-form-card__intro">
           Fields marked <span class="req">*</span> are required.
         </p>
@@ -380,7 +409,7 @@ India</dd>
 
         <div class="calc-actions">
           <button type="submit" class="btn btn--primary btn--lg">
-            <span data-submit-label>Send via Email</span>
+            <span data-submit-label>Send Enquiry</span>
           </button>
         </div>
       </form>

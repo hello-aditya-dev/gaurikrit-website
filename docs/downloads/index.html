@@ -220,46 +220,34 @@
     font-size: clamp(1rem, 2vw, 1.125rem); max-width: 60ch;
   }
 
-  /* ===== DOWNLOADS SPLIT (cover left / details+actions right) ===== */
+  /* ===== DOWNLOADS SPLIT — real brochure cover left, details right ===== */
   .downloads-split {
     padding-block: clamp(2.5rem, 5vw, 4rem);
   }
+  /* Real brochure cover — display at its true aspect ratio (848×1200). */
   .dl-cover {
-    position: relative; min-height: 26rem;
-    background: linear-gradient(135deg, var(--haldi-soft), var(--haldi));
+    position: relative;
+    aspect-ratio: 848/1200;
+    background: var(--paper-warm);
     border: 1px solid var(--border-strong);
     border-radius: var(--r-panel);
     overflow: hidden;
-    display: flex; flex-direction: column; justify-content: flex-end;
-    padding: 2.5rem;
-  }
-  @media (min-width: 1024px) { .dl-cover { min-height: 34rem; } }
-  .dl-cover__media {
-    position: absolute; inset: 0; z-index: 0;
     display: flex; align-items: center; justify-content: center;
   }
-  .dl-cover__media .product-media { width: 100%; height: 100%; }
-  .dl-cover__media .product-media__official { object-fit: cover; }
-  .dl-cover__inner { position: relative; z-index: 2; color: var(--charcoal); }
-  .dl-cover__seal { width: 4rem; height: 4rem; margin: 0 0 1.25rem; }
-  .dl-cover__seal svg { width: 100%; height: 100%; }
-  .dl-cover__deva {
-    font-family: var(--font-deva); font-weight: 700;
-    font-size: clamp(1.5rem, 3vw, 2rem); color: var(--forest-deep);
+  .dl-cover .dl-cover__image {
+    display: block;
+    width: 100%; height: 100%;
+    object-fit: contain;
   }
-  .dl-cover__wordmark {
+  .dl-cover:has(.dl-cover__image) .dl-cover__fallback { display: none; }
+  .dl-cover__fallback {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    width: 100%; height: 100%;
+    text-align: center; padding: 2rem;
+    color: rgba(32, 30, 25, 0.4);
     font-family: var(--font-display); font-weight: 700;
-    font-size: clamp(1.5rem, 3vw, 2rem); color: var(--charcoal);
-    margin-top: 0.25rem;
-  }
-  .dl-cover__title {
-    font-family: var(--font-display); font-style: italic;
-    font-size: clamp(1.125rem, 2vw, 1.375rem); margin-top: 0.75rem;
-    color: var(--forest-deep); max-width: 28ch;
-  }
-  .dl-cover__foot {
-    margin-top: 1rem; font-size: 0.8125rem;
-    color: rgba(32, 30, 25, 0.7); letter-spacing: 0.04em;
+    font-size: clamp(1.5rem, 4vw, 3rem);
+    line-height: 1.15; letter-spacing: 0.02em;
   }
 
   /* Right column — details + actions */
@@ -300,6 +288,14 @@
     font-size: 0.9375rem; color: var(--fg-muted); line-height: 1.6;
   }
   .dl-missing strong { color: var(--fg); }
+
+  /* ===== Brochure detection (V4 static) — JS HEAD-fetches the PDF and
+     toggles data-brochure-state on the wrapper. Default (unknown /
+     checking / available): show available, hide missing. State="missing":
+     swap. Graceful fallback if JS fails: available block stays visible. ===== */
+  [data-brochure-detect] [data-brochure-if-missing] { display: none; }
+  [data-brochure-detect][data-brochure-state="missing"] [data-brochure-if-available] { display: none; }
+  [data-brochure-detect][data-brochure-state="missing"] [data-brochure-if-missing] { display: block; }
 </style>
 
 <!-- ===== HERO ===== -->
@@ -327,119 +323,71 @@
 <section class="section section--paper">
   <div class="container">
     <div class="downloads-split" data-reveal>
-      <!-- LEFT — large brochure cover -->
+      <!-- LEFT — real brochure cover (848×1200) -->
       <div class="dl-cover">
-        <div class="dl-cover__media" aria-hidden="true">
-          <div class="product-media" data-official-image="../assets/documents/prakritik-paint-brochure-cover.jpg">
-            <img class="product-media__official"
-                 src="../assets/documents/prakritik-paint-brochure-cover.jpg"
-                 alt="Prakritik Paint brochure cover"
-                 width="800" height="1000" loading="lazy" decoding="async">
-            <div class="product-media__fallback" style="display: flex; align-items: center; justify-content: center; width: 100%; height: 100%;">
-              <span style="font-family: var(--font-display); font-weight: 700; font-size: clamp(1.5rem, 4vw, 3rem); color: rgba(32,30,25,0.35); text-align: center; padding: 2rem;">PRAKRITIK<br>PAINT<br>BROCHURE</span>
-            </div>
-          </div>
-        </div>
-        <div class="dl-cover__inner">
-          <div class="dl-cover__seal" aria-hidden="true">
-            <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg"
-     class=""
-     role="img" aria-hidden="true"
-     preserveAspectRatio="xMidYMid meet"
-     width="100%" height="100%">
-  <title>Gaurikrit cow mark</title>
-
-  <!-- Emblem — clean circle, haldi fill, forest outline -->
-  <circle cx="70" cy="70" r="60"
-          fill="var(--haldi)" stroke="var(--forest)"
-          stroke-width="1.5"/>
-
-  <!-- Inner accent ring — very subtle, for restraint -->
-  <circle cx="70" cy="70" r="54"
-          fill="none" stroke="var(--forest)"
-          stroke-width="0.8" opacity="0.35"/>
-
-  <g fill="none" stroke="var(--forest)" stroke-width="1.5"
-     stroke-linecap="round" stroke-linejoin="round">
-
-    <!-- LEFT HORN — curves up and outward from the forehead, moderate length -->
-    <path d="M 60 38
-             C 52 28, 42 22, 32 22
-             C 28 22, 26 24, 28 26
-             C 36 30, 46 32, 56 36"/>
-
-    <!-- RIGHT HORN — mirror of left -->
-    <path d="M 80 38
-             C 88 28, 98 22, 108 22
-             C 112 22, 114 24, 112 26
-             C 104 30, 94 32, 84 36"/>
-
-    <!-- LEFT EAR — long, hanging out and slightly down -->
-    <path d="M 56 46
-             C 44 50, 32 56, 24 64
-             C 28 66, 36 64, 44 60
-             C 50 56, 54 50, 58 48 Z"/>
-
-    <!-- RIGHT EAR — mirror of left -->
-    <path d="M 84 46
-             C 96 50, 108 56, 116 64
-             C 112 66, 104 64, 96 60
-             C 90 56, 86 50, 82 48 Z"/>
-
-    <!-- HEAD — front-facing, prominent forehead, elongated face down to muzzle.
-         Forehead bulges out at top, narrows through bridge, widens at muzzle, chin under. -->
-    <path d="M 70 36
-             C 62 36, 56 40, 54 46
-             C 52 52, 52 60, 54 66
-             C 56 76, 60 86, 64 92
-             C 66 96, 74 96, 76 92
-             C 80 86, 84 76, 86 66
-             C 88 60, 88 52, 86 46
-             C 84 40, 78 36, 70 36 Z"/>
-
-    <!-- FOREHEAD CENTER CREASE — subtle vertical line -->
-    <path d="M 70 40 L 70 52"
-          stroke-width="1.2" opacity="0.5"/>
-
-    <!-- FOREHEAD BULGE DEFINITION — subtle horizontal curve -->
-    <path d="M 64 44 Q 70 46, 76 44"
-          stroke-width="1.2" opacity="0.5"/>
-
-    <!-- MUZZLE BAND — separating muzzle from face bridge -->
-    <path d="M 58 76 Q 70 80, 82 76"
-          stroke-width="1.2" opacity="0.65"/>
-
-    <!-- MOUTH -->
-    <path d="M 62 90 Q 70 93, 78 90"
-          stroke-width="1.2" opacity="0.7"/>
-
-  </g>
-
-  <!-- EYES — two small filled dots, calm -->
-  <circle cx="62" cy="56" r="1.6" fill="var(--forest)"/>
-  <circle cx="78" cy="56" r="1.6" fill="var(--forest)"/>
-
-  <!-- NOSTRILS — two small filled dots -->
-  <circle cx="64" cy="84" r="1.1" fill="var(--forest)"/>
-  <circle cx="76" cy="84" r="1.1" fill="var(--forest)"/>
-
-</svg>
-          </div>
-          <p class="dl-cover__deva">गौरीकृत</p>
-          <p class="dl-cover__wordmark">PRAKRITIK PAINT</p>
-          <p class="dl-cover__title">Cow dung-based paint, for interior and exterior walls.</p>
-          <p class="dl-cover__foot">Gaurikrit Bio Products (OPC) Private Limited</p>
+        <img class="dl-cover__image"
+             src="../assets/documents/prakritik-paint-brochure-cover.jpg"
+             alt="Prakritik Paint brochure cover"
+             width="848" height="1200"
+             loading="eager" fetchpriority="high" decoding="async">
+        <div class="dl-cover__fallback" aria-hidden="true">
+          PRAKRITIK<br>PAINT<br>BROCHURE
         </div>
       </div>
 
-      <!-- RIGHT — supplied brochure -->
-      <div class="dl-card">
-        <span class="brochure__detail-eyebrow">Product document</span>
-        <h2 class="brochure__detail-title">Prakritik Paint brochure</h2>
-        <p class="brochure__detail-desc">Read the Prakritik Paint brochure for both product formats.</p>
-        <div class="brochure__detail-actions">
-          <a class="btn btn--primary btn--lg" href="../assets/documents/prakritik-paint-brochure.pdf" target="_blank" rel="noopener">View Brochure</a>
-          <a class="btn btn--outline" href="../assets/documents/prakritik-paint-brochure.pdf" download>Download PDF</a>
+      <!-- RIGHT — title + details + actions.
+           V4 static: both data-brochure-if-available and
+           data-brochure-if-missing blocks are present. The wrapper has
+           data-brochure-state="unknown" initially. app.js's
+           initBrochureDetection() HEAD-fetches the PDF and sets state
+           to "available" (HEAD 2xx) or "missing" (HEAD 4xx/5xx).
+           CSS shows available by default, swaps to missing on demand. -->
+      <div class="dl-card" data-brochure-detect="../assets/documents/prakritik-paint-brochure.pdf" data-brochure-state="unknown">
+        <div data-brochure-if-available>
+          <span class="brochure__detail-eyebrow">Current edition</span>
+          <h2 class="brochure__detail-title">Prakritik Paint — product brochure.</h2>
+          <p class="brochure__detail-desc">
+            The brochure covers both Prakritik Distemper and Prakritik Emulsion:
+            pack sizes, listed specifications, finish, drying time, coverage,
+            V.O.C. and usage. Suitable for architects, builders, institutions and
+            homeowners.
+          </p>
+
+          <dl>
+            <div class="brochure__detail-meta">
+              <dt>Format</dt><dd>PDF</dd>
+            </div>
+            <div class="brochure__detail-meta">
+              <dt>Source</dt><dd>Gaurikrit</dd>
+            </div>
+            <div class="brochure__detail-meta">
+              <dt>Use</dt><dd>Read online or print</dd>
+            </div>
+          </dl>
+
+          <div class="brochure__detail-actions">
+            <a class="btn btn--primary btn--lg" href="../assets/documents/prakritik-paint-brochure.pdf"
+               target="_blank" rel="noopener">View Brochure</a>
+            <a class="btn btn--outline" href="../assets/documents/prakritik-paint-brochure.pdf" download>Download PDF</a>
+          </div>
+          <p class="brochure__detail-note">
+            If the file does not open, the PDF may not be reachable from your
+            network. Contact Gaurikrit directly for a current copy.
+          </p>
+        </div>
+        <div data-brochure-if-missing>
+          <span class="brochure__detail-eyebrow">Brochure pending</span>
+          <h2 class="brochure__detail-title">The current brochure is not yet published here.</h2>
+          <p class="brochure__detail-desc">
+            Please contact Gaurikrit for a copy of the product brochure.
+          </p>
+          <div class="brochure__detail-actions">
+            <a class="btn btn--primary btn--lg" href="../contact/?interest=general">Contact Gaurikrit for the current product brochure</a>
+          </div>
+          <p class="brochure__detail-note">
+            In the meantime, product specifications for both formats are listed
+            on the Distemper and Emulsion detail pages.
+          </p>
         </div>
       </div>
     </div>

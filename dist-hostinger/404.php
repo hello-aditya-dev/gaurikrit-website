@@ -1,10 +1,12 @@
 <?php
 /**
- * Gaurikrit Bio Products — 404 page (V3 rebuild).
- * Task V3-PAGES.
+ * Gaurikrit Bio Products — 404 page (V4 asset replacement pass).
+ * Task V4-ASSETS.
  *
  * Branded: "This wall hasn't been painted yet."
- * render_illustration('field-botanicals') accent. Link to /.
+ * render_illustration('field-botanicals') accent (small, decorative —
+ * kept as SVG per spec). Brand mark uses the official PNG (gaurikrit-logo-
+ * mark.png) with the gaurikrit-cow-mark SVG as fallback. Link to /.
  */
 declare(strict_types=1);
 
@@ -27,6 +29,7 @@ global $COMPANY;
     padding-top: calc(var(--header-h) + 3rem);
     position: relative; overflow: hidden;
   }
+  /* V4: field-botanicals SVG kept as small decorative accent at low opacity. */
   .error-page__bg {
     position: absolute; right: -2rem; top: 50%; transform: translateY(-50%);
     width: 22rem; height: 22rem; opacity: 0.08; z-index: 0;
@@ -38,12 +41,29 @@ global $COMPANY;
   .error-page__inner {
     position: relative; z-index: 1; max-width: 40rem;
   }
+  /* V4: use the real official logo mark (696×700) for the brand seal.
+     Falls back to the gaurikrit-cow-mark SVG if the PNG is missing. */
   .error-page__seal {
+    position: relative;
     width: 4rem; height: 4rem; margin: 0 0 1.5rem;
+    display: flex; align-items: center; justify-content: center;
+    background: radial-gradient(circle at 50% 45%, #f9f5eb, #e7ebdf);
+    border-radius: var(--r-card);
+    overflow: hidden;
+  }
+  .error-page__seal .error-page__seal-img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: contain;
+    padding: 0.375rem;
+    z-index: 2;
+  }
+  .error-page__seal .error-page__seal-fallback {
+    position: absolute; inset: 0; z-index: 1;
     display: flex; align-items: center; justify-content: center;
     color: var(--forest);
   }
-  .error-page__seal svg { width: 100%; height: 100%; }
+  .error-page__seal .error-page__seal-fallback svg { width: 70%; height: 70%; }
   .error-page__code {
     font-family: var(--font-display); font-size: clamp(3rem, 10vw, 5.5rem);
     font-weight: 700; color: var(--primary); line-height: 1;
@@ -77,7 +97,15 @@ global $COMPANY;
   <div class="container">
     <div class="error-page__inner" data-reveal>
       <div class="error-page__seal" aria-hidden="true">
-        <?php render_illustration('gaurikrit-cow-mark'); ?>
+        <img class="error-page__seal-img"
+             src="<?= asset_url('/assets/brand/gaurikrit-logo-mark.png') ?>"
+             alt=""
+             width="696" height="700"
+             loading="eager" decoding="async"
+             onerror="this.style.visibility='hidden';">
+        <span class="error-page__seal-fallback">
+          <?php render_illustration('gaurikrit-cow-mark'); ?>
+        </span>
       </div>
       <p class="error-page__code">404</p>
       <p class="error-page__deva"><?= e($COMPANY['devanagari']) ?></p>

@@ -1,15 +1,19 @@
 <?php
 /**
- * Gaurikrit Bio Products — Downloads (V3 rebuild).
- * Task V3-PAGES.
+ * Gaurikrit Bio Products — Downloads (V4 asset replacement pass).
+ * Task V4-ASSETS.
  *
- * NO card grid for a single brochure. .downloads-split — large brochure
- * cover left / title+details+actions right.
+ * Composition unchanged from V3. This pass uses the real brochure cover
+ * (848×1200) large on the left. NO SVG seal stack — the brochure cover
+ * itself carries the brand identity.
  *
- * Brochure PDF: PHP `is_file()` check for
- * `/assets/documents/prakritik-paint-brochure.pdf`. If present:
- * "View Brochure" + "Download PDF". If absent:
- * "Contact Gaurikrit for the current product brochure."
+ *   NO card grid for a single brochure. .downloads-split — large brochure
+ *   cover left / title+details+actions right.
+ *
+ *   Brochure PDF: PHP `is_file()` check for
+ *   `/assets/documents/prakritik-paint-brochure.pdf`. If present:
+ *   "View Brochure" + "Download PDF". If absent:
+ *   "Contact Gaurikrit for the current product brochure."
  */
 declare(strict_types=1);
 
@@ -51,46 +55,35 @@ $hasBrochure = is_file($brochurePath);
     font-size: clamp(1rem, 2vw, 1.125rem); max-width: 60ch;
   }
 
-  /* ===== DOWNLOADS SPLIT (cover left / details+actions right) ===== */
+  /* ===== DOWNLOADS SPLIT — real brochure cover left, details right ===== */
   .downloads-split {
     padding-block: clamp(2.5rem, 5vw, 4rem);
   }
+  /* Real brochure cover — display at its true aspect ratio (848×1200). */
   .dl-cover {
-    position: relative; min-height: 26rem;
-    background: linear-gradient(135deg, var(--haldi-soft), var(--haldi));
+    position: relative;
+    aspect-ratio: 848/1200;
+    background: var(--paper-warm);
     border: 1px solid var(--border-strong);
     border-radius: var(--r-panel);
     overflow: hidden;
-    display: flex; flex-direction: column; justify-content: flex-end;
-    padding: 2.5rem;
-  }
-  @media (min-width: 1024px) { .dl-cover { min-height: 34rem; } }
-  .dl-cover__media {
-    position: absolute; inset: 0; z-index: 0;
     display: flex; align-items: center; justify-content: center;
   }
-  .dl-cover__media .product-media { width: 100%; height: 100%; }
-  .dl-cover__media .product-media__official { object-fit: cover; }
-  .dl-cover__inner { position: relative; z-index: 2; color: var(--charcoal); }
-  .dl-cover__seal { width: 4rem; height: 4rem; margin: 0 0 1.25rem; }
-  .dl-cover__seal svg { width: 100%; height: 100%; }
-  .dl-cover__deva {
-    font-family: var(--font-deva); font-weight: 700;
-    font-size: clamp(1.5rem, 3vw, 2rem); color: var(--forest-deep);
+  .dl-cover .dl-cover__image {
+    display: block;
+    width: 100%; height: 100%;
+    object-fit: contain;
   }
-  .dl-cover__wordmark {
+  /* When the official cover loads, hide the fallback wordmark. */
+  .dl-cover:has(.dl-cover__image) .dl-cover__fallback { display: none; }
+  .dl-cover__fallback {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    width: 100%; height: 100%;
+    text-align: center; padding: 2rem;
+    color: rgba(32, 30, 25, 0.4);
     font-family: var(--font-display); font-weight: 700;
-    font-size: clamp(1.5rem, 3vw, 2rem); color: var(--charcoal);
-    margin-top: 0.25rem;
-  }
-  .dl-cover__title {
-    font-family: var(--font-display); font-style: italic;
-    font-size: clamp(1.125rem, 2vw, 1.375rem); margin-top: 0.75rem;
-    color: var(--forest-deep); max-width: 28ch;
-  }
-  .dl-cover__foot {
-    margin-top: 1rem; font-size: 0.8125rem;
-    color: rgba(32, 30, 25, 0.7); letter-spacing: 0.04em;
+    font-size: clamp(1.5rem, 4vw, 3rem);
+    line-height: 1.15; letter-spacing: 0.02em;
   }
 
   /* Right column — details + actions */
@@ -158,27 +151,15 @@ $hasBrochure = is_file($brochurePath);
 <section class="section section--paper">
   <div class="container">
     <div class="downloads-split" data-reveal>
-      <!-- LEFT — large brochure cover -->
+      <!-- LEFT — real brochure cover (848×1200) -->
       <div class="dl-cover">
-        <div class="dl-cover__media" aria-hidden="true">
-          <div class="product-media" data-official-image="<?= e($coverImage) ?>">
-            <img class="product-media__official"
-                 src="<?= e($coverImage) ?>"
-                 alt="Prakritik Paint brochure cover"
-                 width="800" height="1000" loading="lazy" decoding="async">
-            <div class="product-media__fallback" style="display: flex; align-items: center; justify-content: center; width: 100%; height: 100%;">
-              <span style="font-family: var(--font-display); font-weight: 700; font-size: clamp(1.5rem, 4vw, 3rem); color: rgba(32,30,25,0.35); text-align: center; padding: 2rem;">PRAKRITIK<br>PAINT<br>BROCHURE</span>
-            </div>
-          </div>
-        </div>
-        <div class="dl-cover__inner">
-          <div class="dl-cover__seal" aria-hidden="true">
-            <?php render_illustration('gaurikrit-cow-mark'); ?>
-          </div>
-          <p class="dl-cover__deva"><?= e($COMPANY['devanagari']) ?></p>
-          <p class="dl-cover__wordmark">PRAKRITIK PAINT</p>
-          <p class="dl-cover__title">Cow dung-based paint, for interior and exterior walls.</p>
-          <p class="dl-cover__foot"><?= e($COMPANY['legalName']) ?></p>
+        <img class="dl-cover__image"
+             src="<?= asset_url($coverImage) ?>"
+             alt="Prakritik Paint brochure cover"
+             width="848" height="1200"
+             loading="eager" fetchpriority="high" decoding="async">
+        <div class="dl-cover__fallback" aria-hidden="true">
+          PRAKRITIK<br>PAINT<br>BROCHURE
         </div>
       </div>
 

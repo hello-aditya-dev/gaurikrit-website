@@ -1,21 +1,28 @@
 <?php
 /**
- * Gaurikrit Bio Products — Homepage (V3 rebuild).
- * Task V3-PAGES.
+ * Gaurikrit Bio Products — Homepage (V4 asset replacement pass).
+ * Task V4-ASSETS.
+ *
+ * Factual architecture unchanged from V3. This pass replaces coded SVG
+ * illustrations with REAL client photography + high-quality editorial
+ * artwork. SVG is kept ONLY for interactive elements (ashta-laabh-seal).
  *
  * Composition:
- *   1. Hero (12-col: text 5 / visual 7) — dominant product image, haldi
- *      paint-stroke field behind, cow line art at 0.16 opacity.
- *   2. Material Statement (5/7) — cow beside limewashed wall plane.
- *   3. Distemper Product Chapter — full-width split (cool env).
- *   4. Emulsion Product Chapter — full-width split (warm env, reversed).
- *   5. Material Journey — full-width material-to-wall diagram.
- *   6. Ashta Laabh — 60/40 split (seal + numbered list).
- *   7. Colours of India — large courtyard elevation, recolourable.
- *   8. Mission — deep forest band with rural-landscape engraving.
- *   9. Calculator Teaser — split with mini project-summary + wall art.
- *  10. Project Pathways — shared illustration + 4 ruled columns.
- *  11. Brand Close (footer.php renders the footer).
+ *   1. Hero — 12-col (text 5 / visual 7). Real group photo (1280×621)
+ *      eager+high-priority. Behind: CSS haldi field (no SVG). Zebu cow
+ *      engraving at 0.14 opacity. Rural landscape band at 0.12 opacity.
+ *   2. Material Statement — 42/58. Zebu-study.webp large right (58%).
+ *   3. Distemper chapter — interior-wall-study as env + real product
+ *      photo (510×538, natural size). Ghost "DISTEMPER". Cool section.
+ *   4. Emulsion chapter — exterior-wall-study as env + real product
+ *      photo (355×486, natural size). Ghost "EMULSION". Warm. Reversed.
+ *   5. Material Journey — 3-panel composition (interior + group + exterior).
+ *   6. Ashta Laabh — keep SVG seal. Zebu-study at 0.14 opacity bg.
+ *   7. Colours of India — courtyard-study.webp (1942×809) large wall.
+ *      Swatches recolor via --wall-color CSS var.
+ *   8. Mission — forest section. Rural-landscape at 0.15 opacity.
+ *   9. Calculator Teaser — mini project-summary + small wall elevation.
+ *  10. Pathways — rural-landscape shared + 4 ruled columns.
  */
 declare(strict_types=1);
 
@@ -46,98 +53,219 @@ $ashtaIds = [
 ];
 ?>
 <style>
-  /* ===== 1. HERO (V3: 12-col, text 5 / visual 7) ===== */
+  /* ===== Editorial image reset (V4 — NO mix-blend-mode, NO blur filters) ===== */
+  .editorial-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .editorial-image--contain { object-fit: contain; }
+
+  /* ===== 1. HERO — group photo dominant + CSS haldi field + cow engraving ===== */
   .hero { padding-top: calc(var(--header-h) + 1.5rem); padding-bottom: 1.5rem; }
   @media (min-width: 1024px) {
     .hero { min-height: 92svh; min-height: 92vh; display: flex; align-items: center;
             padding-top: calc(var(--header-h) + 2rem); padding-bottom: 2rem; }
   }
-  /* Override default 5fr/7fr so the visual is truly dominant on desktop. */
-  .hero__grid { align-items: center; }
+  .hero__grid { align-items: center; position: relative; }
   @media (min-width: 1024px) {
     .hero__grid { grid-template-columns: 5fr 7fr; gap: clamp(2rem, 4vw, 4rem); }
   }
   @media (max-width: 1023px) {
-    /* Mobile: text → buttons → large visual below. */
     .hero__grid { grid-template-columns: 1fr; }
-    .hero__visual { order: 3; min-height: 26rem; }
+    .hero__visual { order: 3; min-height: 22rem; }
   }
   .hero__eyebrow-chip { margin-bottom: 0.875rem; }
   .hero__title { font-size: clamp(2.5rem, 6vw, 5.5rem); line-height: 1.02; }
   .hero__body { max-width: 38rem; }
   .hero__ctas { margin-top: 2.25rem; }
 
-  /* V3 hero visual stack: paint-stroke field → product image → cow line art. */
-  .hero__visual { position: relative; min-height: 24rem; width: 100%; }
-  @media (min-width: 768px)  { .hero__visual { min-height: 28rem; } }
+  /* V4 hero visual stack: CSS haldi field → group photo → zebu engraving. */
+  .hero__visual { position: relative; min-height: 22rem; width: 100%; }
+  @media (min-width: 768px)  { .hero__visual { min-height: 26rem; } }
   @media (min-width: 1024px) { .hero__visual { min-height: 34rem; } }
-  /* Large irregular haldi paint-stroke field behind the product. */
+
+  /* CSS haldi field — a div with radial haldi gradient (NO SVG). */
   .hero__haldi-field {
     position: absolute; inset: -1rem -1rem 1.5rem; z-index: 0;
-    display: flex; align-items: center; justify-content: center;
     pointer-events: none;
+    display: flex; align-items: center; justify-content: center;
   }
-  .hero__haldi-field::before { display: none; }   /* prefer the SVG paint-stroke */
-  .hero__haldi-field .hero__stroke-svg {
-    width: 92%; height: 80%; opacity: 0.95;
-    filter: saturate(1.04);
+  .hero__haldi-field::before {
+    content: ''; display: block;
+    width: 88%; height: 80%;
+    background: radial-gradient(ellipse 70% 60% at 50% 40%,
+                var(--haldi) 0%,
+                color-mix(in srgb, var(--haldi) 78%, transparent) 60%,
+                transparent 92%);
   }
-  /* Product image — visually dominant (70-80% of the region), on top of the haldi field. */
+  .hero__haldi-field .hero__stroke-svg { display: none; }   /* V4: no SVG */
+
+  /* Real group photo — eager + high priority, dominant. */
   .hero__bucket {
-    position: absolute; left: 50%; top: 48%;
-    width: 76%; height: 70%;
+    position: absolute; left: 50%; top: 50%;
+    width: 88%; height: 78%;
     transform: translate(-50%, -50%);
     z-index: 2;
+    display: flex; align-items: center; justify-content: center;
   }
-  .hero__bucket .product-media { width: 100%; height: 100%; }
-  .hero__bucket .product-media__official { object-fit: contain; }
-  /* Cow line art at low opacity — secondary line, not the hero. */
-  .hero__cow {
-    position: absolute; right: -1rem; bottom: 0.5rem;
-    width: 48%; height: 36%;
-    z-index: 3; opacity: 0.16; pointer-events: none;
+  .hero__bucket .hero-group-photo {
+    display: block;
+    width: 100%; height: 100%;
+    object-fit: contain;
+    border-radius: 0.35rem;
   }
 
-  /* ===== 2. MATERIAL STATEMENT (5/7 — cow beside limewashed wall) ===== */
-  .material-statement__visual { aspect-ratio: 5/4; background: var(--limewash); }
-  .material-statement__visual .ms-wall {
-    right: 8%; top: 8%; bottom: 8%; width: 46%;
-    background: linear-gradient(135deg, var(--limewash), color-mix(in srgb, var(--kraft) 35%, var(--limewash)));
+  /* Zebu cow engraving — low opacity background line art. */
+  .hero__cow {
+    position: absolute; right: -1.5rem; bottom: -1rem;
+    width: 48%; height: 38%;
+    z-index: 3; opacity: 0.14; pointer-events: none;
     overflow: hidden;
   }
-  .material-statement__visual .ms-wall::after {
-    content: ''; position: absolute; inset: 0;
-    background-image: radial-gradient(circle at 1px 1px, rgba(32, 30, 25, 0.08) 0.5px, transparent 0);
-    background-size: 14px 14px;
+  .hero__cow .editorial-image { object-fit: cover; }
+
+  /* Rural landscape band at the bottom of the hero visual. */
+  .hero__landscape {
+    position: absolute; left: 0; right: 0; bottom: 0;
+    height: 4.5rem;
+    z-index: 1; opacity: 0.12; pointer-events: none;
+    overflow: hidden;
   }
-  .material-statement__visual .ms-cow { left: 6%; bottom: 8%; width: 42%; opacity: 0.85; }
+  .hero__landscape .editorial-image { object-fit: cover; }
+  @media (min-width: 1024px) { .hero__landscape { height: 5rem; } }
 
-  /* ===== 5. MATERIAL JOURNEY (full-width diagram, no card) ===== */
+  /* ===== 2. MATERIAL STATEMENT — zebu-study large right (58%) ===== */
+  .material-statement__visual {
+    aspect-ratio: 1536/1024;
+    background: var(--limewash);
+    overflow: hidden;
+    padding: 0;
+    position: relative;
+  }
+  .material-statement__visual .editorial-image {
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  }
+  /* Remove the legacy cow/wall composition — single editorial photo replaces it. */
+  .material-statement__visual .ms-wall,
+  .material-statement__visual .ms-cow,
+  .material-statement__visual .ms-arrow { display: none; }
+
+  /* ===== 3/4. PRODUCT CHAPTERS — editorial env + real product photo ===== */
+  .product-chapter__visual {
+    position: relative;
+    aspect-ratio: 4/3;
+    min-height: 22rem;
+    background: var(--paper);
+    overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+  @media (min-width: 1024px) {
+    .product-chapter__visual { min-height: 30rem; }
+  }
+  /* Editorial environment image — fills the visual area. */
+  .product-chapter__visual .chapter-env {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover;
+  }
+  /* Real product photo at its natural size — overlaid on the environment. */
+  .product-chapter__visual .chapter-product {
+    position: relative;
+    z-index: 2;
+    display: block;
+    max-height: 80%;
+    width: auto;
+    max-width: 70%;
+    object-fit: contain;
+    /* Subtle drop shadow lifts the product off the environment. */
+    filter: drop-shadow(0 18px 28px rgba(34, 36, 27, 0.18));
+  }
+  /* Distemper product cap: 510×538 — never wider than 480px CSS. */
+  .product-chapter__visual .chapter-product--distemper {
+    max-width: min(70%, 480px);
+  }
+  /* Emulsion product cap: 355×486 — never wider than 340px CSS. */
+  .product-chapter__visual .chapter-product--emulsion {
+    max-width: min(60%, 340px);
+  }
+
+  /* ===== 5. MATERIAL JOURNEY — 3-panel composition ===== */
   .material-flow { padding-block: clamp(3rem, 6vw, 5rem); }
-  .material-flow__svg-wrap { width: 100%; margin-inline: 0; }
-  .material-flow__svg-wrap svg { width: 100%; height: auto; display: block; }
   .material-flow__head { max-width: 48rem; margin-bottom: 2.5rem; }
+  .material-flow__panels {
+    display: grid; gap: 1rem;
+    grid-template-columns: 1fr;
+    margin-bottom: 2.5rem;
+  }
+  @media (min-width: 768px) {
+    .material-flow__panels { grid-template-columns: 1fr 1fr 1fr; gap: 1.25rem; }
+  }
+  .material-flow__panel {
+    position: relative;
+    aspect-ratio: 1344/768;
+    background: var(--limewash);
+    overflow: hidden;
+    border-radius: var(--r-panel);
+  }
+  .material-flow__panel--group { aspect-ratio: 1280/621; }
+  .material-flow__panel .editorial-image {
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  }
+  .material-flow__panel-label {
+    position: absolute; left: 0.875rem; bottom: 0.875rem;
+    background: rgba(250, 248, 241, 0.88);
+    padding: 0.375rem 0.75rem;
+    border-radius: var(--r-pill);
+    font-size: 0.6875rem; font-weight: 700;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--fg);
+  }
 
-  /* ===== 6. ASHTA LAABH (60/40 split — seal + numbered list) ===== */
+  /* ===== 6. ASHTA LAABH — keep SVG seal + zebu-study bg engraving ===== */
+  .ashta-section { position: relative; overflow: hidden; }
+  .ashta-section__bg {
+    position: absolute; right: -10%; top: 50%; transform: translateY(-50%);
+    width: 60%; height: 80%;
+    opacity: 0.08; pointer-events: none; overflow: hidden;
+  }
+  .ashta-section__bg .editorial-image { width: 100%; height: 100%; object-fit: cover; }
+  .ashta-section__inner { position: relative; z-index: 1; }
+  .ashta-section__grid { position: relative; z-index: 1; }
   .ashta-section__seal { max-width: 38rem; margin-inline: auto; }
   .ashta-benefit__num { font-feature-settings: "tnum"; }
 
-  /* ===== 7. COLOURS OF INDIA (large courtyard, recolourable) ===== */
+  /* ===== 7. COLOURS OF INDIA — courtyard-study.jpg large wall plane ===== */
   .colours-section__head { max-width: 48rem; margin-bottom: 2.5rem; }
   .colours-wall {
-    aspect-ratio: 16/9; background: var(--limewash);
-    border: 0; border-radius: 0; overflow: hidden;
+    aspect-ratio: 1942/809;
+    background: var(--limewash);
+    border: 0; border-radius: 0;
+    overflow: hidden;
     position: relative;
   }
   @media (min-width: 1024px) { .colours-wall { aspect-ratio: 21/9; } }
-  .colours-wall__svg { width: 100%; height: 100%; display: block; }
+  /* The courtyard study fills the wall plane. */
+  .colours-wall .colours-wall__art {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    display: block; object-fit: cover;
+  }
+  /* Tint overlay — recoloured via --wall-color. NO mix-blend-mode. */
+  .colours-wall .colours-wall__tint {
+    position: absolute; inset: 0;
+    background: var(--wall-color, transparent);
+    opacity: 0.55;
+    pointer-events: none;
+    transition: background 0.45s var(--ease);
+  }
   .colours-wall__label {
     position: absolute; bottom: 1rem; left: 1rem;
     font-family: var(--font-display); font-size: 1.125rem; font-weight: 700;
     color: var(--charcoal);
-    background: rgba(250, 248, 241, 0.85);
+    background: rgba(250, 248, 241, 0.88);
     padding: 0.5rem 1rem; border-radius: var(--r-pill);
     -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+    z-index: 2;
   }
   .colours-wall__label small {
     display: block; font-family: var(--font-sans); font-size: 0.625rem;
@@ -153,9 +281,9 @@ $ashtaIds = [
     border: 2px solid var(--border); padding: 0; cursor: pointer;
     position: relative; transition: transform var(--dur), border-color var(--dur);
   }
-  .colours-swatch:hover { transform: scale(1.08); }
+  .colours-swatch:hover { transform: translateY(-2px); }
   .colours-swatch[data-active="true"] {
-    border-color: var(--forest); transform: scale(1.12);
+    border-color: var(--forest); transform: translateY(-2px);
   }
   .colours-swatch__label {
     position: absolute; top: calc(100% + 0.5rem); left: 50%;
@@ -164,7 +292,7 @@ $ashtaIds = [
     text-transform: uppercase; color: var(--fg-muted);
   }
 
-  /* ===== 8. MISSION (deep forest band with rural-landscape engraving) ===== */
+  /* ===== 8. MISSION — forest band with rural-landscape engraving ===== */
   .mission-band {
     position: relative; padding-block: clamp(4rem, 8vw, 6.5rem);
     background: var(--forest-deep); color: var(--primary-fg);
@@ -172,9 +300,9 @@ $ashtaIds = [
   }
   .mission-band__bg {
     position: absolute; inset: 0; opacity: 0.15; pointer-events: none;
-    display: flex; align-items: flex-end; justify-content: center;
+    overflow: hidden;
   }
-  .mission-band__bg svg { width: 100%; height: auto; max-height: 100%; }
+  .mission-band__bg .editorial-image { width: 100%; height: 100%; object-fit: cover; }
   .mission-band__inner {
     position: relative; z-index: 1; max-width: 48rem;
   }
@@ -196,21 +324,32 @@ $ashtaIds = [
   /* ===== 9. CALCULATOR TEASER ===== */
   .calc-teaser { padding-block: clamp(3.5rem, 6vw, 5.5rem); }
   .calc-teaser__preview { padding: 1.75rem; }
-  .calc-teaser__art { aspect-ratio: 4/3; }
-  .calc-teaser__art::before { inset: 14% 14% 14% 14%; }
+  .calc-teaser__art { aspect-ratio: 4/3; position: relative; overflow: hidden; }
+  .calc-teaser__art .editorial-image {
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+    opacity: 0.35;
+  }
+  .calc-teaser__art .calc-teaser__preview {
+    position: relative; z-index: 1; background: rgba(250, 248, 241, 0.95);
+  }
 
   /* ===== 10. PROJECT PATHWAYS ===== */
   .pathways-section { padding-block: clamp(3rem, 6vw, 5rem); }
   .pathways-section__head { max-width: 48rem; margin-bottom: 2.5rem; }
   .pathways-illustration {
-    margin-bottom: 3rem; width: 100%; height: auto;
-    opacity: 0.55;
+    position: relative;
+    margin-bottom: 3rem;
+    aspect-ratio: 1344/768;
+    width: 100%; overflow: hidden;
+    border-radius: var(--r-panel);
   }
-  .pathways-illustration svg { width: 100%; height: auto; display: block; }
+  .pathways-illustration .editorial-image {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+  }
 </style>
 
 <!-- ============================================================
-     1. HERO — 12-col (text 5 / visual 7), dominant product image
+     1. HERO — 12-col (text 5 / visual 7), dominant group photo
      ============================================================ -->
 <section class="hero bg-limewash" aria-labelledby="hero-title">
   <div class="container">
@@ -232,35 +371,49 @@ $ashtaIds = [
       </div>
 
       <div class="hero__visual" data-reveal>
-        <!-- Haldi paint-stroke field behind the product -->
-        <div class="hero__haldi-field" aria-hidden="true">
-          <?php render_illustration('paint-brush-stroke', ['class' => 'hero__stroke-svg']); ?>
-        </div>
-        <!-- Product group image (image-handoff with emulsion-bucket fallback) -->
+        <!-- CSS haldi paint field behind the product (no SVG) -->
+        <div class="hero__haldi-field" aria-hidden="true"></div>
+        <!-- Real product group photo — eager + high priority -->
         <div class="hero__bucket">
-          <div class="product-media" data-official-image="<?= e($groupImage) ?>">
-            <img class="product-media__official"
-                 src="<?= e($groupImage) ?>"
-                 alt="Prakritik Distemper and Emulsion paint packs"
-                 width="800" height="600" loading="eager" decoding="async">
-            <div class="product-media__fallback">
-              <?php render_illustration('prakritik-emulsion-bucket'); ?>
-            </div>
-          </div>
+          <img class="hero-group-photo"
+               src="<?= asset_url($groupImage) ?>"
+               alt="Prakritik Distemper and Emulsion paint packs"
+               width="1280" height="621"
+               loading="eager" fetchpriority="high" decoding="async">
         </div>
-        <!-- Cow line art at 0.16 opacity — secondary line, not the hero -->
-
+        <!-- Zebu cow engraving at 0.14 opacity — secondary line, not the hero -->
+        <div class="hero__cow" aria-hidden="true">
+          <picture>
+            <source type="image/webp" srcset="<?= asset_url('/assets/editorial/zebu-study.webp') ?>">
+            <img class="editorial-image"
+                 src="<?= asset_url('/assets/editorial/zebu-study.jpg') ?>"
+                 alt=""
+                 width="1536" height="1024"
+                 loading="lazy" decoding="async">
+          </picture>
+        </div>
+        <!-- Rural landscape band at the bottom — 0.12 opacity -->
+        <div class="hero__landscape" aria-hidden="true">
+          <picture>
+            <source type="image/webp" srcset="<?= asset_url('/assets/editorial/rural-landscape.webp') ?>">
+            <img class="editorial-image"
+                 src="<?= asset_url('/assets/editorial/rural-landscape.jpg') ?>"
+                 alt=""
+                 width="1344" height="768"
+                 loading="lazy" decoding="async">
+          </picture>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ============================================================
-     2. MATERIAL STATEMENT — copy 5 / visual 7 (cow beside wall)
+     2. MATERIAL STATEMENT — copy 42 / zebu-study 58
      ============================================================ -->
 <section class="section section--paper" aria-labelledby="material-title">
   <div class="container">
-    <div class="material-statement" data-reveal>
+    <div class="material-statement" data-reveal style="grid-template-columns: 42fr 58fr;">
       <div class="material-statement__copy">
         <span class="material-statement__eyebrow">An old Indian material idea</span>
         <h2 class="material-statement__headline" id="material-title">
@@ -280,7 +433,14 @@ $ashtaIds = [
         </div>
       </div>
       <div class="material-statement__visual" aria-hidden="true">
-        <img class="editorial-cow" src="/assets/illustrations/zebu-study.jpg" alt="" loading="lazy" width="1536" height="1024">
+        <picture>
+          <source type="image/webp" srcset="<?= asset_url('/assets/editorial/zebu-study.webp') ?>">
+          <img class="editorial-image"
+               src="<?= asset_url('/assets/editorial/zebu-study.jpg') ?>"
+               alt="Editorial study of an Indian zebu cow"
+               width="1536" height="1024"
+               loading="lazy" decoding="async">
+        </picture>
       </div>
     </div>
   </div>
@@ -294,15 +454,19 @@ $ashtaIds = [
   <div class="container">
     <div class="product-chapter__inner" data-reveal>
       <div class="product-chapter__visual">
-        <div class="product-media" data-official-image="<?= e($distemper['officialImage']) ?>">
-          <img class="product-media__official"
-               src="<?= e($distemper['officialImage']) ?>"
-               alt="<?= e($distemper['name']) ?> pack"
-               width="800" height="600" loading="lazy" decoding="async">
-          <div class="product-media__fallback">
-            <?php render_illustration('prakritik-distemper-bucket'); ?>
-          </div>
-        </div>
+        <picture>
+          <source type="image/webp" srcset="<?= asset_url('/assets/editorial/interior-wall-study.webp') ?>">
+          <img class="chapter-env"
+               src="<?= asset_url('/assets/editorial/interior-wall-study.jpg') ?>"
+               alt=""
+               width="1344" height="768"
+               loading="lazy" decoding="async">
+        </picture>
+        <img class="chapter-product chapter-product--distemper"
+             src="<?= asset_url($distemper['officialImage']) ?>"
+             alt="<?= e($distemper['name']) ?>"
+             width="510" height="538"
+             loading="lazy" decoding="async">
       </div>
       <div class="product-chapter__copy">
         <span class="product-chapter__eyebrow">Format 01 — Distemper</span>
@@ -344,15 +508,19 @@ $ashtaIds = [
   <div class="container">
     <div class="product-chapter__inner" data-reveal>
       <div class="product-chapter__visual">
-        <div class="product-media" data-official-image="<?= e($emulsion['officialImage']) ?>">
-          <img class="product-media__official"
-               src="<?= e($emulsion['officialImage']) ?>"
-               alt="<?= e($emulsion['name']) ?> pack"
-               width="800" height="600" loading="lazy" decoding="async">
-          <div class="product-media__fallback">
-            <?php render_illustration('prakritik-emulsion-bucket'); ?>
-          </div>
-        </div>
+        <picture>
+          <source type="image/webp" srcset="<?= asset_url('/assets/editorial/exterior-wall-study.webp') ?>">
+          <img class="chapter-env"
+               src="<?= asset_url('/assets/editorial/exterior-wall-study.jpg') ?>"
+               alt=""
+               width="1344" height="768"
+               loading="lazy" decoding="async">
+        </picture>
+        <img class="chapter-product chapter-product--emulsion"
+             src="<?= asset_url($emulsion['officialImage']) ?>"
+             alt="<?= e($emulsion['name']) ?>"
+             width="355" height="486"
+             loading="lazy" decoding="async">
       </div>
       <div class="product-chapter__copy">
         <span class="product-chapter__eyebrow">Format 02 — Emulsion</span>
@@ -387,7 +555,7 @@ $ashtaIds = [
 </section>
 
 <!-- ============================================================
-     5. MATERIAL JOURNEY — full-width 3-stage diagram, no card
+     5. MATERIAL JOURNEY — full-width 3-panel composition
      ============================================================ -->
 <section class="section section--limewash material-flow" aria-labelledby="journey-title">
   <div class="container">
@@ -398,8 +566,37 @@ $ashtaIds = [
         Natural material, Prakritik Paint, finished walls.
       </p>
     </div>
-    <div class="material-flow__svg-wrap" data-reveal>
-
+    <div class="material-flow__panels" data-reveal>
+      <div class="material-flow__panel">
+        <picture>
+          <source type="image/webp" srcset="<?= asset_url('/assets/editorial/interior-wall-study.webp') ?>">
+          <img class="editorial-image"
+               src="<?= asset_url('/assets/editorial/interior-wall-study.jpg') ?>"
+               alt="Indian interior limewashed wall"
+               width="1344" height="768"
+               loading="lazy" decoding="async">
+        </picture>
+        <span class="material-flow__panel-label">01 · Natural material</span>
+      </div>
+      <div class="material-flow__panel material-flow__panel--group">
+        <img class="editorial-image"
+             src="<?= asset_url($groupImage) ?>"
+             alt="Prakritik Distemper and Emulsion paint packs"
+             width="1280" height="621"
+             loading="lazy" decoding="async">
+        <span class="material-flow__panel-label">02 · Prakritik Paint</span>
+      </div>
+      <div class="material-flow__panel">
+        <picture>
+          <source type="image/webp" srcset="<?= asset_url('/assets/editorial/exterior-wall-study.webp') ?>">
+          <img class="editorial-image"
+               src="<?= asset_url('/assets/editorial/exterior-wall-study.jpg') ?>"
+               alt="Indian exterior wall"
+               width="1344" height="768"
+               loading="lazy" decoding="async">
+        </picture>
+        <span class="material-flow__panel-label">03 · Finished wall</span>
+      </div>
     </div>
     <ol class="material-journey__steps" data-reveal-stagger>
       <?php foreach ($MATERIAL_JOURNEY as $step): ?>
@@ -414,10 +611,20 @@ $ashtaIds = [
 </section>
 
 <!-- ============================================================
-     6. ASHTA LAABH — 60/40 split (seal + numbered list)
+     6. ASHTA LAABH — keep SVG seal + zebu-study bg engraving
      ============================================================ -->
-<section class="section ashta-section" aria-labelledby="ashta-title" data-ashta-laabh>
-  <div class="container">
+<section class="section ashta-section section--limewash" aria-labelledby="ashta-title" data-ashta-laabh>
+  <div class="ashta-section__bg" aria-hidden="true">
+    <picture>
+      <source type="image/webp" srcset="<?= asset_url('/assets/editorial/zebu-study.webp') ?>">
+      <img class="editorial-image"
+           src="<?= asset_url('/assets/editorial/zebu-study.jpg') ?>"
+           alt=""
+           width="1536" height="1024"
+           loading="lazy" decoding="async">
+    </picture>
+  </div>
+  <div class="container ashta-section__inner">
     <div class="ashta-section__head section-heading section-heading--left" data-reveal>
       <span class="ashta-section__deva">अष्ट लाभ</span>
       <h2 class="section-heading__title" id="ashta-title">Eight benefits of Prakritik Paint.</h2>
@@ -447,7 +654,7 @@ $ashtaIds = [
 </section>
 
 <!-- ============================================================
-     7. COLOURS OF INDIA — large courtyard, recolourable wall plane
+     7. COLOURS OF INDIA — courtyard-study.jpg as the wall plane
      ============================================================ -->
 <section class="section section--paper colour-study colours-section" aria-labelledby="colours-title" data-colour-study>
   <div class="container">
@@ -461,7 +668,15 @@ $ashtaIds = [
     </div>
 
     <div class="colours-wall" data-colour-wall data-reveal>
-      <img class="courtyard-study" src="/assets/illustrations/courtyard-study.jpg" alt="" loading="lazy" width="1942" height="809"><span class="courtyard-tint" aria-hidden="true"></span>
+      <picture>
+        <source type="image/webp" srcset="<?= asset_url('/assets/editorial/courtyard-study.webp') ?>">
+        <img class="colours-wall__art"
+             src="<?= asset_url('/assets/editorial/courtyard-study.jpg') ?>"
+             alt="Indian limewashed courtyard elevation"
+             width="1942" height="809"
+             loading="lazy" decoding="async">
+      </picture>
+      <span class="colours-wall__tint" aria-hidden="true"></span>
       <span class="colours-wall__label">
         <span data-colour-label>Limewash</span>
         <small>Editorial colour study</small>
@@ -490,7 +705,14 @@ $ashtaIds = [
      ============================================================ -->
 <section class="mission-band" aria-labelledby="mission-title">
   <div class="mission-band__bg" aria-hidden="true">
-    <?php render_illustration('rural-landscape'); ?>
+    <picture>
+      <source type="image/webp" srcset="<?= asset_url('/assets/editorial/rural-landscape.webp') ?>">
+      <img class="editorial-image"
+           src="<?= asset_url('/assets/editorial/rural-landscape.jpg') ?>"
+           alt=""
+           width="1344" height="768"
+           loading="lazy" decoding="async">
+    </picture>
   </div>
   <div class="container">
     <div class="mission-band__inner" data-reveal>
@@ -510,7 +732,7 @@ $ashtaIds = [
 </section>
 
 <!-- ============================================================
-     9. CALCULATOR TEASER — mini project-summary + small wall art
+     9. CALCULATOR TEASER — mini project-summary + wall elevation
      ============================================================ -->
 <section class="section section--limewash calc-teaser" aria-labelledby="calc-teaser-title">
   <div class="container">
@@ -528,6 +750,14 @@ $ashtaIds = [
         </div>
       </div>
       <div class="calc-teaser__art" aria-hidden="true">
+        <picture>
+          <source type="image/webp" srcset="<?= asset_url('/assets/editorial/architectural-elevation.webp') ?>">
+          <img class="editorial-image"
+               src="<?= asset_url('/assets/editorial/architectural-elevation.jpg') ?>"
+               alt=""
+               width="1344" height="768"
+               loading="lazy" decoding="async">
+        </picture>
         <div class="calc-teaser__preview">
           <div class="calc-teaser__preview-row">
             <span class="calc-teaser__preview-label">Painting</span>
@@ -552,7 +782,7 @@ $ashtaIds = [
 </section>
 
 <!-- ============================================================
-     10. PROJECT PATHWAYS — shared illustration + 4 ruled columns
+     10. PROJECT PATHWAYS — rural-landscape shared + 4 ruled columns
      ============================================================ -->
 <section class="section section--paper pathways-section" aria-labelledby="pathways-title">
   <div class="container">
@@ -562,7 +792,14 @@ $ashtaIds = [
     </div>
 
     <div class="pathways-illustration" aria-hidden="true" data-reveal>
-      <?php render_illustration('rural-landscape'); ?>
+      <picture>
+        <source type="image/webp" srcset="<?= asset_url('/assets/editorial/rural-landscape.webp') ?>">
+        <img class="editorial-image"
+             src="<?= asset_url('/assets/editorial/rural-landscape.jpg') ?>"
+             alt=""
+             width="1344" height="768"
+             loading="lazy" decoding="async">
+      </picture>
     </div>
 
     <div class="pathways" data-reveal-stagger>
@@ -589,34 +826,6 @@ $ashtaIds = [
     document.querySelectorAll('[data-ashta-laabh] svg [data-benefit]').forEach(function (node) {
       node.setAttribute('data-ashta-node', node.getAttribute('data-benefit'));
     });
-
-    // Custom colour-study bridge: when a swatch is clicked, also set the
-    // courtyard SVG <rect id="courtyard-wall-plane"> fill attribute
-    // directly (colour-study.js sets background-color on [data-colour-wall]
-    // which doesn't recolour an SVG <rect>). Click handlers attach before
-    // colour-study.js init() runs — both run, ours drives the SVG.
-    var courtyard = document.querySelector('[data-colour-study] [data-colour-wall]');
-    var rect = document.getElementById('courtyard-wall-plane');
-    if (courtyard && rect) {
-      var swatches = document.querySelectorAll('[data-colour-study] [data-shade]');
-      swatches.forEach(function (s) {
-        s.addEventListener('click', function () {
-          var colour = s.getAttribute('data-shade');
-          if (colour) rect.setAttribute('fill', colour);
-        });
-      });
-      // Default to the first swatch so the wall starts recoloured.
-      if (swatches.length) {
-        var first = swatches[0];
-        var colour = first.getAttribute('data-shade');
-        var name = first.getAttribute('data-shade-name');
-        if (colour) rect.setAttribute('fill', colour);
-        var label = document.querySelector('[data-colour-label]');
-        if (label && name) label.textContent = name;
-        first.setAttribute('data-active', 'true');
-        first.setAttribute('aria-checked', 'true');
-      }
-    }
   })();
 </script>
 <?php require ROOT_PATH . '/includes/footer.php';

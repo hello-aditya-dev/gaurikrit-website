@@ -1,14 +1,18 @@
 <?php
 /**
- * Gaurikrit Bio Products — Prakritik Distemper Product Detail (V3 rebuild).
- * Task V3-PAGES.
+ * Gaurikrit Bio Products — Prakritik Distemper Product Detail (V4 asset pass).
+ * Task V4-ASSETS.
  *
- * Composition:
+ * Composition unchanged from V3. This pass replaces coded SVG bucket
+ * illustration with real product photography (510×538, NOT upscaled) and
+ * uses interior-wall-study.webp as the hero environment. SVG kept only for
+ * interactive ashta-laabh-seal.
+ *
  *   - Pale chuna / indigo material environment (.product-detail--cool).
- *   - Hero: copy 5 / product 7 (image-handoff with bucket fallback).
+ *   - Hero: copy 5 / product 7 (real photo, natural size, NO upscaling).
  *   - Spec sheet: large ruled rows numbered 01-07 (NOT pills).
  *   - Coverage disclaimer.
- *   - Ashta Laabh grid.
+ *   - Ashta Laabh grid (interactive SVG seal kept).
  *   - CTA "Enquire About Distemper" → /contact/?interest=prakritik-distemper.
  */
 declare(strict_types=1);
@@ -53,6 +57,14 @@ $specRows = [
 ];
 ?>
 <style>
+  /* ===== Editorial image reset (V4 — NO mix-blend-mode, NO blur filters) ===== */
+  .editorial-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
   /* ===== HERO (copy 5 / product 7 — cool env) ===== */
   .product-detail { padding-bottom: clamp(3rem, 6vw, 5rem); }
   .product-detail__hero {
@@ -64,19 +76,32 @@ $specRows = [
       grid-template-columns: 5fr 7fr; gap: clamp(2.5rem, 5vw, 4rem);
     }
   }
+  /* V4: media is a real environment (interior-wall-study) with the real
+     product photo overlaid at its natural size. NO upscaling. */
   .product-detail__media {
-    position: relative; aspect-ratio: 1;
-    background: linear-gradient(160deg, var(--paper), var(--limewash));
+    position: relative; aspect-ratio: 4/3;
+    background: var(--paper-cool);
     border: 1px solid var(--border); border-top: 3px solid var(--indigo);
     border-radius: var(--r-panel); overflow: hidden;
     min-height: 22rem;
+    display: flex; align-items: center; justify-content: center;
   }
   @media (min-width: 1024px) { .product-detail__media { min-height: 30rem; } }
-  .product-detail__media .product-media { width: 100%; height: 100%; }
-  .product-detail__media .product-media__official { object-fit: contain; padding: 2.5rem; }
-  .product-detail__media .product-media__fallback { padding: 2rem; }
+  .product-detail__media .media-env {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover;
+  }
+  .product-detail__media .media-product {
+    position: relative; z-index: 2;
+    display: block;
+    max-height: 84%;
+    width: auto;
+    max-width: min(60%, 480px);   /* 510×538 photo — never wider than 480px CSS */
+    object-fit: contain;
+    filter: drop-shadow(0 18px 28px rgba(34, 36, 27, 0.20));
+  }
   .product-detail__media__num {
-    position: absolute; top: 1rem; right: 1.25rem;
+    position: absolute; top: 1rem; right: 1.25rem; z-index: 3;
     font-family: var(--font-display); font-size: clamp(3rem, 8vw, 5rem);
     font-weight: 700; color: var(--indigo); opacity: 0.12;
     line-height: 1; pointer-events: none;
@@ -89,14 +114,14 @@ $specRows = [
   .distemper-specs-section { padding-block: clamp(3rem, 6vw, 5rem); }
   .spec-sheet__head { margin-bottom: 1.5rem; }
   .spec-sheet__list {
-    grid-template-columns: 1fr;  /* override the 1fr 1fr default — single column for editorial feel */
+    grid-template-columns: 1fr;
   }
 
   /* ===== COVERAGE DISCLAIMER ===== */
   .coverage-disclaimer { margin-top: 2rem; border-left-color: var(--indigo); }
 
   /* ===== ASHTA LAABH GRID ===== */
-  .distemper-ashta-section { padding-block: clamp(3rem, 6vw, 5rem); }
+  .distemper-ashta-section { padding-block: clamp(3rem, 6vw, 5rem); position: relative; overflow: hidden; }
   .distemper-ashta-section__head { max-width: 48rem; margin-bottom: 2.5rem; }
 </style>
 
@@ -127,15 +152,19 @@ $specRows = [
 
       <div class="product-detail__media">
         <span class="product-detail__media__num" aria-hidden="true">01</span>
-        <div class="product-media" data-official-image="<?= e($product['officialImage']) ?>">
-          <img class="product-media__official"
-               src="<?= e($product['officialImage']) ?>"
-               alt="<?= e($product['name']) ?> pack"
-               width="800" height="800" loading="eager" decoding="async">
-          <div class="product-media__fallback">
-            <?php render_illustration('prakritik-distemper-bucket'); ?>
-          </div>
-        </div>
+        <picture>
+          <source type="image/webp" srcset="<?= asset_url('/assets/editorial/interior-wall-study.webp') ?>">
+          <img class="media-env"
+               src="<?= asset_url('/assets/editorial/interior-wall-study.jpg') ?>"
+               alt=""
+               width="1344" height="768"
+               loading="eager" decoding="async">
+        </picture>
+        <img class="media-product"
+             src="<?= asset_url($product['officialImage']) ?>"
+             alt="<?= e($product['name']) ?>"
+             width="510" height="538"
+             loading="eager" fetchpriority="high" decoding="async">
       </div>
     </div>
   </div>

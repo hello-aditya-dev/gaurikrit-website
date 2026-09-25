@@ -198,6 +198,14 @@
 
     <main id="main" class="site-main">
 <style>
+  /* ===== Editorial image reset (V4 — NO mix-blend-mode, NO blur filters) ===== */
+  .editorial-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
   /* ===== HERO ===== */
   .calc-hero { padding-top: calc(var(--header-h) + 2rem); padding-bottom: 1.5rem; }
   .calc-hero__inner { display: grid; gap: 1rem; max-width: 60rem; }
@@ -235,17 +243,28 @@
   @media (max-width: 1023px) {
     .calculator-page { grid-template-columns: 1fr; }
   }
+  /* V4: sticky visual = real interior-wall-study behind the interactive SVG.
+     The SVG stays interactive; the photo gives the wall environment. */
   .calculator-page__visual {
     position: sticky; top: calc(var(--header-h) + 1rem);
     background: var(--limewash); border: 1px solid var(--border);
     border-radius: var(--r-panel); aspect-ratio: 4/3;
     display: flex; align-items: center; justify-content: center;
-    padding: 2rem; overflow: hidden;
+    padding: 0; overflow: hidden;
   }
   @media (max-width: 1023px) {
     .calculator-page__visual { position: relative; top: auto; aspect-ratio: 16/9; }
   }
-  .calculator-page__visual svg { width: 100%; height: 100%; display: block; }
+  .calculator-page__visual .visual-env {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover;
+    opacity: 0.55;
+    pointer-events: none;
+  }
+  .calculator-page__visual svg {
+    position: relative; z-index: 1;
+    width: 86%; height: 86%; display: block;
+  }
 
   /* The actual calculator mount — JS builds the UI inside it. */
   .calculator-page__steps { display: grid; gap: 1.5rem; }
@@ -368,8 +387,9 @@
 <section class="bg-limewash" style="padding-top: 0;">
   <div class="container">
     <div class="calculator-page" data-reveal>
-      <!-- LEFT: sticky interactive wall scene -->
+      <!-- LEFT: sticky interactive wall scene (SVG kept) -->
       <div class="calculator-page__visual" aria-hidden="true">
+        <picture><source type="image/webp" srcset="../assets/editorial/interior-wall-study.webp"><img class="visual-env" src="../assets/editorial/interior-wall-study.jpg" alt="" width="1344" height="768" loading="eager" decoding="async"></picture>
         <svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg"
      class=""
      role="img" aria-hidden="true"

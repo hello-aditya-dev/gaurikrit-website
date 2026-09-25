@@ -1,12 +1,15 @@
 <?php
 /**
- * Gaurikrit Bio Products — Products Overview (V3 rebuild).
- * Task V3-PAGES.
+ * Gaurikrit Bio Products — Products Overview (V4 asset replacement pass).
+ * Task V4-ASSETS.
  *
- * Composition:
- *   1. Hero — 45% text / 55% product group visual (NOT centred empty hero).
- *   2. Distemper Product Chapter (cool env).
- *   3. Emulsion Product Chapter (warm env, reversed).
+ * Composition unchanged from V3. This pass replaces coded SVG with real
+ * product photography + editorial artwork. SVG kept only for interactive
+ * ashta-laabh-seal.
+ *
+ *   1. Hero — 45% text / 55% product group visual (real group photo).
+ *   2. Distemper Product Chapter — interior-wall-study env + real photo.
+ *   3. Emulsion Product Chapter — exterior-wall-study env + real photo (reversed).
  *   4. Spec Matrix — large ruled comparison across the page (no card).
  *   5. Benefits — numbered typographic strip using $ASHTA_LAABH.
  *   6. "Need help choosing?" CTA → /contact/.
@@ -27,20 +30,17 @@ global $COMPANY, $PRODUCTS, $ASHTA_LAABH, $FAQ, $COVERAGE_DISCLAIMER;
 $distemper   = get_product('prakritik-distemper');
 $emulsion    = get_product('prakritik-emulsion');
 $groupImage  = '/assets/products/prakritik-group.jpg';
-
-$ashtaIds = [
-    'Antibacterial'              => 'antibacterial',
-    'Antifungal'                 => 'antifungal',
-    'Eco-Friendly'               => 'eco-friendly',
-    'Natural Thermal Insulator'  => 'thermal-insulator',
-    'Cost-Effective'             => 'cost-effective',
-    'Free from Heavy Metals'     => 'heavy-metal-free',
-    'Non-Toxic'                  => 'non-toxic',
-    'Odourless'                  => 'odourless',
-];
 ?>
 <style>
-  /* ===== 1. PRODUCTS HERO (45 / 55) ===== */
+  /* ===== Editorial image reset (V4 — NO mix-blend-mode, NO blur filters) ===== */
+  .editorial-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* ===== 1. PRODUCTS HERO (45 / 55) — real group photo, no empty beige ===== */
   .products-hero {
     padding-top: calc(var(--header-h) + 2rem);
     padding-bottom: 1.5rem;
@@ -55,16 +55,47 @@ $ashtaIds = [
   .products-hero__lockup { max-width: 42rem; }
   .products-hero__visual {
     position: relative; min-height: 22rem; width: 100%;
-    background: var(--paper-warm);
-    border-radius: var(--r-panel);
+    background: transparent; border-radius: 0;
     overflow: hidden; display: flex; align-items: center; justify-content: center;
-    padding: 2rem;
+    padding: 0;
   }
   @media (min-width: 768px) { .products-hero__visual { min-height: 28rem; } }
   @media (min-width: 1024px) { .products-hero__visual { min-height: 32rem; } }
-  .products-hero__visual .product-media { width: 100%; height: 100%; }
-  .products-hero__visual .product-media__official { object-fit: contain; }
-  .products-hero__visual .product-media__fallback { padding: 2rem; }
+  .products-hero__visual .hero-group-photo {
+    display: block;
+    width: 100%; height: 100%;
+    object-fit: contain;
+  }
+
+  /* ===== 2/3. PRODUCT CHAPTERS — editorial env + real product photo ===== */
+  .product-chapter__visual {
+    position: relative;
+    aspect-ratio: 4/3;
+    min-height: 22rem;
+    background: var(--paper);
+    overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+  @media (min-width: 1024px) { .product-chapter__visual { min-height: 30rem; } }
+  .product-chapter__visual .chapter-env {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover;
+  }
+  .product-chapter__visual .chapter-product {
+    position: relative; z-index: 2;
+    display: block;
+    max-height: 80%;
+    width: auto;
+    max-width: 70%;
+    object-fit: contain;
+    filter: drop-shadow(0 18px 28px rgba(34, 36, 27, 0.18));
+  }
+  .product-chapter__visual .chapter-product--distemper {
+    max-width: min(70%, 480px);
+  }
+  .product-chapter__visual .chapter-product--emulsion {
+    max-width: min(60%, 340px);
+  }
 
   /* ===== SPEC MATRIX (no card, borderless) ===== */
   .spec-matrix-section { padding-block: clamp(3rem, 6vw, 5rem); }
@@ -134,15 +165,11 @@ $ashtaIds = [
         </p>
       </div>
       <div class="products-hero__visual" data-reveal>
-        <div class="product-media" data-official-image="<?= e($groupImage) ?>">
-          <img class="product-media__official"
-               src="<?= e($groupImage) ?>"
-               alt="Prakritik Distemper and Emulsion paint packs"
-               width="800" height="600" loading="eager" decoding="async">
-          <div class="product-media__fallback">
-            <?php render_illustration('prakritik-emulsion-bucket'); ?>
-          </div>
-        </div>
+        <img class="hero-group-photo"
+             src="<?= asset_url($groupImage) ?>"
+             alt="Prakritik Distemper and Emulsion paint packs"
+             width="1280" height="621"
+             loading="eager" fetchpriority="high" decoding="async">
       </div>
     </div>
   </div>
@@ -156,15 +183,19 @@ $ashtaIds = [
   <div class="container">
     <div class="product-chapter__inner" data-reveal>
       <div class="product-chapter__visual">
-        <div class="product-media" data-official-image="<?= e($distemper['officialImage']) ?>">
-          <img class="product-media__official"
-               src="<?= e($distemper['officialImage']) ?>"
-               alt="<?= e($distemper['name']) ?> pack"
-               width="800" height="600" loading="lazy" decoding="async">
-          <div class="product-media__fallback">
-            <?php render_illustration('prakritik-distemper-bucket'); ?>
-          </div>
-        </div>
+        <picture>
+          <source type="image/webp" srcset="<?= asset_url('/assets/editorial/interior-wall-study.webp') ?>">
+          <img class="chapter-env"
+               src="<?= asset_url('/assets/editorial/interior-wall-study.jpg') ?>"
+               alt=""
+               width="1344" height="768"
+               loading="lazy" decoding="async">
+        </picture>
+        <img class="chapter-product chapter-product--distemper"
+             src="<?= asset_url($distemper['officialImage']) ?>"
+             alt="<?= e($distemper['name']) ?>"
+             width="510" height="538"
+             loading="lazy" decoding="async">
       </div>
       <div class="product-chapter__copy">
         <span class="product-chapter__eyebrow">Format 01 — Distemper</span>
@@ -198,15 +229,19 @@ $ashtaIds = [
   <div class="container">
     <div class="product-chapter__inner" data-reveal>
       <div class="product-chapter__visual">
-        <div class="product-media" data-official-image="<?= e($emulsion['officialImage']) ?>">
-          <img class="product-media__official"
-               src="<?= e($emulsion['officialImage']) ?>"
-               alt="<?= e($emulsion['name']) ?> pack"
-               width="800" height="600" loading="lazy" decoding="async">
-          <div class="product-media__fallback">
-            <?php render_illustration('prakritik-emulsion-bucket'); ?>
-          </div>
-        </div>
+        <picture>
+          <source type="image/webp" srcset="<?= asset_url('/assets/editorial/exterior-wall-study.webp') ?>">
+          <img class="chapter-env"
+               src="<?= asset_url('/assets/editorial/exterior-wall-study.jpg') ?>"
+               alt=""
+               width="1344" height="768"
+               loading="lazy" decoding="async">
+        </picture>
+        <img class="chapter-product chapter-product--emulsion"
+             src="<?= asset_url($emulsion['officialImage']) ?>"
+             alt="<?= e($emulsion['name']) ?>"
+             width="355" height="486"
+             loading="lazy" decoding="async">
       </div>
       <div class="product-chapter__copy">
         <span class="product-chapter__eyebrow">Format 02 — Emulsion</span>

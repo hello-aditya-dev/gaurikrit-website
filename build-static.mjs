@@ -1,16 +1,39 @@
 /**
  * Gaurikrit Bio Products — Static HTML build script for GitHub Pages.
  *
- * Task ID: V3-STATIC
+ * Task ID: V4-STATIC
  *
  * Reads the PHP source in /home/z/my-project/dist-hostinger/ and produces
  * a static HTML site in /home/z/my-project/docs/ that can be deployed to
  * GitHub Pages (served from a subdirectory, so all paths are relative).
  *
- * Mirrors the V3 page compositions (12-column editorial grid, product
- * chapters instead of cards, ruled spec-matrix rows, large illustrations,
- * new illustration names — material-to-wall, ashta-laabh-seal,
- * architectural-elevation, calculator-wall-scene, etc.).
+ * Mirrors the V4 page compositions: REAL client photography + high-quality
+ * editorial artwork via `<picture>` tags (WebP source + JPEG fallback) with
+ * correct intrinsic width/height on every `<img>`. Coded SVG illustrations
+ * are kept ONLY for interactive elements (ashta-laabh-seal,
+ * calculator-wall-scene) and the brand-mark fallback (gaurikrit-cow-mark)
+ * and the 404 page decorative accent (field-botanicals).
+ *
+ * V4 asset policy:
+ *   - indian-cow           → zebu-study.webp/.jpg (1536×1024)
+ *   - indian-courtyard     → courtyard-study.webp/.jpg (1942×809)
+ *   - rural-landscape      → rural-landscape.webp/.jpg (1344×768)
+ *   - architectural-elevation → architectural-elevation.webp/.jpg (1344×768)
+ *   - interior-wall-study  → interior-wall-study.webp/.jpg (1344×768)
+ *   - exterior-wall-study  → exterior-wall-study.webp/.jpg (1344×768)
+ *   - prakritik-distemper-bucket → real product photo prakritik-distemper.jpg (510×538)
+ *   - prakritik-emulsion-bucket  → real product photo prakritik-emulsion.jpg (355×486)
+ *   - ashta-laabh-seal           → SVG KEPT (interactive radial seal)
+ *   - calculator-wall-scene      → SVG KEPT (interactive wall scene, with photo bg)
+ *   - gaurikrit-cow-mark          → SVG KEPT (logo fallback in header/footer + 404)
+ *   - field-botanicals           → SVG KEPT (small 404 decorative accent)
+ *
+ * Static-specific adjustments:
+ *   - Forms use Formspree placeholder action (no CSRF, no honeypot).
+ *   - Calculator config: inline {"enabled":false} JSON.
+ *   - Brochure: JS HEAD-fetch detection module (data-brochure-state="unknown"
+ *     initially; both data-brochure-if-available and data-brochure-if-missing
+ *     divs present; CSS shows available by default, swaps on missing state).
  *
  * Run with: `bun run build-static.mjs`
  */
@@ -51,8 +74,6 @@ const COMPANY = {
     ],
     siteUrl: SITE_URL,
 };
-
-
 
 const PRODUCTS = [
     {
@@ -218,6 +239,9 @@ function pad2(n) {
  * up to and including the first `?>`), then replaces
  * `<?= htmlspecialchars($class, ENT_QUOTES) ?>` with the supplied
  * class attribute value (HTML-escaped).
+ *
+ * V4: only used for ashta-laabh-seal, calculator-wall-scene,
+ * gaurikrit-cow-mark, field-botanicals.
  */
 function loadSvg(name, className = '') {
     const file = join(SRC, 'includes/illustrations', `${name}.php`);
@@ -228,6 +252,25 @@ function loadSvg(name, className = '') {
     let svg = raw.slice(closeIdx + 2);
     svg = svg.replace(/<\?=\s*htmlspecialchars\(\$class,\s*ENT_QUOTES\)\s*\?>/g, e(className));
     return svg.trim();
+}
+
+/**
+ * Build a <picture> tag with WebP source + JPEG fallback for editorial
+ * artwork. V4 standard image integration pattern.
+ *
+ *   pic('/assets/editorial/zebu-study.webp', '/assets/editorial/zebu-study.jpg',
+ *       'Editorial study of an Indian zebu cow', 1536, 1024, depth,
+ *       'class="editorial-image"')
+ *
+ * Default loading is "lazy" + decoding="async". For eager/above-the-fold
+ * images, pass extra containing `loading="eager" fetchpriority="high"` —
+ * the helper places extra BEFORE the default loading attribute so the
+ * browser's first-attribute-wins rule applies the override.
+ */
+function pic(absWebpPath, absJpgPath, alt, w, h, depth, extra = '') {
+    const webp = assetUrl(absWebpPath, depth);
+    const jpg = assetUrl(absJpgPath, depth);
+    return `<picture><source type="image/webp" srcset="${webp}"><img ${extra} src="${jpg}" alt="${e(alt)}" width="${w}" height="${h}" loading="lazy" decoding="async"></picture>`;
 }
 
 /**
@@ -255,7 +298,6 @@ function assetUrl(absoluteAssetPath, depth) {
 function renderHeader(pageMeta, depth) {
     const title = e(pageMeta.title);
     const desc = e(pageMeta.description);
-    const canonical = relUrl(pageMeta.canonical, depth);
     const fullCanonical = SITE_URL.replace(/\/$/, '') + pageMeta.canonical;
     const socialSlug = ({'/':'home','/products/':'products',
         '/products/prakritik-distemper/':'distemper',
@@ -483,10 +525,10 @@ function generatePage(pageMeta, depth, bodyContent) {
 // ============================================================
 // 4. PAGE BODIES — one function per route.
 //    Each function returns the inline <style> + section HTML as a
-//    single string (mirrors the V3 PHP pages exactly).
+//    single string (mirrors the V4 PHP pages exactly).
 // ============================================================
 
-// ---- Homepage (index.html) — V3 ----
+// ---- Homepage (index.html) — V4 ----
 function homeBody(depth) {
     const distemper = getProduct('prakritik-distemper');
     const emulsion = getProduct('prakritik-emulsion');
@@ -531,94 +573,237 @@ function homeBody(depth) {
         </div>`,
     ).join('\n');
 
+    // Picture tags (V4 — real editorial artwork).
+    const zebuCowPic = pic('/assets/editorial/zebu-study.webp', '/assets/editorial/zebu-study.jpg',
+        '', 1536, 1024, depth, 'class="editorial-image"');
+    const zebuMaterialPic = pic('/assets/editorial/zebu-study.webp', '/assets/editorial/zebu-study.jpg',
+        'Editorial study of an Indian zebu cow', 1536, 1024, depth, 'class="editorial-image"');
+    const ruralLandscapePic = pic('/assets/editorial/rural-landscape.webp', '/assets/editorial/rural-landscape.jpg',
+        '', 1344, 768, depth, 'class="editorial-image"');
+    const interiorWallDistemperPic = pic('/assets/editorial/interior-wall-study.webp', '/assets/editorial/interior-wall-study.jpg',
+        '', 1344, 768, depth, 'class="chapter-env"');
+    const exteriorWallEmulsionPic = pic('/assets/editorial/exterior-wall-study.webp', '/assets/editorial/exterior-wall-study.jpg',
+        '', 1344, 768, depth, 'class="chapter-env"');
+    const interiorJourneyPic = pic('/assets/editorial/interior-wall-study.webp', '/assets/editorial/interior-wall-study.jpg',
+        'Indian interior limewashed wall', 1344, 768, depth, 'class="editorial-image"');
+    const exteriorJourneyPic = pic('/assets/editorial/exterior-wall-study.webp', '/assets/editorial/exterior-wall-study.jpg',
+        'Indian exterior wall', 1344, 768, depth, 'class="editorial-image"');
+    const zebuAshtaBgPic = pic('/assets/editorial/zebu-study.webp', '/assets/editorial/zebu-study.jpg',
+        '', 1536, 1024, depth, 'class="editorial-image"');
+    const courtyardColoursPic = pic('/assets/editorial/courtyard-study.webp', '/assets/editorial/courtyard-study.jpg',
+        'Indian limewashed courtyard elevation', 1942, 809, depth, 'class="colours-wall__art"');
+    const ruralMissionPic = pic('/assets/editorial/rural-landscape.webp', '/assets/editorial/rural-landscape.jpg',
+        '', 1344, 768, depth, 'class="editorial-image"');
+    const archCalcTeaserPic = pic('/assets/editorial/architectural-elevation.webp', '/assets/editorial/architectural-elevation.jpg',
+        '', 1344, 768, depth, 'class="editorial-image"');
+    const ruralPathwaysPic = pic('/assets/editorial/rural-landscape.webp', '/assets/editorial/rural-landscape.jpg',
+        '', 1344, 768, depth, 'class="editorial-image"');
+
     return `<style>
-  /* ===== 1. HERO (V3: 12-col, text 5 / visual 7) ===== */
+  /* ===== Editorial image reset (V4 — NO mix-blend-mode, NO blur filters) ===== */
+  .editorial-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .editorial-image--contain { object-fit: contain; }
+
+  /* ===== 1. HERO — group photo dominant + CSS haldi field + cow engraving ===== */
   .hero { padding-top: calc(var(--header-h) + 1.5rem); padding-bottom: 1.5rem; }
   @media (min-width: 1024px) {
     .hero { min-height: 92svh; min-height: 92vh; display: flex; align-items: center;
             padding-top: calc(var(--header-h) + 2rem); padding-bottom: 2rem; }
   }
-  .hero__grid { align-items: center; }
+  .hero__grid { align-items: center; position: relative; }
   @media (min-width: 1024px) {
     .hero__grid { grid-template-columns: 5fr 7fr; gap: clamp(2rem, 4vw, 4rem); }
   }
   @media (max-width: 1023px) {
     .hero__grid { grid-template-columns: 1fr; }
-    .hero__visual { order: 3; min-height: 26rem; }
+    .hero__visual { order: 3; min-height: 22rem; }
   }
   .hero__eyebrow-chip { margin-bottom: 0.875rem; }
   .hero__title { font-size: clamp(2.5rem, 6vw, 5.5rem); line-height: 1.02; }
   .hero__body { max-width: 38rem; }
   .hero__ctas { margin-top: 2.25rem; }
 
-  /* V3 hero visual stack: paint-stroke field → product image → cow line art. */
-  .hero__visual { position: relative; min-height: 24rem; width: 100%; }
-  @media (min-width: 768px)  { .hero__visual { min-height: 28rem; } }
+  /* V4 hero visual stack: CSS haldi field → group photo → zebu engraving. */
+  .hero__visual { position: relative; min-height: 22rem; width: 100%; }
+  @media (min-width: 768px)  { .hero__visual { min-height: 26rem; } }
   @media (min-width: 1024px) { .hero__visual { min-height: 34rem; } }
+
+  /* CSS haldi field — a div with radial haldi gradient (NO SVG). */
   .hero__haldi-field {
     position: absolute; inset: -1rem -1rem 1.5rem; z-index: 0;
-    display: flex; align-items: center; justify-content: center;
     pointer-events: none;
+    display: flex; align-items: center; justify-content: center;
   }
-  .hero__haldi-field::before { display: none; }
-  .hero__haldi-field .hero__stroke-svg {
-    width: 92%; height: 80%; opacity: 0.95;
-    filter: saturate(1.04);
+  .hero__haldi-field::before {
+    content: ''; display: block;
+    width: 88%; height: 80%;
+    background: radial-gradient(ellipse 70% 60% at 50% 40%,
+                var(--haldi) 0%,
+                color-mix(in srgb, var(--haldi) 78%, transparent) 60%,
+                transparent 92%);
   }
+  .hero__haldi-field .hero__stroke-svg { display: none; }   /* V4: no SVG */
+
+  /* Real group photo — eager + high priority, dominant. */
   .hero__bucket {
-    position: absolute; left: 50%; top: 48%;
-    width: 76%; height: 70%;
+    position: absolute; left: 50%; top: 50%;
+    width: 88%; height: 78%;
     transform: translate(-50%, -50%);
     z-index: 2;
+    display: flex; align-items: center; justify-content: center;
   }
-  .hero__bucket .product-media { width: 100%; height: 100%; }
-  .hero__bucket .product-media__official { object-fit: contain; }
-  .hero__cow {
-    position: absolute; right: -1rem; bottom: 0.5rem;
-    width: 48%; height: 36%;
-    z-index: 3; opacity: 0.16; pointer-events: none;
+  .hero__bucket .hero-group-photo {
+    display: block;
+    width: 100%; height: 100%;
+    object-fit: contain;
+    border-radius: 0.35rem;
   }
 
-  /* ===== 2. MATERIAL STATEMENT (5/7 — cow beside limewashed wall) ===== */
-  .material-statement__visual { aspect-ratio: 5/4; background: var(--limewash); }
-  .material-statement__visual .ms-wall {
-    right: 8%; top: 8%; bottom: 8%; width: 46%;
-    background: linear-gradient(135deg, var(--limewash), color-mix(in srgb, var(--kraft) 35%, var(--limewash)));
+  /* Zebu cow engraving — low opacity background line art. */
+  .hero__cow {
+    position: absolute; right: -1.5rem; bottom: -1rem;
+    width: 48%; height: 38%;
+    z-index: 3; opacity: 0.14; pointer-events: none;
     overflow: hidden;
   }
-  .material-statement__visual .ms-wall::after {
-    content: ''; position: absolute; inset: 0;
-    background-image: radial-gradient(circle at 1px 1px, rgba(32, 30, 25, 0.08) 0.5px, transparent 0);
-    background-size: 14px 14px;
+  .hero__cow .editorial-image { object-fit: cover; }
+
+  /* Rural landscape band at the bottom of the hero visual. */
+  .hero__landscape {
+    position: absolute; left: 0; right: 0; bottom: 0;
+    height: 4.5rem;
+    z-index: 1; opacity: 0.12; pointer-events: none;
+    overflow: hidden;
   }
-  .material-statement__visual .ms-cow { left: 6%; bottom: 8%; width: 42%; opacity: 0.85; }
+  .hero__landscape .editorial-image { object-fit: cover; }
+  @media (min-width: 1024px) { .hero__landscape { height: 5rem; } }
 
-  /* ===== 5. MATERIAL JOURNEY (full-width diagram, no card) ===== */
+  /* ===== 2. MATERIAL STATEMENT — zebu-study large right (58%) ===== */
+  .material-statement__visual {
+    aspect-ratio: 1536/1024;
+    background: var(--limewash);
+    overflow: hidden;
+    padding: 0;
+    position: relative;
+  }
+  .material-statement__visual .editorial-image {
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  }
+  .material-statement__visual .ms-wall,
+  .material-statement__visual .ms-cow,
+  .material-statement__visual .ms-arrow { display: none; }
+
+  /* ===== 3/4. PRODUCT CHAPTERS — editorial env + real product photo ===== */
+  .product-chapter__visual {
+    position: relative;
+    aspect-ratio: 4/3;
+    min-height: 22rem;
+    background: var(--paper);
+    overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+  @media (min-width: 1024px) {
+    .product-chapter__visual { min-height: 30rem; }
+  }
+  .product-chapter__visual .chapter-env {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover;
+  }
+  .product-chapter__visual .chapter-product {
+    position: relative; z-index: 2;
+    display: block;
+    max-height: 80%;
+    width: auto;
+    max-width: 70%;
+    object-fit: contain;
+    filter: drop-shadow(0 18px 28px rgba(34, 36, 27, 0.18));
+  }
+  .product-chapter__visual .chapter-product--distemper {
+    max-width: min(70%, 480px);
+  }
+  .product-chapter__visual .chapter-product--emulsion {
+    max-width: min(60%, 340px);
+  }
+
+  /* ===== 5. MATERIAL JOURNEY — 3-panel composition ===== */
   .material-flow { padding-block: clamp(3rem, 6vw, 5rem); }
-  .material-flow__svg-wrap { width: 100%; margin-inline: 0; }
-  .material-flow__svg-wrap svg { width: 100%; height: auto; display: block; }
   .material-flow__head { max-width: 48rem; margin-bottom: 2.5rem; }
+  .material-flow__panels {
+    display: grid; gap: 1rem;
+    grid-template-columns: 1fr;
+    margin-bottom: 2.5rem;
+  }
+  @media (min-width: 768px) {
+    .material-flow__panels { grid-template-columns: 1fr 1fr 1fr; gap: 1.25rem; }
+  }
+  .material-flow__panel {
+    position: relative;
+    aspect-ratio: 1344/768;
+    background: var(--limewash);
+    overflow: hidden;
+    border-radius: var(--r-panel);
+  }
+  .material-flow__panel--group { aspect-ratio: 1280/621; }
+  .material-flow__panel .editorial-image {
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  }
+  .material-flow__panel-label {
+    position: absolute; left: 0.875rem; bottom: 0.875rem;
+    background: rgba(250, 248, 241, 0.88);
+    padding: 0.375rem 0.75rem;
+    border-radius: var(--r-pill);
+    font-size: 0.6875rem; font-weight: 700;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--fg);
+  }
 
-  /* ===== 6. ASHTA LAABH (60/40 split — seal + numbered list) ===== */
+  /* ===== 6. ASHTA LAABH — keep SVG seal + zebu-study bg engraving ===== */
+  .ashta-section { position: relative; overflow: hidden; }
+  .ashta-section__bg {
+    position: absolute; right: -10%; top: 50%; transform: translateY(-50%);
+    width: 60%; height: 80%;
+    opacity: 0.08; pointer-events: none; overflow: hidden;
+  }
+  .ashta-section__bg .editorial-image { width: 100%; height: 100%; object-fit: cover; }
+  .ashta-section__inner { position: relative; z-index: 1; }
+  .ashta-section__grid { position: relative; z-index: 1; }
   .ashta-section__seal { max-width: 38rem; margin-inline: auto; }
   .ashta-benefit__num { font-feature-settings: "tnum"; }
 
-  /* ===== 7. COLOURS OF INDIA (large courtyard, recolourable) ===== */
+  /* ===== 7. COLOURS OF INDIA — courtyard-study.jpg large wall plane ===== */
   .colours-section__head { max-width: 48rem; margin-bottom: 2.5rem; }
   .colours-wall {
-    aspect-ratio: 16/9; background: var(--limewash);
-    border: 0; border-radius: 0; overflow: hidden;
+    aspect-ratio: 1942/809;
+    background: var(--limewash);
+    border: 0; border-radius: 0;
+    overflow: hidden;
     position: relative;
   }
   @media (min-width: 1024px) { .colours-wall { aspect-ratio: 21/9; } }
-  .colours-wall__svg { width: 100%; height: 100%; display: block; }
+  .colours-wall .colours-wall__art {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    display: block; object-fit: cover;
+  }
+  .colours-wall .colours-wall__tint {
+    position: absolute; inset: 0;
+    background: var(--wall-color, transparent);
+    opacity: 0.55;
+    pointer-events: none;
+    transition: background 0.45s var(--ease);
+  }
   .colours-wall__label {
     position: absolute; bottom: 1rem; left: 1rem;
     font-family: var(--font-display); font-size: 1.125rem; font-weight: 700;
     color: var(--charcoal);
-    background: rgba(250, 248, 241, 0.85);
+    background: rgba(250, 248, 241, 0.88);
     padding: 0.5rem 1rem; border-radius: var(--r-pill);
     -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+    z-index: 2;
   }
   .colours-wall__label small {
     display: block; font-family: var(--font-sans); font-size: 0.625rem;
@@ -634,9 +819,9 @@ function homeBody(depth) {
     border: 2px solid var(--border); padding: 0; cursor: pointer;
     position: relative; transition: transform var(--dur), border-color var(--dur);
   }
-  .colours-swatch:hover { transform: scale(1.08); }
+  .colours-swatch:hover { transform: translateY(-2px); }
   .colours-swatch[data-active="true"] {
-    border-color: var(--forest); transform: scale(1.12);
+    border-color: var(--forest); transform: translateY(-2px);
   }
   .colours-swatch__label {
     position: absolute; top: calc(100% + 0.5rem); left: 50%;
@@ -645,7 +830,7 @@ function homeBody(depth) {
     text-transform: uppercase; color: var(--fg-muted);
   }
 
-  /* ===== 8. MISSION (deep forest band with rural-landscape engraving) ===== */
+  /* ===== 8. MISSION — forest band with rural-landscape engraving ===== */
   .mission-band {
     position: relative; padding-block: clamp(4rem, 8vw, 6.5rem);
     background: var(--forest-deep); color: var(--primary-fg);
@@ -653,9 +838,9 @@ function homeBody(depth) {
   }
   .mission-band__bg {
     position: absolute; inset: 0; opacity: 0.15; pointer-events: none;
-    display: flex; align-items: flex-end; justify-content: center;
+    overflow: hidden;
   }
-  .mission-band__bg svg { width: 100%; height: auto; max-height: 100%; }
+  .mission-band__bg .editorial-image { width: 100%; height: 100%; object-fit: cover; }
   .mission-band__inner {
     position: relative; z-index: 1; max-width: 48rem;
   }
@@ -677,21 +862,32 @@ function homeBody(depth) {
   /* ===== 9. CALCULATOR TEASER ===== */
   .calc-teaser { padding-block: clamp(3.5rem, 6vw, 5.5rem); }
   .calc-teaser__preview { padding: 1.75rem; }
-  .calc-teaser__art { aspect-ratio: 4/3; }
-  .calc-teaser__art::before { inset: 14% 14% 14% 14%; }
+  .calc-teaser__art { aspect-ratio: 4/3; position: relative; overflow: hidden; }
+  .calc-teaser__art .editorial-image {
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+    opacity: 0.35;
+  }
+  .calc-teaser__art .calc-teaser__preview {
+    position: relative; z-index: 1; background: rgba(250, 248, 241, 0.95);
+  }
 
   /* ===== 10. PROJECT PATHWAYS ===== */
   .pathways-section { padding-block: clamp(3rem, 6vw, 5rem); }
   .pathways-section__head { max-width: 48rem; margin-bottom: 2.5rem; }
   .pathways-illustration {
-    margin-bottom: 3rem; width: 100%; height: auto;
-    opacity: 0.55;
+    position: relative;
+    margin-bottom: 3rem;
+    aspect-ratio: 1344/768;
+    width: 100%; overflow: hidden;
+    border-radius: var(--r-panel);
   }
-  .pathways-illustration svg { width: 100%; height: auto; display: block; }
+  .pathways-illustration .editorial-image {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+  }
 </style>
 
 <!-- ============================================================
-     1. HERO — 12-col (text 5 / visual 7), dominant product image
+     1. HERO — 12-col (text 5 / visual 7), dominant group photo
      ============================================================ -->
 <section class="hero bg-limewash" aria-labelledby="hero-title">
   <div class="container">
@@ -713,35 +909,35 @@ function homeBody(depth) {
       </div>
 
       <div class="hero__visual" data-reveal>
-        <!-- Haldi paint-stroke field behind the product -->
-        <div class="hero__haldi-field" aria-hidden="true">
-          ${loadSvg('paint-brush-stroke', 'hero__stroke-svg')}
-        </div>
-        <!-- Product group image (image-handoff with emulsion-bucket fallback) -->
+        <!-- CSS haldi paint field behind the product (no SVG) -->
+        <div class="hero__haldi-field" aria-hidden="true"></div>
+        <!-- Real product group photo — eager + high priority -->
         <div class="hero__bucket">
-          <div class="product-media" data-official-image="${groupImg}">
-            <img class="product-media__official"
-                 src="${groupImg}"
-                 alt="Prakritik Distemper and Emulsion paint packs"
-                 width="800" height="600" loading="eager" decoding="async">
-            <div class="product-media__fallback">
-              ${loadSvg('prakritik-emulsion-bucket')}
-            </div>
-          </div>
+          <img class="hero-group-photo"
+               src="${groupImg}"
+               alt="Prakritik Distemper and Emulsion paint packs"
+               width="1280" height="621"
+               loading="eager" fetchpriority="high" decoding="async">
         </div>
-        <!-- Cow line art at 0.16 opacity — secondary line, not the hero -->
-
+        <!-- Zebu cow engraving at 0.14 opacity — secondary line, not the hero -->
+        <div class="hero__cow" aria-hidden="true">
+          ${zebuCowPic}
+        </div>
+        <!-- Rural landscape band at the bottom — 0.12 opacity -->
+        <div class="hero__landscape" aria-hidden="true">
+          ${ruralLandscapePic}
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ============================================================
-     2. MATERIAL STATEMENT — copy 5 / visual 7 (cow beside wall)
+     2. MATERIAL STATEMENT — copy 42 / zebu-study 58
      ============================================================ -->
 <section class="section section--paper" aria-labelledby="material-title">
   <div class="container">
-    <div class="material-statement" data-reveal>
+    <div class="material-statement" data-reveal style="grid-template-columns: 42fr 58fr;">
       <div class="material-statement__copy">
         <span class="material-statement__eyebrow">An old Indian material idea</span>
         <h2 class="material-statement__headline" id="material-title">
@@ -761,7 +957,7 @@ function homeBody(depth) {
         </div>
       </div>
       <div class="material-statement__visual" aria-hidden="true">
-        <img class="editorial-cow" src="${assetUrl('/assets/illustrations/zebu-study.jpg', depth)}" alt="" loading="lazy" width="1536" height="1024">
+        ${zebuMaterialPic}
       </div>
     </div>
   </div>
@@ -775,15 +971,12 @@ function homeBody(depth) {
   <div class="container">
     <div class="product-chapter__inner" data-reveal>
       <div class="product-chapter__visual">
-        <div class="product-media" data-official-image="${assetUrl(distemper.officialImage, depth)}">
-          <img class="product-media__official"
-               src="${assetUrl(distemper.officialImage, depth)}"
-               alt="${e(distemper.name)} pack"
-               width="800" height="600" loading="lazy" decoding="async">
-          <div class="product-media__fallback">
-            ${loadSvg('prakritik-distemper-bucket')}
-          </div>
-        </div>
+        ${interiorWallDistemperPic}
+        <img class="chapter-product chapter-product--distemper"
+             src="${assetUrl(distemper.officialImage, depth)}"
+             alt="${e(distemper.name)}"
+             width="510" height="538"
+             loading="lazy" decoding="async">
       </div>
       <div class="product-chapter__copy">
         <span class="product-chapter__eyebrow">Format 01 — Distemper</span>
@@ -825,15 +1018,12 @@ function homeBody(depth) {
   <div class="container">
     <div class="product-chapter__inner" data-reveal>
       <div class="product-chapter__visual">
-        <div class="product-media" data-official-image="${assetUrl(emulsion.officialImage, depth)}">
-          <img class="product-media__official"
-               src="${assetUrl(emulsion.officialImage, depth)}"
-               alt="${e(emulsion.name)} pack"
-               width="800" height="600" loading="lazy" decoding="async">
-          <div class="product-media__fallback">
-            ${loadSvg('prakritik-emulsion-bucket')}
-          </div>
-        </div>
+        ${exteriorWallEmulsionPic}
+        <img class="chapter-product chapter-product--emulsion"
+             src="${assetUrl(emulsion.officialImage, depth)}"
+             alt="${e(emulsion.name)}"
+             width="355" height="486"
+             loading="lazy" decoding="async">
       </div>
       <div class="product-chapter__copy">
         <span class="product-chapter__eyebrow">Format 02 — Emulsion</span>
@@ -868,7 +1058,7 @@ function homeBody(depth) {
 </section>
 
 <!-- ============================================================
-     5. MATERIAL JOURNEY — full-width 3-stage diagram, no card
+     5. MATERIAL JOURNEY — full-width 3-panel composition
      ============================================================ -->
 <section class="section section--limewash material-flow" aria-labelledby="journey-title">
   <div class="container">
@@ -879,8 +1069,23 @@ function homeBody(depth) {
         Natural material, Prakritik Paint, finished walls.
       </p>
     </div>
-    <div class="material-flow__svg-wrap" data-reveal>
-
+    <div class="material-flow__panels" data-reveal>
+      <div class="material-flow__panel">
+        ${interiorJourneyPic}
+        <span class="material-flow__panel-label">01 · Natural material</span>
+      </div>
+      <div class="material-flow__panel material-flow__panel--group">
+        <img class="editorial-image"
+             src="${groupImg}"
+             alt="Prakritik Distemper and Emulsion paint packs"
+             width="1280" height="621"
+             loading="lazy" decoding="async">
+        <span class="material-flow__panel-label">02 · Prakritik Paint</span>
+      </div>
+      <div class="material-flow__panel">
+        ${exteriorJourneyPic}
+        <span class="material-flow__panel-label">03 · Finished wall</span>
+      </div>
     </div>
     <ol class="material-journey__steps" data-reveal-stagger>
 ${journeySteps}
@@ -889,10 +1094,13 @@ ${journeySteps}
 </section>
 
 <!-- ============================================================
-     6. ASHTA LAABH — 60/40 split (seal + numbered list)
+     6. ASHTA LAABH — keep SVG seal + zebu-study bg engraving
      ============================================================ -->
-<section class="section ashta-section" aria-labelledby="ashta-title" data-ashta-laabh>
-  <div class="container">
+<section class="section ashta-section section--limewash" aria-labelledby="ashta-title" data-ashta-laabh>
+  <div class="ashta-section__bg" aria-hidden="true">
+    ${zebuAshtaBgPic}
+  </div>
+  <div class="container ashta-section__inner">
     <div class="ashta-section__head section-heading section-heading--left" data-reveal>
       <span class="ashta-section__deva">अष्ट लाभ</span>
       <h2 class="section-heading__title" id="ashta-title">Eight benefits of Prakritik Paint.</h2>
@@ -915,7 +1123,7 @@ ${ashtaItems}
 </section>
 
 <!-- ============================================================
-     7. COLOURS OF INDIA — large courtyard, recolourable wall plane
+     7. COLOURS OF INDIA — courtyard-study.jpg as the wall plane
      ============================================================ -->
 <section class="section section--paper colour-study colours-section" aria-labelledby="colours-title" data-colour-study>
   <div class="container">
@@ -929,7 +1137,8 @@ ${ashtaItems}
     </div>
 
     <div class="colours-wall" data-colour-wall data-reveal>
-      <img class="courtyard-study" src="${assetUrl('/assets/illustrations/courtyard-study.jpg', depth)}" alt="" loading="lazy" width="1942" height="809"><span class="courtyard-tint" aria-hidden="true"></span>
+      ${courtyardColoursPic}
+      <span class="colours-wall__tint" aria-hidden="true"></span>
       <span class="colours-wall__label">
         <span data-colour-label>Limewash</span>
         <small>Editorial colour study</small>
@@ -947,7 +1156,7 @@ ${swatches}
      ============================================================ -->
 <section class="mission-band" aria-labelledby="mission-title">
   <div class="mission-band__bg" aria-hidden="true">
-    ${loadSvg('rural-landscape')}
+    ${ruralMissionPic}
   </div>
   <div class="container">
     <div class="mission-band__inner" data-reveal>
@@ -967,7 +1176,7 @@ ${swatches}
 </section>
 
 <!-- ============================================================
-     9. CALCULATOR TEASER — mini project-summary + small wall art
+     9. CALCULATOR TEASER — mini project-summary + wall elevation
      ============================================================ -->
 <section class="section section--limewash calc-teaser" aria-labelledby="calc-teaser-title">
   <div class="container">
@@ -985,6 +1194,7 @@ ${swatches}
         </div>
       </div>
       <div class="calc-teaser__art" aria-hidden="true">
+        ${archCalcTeaserPic}
         <div class="calc-teaser__preview">
           <div class="calc-teaser__preview-row">
             <span class="calc-teaser__preview-label">Painting</span>
@@ -1009,7 +1219,7 @@ ${swatches}
 </section>
 
 <!-- ============================================================
-     10. PROJECT PATHWAYS — shared illustration + 4 ruled columns
+     10. PROJECT PATHWAYS — rural-landscape shared + 4 ruled columns
      ============================================================ -->
 <section class="section section--paper pathways-section" aria-labelledby="pathways-title">
   <div class="container">
@@ -1019,7 +1229,7 @@ ${swatches}
     </div>
 
     <div class="pathways-illustration" aria-hidden="true" data-reveal>
-      ${loadSvg('rural-landscape')}
+      ${ruralPathwaysPic}
     </div>
 
     <div class="pathways" data-reveal-stagger>
@@ -1033,44 +1243,19 @@ ${pathways}
 </section>
 
 <!-- Inline bridge: copy the seal SVG node data-benefit → data-ashta-node
-     so ashta-laabh.js can drive the seal's active state. Also recolour
-     the courtyard SVG <rect id="courtyard-wall-plane"> on swatch click
-     (colour-study.js sets background-color on [data-colour-wall] which
-     doesn't recolour an SVG <rect>). -->
+     so ashta-laabh.js can drive the seal's active state. -->
 <script>
   (function () {
     'use strict';
     document.querySelectorAll('[data-ashta-laabh] svg [data-benefit]').forEach(function (node) {
       node.setAttribute('data-ashta-node', node.getAttribute('data-benefit'));
     });
-
-    var courtyard = document.querySelector('[data-colour-study] [data-colour-wall]');
-    var rect = document.getElementById('courtyard-wall-plane');
-    if (courtyard && rect) {
-      var swatches = document.querySelectorAll('[data-colour-study] [data-shade]');
-      swatches.forEach(function (s) {
-        s.addEventListener('click', function () {
-          var colour = s.getAttribute('data-shade');
-          if (colour) rect.setAttribute('fill', colour);
-        });
-      });
-      if (swatches.length) {
-        var first = swatches[0];
-        var colour = first.getAttribute('data-shade');
-        var name = first.getAttribute('data-shade-name');
-        if (colour) rect.setAttribute('fill', colour);
-        var label = document.querySelector('[data-colour-label]');
-        if (label && name) label.textContent = name;
-        first.setAttribute('data-active', 'true');
-        first.setAttribute('aria-checked', 'true');
-      }
-    }
   })();
 </script>
 `;
 }
 
-// ---- Products Overview (products/index.html) — V3 ----
+// ---- Products Overview (products/index.html) — V4 ----
 function productsBody(depth) {
     const distemper = getProduct('prakritik-distemper');
     const emulsion = getProduct('prakritik-emulsion');
@@ -1098,8 +1283,22 @@ function productsBody(depth) {
         </div>`,
     ).join('\n');
 
+    // V4 picture tags for product chapter envs.
+    const interiorWallPic = pic('/assets/editorial/interior-wall-study.webp', '/assets/editorial/interior-wall-study.jpg',
+        '', 1344, 768, depth, 'class="chapter-env"');
+    const exteriorWallPic = pic('/assets/editorial/exterior-wall-study.webp', '/assets/editorial/exterior-wall-study.jpg',
+        '', 1344, 768, depth, 'class="chapter-env"');
+
     return `<style>
-  /* ===== 1. PRODUCTS HERO (45 / 55) ===== */
+  /* ===== Editorial image reset (V4 — NO mix-blend-mode, NO blur filters) ===== */
+  .editorial-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* ===== 1. PRODUCTS HERO (45 / 55) — real group photo, no empty beige ===== */
   .products-hero {
     padding-top: calc(var(--header-h) + 2rem);
     padding-bottom: 1.5rem;
@@ -1114,16 +1313,47 @@ function productsBody(depth) {
   .products-hero__lockup { max-width: 42rem; }
   .products-hero__visual {
     position: relative; min-height: 22rem; width: 100%;
-    background: var(--paper-warm);
-    border-radius: var(--r-panel);
+    background: transparent; border-radius: 0;
     overflow: hidden; display: flex; align-items: center; justify-content: center;
-    padding: 2rem;
+    padding: 0;
   }
   @media (min-width: 768px) { .products-hero__visual { min-height: 28rem; } }
   @media (min-width: 1024px) { .products-hero__visual { min-height: 32rem; } }
-  .products-hero__visual .product-media { width: 100%; height: 100%; }
-  .products-hero__visual .product-media__official { object-fit: contain; }
-  .products-hero__visual .product-media__fallback { padding: 2rem; }
+  .products-hero__visual .hero-group-photo {
+    display: block;
+    width: 100%; height: 100%;
+    object-fit: contain;
+  }
+
+  /* ===== 2/3. PRODUCT CHAPTERS — editorial env + real product photo ===== */
+  .product-chapter__visual {
+    position: relative;
+    aspect-ratio: 4/3;
+    min-height: 22rem;
+    background: var(--paper);
+    overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+  @media (min-width: 1024px) { .product-chapter__visual { min-height: 30rem; } }
+  .product-chapter__visual .chapter-env {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover;
+  }
+  .product-chapter__visual .chapter-product {
+    position: relative; z-index: 2;
+    display: block;
+    max-height: 80%;
+    width: auto;
+    max-width: 70%;
+    object-fit: contain;
+    filter: drop-shadow(0 18px 28px rgba(34, 36, 27, 0.18));
+  }
+  .product-chapter__visual .chapter-product--distemper {
+    max-width: min(70%, 480px);
+  }
+  .product-chapter__visual .chapter-product--emulsion {
+    max-width: min(60%, 340px);
+  }
 
   /* ===== SPEC MATRIX (no card, borderless) ===== */
   .spec-matrix-section { padding-block: clamp(3rem, 6vw, 5rem); }
@@ -1193,15 +1423,11 @@ function productsBody(depth) {
         </p>
       </div>
       <div class="products-hero__visual" data-reveal>
-        <div class="product-media" data-official-image="${groupImg}">
-          <img class="product-media__official"
-               src="${groupImg}"
-               alt="Prakritik Distemper and Emulsion paint packs"
-               width="800" height="600" loading="eager" decoding="async">
-          <div class="product-media__fallback">
-            ${loadSvg('prakritik-emulsion-bucket')}
-          </div>
-        </div>
+        <img class="hero-group-photo"
+             src="${groupImg}"
+             alt="Prakritik Distemper and Emulsion paint packs"
+             width="1280" height="621"
+             loading="eager" fetchpriority="high" decoding="async">
       </div>
     </div>
   </div>
@@ -1215,15 +1441,12 @@ function productsBody(depth) {
   <div class="container">
     <div class="product-chapter__inner" data-reveal>
       <div class="product-chapter__visual">
-        <div class="product-media" data-official-image="${assetUrl(distemper.officialImage, depth)}">
-          <img class="product-media__official"
-               src="${assetUrl(distemper.officialImage, depth)}"
-               alt="${e(distemper.name)} pack"
-               width="800" height="600" loading="lazy" decoding="async">
-          <div class="product-media__fallback">
-            ${loadSvg('prakritik-distemper-bucket')}
-          </div>
-        </div>
+        ${interiorWallPic}
+        <img class="chapter-product chapter-product--distemper"
+             src="${assetUrl(distemper.officialImage, depth)}"
+             alt="${e(distemper.name)}"
+             width="510" height="538"
+             loading="lazy" decoding="async">
       </div>
       <div class="product-chapter__copy">
         <span class="product-chapter__eyebrow">Format 01 — Distemper</span>
@@ -1257,15 +1480,12 @@ function productsBody(depth) {
   <div class="container">
     <div class="product-chapter__inner" data-reveal>
       <div class="product-chapter__visual">
-        <div class="product-media" data-official-image="${assetUrl(emulsion.officialImage, depth)}">
-          <img class="product-media__official"
-               src="${assetUrl(emulsion.officialImage, depth)}"
-               alt="${e(emulsion.name)} pack"
-               width="800" height="600" loading="lazy" decoding="async">
-          <div class="product-media__fallback">
-            ${loadSvg('prakritik-emulsion-bucket')}
-          </div>
-        </div>
+        ${exteriorWallPic}
+        <img class="chapter-product chapter-product--emulsion"
+             src="${assetUrl(emulsion.officialImage, depth)}"
+             alt="${e(emulsion.name)}"
+             width="355" height="486"
+             loading="lazy" decoding="async">
       </div>
       <div class="product-chapter__copy">
         <span class="product-chapter__eyebrow">Format 02 — Emulsion</span>
@@ -1302,7 +1522,6 @@ function productsBody(depth) {
     </div>
 
     <div class="spec-matrix" data-reveal>
-      <!-- Column header row -->
       <div class="spec-matrix__row">
         <span class="spec-matrix__col-head">Specification</span>
         <span class="spec-matrix__col-head spec-matrix__col-head--distemper">Prakritik Distemper</span>
@@ -1407,11 +1626,10 @@ ${faqItems}
 `;
 }
 
-// ---- Prakritik Distemper detail — V3 ----
+// ---- Prakritik Distemper detail — V4 ----
 function distemperBody(depth) {
     const product = getProduct('prakritik-distemper');
     const emulsion = getProduct('prakritik-emulsion');
-    const productImg = assetUrl(product.officialImage, depth);
 
     const specRows = [
         { num: '01', label: 'Packaging',  value: product.packagingShort, note: '1 kg / 5 kg / 10 kg / 20 kg packs' },
@@ -1445,7 +1663,19 @@ function distemperBody(depth) {
         </li>`;
     }).join('\n');
 
+    // V4: hero media is a real interior-wall-study environment (eager) with the
+    // real product photo (510×538, eager+high-priority) overlaid at natural size.
+    const interiorWallPic = `<picture><source type="image/webp" srcset="${assetUrl('/assets/editorial/interior-wall-study.webp', depth)}"><img class="media-env" src="${assetUrl('/assets/editorial/interior-wall-study.jpg', depth)}" alt="" width="1344" height="768" loading="eager" decoding="async"></picture>`;
+
     return `<style>
+  /* ===== Editorial image reset (V4 — NO mix-blend-mode, NO blur filters) ===== */
+  .editorial-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
   /* ===== HERO (copy 5 / product 7 — cool env) ===== */
   .product-detail { padding-bottom: clamp(3rem, 6vw, 5rem); }
   .product-detail__hero {
@@ -1457,19 +1687,32 @@ function distemperBody(depth) {
       grid-template-columns: 5fr 7fr; gap: clamp(2.5rem, 5vw, 4rem);
     }
   }
+  /* V4: media is a real environment (interior-wall-study) with the real
+     product photo overlaid at its natural size. NO upscaling. */
   .product-detail__media {
-    position: relative; aspect-ratio: 1;
-    background: linear-gradient(160deg, var(--paper), var(--limewash));
+    position: relative; aspect-ratio: 4/3;
+    background: var(--paper-cool);
     border: 1px solid var(--border); border-top: 3px solid var(--indigo);
     border-radius: var(--r-panel); overflow: hidden;
     min-height: 22rem;
+    display: flex; align-items: center; justify-content: center;
   }
   @media (min-width: 1024px) { .product-detail__media { min-height: 30rem; } }
-  .product-detail__media .product-media { width: 100%; height: 100%; }
-  .product-detail__media .product-media__official { object-fit: contain; padding: 2.5rem; }
-  .product-detail__media .product-media__fallback { padding: 2rem; }
+  .product-detail__media .media-env {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover;
+  }
+  .product-detail__media .media-product {
+    position: relative; z-index: 2;
+    display: block;
+    max-height: 84%;
+    width: auto;
+    max-width: min(60%, 480px);   /* 510×538 photo — never wider than 480px CSS */
+    object-fit: contain;
+    filter: drop-shadow(0 18px 28px rgba(34, 36, 27, 0.20));
+  }
   .product-detail__media__num {
-    position: absolute; top: 1rem; right: 1.25rem;
+    position: absolute; top: 1rem; right: 1.25rem; z-index: 3;
     font-family: var(--font-display); font-size: clamp(3rem, 8vw, 5rem);
     font-weight: 700; color: var(--indigo); opacity: 0.12;
     line-height: 1; pointer-events: none;
@@ -1489,7 +1732,7 @@ function distemperBody(depth) {
   .coverage-disclaimer { margin-top: 2rem; border-left-color: var(--indigo); }
 
   /* ===== ASHTA LAABH GRID ===== */
-  .distemper-ashta-section { padding-block: clamp(3rem, 6vw, 5rem); }
+  .distemper-ashta-section { padding-block: clamp(3rem, 6vw, 5rem); position: relative; overflow: hidden; }
   .distemper-ashta-section__head { max-width: 48rem; margin-bottom: 2.5rem; }
 </style>
 
@@ -1520,15 +1763,12 @@ function distemperBody(depth) {
 
       <div class="product-detail__media">
         <span class="product-detail__media__num" aria-hidden="true">01</span>
-        <div class="product-media" data-official-image="${productImg}">
-          <img class="product-media__official"
-               src="${productImg}"
-               alt="${e(product.name)} pack"
-               width="800" height="800" loading="eager" decoding="async">
-          <div class="product-media__fallback">
-            ${loadSvg('prakritik-distemper-bucket')}
-          </div>
-        </div>
+        ${interiorWallPic}
+        <img class="media-product"
+             src="${assetUrl(product.officialImage, depth)}"
+             alt="${e(product.name)}"
+             width="510" height="538"
+             loading="eager" fetchpriority="high" decoding="async">
       </div>
     </div>
   </div>
@@ -1607,11 +1847,10 @@ ${ashtaItems}
 `;
 }
 
-// ---- Prakritik Emulsion detail — V3 (reversed) ----
+// ---- Prakritik Emulsion detail — V4 (reversed) ----
 function emulsionBody(depth) {
     const product = getProduct('prakritik-emulsion');
     const distemper = getProduct('prakritik-distemper');
-    const productImg = assetUrl(product.officialImage, depth);
 
     const specRows = [
         { num: '01', label: 'Packaging',   value: product.packagingShort, note: '1 litre / 4 litre / 10 litre / 20 litre packs' },
@@ -1645,7 +1884,19 @@ function emulsionBody(depth) {
         </li>`;
     }).join('\n');
 
+    // V4: hero media is a real exterior-wall-study environment (eager) with the
+    // real product photo (355×486, eager+high-priority) overlaid at natural size.
+    const exteriorWallPic = `<picture><source type="image/webp" srcset="${assetUrl('/assets/editorial/exterior-wall-study.webp', depth)}"><img class="media-env" src="${assetUrl('/assets/editorial/exterior-wall-study.jpg', depth)}" alt="" width="1344" height="768" loading="eager" decoding="async"></picture>`;
+
     return `<style>
+  /* ===== Editorial image reset (V4 — NO mix-blend-mode, NO blur filters) ===== */
+  .editorial-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
   /* ===== HERO — REVERSED (product left, copy right — warm env) ===== */
   .product-detail { padding-bottom: clamp(3rem, 6vw, 5rem); }
   .product-detail__hero {
@@ -1660,19 +1911,32 @@ function emulsionBody(depth) {
     .product-detail--warm .product-detail__hero > :first-child { order: 1; }
     .product-detail--warm .product-detail__hero > :last-child  { order: 2; }
   }
+  /* V4: media is a real environment (exterior-wall-study) with the real
+     product photo overlaid at its natural size. NO upscaling. */
   .product-detail__media {
-    position: relative; aspect-ratio: 1;
-    background: linear-gradient(160deg, var(--paper), var(--paper-warm));
+    position: relative; aspect-ratio: 4/3;
+    background: var(--paper-leaf);
     border: 1px solid var(--border); border-top: 3px solid var(--leaf);
     border-radius: var(--r-panel); overflow: hidden;
     min-height: 22rem;
+    display: flex; align-items: center; justify-content: center;
   }
   @media (min-width: 1024px) { .product-detail__media { min-height: 30rem; } }
-  .product-detail__media .product-media { width: 100%; height: 100%; }
-  .product-detail__media .product-media__official { object-fit: contain; padding: 2.5rem; }
-  .product-detail__media .product-media__fallback { padding: 2rem; }
+  .product-detail__media .media-env {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover;
+  }
+  .product-detail__media .media-product {
+    position: relative; z-index: 2;
+    display: block;
+    max-height: 84%;
+    width: auto;
+    max-width: min(55%, 340px);   /* 355×486 photo — never wider than 340px CSS */
+    object-fit: contain;
+    filter: drop-shadow(0 18px 28px rgba(34, 36, 27, 0.20));
+  }
   .product-detail__media__num {
-    position: absolute; top: 1rem; right: 1.25rem;
+    position: absolute; top: 1rem; right: 1.25rem; z-index: 3;
     font-family: var(--font-display); font-size: clamp(3rem, 8vw, 5rem);
     font-weight: 700; color: var(--leaf); opacity: 0.18;
     line-height: 1; pointer-events: none;
@@ -1690,7 +1954,7 @@ function emulsionBody(depth) {
   .coverage-disclaimer { margin-top: 2rem; border-left-color: var(--leaf); }
 
   /* ===== ASHTA LAABH ===== */
-  .emulsion-ashta-section { padding-block: clamp(3rem, 6vw, 5rem); }
+  .emulsion-ashta-section { padding-block: clamp(3rem, 6vw, 5rem); position: relative; overflow: hidden; }
   .emulsion-ashta-section__head { max-width: 48rem; margin-bottom: 2.5rem; }
 </style>
 
@@ -1706,15 +1970,12 @@ function emulsionBody(depth) {
     <div class="product-detail__hero" data-reveal>
       <div class="product-detail__media">
         <span class="product-detail__media__num" aria-hidden="true">02</span>
-        <div class="product-media" data-official-image="${productImg}">
-          <img class="product-media__official"
-               src="${productImg}"
-               alt="${e(product.name)} pack"
-               width="800" height="800" loading="eager" decoding="async">
-          <div class="product-media__fallback">
-            ${loadSvg('prakritik-emulsion-bucket')}
-          </div>
-        </div>
+        ${exteriorWallPic}
+        <img class="media-product"
+             src="${assetUrl(product.officialImage, depth)}"
+             alt="${e(product.name)}"
+             width="355" height="486"
+             loading="eager" fetchpriority="high" decoding="async">
       </div>
 
       <div class="product-detail__info">
@@ -1808,18 +2069,12 @@ ${ashtaItems}
 `;
 }
 
-// ---- Why Prakritik — V3 ----
+// ---- Why Prakritik — V4 ----
 function whyPrakritikBody(depth) {
     const distemper = getProduct('prakritik-distemper');
     const emulsion = getProduct('prakritik-emulsion');
-
-    const journeySteps = MATERIAL_JOURNEY.map(
-        (step) => `        <li class="material-journey__step">
-          <span class="material-journey__num">${e(step.num)}</span>
-          <h3 class="material-journey__title">${e(step.title)}</h3>
-          <p class="material-journey__desc">${e(step.desc)}</p>
-        </li>`,
-    ).join('\n');
+    const groupImage = '/assets/products/prakritik-group.jpg';
+    const groupImg = assetUrl(groupImage, depth);
 
     const ashtaItems = ASHTA_LAABH.map((benefit, i) => {
         const bid = ASHTA_IDS[benefit.name] || `benefit-${i + 1}`;
@@ -1830,8 +2085,38 @@ function whyPrakritikBody(depth) {
         </li>`;
     }).join('\n');
 
+    const journeySteps = MATERIAL_JOURNEY.map(
+        (step) => `        <li class="material-journey__step">
+          <span class="material-journey__num">${e(step.num)}</span>
+          <h3 class="material-journey__title">${e(step.title)}</h3>
+          <p class="material-journey__desc">${e(step.desc)}</p>
+        </li>`,
+    ).join('\n');
+
+    // V4 picture tags.
+    const zebuHeroPic = `<picture><source type="image/webp" srcset="${assetUrl('/assets/editorial/zebu-study.webp', depth)}"><img class="editorial-image" src="${assetUrl('/assets/editorial/zebu-study.jpg', depth)}" alt="Editorial study of an Indian zebu cow" width="1536" height="1024" loading="eager" decoding="async"></picture>`;
+    const zebuCh1Pic = pic('/assets/editorial/zebu-study.webp', '/assets/editorial/zebu-study.jpg',
+        '', 1536, 1024, depth, 'class="editorial-image"');
+    const courtyardCh2Pic = pic('/assets/editorial/courtyard-study.webp', '/assets/editorial/courtyard-study.jpg',
+        'Indian limewashed courtyard elevation', 1942, 809, depth, 'class="editorial-image"');
+    const interiorFlowPic = pic('/assets/editorial/interior-wall-study.webp', '/assets/editorial/interior-wall-study.jpg',
+        'Indian interior limewashed wall', 1344, 768, depth, 'class="editorial-image"');
+    const exteriorFlowPic = pic('/assets/editorial/exterior-wall-study.webp', '/assets/editorial/exterior-wall-study.jpg',
+        'Indian exterior wall', 1344, 768, depth, 'class="editorial-image"');
+    const ruralContextPic = pic('/assets/editorial/rural-landscape.webp', '/assets/editorial/rural-landscape.jpg',
+        'Indian rural landscape', 1344, 768, depth, 'class="editorial-image"');
+
     return `<style>
-  /* ===== HERO (cow + wall sample) ===== */
+  /* ===== Editorial image reset (V4 — NO mix-blend-mode, NO blur filters) ===== */
+  .editorial-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .editorial-image--contain { object-fit: contain; }
+
+  /* ===== HERO (zebu-study) ===== */
   .why-hero { padding-top: calc(var(--header-h) + 2rem); padding-bottom: 1.5rem; }
   .why-hero__container { display: grid; gap: 2rem; align-items: center; }
   @media (min-width: 1024px) {
@@ -1839,23 +2124,15 @@ function whyPrakritikBody(depth) {
   }
   .why-hero__lockup { max-width: 42rem; }
   .why-hero__art {
-    position: relative; aspect-ratio: 5/4; background: var(--limewash);
-    border-radius: var(--r-panel); overflow: hidden;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .why-hero__art .why-cow {
-    position: absolute; left: 6%; bottom: 8%; width: 46%; opacity: 0.85;
-  }
-  .why-hero__art .why-wall {
-    position: absolute; right: 8%; top: 8%; bottom: 8%; width: 42%;
-    background: linear-gradient(135deg, var(--limewash), color-mix(in srgb, var(--kraft) 35%, var(--limewash)));
+    position: relative; aspect-ratio: 1536/1024;
+    background: var(--limewash); border-radius: var(--r-panel);
     overflow: hidden;
   }
-  .why-hero__art .why-wall::after {
-    content: ''; position: absolute; inset: 0;
-    background-image: radial-gradient(circle at 1px 1px, rgba(32, 30, 25, 0.08) 0.5px, transparent 0);
-    background-size: 14px 14px;
+  .why-hero__art .editorial-image {
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
   }
+  .why-hero__art .why-cow,
+  .why-hero__art .why-wall { display: none; }
   .why-hero__title { font-size: clamp(2.2rem, 5vw, 4rem); }
 
   /* ===== NUMBERED CHAPTERS ===== */
@@ -1895,44 +2172,56 @@ function whyPrakritikBody(depth) {
     padding-left: 1.5rem; border-left: 3px solid var(--haldi);
   }
 
-  /* === Chapter 01 — MATERIAL: physical material sample === */
+  /* === Chapter 01 — MATERIAL: zebu-study large === */
   .why-material-sample {
-    position: relative; aspect-ratio: 4/3;
-    background: var(--paper); border: 1px solid var(--border);
-    border-radius: var(--r-panel); overflow: hidden; padding: 2rem;
+    position: relative; aspect-ratio: 1536/1024;
+    background: var(--paper); border-radius: var(--r-panel);
+    overflow: hidden;
   }
-  .why-material-sample__patch {
-    position: absolute; left: 12%; top: 12%; right: 12%; bottom: 12%;
-    background:
-      radial-gradient(ellipse 70% 60% at 40% 35%, var(--mitti) 0%, color-mix(in srgb, var(--mitti) 80%, var(--charcoal)) 65%, transparent 92%),
-      linear-gradient(135deg, var(--kraft), var(--mitti));
-    border-radius: 4px;
+  .why-material-sample .editorial-image {
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
   }
-  .why-material-sample__patch::after {
-    content: ''; position: absolute; inset: 0;
-    background-image: radial-gradient(circle at 1px 1px, rgba(32, 30, 25, 0.12) 0.5px, transparent 0);
-    background-size: 12px 12px;
-  }
-  .why-material-sample__tag {
-    position: absolute; bottom: 1rem; left: 1rem;
-    font-family: var(--font-display); font-style: italic;
-    font-size: 0.875rem; color: var(--fg-muted);
-    background: rgba(250, 248, 241, 0.85); padding: 0.25rem 0.75rem;
-    border-radius: var(--r-pill);
-  }
+  .why-material-sample__patch,
+  .why-material-sample__tag { display: none; }
 
   /* === Chapter 02 — TRADITION: large courtyard === */
   .why-tradition-art {
-    width: 100%; aspect-ratio: 16/9;
+    width: 100%; aspect-ratio: 1942/809;
     background: var(--limewash); border-radius: var(--r-panel);
     overflow: hidden;
   }
-  .why-tradition-art svg { width: 100%; height: 100%; display: block; }
+  .why-tradition-art .editorial-image {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+  }
 
-  /* === Chapter 03 — MATERIAL TO WALL: full-width diagram === */
+  /* === Chapter 03 — MATERIAL TO WALL: 3-panel composition === */
   .why-flow-section { padding-block: clamp(3.5rem, 6vw, 5rem); }
-  .why-flow-svg { width: 100%; margin-inline: 0; }
-  .why-flow-svg svg { width: 100%; height: auto; display: block; }
+  .why-flow-panels {
+    display: grid; gap: 1rem; margin-top: 2rem;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 768px) {
+    .why-flow-panels { grid-template-columns: 1fr 1fr 1fr; gap: 1.25rem; }
+  }
+  .why-flow-panel {
+    position: relative;
+    aspect-ratio: 1344/768;
+    background: var(--limewash);
+    overflow: hidden; border-radius: var(--r-panel);
+  }
+  .why-flow-panel--group { aspect-ratio: 1280/621; }
+  .why-flow-panel .editorial-image {
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  }
+  .why-flow-panel-label {
+    position: absolute; left: 0.875rem; bottom: 0.875rem;
+    background: rgba(250, 248, 241, 0.88);
+    padding: 0.375rem 0.75rem;
+    border-radius: var(--r-pill);
+    font-size: 0.6875rem; font-weight: 700;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--fg);
+  }
 
   /* === Chapter 04 — ASHTA: full-size seal === */
   .why-ashta-section { padding-block: clamp(3.5rem, 6vw, 5rem); }
@@ -1946,15 +2235,21 @@ function whyPrakritikBody(depth) {
   }
   @media (min-width: 768px) { .why-formats { grid-template-columns: 1fr 1fr; } }
   .why-format-card {
-    position: relative; aspect-ratio: 4/5;
+    position: relative;
     background: linear-gradient(160deg, var(--paper), var(--limewash));
     border: 1px solid var(--border); border-top: 3px solid var(--indigo);
     border-radius: var(--r-panel); overflow: hidden;
-    display: flex; align-items: center; justify-content: center; padding: 2rem;
+    display: flex; align-items: center; justify-content: center; padding: 1.5rem;
+    min-height: 22rem;
   }
   .why-format-card--emulsion { border-top-color: var(--leaf); }
-  .why-format-card .product-media { width: 100%; height: 100%; }
-  .why-format-card .product-media__official { object-fit: contain; padding: 1.5rem; }
+  .why-format-card .format-product {
+    display: block;
+    max-height: 26rem; max-width: 100%;
+    width: auto; height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 14px 20px rgba(34, 36, 27, 0.16));
+  }
   .why-format-card__caption {
     position: absolute; bottom: 1rem; left: 1rem;
     background: rgba(250, 248, 241, 0.9); padding: 0.5rem 0.875rem;
@@ -1963,17 +2258,19 @@ function whyPrakritikBody(depth) {
   .why-format-card--distemper .why-format-card__caption { color: var(--indigo); }
   .why-format-card--emulsion  .why-format-card__caption { color: var(--leaf); }
 
-  /* === Chapter 06 — CONTEXT: rural-landscape with annotations === */
+  /* === Chapter 06 — CONTEXT: rural-landscape with annotation === */
   .why-context-section { padding-block: clamp(3.5rem, 6vw, 5rem); }
   .why-context-band {
-    position: relative; width: 100%; aspect-ratio: 16/5;
+    position: relative; width: 100%; aspect-ratio: 1344/768;
     background: var(--limewash); border-radius: var(--r-panel);
     overflow: hidden;
   }
-  .why-context-band svg { width: 100%; height: 100%; display: block; }
+  .why-context-band .editorial-image {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+  }
   .why-context-band__annot {
     position: absolute; bottom: 1rem; left: 1rem;
-    background: rgba(250, 248, 241, 0.85);
+    background: rgba(250, 248, 241, 0.88);
     padding: 0.5rem 0.875rem; border-radius: var(--r-pill);
     font-size: 0.75rem; font-weight: 600;
     letter-spacing: 0.14em; text-transform: uppercase;
@@ -2000,7 +2297,7 @@ function whyPrakritikBody(depth) {
         </p>
       </div>
       <div class="why-hero__art" aria-hidden="true">
-        <img class="editorial-cow" src="${assetUrl('/assets/illustrations/zebu-study.jpg', depth)}" alt="" width="1536" height="1024">
+        ${zebuHeroPic}
       </div>
     </div>
   </div>
@@ -2027,7 +2324,7 @@ function whyPrakritikBody(depth) {
         </p>
       </div>
       <div class="why-material-sample" aria-hidden="true">
-        <img class="editorial-cow" src="${assetUrl('/assets/illustrations/zebu-study.jpg', depth)}" alt="" loading="lazy" width="1536" height="1024">
+        ${zebuCh1Pic}
       </div>
     </div>
   </div>
@@ -2038,7 +2335,7 @@ function whyPrakritikBody(depth) {
   <div class="container">
     <div class="why-chapter why-chapter--reverse" data-reveal>
       <div class="why-tradition-art" aria-hidden="true">
-        <img class="editorial-courtyard" src="${assetUrl('/assets/illustrations/courtyard-study.jpg', depth)}" alt="" loading="lazy" width="1942" height="809">
+        ${courtyardCh2Pic}
       </div>
       <div>
         <span class="why-chapter__num">02</span>
@@ -2058,7 +2355,7 @@ function whyPrakritikBody(depth) {
   </div>
 </section>
 
-<!-- ===== 03 MATERIAL TO WALL — full-width diagram ===== -->
+<!-- ===== 03 MATERIAL TO WALL — 3-panel composition ===== -->
 <section class="section section--paper why-flow-section" aria-labelledby="chapter-03-title">
   <div class="container">
     <div data-reveal>
@@ -2069,8 +2366,23 @@ function whyPrakritikBody(depth) {
         Natural material, Prakritik Paint, finished walls.
       </p>
     </div>
-    <div class="why-flow-svg" data-reveal>
-
+    <div class="why-flow-panels" data-reveal>
+      <div class="why-flow-panel">
+        ${interiorFlowPic}
+        <span class="why-flow-panel-label">01 · Natural material</span>
+      </div>
+      <div class="why-flow-panel why-flow-panel--group">
+        <img class="editorial-image"
+             src="${groupImg}"
+             alt="Prakritik Distemper and Emulsion paint packs"
+             width="1280" height="621"
+             loading="lazy" decoding="async">
+        <span class="why-flow-panel-label">02 · Prakritik Paint</span>
+      </div>
+      <div class="why-flow-panel">
+        ${exteriorFlowPic}
+        <span class="why-flow-panel-label">03 · Finished wall</span>
+      </div>
     </div>
     <ol class="material-journey__steps" data-reveal-stagger>
 ${journeySteps}
@@ -2078,7 +2390,7 @@ ${journeySteps}
   </div>
 </section>
 
-<!-- ===== 04 ASHTA — full-size seal ===== -->
+<!-- ===== 04 ASHTA — full-size seal (interactive SVG kept) ===== -->
 <section class="section section--limewash why-ashta-section" aria-labelledby="chapter-04-title" data-ashta-laabh>
   <div class="container">
     <div class="why-ashta-section__head section-heading section-heading--left" data-reveal>
@@ -2114,27 +2426,19 @@ ${ashtaItems}
 
     <div class="why-formats" data-reveal-stagger>
       <div class="why-format-card why-format-card--distemper">
-        <div class="product-media" data-official-image="${assetUrl(distemper.officialImage, depth)}">
-          <img class="product-media__official"
-               src="${assetUrl(distemper.officialImage, depth)}"
-               alt="${e(distemper.name)} pack"
-               width="600" height="750" loading="lazy" decoding="async">
-          <div class="product-media__fallback">
-            ${loadSvg('prakritik-distemper-bucket')}
-          </div>
-        </div>
+        <img class="format-product"
+             src="${assetUrl(distemper.officialImage, depth)}"
+             alt="${e(distemper.name)}"
+             width="510" height="538"
+             loading="lazy" decoding="async">
         <span class="why-format-card__caption">${e(distemper.packagingShort)} packs</span>
       </div>
       <div class="why-format-card why-format-card--emulsion">
-        <div class="product-media" data-official-image="${assetUrl(emulsion.officialImage, depth)}">
-          <img class="product-media__official"
-               src="${assetUrl(emulsion.officialImage, depth)}"
-               alt="${e(emulsion.name)} pack"
-               width="600" height="750" loading="lazy" decoding="async">
-          <div class="product-media__fallback">
-            ${loadSvg('prakritik-emulsion-bucket')}
-          </div>
-        </div>
+        <img class="format-product"
+             src="${assetUrl(emulsion.officialImage, depth)}"
+             alt="${e(emulsion.name)}"
+             width="355" height="486"
+             loading="lazy" decoding="async">
         <span class="why-format-card__caption">${e(emulsion.packagingShort)} packs</span>
       </div>
     </div>
@@ -2162,7 +2466,7 @@ ${ashtaItems}
         </div>
       </div>
       <div class="why-context-band" aria-hidden="true">
-        ${loadSvg('rural-landscape')}
+        ${ruralContextPic}
         <span class="why-context-band__annot">${e(COMPANY.address[4] || '')}, ${e(COMPANY.address[5] || '')}</span>
       </div>
     </div>
@@ -2180,13 +2484,13 @@ ${ashtaItems}
 `;
 }
 
-// ---- About — V3 ----
+// ---- About — V4 ----
 function aboutBody(depth) {
     const distemper = getProduct('prakritik-distemper');
     const emulsion = getProduct('prakritik-emulsion');
+
     const address = COMPANY.address;
     const addressLine = address.join('\n');
-    const groupImage = '/assets/products/prakritik-group.jpg';
 
     const phoneRows = COMPANY.phones.map((phone) => `        <div class="company-plate__row">
           <dt>Phone</dt>
@@ -2195,7 +2499,21 @@ function aboutBody(depth) {
           </dd>
         </div>`).join('\n');
 
+    // V4 picture tags.
+    const zebuDirectionPic = pic('/assets/editorial/zebu-study.webp', '/assets/editorial/zebu-study.jpg',
+        'Editorial study of an Indian zebu cow', 1536, 1024, depth, 'class="editorial-image"');
+    const ruralMissionPic = pic('/assets/editorial/rural-landscape.webp', '/assets/editorial/rural-landscape.jpg',
+        '', 1344, 768, depth, 'class="editorial-image"');
+
     return `<style>
+  /* ===== Editorial image reset (V4 — NO mix-blend-mode, NO blur filters) ===== */
+  .editorial-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
   /* ===== HERO ===== */
   .about-hero { padding-top: calc(var(--header-h) + 2rem); padding-bottom: 1.5rem; }
   .about-hero__container { display: grid; gap: 2rem; align-items: center; }
@@ -2203,14 +2521,19 @@ function aboutBody(depth) {
     .about-hero__container { grid-template-columns: 5fr 7fr; gap: 3rem; }
   }
   .about-hero__lockup { max-width: 42rem; }
+  /* V4: real official logo (537×620) prominent on a soft cream background. */
   .about-hero__art {
-    position: relative; aspect-ratio: 4/3; background: var(--paper-warm);
+    position: relative; aspect-ratio: 537/620;
+    background: radial-gradient(circle at 50% 45%, #f9f5eb, #e7ebdf);
     border-radius: var(--r-panel); overflow: hidden;
-    display: flex; align-items: center; justify-content: center; padding: 2rem;
+    display: flex; align-items: center; justify-content: center;
+    padding: 0;
   }
-  .about-hero__art .product-media { width: 100%; height: 100%; }
-  .about-hero__art .product-media__official { object-fit: contain; }
-  .about-hero__art .product-media__fallback { padding: 2rem; }
+  .about-hero__art .about-hero__logo {
+    display: block;
+    width: min(75%, 380px); height: auto;
+    object-fit: contain;
+  }
 
   /* ===== WHO WE ARE ===== */
   .about-section { padding-block: clamp(3.5rem, 6vw, 5rem); }
@@ -2222,30 +2545,34 @@ function aboutBody(depth) {
     position: relative; aspect-ratio: 4/3; background: var(--limewash);
     border-radius: var(--r-panel); overflow: hidden;
     margin-bottom: 1rem;
+    display: flex; align-items: center; justify-content: center;
   }
-  .about-product-card__media .product-media { width: 100%; height: 100%; }
-  .about-product-card__media .product-media__official { object-fit: contain; padding: 1.5rem; }
-  .about-product-card__media .product-media__fallback { padding: 1.5rem; }
+  .about-product-card__media .about-product-photo {
+    display: block;
+    max-height: 80%; max-width: 70%;
+    width: auto; height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 14px 20px rgba(34, 36, 27, 0.16));
+  }
+  .about-product-card__media--distemper .about-product-photo {
+    max-width: min(70%, 420px);
+  }
+  .about-product-card__media--emulsion .about-product-photo {
+    max-width: min(60%, 320px);
+  }
 
-  /* ===== MATERIAL DIRECTION ===== */
+  /* ===== MATERIAL DIRECTION — zebu-study beside wall ===== */
   .about-direction-section { padding-block: clamp(3.5rem, 6vw, 5rem); }
   .about-direction__visual {
-    position: relative; aspect-ratio: 5/4; background: var(--limewash);
+    position: relative; aspect-ratio: 1536/1024; background: var(--limewash);
     border-radius: var(--r-panel); overflow: hidden;
   }
-  .about-direction__visual .ms-wall {
-    position: absolute; right: 8%; top: 8%; bottom: 8%; width: 46%;
-    background: linear-gradient(135deg, var(--limewash), color-mix(in srgb, var(--kraft) 35%, var(--limewash)));
-    overflow: hidden;
+  .about-direction__visual .editorial-image {
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
   }
-  .about-direction__visual .ms-wall::after {
-    content: ''; position: absolute; inset: 0;
-    background-image: radial-gradient(circle at 1px 1px, rgba(32, 30, 25, 0.08) 0.5px, transparent 0);
-    background-size: 14px 14px;
-  }
-  .about-direction__visual .ms-cow {
-    position: absolute; left: 6%; bottom: 8%; width: 42%; opacity: 0.85;
-  }
+  .about-direction__visual .ms-wall,
+  .about-direction__visual .ms-cow,
+  .about-direction__visual .ms-arrow { display: none; }
 
   /* ===== MISSION BAND ===== */
   .about-mission {
@@ -2255,9 +2582,9 @@ function aboutBody(depth) {
   }
   .about-mission__bg {
     position: absolute; inset: 0; opacity: 0.15; pointer-events: none;
-    display: flex; align-items: flex-end; justify-content: center;
+    overflow: hidden;
   }
-  .about-mission__bg svg { width: 100%; height: auto; max-height: 100%; }
+  .about-mission__bg .editorial-image { width: 100%; height: 100%; object-fit: cover; }
   .about-mission__inner {
     position: relative; z-index: 1; max-width: 48rem;
   }
@@ -2302,8 +2629,12 @@ function aboutBody(depth) {
           exterior walls. From ${e(address[3] || '')}, ${e(address[4] || '')}.
         </p>
       </div>
-      <div class="about-hero__art about-hero__art--brand">
-        <img class="about-hero__logo" src="${assetUrl('/assets/brand/gaurikrit-logo-full.png', depth)}" alt="Gaurikrit official emblem and wordmark" width="550" height="690">
+      <div class="about-hero__art">
+        <img class="about-hero__logo"
+             src="${assetUrl('/assets/brand/gaurikrit-logo-full.png', depth)}"
+             alt="Gaurikrit official emblem and wordmark"
+             width="537" height="620"
+             loading="eager" fetchpriority="high" decoding="async">
       </div>
     </div>
   </div>
@@ -2337,7 +2668,7 @@ function aboutBody(depth) {
   </div>
 </section>
 
-<!-- ===== WHAT WE CURRENTLY PRESENT — 2 products ===== -->
+<!-- ===== WHAT WE CURRENTLY PRESENT — 2 real product photos ===== -->
 <section class="section section--limewash about-products-section" aria-labelledby="present-title">
   <div class="container">
     <div class="section-heading section-heading--left" data-reveal>
@@ -2350,16 +2681,12 @@ function aboutBody(depth) {
 
     <div class="about-products" data-reveal-stagger>
       <article class="about-product-card">
-        <div class="about-product-card__media">
-          <div class="product-media" data-official-image="${assetUrl(distemper.officialImage, depth)}">
-            <img class="product-media__official"
-                 src="${assetUrl(distemper.officialImage, depth)}"
-                 alt="${e(distemper.name)} pack"
-                 width="800" height="600" loading="lazy" decoding="async">
-            <div class="product-media__fallback">
-              ${loadSvg('prakritik-distemper-bucket')}
-            </div>
-          </div>
+        <div class="about-product-card__media about-product-card__media--distemper">
+          <img class="about-product-photo"
+               src="${assetUrl(distemper.officialImage, depth)}"
+               alt="${e(distemper.name)}"
+               width="510" height="538"
+               loading="lazy" decoding="async">
         </div>
         <h3 class="about-product-card__name">${e(distemper.name)}</h3>
         <p class="about-product-card__desc">
@@ -2368,16 +2695,12 @@ function aboutBody(depth) {
         <a class="about-product-card__link" href="${relUrl(distemper.route, depth)}">View Distemper →</a>
       </article>
       <article class="about-product-card">
-        <div class="about-product-card__media">
-          <div class="product-media" data-official-image="${assetUrl(emulsion.officialImage, depth)}">
-            <img class="product-media__official"
-                 src="${assetUrl(emulsion.officialImage, depth)}"
-                 alt="${e(emulsion.name)} pack"
-                 width="800" height="600" loading="lazy" decoding="async">
-            <div class="product-media__fallback">
-              ${loadSvg('prakritik-emulsion-bucket')}
-            </div>
-          </div>
+        <div class="about-product-card__media about-product-card__media--emulsion">
+          <img class="about-product-photo"
+               src="${assetUrl(emulsion.officialImage, depth)}"
+               alt="${e(emulsion.name)}"
+               width="355" height="486"
+               loading="lazy" decoding="async">
         </div>
         <h3 class="about-product-card__name">${e(emulsion.name)}</h3>
         <p class="about-product-card__desc">
@@ -2389,7 +2712,7 @@ function aboutBody(depth) {
   </div>
 </section>
 
-<!-- ===== MATERIAL DIRECTION — cow + wall ===== -->
+<!-- ===== MATERIAL DIRECTION — zebu-study beside wall ===== -->
 <section class="section section--paper about-direction-section" aria-labelledby="direction-title">
   <div class="container">
     <div class="about-section" data-reveal>
@@ -2412,16 +2735,16 @@ function aboutBody(depth) {
         </div>
       </div>
       <div class="about-direction__visual" aria-hidden="true">
-        <img class="editorial-cow" src="${assetUrl('/assets/illustrations/zebu-study.jpg', depth)}" alt="" loading="lazy" width="1536" height="1024">
+        ${zebuDirectionPic}
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===== MISSION BAND ===== -->
+<!-- ===== MISSION BAND — rural-landscape engraving ===== -->
 <section class="about-mission" aria-labelledby="about-mission-title">
   <div class="about-mission__bg" aria-hidden="true">
-    ${loadSvg('rural-landscape')}
+    ${ruralMissionPic}
   </div>
   <div class="container">
     <div class="about-mission__inner" data-reveal>
@@ -2483,7 +2806,7 @@ ${phoneRows}
 `;
 }
 
-// ---- For Business — V3 ----
+// ---- For Business — V4 ----
 function forBusinessBody(depth) {
     const phones = COMPANY.phones;
 
@@ -2499,10 +2822,10 @@ function forBusinessBody(depth) {
     ];
 
     const helpfulInclude = [
-        { label: 'Project type',           hint: 'Residential / Commercial / Institutional / CSR-NGO / Gaushala / Other' },
-        { label: 'City',                   hint: 'Where the site is located' },
-        { label: 'Approximate wall area',  hint: 'In sq.ft. if you have a number' },
-        { label: 'Paint format',           hint: 'Distemper, Emulsion, or not sure yet' },
+        { label: 'Project type',      hint: 'Residential / Commercial / Institutional / CSR-NGO / Gaushala / Other' },
+        { label: 'City',              hint: 'Where the site is located' },
+        { label: 'Approximate wall area', hint: 'In sq.ft. if you have a number' },
+        { label: 'Paint format',      hint: 'Distemper, Emulsion, or not sure yet' },
         { label: 'Approximate requirement', hint: 'Number of packs or litres you expect to need' },
     ];
 
@@ -2512,22 +2835,35 @@ function forBusinessBody(depth) {
           <p class="audience-card__desc">${e(a.desc)}</p>
         </div>`).join('\n');
 
-    const practicalItems = helpfulInclude.map((item) => `        <li class="biz-practical__item">
+    const helpfulItems = helpfulInclude.map((item) => `        <li class="biz-practical__item">
           <span class="biz-practical__item-label">${e(item.label)}</span>
           <span class="biz-practical__item-hint">${e(item.hint)}</span>
         </li>`).join('\n');
+
+    const phoneAsideRows = phones.map((phone) => `        <div class="biz-aside-card__row">
+          <dt>Phone</dt>
+          <dd><a href="tel:${e(phone.replace(/ /g, ''))}">${e(phone)}</a></dd>
+        </div>`).join('\n');
 
     const projectTypeOptions = PROJECT_TYPES.map(
         (type) => `                <option value="${e(type)}">${e(type)}</option>`,
     ).join('\n');
 
-    const asidePhoneRows = phones.map((phone) => `            <div class="biz-aside-card__row">
-              <dt>Phone</dt>
-              <dd><a href="tel:${e(phone.replace(/ /g, ''))}">${e(phone)}</a></dd>
-            </div>`).join('\n');
+    // V4 picture tags.
+    const archHeroPic = `<picture><source type="image/webp" srcset="${assetUrl('/assets/editorial/architectural-elevation.webp', depth)}"><img class="editorial-image" src="${assetUrl('/assets/editorial/architectural-elevation.jpg', depth)}" alt="Architectural building elevation study" width="1344" height="768" loading="eager" decoding="async"></picture>`;
+    const ruralAudiencesPic = pic('/assets/editorial/rural-landscape.webp', '/assets/editorial/rural-landscape.jpg',
+        '', 1344, 768, depth, 'class="editorial-image"');
 
     return `<style>
-  /* ===== HERO (text left / architectural-elevation right) ===== */
+  /* ===== Editorial image reset (V4 — NO mix-blend-mode, NO blur filters) ===== */
+  .editorial-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* ===== HERO (text left / architectural-elevation right — NO floating blob) ===== */
   .biz-hero { padding-top: calc(var(--header-h) + 2rem); padding-bottom: 1.5rem; }
   @media (min-width: 1024px) { .biz-hero { padding-bottom: 2.5rem; } }
   .biz-hero__container { display: grid; gap: 2rem; align-items: center; }
@@ -2536,18 +2872,25 @@ function forBusinessBody(depth) {
   }
   .biz-hero__lockup { max-width: 42rem; }
   .biz-hero__art {
-    position: relative; aspect-ratio: 12/7; background: var(--paper-cool);
+    position: relative; aspect-ratio: 1344/768; background: var(--paper-cool);
     border-radius: var(--r-panel); overflow: hidden;
-    display: flex; align-items: center; justify-content: center; padding: 1.5rem;
   }
-  .biz-hero__art svg { width: 100%; height: 100%; display: block; }
+  .biz-hero__art .editorial-image {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+  }
 
-  /* ===== AUDIENCES (shared illustration + 4 ruled columns) ===== */
+  /* ===== AUDIENCES (shared editorial image + 4 ruled columns) ===== */
   .biz-audiences-section { padding-block: clamp(3.5rem, 6vw, 5rem); }
   .biz-audiences-illustration {
-    margin-bottom: 3rem; width: 100%; opacity: 0.5;
+    position: relative;
+    margin-bottom: 3rem;
+    aspect-ratio: 1344/768;
+    width: 100%; overflow: hidden;
+    border-radius: var(--r-panel);
   }
-  .biz-audiences-illustration svg { width: 100%; height: auto; display: block; }
+  .biz-audiences-illustration .editorial-image {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+  }
   .biz-audiences__head { max-width: 48rem; margin-bottom: 2.5rem; }
 
   /* ===== PRACTICAL SECTION ===== */
@@ -2627,13 +2970,13 @@ function forBusinessBody(depth) {
         </div>
       </div>
       <div class="biz-hero__art" aria-hidden="true">
-        ${loadSvg('architectural-elevation')}
+        ${archHeroPic}
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===== AUDIENCES — shared illustration + 4 ruled columns ===== -->
+<!-- ===== AUDIENCES — shared editorial image + 4 ruled columns ===== -->
 <section class="section section--paper biz-audiences-section" aria-labelledby="audiences-title">
   <div class="container">
     <div class="biz-audiences__head section-heading section-heading--left" data-reveal>
@@ -2642,7 +2985,7 @@ function forBusinessBody(depth) {
     </div>
 
     <div class="biz-audiences-illustration" aria-hidden="true" data-reveal>
-      ${loadSvg('rural-landscape')}
+      ${ruralAudiencesPic}
     </div>
 
     <div class="biz-audiences" data-reveal-stagger>
@@ -2664,14 +3007,13 @@ ${audienceCards}
         </p>
       </div>
       <ul class="biz-practical__list">
-${practicalItems}
+${helpfulItems}
       </ul>
     </div>
   </div>
 </section>
 
 <!-- ===== FORM (12-col) ===== -->
-
 <section class="section section--paper biz-form-section" id="enquire" aria-labelledby="form-title">
   <div class="container">
     <div class="biz-form-layout" data-reveal>
@@ -2698,7 +3040,7 @@ ${practicalItems}
         </div>
 
         <dl class="biz-aside-card">
-${asidePhoneRows}
+${phoneAsideRows}
           <div class="biz-aside-card__row">
             <dt>Email</dt>
             <dd><a href="mailto:${e(COMPANY.email)}">${e(COMPANY.email)}</a></dd>
@@ -2711,8 +3053,10 @@ ${asidePhoneRows}
       </aside>
 
       <!-- RIGHT 8 col: form fields -->
-      <form class="biz-form-card" action="mailto:${e(COMPANY.email)}" method="get"
-            data-business-form data-static-preview novalidate>
+      <!-- Static fallback: Formspree placeholder action, no CSRF, no honeypot.
+           Replace the form ID with a real Formspree endpoint before deploy. -->
+      <form class="biz-form-card" action="https://formspree.io/f/your-form-id" method="post"
+            data-business-form novalidate>
         <p class="biz-form-card__intro">
           Fields marked <span class="req">*</span> are required.
         </p>
@@ -2778,7 +3122,7 @@ ${projectTypeOptions}
 
         <div class="calc-actions">
           <button type="submit" class="btn btn--primary btn--lg">
-            <span data-submit-label>Send via Email</span>
+            <span data-submit-label>Discuss a Project</span>
           </button>
         </div>
       </form>
@@ -2788,9 +3132,22 @@ ${projectTypeOptions}
 `;
 }
 
-// ---- Paint Calculator — V3 ----
+// ---- Paint Calculator — V4 ----
 function paintCalculatorBody(depth) {
+    // V4: real interior-wall-study background layer behind the interactive
+    // calculator-wall-scene SVG (kept). The picture loads eager so the
+    // environment is visible immediately; the SVG sits on top at z-index 1.
+    const interiorWallPic = `<picture><source type="image/webp" srcset="${assetUrl('/assets/editorial/interior-wall-study.webp', depth)}"><img class="visual-env" src="${assetUrl('/assets/editorial/interior-wall-study.jpg', depth)}" alt="" width="1344" height="768" loading="eager" decoding="async"></picture>`;
+
     return `<style>
+  /* ===== Editorial image reset (V4 — NO mix-blend-mode, NO blur filters) ===== */
+  .editorial-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
   /* ===== HERO ===== */
   .calc-hero { padding-top: calc(var(--header-h) + 2rem); padding-bottom: 1.5rem; }
   .calc-hero__inner { display: grid; gap: 1rem; max-width: 60rem; }
@@ -2828,17 +3185,28 @@ function paintCalculatorBody(depth) {
   @media (max-width: 1023px) {
     .calculator-page { grid-template-columns: 1fr; }
   }
+  /* V4: sticky visual = real interior-wall-study behind the interactive SVG.
+     The SVG stays interactive; the photo gives the wall environment. */
   .calculator-page__visual {
     position: sticky; top: calc(var(--header-h) + 1rem);
     background: var(--limewash); border: 1px solid var(--border);
     border-radius: var(--r-panel); aspect-ratio: 4/3;
     display: flex; align-items: center; justify-content: center;
-    padding: 2rem; overflow: hidden;
+    padding: 0; overflow: hidden;
   }
   @media (max-width: 1023px) {
     .calculator-page__visual { position: relative; top: auto; aspect-ratio: 16/9; }
   }
-  .calculator-page__visual svg { width: 100%; height: 100%; display: block; }
+  .calculator-page__visual .visual-env {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover;
+    opacity: 0.55;
+    pointer-events: none;
+  }
+  .calculator-page__visual svg {
+    position: relative; z-index: 1;
+    width: 86%; height: 86%; display: block;
+  }
 
   /* The actual calculator mount — JS builds the UI inside it. */
   .calculator-page__steps { display: grid; gap: 1.5rem; }
@@ -2961,8 +3329,9 @@ function paintCalculatorBody(depth) {
 <section class="bg-limewash" style="padding-top: 0;">
   <div class="container">
     <div class="calculator-page" data-reveal>
-      <!-- LEFT: sticky interactive wall scene -->
+      <!-- LEFT: sticky interactive wall scene (SVG kept) -->
       <div class="calculator-page__visual" aria-hidden="true">
+        ${interiorWallPic}
         ${loadSvg('calculator-wall-scene')}
       </div>
 
@@ -2989,7 +3358,7 @@ function paintCalculatorBody(depth) {
 `;
 }
 
-// ---- Downloads — V3 ----
+// ---- Downloads — V4 ----
 function downloadsBody(depth) {
     const coverImage = '/assets/documents/prakritik-paint-brochure-cover.jpg';
     const brochureUrl = '/assets/documents/prakritik-paint-brochure.pdf';
@@ -3019,46 +3388,34 @@ function downloadsBody(depth) {
     font-size: clamp(1rem, 2vw, 1.125rem); max-width: 60ch;
   }
 
-  /* ===== DOWNLOADS SPLIT (cover left / details+actions right) ===== */
+  /* ===== DOWNLOADS SPLIT — real brochure cover left, details right ===== */
   .downloads-split {
     padding-block: clamp(2.5rem, 5vw, 4rem);
   }
+  /* Real brochure cover — display at its true aspect ratio (848×1200). */
   .dl-cover {
-    position: relative; min-height: 26rem;
-    background: linear-gradient(135deg, var(--haldi-soft), var(--haldi));
+    position: relative;
+    aspect-ratio: 848/1200;
+    background: var(--paper-warm);
     border: 1px solid var(--border-strong);
     border-radius: var(--r-panel);
     overflow: hidden;
-    display: flex; flex-direction: column; justify-content: flex-end;
-    padding: 2.5rem;
-  }
-  @media (min-width: 1024px) { .dl-cover { min-height: 34rem; } }
-  .dl-cover__media {
-    position: absolute; inset: 0; z-index: 0;
     display: flex; align-items: center; justify-content: center;
   }
-  .dl-cover__media .product-media { width: 100%; height: 100%; }
-  .dl-cover__media .product-media__official { object-fit: cover; }
-  .dl-cover__inner { position: relative; z-index: 2; color: var(--charcoal); }
-  .dl-cover__seal { width: 4rem; height: 4rem; margin: 0 0 1.25rem; }
-  .dl-cover__seal svg { width: 100%; height: 100%; }
-  .dl-cover__deva {
-    font-family: var(--font-deva); font-weight: 700;
-    font-size: clamp(1.5rem, 3vw, 2rem); color: var(--forest-deep);
+  .dl-cover .dl-cover__image {
+    display: block;
+    width: 100%; height: 100%;
+    object-fit: contain;
   }
-  .dl-cover__wordmark {
+  .dl-cover:has(.dl-cover__image) .dl-cover__fallback { display: none; }
+  .dl-cover__fallback {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    width: 100%; height: 100%;
+    text-align: center; padding: 2rem;
+    color: rgba(32, 30, 25, 0.4);
     font-family: var(--font-display); font-weight: 700;
-    font-size: clamp(1.5rem, 3vw, 2rem); color: var(--charcoal);
-    margin-top: 0.25rem;
-  }
-  .dl-cover__title {
-    font-family: var(--font-display); font-style: italic;
-    font-size: clamp(1.125rem, 2vw, 1.375rem); margin-top: 0.75rem;
-    color: var(--forest-deep); max-width: 28ch;
-  }
-  .dl-cover__foot {
-    margin-top: 1rem; font-size: 0.8125rem;
-    color: rgba(32, 30, 25, 0.7); letter-spacing: 0.04em;
+    font-size: clamp(1.5rem, 4vw, 3rem);
+    line-height: 1.15; letter-spacing: 0.02em;
   }
 
   /* Right column — details + actions */
@@ -3099,6 +3456,14 @@ function downloadsBody(depth) {
     font-size: 0.9375rem; color: var(--fg-muted); line-height: 1.6;
   }
   .dl-missing strong { color: var(--fg); }
+
+  /* ===== Brochure detection (V4 static) — JS HEAD-fetches the PDF and
+     toggles data-brochure-state on the wrapper. Default (unknown /
+     checking / available): show available, hide missing. State="missing":
+     swap. Graceful fallback if JS fails: available block stays visible. ===== */
+  [data-brochure-detect] [data-brochure-if-missing] { display: none; }
+  [data-brochure-detect][data-brochure-state="missing"] [data-brochure-if-available] { display: none; }
+  [data-brochure-detect][data-brochure-state="missing"] [data-brochure-if-missing] { display: block; }
 </style>
 
 <!-- ===== HERO ===== -->
@@ -3126,38 +3491,71 @@ function downloadsBody(depth) {
 <section class="section section--paper">
   <div class="container">
     <div class="downloads-split" data-reveal>
-      <!-- LEFT — large brochure cover -->
+      <!-- LEFT — real brochure cover (848×1200) -->
       <div class="dl-cover">
-        <div class="dl-cover__media" aria-hidden="true">
-          <div class="product-media" data-official-image="${brochureCover}">
-            <img class="product-media__official"
-                 src="${brochureCover}"
-                 alt="Prakritik Paint brochure cover"
-                 width="800" height="1000" loading="lazy" decoding="async">
-            <div class="product-media__fallback" style="display: flex; align-items: center; justify-content: center; width: 100%; height: 100%;">
-              <span style="font-family: var(--font-display); font-weight: 700; font-size: clamp(1.5rem, 4vw, 3rem); color: rgba(32,30,25,0.35); text-align: center; padding: 2rem;">PRAKRITIK<br>PAINT<br>BROCHURE</span>
-            </div>
-          </div>
-        </div>
-        <div class="dl-cover__inner">
-          <div class="dl-cover__seal" aria-hidden="true">
-            ${loadSvg('gaurikrit-cow-mark')}
-          </div>
-          <p class="dl-cover__deva">${e(COMPANY.devanagari)}</p>
-          <p class="dl-cover__wordmark">PRAKRITIK PAINT</p>
-          <p class="dl-cover__title">Cow dung-based paint, for interior and exterior walls.</p>
-          <p class="dl-cover__foot">${e(COMPANY.legalName)}</p>
+        <img class="dl-cover__image"
+             src="${brochureCover}"
+             alt="Prakritik Paint brochure cover"
+             width="848" height="1200"
+             loading="eager" fetchpriority="high" decoding="async">
+        <div class="dl-cover__fallback" aria-hidden="true">
+          PRAKRITIK<br>PAINT<br>BROCHURE
         </div>
       </div>
 
-      <!-- RIGHT — supplied brochure -->
-      <div class="dl-card">
-        <span class="brochure__detail-eyebrow">Product document</span>
-        <h2 class="brochure__detail-title">Prakritik Paint brochure</h2>
-        <p class="brochure__detail-desc">Read the Prakritik Paint brochure for both product formats.</p>
-        <div class="brochure__detail-actions">
-          <a class="btn btn--primary btn--lg" href="${brochurePdf}" target="_blank" rel="noopener">View Brochure</a>
-          <a class="btn btn--outline" href="${brochurePdf}" download>Download PDF</a>
+      <!-- RIGHT — title + details + actions.
+           V4 static: both data-brochure-if-available and
+           data-brochure-if-missing blocks are present. The wrapper has
+           data-brochure-state="unknown" initially. app.js's
+           initBrochureDetection() HEAD-fetches the PDF and sets state
+           to "available" (HEAD 2xx) or "missing" (HEAD 4xx/5xx).
+           CSS shows available by default, swaps to missing on demand. -->
+      <div class="dl-card" data-brochure-detect="${e(brochurePdf)}" data-brochure-state="unknown">
+        <div data-brochure-if-available>
+          <span class="brochure__detail-eyebrow">Current edition</span>
+          <h2 class="brochure__detail-title">Prakritik Paint — product brochure.</h2>
+          <p class="brochure__detail-desc">
+            The brochure covers both Prakritik Distemper and Prakritik Emulsion:
+            pack sizes, listed specifications, finish, drying time, coverage,
+            V.O.C. and usage. Suitable for architects, builders, institutions and
+            homeowners.
+          </p>
+
+          <dl>
+            <div class="brochure__detail-meta">
+              <dt>Format</dt><dd>PDF</dd>
+            </div>
+            <div class="brochure__detail-meta">
+              <dt>Source</dt><dd>${e(COMPANY.name)}</dd>
+            </div>
+            <div class="brochure__detail-meta">
+              <dt>Use</dt><dd>Read online or print</dd>
+            </div>
+          </dl>
+
+          <div class="brochure__detail-actions">
+            <a class="btn btn--primary btn--lg" href="${brochurePdf}"
+               target="_blank" rel="noopener">View Brochure</a>
+            <a class="btn btn--outline" href="${brochurePdf}" download>Download PDF</a>
+          </div>
+          <p class="brochure__detail-note">
+            If the file does not open, the PDF may not be reachable from your
+            network. Contact Gaurikrit directly for a current copy.
+          </p>
+        </div>
+        <div data-brochure-if-missing>
+          <span class="brochure__detail-eyebrow">Brochure pending</span>
+          <h2 class="brochure__detail-title">The current brochure is not yet published here.</h2>
+          <p class="brochure__detail-desc">
+            Please contact Gaurikrit for a copy of the product brochure.
+          </p>
+          <div class="brochure__detail-actions">
+            <a class="btn btn--primary btn--lg" href="${relUrl('/contact/', depth)}?interest=general">Contact Gaurikrit for the current product brochure</a>
+          </div>
+          <p class="brochure__detail-note">
+            In the meantime, product specifications for both formats are listed
+            on the Distemper and Emulsion detail pages.
+          </p>
         </div>
       </div>
     </div>
@@ -3166,7 +3564,7 @@ function downloadsBody(depth) {
 `;
 }
 
-// ---- Contact — V3 ----
+// ---- Contact — V4 ----
 function contactBody(depth) {
     const address = COMPANY.address;
     const phones = COMPANY.phones;
@@ -3186,7 +3584,10 @@ function contactBody(depth) {
     return `<style>
   /* ===== HERO ===== */
   .contact-hero { padding-top: calc(var(--header-h) + 2rem); padding-bottom: 1.5rem; }
-  .contact-hero__container { display: grid; gap: 2rem; align-items: start; }
+  .contact-hero__container { display: grid; gap: 2rem; align-items: center; }
+  @media (min-width: 1024px) {
+    .contact-hero__container { grid-template-columns: 7fr 5fr; gap: 3rem; }
+  }
   .contact-hero__lockup { max-width: 42rem; }
   .contact-hero__title {
     font-family: var(--font-display); font-size: clamp(2.2rem, 5vw, 4rem);
@@ -3196,6 +3597,23 @@ function contactBody(depth) {
   .contact-hero__sub {
     margin-top: 1rem; color: var(--fg-muted);
     font-size: clamp(1rem, 2vw, 1.125rem); line-height: 1.65; max-width: 60ch;
+  }
+  /* V4: subtle logo mark as secondary visual — no large artwork. */
+  .contact-hero__mark {
+    display: flex; align-items: center; justify-content: center;
+    aspect-ratio: 696/700;
+    background: radial-gradient(circle at 50% 45%, #f9f5eb, #e7ebdf);
+    border-radius: var(--r-panel);
+    overflow: hidden;
+    padding: 1.5rem;
+  }
+  .contact-hero__mark .contact-hero__mark-img {
+    display: block;
+    width: min(75%, 220px); height: auto;
+    object-fit: contain;
+  }
+  @media (max-width: 1023px) {
+    .contact-hero__mark { display: none; }
   }
 
   /* ===== CONTACT SECTION (5 / 7 — info left, form right) ===== */
@@ -3258,6 +3676,13 @@ function contactBody(depth) {
           respond.
         </p>
       </div>
+      <div class="contact-hero__mark" aria-hidden="true">
+        <img class="contact-hero__mark-img"
+             src="${assetUrl('/assets/brand/gaurikrit-logo-mark.png', depth)}"
+             alt=""
+             width="696" height="700"
+             loading="eager" decoding="async">
+      </div>
     </div>
   </div>
 </section>
@@ -3299,9 +3724,11 @@ ${phoneRows}
         </div>
       </aside>
 
-      <!-- RIGHT — enquiry form -->
-      <form class="contact-form" action="mailto:${e(COMPANY.email)}" method="get"
-            data-contact-form data-static-preview novalidate>
+      <!-- RIGHT — enquiry form.
+           Static fallback: Formspree placeholder action, no CSRF, no honeypot.
+           Replace the form ID with a real Formspree endpoint before deploy. -->
+      <form class="contact-form" action="https://formspree.io/f/your-form-id" method="post"
+            data-contact-form novalidate>
         <p class="contact-form-card__intro">
           Fields marked <span class="req">*</span> are required.
         </p>
@@ -3344,7 +3771,7 @@ ${interestOptions}
 
         <div class="calc-actions">
           <button type="submit" class="btn btn--primary btn--lg">
-            <span data-submit-label>Send via Email</span>
+            <span data-submit-label>Send Enquiry</span>
           </button>
         </div>
       </form>
@@ -3354,7 +3781,7 @@ ${interestOptions}
 `;
 }
 
-// ---- 404 page — V3 ----
+// ---- 404 — V4 ----
 function error404Body(depth) {
     return `<style>
   .error-page {
@@ -3363,6 +3790,7 @@ function error404Body(depth) {
     padding-top: calc(var(--header-h) + 3rem);
     position: relative; overflow: hidden;
   }
+  /* V4: field-botanicals SVG kept as small decorative accent at low opacity. */
   .error-page__bg {
     position: absolute; right: -2rem; top: 50%; transform: translateY(-50%);
     width: 22rem; height: 22rem; opacity: 0.08; z-index: 0;
@@ -3374,12 +3802,29 @@ function error404Body(depth) {
   .error-page__inner {
     position: relative; z-index: 1; max-width: 40rem;
   }
+  /* V4: use the real official logo mark (696×700) for the brand seal.
+     Falls back to the gaurikrit-cow-mark SVG if the PNG is missing. */
   .error-page__seal {
+    position: relative;
     width: 4rem; height: 4rem; margin: 0 0 1.5rem;
+    display: flex; align-items: center; justify-content: center;
+    background: radial-gradient(circle at 50% 45%, #f9f5eb, #e7ebdf);
+    border-radius: var(--r-card);
+    overflow: hidden;
+  }
+  .error-page__seal .error-page__seal-img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: contain;
+    padding: 0.375rem;
+    z-index: 2;
+  }
+  .error-page__seal .error-page__seal-fallback {
+    position: absolute; inset: 0; z-index: 1;
     display: flex; align-items: center; justify-content: center;
     color: var(--forest);
   }
-  .error-page__seal svg { width: 100%; height: 100%; }
+  .error-page__seal .error-page__seal-fallback svg { width: 70%; height: 70%; }
   .error-page__code {
     font-family: var(--font-display); font-size: clamp(3rem, 10vw, 5.5rem);
     font-weight: 700; color: var(--primary); line-height: 1;
@@ -3413,7 +3858,15 @@ function error404Body(depth) {
   <div class="container">
     <div class="error-page__inner" data-reveal>
       <div class="error-page__seal" aria-hidden="true">
-        ${loadSvg('gaurikrit-cow-mark')}
+        <img class="error-page__seal-img"
+             src="${assetUrl('/assets/brand/gaurikrit-logo-mark.png', depth)}"
+             alt=""
+             width="696" height="700"
+             loading="eager" decoding="async"
+             onerror="this.style.visibility='hidden';">
+        <span class="error-page__seal-fallback">
+          ${loadSvg('gaurikrit-cow-mark')}
+        </span>
       </div>
       <p class="error-page__code">404</p>
       <p class="error-page__deva">${e(COMPANY.devanagari)}</p>
@@ -3568,9 +4021,9 @@ const PAGES = [
 ];
 
 function build() {
-    console.log('STATIC-BUILD (V3): starting static site generation for GitHub Pages.');
-    console.log('STATIC-BUILD (V3): source = ' + SRC);
-    console.log('STATIC-BUILD (V3): output = ' + OUT);
+    console.log('STATIC-BUILD (V4): starting static site generation for GitHub Pages.');
+    console.log('STATIC-BUILD (V4): source = ' + SRC);
+    console.log('STATIC-BUILD (V4): output = ' + OUT);
 
     // Clean & recreate the output directory.
     if (existsSync(OUT)) {
@@ -3586,7 +4039,7 @@ function build() {
         const fullPath = join(OUT, page.route);
         mkdirSync(dirname(fullPath), { recursive: true });
         writeFileSync(fullPath, html, 'utf8');
-        console.log('STATIC-BUILD (V3): wrote ' + page.route + ' (' + html.length + ' bytes)');
+        console.log('STATIC-BUILD (V4): wrote ' + page.route + ' (' + html.length + ' bytes)');
         generated++;
     }
 
@@ -3600,16 +4053,18 @@ function build() {
     };
     const err404Html = generatePage(err404Meta, 0, err404Body);
     writeFileSync(join(OUT, '404.html'), err404Html, 'utf8');
-    console.log('STATIC-BUILD (V3): wrote 404.html (' + err404Html.length + ' bytes)');
+    console.log('STATIC-BUILD (V4): wrote 404.html (' + err404Html.length + ' bytes)');
     generated++;
 
-    // Copy static assets: CSS + JS (the SVG illustrations are inlined
-    // directly in the HTML, so no need to copy the PHP partials).
+    // Copy static assets: CSS + JS (the kept SVG illustrations — ashta-laabh-
+    // seal, calculator-wall-scene, gaurikrit-cow-mark, field-botanicals —
+    // are inlined directly into the HTML, so the PHP partials need not be
+    // copied. The V4 picture tags reference real images in editorial/ etc.)
     const cssSrc = join(SRC, 'assets/css/app.css');
     const cssDestDir = join(OUT, 'assets/css');
     mkdirSync(cssDestDir, { recursive: true });
     copyFileSync(cssSrc, join(cssDestDir, 'app.css'));
-    console.log('STATIC-BUILD (V3): copied assets/css/app.css');
+    console.log('STATIC-BUILD (V4): copied assets/css/app.css');
 
     const jsSrcDir = join(SRC, 'assets/js');
     const jsDestDir = join(OUT, 'assets/js');
@@ -3617,21 +4072,33 @@ function build() {
     const jsFiles = readdirSync(jsSrcDir).filter((f) => f.endsWith('.js'));
     for (const f of jsFiles) {
         copyFileSync(join(jsSrcDir, f), join(jsDestDir, f));
-        console.log('STATIC-BUILD (V3): copied assets/js/' + f);
+        console.log('STATIC-BUILD (V4): copied assets/js/' + f);
     }
 
-    // Exact same public image and document bytes as the Hostinger build.
-    for (const dir of ['brand','products','documents','illustrations','social','fonts']) {
-        cpSync(join(SRC,'assets',dir), join(OUT,'assets',dir), {recursive:true});
+    // Copy ALL V4 asset directories to docs/assets/.
+    // brand/ — gaurikrit-logo-full.png + gaurikrit-logo-mark.png
+    // products/ — prakritik-group.jpg, prakritik-distemper.jpg, prakritik-emulsion.jpg
+    // editorial/ — 12 files (6 editorial images × 2 formats: webp + jpg)
+    // documents/ — prakritik-paint-brochure.pdf + prakritik-paint-brochure-cover.jpg
+    // illustrations/ — legacy SVG fallbacks (zebu-study.png, courtyard-study.png + webp)
+    // social/ — 10 OG images (og-home.jpg, og-products.jpg, etc.)
+    // fonts/ — 3 woff2 files (noto-serif-devanagari, manrope-latin, newsreader-latin)
+    for (const dir of ['brand', 'products', 'editorial', 'documents', 'illustrations', 'social', 'fonts']) {
+        cpSync(join(SRC, 'assets', dir), join(OUT, 'assets', dir), { recursive: true });
+        console.log('STATIC-BUILD (V4): copied assets/' + dir + '/');
     }
-    for (const file of ['favicon.ico','favicon-16x16.png','favicon-32x32.png','favicon-48x48.png',
-        'apple-touch-icon.png','android-chrome-192x192.png','android-chrome-512x512.png','site.webmanifest']) {
-        copyFileSync(join(SRC,file),join(OUT,file));
+
+    // Favicon + manifest files (root-level static assets).
+    for (const file of ['favicon.ico', 'favicon-16x16.png', 'favicon-32x32.png', 'favicon-48x48.png',
+        'apple-touch-icon.png', 'android-chrome-192x192.png', 'android-chrome-512x512.png', 'site.webmanifest']) {
+        copyFileSync(join(SRC, file), join(OUT, file));
     }
+    console.log('STATIC-BUILD (V4): copied favicon + manifest files');
+
     // .nojekyll — tells GitHub Pages NOT to process the site with Jekyll
     // (Jekyll ignores folders starting with `_` and would skip assets).
     writeFileSync(join(OUT, '.nojekyll'), '', 'utf8');
-    console.log('STATIC-BUILD (V3): wrote .nojekyll');
+    console.log('STATIC-BUILD (V4): wrote .nojekyll');
 
     // The GitHub Pages copy is a noindex demonstration, not a second site.
     writeFileSync(
@@ -3639,9 +4106,9 @@ function build() {
         `User-agent: *\nDisallow: /\n`,
         'utf8',
     );
-    console.log('STATIC-BUILD (V3): wrote robots.txt');
+    console.log('STATIC-BUILD (V4): wrote robots.txt');
 
-    console.log('STATIC-BUILD (V3): done — ' + generated + ' HTML files generated.');
+    console.log('STATIC-BUILD (V4): done — ' + generated + ' HTML files generated.');
 }
 
 build();

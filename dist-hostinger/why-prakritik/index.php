@@ -1,16 +1,20 @@
 <?php
 /**
- * Gaurikrit Bio Products — Why Prakritik (V3 rebuild).
- * Task V3-PAGES.
+ * Gaurikrit Bio Products — Why Prakritik (V4 asset replacement pass).
+ * Task V4-ASSETS.
  *
- * Illustrated editorial essay. Hero with Indian cow + real wall/material
- * sample. Six numbered chapters (each visually distinct):
- *   01 MATERIAL    — physical material sample graphic
- *   02 TRADITION   — large indian-courtyard illustration
- *   03 MATERIAL TO WALL — full-width material-to-wall diagram
- *   04 ASHTA       — full-size ashta-laabh-seal
- *   05 FORMATS     — real Distemper + Emulsion product visual (image-handoff)
- *   06 CONTEXT     — rural-landscape with annotations
+ * Composition unchanged from V3. This pass replaces coded SVG illustrations
+ * with real editorial artwork. SVG kept only for interactive
+ * ashta-laabh-seal.
+ *
+ * Illustrated editorial essay. Hero with zebu-study. Six numbered chapters
+ * (each visually distinct):
+ *   01 MATERIAL    — zebu-study.webp (1536×1024) large
+ *   02 TRADITION    — courtyard-study.webp (1942×809) large
+ *   03 MATERIAL TO WALL — 3-panel composition (interior + group + exterior)
+ *   04 ASHTA        — full-size interactive ashta-laabh-seal SVG (kept)
+ *   05 FORMATS      — real Distemper + Emulsion product photos
+ *   06 CONTEXT      — rural-landscape.webp with annotation
  * CTA "Explore Products" → /products/.
  */
 declare(strict_types=1);
@@ -27,6 +31,7 @@ global $COMPANY, $PRODUCTS, $ASHTA_LAABH, $MATERIAL_JOURNEY;
 
 $distemper = get_product('prakritik-distemper');
 $emulsion  = get_product('prakritik-emulsion');
+$groupImage = '/assets/products/prakritik-group.jpg';
 
 $ashtaIds = [
     'Antibacterial'              => 'antibacterial',
@@ -40,7 +45,16 @@ $ashtaIds = [
 ];
 ?>
 <style>
-  /* ===== HERO (cow + wall sample) ===== */
+  /* ===== Editorial image reset (V4 — NO mix-blend-mode, NO blur filters) ===== */
+  .editorial-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .editorial-image--contain { object-fit: contain; }
+
+  /* ===== HERO (zebu-study) ===== */
   .why-hero { padding-top: calc(var(--header-h) + 2rem); padding-bottom: 1.5rem; }
   .why-hero__container { display: grid; gap: 2rem; align-items: center; }
   @media (min-width: 1024px) {
@@ -48,23 +62,16 @@ $ashtaIds = [
   }
   .why-hero__lockup { max-width: 42rem; }
   .why-hero__art {
-    position: relative; aspect-ratio: 5/4; background: var(--limewash);
-    border-radius: var(--r-panel); overflow: hidden;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .why-hero__art .why-cow {
-    position: absolute; left: 6%; bottom: 8%; width: 46%; opacity: 0.85;
-  }
-  .why-hero__art .why-wall {
-    position: absolute; right: 8%; top: 8%; bottom: 8%; width: 42%;
-    background: linear-gradient(135deg, var(--limewash), color-mix(in srgb, var(--kraft) 35%, var(--limewash)));
+    position: relative; aspect-ratio: 1536/1024;
+    background: var(--limewash); border-radius: var(--r-panel);
     overflow: hidden;
   }
-  .why-hero__art .why-wall::after {
-    content: ''; position: absolute; inset: 0;
-    background-image: radial-gradient(circle at 1px 1px, rgba(32, 30, 25, 0.08) 0.5px, transparent 0);
-    background-size: 14px 14px;
+  .why-hero__art .editorial-image {
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
   }
+  /* Remove the legacy cow/wall composition — single editorial photo replaces it. */
+  .why-hero__art .why-cow,
+  .why-hero__art .why-wall { display: none; }
   .why-hero__title { font-size: clamp(2.2rem, 5vw, 4rem); }
 
   /* ===== NUMBERED CHAPTERS ===== */
@@ -104,44 +111,57 @@ $ashtaIds = [
     padding-left: 1.5rem; border-left: 3px solid var(--haldi);
   }
 
-  /* === Chapter 01 — MATERIAL: physical material sample === */
+  /* === Chapter 01 — MATERIAL: zebu-study large === */
   .why-material-sample {
-    position: relative; aspect-ratio: 4/3;
-    background: var(--paper); border: 1px solid var(--border);
-    border-radius: var(--r-panel); overflow: hidden; padding: 2rem;
+    position: relative; aspect-ratio: 1536/1024;
+    background: var(--paper); border-radius: var(--r-panel);
+    overflow: hidden;
   }
-  .why-material-sample__patch {
-    position: absolute; left: 12%; top: 12%; right: 12%; bottom: 12%;
-    background:
-      radial-gradient(ellipse 70% 60% at 40% 35%, var(--mitti) 0%, color-mix(in srgb, var(--mitti) 80%, var(--charcoal)) 65%, transparent 92%),
-      linear-gradient(135deg, var(--kraft), var(--mitti));
-    border-radius: 4px;
+  .why-material-sample .editorial-image {
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
   }
-  .why-material-sample__patch::after {
-    content: ''; position: absolute; inset: 0;
-    background-image: radial-gradient(circle at 1px 1px, rgba(32, 30, 25, 0.12) 0.5px, transparent 0);
-    background-size: 12px 12px;
-  }
-  .why-material-sample__tag {
-    position: absolute; bottom: 1rem; left: 1rem;
-    font-family: var(--font-display); font-style: italic;
-    font-size: 0.875rem; color: var(--fg-muted);
-    background: rgba(250, 248, 241, 0.85); padding: 0.25rem 0.75rem;
-    border-radius: var(--r-pill);
-  }
+  /* Legacy patch element kept hidden — replaced by the editorial photo. */
+  .why-material-sample__patch,
+  .why-material-sample__tag { display: none; }
 
   /* === Chapter 02 — TRADITION: large courtyard === */
   .why-tradition-art {
-    width: 100%; aspect-ratio: 16/9;
+    width: 100%; aspect-ratio: 1942/809;
     background: var(--limewash); border-radius: var(--r-panel);
     overflow: hidden;
   }
-  .why-tradition-art svg { width: 100%; height: 100%; display: block; }
+  .why-tradition-art .editorial-image {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+  }
 
-  /* === Chapter 03 — MATERIAL TO WALL: full-width diagram === */
+  /* === Chapter 03 — MATERIAL TO WALL: 3-panel composition === */
   .why-flow-section { padding-block: clamp(3.5rem, 6vw, 5rem); }
-  .why-flow-svg { width: 100%; margin-inline: 0; }
-  .why-flow-svg svg { width: 100%; height: auto; display: block; }
+  .why-flow-panels {
+    display: grid; gap: 1rem; margin-top: 2rem;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 768px) {
+    .why-flow-panels { grid-template-columns: 1fr 1fr 1fr; gap: 1.25rem; }
+  }
+  .why-flow-panel {
+    position: relative;
+    aspect-ratio: 1344/768;
+    background: var(--limewash);
+    overflow: hidden; border-radius: var(--r-panel);
+  }
+  .why-flow-panel--group { aspect-ratio: 1280/621; }
+  .why-flow-panel .editorial-image {
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  }
+  .why-flow-panel-label {
+    position: absolute; left: 0.875rem; bottom: 0.875rem;
+    background: rgba(250, 248, 241, 0.88);
+    padding: 0.375rem 0.75rem;
+    border-radius: var(--r-pill);
+    font-size: 0.6875rem; font-weight: 700;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--fg);
+  }
 
   /* === Chapter 04 — ASHTA: full-size seal === */
   .why-ashta-section { padding-block: clamp(3.5rem, 6vw, 5rem); }
@@ -155,15 +175,21 @@ $ashtaIds = [
   }
   @media (min-width: 768px) { .why-formats { grid-template-columns: 1fr 1fr; } }
   .why-format-card {
-    position: relative; aspect-ratio: 4/5;
+    position: relative;
     background: linear-gradient(160deg, var(--paper), var(--limewash));
     border: 1px solid var(--border); border-top: 3px solid var(--indigo);
     border-radius: var(--r-panel); overflow: hidden;
-    display: flex; align-items: center; justify-content: center; padding: 2rem;
+    display: flex; align-items: center; justify-content: center; padding: 1.5rem;
+    min-height: 22rem;
   }
   .why-format-card--emulsion { border-top-color: var(--leaf); }
-  .why-format-card .product-media { width: 100%; height: 100%; }
-  .why-format-card .product-media__official { object-fit: contain; padding: 1.5rem; }
+  .why-format-card .format-product {
+    display: block;
+    max-height: 26rem; max-width: 100%;
+    width: auto; height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 14px 20px rgba(34, 36, 27, 0.16));
+  }
   .why-format-card__caption {
     position: absolute; bottom: 1rem; left: 1rem;
     background: rgba(250, 248, 241, 0.9); padding: 0.5rem 0.875rem;
@@ -172,17 +198,19 @@ $ashtaIds = [
   .why-format-card--distemper .why-format-card__caption { color: var(--indigo); }
   .why-format-card--emulsion  .why-format-card__caption { color: var(--leaf); }
 
-  /* === Chapter 06 — CONTEXT: rural-landscape with annotations === */
+  /* === Chapter 06 — CONTEXT: rural-landscape with annotation === */
   .why-context-section { padding-block: clamp(3.5rem, 6vw, 5rem); }
   .why-context-band {
-    position: relative; width: 100%; aspect-ratio: 16/5;
+    position: relative; width: 100%; aspect-ratio: 1344/768;
     background: var(--limewash); border-radius: var(--r-panel);
     overflow: hidden;
   }
-  .why-context-band svg { width: 100%; height: 100%; display: block; }
+  .why-context-band .editorial-image {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+  }
   .why-context-band__annot {
     position: absolute; bottom: 1rem; left: 1rem;
-    background: rgba(250, 248, 241, 0.85);
+    background: rgba(250, 248, 241, 0.88);
     padding: 0.5rem 0.875rem; border-radius: var(--r-pill);
     font-size: 0.75rem; font-weight: 600;
     letter-spacing: 0.14em; text-transform: uppercase;
@@ -209,7 +237,14 @@ $ashtaIds = [
         </p>
       </div>
       <div class="why-hero__art" aria-hidden="true">
-        <img class="editorial-cow" src="/assets/illustrations/zebu-study.jpg" alt="" width="1536" height="1024">
+        <picture>
+          <source type="image/webp" srcset="<?= asset_url('/assets/editorial/zebu-study.webp') ?>">
+          <img class="editorial-image"
+               src="<?= asset_url('/assets/editorial/zebu-study.jpg') ?>"
+               alt="Editorial study of an Indian zebu cow"
+               width="1536" height="1024"
+               loading="eager" decoding="async">
+        </picture>
       </div>
     </div>
   </div>
@@ -236,7 +271,14 @@ $ashtaIds = [
         </p>
       </div>
       <div class="why-material-sample" aria-hidden="true">
-        <img class="editorial-cow" src="/assets/illustrations/zebu-study.jpg" alt="" loading="lazy" width="1536" height="1024">
+        <picture>
+          <source type="image/webp" srcset="<?= asset_url('/assets/editorial/zebu-study.webp') ?>">
+          <img class="editorial-image"
+               src="<?= asset_url('/assets/editorial/zebu-study.jpg') ?>"
+               alt=""
+               width="1536" height="1024"
+               loading="lazy" decoding="async">
+        </picture>
       </div>
     </div>
   </div>
@@ -247,7 +289,14 @@ $ashtaIds = [
   <div class="container">
     <div class="why-chapter why-chapter--reverse" data-reveal>
       <div class="why-tradition-art" aria-hidden="true">
-        <img class="editorial-courtyard" src="/assets/illustrations/courtyard-study.jpg" alt="" loading="lazy" width="1942" height="809">
+        <picture>
+          <source type="image/webp" srcset="<?= asset_url('/assets/editorial/courtyard-study.webp') ?>">
+          <img class="editorial-image"
+               src="<?= asset_url('/assets/editorial/courtyard-study.jpg') ?>"
+               alt="Indian limewashed courtyard elevation"
+               width="1942" height="809"
+               loading="lazy" decoding="async">
+        </picture>
       </div>
       <div>
         <span class="why-chapter__num">02</span>
@@ -267,7 +316,7 @@ $ashtaIds = [
   </div>
 </section>
 
-<!-- ===== 03 MATERIAL TO WALL — full-width diagram ===== -->
+<!-- ===== 03 MATERIAL TO WALL — 3-panel composition ===== -->
 <section class="section section--paper why-flow-section" aria-labelledby="chapter-03-title">
   <div class="container">
     <div data-reveal>
@@ -278,8 +327,37 @@ $ashtaIds = [
         Natural material, Prakritik Paint, finished walls.
       </p>
     </div>
-    <div class="why-flow-svg" data-reveal>
-
+    <div class="why-flow-panels" data-reveal>
+      <div class="why-flow-panel">
+        <picture>
+          <source type="image/webp" srcset="<?= asset_url('/assets/editorial/interior-wall-study.webp') ?>">
+          <img class="editorial-image"
+               src="<?= asset_url('/assets/editorial/interior-wall-study.jpg') ?>"
+               alt="Indian interior limewashed wall"
+               width="1344" height="768"
+               loading="lazy" decoding="async">
+        </picture>
+        <span class="why-flow-panel-label">01 · Natural material</span>
+      </div>
+      <div class="why-flow-panel why-flow-panel--group">
+        <img class="editorial-image"
+             src="<?= asset_url($groupImage) ?>"
+             alt="Prakritik Distemper and Emulsion paint packs"
+             width="1280" height="621"
+             loading="lazy" decoding="async">
+        <span class="why-flow-panel-label">02 · Prakritik Paint</span>
+      </div>
+      <div class="why-flow-panel">
+        <picture>
+          <source type="image/webp" srcset="<?= asset_url('/assets/editorial/exterior-wall-study.webp') ?>">
+          <img class="editorial-image"
+               src="<?= asset_url('/assets/editorial/exterior-wall-study.jpg') ?>"
+               alt="Indian exterior wall"
+               width="1344" height="768"
+               loading="lazy" decoding="async">
+        </picture>
+        <span class="why-flow-panel-label">03 · Finished wall</span>
+      </div>
     </div>
     <ol class="material-journey__steps" data-reveal-stagger>
       <?php foreach ($MATERIAL_JOURNEY as $step): ?>
@@ -293,7 +371,7 @@ $ashtaIds = [
   </div>
 </section>
 
-<!-- ===== 04 ASHTA — full-size seal ===== -->
+<!-- ===== 04 ASHTA — full-size seal (interactive SVG kept) ===== -->
 <section class="section section--limewash why-ashta-section" aria-labelledby="chapter-04-title" data-ashta-laabh>
   <div class="container">
     <div class="why-ashta-section__head section-heading section-heading--left" data-reveal>
@@ -336,27 +414,19 @@ $ashtaIds = [
 
     <div class="why-formats" data-reveal-stagger>
       <div class="why-format-card why-format-card--distemper">
-        <div class="product-media" data-official-image="<?= e($distemper['officialImage']) ?>">
-          <img class="product-media__official"
-               src="<?= e($distemper['officialImage']) ?>"
-               alt="<?= e($distemper['name']) ?> pack"
-               width="600" height="750" loading="lazy" decoding="async">
-          <div class="product-media__fallback">
-            <?php render_illustration('prakritik-distemper-bucket'); ?>
-          </div>
-        </div>
+        <img class="format-product"
+             src="<?= asset_url($distemper['officialImage']) ?>"
+             alt="<?= e($distemper['name']) ?>"
+             width="510" height="538"
+             loading="lazy" decoding="async">
         <span class="why-format-card__caption"><?= e($distemper['packagingShort']) ?> packs</span>
       </div>
       <div class="why-format-card why-format-card--emulsion">
-        <div class="product-media" data-official-image="<?= e($emulsion['officialImage']) ?>">
-          <img class="product-media__official"
-               src="<?= e($emulsion['officialImage']) ?>"
-               alt="<?= e($emulsion['name']) ?> pack"
-               width="600" height="750" loading="lazy" decoding="async">
-          <div class="product-media__fallback">
-            <?php render_illustration('prakritik-emulsion-bucket'); ?>
-          </div>
-        </div>
+        <img class="format-product"
+             src="<?= asset_url($emulsion['officialImage']) ?>"
+             alt="<?= e($emulsion['name']) ?>"
+             width="355" height="486"
+             loading="lazy" decoding="async">
         <span class="why-format-card__caption"><?= e($emulsion['packagingShort']) ?> packs</span>
       </div>
     </div>
@@ -384,7 +454,14 @@ $ashtaIds = [
         </div>
       </div>
       <div class="why-context-band" aria-hidden="true">
-        <?php render_illustration('rural-landscape'); ?>
+        <picture>
+          <source type="image/webp" srcset="<?= asset_url('/assets/editorial/rural-landscape.webp') ?>">
+          <img class="editorial-image"
+               src="<?= asset_url('/assets/editorial/rural-landscape.jpg') ?>"
+               alt="Indian rural landscape"
+               width="1344" height="768"
+               loading="lazy" decoding="async">
+        </picture>
         <span class="why-context-band__annot"><?= e($COMPANY['address'][4] ?? '') ?>, <?= e($COMPANY['address'][5] ?? '') ?></span>
       </div>
     </div>

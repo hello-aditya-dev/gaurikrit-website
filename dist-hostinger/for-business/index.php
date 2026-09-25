@@ -1,11 +1,14 @@
 <?php
 /**
- * Gaurikrit Bio Products — For Business (V3 rebuild).
- * Task V3-PAGES.
+ * Gaurikrit Bio Products — For Business (V4 asset replacement pass).
+ * Task V4-ASSETS.
+ *
+ * Composition unchanged from V3. This pass replaces coded SVG
+ * illustrations with real editorial artwork. NO floating blob.
  *
  * Composition:
- *   1. Hero — text left / architectural-elevation right (NO floating paint blob).
- *   2. Audiences — shared illustration + 4 ruled columns (NO cards).
+ *   1. Hero — text left / architectural-elevation right (NO floating blob).
+ *   2. Audiences — shared rural-landscape + 4 ruled columns (NO cards).
  *   3. Practical section — "When you enquire, it helps to include" + list.
  *   4. Business Form — 12-col layout (left 4 help/contact, right 8 fields).
  *      CTA "Discuss a Project". Posts to /api/business-enquiry.php.
@@ -45,7 +48,15 @@ $helpfulInclude = [
 ];
 ?>
 <style>
-  /* ===== HERO (text left / architectural-elevation right) ===== */
+  /* ===== Editorial image reset (V4 — NO mix-blend-mode, NO blur filters) ===== */
+  .editorial-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* ===== HERO (text left / architectural-elevation right — NO floating blob) ===== */
   .biz-hero { padding-top: calc(var(--header-h) + 2rem); padding-bottom: 1.5rem; }
   @media (min-width: 1024px) { .biz-hero { padding-bottom: 2.5rem; } }
   .biz-hero__container { display: grid; gap: 2rem; align-items: center; }
@@ -54,18 +65,25 @@ $helpfulInclude = [
   }
   .biz-hero__lockup { max-width: 42rem; }
   .biz-hero__art {
-    position: relative; aspect-ratio: 12/7; background: var(--paper-cool);
+    position: relative; aspect-ratio: 1344/768; background: var(--paper-cool);
     border-radius: var(--r-panel); overflow: hidden;
-    display: flex; align-items: center; justify-content: center; padding: 1.5rem;
   }
-  .biz-hero__art svg { width: 100%; height: 100%; display: block; }
+  .biz-hero__art .editorial-image {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+  }
 
-  /* ===== AUDIENCES (shared illustration + 4 ruled columns) ===== */
+  /* ===== AUDIENCES (shared editorial image + 4 ruled columns) ===== */
   .biz-audiences-section { padding-block: clamp(3.5rem, 6vw, 5rem); }
   .biz-audiences-illustration {
-    margin-bottom: 3rem; width: 100%; opacity: 0.5;
+    position: relative;
+    margin-bottom: 3rem;
+    aspect-ratio: 1344/768;
+    width: 100%; overflow: hidden;
+    border-radius: var(--r-panel);
   }
-  .biz-audiences-illustration svg { width: 100%; height: auto; display: block; }
+  .biz-audiences-illustration .editorial-image {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+  }
   .biz-audiences__head { max-width: 48rem; margin-bottom: 2.5rem; }
 
   /* ===== PRACTICAL SECTION ===== */
@@ -145,13 +163,20 @@ $helpfulInclude = [
         </div>
       </div>
       <div class="biz-hero__art" aria-hidden="true">
-        <?php render_illustration('architectural-elevation'); ?>
+        <picture>
+          <source type="image/webp" srcset="<?= asset_url('/assets/editorial/architectural-elevation.webp') ?>">
+          <img class="editorial-image"
+               src="<?= asset_url('/assets/editorial/architectural-elevation.jpg') ?>"
+               alt="Architectural building elevation study"
+               width="1344" height="768"
+               loading="eager" decoding="async">
+        </picture>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===== AUDIENCES — shared illustration + 4 ruled columns ===== -->
+<!-- ===== AUDIENCES — shared editorial image + 4 ruled columns ===== -->
 <section class="section section--paper biz-audiences-section" aria-labelledby="audiences-title">
   <div class="container">
     <div class="biz-audiences__head section-heading section-heading--left" data-reveal>
@@ -160,7 +185,14 @@ $helpfulInclude = [
     </div>
 
     <div class="biz-audiences-illustration" aria-hidden="true" data-reveal>
-      <?php render_illustration('rural-landscape'); ?>
+      <picture>
+        <source type="image/webp" srcset="<?= asset_url('/assets/editorial/rural-landscape.webp') ?>">
+        <img class="editorial-image"
+             src="<?= asset_url('/assets/editorial/rural-landscape.jpg') ?>"
+             alt=""
+             width="1344" height="768"
+             loading="lazy" decoding="async">
+      </picture>
     </div>
 
     <div class="biz-audiences" data-reveal-stagger>

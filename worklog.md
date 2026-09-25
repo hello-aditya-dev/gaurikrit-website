@@ -2423,3 +2423,293 @@ Files (all rewritten in place):
 
 Stage Summary:
 - The static site in /home/z/my-project/docs/ now mirrors the V3 PHP site composition exactly: 12-column editorial grid layouts (5fr/7fr, 45fr/55fr, 42fr/58fr, 4fr/8fr, 6fr/6fr), product chapters (not cards) with ghost oversized type at 0.05 opacity, ruled spec-matrix rows, large illustrations (material-to-wall full-width diagram, indian-courtyard recolourable wall plane, ashta-laabh-seal with 8 data-benefit nodes, architectural-elevation hero, calculator-wall-scene sticky visual), numbered ashta list (no card backgrounds), ruled pathway columns, company-plate ledger, downloads split with image-handoff brochure cover, contact section with ruled plate + form, branded 404 with field-botanicals accent. All paths relative for GitHub Pages subdirectory serving. All forms have Formspree placeholder action (no CSRF/honeypot for static). Calculator carries inline `{"enabled":false}` JSON config so calculator.js builds the 4-step UI client-side. All V3 illustration names used (material-to-wall, ashta-laabh-seal, architectural-elevation, calculator-wall-scene, indian-cow, indian-courtyard, rural-landscape, paint-brush-stroke, field-botanicals, gaurikrit-cow-mark, prakritik-distemper-bucket, prakritik-emulsion-bucket) — no references to deleted material-journey or ashta-laabh-diagram SVG files. Inline bridge scripts on home + why-prakritik + distemper + emulsion pages copy data-benefit → data-ashta-node so the ashta-laabh.js module can drive the seal's `:has()` CSS. Home page also has the courtyard `<rect>` recolour bridge.
+
+---
+Task ID: V4-ASSETS
+Agent: main (asset replacement pass)
+Task: Rebuild ALL 11 PHP page files in /home/z/my-project/dist-hostinger/ to use REAL client photography + high-quality editorial artwork instead of coded SVG illustrations. Factual architecture stays the same — visual asset replacement pass only.
+
+Work Log:
+- Read /home/z/my-project/dist-hostinger/includes/data.php (locked factual brand data: COMPANY, PRODUCTS, ASHTA_LAABH, COLOUR_STUDY, MATERIAL_JOURNEY, PROJECT_PATHWAYS, INTEREST_OPTIONS, PROJECT_TYPES, FAQ, NAV, NAV_PRODUCTS, get_product()).
+- Read /home/z/my-project/dist-hostinger/includes/header.php + footer.php (shared chrome with brand-mark image-handoff using gaurikrit-logo-mark.png with gaurikrit-cow-mark SVG fallback — preserved unchanged).
+- Read /home/z/my-project/dist-hostinger/includes/helpers.php (e(), asset_url(), render_illustration(), csrf_field(), csrf_verify(), json_response(), is_valid_email(), clean_text(), client_ip(), rate_limit() — all preserved).
+- Read /home/z/my-project/dist-hostinger/assets/css/app.css (4834-line V3 art-direction stylesheet — read but not modified; the task scope was the 11 page PHP files only).
+- Read /home/z/my-project/dist-hostinger/assets/js/colour-study.js to confirm the recolouring contract: JS sets `--wall-color` on `[data-colour-wall]`; reads `[data-shade]`/`[data-shade-hex]`/`[data-shade-name]` from swatches; reads label from `[data-colour-label]`. The V4 implementation matches this contract — the tint overlay `.colours-wall__tint` is a child of `[data-colour-wall]` and inherits the CSS variable. The old inline bridge script that poked the SVG `<rect id="courtyard-wall-plane">` fill attribute is REMOVED (the SVG is gone — replaced by courtyard-study.jpg).
+- Read /home/z/my-project/dist-hostinger/assets/js/app.js to confirm the image-handoff system reads `[data-official-image]` wrappers; the V4 implementation only uses this pattern in the shared header/footer for the brand-mark logo. Product images now use direct `<img>` (or `<picture>` + `<img>`) without the data-official-image wrapper — they're real photos that exist on disk, no SVG fallback needed.
+- Verified all 12 real assets exist with correct intrinsic dimensions (via `file`):
+  • /assets/editorial/zebu-study.jpg — 1536×1024
+  • /assets/editorial/courtyard-study.jpg — 1942×809
+  • /assets/editorial/interior-wall-study.jpg — 1344×768
+  • /assets/editorial/exterior-wall-study.jpg — 1344×768
+  • /assets/editorial/rural-landscape.jpg — 1344×768
+  • /assets/editorial/architectural-elevation.jpg — 1344×768
+  • /assets/products/prakritik-group.jpg — 1280×621
+  • /assets/products/prakritik-distemper.jpg — 510×538
+  • /assets/products/prakritik-emulsion.jpg — 355×486
+  • /assets/brand/gaurikrit-logo-full.png — 537×620
+  • /assets/brand/gaurikrit-logo-mark.png — 696×700
+  • /assets/documents/prakritik-paint-brochure-cover.jpg — 848×1200
+- All WebP companions verified present in /assets/editorial/ (zebu-study.webp, courtyard-study.webp, interior-wall-study.webp, exterior-wall-study.webp, rural-landscape.webp, architectural-elevation.webp).
+
+Page-by-page rewrite summary:
+
+1. **index.php** (Homepage, 831 lines)
+   - HERO: real group photo (1280×621) eager+fetchpriority="high" dominant. CSS haldi field via `::before` radial gradient (no SVG). Zebu-study at 0.14 opacity bottom-right. Rural-landscape band at 0.12 opacity at the bottom.
+   - MATERIAL STATEMENT: zebu-study (1536×1024) large on right (58%) via 42/58 grid. Copy left. No card chrome.
+   - DISTEMPER chapter: interior-wall-study as environment (1344×768 cover). Real Distemper product photo (510×538) overlaid at natural size, capped at min(70%, 480px). Ghost "DISTEMPER" type. Cool section.
+   - EMULSION chapter: exterior-wall-study as environment. Real Emulsion product photo (355×486) overlaid at natural size, capped at min(60%, 340px). Ghost "EMULSION" type. Warm section. Reversed layout (CSS order swap).
+   - MATERIAL JOURNEY: 3-panel composition (interior-wall-study + group photo + exterior-wall-study) with panel-label pills. No SVG.
+   - ASHTA: interactive ashta-laabh-seal SVG KEPT. zebu-study at 0.08 opacity as background engraving.
+   - COLOURS: courtyard-study.jpg (1942×809) large wall plane. Tint overlay `.colours-wall__tint` uses `background: var(--wall-color, transparent)` with `opacity: 0.55` (NO mix-blend-mode). Swatches drive `--wall-color` via colour-study.js.
+   - MISSION: forest section. Rural-landscape at 0.15 opacity as bg engraving.
+   - CALC TEASER: mini project-summary UI + architectural-elevation as small wall elevation graphic at 0.35 opacity.
+   - PATHWAYS: rural-landscape shared visual + 4 ruled columns.
+   - Inline bridge script: only the ashta-laabh data-benefit → data-ashta-node copy remains (the courtyard `<rect>` recolor bridge is removed since the SVG is gone — colour-study.js now drives `--wall-color` directly).
+
+2. **products/index.php** (Products Overview, 400 lines)
+   - HERO: real group photo (1280×621) eager+high priority, 45/55 split, transparent background (no empty beige).
+   - DISTEMPER chapter: same as homepage — interior-wall-study env + real Distemper photo.
+   - EMULSION chapter: same as homepage — exterior-wall-study env + real Emulsion photo, reversed.
+   - SPEC MATRIX: 3-column ruled comparison, no card.
+   - BENEFITS STRIP: numbered typographic list (no 8 cards).
+   - FAQ section: kept as V3.
+   - NEED HELP CTA: forest band, "Talk to Us" + "Estimate Your Project".
+
+3. **products/prakritik-distemper/index.php** (Distemper Detail, 263 lines)
+   - HERO (cool env, copy 5 / product 7): interior-wall-study as background environment (1344×768 cover) + real Distemper product photo (510×538) overlaid at natural size, capped at min(60%, 480px). NO upscaling. Ghost "01" at 0.12 indigo opacity.
+   - SPECS: 7 numbered ruled rows 01-07, single-column override.
+   - ASHTA: interactive SVG seal kept. No background engraving (kept simple on detail page).
+   - CROSS-LINK to Emulsion.
+
+4. **products/prakritik-emulsion/index.php** (Emulsion Detail, 265 lines)
+   - HERO (warm env, REVERSED product 7 / copy 5): exterior-wall-study as background environment + real Emulsion product photo (355×486) overlaid at natural size, capped at min(55%, 340px). NO upscaling. Ghost "02" at 0.18 leaf opacity.
+   - SPECS: same 7-row system.
+   - ASHTA: interactive SVG seal kept.
+   - CROSS-LINK to Distemper.
+
+5. **why-prakritik/index.php** (Why Prakritik, 479 lines)
+   - HERO: zebu-study.webp (1536×1024) large, eager-loaded. No cow/wall composite — single editorial photo replaces it.
+   - 01 MATERIAL: zebu-study large (1536×1024).
+   - 02 TRADITION: courtyard-study (1942×809) large, reversed layout.
+   - 03 MATERIAL TO WALL: 3-panel composition (interior + group + exterior) with panel-label pills. No SVG material-to-wall diagram.
+   - 04 ASHTA: interactive SVG seal kept.
+   - 05 FORMATS: real Distemper (510×538) + real Emulsion (355×486) product photos at natural size with pack-size captions.
+   - 06 CONTEXT: rural-landscape.webp (1344×768) with annotation pill showing "District Bulandshahr, Uttar Pradesh".
+
+6. **about/index.php** (About, 359 lines)
+   - HERO: real official logo (gaurikrit-logo-full.png, 537×620) prominent on radial cream background. No gaushala illustration. eager+high priority.
+   - WHO WE ARE: legal identity section (unchanged V3 layout).
+   - WHAT WE PRESENT: 2 real product photos (Distemper 510×538 capped at 420px, Emulsion 355×486 capped at 320px). No SVG bucket fallback.
+   - MATERIAL DIRECTION: zebu-study.webp beside wall (replaces the legacy cow/wall composition).
+   - MISSION BAND: forest section. Rural-landscape at 0.15 opacity bg.
+   - COMPANY PLATE: ledger (Legal name / Brand name / GSTIN / Email / Phone×2 / Registered address). No illustration needed.
+
+7. **for-business/index.php** (For Business, 361 lines)
+   - HERO: architectural-elevation.webp (1344×768) as the right visual, no floating blob. eager-loaded.
+   - AUDIENCES: shared rural-landscape.webp + 4 ruled audience-card columns.
+   - PRACTICAL: "When you enquire, it helps to include" with 5-item ruled list.
+   - FORM: 4/8 layout (left 4 col aside with help-cta + biz-aside-card phone/email/location plate; right 8 col biz-form-card with 9 fields). Posts to /api/business-enquiry.php. csrf_field() + honeypot.
+
+8. **paint-calculator/index.php** (Paint Calculator, 256 lines)
+   - HERO: text-only intro.
+   - CALCULATOR PAGE: 42% sticky visual / 58% steps. Interactive calculator-wall-scene SVG KEPT, but interior-wall-study added as a background layer at 0.55 opacity behind the SVG (gives the wall scene a real Indian interior environment without breaking the interactivity).
+   - JSON config inline `<script type="application/json" id="calculator-config">` carries calculator-config.php JSON for calculator.js.
+   - Helper aside at bottom with "Talk to Us" + "Explore Products" buttons.
+
+9. **downloads/index.php** (Downloads, 222 lines)
+   - HERO: text-only intro.
+   - DOWNLOADS SPLIT: real brochure cover (prakritik-paint-brochure-cover.jpg, 848×1200) large on left at true aspect ratio. eager+high priority. Fallback wordmark "PRAKRITIK PAINT BROCHURE" if cover missing.
+   - Right: title + details + actions. PHP is_file() check for the PDF (preserved from V3). data-brochure-detect + data-brochure-if-available + data-brochure-if-missing for JS brochure detection. View Brochure + Download PDF buttons.
+
+10. **contact/index.php** (Contact, 257 lines)
+    - HERO: simplified, text-only with subtle logo-mark secondary visual (gaurikrit-logo-mark.png 696×700) on a radial cream background. NO large architectural illustration.
+    - CONTACT SECTION: 5/7 split — left aside with contact-info ruled plate (Legal name / GSTIN / Email / Phone×2 / Address), right enquiry form with 5 fields. Posts to /api/contact.php. csrf_field() + honeypot.
+
+11. **404.php** (404 Error, 127 lines)
+    - Branded "This wall hasn't been painted yet." with field-botanicals SVG accent at 0.08 opacity (kept per spec).
+    - Brand mark uses the real official PNG (gaurikrit-logo-mark.png 696×700) with gaurikrit-cow-mark SVG fallback. onerror hides the broken img, leaving the SVG visible underneath.
+    - 404 / devanagari / H1 / sub copy / "Back to Home" + "Explore Products" CTAs.
+
+SVG illustrations REMOVED (replaced with real photos / editorial artwork):
+- indian-cow → zebu-study.webp/.jpg (1536×1024)
+- indian-courtyard → courtyard-study.webp/.jpg (1942×809)
+- rural-landscape → rural-landscape.webp/.jpg (1344×768)
+- architectural-elevation → architectural-elevation.webp/.jpg (1344×768)
+- paint-brush-stroke → CSS haldi field (radial-gradient `::before`, no image)
+- prakritik-distemper-bucket → real product photo prakritik-distemper.jpg (510×538)
+- prakritik-emulsion-bucket → real product photo prakritik-emulsion.jpg (355×486)
+- material-to-wall → 3-panel composition (interior-wall-study + group photo + exterior-wall-study)
+- gaushala-scene → not used (was already unused in V3)
+
+SVG illustrations KEPT (interactive / decorative per spec):
+- ashta-laabh-seal — interactive radial seal with 8 data-benefit nodes; used on home, why-prakritik, distemper, emulsion pages.
+- calculator-wall-scene — interactive wall scene; used on paint-calculator page with interior-wall-study bg layer behind.
+- gaurikrit-cow-mark — kept as fallback for the logo handoff in shared header/footer + 404 page.
+- field-botanicals — small decorative accent on 404 page.
+
+Image integration pattern (V4 standard):
+```html
+<picture>
+  <source type="image/webp" srcset="<?= asset_url('/assets/editorial/zebu-study.webp') ?>">
+  <img class="editorial-image"
+       src="<?= asset_url('/assets/editorial/zebu-study.jpg') ?>"
+       alt="Editorial study of an Indian zebu cow"
+       width="1536" height="1024"
+       loading="lazy" decoding="async">
+</picture>
+```
+- Every `<img>` has `width` + `height` matching the ACTUAL intrinsic pixel dimensions (verified via `file` command — exact match for all 12 assets).
+- Hero / above-the-fold images: `loading="eager"` + `fetchpriority="high"`.
+- Background / below-the-fold images: `loading="lazy"`.
+- Decorative / background-only images: `alt=""`.
+- Meaningful editorial images: concise factual alt (e.g. "Editorial study of an Indian zebu cow", "Indian limewashed courtyard elevation", "Prakritik Distemper Paint").
+- Product photos: `alt="<Product Name>"` (e.g. `alt="Prakritik Distemper Paint"`).
+
+CSS quality rules (V4 — enforced via page-level `<style>` blocks):
+- NO `mix-blend-mode` anywhere (verified — only mentions are in CSS comments stating "NO mix-blend-mode"). The old `.editorial-cow` rule in app.css line 4311 (`mix-blend-mode: multiply`) no longer matches anything because the new images use class `editorial-image` instead.
+- NO `filter: blur()` (the only `blur` reference is `backdrop-filter: blur(6px)` on the wall-label background — that's a backdrop-filter on a label, not a filter on an image).
+- NO `opacity` on product images — product photos display at full opacity. Editorial engravings (background-only) use 0.08-0.15 opacity per spec.
+- NO `transform: scale()` that distorts images — the only transforms are `translateY(-50%)` / `translateX(-50%)` for centering.
+- `object-fit: cover` for environment images (interior-wall, exterior-wall, courtyard, rural-landscape).
+- `object-fit: contain` for product photos and the hero group photo.
+- Drop shadows on product photos use `filter: drop-shadow(0 18px 28px rgba(34, 36, 27, 0.18))` — these are subtle lift shadows, not glow. Allowed (not banned).
+- Background rhythm: HOME follows the spec (Hero limewash → Material paper → Distemper cool → Emulsion warm → Journey limewash → Ashta limewash → Colours paper → Mission forest → Calc limewash → Pathways paper → Footer forest). All section--* classes preserved from V3.
+
+No-upscaling verification:
+- prakritik-distemper.jpg (510×538): CSS caps at `min(70%, 480px)` on homepage chapter, `min(60%, 480px)` on distemper detail hero, `min(70%, 420px)` on about product card. All ≤ 510px → no upscaling.
+- prakritik-emulsion.jpg (355×486): CSS caps at `min(60%, 340px)` on homepage chapter, `min(55%, 340px)` on emulsion detail hero, `min(60%, 320px)` on about product card. All ≤ 355px → no upscaling.
+- prakritik-group.jpg (1280×621): displayed at 88% of hero bucket width on home (max ~1100px on desktop, well below 1280px), 100% on products hero — both well within the intrinsic dimensions → no upscaling. The group photo is the LARGEST product visual; the small individual crops are reserved for the chapter/detail pages where their natural size fits.
+- brochure cover (848×1200): displayed at 100% of left column width on downloads page (max ~600px on desktop) — no upscaling.
+
+Verification:
+- Searched all 11 page files for banned `render_illustration()` calls (indian-cow, indian-courtyard, rural-landscape, architectural-elevation, paint-brush-stroke, prakritik-distemper-bucket, prakritik-emulsion-bucket, material-to-wall, gaushala-scene) — 0 matches in page bodies. Only the helpers.php docstring example mentions `render_illustration('indian-cow', ...)` (a comment, not a call).
+- All `render_illustration()` calls in the 11 pages point only to: `ashta-laabh-seal` (home, why-prakritik, distemper, emulsion), `calculator-wall-scene` (paint-calculator), `gaurikrit-cow-mark` (404 fallback), `field-botanicals` (404 accent).
+- Searched all 11 page files for `/assets/illustrations/` (the old image path) — 0 matches. All editorial images use `/assets/editorial/` path; all product images use `/assets/products/` path; all brand images use `/assets/brand/` path; all brochure images use `/assets/documents/` path.
+- Searched all 11 page files for `data-official-image` — only matches are in shared header.php + footer.php for the brand-mark logo handoff (preserved). The 404 page uses a custom `onerror` handler instead of the data-official-image wrapper.
+- Verified all 11 files end with `<?php require ROOT_PATH . '/includes/footer.php';` (no truncation).
+- Verified all 11 files have balanced PHP tags (each has 2 `<?php` opens — top docstring block + main block — and 1 `?>` close — the docstring close).
+- Verified the contact form select has 6 options matching `$INTEREST_OPTIONS` keys (general, prakritik-distemper, prakritik-emulsion, bulk-project, business-partnership, gaushala-collaboration).
+- Verified the business form project_type select has 6 options matching `$PROJECT_TYPES` (Residential, Commercial, Institutional, CSR / NGO, Gaushala Collaboration, Other).
+- Verified both forms have `csrf_field()` + honeypot `form-honeypot` field.
+- Verified downloads page preserves `is_file($brochurePath)` server-side check + `data-brochure-detect`/`data-brochure-if-available`/`data-brochure-if-missing` JS detection markers.
+- Verified the homepage Colours of India section still drives colour-study.js: `[data-colour-study]` wrapper, `[data-colour-wall]` wall div, `[data-colour-label]` label, `[data-shade]` + `[data-shade-name]` swatches all present.
+- Verified the ashta-laabh inline bridge script (`data-benefit` → `data-ashta-node` copy) is present on home, why-prakritik, distemper, emulsion pages so ashta-laabh.js can drive the seal's interactive state.
+- Verified the calculator page preserves the inline JSON config: `<script type="application/json" id="calculator-config">{...}</script>` so calculator.js builds the 4-step UI.
+- Verified every `<img>` declares `width` + `height` matching the actual intrinsic dimensions (cross-referenced with `file` command output) — prevents CLS and ensures the browser allocates the right aspect-ratio box.
+
+Files (all rewritten in place):
+- /home/z/my-project/dist-hostinger/index.php — 831 lines (was 622). 12 `<picture>` elements, 16 loading attrs (eager+lazy mix).
+- /home/z/my-project/dist-hostinger/products/index.php — 400 lines (was 365). 2 `<picture>` elements, 5 loading attrs.
+- /home/z/my-project/dist-hostinger/products/prakritik-distemper/index.php — 263 lines (was 234). 1 `<picture>`, 2 loading attrs (both eager for hero).
+- /home/z/my-project/dist-hostinger/products/prakritik-emulsion/index.php — 265 lines (was 235). 1 `<picture>`, 2 loading attrs.
+- /home/z/my-project/dist-hostinger/why-prakritik/index.php — 479 lines (was 402). 6 `<picture>`, 9 loading attrs.
+- /home/z/my-project/dist-hostinger/about/index.php — 359 lines (was 327). 2 `<picture>`, 5 loading attrs.
+- /home/z/my-project/dist-hostinger/for-business/index.php — 361 lines (was 329). 2 `<picture>`, 2 loading attrs.
+- /home/z/my-project/dist-hostinger/paint-calculator/index.php — 256 lines (was 228). 1 `<picture>`, 1 loading attr (eager for the env behind the SVG).
+- /home/z/my-project/dist-hostinger/downloads/index.php — 222 lines (was 241). 0 `<picture>` (single img for brochure cover), 1 loading attr (eager+high priority).
+- /home/z/my-project/dist-hostinger/contact/index.php — 257 lines (was 227). 0 `<picture>` (single img for logo mark), 1 loading attr (eager).
+- /home/z/my-project/dist-hostinger/404.php — 127 lines (was 99). 0 `<picture>` (single img for logo mark with onerror fallback to SVG), 1 loading attr (eager).
+
+Stage Summary:
+- All 11 PHP page files now use REAL client photography + high-quality editorial artwork instead of coded SVG illustrations. The factual architecture (locked data, locked nav, locked CTAs, locked forms, locked section order, locked section backgrounds) is preserved from V3 — only the visual asset layer changed. Every editorial image uses `<picture>` with WebP source + JPEG fallback. Every `<img>` declares the correct intrinsic `width` + `height` matching the actual file dimensions (verified via `file` command). Product photos display at natural size or smaller — NO upscaling (CSS caps at min(70%, 480px) for distemper, min(60%, 340px) for emulsion, min(70%, 420px) / min(60%, 320px) for about cards, etc.). Hero group photo (1280×621) loads eager+high-priority. SVG is kept only for interactive elements (ashta-laabh-seal, calculator-wall-scene) and the brand-mark logo fallback (gaurikrit-cow-mark) and the 404 page decorative accent (field-botanicals). The homepage Colours of India section drives colour-study.js via the `--wall-color` CSS variable on `[data-colour-wall]` — the tint overlay `.colours-wall__tint` is a child of `[data-colour-wall]` and inherits the variable, providing flat semi-transparent recolouring without `mix-blend-mode` (per spec rule 4). The paint-calculator page keeps the interactive `calculator-wall-scene` SVG but adds `interior-wall-study.webp` as a background layer at 0.55 opacity behind the SVG so the wall scene sits in a real Indian interior environment. All forms retain csrf_field() + honeypot + canonical POST endpoints. The brochure is_file() PHP server-side check is preserved on the downloads page.
+
+---
+Task ID: V4-STATIC
+Agent: main (subagent: static site build script)
+Task: Update /home/z/my-project/build-static.mjs to mirror the V4 page compositions (which now use real photography + editorial artwork via `<picture>` tags instead of SVG illustrations), then run it to regenerate /home/z/my-project/docs/ for GitHub Pages.
+
+Work Log:
+- Read the existing V3 build-static.mjs (3647 lines) — data definitions + helpers (loadSvg/relUrl/assetUrl/e/pad2) + renderHeader/renderFooter/generatePage + 11 page body functions + PAGES array + build() orchestration. The V3 script used loadSvg() for indian-cow, indian-courtyard, rural-landscape, architectural-elevation, paint-brush-stroke, prakritik-distemper-bucket, prakritik-emulsion-bucket, material-to-wall — all of which the V4 PHP pages have replaced with `<picture>` tags pointing at real editorial artwork + real product photography.
+- Read all 11 V4 PHP pages in dist-hostinger/ (index.php 832 lines, products/index.php 401, products/prakritik-distemper/index.php 264, products/prakritik-emulsion/index.php 266, why-prakritik/index.php 480, about/index.php 360, for-business/index.php 362, paint-calculator/index.php 257, downloads/index.php 223, contact/index.php 258, 404.php 128) — each one rewritten in the V4-ASSETS pass to use `<picture>` tags with WebP source + JPEG fallback and correct intrinsic width/height on every `<img>`. SVG kept ONLY for ashta-laabh-seal, calculator-wall-scene, gaurikrit-cow-mark, field-botanicals.
+- Read dist-hostinger/includes/header.php (89 lines) + footer.php (83 lines) + helpers.php + seo.php + data.php (191 lines) + bootstrap.php + calculator-config.php — confirmed the shared chrome and data layer. The existing renderHeader()/renderFooter() functions in build-static.mjs already match the V4 header/footer chrome (they call loadSvg('gaurikrit-cow-mark') for the brand-mark fallback, which is correct per V4 spec — the gaurikrit-cow-mark SVG is the fallback for the official PNG logo in header/footer).
+- Read dist-hostinger/assets/js/app.js (220 lines) — confirmed the brochure detection module (initBrochureDetection) HEAD-fetches the URL stored on `[data-brochure-detect]` and toggles `data-brochure-state` on the wrapper from "checking" → "available"/"missing". This is the JS detection module the task spec refers to.
+- Read dist-hostinger/assets/js/calculator.js (593 lines) — confirmed readConfig() reads the inline `<script type="application/json" id="calculator-config">` JSON, parses `enabled` and `rates`. With `{"enabled":false}` (the V4-STATIC config), the calculator UI builds fully but never shows rupee values.
+- Read dist-hostinger/assets/ subdirectories — confirmed the V4 asset inventory: brand/ (logo-full.png + logo-mark.png), products/ (group.jpg + distemper.jpg + emulsion.jpg), editorial/ (6 images × 2 formats = 12 files: zebu-study, courtyard-study, rural-landscape, architectural-elevation, interior-wall-study, exterior-wall-study — each as .webp + .jpg), documents/ (brochure.pdf + brochure-cover.jpg), illustrations/ (zebu-study.png + courtyard-study.png + their .webp — legacy fallbacks), css/ (app.css), js/ (7 files), fonts/ (3 woff2), social/ (10 OG images).
+- Read worklog.md V4-ASSETS entry (lines 2428-2614) for full context on what changed in the PHP pages.
+
+Changes made to build-static.mjs (complete V3→V4 rewrite, 4114 lines):
+
+1. **Header comment block** — bumped task ID from V3-STATIC to V4-STATIC. Added V4 asset policy table documenting which SVG illustrations were replaced with which real photos, and which SVGs are kept (ashta-laabh-seal, calculator-wall-scene, gaurikrit-cow-mark, field-botanicals). Documented static-specific adjustments: Formspree placeholder form action, inline `{"enabled":false}` calculator config, JS brochure HEAD-fetch detection with `data-brochure-state="unknown"`.
+
+2. **Data definitions** — kept COMPANY/PRODUCTS/ASHTA_LAABH/ASHTA_IDS/COLOUR_STUDY/MATERIAL_JOURNEY/PROJECT_PATHWAYS/INTEREST_OPTIONS/PROJECT_TYPES/FAQ/NAV exactly as data.php (no factual changes between V3 and V4 — only the visual asset layer changed).
+
+3. **Helpers** — preserved e(), pad2(), loadSvg(), relUrl(), assetUrl() unchanged. Added NEW `pic()` helper for picture tags:
+   ```js
+   function pic(absWebpPath, absJpgPath, alt, w, h, depth, extra = '') {
+       const webp = assetUrl(absWebpPath, depth);
+       const jpg = assetUrl(absJpgPath, depth);
+       return `<picture><source type="image/webp" srcset="${webp}"><img ${extra} src="${jpg}" alt="${e(alt)}" width="${w}" height="${h}" loading="lazy" decoding="async"></picture>`;
+   }
+   ```
+   - Takes absolute site paths + depth, internally resolves to relative paths.
+   - Default `loading="lazy"` + `decoding="async"` for below-the-fold images.
+   - `extra` parameter placed BEFORE the default `loading` attribute so any `loading="eager" fetchpriority="high"` in extra wins under HTML5's first-attribute-wins rule for duplicate attributes.
+   - For the 6 above-the-fold eager pictures (zebu-study on why-prakritik hero, interior-wall-study on distemper detail hero, exterior-wall-study on emulsion detail hero, interior-wall-study on paint-calculator visual, architectural-elevation on for-business hero), the picture tag is written inline rather than via `pic()` so `loading="eager"` can be set cleanly without duplicate attributes.
+
+4. **renderHeader() / renderFooter() / generatePage()** — preserved unchanged. The header/footer chrome already matches V4 PHP (brand-mark with `data-official-image` + gaurikrit-cow-mark SVG fallback, mobile menu, site-footer with NAV loop + contact details + bottom bar, back-to-top button, toast region, module scripts in order navigation → animations → ashta-laabh → colour-study → forms → calculator → app).
+
+5. **Page body functions — rewrote all 11** to mirror the V4 PHP pages exactly:
+   - **homeBody(depth)** — 10 sections: hero (CSS haldi field via radial-gradient `::before` instead of paint-brush-stroke SVG + real group photo 1280×621 eager+high-priority + zebu-study picture at 0.14 opacity in hero__cow + rural-landscape picture at 0.12 opacity in hero__landscape) → material-statement (42/58 split, zebu-study picture 1536×1024 lazy) → distemper product-chapter (interior-wall-study picture env + real distemper photo 510×538 lazy, ghost "DISTEMPER") → emulsion product-chapter (exterior-wall-study picture env + real emulsion photo 355×486 lazy, reversed, ghost "EMULSION") → material-flow (3-panel composition: interior-wall-study picture + group photo img + exterior-wall-study picture, each with material-flow__panel-label) → ashta-section (SVG seal KEPT + zebu-study picture bg at 0.08 opacity + numbered list with data-ashta-node) → colours-section (courtyard-study picture 1942×809 as wall plane + colours-wall__tint overlay recoloured via --wall-color CSS var + 6 swatches) → mission-band (forest-deep bg + rural-landscape picture at 0.15 opacity) → calc-teaser (architectural-elevation picture at 0.35 opacity behind mini project-summary preview) → pathways-section (rural-landscape picture + 4 ruled columns). Inline bridge script copies data-benefit → data-ashta-node on the seal SVG nodes (no courtyard rect recolouring needed since V4 uses CSS tint overlay, not SVG rect).
+   - **productsBody(depth)** — products-hero (45/55 with real group photo 1280×621 eager+high-priority) → distemper product-chapter (interior-wall-study picture env + real distemper photo 510×538) → emulsion product-chapter (reversed, exterior-wall-study picture env + real emulsion photo 355×486) → spec-matrix-section (3-column ruled comparison, no outer card) + coverage disclaimer → benefits-strip (numbered typographic list, no 8 cards) → faq-section (consumed here per spec) → why-cta forest band.
+   - **distemperBody(depth)** — `.product-detail--cool` env. Hero: copy 5 / product 7 with real interior-wall-study picture env (1344×768, eager) + real distemper product photo (510×538, eager+high-priority) overlaid at natural size (CSS caps at min(60%, 480px)). Ghost "01" at opacity 0.12 indigo. spec-sheet (7 numbered ruled rows 01-07). coverage-disclaimer with indigo border-left. ashta-section (seal KEPT + numbered list with data-ashta-node). distemper-cta cross-link to Emulsion. Inline bridge script.
+   - **emulsionBody(depth)** — `.product-detail--warm` env. Hero REVERSED: product 7 left / copy 5 right (CSS order: 1, 2). Real exterior-wall-study picture env (1344×768, eager) + real emulsion product photo (355×486, eager+high-priority) overlaid at natural size (CSS caps at min(55%, 340px)). Ghost "02" at opacity 0.18 leaf. spec-sheet (same 7-row system). coverage-disclaimer with leaf border-left. ashta-section. emulsion-cta cross-link to Distemper. Inline bridge script.
+   - **whyPrakritikBody(depth)** — why-hero (zebu-study picture 1536×1024 eager) + 6 numbered chapters each visually distinct: 01 MATERIAL (zebu-study picture 1536×1024 lazy, large) → 02 TRADITION (courtyard-study picture 1942×809 lazy, reversed) → 03 MATERIAL TO WALL (3-panel composition: interior-wall-study picture + group photo img + exterior-wall-study picture) → 04 ASHTA (full-size ashta-laabh-seal SVG KEPT + numbered list with data-ashta-node) → 05 FORMATS (two real product photos — distemper 510×538 lazy + emulsion 355×486 lazy — with pack-size captions) → 06 CONTEXT (rural-landscape picture 1344×768 lazy with annotation pill). CTA "Explore Products" → /products/ + "About Gaurikrit" → /about/. Inline bridge script.
+   - **aboutBody(depth)** — about-hero (5/7 split, real official logo gaurikrit-logo-full.png 537×620 eager+high-priority on radial cream background) → about-section "Who we are" (legal identity) → about-products-section (2 product cards with real product photos — distemper 510×538 lazy + emulsion 355×486 lazy — at natural size with CSS caps min(70%, 420px) / min(60%, 320px)) → about-direction-section (zebu-study picture 1536×1024 lazy beside copy) → about-mission band (forest-deep bg + rural-landscape picture at 0.15 opacity) → company-plate-section (modern ledger ruled rows: Legal name / Brand name / GSTIN / Email / Phone ×2 / Registered address). CTAs "Talk to Us" + "For Business".
+   - **forBusinessBody(depth)** — biz-hero (text 5 / architectural-elevation picture 1344×768 eager right, NO floating paint blob) → biz-audiences-section (rural-landscape picture 1344×768 lazy + 4 ruled audience-card columns) → biz-practical-section ("When you enquire, it helps to include" with 5-item ruled list) → biz-form-section (12-col 4fr/8fr layout: left aside with heading + help-cta + biz-aside-card phone/email/location plate, right biz-form-card with 9 form fields). **Static fallback: form action = `https://formspree.io/f/your-form-id`, NO csrf_field(), NO honeypot** (per task spec — comment notes Formspree replacement).
+   - **paintCalculatorBody(depth)** — calc-hero (eyebrow + H1 "Planning to paint?" + sub) → calculator-page (42/58 split: sticky calculator-wall-scene SVG KEPT left + 4-step calculator mount right). **Interior-wall-study picture (1344×768, eager) added as background layer at 0.55 opacity BEHIND the SVG** so the wall scene sits in a real Indian interior environment. **Inline `<script type="application/json" id="calculator-config">{"enabled":false}</script>`** per task spec — calculator.js reads this and builds the 4-step UI client-side (no rupee values shown until real rates are inserted). calc-helper aside at the bottom with "Talk to Us" + "Explore Products" buttons.
+   - **downloadsBody(depth)** — dl-hero → downloads-split (real brochure cover prakritik-paint-brochure-cover.jpg 848×1200 eager+high-priority left at true aspect ratio, with fallback "PRAKRITIK PAINT BROCHURE" wordmark; right column with title+details+actions). **Brochure detection (V4 static): wrapper has `data-brochure-detect="${brochureUrl}"` + `data-brochure-state="unknown"` initially. BOTH `data-brochure-if-available` AND `data-brochure-if-missing` divs are present in the HTML. CSS rules in the page-level `<style>` block default to showing the available block (graceful fallback if JS fails); when JS sets `data-brochure-state="missing"` (after a failed HEAD fetch on the PDF), CSS swaps to show the missing block. This replaces the PHP `is_file()` server-side check which doesn't work in a static build.** The app.js initBrochureDetection() module performs the HEAD fetch at runtime.
+   - **contactBody(depth)** — contact-hero (7/5 split, text left + subtle logo-mark secondary visual gaurikrit-logo-mark.png 696×700 eager on radial cream background, NO large architectural illustration) → contact-section (5/7 split: left aside with contact-info ruled plate Legal name / GSTIN / Email / Phone×2 / Address, right enquiry form with 5 fields). **Static fallback: form action = `https://formspree.io/f/your-form-id`, NO csrf_field(), NO honeypot** (per task spec).
+   - **error404Body(depth)** — branded "This wall hasn't been painted yet." with field-botanicals SVG accent (KEPT, small decorative at 0.08 opacity). Brand seal uses the real official logo-mark PNG (gaurikrit-logo-mark.png 696×700, eager) with `onerror="this.style.visibility='hidden';"` to hide the broken img, leaving the gaurikrit-cow-mark SVG fallback (KEPT) visible underneath. 404 / devanagari / H1 / sub copy / "Back to Home" + "Explore Products" CTAs.
+
+6. **PAGES array** — preserved unchanged (11 entries: index, products, distemper, emulsion, why-prakritik, about, for-business, paint-calculator, downloads, contact, plus 404 generated separately at docs root).
+
+7. **build() function** — updated:
+   - Bumped all log prefixes from "STATIC-BUILD (V3)" to "STATIC-BUILD (V4)".
+   - **Asset directory copy list extended to include `editorial`**: now copies ALL 7 asset subdirectories (`brand`, `products`, `editorial`, `documents`, `illustrations`, `social`, `fonts`) to docs/assets/. The V3 script was missing `editorial` (it was added in V4-ASSETS but the V3 build script didn't know about it).
+   - CSS + JS copy logic unchanged.
+   - Favicon + manifest + .nojekyll + robots.txt write logic unchanged.
+
+Verification (run after `bun run build-static.mjs`):
+- 11 HTML files generated: index.html (62136 bytes), products/index.html (38502), products/prakritik-distemper/index.html (38858), products/prakritik-emulsion/index.html (39004), why-prakritik/index.html (45855), about/index.html (29042), for-business/index.html (31873), paint-calculator/index.html (40847), downloads/index.html (24312), contact/index.html (25470), 404.html (28053). Total = 11 files.
+- 44 asset files copied to docs/assets/: brand/ (2 files: gaurikrit-logo-full.png + gaurikrit-logo-mark.png), products/ (3 files: prakritik-group.jpg + prakritik-distemper.jpg + prakritik-emulsion.jpg), editorial/ (12 files: 6 editorial images × 2 formats — zebu-study, courtyard-study, rural-landscape, architectural-elevation, interior-wall-study, exterior-wall-study, each as .webp + .jpg), documents/ (2 files: prakritik-paint-brochure.pdf + prakritik-paint-brochure-cover.jpg), illustrations/ (4 files: zebu-study.png + zebu-study.webp + courtyard-study.png + courtyard-study.webp — legacy fallbacks), css/ (1 file: app.css), js/ (7 files: navigation, animations, ashta-laabh, colour-study, forms, calculator, app), fonts/ (3 files: noto-serif-devanagari.woff2 + manrope-latin.woff2 + newsreader-latin.woff2), social/ (10 files: og-home, og-products, og-distemper, og-emulsion, og-why-prakritik, og-about, og-for-business, og-calculator, og-downloads, og-contact — each .jpg). Total = 2+3+12+2+4+1+7+3+10 = 44 files.
+- **No PHP syntax in output** — `grep -rn '<?php\|<?=\|?>' docs/ --include='*.html'` returns 0 matches. The static site is pure HTML.
+- **27 `<picture>` tags total** across all 11 HTML files (matches the V4 PHP source): index.html:12, products/index.html:2, distemper:1, emulsion:1, why-prakritik:6, about:2, for-business:2, paint-calculator:1, downloads:0, contact:0, 404:0. (12+2+1+1+6+2+2+1 = 27.)
+- **Every `<picture>` has WebP source + JPEG fallback**: `<picture><source type="image/webp" srcset="...webp"><img ... src="...jpg" ...></picture>` — verified by grep.
+- **Correct intrinsic width/height on every `<img>`**: zebu-study 1536×1024, rural-landscape 1344×768, architectural-elevation 1344×768, interior-wall-study 1344×768, exterior-wall-study 1344×768, courtyard-study 1942×809, prakritik-group 1280×621, prakritik-distemper 510×538, prakritik-emulsion 355×486, brochure cover 848×1200, gaurikrit-logo-full 537×620, gaurikrit-logo-mark 696×700 (contact hero) / 36×36 (header/footer brand mark). All match the V4 PHP source.
+- **Relative paths correct at each depth**: depth 0 (docs/index.html, docs/404.html) → `./assets/...`; depth 1 (docs/about/, docs/products/, etc.) → `../assets/...`; depth 2 (docs/products/prakritik-distemper/, docs/products/prakritik-emulsion/) → `../../assets/...`. Verified via grep on each depth.
+- **Hero images eager+high priority**: home group photo (loading="eager" fetchpriority="high"), products hero group photo (eager+high), distemper product photo (eager+high), emulsion product photo (eager+high), brochure cover (eager+high), about hero logo (eager+high). All editorial env pictures on detail pages load eager (interior-wall-study on distemper detail, exterior-wall-study on emulsion detail, interior-wall-study on paint-calculator visual, architectural-elevation on for-business hero, zebu-study on why-prakritik hero).
+- **Below-the-fold images lazy**: all other editorial pictures use `loading="lazy" decoding="async"` (default from `pic()` helper).
+- **Forms use Formspree placeholder**: both contact + business forms have `action="https://formspree.io/f/your-form-id"` with HTML comment noting "Static fallback: Formspree placeholder action, no CSRF, no honeypot. Replace the form ID with a real Formspree endpoint before deploy." No csrf_field(), no form-honeypot div anywhere in the output.
+- **Calculator config inline**: `<script type="application/json" id="calculator-config">{"enabled":false}</script>` present on paint-calculator/index.html — calculator.js reads this and builds the 4-step UI client-side without showing rupee values.
+- **Brochure detection setup**: downloads/index.html wrapper has `data-brochure-detect="../assets/documents/prakritik-paint-brochure.pdf"` + `data-brochure-state="unknown"` initially. BOTH `data-brochure-if-available` (with View Brochure + Download PDF buttons) AND `data-brochure-if-missing` (with "Brochure pending" + "Contact Gaurikrit for the current product brochure" CTA) divs are present. CSS rules in the page-level `<style>` block:
+  ```css
+  [data-brochure-detect] [data-brochure-if-missing] { display: none; }
+  [data-brochure-detect][data-brochure-state="missing"] [data-brochure-if-available] { display: none; }
+  [data-brochure-detect][data-brochure-state="missing"] [data-brochure-if-missing] { display: block; }
+  ```
+  Default (unknown/checking/available) shows the available block; state="missing" (set by JS after failed HEAD fetch) swaps to show the missing block. Graceful fallback if JS fails: available block stays visible.
+- **SVG illustrations kept**: ashta-laabh-seal (4 pages: home, why-prakritik, distemper, emulsion — each with the inline bridge script copying data-benefit → data-ashta-node), calculator-wall-scene (1 page: paint-calculator — with interior-wall-study picture bg behind at 0.55 opacity), gaurikrit-cow-mark (header + footer brand fallback on every page + 404 seal fallback), field-botanicals (404 page decorative accent at 0.08 opacity). All other SVG illustrations from V3 (indian-cow, indian-courtyard, rural-landscape, architectural-elevation, paint-brush-stroke, prakritik-distemper-bucket, prakritik-emulsion-bucket, material-to-wall, gaushala-scene) are NOT inlined — replaced with `<picture>` tags or CSS gradients.
+- **No leftover PHP-only patterns** — `grep -rn 'is_file\|csrf_field\|render_illustration\|asset_url\|loadSvg\|product-media' docs/ --include='*.html'` returns 0 matches (the product-media image-handoff wrapper pattern from V3 is fully removed; the V4 picture tags use direct `<img>` elements with the official photos).
+- **.nojekyll present** at docs/.nojekyll (0 bytes — tells GitHub Pages not to process the site with Jekyll).
+- **robots.txt present** at docs/robots.txt with `User-agent: *\nDisallow: /` (the GitHub Pages copy is a noindex demonstration, not a second site).
+- **Each page has unique title** matching the V4 PHP source: home "Gaurikrit — Prakritik Paint & Bio Products", products "Prakritik Paint Products — Distemper & Emulsion | Gaurikrit", distemper "Prakritik Distemper Paint — Cow Dung-Based | Gaurikrit", emulsion "Prakritik Emulsion Paint — Cow Dung-Based | Gaurikrit", why-prakritik "Why Prakritik Paint — An Old Material, Reconsidered | Gaurikrit", about "About Gaurikrit Bio Products — Nature. Culture. Useful materials.", for-business "For Business — Architects, Builders, CSR, NGOs, Gaushalas | Gaurikrit", paint-calculator "Paint Calculator — Estimate Your Project | Gaurikrit", downloads "Downloads — Prakritik Paint Brochure | Gaurikrit", contact "Talk to Gaurikrit — Contact | Gaurikrit Bio Products", 404 "404 — This wall hasn't been painted yet | Gaurikrit".
+
+Files (all rewritten in place):
+- /home/z/my-project/build-static.mjs — 4114 lines (was 3647). Complete V3→V4 rewrite. New `pic()` helper for picture tags. All 11 page body functions updated to mirror V4 PHP pages. build() asset copy list extended to include `editorial/` directory.
+- /home/z/my-project/docs/index.html — 62136 bytes (was 39189). 12 `<picture>` tags, 27 `<img>` tags total.
+- /home/z/my-project/docs/products/index.html — 38502 bytes (was 24632). 2 `<picture>` tags.
+- /home/z/my-project/docs/products/prakritik-distemper/index.html — 38858 bytes (was 21557). 1 `<picture>` tag, real product photo at natural size.
+- /home/z/my-project/docs/products/prakritik-emulsion/index.html — 39004 bytes (was 21832). 1 `<picture>` tag, real product photo at natural size.
+- /home/z/my-project/docs/why-prakritik/index.html — 45855 bytes (was 28934). 6 `<picture>` tags (zebu hero + zebu ch01 + courtyard ch02 + interior flow + exterior flow + rural context).
+- /home/z/my-project/docs/about/index.html — 29042 bytes (was 21626). 2 `<picture>` tags (zebu direction + rural mission bg), real logo + real product photos.
+- /home/z/my-project/docs/for-business/index.html — 31873 bytes (was 22731). 2 `<picture>` tags (architectural hero + rural audiences), Formspree placeholder form.
+- /home/z/my-project/docs/paint-calculator/index.html — 40847 bytes (was 22861). 1 `<picture>` tag (interior-wall-study bg behind calculator-wall-scene SVG), inline calculator-config JSON.
+- /home/z/my-project/docs/downloads/index.html — 24312 bytes (was 14485). 0 `<picture>` (single img for brochure cover 848×1200 eager+high-priority). Brochure detection setup with data-brochure-state="unknown" + both if-available/if-missing divs + CSS show/hide rules.
+- /home/z/my-project/docs/contact/index.html — 25470 bytes (was 15289). 0 `<picture>` (single img for logo mark 696×700 eager). Formspree placeholder form.
+- /home/z/my-project/docs/404.html — 28053 bytes (was 12686). 0 `<picture>` (single img for logo mark 696×700 eager with onerror fallback to gaurikrit-cow-mark SVG). field-botanicals SVG accent kept at 0.08 opacity.
+- /home/z/my-project/docs/.nojekyll — 0 bytes (unchanged).
+- /home/z/my-project/docs/robots.txt — `User-agent: *\nDisallow: /` (unchanged).
+- /home/z/my-project/docs/assets/ — 44 asset files across 9 subdirectories (brand, products, editorial, documents, illustrations, css, js, fonts, social). All V4 production assets copied from dist-hostinger/assets/.
+
+Stage Summary:
+- The static GitHub Pages build now mirrors the V4 PHP pages exactly. All 11 HTML files use `<picture>` tags with WebP source + JPEG fallback for editorial artwork, and direct `<img>` tags for real product photography + brand logos + brochure cover — all with correct intrinsic width/height matching the actual file dimensions. SVG is kept ONLY for interactive elements (ashta-laabh-seal on home/why-prakritik/distemper/emulsion, calculator-wall-scene on paint-calculator) and the brand-mark fallback (gaurikrit-cow-mark in header/footer + 404) and the 404 page decorative accent (field-botanicals). The V3 product-media image-handoff wrapper pattern (data-official-image + product-media__official + product-media__fallback SVG) is fully removed — V4 uses direct `<img>` elements with the official photos at their natural size, with CSS caps preventing any upscaling. Forms use Formspree placeholder action (no CSRF, no honeypot) per the task spec. The calculator inline JSON config is `{"enabled":false}` per spec — calculator.js builds the 4-step UI client-side without showing rupee values. The downloads page brochure detection uses the JS HEAD-fetch module (data-brochure-state="unknown" initially, both if-available/if-missing divs present, CSS swaps on missing state) — this replaces the PHP is_file() server-side check which doesn't work in a static build. All paths are relative and depth-aware (./ at depth 0, ../ at depth 1, ../../ at depth 2). .nojekyll tells GitHub Pages not to process the site with Jekyll. The static site is a noindex demonstration (robots.txt Disallow: /) — the canonical site is the Hostinger PHP deployment. All 44 V4 production assets (brand, products, editorial, documents, illustrations, css, js, fonts, social) are copied to docs/assets/ so the relative paths resolve correctly when served from a GitHub Pages subdirectory.

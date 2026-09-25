@@ -198,7 +198,16 @@
 
     <main id="main" class="site-main">
 <style>
-  /* ===== HERO (cow + wall sample) ===== */
+  /* ===== Editorial image reset (V4 — NO mix-blend-mode, NO blur filters) ===== */
+  .editorial-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .editorial-image--contain { object-fit: contain; }
+
+  /* ===== HERO (zebu-study) ===== */
   .why-hero { padding-top: calc(var(--header-h) + 2rem); padding-bottom: 1.5rem; }
   .why-hero__container { display: grid; gap: 2rem; align-items: center; }
   @media (min-width: 1024px) {
@@ -206,23 +215,15 @@
   }
   .why-hero__lockup { max-width: 42rem; }
   .why-hero__art {
-    position: relative; aspect-ratio: 5/4; background: var(--limewash);
-    border-radius: var(--r-panel); overflow: hidden;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .why-hero__art .why-cow {
-    position: absolute; left: 6%; bottom: 8%; width: 46%; opacity: 0.85;
-  }
-  .why-hero__art .why-wall {
-    position: absolute; right: 8%; top: 8%; bottom: 8%; width: 42%;
-    background: linear-gradient(135deg, var(--limewash), color-mix(in srgb, var(--kraft) 35%, var(--limewash)));
+    position: relative; aspect-ratio: 1536/1024;
+    background: var(--limewash); border-radius: var(--r-panel);
     overflow: hidden;
   }
-  .why-hero__art .why-wall::after {
-    content: ''; position: absolute; inset: 0;
-    background-image: radial-gradient(circle at 1px 1px, rgba(32, 30, 25, 0.08) 0.5px, transparent 0);
-    background-size: 14px 14px;
+  .why-hero__art .editorial-image {
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
   }
+  .why-hero__art .why-cow,
+  .why-hero__art .why-wall { display: none; }
   .why-hero__title { font-size: clamp(2.2rem, 5vw, 4rem); }
 
   /* ===== NUMBERED CHAPTERS ===== */
@@ -262,44 +263,56 @@
     padding-left: 1.5rem; border-left: 3px solid var(--haldi);
   }
 
-  /* === Chapter 01 — MATERIAL: physical material sample === */
+  /* === Chapter 01 — MATERIAL: zebu-study large === */
   .why-material-sample {
-    position: relative; aspect-ratio: 4/3;
-    background: var(--paper); border: 1px solid var(--border);
-    border-radius: var(--r-panel); overflow: hidden; padding: 2rem;
+    position: relative; aspect-ratio: 1536/1024;
+    background: var(--paper); border-radius: var(--r-panel);
+    overflow: hidden;
   }
-  .why-material-sample__patch {
-    position: absolute; left: 12%; top: 12%; right: 12%; bottom: 12%;
-    background:
-      radial-gradient(ellipse 70% 60% at 40% 35%, var(--mitti) 0%, color-mix(in srgb, var(--mitti) 80%, var(--charcoal)) 65%, transparent 92%),
-      linear-gradient(135deg, var(--kraft), var(--mitti));
-    border-radius: 4px;
+  .why-material-sample .editorial-image {
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
   }
-  .why-material-sample__patch::after {
-    content: ''; position: absolute; inset: 0;
-    background-image: radial-gradient(circle at 1px 1px, rgba(32, 30, 25, 0.12) 0.5px, transparent 0);
-    background-size: 12px 12px;
-  }
-  .why-material-sample__tag {
-    position: absolute; bottom: 1rem; left: 1rem;
-    font-family: var(--font-display); font-style: italic;
-    font-size: 0.875rem; color: var(--fg-muted);
-    background: rgba(250, 248, 241, 0.85); padding: 0.25rem 0.75rem;
-    border-radius: var(--r-pill);
-  }
+  .why-material-sample__patch,
+  .why-material-sample__tag { display: none; }
 
   /* === Chapter 02 — TRADITION: large courtyard === */
   .why-tradition-art {
-    width: 100%; aspect-ratio: 16/9;
+    width: 100%; aspect-ratio: 1942/809;
     background: var(--limewash); border-radius: var(--r-panel);
     overflow: hidden;
   }
-  .why-tradition-art svg { width: 100%; height: 100%; display: block; }
+  .why-tradition-art .editorial-image {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+  }
 
-  /* === Chapter 03 — MATERIAL TO WALL: full-width diagram === */
+  /* === Chapter 03 — MATERIAL TO WALL: 3-panel composition === */
   .why-flow-section { padding-block: clamp(3.5rem, 6vw, 5rem); }
-  .why-flow-svg { width: 100%; margin-inline: 0; }
-  .why-flow-svg svg { width: 100%; height: auto; display: block; }
+  .why-flow-panels {
+    display: grid; gap: 1rem; margin-top: 2rem;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 768px) {
+    .why-flow-panels { grid-template-columns: 1fr 1fr 1fr; gap: 1.25rem; }
+  }
+  .why-flow-panel {
+    position: relative;
+    aspect-ratio: 1344/768;
+    background: var(--limewash);
+    overflow: hidden; border-radius: var(--r-panel);
+  }
+  .why-flow-panel--group { aspect-ratio: 1280/621; }
+  .why-flow-panel .editorial-image {
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  }
+  .why-flow-panel-label {
+    position: absolute; left: 0.875rem; bottom: 0.875rem;
+    background: rgba(250, 248, 241, 0.88);
+    padding: 0.375rem 0.75rem;
+    border-radius: var(--r-pill);
+    font-size: 0.6875rem; font-weight: 700;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--fg);
+  }
 
   /* === Chapter 04 — ASHTA: full-size seal === */
   .why-ashta-section { padding-block: clamp(3.5rem, 6vw, 5rem); }
@@ -313,15 +326,21 @@
   }
   @media (min-width: 768px) { .why-formats { grid-template-columns: 1fr 1fr; } }
   .why-format-card {
-    position: relative; aspect-ratio: 4/5;
+    position: relative;
     background: linear-gradient(160deg, var(--paper), var(--limewash));
     border: 1px solid var(--border); border-top: 3px solid var(--indigo);
     border-radius: var(--r-panel); overflow: hidden;
-    display: flex; align-items: center; justify-content: center; padding: 2rem;
+    display: flex; align-items: center; justify-content: center; padding: 1.5rem;
+    min-height: 22rem;
   }
   .why-format-card--emulsion { border-top-color: var(--leaf); }
-  .why-format-card .product-media { width: 100%; height: 100%; }
-  .why-format-card .product-media__official { object-fit: contain; padding: 1.5rem; }
+  .why-format-card .format-product {
+    display: block;
+    max-height: 26rem; max-width: 100%;
+    width: auto; height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 14px 20px rgba(34, 36, 27, 0.16));
+  }
   .why-format-card__caption {
     position: absolute; bottom: 1rem; left: 1rem;
     background: rgba(250, 248, 241, 0.9); padding: 0.5rem 0.875rem;
@@ -330,17 +349,19 @@
   .why-format-card--distemper .why-format-card__caption { color: var(--indigo); }
   .why-format-card--emulsion  .why-format-card__caption { color: var(--leaf); }
 
-  /* === Chapter 06 — CONTEXT: rural-landscape with annotations === */
+  /* === Chapter 06 — CONTEXT: rural-landscape with annotation === */
   .why-context-section { padding-block: clamp(3.5rem, 6vw, 5rem); }
   .why-context-band {
-    position: relative; width: 100%; aspect-ratio: 16/5;
+    position: relative; width: 100%; aspect-ratio: 1344/768;
     background: var(--limewash); border-radius: var(--r-panel);
     overflow: hidden;
   }
-  .why-context-band svg { width: 100%; height: 100%; display: block; }
+  .why-context-band .editorial-image {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+  }
   .why-context-band__annot {
     position: absolute; bottom: 1rem; left: 1rem;
-    background: rgba(250, 248, 241, 0.85);
+    background: rgba(250, 248, 241, 0.88);
     padding: 0.5rem 0.875rem; border-radius: var(--r-pill);
     font-size: 0.75rem; font-weight: 600;
     letter-spacing: 0.14em; text-transform: uppercase;
@@ -367,7 +388,7 @@
         </p>
       </div>
       <div class="why-hero__art" aria-hidden="true">
-        <img class="editorial-cow" src="../assets/illustrations/zebu-study.jpg" alt="" width="1536" height="1024">
+        <picture><source type="image/webp" srcset="../assets/editorial/zebu-study.webp"><img class="editorial-image" src="../assets/editorial/zebu-study.jpg" alt="Editorial study of an Indian zebu cow" width="1536" height="1024" loading="eager" decoding="async"></picture>
       </div>
     </div>
   </div>
@@ -394,7 +415,7 @@
         </p>
       </div>
       <div class="why-material-sample" aria-hidden="true">
-        <img class="editorial-cow" src="../assets/illustrations/zebu-study.jpg" alt="" loading="lazy" width="1536" height="1024">
+        <picture><source type="image/webp" srcset="../assets/editorial/zebu-study.webp"><img class="editorial-image" src="../assets/editorial/zebu-study.jpg" alt="" width="1536" height="1024" loading="lazy" decoding="async"></picture>
       </div>
     </div>
   </div>
@@ -405,7 +426,7 @@
   <div class="container">
     <div class="why-chapter why-chapter--reverse" data-reveal>
       <div class="why-tradition-art" aria-hidden="true">
-        <img class="editorial-courtyard" src="../assets/illustrations/courtyard-study.jpg" alt="" loading="lazy" width="1942" height="809">
+        <picture><source type="image/webp" srcset="../assets/editorial/courtyard-study.webp"><img class="editorial-image" src="../assets/editorial/courtyard-study.jpg" alt="Indian limewashed courtyard elevation" width="1942" height="809" loading="lazy" decoding="async"></picture>
       </div>
       <div>
         <span class="why-chapter__num">02</span>
@@ -425,7 +446,7 @@
   </div>
 </section>
 
-<!-- ===== 03 MATERIAL TO WALL — full-width diagram ===== -->
+<!-- ===== 03 MATERIAL TO WALL — 3-panel composition ===== -->
 <section class="section section--paper why-flow-section" aria-labelledby="chapter-03-title">
   <div class="container">
     <div data-reveal>
@@ -436,8 +457,23 @@
         Natural material, Prakritik Paint, finished walls.
       </p>
     </div>
-    <div class="why-flow-svg" data-reveal>
-
+    <div class="why-flow-panels" data-reveal>
+      <div class="why-flow-panel">
+        <picture><source type="image/webp" srcset="../assets/editorial/interior-wall-study.webp"><img class="editorial-image" src="../assets/editorial/interior-wall-study.jpg" alt="Indian interior limewashed wall" width="1344" height="768" loading="lazy" decoding="async"></picture>
+        <span class="why-flow-panel-label">01 · Natural material</span>
+      </div>
+      <div class="why-flow-panel why-flow-panel--group">
+        <img class="editorial-image"
+             src="../assets/products/prakritik-group.jpg"
+             alt="Prakritik Distemper and Emulsion paint packs"
+             width="1280" height="621"
+             loading="lazy" decoding="async">
+        <span class="why-flow-panel-label">02 · Prakritik Paint</span>
+      </div>
+      <div class="why-flow-panel">
+        <picture><source type="image/webp" srcset="../assets/editorial/exterior-wall-study.webp"><img class="editorial-image" src="../assets/editorial/exterior-wall-study.jpg" alt="Indian exterior wall" width="1344" height="768" loading="lazy" decoding="async"></picture>
+        <span class="why-flow-panel-label">03 · Finished wall</span>
+      </div>
     </div>
     <ol class="material-journey__steps" data-reveal-stagger>
         <li class="material-journey__step">
@@ -459,7 +495,7 @@
   </div>
 </section>
 
-<!-- ===== 04 ASHTA — full-size seal ===== -->
+<!-- ===== 04 ASHTA — full-size seal (interactive SVG kept) ===== -->
 <section class="section section--limewash why-ashta-section" aria-labelledby="chapter-04-title" data-ashta-laabh>
   <div class="container">
     <div class="why-ashta-section__head section-heading section-heading--left" data-reveal>
@@ -769,231 +805,19 @@
 
     <div class="why-formats" data-reveal-stagger>
       <div class="why-format-card why-format-card--distemper">
-        <div class="product-media" data-official-image="../assets/products/prakritik-distemper.jpg">
-          <img class="product-media__official"
-               src="../assets/products/prakritik-distemper.jpg"
-               alt="Prakritik Distemper Paint pack"
-               width="600" height="750" loading="lazy" decoding="async">
-          <div class="product-media__fallback">
-            <svg viewBox="0 0 220 280" xmlns="http://www.w3.org/2000/svg"
-     class=""
-     role="img" aria-hidden="true"
-     preserveAspectRatio="xMidYMid meet"
-     width="100%" height="100%">
-  <title>Prakritik Distemper bucket</title>
-
-  <!-- BAIL / HANDLE — metal arch (drawn first, behind the rim) -->
-  <path d="M 42 62 Q 110 22, 178 62"
-        fill="none" stroke="var(--forest)"
-        stroke-width="1.8" stroke-linecap="round"/>
-  <!-- Handle inner line — subtle wire-thickness suggestion -->
-  <path d="M 46 62 Q 110 28, 174 62"
-        fill="none" stroke="var(--forest)"
-        stroke-width="1" opacity="0.5"/>
-
-  <!-- HANDLE ATTACHMENT LUGS — on the rim -->
-  <circle cx="42" cy="62" r="3" fill="var(--forest)"/>
-  <circle cx="178" cy="62" r="3" fill="var(--forest)"/>
-
-  <!-- BUCKET BODY — tapered cylinder, paper-white fill.
-       Top corners at the rim (x=40, x=180), bottom corners narrower (x=52, x=168) -->
-  <path d="M 40 62
-           L 52 250
-           C 60 256, 160 256, 168 250
-           L 180 62 Z"
-        fill="var(--paper)" stroke="var(--forest)"
-        stroke-width="1.5" stroke-linejoin="round"/>
-
-  <!-- SUBTLE VERTICAL HIGHLIGHT on the LEFT side of the cylinder (curve suggestion).
-       No glossy gradient — just a faint single line at 0.12 opacity. -->
-  <path d="M 56 80 L 64 240"
-        stroke="var(--forest)" stroke-width="0.8" opacity="0.12"/>
-
-  <!-- SUBTLE VERTICAL SHADOW on the RIGHT side (even fainter) -->
-  <path d="M 162 80 L 156 240"
-        stroke="var(--forest)" stroke-width="0.8" opacity="0.08"/>
-
-  <!-- TOP RIM ELLIPSE — dark green, seen at slight angle -->
-  <ellipse cx="110" cy="60" rx="70" ry="9"
-           fill="var(--forest)" stroke="var(--forest)"
-           stroke-width="1.5"/>
-
-  <!-- INNER OPENING — limewash-toned, showing the inside of the bucket -->
-  <ellipse cx="110" cy="59" rx="62" ry="6"
-           fill="var(--limewash)" opacity="0.85"/>
-
-  <!-- INNER PAINT SURFACE — very subtle haldi tint inside the rim (suggesting paint residue) -->
-  <ellipse cx="110" cy="59" rx="56" ry="4.5"
-           fill="var(--haldi)" opacity="0.18"/>
-
-  <!-- HALDI ACCENT STRIPE ABOVE LABEL BAND — thin line following the cylinder curve -->
-  <path d="M 46 128 L 50 130 C 80 134, 140 134, 170 130 L 174 128"
-        fill="none" stroke="var(--haldi-deep)"
-        stroke-width="1.6" stroke-linecap="round"/>
-
-  <!-- DARK-GREEN LABEL BAND — curved to follow the cylinder surface (not a flat rectangle).
-       The top and bottom edges have a slight curve suggesting the wrap-around of the band. -->
-  <path d="M 46 132
-           L 50 180
-           C 80 184, 140 184, 170 180
-           L 174 132
-           C 140 136, 80 136, 46 132 Z"
-        fill="var(--forest)" stroke="var(--forest)"
-        stroke-width="1.4" stroke-linejoin="round"/>
-
-  <!-- HALDI ACCENT STRIPE BELOW LABEL BAND -->
-  <path d="M 50 184 L 54 186 C 80 189, 140 189, 166 186 L 170 184"
-        fill="none" stroke="var(--haldi-deep)"
-        stroke-width="1.6" stroke-linecap="round"/>
-
-  <!-- SMALL GEOMETRIC MARK above the wordmark — haldi dot (replaces cartoon cow motif) -->
-  <circle cx="110" cy="138" r="2.2" fill="var(--haldi)"/>
-
-  <!-- WORDMARK TEXT -->
-  <text x="110" y="151" text-anchor="middle"
-        font-family="var(--font-display)" font-weight="700"
-        font-size="11" fill="var(--haldi)" letter-spacing="1.4">GAURIKRIT</text>
-
-  <!-- PRODUCT NAME TEXT -->
-  <text x="110" y="168" text-anchor="middle"
-        font-family="var(--font-display)" font-weight="700"
-        font-size="5.5" fill="var(--haldi)" letter-spacing="1.2">PRAKRITIK DISTEMPER</text>
-
-  <!-- SMALL UNDERLINE MARK beneath wordmark -->
-  <path d="M 86 174 L 134 174"
-        stroke="var(--haldi)" stroke-width="0.8" opacity="0.5"/>
-
-  <!-- BOTTOM FRONT CURVE — base of cylinder visible from the front -->
-  <path d="M 52 250 C 60 256, 160 256, 168 250"
-        fill="none" stroke="var(--forest)"
-        stroke-width="1.5" opacity="0.85"/>
-
-  <!-- SUBTLE BASE SHADOW ELLIPSE — very faint ground contact -->
-  <ellipse cx="110" cy="256" rx="56" ry="3"
-           fill="var(--forest)" opacity="0.08"/>
-
-</svg>
-          </div>
-        </div>
+        <img class="format-product"
+             src="../assets/products/prakritik-distemper.jpg"
+             alt="Prakritik Distemper Paint"
+             width="510" height="538"
+             loading="lazy" decoding="async">
         <span class="why-format-card__caption">1, 5, 10 &amp; 20 kg packs</span>
       </div>
       <div class="why-format-card why-format-card--emulsion">
-        <div class="product-media" data-official-image="../assets/products/prakritik-emulsion.jpg">
-          <img class="product-media__official"
-               src="../assets/products/prakritik-emulsion.jpg"
-               alt="Prakritik Emulsion Paint pack"
-               width="600" height="750" loading="lazy" decoding="async">
-          <div class="product-media__fallback">
-            <svg viewBox="0 0 220 300" xmlns="http://www.w3.org/2000/svg"
-     class=""
-     role="img" aria-hidden="true"
-     preserveAspectRatio="xMidYMid meet"
-     width="100%" height="100%">
-  <title>Prakritik Emulsion bucket</title>
-
-  <!-- BAIL / HANDLE — metal arch (drawn first, behind the rim) -->
-  <path d="M 42 62 Q 110 22, 178 62"
-        fill="none" stroke="var(--forest)"
-        stroke-width="1.8" stroke-linecap="round"/>
-  <!-- Handle inner line — subtle wire-thickness suggestion -->
-  <path d="M 46 62 Q 110 28, 174 62"
-        fill="none" stroke="var(--forest)"
-        stroke-width="1" opacity="0.5"/>
-
-  <!-- HANDLE ATTACHMENT LUGS — on the rim -->
-  <circle cx="42" cy="62" r="3" fill="var(--forest)"/>
-  <circle cx="178" cy="62" r="3" fill="var(--forest)"/>
-
-  <!-- BUCKET BODY — TALLER tapered cylinder, paper-white fill.
-       Top corners at the rim (x=40, x=180), bottom corners narrower (x=52, x=168).
-       Taller body — base at y=270 (vs y=250 for distemper). -->
-  <path d="M 40 62
-           L 52 270
-           C 60 276, 160 276, 168 270
-           L 180 62 Z"
-        fill="var(--paper)" stroke="var(--forest)"
-        stroke-width="1.5" stroke-linejoin="round"/>
-
-  <!-- SUBTLE VERTICAL HIGHLIGHT on the LEFT side of the cylinder -->
-  <path d="M 56 80 L 64 260"
-        stroke="var(--forest)" stroke-width="0.8" opacity="0.12"/>
-
-  <!-- SUBTLE VERTICAL SHADOW on the RIGHT side -->
-  <path d="M 162 80 L 156 260"
-        stroke="var(--forest)" stroke-width="0.8" opacity="0.08"/>
-
-  <!-- TOP RIM ELLIPSE — dark green -->
-  <ellipse cx="110" cy="60" rx="70" ry="9"
-           fill="var(--forest)" stroke="var(--forest)"
-           stroke-width="1.5"/>
-
-  <!-- INNER OPENING — limewash-toned inside -->
-  <ellipse cx="110" cy="59" rx="62" ry="6"
-           fill="var(--limewash)" opacity="0.85"/>
-
-  <!-- LIQUID LINE AT RIM — a subtle haldi-toned ellipse just inside the rim,
-       suggesting the liquid paint surface filling up to the rim -->
-  <ellipse cx="110" cy="58" rx="58" ry="5"
-           fill="var(--haldi)" opacity="0.32"/>
-
-  <!-- SURFACE RIPPLE on the liquid — very subtle line suggesting liquid surface tension -->
-  <path d="M 56 57 C 80 55, 140 55, 164 57"
-        fill="none" stroke="var(--haldi-deep)"
-        stroke-width="0.8" opacity="0.55"/>
-
-  <!-- HALDI ACCENT STRIPE ABOVE LABEL BAND -->
-  <path d="M 46 128 L 50 130 C 80 134, 140 134, 170 130 L 174 128"
-        fill="none" stroke="var(--haldi-deep)"
-        stroke-width="1.6" stroke-linecap="round"/>
-
-  <!-- DARK-GREEN LABEL BAND — taller band (emulsion pack), curved to follow cylinder -->
-  <path d="M 46 132
-           L 50 204
-           C 80 208, 140 208, 170 204
-           L 174 132
-           C 140 136, 80 136, 46 132 Z"
-        fill="var(--forest)" stroke="var(--forest)"
-        stroke-width="1.4" stroke-linejoin="round"/>
-
-  <!-- HALDI ACCENT STRIPE BELOW LABEL BAND -->
-  <path d="M 50 208 L 54 210 C 80 213, 140 213, 166 210 L 170 208"
-        fill="none" stroke="var(--haldi-deep)"
-        stroke-width="1.6" stroke-linecap="round"/>
-
-  <!-- SMALL GEOMETRIC MARK above the wordmark — haldi dot -->
-  <circle cx="110" cy="138" r="2.2" fill="var(--haldi)"/>
-
-  <!-- WORDMARK TEXT -->
-  <text x="110" y="153" text-anchor="middle"
-        font-family="var(--font-display)" font-weight="700"
-        font-size="12" fill="var(--haldi)" letter-spacing="1.5">GAURIKRIT</text>
-
-  <!-- SUBTITLE LINE 1 -->
-  <text x="110" y="174" text-anchor="middle"
-        font-family="var(--font-display)" font-weight="700"
-        font-size="7" fill="var(--haldi)" letter-spacing="1.6">PRAKRITIK</text>
-
-  <!-- SUBTITLE LINE 2 -->
-  <text x="110" y="190" text-anchor="middle"
-        font-family="var(--font-display)" font-weight="700"
-        font-size="7" fill="var(--haldi)" letter-spacing="1.6">EMULSION</text>
-
-  <!-- SMALL UNDERLINE MARK beneath wordmark -->
-  <path d="M 86 160 L 134 160"
-        stroke="var(--haldi)" stroke-width="0.8" opacity="0.5"/>
-
-  <!-- BOTTOM FRONT CURVE — base of cylinder -->
-  <path d="M 52 270 C 60 276, 160 276, 168 270"
-        fill="none" stroke="var(--forest)"
-        stroke-width="1.5" opacity="0.85"/>
-
-  <!-- SUBTLE BASE SHADOW ELLIPSE — very faint ground contact -->
-  <ellipse cx="110" cy="276" rx="56" ry="3"
-           fill="var(--forest)" opacity="0.08"/>
-
-</svg>
-          </div>
-        </div>
+        <img class="format-product"
+             src="../assets/products/prakritik-emulsion.jpg"
+             alt="Prakritik Emulsion Paint"
+             width="355" height="486"
+             loading="lazy" decoding="async">
         <span class="why-format-card__caption">1, 4, 10 &amp; 20 litre packs</span>
       </div>
     </div>
@@ -1021,191 +845,7 @@
         </div>
       </div>
       <div class="why-context-band" aria-hidden="true">
-        <svg viewBox="0 0 1600 280" xmlns="http://www.w3.org/2000/svg"
-     class=""
-     role="img" aria-hidden="true"
-     preserveAspectRatio="xMidYMid meet"
-     width="100%" height="100%">
-  <title>Rural landscape engraving</title>
-
-  <!-- The whole engraving sits at low opacity so it functions as background.
-       Inner elements use individual opacities so the horizon reads first
-       and the silhouettes fade further into the paper. -->
-  <g fill="none" stroke="var(--forest)"
-     stroke-linecap="round" stroke-linejoin="round"
-     opacity="0.18">
-
-    <!-- ===== DISTANT FIELD CONTOUR — back layer, the softest ===== -->
-    <path d="M 0 138 C 200 132, 380 138, 560 134
-             S 920 130, 1100 134
-             S 1440 138, 1600 134"
-          stroke-width="1.35" opacity="0.45"/>
-
-    <!-- ===== MID FIELD CONTOUR — gentle rolling, slightly more present ===== -->
-    <path d="M 0 168 C 240 162, 460 168, 680 164
-             S 1040 160, 1240 164
-             S 1500 168, 1600 164"
-          stroke-width="1.35" opacity="0.6"/>
-
-    <!-- ===== MAIN HORIZON LINE — most prominent ===== -->
-    <path d="M 0 196 C 220 192, 460 198, 700 194
-             S 1080 190, 1300 194
-             S 1540 198, 1600 194"
-          stroke-width="1.35" opacity="0.85"/>
-
-    <!-- ===== GROUND LINE — foreground baseline ===== -->
-    <path d="M 0 232 L 1600 232"
-          stroke-width="1.35" opacity="0.55"/>
-
-    <!-- ===== MATURE TREE (left side) — full canopy, line-drawn ===== -->
-    <g>
-      <!-- Trunk — single slender stroke from ground up into canopy -->
-      <path d="M 230 232 L 228 168" stroke-width="1.35" opacity="0.85"/>
-      <!-- Two main branches splitting off the trunk -->
-      <path d="M 228 188 C 218 184, 208 184, 198 188"
-            stroke-width="0.85" opacity="0.7"/>
-      <path d="M 228 184 C 238 180, 248 180, 258 184"
-            stroke-width="0.85" opacity="0.7"/>
-      <!-- Canopy — full rounded mass built from overlapping arcs.
-           Drawn as a single closed contour with several cubic curves
-           so the edge has natural variation, not a perfect circle. -->
-      <path d="M 168 140
-               C 160 120, 172 100, 196 96
-               C 204 84, 224 80, 236 90
-               C 248 80, 268 84, 276 98
-               C 296 100, 308 118, 300 138
-               C 308 148, 304 164, 286 168
-               C 278 178, 258 180, 244 174
-               C 234 182, 214 182, 202 174
-               C 188 180, 168 178, 162 168
-               C 152 162, 154 148, 168 140 Z"
-            stroke-width="1.35" opacity="0.85"/>
-      <!-- Canopy interior vein lines — 3 subtle branching marks -->
-      <path d="M 232 140 C 226 150, 220 158, 214 162"
-            stroke-width="0.85" opacity="0.55"/>
-      <path d="M 232 140 C 240 150, 246 158, 252 162"
-            stroke-width="0.85" opacity="0.55"/>
-      <path d="M 232 140 L 232 130"
-            stroke-width="0.85" opacity="0.45"/>
-      <!-- Root flare marks at the base of the trunk -->
-      <path d="M 222 232 C 218 236, 214 236, 212 234"
-            stroke-width="0.85" opacity="0.6"/>
-      <path d="M 234 232 C 238 236, 242 236, 244 234"
-            stroke-width="0.85" opacity="0.6"/>
-    </g>
-
-    <!-- ===== DISTANT SHRUBS — small bush marks on the horizon ===== -->
-    <g>
-      <path d="M 540 196 C 548 190, 558 190, 562 196
-               C 566 190, 574 190, 578 196"
-            stroke-width="0.85" opacity="0.7"/>
-      <path d="M 820 194 C 828 188, 838 188, 842 194"
-            stroke-width="0.85" opacity="0.65"/>
-      <path d="M 850 196 C 858 190, 866 190, 870 196"
-            stroke-width="0.85" opacity="0.6"/>
-      <path d="M 1180 194 C 1188 188, 1198 188, 1202 194"
-            stroke-width="0.85" opacity="0.6"/>
-    </g>
-
-    <!-- ===== MODEST AGRICULTURAL SHED (right side) — small, simple ===== -->
-    <g>
-      <!-- Roof — single peaked line, low and shallow -->
-      <path d="M 1280 168 L 1310 148 L 1380 148 L 1410 168"
-            stroke-width="1.35" opacity="0.85"/>
-      <!-- Roof underside — thin projection suggesting roof slab thickness -->
-      <path d="M 1280 168 L 1410 168"
-            stroke-width="0.85" opacity="0.55"/>
-      <!-- Body — simple rectangle -->
-      <path d="M 1290 168 L 1290 232 L 1400 232 L 1400 168"
-            stroke-width="1.35" opacity="0.85"/>
-      <!-- Door — small rectangle opening -->
-      <path d="M 1330 232 L 1330 198 L 1360 198 L 1360 232"
-            stroke-width="0.85" opacity="0.7"/>
-      <!-- Small window/vent high on the wall -->
-      <path d="M 1372 180 L 1384 180 L 1384 192 L 1372 192 Z"
-            stroke-width="0.85" opacity="0.6"/>
-      <!-- Roof tile segment lines — 3 subtle marks -->
-      <path d="M 1310 152 L 1314 168" stroke-width="0.85" opacity="0.5"/>
-      <path d="M 1340 148 L 1344 168" stroke-width="0.85" opacity="0.5"/>
-      <path d="M 1370 148 L 1374 168" stroke-width="0.85" opacity="0.5"/>
-    </g>
-
-    <!-- ===== TINY ZEBU COWS — small silhouettes in the middle field ===== -->
-    <!-- Cow A — facing left, sitting in the field at mid-distance -->
-    <g opacity="0.85">
-      <!-- Body barrel — small closed contour -->
-      <path d="M 720 196
-               C 728 192, 740 191, 752 192
-               L 768 192
-               L 768 200
-               L 720 200
-               C 718 198, 718 197, 720 196 Z"
-            stroke-width="0.85"/>
-      <!-- Hump — small rise above back line -->
-      <path d="M 722 196 C 724 192, 728 190, 732 190
-               C 736 190, 740 192, 742 196"
-            stroke-width="0.85"/>
-      <!-- Head — small wedge to the left -->
-      <path d="M 720 196 C 716 196, 712 198, 710 200"
-            stroke-width="0.85"/>
-      <!-- Legs — 4 tiny vertical strokes -->
-      <path d="M 724 200 L 724 208" stroke-width="0.85"/>
-      <path d="M 728 200 L 728 208" stroke-width="0.85"/>
-      <path d="M 762 200 L 762 208" stroke-width="0.85"/>
-      <path d="M 766 200 L 766 208" stroke-width="0.85"/>
-      <!-- Tail — short curve down -->
-      <path d="M 768 194 C 772 196, 774 200, 772 204" stroke-width="0.85"/>
-    </g>
-
-    <!-- Cow B — facing left, slightly smaller, further back -->
-    <g opacity="0.7">
-      <path d="M 980 198
-               C 986 195, 996 194, 1006 195
-               L 1018 195
-               L 1018 202
-               L 980 202
-               C 978 200, 978 199, 980 198 Z"
-            stroke-width="0.85"/>
-      <path d="M 982 198 C 984 195, 988 193, 992 193
-               C 996 193, 1000 195, 1002 198"
-            stroke-width="0.85"/>
-      <path d="M 980 198 C 976 198, 972 200, 970 202"
-            stroke-width="0.85"/>
-      <path d="M 984 202 L 984 208" stroke-width="0.85"/>
-      <path d="M 988 202 L 988 208" stroke-width="0.85"/>
-      <path d="M 1014 202 L 1014 208" stroke-width="0.85"/>
-      <path d="M 1018 200 C 1022 202, 1024 204, 1022 207" stroke-width="0.85"/>
-    </g>
-
-    <!-- ===== FOREGROUND GRASS TUFTS — restrained, deliberate ===== -->
-    <g stroke-width="1.35">
-      <!-- Tuft cluster 1 — left -->
-      <path d="M 80 232 L 78 226" opacity="0.6"/>
-      <path d="M 82 232 L 82 224" opacity="0.6"/>
-      <path d="M 84 232 L 86 226" opacity="0.6"/>
-      <!-- Tuft cluster 2 — between tree and cows -->
-      <path d="M 460 232 L 458 226" opacity="0.55"/>
-      <path d="M 462 232 L 462 224" opacity="0.55"/>
-      <path d="M 464 232 L 466 226" opacity="0.55"/>
-      <!-- Tuft cluster 3 — right of cows -->
-      <path d="M 1080 232 L 1078 226" opacity="0.55"/>
-      <path d="M 1082 232 L 1082 224" opacity="0.55"/>
-      <path d="M 1084 232 L 1086 226" opacity="0.55"/>
-      <!-- Tuft cluster 4 — left of shed -->
-      <path d="M 1220 232 L 1218 226" opacity="0.55"/>
-      <path d="M 1222 232 L 1222 224" opacity="0.55"/>
-      <!-- Tuft cluster 5 — far right -->
-      <path d="M 1480 232 L 1478 226" opacity="0.55"/>
-      <path d="M 1482 232 L 1482 224" opacity="0.55"/>
-      <path d="M 1484 232 L 1486 226" opacity="0.55"/>
-    </g>
-
-    <!-- ===== ONE LONGER GRASS BLADE — compositional accent ===== -->
-    <path d="M 580 232 C 578 224, 576 218, 580 212"
-          stroke-width="1.35" opacity="0.65"/>
-
-  </g>
-</svg>
+        <picture><source type="image/webp" srcset="../assets/editorial/rural-landscape.webp"><img class="editorial-image" src="../assets/editorial/rural-landscape.jpg" alt="Indian rural landscape" width="1344" height="768" loading="lazy" decoding="async"></picture>
         <span class="why-context-band__annot">District Bulandshahr, Uttar Pradesh – 203131</span>
       </div>
     </div>

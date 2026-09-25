@@ -1,18 +1,19 @@
 <?php
 /**
- * Gaurikrit Bio Products — Paint Calculator (V3 rebuild).
- * Task V3-PAGES.
+ * Gaurikrit Bio Products — Paint Calculator (V4 asset replacement pass).
+ * Task V4-ASSETS.
+ *
+ * Composition unchanged from V3. The interactive SVG calculator-wall-scene
+ * is KEPT (per spec — it's interactive). This pass adds interior-wall-study
+ * as a background layer BEHIND the SVG so the wall scene sits in a real
+ * Indian interior environment.
  *
  * Composition:
  *   - Hero (intro).
- *   - Calculator page: 42% sticky calculator-wall-scene / 58% steps.
- *   - Steps: 01 PAINTING (Fresh/Repainting) / 02 LOCATION
- *     (Interior/Exterior) / 03 PRODUCT (Distemper/Emulsion) / 04 AREA.
- *   - Result: project summary (NO prices). "Automatic commercial rates
- *     have not yet been configured." CTA "Request Estimate".
- *
- * The calculator JS builds the 4-step UI inside [data-calculator]. This page
- * supplies the surrounding hero, the sticky visual, and the JSON config.
+ *   - Calculator page: 42% sticky calculator-wall-scene (SVG kept) /
+ *     58% steps. Interior-wall-study as background layer.
+ *   - Steps: 01 PAINTING / 02 LOCATION / 03 PRODUCT / 04 AREA.
+ *   - Result: project summary (NO prices).
  */
 declare(strict_types=1);
 
@@ -30,6 +31,14 @@ $calcConfig = require ROOT_PATH . '/includes/calculator-config.php';
 $calcConfigJson = json_encode($calcConfig, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
 ?>
 <style>
+  /* ===== Editorial image reset (V4 — NO mix-blend-mode, NO blur filters) ===== */
+  .editorial-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
   /* ===== HERO ===== */
   .calc-hero { padding-top: calc(var(--header-h) + 2rem); padding-bottom: 1.5rem; }
   .calc-hero__inner { display: grid; gap: 1rem; max-width: 60rem; }
@@ -67,17 +76,28 @@ $calcConfigJson = json_encode($calcConfig, JSON_UNESCAPED_SLASHES | JSON_UNESCAP
   @media (max-width: 1023px) {
     .calculator-page { grid-template-columns: 1fr; }
   }
+  /* V4: sticky visual = real interior-wall-study behind the interactive SVG.
+     The SVG stays interactive; the photo gives the wall environment. */
   .calculator-page__visual {
     position: sticky; top: calc(var(--header-h) + 1rem);
     background: var(--limewash); border: 1px solid var(--border);
     border-radius: var(--r-panel); aspect-ratio: 4/3;
     display: flex; align-items: center; justify-content: center;
-    padding: 2rem; overflow: hidden;
+    padding: 0; overflow: hidden;
   }
   @media (max-width: 1023px) {
     .calculator-page__visual { position: relative; top: auto; aspect-ratio: 16/9; }
   }
-  .calculator-page__visual svg { width: 100%; height: 100%; display: block; }
+  .calculator-page__visual .visual-env {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover;
+    opacity: 0.55;
+    pointer-events: none;
+  }
+  .calculator-page__visual svg {
+    position: relative; z-index: 1;
+    width: 86%; height: 86%; display: block;
+  }
 
   /* The actual calculator mount — JS builds the UI inside it. */
   .calculator-page__steps { display: grid; gap: 1.5rem; }
@@ -200,8 +220,16 @@ $calcConfigJson = json_encode($calcConfig, JSON_UNESCAPED_SLASHES | JSON_UNESCAP
 <section class="bg-limewash" style="padding-top: 0;">
   <div class="container">
     <div class="calculator-page" data-reveal>
-      <!-- LEFT: sticky interactive wall scene -->
+      <!-- LEFT: sticky interactive wall scene (SVG kept) -->
       <div class="calculator-page__visual" aria-hidden="true">
+        <picture>
+          <source type="image/webp" srcset="<?= asset_url('/assets/editorial/interior-wall-study.webp') ?>">
+          <img class="visual-env"
+               src="<?= asset_url('/assets/editorial/interior-wall-study.jpg') ?>"
+               alt=""
+               width="1344" height="768"
+               loading="eager" decoding="async">
+        </picture>
         <?php render_illustration('calculator-wall-scene'); ?>
       </div>
 

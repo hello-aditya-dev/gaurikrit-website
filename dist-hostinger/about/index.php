@@ -1,16 +1,18 @@
 <?php
 /**
- * Gaurikrit Bio Products — About (V3 rebuild).
- * Task V3-PAGES.
+ * Gaurikrit Bio Products — About (V4 asset replacement pass).
+ * Task V4-ASSETS.
  *
- * Institutional / brand identity page. NO gaushala hero. NO filler copy.
+ * Composition unchanged from V3. This pass replaces coded SVG illustrations
+ * with real editorial artwork + the official Gaurikrit logo. NO gaushala
+ * illustration. SVG kept only for the brand-mark fallback (handled in the
+ * shared header/footer).
  *
- *   1. Hero — official Gaurikrit identity + strong typography + product
- *      presence. गौरीकृत + GAURIKRIT BIO PRODUCTS + H1 + body.
+ *   1. Hero — official Gaurikrit logo (537×620) prominent.
  *   2. WHO WE ARE (legal identity) — borderless editorial section.
- *   3. WHAT WE CURRENTLY PRESENT — 2 products (image-handoff).
- *   4. MATERIAL DIRECTION — one cow + wall composition.
- *   5. MISSION — deep forest full-width band.
+ *   3. WHAT WE CURRENTLY PRESENT — 2 real product photos.
+ *   4. MATERIAL DIRECTION — zebu-study.webp beside wall.
+ *   5. MISSION — deep forest full-width band + rural-landscape engraving.
  *   6. COMPANY INFORMATION — modern ledger/plate (.company-plate).
  *      Full address, GSTIN, email, both phones.
  */
@@ -33,6 +35,14 @@ $address = $COMPANY['address'] ?? [];
 $addressLine = implode("\n", $address);
 ?>
 <style>
+  /* ===== Editorial image reset (V4 — NO mix-blend-mode, NO blur filters) ===== */
+  .editorial-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
   /* ===== HERO ===== */
   .about-hero { padding-top: calc(var(--header-h) + 2rem); padding-bottom: 1.5rem; }
   .about-hero__container { display: grid; gap: 2rem; align-items: center; }
@@ -40,14 +50,19 @@ $addressLine = implode("\n", $address);
     .about-hero__container { grid-template-columns: 5fr 7fr; gap: 3rem; }
   }
   .about-hero__lockup { max-width: 42rem; }
+  /* V4: real official logo (537×620) prominent on a soft cream background. */
   .about-hero__art {
-    position: relative; aspect-ratio: 4/3; background: var(--paper-warm);
+    position: relative; aspect-ratio: 537/620;
+    background: radial-gradient(circle at 50% 45%, #f9f5eb, #e7ebdf);
     border-radius: var(--r-panel); overflow: hidden;
-    display: flex; align-items: center; justify-content: center; padding: 2rem;
+    display: flex; align-items: center; justify-content: center;
+    padding: 0;
   }
-  .about-hero__art .product-media { width: 100%; height: 100%; }
-  .about-hero__art .product-media__official { object-fit: contain; }
-  .about-hero__art .product-media__fallback { padding: 2rem; }
+  .about-hero__art .about-hero__logo {
+    display: block;
+    width: min(75%, 380px); height: auto;
+    object-fit: contain;
+  }
 
   /* ===== WHO WE ARE ===== */
   .about-section { padding-block: clamp(3.5rem, 6vw, 5rem); }
@@ -59,30 +74,37 @@ $addressLine = implode("\n", $address);
     position: relative; aspect-ratio: 4/3; background: var(--limewash);
     border-radius: var(--r-panel); overflow: hidden;
     margin-bottom: 1rem;
+    display: flex; align-items: center; justify-content: center;
   }
-  .about-product-card__media .product-media { width: 100%; height: 100%; }
-  .about-product-card__media .product-media__official { object-fit: contain; padding: 1.5rem; }
-  .about-product-card__media .product-media__fallback { padding: 1.5rem; }
+  .about-product-card__media .about-product-photo {
+    display: block;
+    max-height: 80%; max-width: 70%;
+    width: auto; height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 14px 20px rgba(34, 36, 27, 0.16));
+  }
+  /* Distemper crop: 510×538, cap at 420px CSS. */
+  .about-product-card__media--distemper .about-product-photo {
+    max-width: min(70%, 420px);
+  }
+  /* Emulsion crop: 355×486, cap at 320px CSS. */
+  .about-product-card__media--emulsion .about-product-photo {
+    max-width: min(60%, 320px);
+  }
 
-  /* ===== MATERIAL DIRECTION ===== */
+  /* ===== MATERIAL DIRECTION — zebu-study beside wall ===== */
   .about-direction-section { padding-block: clamp(3.5rem, 6vw, 5rem); }
   .about-direction__visual {
-    position: relative; aspect-ratio: 5/4; background: var(--limewash);
+    position: relative; aspect-ratio: 1536/1024; background: var(--limewash);
     border-radius: var(--r-panel); overflow: hidden;
   }
-  .about-direction__visual .ms-wall {
-    position: absolute; right: 8%; top: 8%; bottom: 8%; width: 46%;
-    background: linear-gradient(135deg, var(--limewash), color-mix(in srgb, var(--kraft) 35%, var(--limewash)));
-    overflow: hidden;
+  .about-direction__visual .editorial-image {
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
   }
-  .about-direction__visual .ms-wall::after {
-    content: ''; position: absolute; inset: 0;
-    background-image: radial-gradient(circle at 1px 1px, rgba(32, 30, 25, 0.08) 0.5px, transparent 0);
-    background-size: 14px 14px;
-  }
-  .about-direction__visual .ms-cow {
-    position: absolute; left: 6%; bottom: 8%; width: 42%; opacity: 0.85;
-  }
+  /* Legacy cow/wall composition — replaced by single editorial photo. */
+  .about-direction__visual .ms-wall,
+  .about-direction__visual .ms-cow,
+  .about-direction__visual .ms-arrow { display: none; }
 
   /* ===== MISSION BAND ===== */
   .about-mission {
@@ -92,9 +114,9 @@ $addressLine = implode("\n", $address);
   }
   .about-mission__bg {
     position: absolute; inset: 0; opacity: 0.15; pointer-events: none;
-    display: flex; align-items: flex-end; justify-content: center;
+    overflow: hidden;
   }
-  .about-mission__bg svg { width: 100%; height: auto; max-height: 100%; }
+  .about-mission__bg .editorial-image { width: 100%; height: 100%; object-fit: cover; }
   .about-mission__inner {
     position: relative; z-index: 1; max-width: 48rem;
   }
@@ -139,8 +161,12 @@ $addressLine = implode("\n", $address);
           exterior walls. From <?= e($address[3] ?? '') ?>, <?= e($address[4] ?? '') ?>.
         </p>
       </div>
-      <div class="about-hero__art about-hero__art--brand">
-        <img class="about-hero__logo" src="/assets/brand/gaurikrit-logo-full.png" alt="Gaurikrit official emblem and wordmark" width="550" height="690">
+      <div class="about-hero__art">
+        <img class="about-hero__logo"
+             src="<?= asset_url('/assets/brand/gaurikrit-logo-full.png') ?>"
+             alt="Gaurikrit official emblem and wordmark"
+             width="537" height="620"
+             loading="eager" fetchpriority="high" decoding="async">
       </div>
     </div>
   </div>
@@ -174,7 +200,7 @@ $addressLine = implode("\n", $address);
   </div>
 </section>
 
-<!-- ===== WHAT WE CURRENTLY PRESENT — 2 products ===== -->
+<!-- ===== WHAT WE CURRENTLY PRESENT — 2 real product photos ===== -->
 <section class="section section--limewash about-products-section" aria-labelledby="present-title">
   <div class="container">
     <div class="section-heading section-heading--left" data-reveal>
@@ -187,16 +213,12 @@ $addressLine = implode("\n", $address);
 
     <div class="about-products" data-reveal-stagger>
       <article class="about-product-card">
-        <div class="about-product-card__media">
-          <div class="product-media" data-official-image="<?= e($distemper['officialImage']) ?>">
-            <img class="product-media__official"
-                 src="<?= e($distemper['officialImage']) ?>"
-                 alt="<?= e($distemper['name']) ?> pack"
-                 width="800" height="600" loading="lazy" decoding="async">
-            <div class="product-media__fallback">
-              <?php render_illustration('prakritik-distemper-bucket'); ?>
-            </div>
-          </div>
+        <div class="about-product-card__media about-product-card__media--distemper">
+          <img class="about-product-photo"
+               src="<?= asset_url($distemper['officialImage']) ?>"
+               alt="<?= e($distemper['name']) ?>"
+               width="510" height="538"
+               loading="lazy" decoding="async">
         </div>
         <h3 class="about-product-card__name"><?= e($distemper['name']) ?></h3>
         <p class="about-product-card__desc">
@@ -205,16 +227,12 @@ $addressLine = implode("\n", $address);
         <a class="about-product-card__link" href="<?= e($distemper['route']) ?>">View Distemper →</a>
       </article>
       <article class="about-product-card">
-        <div class="about-product-card__media">
-          <div class="product-media" data-official-image="<?= e($emulsion['officialImage']) ?>">
-            <img class="product-media__official"
-                 src="<?= e($emulsion['officialImage']) ?>"
-                 alt="<?= e($emulsion['name']) ?> pack"
-                 width="800" height="600" loading="lazy" decoding="async">
-            <div class="product-media__fallback">
-              <?php render_illustration('prakritik-emulsion-bucket'); ?>
-            </div>
-          </div>
+        <div class="about-product-card__media about-product-card__media--emulsion">
+          <img class="about-product-photo"
+               src="<?= asset_url($emulsion['officialImage']) ?>"
+               alt="<?= e($emulsion['name']) ?>"
+               width="355" height="486"
+               loading="lazy" decoding="async">
         </div>
         <h3 class="about-product-card__name"><?= e($emulsion['name']) ?></h3>
         <p class="about-product-card__desc">
@@ -226,7 +244,7 @@ $addressLine = implode("\n", $address);
   </div>
 </section>
 
-<!-- ===== MATERIAL DIRECTION — cow + wall ===== -->
+<!-- ===== MATERIAL DIRECTION — zebu-study beside wall ===== -->
 <section class="section section--paper about-direction-section" aria-labelledby="direction-title">
   <div class="container">
     <div class="about-section" data-reveal>
@@ -249,16 +267,30 @@ $addressLine = implode("\n", $address);
         </div>
       </div>
       <div class="about-direction__visual" aria-hidden="true">
-        <img class="editorial-cow" src="/assets/illustrations/zebu-study.jpg" alt="" loading="lazy" width="1536" height="1024">
+        <picture>
+          <source type="image/webp" srcset="<?= asset_url('/assets/editorial/zebu-study.webp') ?>">
+          <img class="editorial-image"
+               src="<?= asset_url('/assets/editorial/zebu-study.jpg') ?>"
+               alt="Editorial study of an Indian zebu cow"
+               width="1536" height="1024"
+               loading="lazy" decoding="async">
+        </picture>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===== MISSION BAND ===== -->
+<!-- ===== MISSION BAND — rural-landscape engraving ===== -->
 <section class="about-mission" aria-labelledby="about-mission-title">
   <div class="about-mission__bg" aria-hidden="true">
-    <?php render_illustration('rural-landscape'); ?>
+    <picture>
+      <source type="image/webp" srcset="<?= asset_url('/assets/editorial/rural-landscape.webp') ?>">
+      <img class="editorial-image"
+           src="<?= asset_url('/assets/editorial/rural-landscape.jpg') ?>"
+           alt=""
+           width="1344" height="768"
+           loading="lazy" decoding="async">
+    </picture>
   </div>
   <div class="container">
     <div class="about-mission__inner" data-reveal>
