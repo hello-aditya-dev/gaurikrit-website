@@ -33,7 +33,12 @@ global $COMPANY, $PRODUCTS, $ASHTA_LAABH, $FAQ, $COVERAGE_DISCLAIMER;
 
 $distemper   = get_product('prakritik-distemper');
 $emulsion    = get_product('prakritik-emulsion');
-$groupImage  = '/assets/products/prakritik-group.jpg';
+$groupImage  = '/assets/products/prakritik-pair.jpg';
+$groupImageWebp = '/assets/products/prakritik-pair.webp';
+// V11: the products hero carries the client's official two-bucket comparison
+// image (Distemper left, Emulsion right) — it is the visual argument for
+// "Two formats of Prakritik Paint". The higher-resolution three-bucket shelf
+// photo stays on the home + about heroes (prakritik-group.jpg).
 ?>
 <style>
   /* ===== Editorial image reset (V4 — NO mix-blend-mode, NO blur filters) ===== */
@@ -235,11 +240,14 @@ $groupImage  = '/assets/products/prakritik-group.jpg';
         </p>
       </div>
       <div class="products-hero__visual" data-reveal>
-        <img class="hero-group-photo"
-             src="<?= asset_url($groupImage) ?>"
-             alt="Prakritik Distemper and Emulsion paint packs"
-             width="1280" height="621"
-             loading="eager" fetchpriority="high" decoding="async">
+        <picture>
+          <source type="image/webp" srcset="<?= asset_url($groupImageWebp) ?>">
+          <img class="hero-group-photo"
+               src="<?= asset_url($groupImage) ?>"
+               alt="Prakritik Distemper and Emulsion paint packs"
+               width="1420" height="618"
+               loading="eager" fetchpriority="high" decoding="async">
+        </picture>
       </div>
     </div>
   </div>
@@ -254,11 +262,14 @@ $groupImage  = '/assets/products/prakritik-group.jpg';
     <div class="product-chapter__inner" data-reveal>
       <figure class="product-chapter__visual">
         <div class="product-chapter__stage">
-          <img class="chapter-product chapter-product--distemper"
-               src="<?= asset_url($distemper['officialImage']) ?>"
-               alt="<?= e($distemper['name']) ?> paint pack"
-               width="490" height="621"
-               loading="lazy" decoding="async">
+          <picture>
+            <source type="image/webp" srcset="<?= asset_url($distemper['officialImageWebp']) ?>">
+            <img class="chapter-product chapter-product--distemper"
+                 src="<?= asset_url($distemper['officialImage']) ?>"
+                 alt="<?= e($distemper['name']) ?> paint pack"
+                 width="<?= $distemper['officialImageW'] ?>" height="<?= $distemper['officialImageH'] ?>"
+                 loading="lazy" decoding="async">
+          </picture>
         </div>
         <div class="product-chapter__strip" aria-hidden="true">
           <picture>
@@ -304,11 +315,14 @@ $groupImage  = '/assets/products/prakritik-group.jpg';
     <div class="product-chapter__inner" data-reveal>
       <figure class="product-chapter__visual">
         <div class="product-chapter__stage">
-          <img class="chapter-product chapter-product--emulsion"
-               src="<?= asset_url($emulsion['officialImage']) ?>"
-               alt="<?= e($emulsion['name']) ?> paint pack"
-               width="450" height="621"
-               loading="lazy" decoding="async">
+          <picture>
+            <source type="image/webp" srcset="<?= asset_url($emulsion['officialImageWebp']) ?>">
+            <img class="chapter-product chapter-product--emulsion"
+                 src="<?= asset_url($emulsion['officialImage']) ?>"
+                 alt="<?= e($emulsion['name']) ?> paint pack"
+                 width="<?= $emulsion['officialImageW'] ?>" height="<?= $emulsion['officialImageH'] ?>"
+                 loading="lazy" decoding="async">
+          </picture>
         </div>
         <div class="product-chapter__strip" aria-hidden="true">
           <picture>

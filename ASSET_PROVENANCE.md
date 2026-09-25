@@ -20,7 +20,7 @@ originals: `215f5df47d41fc18c332ff3505a5ab0e16126741`.
 | 6 | `WhatsApp …10.14.15 PM(2).jpeg` | 853×1280 | Single Prakritik paint can (Khadi India branding, red cow icon, "ECO-FRIENDLY COW DUNG PAINT"), transparent-style background. | Yes — product photo (single-can reference) |
 | 7 | `WhatsApp …10.15.03 PM(2).jpeg` | 1280×1024 | Gaurikrit kraft-box packaging shot with official logo ("NATURAL • PURE • SUSTAINABLE", www.gaurikrit.com) on blurred plant background. | No — packaging reference only |
 | 8 | `WhatsApp …10.20.10 PM(2).jpeg` | 1024×1024 | **Collage with UNSUPPORTED future products** (cow dung logs, bio-fertilizer mix, "Future Line" utility products: diyas, cups, mosquito coils). | **NO — contains unconfirmed products; never publish** |
-| 9 | `WhatsApp …10.21.44 PM(2).jpeg` | 800×400 | Two-bucket comparison graphic ("INDIA'S FIRST KHADI PRAKRITIK PAINT", Distemper blue + Emulsion orange) on light pink ground. | Yes — product comparison (not currently used; group photo used instead) |
+| 9 | `WhatsApp …10.21.44 PM(2).jpeg` | 800×400 | Two-bucket comparison graphic ("INDIA'S FIRST KHADI PRAKRITIK PAINT", Distemper left + Emulsion right) on light pink ground. | Yes — **V11 canonical pair source**: products-page hero pair, Distemper single, Emulsion single |
 | 10 | `WhatsApp …10.22.06 PM(2).jpeg` | 1280×621 | **Three-bucket group photo** (2 Emulsion + 1 Distemper centre) on wooden surface, white ground. Highest-quality current hero product image. | Yes — hero product image |
 
 ## Derivative mapping
@@ -32,6 +32,11 @@ originals: `215f5df47d41fc18c332ff3505a5ab0e16126741`.
 | `assets/products/prakritik-group.jpg` | #10 WhatsApp 10.22.06 | Full 3-bucket group photo (1280×621) |
 | `assets/products/prakritik-distemper.jpg` | #10 WhatsApp 10.22.06 | **V8 complete-bucket crop** (395,0,885,621) = 490×621 — full photo height kept; centre Distemper bucket complete (lid, handle, base, sides); narrow neighbour slivers at both edges are part of the original shelf photo (never slice the main bucket to remove them) |
 | `assets/products/prakritik-emulsion.jpg` | #10 WhatsApp 10.22.06 | **V8 complete-bucket crop** (830,0,1280,621) = 450×621 — right Emulsion bucket complete to the photo's natural right edge (wood); centre-bucket sliver at left is occlusion present in the original photo |
+| `assets/products/prakritik-pair.webp` / `.jpg` | #9 WhatsApp 10.21.44 | **V11 canonical pair crop** (46,48,756,357) = 710×309 → 2× Lanczos = 1420×618 — both buckets complete + natural cast shadows on the client's pink ground; red headline (y 12–40) and bottom name bars (y 358+) cropped away. Products-page hero ("Two formats"). Script: `scripts/derive_pair_assets.py` |
+| `assets/products/prakritik-distemper-from-pair.webp` / `.png` | #9 WhatsApp 10.21.44 | **V11 clean single cutout** — LEFT bucket crop (37,45,383,356) = 346×311 → 2× Lanczos → transparent matte: border flood-fill pink key (incl. pink cast shadows + enclosed handle pockets), 4px alpha ramp + pink unmix defringe. Trimmed to matte + 14px. **Replaces `prakritik-distemper.jpg` as `officialImage` everywhere.** |
+| `assets/products/prakritik-emulsion-from-pair.webp` / `.png` | #9 WhatsApp 10.21.44 | **V11 clean single cutout** — RIGHT bucket crop (429,45,765,356), same pipeline. **Replaces `prakritik-emulsion.jpg` as `officialImage` everywhere.** |
+| `assets/social/og-distemper.jpg` | #9 via cutout | V11 regeneration of the distemper share card with the new clean single (same card template as `scripts/prepare_assets.py`) |
+| `assets/social/og-emulsion.jpg` | #9 via cutout | V11 regeneration of the emulsion share card with the new clean single |
 | `assets/documents/prakritik-paint-brochure.pdf` | #1 Broucher-paint.pdf | Direct copy |
 | `assets/documents/prakritik-paint-brochure-cover.jpg` | #1 Broucher-paint.pdf | Rendered page 1 at 120 DPI |
 | `assets/editorial/zebu-study.webp` | `source-assets/zebu-study.png` (1536×1024) | Generated editorial artwork — **RETIRED from all pages in V10** (decorative cow illustration removed; files kept on disk for history) |
@@ -65,6 +70,26 @@ originals: `215f5df47d41fc18c332ff3505a5ab0e16126741`.
    contact plate, product plate heads, 404 seal) — never as substitute
    imagery for a section.
 5. File #8 (future-products collage) is excluded from all public outputs.
+
+## V11 usage rules (product visuals)
+
+1. **The 10.21.44 pair image (#9) is the canonical two-product visual**: the
+   products-page hero carries `prakritik-pair` (the official
+   Distemper-vs-Emulsion comparison, headline and name bars cropped away).
+2. **Single-product visuals come from the pair-derived cutouts**
+   (`prakritik-distemper-from-pair` / `prakritik-emulsion-from-pair`):
+   complete buckets, no neighbour slivers, no occlusion — used as
+   `officialImage` for product chapters, material steps, format cards,
+   about product cards and both detail-page heroes (WebP source + PNG
+   fallback inside `<picture>`; `picture{display:contents}` keeps the
+   layout identical).
+3. **The 10.22.06 three-bucket photo (#10) stays on the home + about
+   heroes** (`prakritik-group.jpg`, 1280×621) where the render size wants
+   its higher resolution; its V8 single-bucket crops remain on disk as
+   higher-resolution fallbacks but are no longer referenced by templates.
+4. Derivatives are deterministic: crops + 2× Lanczos resampling + colour-math
+   keying only (`scripts/derive_pair_assets.py`). No AI reconstruction, no
+   label retouching, no saturation tricks.
 
 ## Priority rule
 

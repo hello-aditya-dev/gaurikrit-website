@@ -158,11 +158,14 @@ $specRows = [
 
       <figure class="product-detail__media">
         <div class="product-detail__stage">
-          <img class="media-product"
-               src="<?= asset_url($product['officialImage']) ?>"
-               alt="<?= e($product['name']) ?> paint pack"
-               width="490" height="621"
-               loading="eager" fetchpriority="high" decoding="async">
+          <picture>
+            <source type="image/webp" srcset="<?= asset_url($product['officialImageWebp']) ?>">
+            <img class="media-product"
+                 src="<?= asset_url($product['officialImage']) ?>"
+                 alt="<?= e($product['name']) ?> paint pack"
+                 width="<?= $product['officialImageW'] ?>" height="<?= $product['officialImageH'] ?>"
+                 loading="eager" fetchpriority="high" decoding="async">
+          </picture>
         </div>
         <div class="product-detail__strip" aria-hidden="true">
           <picture>

@@ -115,7 +115,10 @@ const PRODUCTS = [
         coverage: '200 sq.ft.**',
         voc: 'Negligible',
         usage: 'Interior & Exterior',
-        officialImage: '/assets/products/prakritik-distemper.jpg',
+        officialImage: '/assets/products/prakritik-distemper-from-pair.png',
+        officialImageWebp: '/assets/products/prakritik-distemper-from-pair.webp',
+        officialImageW: 649,
+        officialImageH: 612,
         image: 'prakritik-distemper',
         accent: 'indigo',
         route: '/products/prakritik-distemper/',
@@ -133,7 +136,10 @@ const PRODUCTS = [
         coverage: '300 sq.ft.**',
         voc: 'Negligible',
         usage: 'Interior & Exterior',
-        officialImage: '/assets/products/prakritik-emulsion.jpg',
+        officialImage: '/assets/products/prakritik-emulsion-from-pair.png',
+        officialImageWebp: '/assets/products/prakritik-emulsion-from-pair.webp',
+        officialImageW: 638,
+        officialImageH: 612,
         image: 'prakritik-emulsion',
         accent: 'haldi',
         route: '/products/prakritik-emulsion/',
@@ -927,11 +933,14 @@ function homeBody(depth) {
     <div class="product-chapter__inner" data-reveal>
       <figure class="product-chapter__visual">
         <div class="product-chapter__stage">
-          <img class="chapter-product chapter-product--distemper"
-               src="${assetUrl(distemper.officialImage, depth)}"
-               alt="${e(distemper.name)} paint pack"
-               width="490" height="621"
-               loading="lazy" decoding="async">
+          <picture>
+            <source type="image/webp" srcset="${assetUrl(distemper.officialImageWebp, depth)}">
+            <img class="chapter-product chapter-product--distemper"
+                 src="${assetUrl(distemper.officialImage, depth)}"
+                 alt="${e(distemper.name)} paint pack"
+                 width="${distemper.officialImageW}" height="${distemper.officialImageH}"
+                 loading="lazy" decoding="async">
+          </picture>
         </div>
         <div class="product-chapter__strip" aria-hidden="true">
           ${interiorFinishStripPic}
@@ -978,11 +987,14 @@ function homeBody(depth) {
     <div class="product-chapter__inner" data-reveal>
       <figure class="product-chapter__visual">
         <div class="product-chapter__stage">
-          <img class="chapter-product chapter-product--emulsion"
-               src="${assetUrl(emulsion.officialImage, depth)}"
-               alt="${e(emulsion.name)} paint pack"
-               width="450" height="621"
-               loading="lazy" decoding="async">
+          <picture>
+            <source type="image/webp" srcset="${assetUrl(emulsion.officialImageWebp, depth)}">
+            <img class="chapter-product chapter-product--emulsion"
+                 src="${assetUrl(emulsion.officialImage, depth)}"
+                 alt="${e(emulsion.name)} paint pack"
+                 width="${emulsion.officialImageW}" height="${emulsion.officialImageH}"
+                 loading="lazy" decoding="async">
+          </picture>
         </div>
         <div class="product-chapter__strip" aria-hidden="true">
           ${exteriorFinishStripPic}
@@ -1046,11 +1058,14 @@ function homeBody(depth) {
       </article>
       <article class="material-step material-step--product">
         <figure class="material-step__figure">
-          <img class="material-step__product"
-               src="${assetUrl(distemper.officialImage, depth)}"
-               alt="Prakritik Distemper paint pack"
-               width="490" height="621"
-               loading="lazy" decoding="async">
+          <picture>
+            <source type="image/webp" srcset="${assetUrl(distemper.officialImageWebp, depth)}">
+            <img class="material-step__product"
+                 src="${assetUrl(distemper.officialImage, depth)}"
+                 alt="Prakritik Distemper paint pack"
+                 width="${distemper.officialImageW}" height="${distemper.officialImageH}"
+                 loading="lazy" decoding="async">
+          </picture>
         </figure>
         <div class="material-step__caption">
           <span class="material-step__num">02</span>
@@ -1247,8 +1262,13 @@ ${pathways}
 function productsBody(depth) {
     const distemper = getProduct('prakritik-distemper');
     const emulsion = getProduct('prakritik-emulsion');
-    const groupImage = '/assets/products/prakritik-group.jpg';
+    const groupImage = '/assets/products/prakritik-pair.jpg';
     const groupImg = assetUrl(groupImage, depth);
+    const groupImgWebp = assetUrl('/assets/products/prakritik-pair.webp', depth);
+    // V11: the products hero carries the client's official two-bucket comparison
+    // image (Distemper left, Emulsion right) — it is the visual argument for
+    // "Two formats of Prakritik Paint". The higher-resolution three-bucket shelf
+    // photo stays on the home + about heroes (prakritik-group.jpg).
 
     const benefitsItems = ASHTA_LAABH.map(
         (benefit) => `        <li class="benefits-strip__item">
@@ -1480,11 +1500,14 @@ function productsBody(depth) {
         </p>
       </div>
       <div class="products-hero__visual" data-reveal>
-        <img class="hero-group-photo"
-             src="${groupImg}"
-             alt="Prakritik Distemper and Emulsion paint packs"
-             width="1280" height="621"
-             loading="eager" fetchpriority="high" decoding="async">
+        <picture>
+          <source type="image/webp" srcset="${groupImgWebp}">
+          <img class="hero-group-photo"
+               src="${groupImg}"
+               alt="Prakritik Distemper and Emulsion paint packs"
+               width="1420" height="618"
+               loading="eager" fetchpriority="high" decoding="async">
+        </picture>
       </div>
     </div>
   </div>
@@ -1499,11 +1522,14 @@ function productsBody(depth) {
     <div class="product-chapter__inner" data-reveal>
       <figure class="product-chapter__visual">
         <div class="product-chapter__stage">
-          <img class="chapter-product chapter-product--distemper"
-               src="${assetUrl(distemper.officialImage, depth)}"
-               alt="${e(distemper.name)} paint pack"
-               width="490" height="621"
-               loading="lazy" decoding="async">
+          <picture>
+            <source type="image/webp" srcset="${assetUrl(distemper.officialImageWebp, depth)}">
+            <img class="chapter-product chapter-product--distemper"
+                 src="${assetUrl(distemper.officialImage, depth)}"
+                 alt="${e(distemper.name)} paint pack"
+                 width="${distemper.officialImageW}" height="${distemper.officialImageH}"
+                 loading="lazy" decoding="async">
+          </picture>
         </div>
         <div class="product-chapter__strip" aria-hidden="true">
           ${interiorFinishStripPic}
@@ -1542,11 +1568,14 @@ function productsBody(depth) {
     <div class="product-chapter__inner" data-reveal>
       <figure class="product-chapter__visual">
         <div class="product-chapter__stage">
-          <img class="chapter-product chapter-product--emulsion"
-               src="${assetUrl(emulsion.officialImage, depth)}"
-               alt="${e(emulsion.name)} paint pack"
-               width="450" height="621"
-               loading="lazy" decoding="async">
+          <picture>
+            <source type="image/webp" srcset="${assetUrl(emulsion.officialImageWebp, depth)}">
+            <img class="chapter-product chapter-product--emulsion"
+                 src="${assetUrl(emulsion.officialImage, depth)}"
+                 alt="${e(emulsion.name)} paint pack"
+                 width="${emulsion.officialImageW}" height="${emulsion.officialImageH}"
+                 loading="lazy" decoding="async">
+          </picture>
         </div>
         <div class="product-chapter__strip" aria-hidden="true">
           ${exteriorFinishStripPic}
@@ -1859,11 +1888,14 @@ function distemperBody(depth) {
 
       <figure class="product-detail__media">
         <div class="product-detail__stage">
-          <img class="media-product"
-               src="${assetUrl(product.officialImage, depth)}"
-               alt="${e(product.name)} paint pack"
-               width="490" height="621"
-               loading="eager" fetchpriority="high" decoding="async">
+          <picture>
+            <source type="image/webp" srcset="${assetUrl(product.officialImageWebp, depth)}">
+            <img class="media-product"
+                 src="${assetUrl(product.officialImage, depth)}"
+                 alt="${e(product.name)} paint pack"
+                 width="${product.officialImageW}" height="${product.officialImageH}"
+                 loading="eager" fetchpriority="high" decoding="async">
+          </picture>
         </div>
         <div class="product-detail__strip" aria-hidden="true">
           ${interiorFinishStripPic}
@@ -2083,11 +2115,14 @@ function emulsionBody(depth) {
     <div class="product-detail__hero" data-reveal>
       <figure class="product-detail__media">
         <div class="product-detail__stage">
-          <img class="media-product"
-               src="${assetUrl(product.officialImage, depth)}"
-               alt="${e(product.name)} paint pack"
-               width="450" height="621"
-               loading="eager" fetchpriority="high" decoding="async">
+          <picture>
+            <source type="image/webp" srcset="${assetUrl(product.officialImageWebp, depth)}">
+            <img class="media-product"
+                 src="${assetUrl(product.officialImage, depth)}"
+                 alt="${e(product.name)} paint pack"
+                 width="${product.officialImageW}" height="${product.officialImageH}"
+                 loading="eager" fetchpriority="high" decoding="async">
+          </picture>
         </div>
         <div class="product-detail__strip" aria-hidden="true">
           ${exteriorFinishStripPic}
@@ -2472,11 +2507,14 @@ function whyPrakritikBody(depth) {
       </article>
       <article class="material-step material-step--product">
         <figure class="material-step__figure">
-          <img class="material-step__product"
-               src="${assetUrl(distemper.officialImage, depth)}"
-               alt="Prakritik Distemper paint pack"
-               width="490" height="621"
-               loading="lazy" decoding="async">
+          <picture>
+            <source type="image/webp" srcset="${assetUrl(distemper.officialImageWebp, depth)}">
+            <img class="material-step__product"
+                 src="${assetUrl(distemper.officialImage, depth)}"
+                 alt="Prakritik Distemper paint pack"
+                 width="${distemper.officialImageW}" height="${distemper.officialImageH}"
+                 loading="lazy" decoding="async">
+          </picture>
         </figure>
         <div class="material-step__caption">
           <span class="material-step__num">02</span>
@@ -2534,19 +2572,25 @@ ${ashtaItems}
 
     <div class="why-formats" data-reveal-stagger>
       <div class="why-format-card why-format-card--distemper">
-        <img class="format-product"
-             src="${assetUrl(distemper.officialImage, depth)}"
-             alt="${e(distemper.name)}"
-             width="490" height="621"
-             loading="lazy" decoding="async">
+        <picture>
+          <source type="image/webp" srcset="${assetUrl(distemper.officialImageWebp, depth)}">
+          <img class="format-product"
+               src="${assetUrl(distemper.officialImage, depth)}"
+               alt="${e(distemper.name)}"
+               width="${distemper.officialImageW}" height="${distemper.officialImageH}"
+               loading="lazy" decoding="async">
+        </picture>
         <span class="why-format-card__caption">${e(distemper.packagingShort)} packs</span>
       </div>
       <div class="why-format-card why-format-card--emulsion">
-        <img class="format-product"
-             src="${assetUrl(emulsion.officialImage, depth)}"
-             alt="${e(emulsion.name)}"
-             width="450" height="621"
-             loading="lazy" decoding="async">
+        <picture>
+          <source type="image/webp" srcset="${assetUrl(emulsion.officialImageWebp, depth)}">
+          <img class="format-product"
+               src="${assetUrl(emulsion.officialImage, depth)}"
+               alt="${e(emulsion.name)}"
+               width="${emulsion.officialImageW}" height="${emulsion.officialImageH}"
+               loading="lazy" decoding="async">
+        </picture>
         <span class="why-format-card__caption">${e(emulsion.packagingShort)} packs</span>
       </div>
     </div>
@@ -2839,11 +2883,14 @@ function aboutBody(depth) {
     <div class="about-products" data-reveal-stagger>
       <article class="about-product-card">
         <div class="about-product-card__media about-product-card__media--distemper">
-          <img class="about-product-photo"
-               src="${assetUrl(distemper.officialImage, depth)}"
-               alt="${e(distemper.name)}"
-               width="490" height="621"
-               loading="lazy" decoding="async">
+          <picture>
+            <source type="image/webp" srcset="${assetUrl(distemper.officialImageWebp, depth)}">
+            <img class="about-product-photo"
+                 src="${assetUrl(distemper.officialImage, depth)}"
+                 alt="${e(distemper.name)}"
+                 width="${distemper.officialImageW}" height="${distemper.officialImageH}"
+                 loading="lazy" decoding="async">
+          </picture>
         </div>
         <h3 class="about-product-card__name">${e(distemper.name)}</h3>
         <p class="about-product-card__desc">
@@ -2853,11 +2900,14 @@ function aboutBody(depth) {
       </article>
       <article class="about-product-card">
         <div class="about-product-card__media about-product-card__media--emulsion">
-          <img class="about-product-photo"
-               src="${assetUrl(emulsion.officialImage, depth)}"
-               alt="${e(emulsion.name)}"
-               width="450" height="621"
-               loading="lazy" decoding="async">
+          <picture>
+            <source type="image/webp" srcset="${assetUrl(emulsion.officialImageWebp, depth)}">
+            <img class="about-product-photo"
+                 src="${assetUrl(emulsion.officialImage, depth)}"
+                 alt="${e(emulsion.name)}"
+                 width="${emulsion.officialImageW}" height="${emulsion.officialImageH}"
+                 loading="lazy" decoding="async">
+          </picture>
         </div>
         <h3 class="about-product-card__name">${e(emulsion.name)}</h3>
         <p class="about-product-card__desc">

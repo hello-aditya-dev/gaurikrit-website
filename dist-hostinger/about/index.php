@@ -290,11 +290,14 @@ $addressLine = implode("\n", $address);
     <div class="about-products" data-reveal-stagger>
       <article class="about-product-card">
         <div class="about-product-card__media about-product-card__media--distemper">
-          <img class="about-product-photo"
-               src="<?= asset_url($distemper['officialImage']) ?>"
-               alt="<?= e($distemper['name']) ?>"
-               width="490" height="621"
-               loading="lazy" decoding="async">
+          <picture>
+            <source type="image/webp" srcset="<?= asset_url($distemper['officialImageWebp']) ?>">
+            <img class="about-product-photo"
+                 src="<?= asset_url($distemper['officialImage']) ?>"
+                 alt="<?= e($distemper['name']) ?>"
+                 width="<?= $distemper['officialImageW'] ?>" height="<?= $distemper['officialImageH'] ?>"
+                 loading="lazy" decoding="async">
+          </picture>
         </div>
         <h3 class="about-product-card__name"><?= e($distemper['name']) ?></h3>
         <p class="about-product-card__desc">
@@ -304,11 +307,14 @@ $addressLine = implode("\n", $address);
       </article>
       <article class="about-product-card">
         <div class="about-product-card__media about-product-card__media--emulsion">
-          <img class="about-product-photo"
-               src="<?= asset_url($emulsion['officialImage']) ?>"
-               alt="<?= e($emulsion['name']) ?>"
-               width="450" height="621"
-               loading="lazy" decoding="async">
+          <picture>
+            <source type="image/webp" srcset="<?= asset_url($emulsion['officialImageWebp']) ?>">
+            <img class="about-product-photo"
+                 src="<?= asset_url($emulsion['officialImage']) ?>"
+                 alt="<?= e($emulsion['name']) ?>"
+                 width="<?= $emulsion['officialImageW'] ?>" height="<?= $emulsion['officialImageH'] ?>"
+                 loading="lazy" decoding="async">
+          </picture>
         </div>
         <h3 class="about-product-card__name"><?= e($emulsion['name']) ?></h3>
         <p class="about-product-card__desc">

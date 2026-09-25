@@ -344,11 +344,14 @@ $ashtaIds = [
       </article>
       <article class="material-step material-step--product">
         <figure class="material-step__figure">
-          <img class="material-step__product"
-               src="<?= asset_url($distemper['officialImage']) ?>"
-               alt="Prakritik Distemper paint pack"
-               width="490" height="621"
-               loading="lazy" decoding="async">
+          <picture>
+            <source type="image/webp" srcset="<?= asset_url($distemper['officialImageWebp']) ?>">
+            <img class="material-step__product"
+                 src="<?= asset_url($distemper['officialImage']) ?>"
+                 alt="Prakritik Distemper paint pack"
+                 width="<?= $distemper['officialImageW'] ?>" height="<?= $distemper['officialImageH'] ?>"
+                 loading="lazy" decoding="async">
+          </picture>
         </figure>
         <div class="material-step__caption">
           <span class="material-step__num">02</span>
@@ -420,19 +423,25 @@ $ashtaIds = [
 
     <div class="why-formats" data-reveal-stagger>
       <div class="why-format-card why-format-card--distemper">
-        <img class="format-product"
-             src="<?= asset_url($distemper['officialImage']) ?>"
-             alt="<?= e($distemper['name']) ?>"
-             width="490" height="621"
-             loading="lazy" decoding="async">
+        <picture>
+          <source type="image/webp" srcset="<?= asset_url($distemper['officialImageWebp']) ?>">
+          <img class="format-product"
+               src="<?= asset_url($distemper['officialImage']) ?>"
+               alt="<?= e($distemper['name']) ?>"
+               width="<?= $distemper['officialImageW'] ?>" height="<?= $distemper['officialImageH'] ?>"
+               loading="lazy" decoding="async">
+        </picture>
         <span class="why-format-card__caption"><?= e($distemper['packagingShort']) ?> packs</span>
       </div>
       <div class="why-format-card why-format-card--emulsion">
-        <img class="format-product"
-             src="<?= asset_url($emulsion['officialImage']) ?>"
-             alt="<?= e($emulsion['name']) ?>"
-             width="450" height="621"
-             loading="lazy" decoding="async">
+        <picture>
+          <source type="image/webp" srcset="<?= asset_url($emulsion['officialImageWebp']) ?>">
+          <img class="format-product"
+               src="<?= asset_url($emulsion['officialImage']) ?>"
+               alt="<?= e($emulsion['name']) ?>"
+               width="<?= $emulsion['officialImageW'] ?>" height="<?= $emulsion['officialImageH'] ?>"
+               loading="lazy" decoding="async">
+        </picture>
         <span class="why-format-card__caption"><?= e($emulsion['packagingShort']) ?> packs</span>
       </div>
     </div>

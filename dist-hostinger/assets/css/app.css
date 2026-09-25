@@ -167,6 +167,12 @@ h1, h2, h3, h4, h5, h6 {
 
 a { color: inherit; text-decoration: none; }
 img, svg { display: block; max-width: 100%; }
+/* V11: product photos ship as <picture> (WebP source + PNG/JPG fallback).
+   display:contents keeps <picture> layout-transparent — the img inside
+   participates in its parent's layout exactly as it did before the wrapper
+   (percentage widths/heights, flex/grid centering and absolute stages all
+   resolve against the real parent, never the anonymous picture box). */
+picture { display: contents; }
 
 button {
   font: inherit;

@@ -382,11 +382,14 @@ $ashtaIds = [
     <div class="product-chapter__inner" data-reveal>
       <figure class="product-chapter__visual">
         <div class="product-chapter__stage">
-          <img class="chapter-product chapter-product--distemper"
-               src="<?= asset_url($distemper['officialImage']) ?>"
-               alt="<?= e($distemper['name']) ?> paint pack"
-               width="490" height="621"
-               loading="lazy" decoding="async">
+          <picture>
+            <source type="image/webp" srcset="<?= asset_url($distemper['officialImageWebp']) ?>">
+            <img class="chapter-product chapter-product--distemper"
+                 src="<?= asset_url($distemper['officialImage']) ?>"
+                 alt="<?= e($distemper['name']) ?> paint pack"
+                 width="<?= $distemper['officialImageW'] ?>" height="<?= $distemper['officialImageH'] ?>"
+                 loading="lazy" decoding="async">
+          </picture>
         </div>
         <div class="product-chapter__strip" aria-hidden="true">
           <picture>
@@ -440,11 +443,14 @@ $ashtaIds = [
     <div class="product-chapter__inner" data-reveal>
       <figure class="product-chapter__visual">
         <div class="product-chapter__stage">
-          <img class="chapter-product chapter-product--emulsion"
-               src="<?= asset_url($emulsion['officialImage']) ?>"
-               alt="<?= e($emulsion['name']) ?> paint pack"
-               width="450" height="621"
-               loading="lazy" decoding="async">
+          <picture>
+            <source type="image/webp" srcset="<?= asset_url($emulsion['officialImageWebp']) ?>">
+            <img class="chapter-product chapter-product--emulsion"
+                 src="<?= asset_url($emulsion['officialImage']) ?>"
+                 alt="<?= e($emulsion['name']) ?> paint pack"
+                 width="<?= $emulsion['officialImageW'] ?>" height="<?= $emulsion['officialImageH'] ?>"
+                 loading="lazy" decoding="async">
+          </picture>
         </div>
         <div class="product-chapter__strip" aria-hidden="true">
           <picture>
@@ -522,11 +528,14 @@ $ashtaIds = [
       </article>
       <article class="material-step material-step--product">
         <figure class="material-step__figure">
-          <img class="material-step__product"
-               src="<?= asset_url($distemper['officialImage']) ?>"
-               alt="Prakritik Distemper paint pack"
-               width="490" height="621"
-               loading="lazy" decoding="async">
+          <picture>
+            <source type="image/webp" srcset="<?= asset_url($distemper['officialImageWebp']) ?>">
+            <img class="material-step__product"
+                 src="<?= asset_url($distemper['officialImage']) ?>"
+                 alt="Prakritik Distemper paint pack"
+                 width="<?= $distemper['officialImageW'] ?>" height="<?= $distemper['officialImageH'] ?>"
+                 loading="lazy" decoding="async">
+          </picture>
         </figure>
         <div class="material-step__caption">
           <span class="material-step__num">02</span>
