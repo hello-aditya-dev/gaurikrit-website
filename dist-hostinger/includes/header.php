@@ -7,7 +7,7 @@
  * If present, shows official logo. If absent, shows coded cow-mark + Gaurikrit text.
  * No broken image — the <img> has onerror handling in app.js.
  */
-global $COMPANY, $NAV, $config;
+global $COMPANY, $NAV, $NAV_UTILITIES, $PRODUCTS_MENU, $config;
 $pageTitle       = $pageTitle       ?? 'Gaurikrit — Prakritik Paint & Bio Products';
 $pageDescription = $pageDescription ?? 'Gaurikrit Bio Products offers cow dung-based Prakritik Distemper and Emulsion Paint for interior and exterior walls from Bulandshahr, Uttar Pradesh.';
 $pageCanonical   = $pageCanonical   ?? '/';
@@ -53,7 +53,24 @@ $pageOgImage     = $pageOgImage     ?? null;
 
             <nav class="site-nav" aria-label="Primary" data-spy>
                 <?php foreach ($NAV as $link): ?>
+                  <?php if ($link['label'] === 'Products'): ?>
+                    <!-- V18 §54: Products dropdown — real routes/anchors only. -->
+                    <div class="site-nav__item" data-nav-menu>
+                        <button type="button" class="site-nav__link site-nav__link--parent"
+                                data-nav-link="<?= e($link['href']) ?>"
+                                aria-expanded="false" aria-haspopup="true" aria-controls="nav-products-menu">
+                            Products
+                            <svg class="site-nav__chevron" width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M2 3.5 5 6.5 8 3.5"/></svg>
+                        </button>
+                        <div class="nav-menu" id="nav-products-menu" hidden>
+                          <?php foreach ($PRODUCTS_MENU as $item): ?>
+                            <a href="<?= e($item['href']) ?>" class="nav-menu__link<?= !empty($item['strong']) ? ' nav-menu__link--strong' : '' ?>"><?= e($item['label']) ?></a>
+                          <?php endforeach; ?>
+                        </div>
+                    </div>
+                  <?php else: ?>
                     <a href="<?= e($link['href']) ?>" class="site-nav__link" data-nav-link="<?= e($link['href']) ?>"><?= e($link['label']) ?></a>
+                  <?php endif; ?>
                 <?php endforeach; ?>
             </nav>
 
@@ -78,6 +95,14 @@ $pageOgImage     = $pageOgImage     ?? null;
             <nav class="mobile-menu__nav" aria-label="Mobile">
                 <?php foreach ($NAV as $link): ?>
                     <a href="<?= e($link['href']) ?>" class="mobile-menu__link" data-nav-link="<?= e($link['href']) ?>"><?= e($link['label']) ?><span class="mobile-menu__arrow">→</span></a>
+                    <?php if ($link['label'] === 'Products'): ?>
+                      <!-- V18 §54: the products sub-group under the Products link. -->
+                      <div class="mobile-menu__sub">
+                        <?php foreach ($PRODUCTS_MENU as $item): ?>
+                          <a href="<?= e($item['href']) ?>" class="mobile-menu__sub-link"><?= e($item['label']) ?></a>
+                        <?php endforeach; ?>
+                      </div>
+                    <?php endif; ?>
                 <?php endforeach; ?>
             </nav>
             <!-- V16 §46: secondary utilities near the bottom of the menu.

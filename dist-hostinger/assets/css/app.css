@@ -5339,3 +5339,206 @@ p, li, dd, blockquote { text-wrap: pretty; }
     transition: none;
   }
 }
+
+/* ==========================================================================
+   48. V18 CLIENT-ASSET INTEGRATION — real client imagery + the colour
+       system. Shared chrome: Products dropdown (§54), mobile sub-group,
+       the two-object hero field (§13), the documented Eco-Paint family
+       section (§39.05) and the colour-collection callout (§20). Ground
+       families unchanged; /colours/ structures are page-local.
+   ========================================================================== */
+
+/* 48.1 Products dropdown (desktop, §54) — quiet panel, real links only. */
+.site-nav__item { position: relative; }
+.site-nav__link--parent {
+  display: inline-flex; align-items: center; gap: 0.375rem;
+}
+.site-nav__chevron { transition: transform 0.2s var(--ease); flex: 0 0 auto; }
+.site-nav__item [aria-expanded="true"] .site-nav__chevron { transform: rotate(180deg); }
+.nav-menu {
+  position: absolute; top: calc(100% + 0.5rem); left: 50%;
+  transform: translateX(-50%);
+  min-width: 16rem; background: var(--paper);
+  border: 1px solid var(--border); border-radius: var(--r-card);
+  box-shadow: 0 18px 44px rgba(23, 63, 43, 0.16);
+  padding: 0.375rem; z-index: 80;
+  display: flex; flex-direction: column;
+}
+.nav-menu__link {
+  display: block; padding: 0.5rem 0.875rem; border-radius: var(--r-card);
+  font-size: 0.9375rem; color: var(--fg); line-height: 1.35; text-align: left;
+  white-space: nowrap;
+}
+.nav-menu__link:hover, .nav-menu__link:focus-visible {
+  background: var(--limewash); color: var(--forest); text-decoration: none;
+}
+.nav-menu__link--strong {
+  font-weight: 600; color: var(--forest);
+  border-bottom: 1px solid var(--border);
+  border-radius: var(--r-card) var(--r-card) 0 0;
+  margin-bottom: 0.25rem;
+}
+
+/* 48.2 Mobile menu — the Products sub-group (§54). */
+.mobile-menu__sub {
+  padding: 0.25rem 1.375rem 0.875rem 2.375rem;
+  display: flex; flex-direction: column; gap: 0.125rem;
+}
+.mobile-menu__sub-link {
+  padding: 0.4375rem 0; font-size: 0.9375rem; color: var(--fg-muted);
+  line-height: 1.3;
+}
+.mobile-menu__sub-link::before {
+  content: ""; display: inline-block; width: 0.375rem; height: 1px;
+  background: var(--haldi); margin-right: 0.5rem; vertical-align: middle;
+}
+.mobile-menu__sub-link:hover, .mobile-menu__sub-link:active { color: var(--forest); }
+
+/* 48.3 Two-object hero field (§13) — the material field now carries BOTH
+       real objects: the Prakritik pair (main plane) and the client's clean
+       cow-dung-log plate (secondary plane, deliberate catalogue plate per
+       §47B — the white ground reads intentional inside its own plate). */
+.story-field__objects {
+  position: relative; z-index: 1;
+  display: grid; grid-template-columns: 1fr; gap: clamp(1rem, 2vw, 1.5rem);
+  align-items: end;
+}
+@media (min-width: 768px) {
+  .story-field__objects { grid-template-columns: 3fr 2fr; }
+}
+.story-field__object { min-width: 0; display: flex; flex-direction: column; gap: 0.625rem; }
+.story-field__photo { max-width: none; }
+.story-field__secondary {
+  border: 1px solid var(--border); background: #fff;
+  padding: clamp(0.5rem, 1vw, 0.75rem); border-radius: var(--r-card);
+  justify-self: start; width: min(100%, 18rem);
+}
+.story-field__secondary img {
+  display: block; width: 100%; height: auto; border-radius: calc(var(--r-card) - 2px);
+}
+.story-field__object-label {
+  display: flex; align-items: baseline; gap: 0.5rem;
+  font-size: 0.625rem; font-weight: 700; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--primary); line-height: 1.35;
+}
+.story-field__object-label small {
+  font-size: 0.5625rem; font-weight: 600; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--fg-muted);
+}
+.story-field__object--lead .story-field__object-label::before {
+  content: ""; width: 0.5rem; height: 0.5rem; border-radius: 50%;
+  background: var(--haldi); align-self: center; flex: 0 0 auto;
+}
+.story-field__object:not(.story-field__object--lead) .story-field__object-label::before {
+  content: ""; width: 0.5rem; height: 0.5rem; border-radius: 50%;
+  background: var(--forest); align-self: center; flex: 0 0 auto;
+}
+
+/* 48.4 Documented Eco-Paint family (home §39.05) — the proven outcome:
+       real pair photography, the two documented formats, colour + tool
+       links. Ruled editorial rows, NOT a product card grid. */
+.eco-documented__grid {
+  display: grid; grid-template-columns: 1fr; gap: clamp(1.75rem, 3.5vw, 3rem);
+  align-items: start;
+}
+@media (min-width: 1024px) { .eco-documented__grid { grid-template-columns: 5fr 7fr; } }
+.eco-documented__plate {
+  border: 1px solid var(--border); border-radius: var(--r-panel);
+  background: var(--paper); padding: clamp(0.75rem, 1.5vw, 1.25rem);
+  position: relative;
+}
+.eco-documented__plate::after {
+  content: ""; position: absolute; left: 0; top: 0;
+  width: 2.5rem; height: 0.25rem; background: var(--haldi);
+}
+.eco-documented__plate img {
+  display: block; width: 100%; height: auto;
+}
+.eco-documented__rows { border-top: 1px solid var(--border); }
+.eco-documented__row {
+  display: grid; grid-template-columns: 1fr; gap: 0.375rem;
+  padding: 1.125rem 0; border-bottom: 1px solid var(--border);
+  align-items: baseline;
+}
+@media (min-width: 640px) { .eco-documented__row { grid-template-columns: 3fr 4fr 5fr; } }
+.eco-documented__row-name {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: clamp(1.125rem, 1.75vw, 1.375rem); color: var(--charcoal);
+}
+.eco-documented__row-name a { color: inherit; }
+.eco-documented__row-name a:hover, .eco-documented__row-name a:focus-visible {
+  color: var(--forest); text-decoration-color: rgba(23, 63, 43, 0.4);
+}
+.eco-documented__row-meta { font-size: 0.875rem; color: var(--fg-muted); }
+.eco-documented__row-meta strong { color: var(--charcoal); font-weight: 600; }
+.eco-documented__row-cta {
+  font-size: 0.875rem; color: var(--forest); text-align: left;
+  text-decoration-color: rgba(23, 63, 43, 0.35);
+}
+@media (max-width: 639px) { .eco-documented__row-cta { text-align: left; } }
+.eco-documented__links {
+  display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; margin-top: 1.25rem;
+}
+.eco-documented__links a {
+  color: var(--forest); font-size: 0.9375rem;
+  text-decoration-color: rgba(23, 63, 43, 0.35);
+}
+.eco-documented__links a:hover, .eco-documented__links a:focus-visible {
+  text-decoration-thickness: 2px;
+}
+
+/* 48.5 Colour-collection callout (products §20) — a quiet ruled strip
+       after the format comparison. Two collections, never "36 colours". */
+.colour-cta {
+  border: 1px solid var(--border); border-left: 3px solid var(--haldi);
+  border-radius: var(--r-card); background: var(--paper);
+  padding: clamp(1.25rem, 2.5vw, 1.75rem);
+  display: flex; flex-wrap: wrap; gap: 1rem 2rem; align-items: center;
+  justify-content: space-between;
+}
+.colour-cta__eyebrow {
+  font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--fg-muted); display: block;
+  margin-bottom: 0.375rem;
+}
+.colour-cta__title {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: clamp(1.125rem, 1.75vw, 1.375rem); color: var(--charcoal);
+  margin: 0;
+}
+.colour-cta__swatch-strip { display: flex; gap: 0.375rem; align-items: center; }
+.colour-cta__swatch {
+  width: 1.5rem; height: 2.25rem; border-radius: 3px;
+  border: 1px solid rgba(23, 63, 43, 0.12);
+}
+.colour-cta__body { font-size: 0.9375rem; color: var(--fg-muted); margin: 0; }
+.colour-cta__body strong { color: var(--charcoal); font-weight: 600; }
+
+/* 48.6 GoCast editorial composition (products §16) — real log imagery at
+       natural ratio in a quiet plate; copy-led, never a "product card". */
+.gocast-feature {
+  display: grid; grid-template-columns: 1fr; gap: clamp(1.5rem, 3vw, 2.75rem);
+  align-items: start;
+}
+@media (min-width: 1024px) { .gocast-feature { grid-template-columns: 45fr 55fr; } }
+.gocast-feature__figure {
+  border: 1px solid var(--border); border-radius: var(--r-panel);
+  overflow: hidden; background: var(--paper);
+}
+.gocast-feature__figure img { display: block; width: 100%; height: auto; }
+.gocast-feature__figure figcaption {
+  padding: 0.625rem 1rem; font-size: 0.75rem; color: var(--fg-muted);
+  border-top: 1px solid var(--border); letter-spacing: 0.02em;
+}
+.gocast-feature__copy h3 {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: clamp(1.5rem, 2.5vw, 2rem); color: var(--charcoal);
+  letter-spacing: -0.01em;
+}
+.gocast-feature__copy p { margin-top: 0.875rem; line-height: 1.7; color: var(--fg); }
+.gocast-feature__copy p.muted { color: var(--fg-muted); }
+
+/* 48.7 Reduced motion for the V18 chrome. */
+@media (prefers-reduced-motion: reduce) {
+  .site-nav__chevron { transition: none; }
+}

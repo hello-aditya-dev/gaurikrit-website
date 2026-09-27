@@ -20,6 +20,7 @@ function render_meta(array $meta, array $company = []): void
         '/sustainability/' => 'sustainability', '/innovation/' => 'innovation',
         '/for-business/' => 'for-business', '/paint-calculator/' => 'calculator',
         '/downloads/' => 'downloads', '/contact/' => 'contact',
+        '/colours/' => 'colours',
     ];
     $slug = $ogNames[$canonical] ?? 'home';
     $ogImage = $meta['ogImage'] ?: rtrim($siteUrl, '/') . '/assets/social/og-' . $slug . '.jpg';
@@ -86,6 +87,7 @@ function render_meta(array $meta, array $company = []): void
         '/paint-calculator/'           => 'Paint Calculator',
         '/downloads/'                  => 'Downloads',
         '/contact/'                    => 'Contact',
+        '/colours/'                    => 'Colours',
     ];
     if ($canonical !== '/' && isset($crumbNames[$canonical])) {
         $items = [

@@ -176,7 +176,24 @@
             <nav class="site-nav" aria-label="Primary" data-spy>
         <a href="../" class="site-nav__link" data-nav-link="/">Home</a>
         <a href="../about/" class="site-nav__link" data-nav-link="/about/">Our Story</a>
-        <a href="../products/" class="site-nav__link" data-nav-link="/products/">Products</a>
+                    <div class="site-nav__item" data-nav-menu>
+                        <button type="button" class="site-nav__link site-nav__link--parent"
+                                data-nav-link="/products/"
+                                aria-expanded="false" aria-haspopup="true" aria-controls="nav-products-menu">
+                            Products
+                            <svg class="site-nav__chevron" width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M2 3.5 5 6.5 8 3.5"/></svg>
+                        </button>
+                        <div class="nav-menu" id="nav-products-menu" hidden>
+                            <a href="../products/" class="nav-menu__link nav-menu__link--strong">Product Ecosystem</a>
+                            <a href="../products/#eco-paints" class="nav-menu__link">Eco-Paints</a>
+                            <a href="../products/prakritik-distemper/" class="nav-menu__link">Prakritik Distemper</a>
+                            <a href="../products/prakritik-emulsion/" class="nav-menu__link">Prakritik Emulsion</a>
+                            <a href="../colours/" class="nav-menu__link">Colours</a>
+                            <a href="../products/#gocast-logs" class="nav-menu__link">GoCast Logs</a>
+                            <a href="../products/#bio-coal-logs" class="nav-menu__link">Bio-Coal</a>
+                            <a href="../products/#utility-products" class="nav-menu__link">Utility Products</a>
+                        </div>
+                    </div>
         <a href="../sustainability/" class="site-nav__link" data-nav-link="/sustainability/">Sustainability</a>
         <a href="../innovation/" class="site-nav__link" data-nav-link="/innovation/">Innovation</a>
         <a href="../for-business/" class="site-nav__link" data-nav-link="/for-business/">Partners</a>
@@ -205,6 +222,16 @@
                 <a href="../" class="mobile-menu__link" data-nav-link="/">Home<span class="mobile-menu__arrow">→</span></a>
                 <a href="../about/" class="mobile-menu__link" data-nav-link="/about/">Our Story<span class="mobile-menu__arrow">→</span></a>
                 <a href="../products/" class="mobile-menu__link" data-nav-link="/products/">Products<span class="mobile-menu__arrow">→</span></a>
+                      <div class="mobile-menu__sub">
+                          <a href="../products/" class="mobile-menu__sub-link">Product Ecosystem</a>
+                          <a href="../products/#eco-paints" class="mobile-menu__sub-link">Eco-Paints</a>
+                          <a href="../products/prakritik-distemper/" class="mobile-menu__sub-link">Prakritik Distemper</a>
+                          <a href="../products/prakritik-emulsion/" class="mobile-menu__sub-link">Prakritik Emulsion</a>
+                          <a href="../colours/" class="mobile-menu__sub-link">Colours</a>
+                          <a href="../products/#gocast-logs" class="mobile-menu__sub-link">GoCast Logs</a>
+                          <a href="../products/#bio-coal-logs" class="mobile-menu__sub-link">Bio-Coal</a>
+                          <a href="../products/#utility-products" class="mobile-menu__sub-link">Utility Products</a>
+                      </div>
                 <a href="../sustainability/" class="mobile-menu__link" data-nav-link="/sustainability/">Sustainability<span class="mobile-menu__arrow">→</span></a>
                 <a href="../innovation/" class="mobile-menu__link" data-nav-link="/innovation/">Innovation<span class="mobile-menu__arrow">→</span></a>
                 <a href="../for-business/" class="mobile-menu__link" data-nav-link="/for-business/">Partners<span class="mobile-menu__arrow">→</span></a>
@@ -449,14 +476,36 @@
           </a>
         </li>
         <li class="chapter-index__item">
-          <a class="chapter-index__link" href="#chapter-07-title">
+          <a class="chapter-index__link" href="../colours/">
             <span class="chapter-index__num" aria-hidden="true">07</span>
-            <span class="chapter-index__name">Colours of India — a wall study.</span>
+            <span class="chapter-index__name">Explore the shade collections.</span>
             <span class="chapter-index__arrow" aria-hidden="true">→</span>
           </a>
         </li>
       </ol>
     </nav>
+    <!-- V18 §21: Explore Colours — the end of the paint/formats story. -->
+    <div class="colour-cta" data-reveal style="margin-top: 2rem;">
+      <div>
+        <span class="colour-cta__eyebrow">Colour Collections</span>
+        <h3 class="colour-cta__title">Colours Inspired by Nature.</h3>
+        <p class="colour-cta__body">
+          Two client-supplied collections — <strong>12 Signature shades</strong>
+          and a <strong>Premium collection in five groups</strong> — previewed
+          live on the wall.
+        </p>
+      </div>
+      <div class="colour-cta__swatch-strip" aria-hidden="true">
+        <span class="colour-cta__swatch" style="background: #F5EDE0"></span>
+        <span class="colour-cta__swatch" style="background: #F8AE03"></span>
+        <span class="colour-cta__swatch" style="background: #D58F18"></span>
+        <span class="colour-cta__swatch" style="background: #1E4825"></span>
+        <span class="colour-cta__swatch" style="background: #8BC3E7"></span>
+        <span class="colour-cta__swatch" style="background: #D14B1D"></span>
+        <a class="btn btn--primary" href="../colours/">Explore Colours</a>
+      </div>
+    </div>
+  </div>
   </div>
 </section>
 
@@ -538,11 +587,11 @@
       <article class="material-step material-step--product">
         <figure class="material-step__figure">
           <picture>
-            <source type="image/webp" srcset="../assets/products/prakritik-distemper-from-pair.webp">
+            <source type="image/webp" srcset="../assets/images/client/prakritik-distemper-single-cut.webp">
             <img class="material-step__product"
-                 src="../assets/products/prakritik-distemper-from-pair.png"
+                 src="../assets/images/client/prakritik-distemper-single-cut.png"
                  alt="Prakritik Distemper paint pack"
-                 width="649" height="612"
+                 width="801" height="1044"
                  loading="lazy" decoding="async">
           </picture>
         </figure>
@@ -637,11 +686,11 @@
     <div class="why-formats" data-reveal-stagger>
       <div class="why-format-card why-format-card--distemper">
         <picture>
-          <source type="image/webp" srcset="../assets/products/prakritik-distemper-from-pair.webp">
+          <source type="image/webp" srcset="../assets/images/client/prakritik-distemper-single-cut.webp">
           <img class="format-product"
-               src="../assets/products/prakritik-distemper-from-pair.png"
+               src="../assets/images/client/prakritik-distemper-single-cut.png"
                alt="Prakritik Distemper Paint"
-               width="649" height="612"
+               width="801" height="1044"
                loading="lazy" decoding="async">
         </picture>
         <span class="why-format-card__caption">1, 5, 10 &amp; 20 kg packs</span>
@@ -656,6 +705,28 @@
                loading="lazy" decoding="async">
         </picture>
         <span class="why-format-card__caption">1, 4, 10 &amp; 20 litre packs</span>
+      </div>
+    </div>
+
+    <!-- V18 §21: Explore Colours — the end of the paint/formats story. -->
+    <div class="colour-cta" data-reveal style="margin-top: 2rem;">
+      <div>
+        <span class="colour-cta__eyebrow">Colour Collections</span>
+        <h3 class="colour-cta__title">Colours Inspired by Nature.</h3>
+        <p class="colour-cta__body">
+          Two client-supplied collections — <strong>12 Signature shades</strong>
+          and a <strong>Premium collection in five groups</strong> — previewed
+          live on the wall.
+        </p>
+      </div>
+      <div class="colour-cta__swatch-strip" aria-hidden="true">
+        <span class="colour-cta__swatch" style="background: #F5EDE0"></span>
+        <span class="colour-cta__swatch" style="background: #F8AE03"></span>
+        <span class="colour-cta__swatch" style="background: #D58F18"></span>
+        <span class="colour-cta__swatch" style="background: #1E4825"></span>
+        <span class="colour-cta__swatch" style="background: #8BC3E7"></span>
+        <span class="colour-cta__swatch" style="background: #D14B1D"></span>
+        <a class="btn btn--primary" href="../colours/">Explore Colours</a>
       </div>
     </div>
   </div>
@@ -689,113 +760,6 @@
   </div>
 </section>
 
-<!-- ===== 07 COLOURS OF INDIA — wall-plane colour preview (V16: moved
-     from Home into the Eco-Paints educational context) ===== -->
-<section class="section section--paper colour-study colours-section" id="colours" aria-labelledby="chapter-07-title" data-colour-study>
-  <div class="container">
-    <div class="colours-section__head section-heading section-heading--left" data-reveal>
-      <span class="section-heading__eyebrow">Editorial colour study</span>
-      <h2 class="colours-section__title" id="chapter-07-title">Colours of India.</h2>
-      <p class="colours-section__sub">
-        Tap a swatch to preview the colour on the wall — only the wall plane
-        changes; the door, window and surroundings stay as they are. These are
-        editorial design moods — not currently available product shades.
-      </p>
-    </div>
-
-    <div class="colours-wall" data-colour-wall data-reveal>
-      <picture><source type="image/webp" srcset="../assets/editorial/colour-wall-study.webp"><img class="colours-wall__art" src="../assets/editorial/colour-wall-study.jpg" alt="Indian lime-plastered wall elevation with door and window" width="1344" height="768" loading="lazy" decoding="async"></picture>
-      <svg class="colours-wall__tint" viewBox="0 0 1344 768"
-           preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
-        <path class="colours-wall__paint" fill-rule="evenodd"
-              d="M0,104 H1344 V724 H0 Z
-                 M80,370 H304 V768 H80 Z
-                 M894,346 H1180 V654 H894 Z" />
-      </svg>
-      <span class="colours-wall__label">
-        <span data-colour-label>Limewash</span>
-        <small>Editorial colour study</small>
-      </span>
-    </div>
-
-    <div class="colours-swatches" data-reveal-stagger role="radiogroup" aria-label="Wall colour swatches">
-        <button type="button"
-                class="colours-swatch"
-                role="radio"
-                aria-checked="false"
-                style="background: #E3A51A;"
-                data-shade="#E3A51A"
-                data-shade-name="Haldi (Turmeric)"
-                data-colour-id="haldi"
-                aria-label="Haldi — Turmeric">
-          <span class="colours-swatch__label">Haldi</span>
-        </button>
-        <button type="button"
-                class="colours-swatch"
-                role="radio"
-                aria-checked="false"
-                style="background: #A86E4B;"
-                data-shade="#A86E4B"
-                data-shade-name="Mitti (Earth)"
-                data-colour-id="mitti"
-                aria-label="Mitti — Earth">
-          <span class="colours-swatch__label">Mitti</span>
-        </button>
-        <button type="button"
-                class="colours-swatch"
-                role="radio"
-                aria-checked="false"
-                style="background: #748468;"
-                data-shade="#748468"
-                data-shade-name="Neem (Leaf)"
-                data-colour-id="neem"
-                aria-label="Neem — Leaf">
-          <span class="colours-swatch__label">Neem</span>
-        </button>
-        <button type="button"
-                class="colours-swatch"
-                role="radio"
-                aria-checked="false"
-                style="background: #B65432;"
-                data-shade="#B65432"
-                data-shade-name="Geru (Ochre)"
-                data-colour-id="geru"
-                aria-label="Geru — Ochre">
-          <span class="colours-swatch__label">Geru</span>
-        </button>
-        <button type="button"
-                class="colours-swatch"
-                role="radio"
-                aria-checked="false"
-                style="background: #365B67;"
-                data-shade="#365B67"
-                data-shade-name="Indigo (Indigo)"
-                data-colour-id="indigo"
-                aria-label="Indigo — Indigo">
-          <span class="colours-swatch__label">Indigo</span>
-        </button>
-        <button type="button"
-                class="colours-swatch"
-                role="radio"
-                aria-checked="false"
-                style="background: #F4EFE2;"
-                data-shade="#F4EFE2"
-                data-shade-name="Chuna (Lime)"
-                data-colour-id="chuna"
-                aria-label="Chuna — Lime">
-          <span class="colours-swatch__label">Chuna</span>
-        </button>
-    </div>
-
-    <p class="colours-share">
-      <button type="button" class="copy-btn" data-colour-copy data-copy="" hidden
-              aria-label="Copy a link to this wall colour">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-        <span class="copy-btn__label">Copy link to this colour</span>
-      </button>
-    </p>
-  </div>
-</section>
     </main>
 
     <!-- ===== Site footer ===== -->
@@ -905,6 +869,7 @@
                 <a href="../products/#eco-paints">Eco-Paints</a>
                 <a href="../products/prakritik-distemper/">Prakritik Distemper</a>
                 <a href="../products/prakritik-emulsion/">Prakritik Emulsion</a>
+                <a href="../colours/">Colours</a>
                 <a href="../products/#gocast-logs">GoCast Logs</a>
                 <a href="../products/#bio-coal-logs">Bio-Coal Logs</a>
                 <a href="../products/#utility-products">Utility Products</a>

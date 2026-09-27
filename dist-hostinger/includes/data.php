@@ -66,10 +66,14 @@ $PRODUCTS = [
         'coverage'      => '200 sq.ft.**',
         'voc'           => 'Negligible',
         'usage'         => 'Interior & Exterior',
-        'officialImage' => '/assets/products/prakritik-distemper-from-pair.png',
-        'officialImageWebp' => '/assets/products/prakritik-distemper-from-pair.webp',
-        'officialImageW' => 649,
-        'officialImageH' => 612,
+        // V18: the sharp client-supplied single-bucket cutout (blue
+        // Distemper configuration) replaces the from-pair cutout as the
+        // Distemper feature image. Same deterministic keying pipeline as
+        // V11 — see scripts/derive_client_assets_2026_09_27.py.
+        'officialImage' => '/assets/images/client/prakritik-distemper-single-cut.png',
+        'officialImageWebp' => '/assets/images/client/prakritik-distemper-single-cut.webp',
+        'officialImageW' => 801,
+        'officialImageH' => 1044,
         'image'         => 'prakritik-distemper',
         'accent'        => 'indigo',
         'route'         => '/products/prakritik-distemper/',
@@ -115,7 +119,120 @@ $ASHTA_LAABH = [
 ];
 
 /**
+ * V18 — Prakritik Paint shade catalogue (client-supplied, 2026-09-27 batch).
+ * 12 Signature shades + 24 Premium shades in five supplied groups.
+ * Names and codes are EXACTLY as printed on the client shade cards
+ * (posters #16–18 in ASSET_PROVENANCE.md). Signature and Premium are
+ * SEPARATE collections — repeated names are NOT merged.
+ *
+ * Hex values are pixel-sampled approximations of the printed swatches
+ * (median swatch colour + VLM cross-check). Indicative digital previews
+ * only — the /colours/ page carries the permanent disclaimer:
+ * "Digital previews are indicative. Actual colour may vary with surface,
+ * application, lighting and display."
+ */
+$SHADE_SIGNATURE = [
+    ['code' => 'GK-101', 'name' => 'Ivory White',       'hex' => '#F5EDE0'],
+    ['code' => 'GK-102', 'name' => 'Pearl Cream',       'hex' => '#EFE4CE'],
+    ['code' => 'GK-103', 'name' => 'Sand Beige',        'hex' => '#E0CDA5'],
+    ['code' => 'GK-104', 'name' => 'Mango Yellow',      'hex' => '#F8AE03'],
+    ['code' => 'GK-105', 'name' => 'Turmeric Glow',     'hex' => '#D58F18'],
+    ['code' => 'GK-106', 'name' => 'Earth Brown',       'hex' => '#985A36'],
+    ['code' => 'GK-107', 'name' => 'Forest Green',      'hex' => '#1E4825'],
+    ['code' => 'GK-108', 'name' => 'Neem Green',        'hex' => '#6D9A57'],
+    ['code' => 'GK-109', 'name' => 'Sky Blue',          'hex' => '#8BC3E7'],
+    ['code' => 'GK-110', 'name' => 'Ocean Blue',        'hex' => '#024AA3'],
+    ['code' => 'GK-111', 'name' => 'Terracotta Sunset', 'hex' => '#D14B1D'],
+    ['code' => 'GK-112', 'name' => 'Brick Red',         'hex' => '#A3301E'],
+];
+
+/**
+ * Premium Collection — 24 shades in the five groups printed on the card:
+ * NATURAL NEUTRALS / SUNSHINE COLLECTION / NATURE GREENS /
+ * SKY & WATER / EARTH & HERITAGE.
+ */
+$SHADE_PREMIUM_GROUPS = [
+    [
+        'id' => 'natural-neutrals',
+        'name' => 'Natural Neutrals',
+        'shades' => [
+            ['code' => 'GK-201', 'name' => 'Ivory White',      'hex' => '#F5F0E6'],
+            ['code' => 'GK-202', 'name' => 'Pearl Cream',      'hex' => '#EFE4CE'],
+            ['code' => 'GK-203', 'name' => 'Sand Beige',       'hex' => '#E0CDA5'],
+            ['code' => 'GK-204', 'name' => 'Desert Dune',      'hex' => '#D6B896'],
+            ['code' => 'GK-205', 'name' => 'Wheat Husk',       'hex' => '#C9A87C'],
+            ['code' => 'GK-206', 'name' => 'Stone Mist',       'hex' => '#B9AF9F'],
+        ],
+    ],
+    [
+        'id' => 'sunshine',
+        'name' => 'Sunshine Collection',
+        'shades' => [
+            ['code' => 'GK-207', 'name' => 'Mango Yellow',    'hex' => '#F8AE03'],
+            ['code' => 'GK-208', 'name' => 'Turmeric Glow',   'hex' => '#D58F18'],
+            ['code' => 'GK-209', 'name' => 'Marigold Gold',   'hex' => '#F69209'],
+            ['code' => 'GK-210', 'name' => 'Golden Harvest',  'hex' => '#E8A00E'],
+            ['code' => 'GK-211', 'name' => 'Saffron Earth',   'hex' => '#E05E04'],
+            ['code' => 'GK-212', 'name' => 'Honey Amber',     'hex' => '#C97F1E'],
+        ],
+    ],
+    [
+        'id' => 'nature-greens',
+        'name' => 'Nature Greens',
+        'shades' => [
+            ['code' => 'GK-213', 'name' => 'Forest Green',    'hex' => '#1E4825'],
+            ['code' => 'GK-214', 'name' => 'Neem Green',      'hex' => '#5E7945'],
+            ['code' => 'GK-215', 'name' => 'Tulsi Green',     'hex' => '#6E9D46'],
+            ['code' => 'GK-216', 'name' => 'Bamboo Leaf',     'hex' => '#7EA162'],
+            ['code' => 'GK-217', 'name' => 'Meadow Green',    'hex' => '#8FBF77'],
+            ['code' => 'GK-218', 'name' => 'Olive Grove',     'hex' => '#6A6A26'],
+        ],
+    ],
+    [
+        'id' => 'sky-water',
+        'name' => 'Sky & Water',
+        'shades' => [
+            ['code' => 'GK-219', 'name' => 'Sky Blue',        'hex' => '#8BC3E7'],
+            ['code' => 'GK-220', 'name' => 'Ocean Blue',      'hex' => '#024AA3'],
+            ['code' => 'GK-221', 'name' => 'River Blue',      'hex' => '#3988B4'],
+            ['code' => 'GK-222', 'name' => 'Monsoon Blue',    'hex' => '#4F7BA5'],
+            ['code' => 'GK-223', 'name' => 'Morning Mist',    'hex' => '#C5D5DF'],
+            ['code' => 'GK-224', 'name' => 'Lake Blue',       'hex' => '#2399D9'],
+        ],
+    ],
+    [
+        'id' => 'earth-heritage',
+        'name' => 'Earth & Heritage',
+        'shades' => [
+            ['code' => 'GK-225', 'name' => 'Earth Brown',       'hex' => '#985A36'],
+            ['code' => 'GK-226', 'name' => 'Terracotta Sunset', 'hex' => '#D14B1D'],
+            ['code' => 'GK-227', 'name' => 'Brick Red',         'hex' => '#A3301E'],
+            ['code' => 'GK-228', 'name' => 'Cinnamon Clay',     'hex' => '#B76C3E'],
+            ['code' => 'GK-229', 'name' => 'Rustic Ochre',      'hex' => '#C18029'],
+            ['code' => 'GK-230', 'name' => 'Copper Rust',       'hex' => '#9C4B22'],
+        ],
+    ],
+];
+
+/**
+ * V18 §54 — Products dropdown (desktop) + mobile menu sub-group.
+ * Anchors link to real pages/sections only — no empty detail pages.
+ */
+$PRODUCTS_MENU = [
+    ['label' => 'Product Ecosystem',   'href' => '/products/', 'strong' => true],
+    ['label' => 'Eco-Paints',          'href' => '/products/#eco-paints'],
+    ['label' => 'Prakritik Distemper', 'href' => '/products/prakritik-distemper/'],
+    ['label' => 'Prakritik Emulsion',  'href' => '/products/prakritik-emulsion/'],
+    ['label' => 'Colours',             'href' => '/colours/'],
+    ['label' => 'GoCast Logs',         'href' => '/products/#gocast-logs'],
+    ['label' => 'Bio-Coal',            'href' => '/products/#bio-coal-logs'],
+    ['label' => 'Utility Products',    'href' => '/products/#utility-products'],
+];
+
+/**
  * Colours of India — editorial design moods. NOT available product shades.
+ * (V18: superseded on the public site by the real /colours/ catalogue above;
+ * kept for reference — the editorial study was retired from why-prakritik.)
  */
 $COLOUR_STUDY = [
     ['name' => 'Haldi',  'hex' => '#E3A51A', 'label' => 'Turmeric'],
@@ -376,6 +493,7 @@ $FOOTER_PRODUCTS = [
     ['label' => 'Eco-Paints',       'href' => '/products/#eco-paints'],
     ['label' => 'Prakritik Distemper', 'href' => '/products/prakritik-distemper/'],
     ['label' => 'Prakritik Emulsion',  'href' => '/products/prakritik-emulsion/'],
+    ['label' => 'Colours',          'href' => '/colours/'],
     ['label' => 'GoCast Logs',      'href' => '/products/#gocast-logs'],
     ['label' => 'Bio-Coal Logs',    'href' => '/products/#bio-coal-logs'],
     ['label' => 'Utility Products', 'href' => '/products/#utility-products'],

@@ -176,7 +176,24 @@
             <nav class="site-nav" aria-label="Primary" data-spy>
         <a href="../" class="site-nav__link" data-nav-link="/">Home</a>
         <a href="../about/" class="site-nav__link" data-nav-link="/about/">Our Story</a>
-        <a href="../products/" class="site-nav__link" data-nav-link="/products/">Products</a>
+                    <div class="site-nav__item" data-nav-menu>
+                        <button type="button" class="site-nav__link site-nav__link--parent"
+                                data-nav-link="/products/"
+                                aria-expanded="false" aria-haspopup="true" aria-controls="nav-products-menu">
+                            Products
+                            <svg class="site-nav__chevron" width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M2 3.5 5 6.5 8 3.5"/></svg>
+                        </button>
+                        <div class="nav-menu" id="nav-products-menu" hidden>
+                            <a href="../products/" class="nav-menu__link nav-menu__link--strong">Product Ecosystem</a>
+                            <a href="../products/#eco-paints" class="nav-menu__link">Eco-Paints</a>
+                            <a href="../products/prakritik-distemper/" class="nav-menu__link">Prakritik Distemper</a>
+                            <a href="../products/prakritik-emulsion/" class="nav-menu__link">Prakritik Emulsion</a>
+                            <a href="../colours/" class="nav-menu__link">Colours</a>
+                            <a href="../products/#gocast-logs" class="nav-menu__link">GoCast Logs</a>
+                            <a href="../products/#bio-coal-logs" class="nav-menu__link">Bio-Coal</a>
+                            <a href="../products/#utility-products" class="nav-menu__link">Utility Products</a>
+                        </div>
+                    </div>
         <a href="../sustainability/" class="site-nav__link" data-nav-link="/sustainability/">Sustainability</a>
         <a href="../innovation/" class="site-nav__link" data-nav-link="/innovation/">Innovation</a>
         <a href="../for-business/" class="site-nav__link" data-nav-link="/for-business/">Partners</a>
@@ -205,6 +222,16 @@
                 <a href="../" class="mobile-menu__link" data-nav-link="/">Home<span class="mobile-menu__arrow">→</span></a>
                 <a href="../about/" class="mobile-menu__link" data-nav-link="/about/">Our Story<span class="mobile-menu__arrow">→</span></a>
                 <a href="../products/" class="mobile-menu__link" data-nav-link="/products/">Products<span class="mobile-menu__arrow">→</span></a>
+                      <div class="mobile-menu__sub">
+                          <a href="../products/" class="mobile-menu__sub-link">Product Ecosystem</a>
+                          <a href="../products/#eco-paints" class="mobile-menu__sub-link">Eco-Paints</a>
+                          <a href="../products/prakritik-distemper/" class="mobile-menu__sub-link">Prakritik Distemper</a>
+                          <a href="../products/prakritik-emulsion/" class="mobile-menu__sub-link">Prakritik Emulsion</a>
+                          <a href="../colours/" class="mobile-menu__sub-link">Colours</a>
+                          <a href="../products/#gocast-logs" class="mobile-menu__sub-link">GoCast Logs</a>
+                          <a href="../products/#bio-coal-logs" class="mobile-menu__sub-link">Bio-Coal</a>
+                          <a href="../products/#utility-products" class="mobile-menu__sub-link">Utility Products</a>
+                      </div>
                 <a href="../sustainability/" class="mobile-menu__link" data-nav-link="/sustainability/">Sustainability<span class="mobile-menu__arrow">→</span></a>
                 <a href="../innovation/" class="mobile-menu__link" data-nav-link="/innovation/">Innovation<span class="mobile-menu__arrow">→</span></a>
                 <a href="../for-business/" class="mobile-menu__link" data-nav-link="/for-business/">Partners<span class="mobile-menu__arrow">→</span></a>
@@ -296,15 +323,15 @@
   .spec-matrix-mobile__row .k { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--fg-muted); }
   .spec-matrix-mobile__row .v { font-weight: 600; color: var(--fg); text-align: right; }
 
-  /* ===== BENEFITS / APP MAP / FAQ ===== */
-  .benefits-strip { padding-block: clamp(3rem, 6vw, 5rem); }
-  .benefits-strip__head { max-width: 48rem; margin-bottom: 2rem; }
+  /* ===== APP MAP / COLOUR CTA / GOCAST FEATURE (V18) ===== */
   .appmap-section { padding-block: clamp(3rem, 6vw, 5rem); }
   .appmap-section__head { max-width: 48rem; margin-bottom: 2.5rem; }
-  .faq-section { padding-block: clamp(4.5rem, 8vw, 6.5rem); position: relative; }
-  .faq-section .container::before { content: ''; display: block; width: 4rem; height: 2px; background: var(--haldi); margin: 0 0 3rem; }
-  .faq-section__head { max-width: 48rem; margin-bottom: 2rem; }
-  .faq-section .faq-list { max-width: 64rem; }
+  .colour-cta-section { padding-block: clamp(2.75rem, 5vw, 4rem); }
+  .gocast-feature__copy .family-section__num { display: block; margin-bottom: 0.75rem; }
+  .gocast-feature__copy .family-section__name { margin-bottom: 0.5rem; }
+  .gocast-feature__copy .family-section__line { margin-bottom: 1.125rem; }
+  .gocast-feature__copy .family-section__themes { margin-top: 1.25rem; }
+  .gocast-feature__copy .family-section__cta { margin-top: 1.75rem; }
 </style>
 
 <!-- ============================================================
@@ -387,11 +414,11 @@
       <figure class="product-chapter__visual">
         <div class="product-chapter__stage">
           <picture>
-            <source type="image/webp" srcset="../assets/products/prakritik-distemper-from-pair.webp">
+            <source type="image/webp" srcset="../assets/images/client/prakritik-distemper-single-cut.webp">
             <img class="chapter-product chapter-product--distemper"
-                 src="../assets/products/prakritik-distemper-from-pair.png"
+                 src="../assets/images/client/prakritik-distemper-single-cut.png"
                  alt="Prakritik Distemper Paint paint pack"
-                 width="649" height="612"
+                 width="801" height="1044"
                  loading="lazy" decoding="async">
           </picture>
         </div>
@@ -566,94 +593,71 @@
 </section>
 
 <!-- ============================================================
-     6. BENEFITS — the shared eight-benefit grid (Eco-Paints context)
+     06. COLOUR COLLECTIONS — quiet callout after the format
+     comparison (V18 §20). TWO separate collections.
      ============================================================ -->
-<section class="section section--haldi-wash benefits-strip" aria-labelledby="benefits-title">
+<section class="section section--haldi-wash colour-cta-section" aria-labelledby="colour-cta-title">
   <div class="container">
-    <div class="benefits-strip__head section-heading section-heading--left" data-reveal>
-      <span class="section-heading__eyebrow">Ashta Laabh — अष्ट लाभ</span>
-      <h2 class="section-heading__title" id="benefits-title">Eight benefits of Prakritik Paint.</h2>
-      <p class="section-heading__desc">
-        Benefits listed in the supplied Prakritik Paint material.
-      </p>
+    <div class="colour-cta" data-reveal>
+      <div>
+        <span class="colour-cta__eyebrow">Colour Collections</span>
+        <h3 class="colour-cta__title" id="colour-cta-title">
+          Two shade collections, inspired by nature.
+        </h3>
+        <p class="colour-cta__body">
+          <strong>12 Signature shades</strong> and a <strong>Premium
+          collection in five groups</strong> — names and codes exactly as
+          supplied on the client shade card, previewed live on the wall.
+        </p>
+      </div>
+      <div class="colour-cta__swatch-strip" aria-hidden="true">
+        <span class="colour-cta__swatch" style="background: #F5EDE0"></span>
+        <span class="colour-cta__swatch" style="background: #F8AE03"></span>
+        <span class="colour-cta__swatch" style="background: #D58F18"></span>
+        <span class="colour-cta__swatch" style="background: #1E4825"></span>
+        <span class="colour-cta__swatch" style="background: #8BC3E7"></span>
+        <span class="colour-cta__swatch" style="background: #D14B1D"></span>
+        <a class="btn btn--primary" href="../colours/">Explore Colours</a>
+      </div>
     </div>
-    <ol class="benefits-grid" data-reveal-stagger>
-        <li class="benefits-grid__item">
-          <span class="benefits-grid__num" aria-hidden="true">01</span>
-          <span class="benefits-grid__name">Antibacterial</span>
-          <span class="benefits-grid__deva">जीवाणुरोधी</span>
-        </li>
-        <li class="benefits-grid__item">
-          <span class="benefits-grid__num" aria-hidden="true">02</span>
-          <span class="benefits-grid__name">Antifungal</span>
-          <span class="benefits-grid__deva">कवकरोधी</span>
-        </li>
-        <li class="benefits-grid__item">
-          <span class="benefits-grid__num" aria-hidden="true">03</span>
-          <span class="benefits-grid__name">Eco-Friendly</span>
-          <span class="benefits-grid__deva">पर्यावरण-मित्र</span>
-        </li>
-        <li class="benefits-grid__item">
-          <span class="benefits-grid__num" aria-hidden="true">04</span>
-          <span class="benefits-grid__name">Natural Thermal Insulator</span>
-          <span class="benefits-grid__deva">प्राकृतिक ऊष्मीय इन्सुलेटर</span>
-        </li>
-        <li class="benefits-grid__item">
-          <span class="benefits-grid__num" aria-hidden="true">05</span>
-          <span class="benefits-grid__name">Cost-Effective</span>
-          <span class="benefits-grid__deva">किफ़ायती</span>
-        </li>
-        <li class="benefits-grid__item">
-          <span class="benefits-grid__num" aria-hidden="true">06</span>
-          <span class="benefits-grid__name">Free from Heavy Metals</span>
-          <span class="benefits-grid__deva">भारी धातुओं से मुक्त</span>
-        </li>
-        <li class="benefits-grid__item">
-          <span class="benefits-grid__num" aria-hidden="true">07</span>
-          <span class="benefits-grid__name">Non-Toxic</span>
-          <span class="benefits-grid__deva">गैर-विषाक्त</span>
-        </li>
-        <li class="benefits-grid__item">
-          <span class="benefits-grid__num" aria-hidden="true">08</span>
-          <span class="benefits-grid__name">Odourless</span>
-          <span class="benefits-grid__deva">गंधरहित</span>
-        </li>
-    </ol>
   </div>
 </section>
 
+
 <!-- ============================================================
-     02. GOCAST LOGS — development direction
+     07. GOCAST / COW-DUNG LOGS (V18 §16-17)
      ============================================================ -->
-<section class="section section--paper family-section" id="gocast-logs" aria-labelledby="gocast-logs-title">
+<section class="section section--paper family-section" id="gocast-logs" aria-labelledby="gocast-title">
   <div class="container">
-    <div class="family-section__grid" data-reveal>
-      <div class="family-section__copy">
+    <div class="gocast-feature" data-reveal>
+      <figure class="gocast-feature__figure">
+        <picture><source type="image/webp" srcset="../assets/images/client/cow-dung-logs-plate.webp"><img  src="../assets/images/client/cow-dung-logs-plate.jpg" alt="Client-supplied cow-dung logs on a terracotta plate with straw" width="824" height="667" loading="lazy" decoding="async"></picture>
+        <figcaption>Client-supplied cow-dung log reference.</figcaption>
+      </figure>
+      <div class="gocast-feature__copy">
         <span class="family-section__num" aria-hidden="true">02</span>
-        <h2 class="family-section__name" id="gocast-logs-title">GoCast Logs</h2>
+        <h2 class="family-section__name" id="gocast-title">GoCast Logs</h2>
         <p class="family-section__line">Saving trees without changing traditions.</p>
-        <p class="family-section__desc">
-          A dense log format developed as an alternative to conventional wood — directed at ceremonial and traditional applications where wood has long been the default.
+        <p>
+          A dense log format developed as an alternative to conventional wood —
+          directed at ceremonial and traditional applications where wood has
+          long been the default.
         </p>
         <ul class="family-section__themes">
           <li>Alternative to conventional wood</li>
           <li>Traditional / ceremonial application direction</li>
           <li>Resource-conservation direction</li>
         </ul>
-        <p class="family-section__note">
-          GoCast is a development direction. Specifications, availability and product photography will be published when the client supplies verified information.
+        <p class="muted">
+          GoCast is a development direction — the photographs show
+          client-supplied log material, not a documented product specification.
+          Dimensions, composition and availability will be published when the
+          client supplies verified information.
         </p>
         <div class="family-section__cta">
-          <a class="btn btn--outline" href="../contact/?interest=gocast-logs">Enquire About GoCast Logs</a>
+          <a class="btn btn--outline" href="../contact/?interest=gocast-logs">Enquire About GoCast</a>
         </div>
       </div>
-      <figure class="family-section__plate" aria-label="GoCast Logs — material direction">
-        <span class="family-section__plate-texture" aria-hidden="true">
-          <img src="../assets/editorial/raw-material-study.jpg" alt="" width="1344" height="768" loading="lazy" decoding="async">
-        </span>
-        <span class="family-section__plate-word">GoCast Logs</span>
-        <span class="family-section__plate-tag">Material direction</span>
-      </figure>
     </div>
   </div>
 </section>
@@ -811,102 +815,7 @@
 </section>
 
 <!-- ============================================================
-     11. FAQ (retained factual content)
-     ============================================================ -->
-<section class="section section--paper faq-section" aria-labelledby="faq-title">
-  <div class="container">
-    <div class="faq-section__head section-heading section-heading--left" data-reveal>
-      <span class="section-heading__eyebrow">Common questions</span>
-      <h2 class="section-heading__title" id="faq-title">Frequently asked.</h2>
-    </div>
-    <div class="faq-list" data-reveal>
-        <div class="faq-item">
-          <button type="button" class="faq-item__q" aria-expanded="false">
-            <span>What products are available?</span>
-            <svg class="faq-item__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-          </button>
-          <div class="faq-item__a">
-            <div class="faq-item__a-inner">Prakritik Distemper Paint and Prakritik Emulsion Paint.</div>
-          </div>
-        </div>
-        <div class="faq-item">
-          <button type="button" class="faq-item__q" aria-expanded="false">
-            <span>What is the finish?</span>
-            <svg class="faq-item__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-          </button>
-          <div class="faq-item__a">
-            <div class="faq-item__a-inner">Matt.</div>
-          </div>
-        </div>
-        <div class="faq-item">
-          <button type="button" class="faq-item__q" aria-expanded="false">
-            <span>What is the drying time?</span>
-            <svg class="faq-item__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-          </button>
-          <div class="faq-item__a">
-            <div class="faq-item__a-inner">4 hrs.</div>
-          </div>
-        </div>
-        <div class="faq-item">
-          <button type="button" class="faq-item__q" aria-expanded="false">
-            <span>Can they be used indoors and outdoors?</span>
-            <svg class="faq-item__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-          </button>
-          <div class="faq-item__a">
-            <div class="faq-item__a-inner">The supplied product specifications list usage as Interior &amp; Exterior.</div>
-          </div>
-        </div>
-        <div class="faq-item">
-          <button type="button" class="faq-item__q" aria-expanded="false">
-            <span>What pack sizes are available for Distemper?</span>
-            <svg class="faq-item__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-          </button>
-          <div class="faq-item__a">
-            <div class="faq-item__a-inner">1 kg, 5 kg, 10 kg and 20 kg.</div>
-          </div>
-        </div>
-        <div class="faq-item">
-          <button type="button" class="faq-item__q" aria-expanded="false">
-            <span>What pack sizes are available for Emulsion?</span>
-            <svg class="faq-item__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-          </button>
-          <div class="faq-item__a">
-            <div class="faq-item__a-inner">1 litre, 4 litre, 10 litre and 20 litre.</div>
-          </div>
-        </div>
-        <div class="faq-item">
-          <button type="button" class="faq-item__q" aria-expanded="false">
-            <span>What coverage is listed for Distemper?</span>
-            <svg class="faq-item__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-          </button>
-          <div class="faq-item__a">
-            <div class="faq-item__a-inner">200 sq.ft.**</div>
-          </div>
-        </div>
-        <div class="faq-item">
-          <button type="button" class="faq-item__q" aria-expanded="false">
-            <span>What coverage is listed for Emulsion?</span>
-            <svg class="faq-item__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-          </button>
-          <div class="faq-item__a">
-            <div class="faq-item__a-inner">300 sq.ft.**</div>
-          </div>
-        </div>
-        <div class="faq-item">
-          <button type="button" class="faq-item__q" aria-expanded="false">
-            <span>What is the listed V.O.C. information?</span>
-            <svg class="faq-item__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-          </button>
-          <div class="faq-item__a">
-            <div class="faq-item__a-inner">V.O.C.: Negligible.</div>
-          </div>
-        </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     12. NEED HELP CHOOSING — CTA
+     11. NEED HELP CHOOSING — CTA (V18 §41: FAQ retired)
      ============================================================ -->
 <section class="section section--forest" aria-labelledby="choose-cta-title">
   <div class="container">
@@ -1033,6 +942,7 @@
                 <a href="../products/#eco-paints">Eco-Paints</a>
                 <a href="../products/prakritik-distemper/">Prakritik Distemper</a>
                 <a href="../products/prakritik-emulsion/">Prakritik Emulsion</a>
+                <a href="../colours/">Colours</a>
                 <a href="../products/#gocast-logs">GoCast Logs</a>
                 <a href="../products/#bio-coal-logs">Bio-Coal Logs</a>
                 <a href="../products/#utility-products">Utility Products</a>

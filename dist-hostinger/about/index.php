@@ -1,18 +1,16 @@
 <?php
 /**
- * Gaurikrit Bio Products — Our Story (V16 restructure of /about/).
- * Route stays /about/; NAV LABEL becomes "Our Story" (§8).
+ * Gaurikrit Bio Products — Our Story (V18 restructure of /about/).
+ * Route stays /about/; NAV LABEL stays "Our Story".
  *
- * The brand narrative (§28), in order:
- *   01 THE RESOURCE          cow dung as a traditionally useful material
- *   02 THE IDEA              resource → practical contemporary applications
- *   03 THE GAURIKRIT JOURNEY RESOURCE → IDEA → APPLICATION → ECOSYSTEM
- *                            (qualitative only — NO dates, §29)
- *   04 THE CIRCULAR MODEL    expanded seven-stage loop
- *   05 THE PRODUCT ECOSYSTEM paint / fuel / traditional-ritual / utility
- *   06 VISION                forest two-column (shared §42.9)
- *   07 MISSION
- *   08 COMPANY INFORMATION   verified legal ledger (retained)
+ * The brand narrative (V18 §40), in order:
+ *   01 THE RESOURCE                cow dung as a traditionally useful material
+ *   02 THE IDEA                    resource → practical applications
+ *   03 FROM RESOURCE TO            three REAL stages — natural material /
+ *      APPLICATION                 documented paint / client-supplied logs
+ *                                  (qualitative only — NO dates, §25/§29)
+ *   04 VISION + MISSION            forest two-column (shared §42.9)
+ *   05 REGISTERED COMPANY          verified legal ledger (retained)
  *
  * No invented milestones, dates, facilities or partners. Factual data
  * unchanged from data.php.
@@ -27,10 +25,8 @@ $pageClass       = 'about';
 require_once __DIR__ . '/../../includes/bootstrap.php';
 require ROOT_PATH . '/includes/header.php';
 
-global $COMPANY, $FAMILIES, $CIRCULAR_STAGES, $PRODUCTS;
+global $COMPANY, $PRODUCTS;
 
-$distemper = get_product('prakritik-distemper');
-$emulsion  = get_product('prakritik-emulsion');
 $address   = $COMPANY['address'];
 $addressLine = implode("\n", array_slice($address, 0, 6));
 $groupImage = '/assets/products/prakritik-group.jpg';
@@ -126,6 +122,17 @@ $groupImage = '/assets/products/prakritik-group.jpg';
   }
   .company-plate dd { color: var(--fg); }
   .company-plate__address { white-space: pre-line; }
+  /* V18 §47B: white-ground client photography sits in a DELIBERATE
+     catalogue plate (visible border + padding) — never an accidental
+     white rectangle on the paper ground. */
+  .resource-step__figure--plate {
+    background: #fff; display: flex; align-items: center;
+    padding: clamp(0.5rem, 1vw, 0.75rem);
+  }
+  .resource-step__figure--plate img {
+    position: static; inset: auto; width: auto; max-width: 100%;
+    max-height: 100%; height: auto; object-fit: contain;
+  }
 </style>
 
 <!-- ===== STORY HERO ===== -->
@@ -246,132 +253,91 @@ $groupImage = '/assets/products/prakritik-group.jpg';
 </section>
 
 <!-- ============================================================
-     03. THE GAURIKRIT JOURNEY — qualitative, NO dates (§29)
-     RESOURCE → IDEA → APPLICATION → ECOSYSTEM
+     04. FROM RESOURCE TO APPLICATION (V18 §40 / §25)
+     The story's widening, told with REAL assets: the natural material,
+     the documented application (real paint), the expanding direction
+     (client-supplied cow-dung logs). NOT the same beige plaster three
+     times; NOT the kraft-box mockup. The journey is stages, not dates.
      ============================================================ -->
-<section class="section section--paper story-wrap" id="the-journey" aria-labelledby="journey-ch-title">
+<section class="section section--paper story-wrap" id="from-resource-to-application" aria-labelledby="application-ch-title">
   <div class="container">
     <article class="story-chapter" data-reveal>
       <div>
         <span class="story-chapter__num" aria-hidden="true">03</span>
-        <span class="story-chapter__kicker">The Gaurikrit Journey</span>
+        <span class="story-chapter__kicker">From Resource to Application</span>
       </div>
       <div>
-        <h2 class="story-chapter__title" id="journey-ch-title">A journey of material stages — not dates.</h2>
+        <h2 class="story-chapter__title" id="application-ch-title">
+          A journey of material stages — not dates.
+        </h2>
         <div class="story-chapter__body">
           <p>
             Gaurikrit's story is told through what the material became, not when.
-            Each stage widened the possibility of the resource.
+            The resource became a documented wall coating — and the same material
+            now widens into fuel and utility directions.
           </p>
         </div>
-        <div class="journey-strip" data-reveal>
-          <div class="journey-stop">
-            <span class="journey-stop__stage">Stage 01</span>
-            <h3 class="journey-stop__name">Resource</h3>
-            <p class="journey-stop__desc">Cow dung — recognised and gathered.</p>
-          </div>
-          <div class="journey-stop">
-            <span class="journey-stop__stage">Stage 02</span>
-            <h3 class="journey-stop__name">Idea</h3>
-            <p class="journey-stop__desc">A practical direction for a traditional material.</p>
-          </div>
-          <div class="journey-stop">
-            <span class="journey-stop__stage">Stage 03</span>
-            <h3 class="journey-stop__name">Application</h3>
-            <p class="journey-stop__desc">Prakritik Paint — walls, documented.</p>
-          </div>
-          <div class="journey-stop">
-            <span class="journey-stop__stage">Stage 04</span>
-            <h3 class="journey-stop__name">Ecosystem</h3>
-            <p class="journey-stop__desc">Fuel and utility directions around one resource.</p>
-          </div>
-        </div>
-      </div>
-    </article>
-  </div>
-</section>
 
-<!-- ============================================================
-     04. THE CIRCULAR MODEL — expanded seven-stage loop
-     ============================================================ -->
-<section class="section section--limewash story-wrap" id="the-circular-model" aria-labelledby="circular-ch-title">
-  <div class="container">
-    <article class="story-chapter" data-reveal>
-      <div>
-        <span class="story-chapter__num" aria-hidden="true">04</span>
-        <span class="story-chapter__kicker">The Circular Model</span>
-      </div>
-      <div>
-        <h2 class="story-chapter__title" id="circular-ch-title">Nothing goes to waste.</h2>
-        <div class="story-chapter__body">
-          <p>
-            The expanded circular model — how the resource enters, is developed,
-            becomes useful products, and renews the cycle.
-          </p>
+        <div class="resource-steps" data-reveal-stagger>
+          <article class="resource-step">
+            <figure class="resource-step__figure">
+              <picture>
+                <source type="image/webp" srcset="<?= asset_url('/assets/editorial/raw-material-study.webp') ?>">
+                <img src="<?= asset_url('/assets/editorial/raw-material-study.jpg') ?>"
+                     alt="Raw natural material — a lime-plastered surface study"
+                     width="1344" height="768" loading="lazy" decoding="async">
+              </picture>
+            </figure>
+            <div class="resource-step__caption">
+              <span class="resource-step__kicker">Stage 01 — Resource</span>
+              <h3 class="resource-step__title">The natural material</h3>
+              <p class="resource-step__desc">
+                Cow dung — a material traditional India never wasted.
+              </p>
+            </div>
+          </article>
+          <article class="resource-step">
+            <figure class="resource-step__figure">
+              <picture>
+                <source type="image/webp" srcset="<?= asset_url('/assets/products/prakritik-pair.webp') ?>">
+                <img src="<?= asset_url('/assets/products/prakritik-pair.jpg') ?>"
+                     alt="Prakritik Distemper and Prakritik Emulsion paint packs — the documented application"
+                     width="1420" height="618" loading="lazy" decoding="async">
+              </picture>
+            </figure>
+            <div class="resource-step__caption">
+              <span class="resource-step__kicker">Stage 02 — Application</span>
+              <h3 class="resource-step__title">Prakritik Paint</h3>
+              <p class="resource-step__desc">
+                The documented family — Distemper and Emulsion, walls done.
+              </p>
+            </div>
+          </article>
+          <article class="resource-step">
+            <figure class="resource-step__figure resource-step__figure--plate">
+              <picture>
+                <source type="image/webp" srcset="<?= asset_url('/assets/images/client/cow-dung-logs-stack.webp') ?>">
+                <img src="<?= asset_url('/assets/images/client/cow-dung-logs-stack.jpg') ?>"
+                     alt="Client-supplied cow-dung log material — the widening direction"
+                     width="1178" height="893" loading="lazy" decoding="async">
+              </picture>
+            </figure>
+            <div class="resource-step__caption">
+              <span class="resource-step__kicker">Stage 03 — Widening</span>
+              <h3 class="resource-step__title">Expanding directions</h3>
+              <p class="resource-step__desc">
+                Client-supplied cow-dung log material — fuel, traditional and
+                utility directions in development.
+              </p>
+            </div>
+          </article>
         </div>
-        <div class="circular" data-circular data-reveal>
-          <ol class="circular__track">
-            <?php foreach ($CIRCULAR_STAGES as $stage): ?>
-              <li class="stage">
-                <span class="stage__num"><?= e($stage['num']) ?></span>
-                <h3 class="stage__name"><?= e($stage['name']) ?></h3>
-                <p class="stage__desc"><?= e($stage['desc']) ?></p>
-              </li>
-            <?php endforeach; ?>
-          </ol>
-          <svg class="circular__loop-path" viewBox="0 0 1000 28" preserveAspectRatio="none" aria-hidden="true">
-            <path d="M8,2 L8,20 C8,26 16,26 26,26 L974,26 C984,26 992,26 992,20 L992,10" />
-          </svg>
-          <span class="circular__loop-label" aria-hidden="true">Resource regeneration</span>
-        </div>
-        <p class="impact-note" style="margin-top: 1.5rem;">
-          Read the full framework on <a href="/sustainability/">Sustainability →</a>
+
+        <p class="impact-note" style="margin-top: 1.75rem;">
+          The four-direction ecosystem lives on
+          <a href="/products/">Products →</a> — the circular framework on
+          <a href="/sustainability/">Sustainability →</a>
         </p>
-      </div>
-    </article>
-  </div>
-</section>
-
-<!-- ============================================================
-     05. THE PRODUCT ECOSYSTEM — paint / fuel / traditional / utility
-     Compact family chapters (no media — the story stays quiet).
-     ============================================================ -->
-<section class="section section--paper story-wrap" id="the-ecosystem" aria-labelledby="ecosystem-ch-title">
-  <div class="container">
-    <article class="story-chapter" data-reveal>
-      <div>
-        <span class="story-chapter__num" aria-hidden="true">05</span>
-        <span class="story-chapter__kicker">The Product Ecosystem</span>
-      </div>
-      <div>
-        <h2 class="story-chapter__title" id="ecosystem-ch-title">One resource, four directions.</h2>
-        <div class="story-chapter__body">
-          <p>
-            The ecosystem spans walls, energy, traditional applications and
-            everyday use. Eco-Paints — Prakritik Distemper and Prakritik
-            Emulsion — is the documented family; the other three are
-            development directions.
-          </p>
-        </div>
-        <div class="families story-families" data-reveal-stagger>
-          <?php foreach ($FAMILIES as $family): ?>
-            <article class="family">
-              <div class="family__head">
-                <span class="family__num" aria-hidden="true"><?= e($family['num']) ?></span>
-                <h3 class="family__name"><?= e($family['name']) ?></h3>
-              </div>
-              <p class="family__line"><?= e($family['line']) ?></p>
-              <ul class="family__themes">
-                <?php foreach ($family['themes'] as $theme): ?>
-                  <li><?= e($theme) ?></li>
-                <?php endforeach; ?>
-              </ul>
-              <a class="family__cta" href="<?= e($family['href']) ?>">
-                Explore <?= e($family['name']) ?> <span aria-hidden="true">→</span>
-              </a>
-            </article>
-          <?php endforeach; ?>
-        </div>
       </div>
     </article>
   </div>

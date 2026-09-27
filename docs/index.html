@@ -156,7 +156,24 @@
             <nav class="site-nav" aria-label="Primary" data-spy>
         <a href="./" class="site-nav__link" data-nav-link="/">Home</a>
         <a href="./about/" class="site-nav__link" data-nav-link="/about/">Our Story</a>
-        <a href="./products/" class="site-nav__link" data-nav-link="/products/">Products</a>
+                    <div class="site-nav__item" data-nav-menu>
+                        <button type="button" class="site-nav__link site-nav__link--parent"
+                                data-nav-link="/products/"
+                                aria-expanded="false" aria-haspopup="true" aria-controls="nav-products-menu">
+                            Products
+                            <svg class="site-nav__chevron" width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M2 3.5 5 6.5 8 3.5"/></svg>
+                        </button>
+                        <div class="nav-menu" id="nav-products-menu" hidden>
+                            <a href="./products/" class="nav-menu__link nav-menu__link--strong">Product Ecosystem</a>
+                            <a href="./products/#eco-paints" class="nav-menu__link">Eco-Paints</a>
+                            <a href="./products/prakritik-distemper/" class="nav-menu__link">Prakritik Distemper</a>
+                            <a href="./products/prakritik-emulsion/" class="nav-menu__link">Prakritik Emulsion</a>
+                            <a href="./colours/" class="nav-menu__link">Colours</a>
+                            <a href="./products/#gocast-logs" class="nav-menu__link">GoCast Logs</a>
+                            <a href="./products/#bio-coal-logs" class="nav-menu__link">Bio-Coal</a>
+                            <a href="./products/#utility-products" class="nav-menu__link">Utility Products</a>
+                        </div>
+                    </div>
         <a href="./sustainability/" class="site-nav__link" data-nav-link="/sustainability/">Sustainability</a>
         <a href="./innovation/" class="site-nav__link" data-nav-link="/innovation/">Innovation</a>
         <a href="./for-business/" class="site-nav__link" data-nav-link="/for-business/">Partners</a>
@@ -185,6 +202,16 @@
                 <a href="./" class="mobile-menu__link" data-nav-link="/">Home<span class="mobile-menu__arrow">→</span></a>
                 <a href="./about/" class="mobile-menu__link" data-nav-link="/about/">Our Story<span class="mobile-menu__arrow">→</span></a>
                 <a href="./products/" class="mobile-menu__link" data-nav-link="/products/">Products<span class="mobile-menu__arrow">→</span></a>
+                      <div class="mobile-menu__sub">
+                          <a href="./products/" class="mobile-menu__sub-link">Product Ecosystem</a>
+                          <a href="./products/#eco-paints" class="mobile-menu__sub-link">Eco-Paints</a>
+                          <a href="./products/prakritik-distemper/" class="mobile-menu__sub-link">Prakritik Distemper</a>
+                          <a href="./products/prakritik-emulsion/" class="mobile-menu__sub-link">Prakritik Emulsion</a>
+                          <a href="./colours/" class="mobile-menu__sub-link">Colours</a>
+                          <a href="./products/#gocast-logs" class="mobile-menu__sub-link">GoCast Logs</a>
+                          <a href="./products/#bio-coal-logs" class="mobile-menu__sub-link">Bio-Coal</a>
+                          <a href="./products/#utility-products" class="mobile-menu__sub-link">Utility Products</a>
+                      </div>
                 <a href="./sustainability/" class="mobile-menu__link" data-nav-link="/sustainability/">Sustainability<span class="mobile-menu__arrow">→</span></a>
                 <a href="./innovation/" class="mobile-menu__link" data-nav-link="/innovation/">Innovation<span class="mobile-menu__arrow">→</span></a>
                 <a href="./for-business/" class="mobile-menu__link" data-nav-link="/for-business/">Partners<span class="mobile-menu__arrow">→</span></a>
@@ -235,8 +262,8 @@
   /* ===== 04. CIRCULAR MODEL — page-local rhythm (structure §42.4) ===== */
   .circular-section__head { max-width: 48rem; margin-bottom: 2.75rem; }
 
-  /* ===== 05. APPLICATIONS MATRIX (structure §42.5) ===== */
-  .applications-section__head { max-width: 48rem; margin-bottom: 2.5rem; }
+  /* ===== 05. DOCUMENTED ECO-PAINT FAMILY — page-local rhythm ===== */
+  .eco-documented .section-heading { max-width: 48rem; margin-bottom: 2.5rem; }
 
   /* ===== 08. INNOVATION TEASER — material research composition + rows ===== */
   .innov-teaser__grid {
@@ -264,7 +291,7 @@
     text-transform: uppercase; color: var(--fg-muted); padding-top: 1rem;
   }
 
-  /* ===== 10. PARTNERSHIP — page-local rhythm ===== */
+  /* ===== 08. PARTNERSHIP — page-local rhythm ===== */
   .partnership__head { max-width: 48rem; margin-bottom: 1.5rem; }
 </style>
 
@@ -304,33 +331,26 @@
             <span class="story-field__chip story-field__chip--forest"></span>
           </div>
           <div class="story-field__inner">
-            <img class="story-field__photo"
-                 src="./assets/products/prakritik-pair.jpg"
-                 alt="Prakritik Distemper and Prakritik Emulsion paint packs — the documented Eco-Paints family"
-                 width="1420" height="618"
-                 loading="eager" fetchpriority="high" decoding="async">
-            <figcaption class="story-field__markers">
-              <span class="story-field__marker story-field__marker--lead">
-                <span class="story-field__marker-dot" aria-hidden="true"></span>
-                <span class="story-field__marker-name">Eco-Paints</span>
-                <span class="story-field__marker-tag">Documented</span>
-              </span>
-              <span class="story-field__marker">
-                <span class="story-field__marker-dot" aria-hidden="true"></span>
-                <span class="story-field__marker-name">GoCast Logs</span>
-                <span class="story-field__marker-tag">Direction</span>
-              </span>
-              <span class="story-field__marker">
-                <span class="story-field__marker-dot" aria-hidden="true"></span>
-                <span class="story-field__marker-name">Bio-Coal Logs</span>
-                <span class="story-field__marker-tag">Direction</span>
-              </span>
-              <span class="story-field__marker">
-                <span class="story-field__marker-dot" aria-hidden="true"></span>
-                <span class="story-field__marker-name">Utility Products</span>
-                <span class="story-field__marker-tag">Direction</span>
-              </span>
-            </figcaption>
+            <div class="story-field__objects">
+              <div class="story-field__object story-field__object--lead">
+                <img class="story-field__photo"
+                     src="./assets/products/prakritik-pair.jpg"
+                     alt="Prakritik Distemper and Prakritik Emulsion paint packs — the documented Eco-Paints family"
+                     width="1420" height="618"
+                     loading="eager" fetchpriority="high" decoding="async">
+                <span class="story-field__object-label">
+                  Eco-Paints <small>Documented family</small>
+                </span>
+              </div>
+              <div class="story-field__object">
+                <span class="story-field__secondary">
+                  <picture><source type="image/webp" srcset="./assets/images/client/cow-dung-logs-plate.webp"><img  src="./assets/images/client/cow-dung-logs-plate.jpg" alt="Client-supplied cow-dung logs on a terracotta plate with straw" width="824" height="667" loading="lazy" decoding="async"></picture>
+                </span>
+                <span class="story-field__object-label">
+                  Cow-Dung Logs <small>Client-supplied reference</small>
+                </span>
+              </div>
+            </div>
           </div>
         </figure>
       </div>
@@ -440,12 +460,8 @@
           </a>
         </article>
         <article class="family" id="family-gocast-logs">
-            <figure class="family__media family__media--plate" aria-label="GoCast Logs — material direction">
-                <span class="family__media-plate-texture" aria-hidden="true">
-                    <picture><source type="image/webp" srcset="./assets/editorial/raw-material-study.webp"><img  src="./assets/editorial/raw-material-study.jpg" alt="" width="1344" height="768" loading="lazy" decoding="async"></picture>
-                </span>
-                <span class="family__media-plate-word">GoCast Logs</span>
-                <span class="family__media-plate-tag">Material direction</span>
+            <figure class="family__media family__media--photo">
+                <picture><source type="image/webp" srcset="./assets/images/client/gocast-logs-context.webp"><img  src="./assets/images/client/gocast-logs-context.jpg" alt="Client-supplied cow-dung logs stacked beside a clay stove with embers" width="1254" height="420" loading="lazy" decoding="async"></picture>
             </figure>
 
           <div class="family__head">
@@ -591,171 +607,68 @@
 </section>
 
 <!-- ============================================================
-     05. SOLUTIONS FOR MODERN INDIA — application matrix (§21-22)
+     05. THE DOCUMENTED ECO-PAINT FAMILY (V18 §39.05)
      ============================================================ -->
-<section class="section section--limewash applications-section" aria-labelledby="applications-title">
+<section class="section section--cool eco-documented" aria-labelledby="eco-documented-title">
   <div class="container">
-    <div class="applications-section__head section-heading section-heading--left" data-reveal>
-      <span class="section-heading__eyebrow">Application Areas</span>
-      <h2 class="section-heading__title" id="applications-title">Sustainable Solutions for Modern India.</h2>
+    <div class="section-heading section-heading--left" data-reveal>
+      <span class="section-heading__eyebrow">The Documented Family</span>
+      <h2 class="section-heading__title" id="eco-documented-title">
+        Eco-Paints, documented end to end.
+      </h2>
       <p class="section-heading__desc">
-        Where the ecosystem works — buildings, energy, traditional applications
-        and everyday living.
+        The one family with full product documentation — two formats, supplied
+        specifications, real client photography and a shade catalogue.
       </p>
     </div>
 
-    <div class="app-matrix" data-reveal-stagger>
-        <div class="app-group">
-          <h3 class="app-group__title">Buildings &amp; Construction</h3>
-          <ul class="app-group__list">
-            <li class="app-group__item app-group__item--live">
-              <a href="./products/#eco-paints">Eco-Paints</a>
-              <span class="app-group__item-tag">Family</span>
-            </li>
-            <li class="app-group__item app-group__item--direction">
-              <span>Protective Coatings</span>
-              <span class="app-group__item-tag">Direction</span>
-            </li>
-            <li class="app-group__item app-group__item--direction">
-              <span>Decorative Finishes</span>
-              <span class="app-group__item-tag">Direction</span>
-            </li>
-          </ul>
-        </div>
-        <div class="app-group">
-          <h3 class="app-group__title">Energy &amp; Fuel</h3>
-          <ul class="app-group__list">
-            <li class="app-group__item app-group__item--direction">
-              <a href="./products/#bio-coal-logs">Bio-Coal Logs</a>
-              <span class="app-group__item-tag">Direction</span>
-            </li>
-            <li class="app-group__item app-group__item--direction">
-              <span>Biomass Fuel Solutions</span>
-              <span class="app-group__item-tag">Direction</span>
-            </li>
-          </ul>
-        </div>
-        <div class="app-group">
-          <h3 class="app-group__title">Traditional &amp; Ritual Applications</h3>
-          <ul class="app-group__list">
-            <li class="app-group__item app-group__item--direction">
-              <a href="./products/#gocast-logs">GoCast Logs</a>
-              <span class="app-group__item-tag">Direction</span>
-            </li>
-            <li class="app-group__item app-group__item--direction">
-              <span>Eco Cremation Solutions</span>
-              <span class="app-group__item-tag">Direction</span>
-            </li>
-          </ul>
-        </div>
-        <div class="app-group">
-          <h3 class="app-group__title">Everyday Sustainable Living</h3>
-          <ul class="app-group__list">
-            <li class="app-group__item app-group__item--direction">
-              <a href="./products/#utility-products">Utility Products</a>
-              <span class="app-group__item-tag">Direction</span>
-            </li>
-            <li class="app-group__item app-group__item--direction">
-              <span>Home &amp; Garden Products</span>
-              <span class="app-group__item-tag">Direction</span>
-            </li>
-            <li class="app-group__item app-group__item--direction">
-              <span>Eco Lifestyle Solutions</span>
-              <span class="app-group__item-tag">Direction</span>
-            </li>
-          </ul>
-        </div>
-    </div>
-    <p class="app-matrix-note" data-reveal>
-      Entries marked <strong>Direction</strong> are application areas under exploration —
-      not products currently for sale. Eco-Paints is the documented family.
-    </p>
-  </div>
-</section>
+    <div class="eco-documented__grid" data-reveal-stagger>
+      <figure class="eco-documented__plate">
+        <img src="./assets/products/prakritik-pair.jpg"
+             alt="Prakritik Distemper and Prakritik Emulsion paint packs"
+             width="1420" height="618" loading="lazy" decoding="async">
+      </figure>
 
-<!-- ============================================================
-     06. WHY GAURIKRIT — four principles (§23)
-     ============================================================ -->
-<section class="section section--haldi-wash principles-section" aria-labelledby="principles-title">
-  <div class="container">
-    <div class="section-heading section-heading--left" data-reveal>
-      <span class="section-heading__eyebrow">Why Gaurikrit</span>
-      <h2 class="section-heading__title" id="principles-title">What Makes Us Different.</h2>
-    </div>
-    <div class="principles-grid" data-reveal-stagger>
-        <div class="principle">
-          <span class="principle__num" aria-hidden="true">01</span>
-          <h3 class="principle__name">Nature-Led Innovation</h3>
-          <p class="principle__desc">Products begin with a natural material, not a chemical substitute.</p>
+      <div class="eco-documented__rows">
+          <div class="eco-documented__row">
+            <h3 class="eco-documented__row-name">
+              <a href="./products/prakritik-distemper/">Prakritik Distemper Paint</a>
+            </h3>
+            <p class="eco-documented__row-meta">
+              <strong>1, 5, 10 &amp; 20 kg</strong> ·
+              White · Matt ·
+              200 sq.ft.**
+            </p>
+            <a class="eco-documented__row-cta" href="./products/prakritik-distemper/">
+              View specifications <span aria-hidden="true">→</span>
+            </a>
+          </div>
+          <div class="eco-documented__row">
+            <h3 class="eco-documented__row-name">
+              <a href="./products/prakritik-emulsion/">Prakritik Emulsion Paint</a>
+            </h3>
+            <p class="eco-documented__row-meta">
+              <strong>1, 4, 10 &amp; 20 litre</strong> ·
+              White · Matt ·
+              300 sq.ft.**
+            </p>
+            <a class="eco-documented__row-cta" href="./products/prakritik-emulsion/">
+              View specifications <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        <div class="eco-documented__links">
+          <a href="./colours/">Explore Colours</a>
+          <a href="./paint-calculator/">Painting Calculator</a>
+          <a href="./why-prakritik/">Why Prakritik?</a>
         </div>
-        <div class="principle">
-          <span class="principle__num" aria-hidden="true">02</span>
-          <h3 class="principle__name">Circular Thinking</h3>
-          <p class="principle__desc">The same resource is designed to serve many applications.</p>
-        </div>
-        <div class="principle">
-          <span class="principle__num" aria-hidden="true">03</span>
-          <h3 class="principle__name">Environmental Responsibility</h3>
-          <p class="principle__desc">Every direction replaces a less sustainable alternative.</p>
-        </div>
-        <div class="principle">
-          <span class="principle__num" aria-hidden="true">04</span>
-          <h3 class="principle__name">Rural Value Creation</h3>
-          <p class="principle__desc">Value is created around agricultural ecosystems.</p>
-        </div>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- ============================================================
-     07. IMPACT AREAS — qualitative, NO counters (§24 / §3)
-     ============================================================ -->
-<section class="section section--paper impact-section" aria-labelledby="impact-title">
-  <div class="container">
-    <div class="section-heading section-heading--left" data-reveal>
-      <span class="section-heading__eyebrow">How Impact Is Created</span>
-      <h2 class="section-heading__title" id="impact-title">Every Product Creates Change.</h2>
-      <p class="section-heading__desc">
-        Five impact areas — described qualitatively. Verified figures will be
-        published as project data becomes available.
-      </p>
-    </div>
-    <div class="impact-list" data-reveal-stagger>
-        <div class="impact-row">
-          <span class="impact-row__label">Trees</span>
-          <span class="impact-row__area">Resource conservation</span>
-          <p class="impact-row__desc">Reducing dependence on conventional resource-intensive alternatives.</p>
-        </div>
-        <div class="impact-row">
-          <span class="impact-row__label">Waste</span>
-          <span class="impact-row__area">Material reuse</span>
-          <p class="impact-row__desc">Creating useful applications for natural and agricultural material streams.</p>
-        </div>
-        <div class="impact-row">
-          <span class="impact-row__label">Energy</span>
-          <span class="impact-row__area">Alternative fuel</span>
-          <p class="impact-row__desc">Exploring renewable biomass-based fuel applications.</p>
-        </div>
-        <div class="impact-row">
-          <span class="impact-row__label">Carbon</span>
-          <span class="impact-row__area">Reduction direction</span>
-          <p class="impact-row__desc">Directional reduction of reliance on fossil-based materials.</p>
-        </div>
-        <div class="impact-row">
-          <span class="impact-row__label">Rural</span>
-          <span class="impact-row__area">Value creation</span>
-          <p class="impact-row__desc">Creating additional value around agricultural ecosystems.</p>
-        </div>
-    </div>
-    <p class="impact-note" data-reveal>
-      Impact measurement will be added as verified project data becomes available.
-      <a href="./sustainability/">Read the sustainability framework →</a>
-    </p>
-  </div>
-</section>
-
-<!-- ============================================================
-     08. RESEARCH & INNOVATION — focus areas teaser (§25)
+     06. RESEARCH & INNOVATION — focus areas teaser (§25 / §28)
+     Real material samples — paint surface + cow-dung log material.
      ============================================================ -->
 <section class="section section--limewash innov-teaser" aria-labelledby="innov-title">
   <div class="container">
@@ -769,7 +682,7 @@
           <img src="./assets/editorial/raw-material-study.jpg" alt="" width="1344" height="768" loading="lazy" decoding="async">
         </span>
         <span class="innov-composition__plate innov-composition__plate--b">
-          <img src="./assets/editorial/finished-surface-study.jpg" alt="" width="1344" height="768" loading="lazy" decoding="async">
+          <img src="./assets/images/client/cow-dung-logs-stack.jpg" alt="" width="1178" height="893" loading="lazy" decoding="async">
         </span>
         <span class="innov-composition__tag">Material research directions</span>
       </div>
@@ -809,7 +722,7 @@
 </section>
 
 <!-- ============================================================
-     09. VISION + MISSION — strong Forest section (§26)
+     07. VISION + MISSION — strong Forest section (§26)
      ============================================================ -->
 <section class="section section--forest vision-mission" aria-labelledby="vision-title">
   <div class="container">
@@ -838,7 +751,7 @@
 </section>
 
 <!-- ============================================================
-     10. PARTNERSHIP CTA (§27)
+     08. PARTNERSHIP CTA (§27)
      ============================================================ -->
 <section class="section section--paper partnership" aria-labelledby="partnership-title">
   <div class="container">
@@ -972,6 +885,7 @@
                 <a href="./products/#eco-paints">Eco-Paints</a>
                 <a href="./products/prakritik-distemper/">Prakritik Distemper</a>
                 <a href="./products/prakritik-emulsion/">Prakritik Emulsion</a>
+                <a href="./colours/">Colours</a>
                 <a href="./products/#gocast-logs">GoCast Logs</a>
                 <a href="./products/#bio-coal-logs">Bio-Coal Logs</a>
                 <a href="./products/#utility-products">Utility Products</a>

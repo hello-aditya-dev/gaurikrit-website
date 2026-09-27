@@ -171,6 +171,69 @@
         }
     }
 
+    // ---- V18 §54: Products dropdown -----------------------------------
+    // Toggle on click (touch + keyboard), open on hover for pointer users,
+    // close on Escape / outside click / focus leaving the group. The panel
+    // holds real links only — focus moves straight into them on open.
+    function initNavDropdown() {
+        var items = document.querySelectorAll('[data-nav-menu]');
+        for (var i = 0; i < items.length; i++) {
+            (function (item) {
+                var btn = item.querySelector('.site-nav__link--parent');
+                var panel = item.querySelector('.nav-menu');
+                if (!btn || !panel) return;
+
+                function open() {
+                    panel.removeAttribute('hidden');
+                    btn.setAttribute('aria-expanded', 'true');
+                }
+                function close() {
+                    panel.setAttribute('hidden', '');
+                    btn.setAttribute('aria-expanded', 'false');
+                }
+                function isOpen() {
+                    return !panel.hasAttribute('hidden');
+                }
+
+                btn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    if (isOpen()) {
+                        close();
+                    } else {
+                        open();
+                        var first = panel.querySelector('a');
+                        if (first) first.focus();
+                    }
+                });
+
+                // Pointer users: open on hover into the group, close on leave.
+                if (window.matchMedia && window.matchMedia('(hover: hover)').matches) {
+                    item.addEventListener('mouseenter', open);
+                    item.addEventListener('mouseleave', close);
+                }
+
+                document.addEventListener('keydown', function (e) {
+                    if (e.key === 'Escape' && isOpen()) {
+                        close();
+                        btn.focus();
+                    }
+                });
+
+                document.addEventListener('click', function (e) {
+                    if (isOpen() && !item.contains(e.target)) close();
+                });
+
+                // Focus leaving the group (e.g. tabbing past the last link).
+                panel.addEventListener('focusout', function (e) {
+                    // wait for the next focus target to settle
+                    setTimeout(function () {
+                        if (!item.contains(document.activeElement)) close();
+                    }, 0);
+                });
+            })(items[i]);
+        }
+    }
+
     function initHeaderScroll() {
         var header = document.querySelector('.site-header');
         if (!header) return;
@@ -201,6 +264,7 @@
             initHeaderScroll();
             initScrollSpy();
             initMobileMenu();
+            initNavDropdown();
         }
     };
 })();

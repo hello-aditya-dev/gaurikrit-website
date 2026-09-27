@@ -102,10 +102,13 @@ $methodItems = [
                loading="eager" fetchpriority="high" decoding="async">
         </span>
         <span class="innov-hero__plate innov-hero__plate--b">
-          <img src="<?= asset_url('/assets/editorial/finished-surface-study.jpg') ?>"
-               alt="Finished developed material — the research outcome direction"
-               width="1344" height="768"
-               loading="lazy" decoding="async">
+          <picture>
+            <source type="image/webp" srcset="<?= asset_url('/assets/images/client/cow-dung-logs-stack.webp') ?>">
+            <img src="<?= asset_url('/assets/images/client/cow-dung-logs-stack.jpg') ?>"
+                 alt="Client-supplied cow-dung log material — a real material under research"
+                 width="1178" height="893"
+                 loading="lazy" decoding="async">
+          </picture>
         </span>
         <span class="innov-hero__plate-tag">Material research directions</span>
       </div>

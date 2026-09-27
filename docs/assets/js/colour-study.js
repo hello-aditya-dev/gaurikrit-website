@@ -4,12 +4,16 @@
  *
  * Simple colour-wall visualizer. On any page where a [data-colour-study]
  * element exists, clicking a swatch button changes the wall preview's
- * background colour and updates the active label.
+ * tint (SVG wall-plane mask, multiply blend) and updates the active label.
  *
  * Shade values may be ANY CSS color (hex / rgb / oklch / named). The
  * canonical attribute is [data-shade]; [data-shade-hex] is read as a
  * fallback for older page templates. The label is read from
- * [data-shade-name] (or the swatch's aria-label).
+ * [data-shade-name] (or the swatch's aria-label). V18 adds
+ * [data-shade-code] (GK-xxx) plus optional readouts
+ * [data-shade-name-el] / [data-shade-code-el] / [data-shade-sticky]
+ * (mobile sticky selection bar) and collection tabs
+ * ([data-collection-tab] ↔ [data-collection-panel]) used by /colours/.
  *
  * Keyboard (V13): the swatches are a radiogroup, so arrows navigate.
  * ArrowRight/ArrowDown move forward, ArrowLeft/ArrowUp back, Home/End
@@ -17,11 +21,13 @@
  * radio behaviour). Roving tabindex: only the checked (or first)
  * swatch is tabbable; every other one is reached via arrow keys.
  *
- * Deep links (V14): selecting a swatch writes #colour=<id> to the URL
+ * Deep links (V14/V18): selecting a swatch writes #shade=GK-xxx (or the
+ * legacy #colour=<id>) to the URL
  * (history.replaceState — no history spam, no scroll jump). Opening
- * the page with a matching #colour=<id> applies that swatch on load,
+ * the page with a matching hash applies that swatch on load,
  * so a chosen wall colour can be shared as a link. Swatches without
- * a data-colour-id simply skip the URL sync.
+ * a data-colour-id simply skip the URL sync. A Premium Collection
+ * hash auto-opens the Premium panel.
  *
  * Exposes: window.GaurikritApp.ColourStudy.init()
  */
@@ -34,15 +40,60 @@
         var swatches = wrapper.querySelectorAll('[data-shade], [data-shade-hex]');
         var wall = wrapper.querySelector('[data-colour-wall]');
         var label = wrapper.querySelector('[data-colour-label]');
+        var nameEl = wrapper.querySelector('[data-shade-name-el]');
+        var codeEl = wrapper.querySelector('[data-shade-code-el]');
+        var sticky = wrapper.querySelector('[data-shade-sticky]');
         if (!swatches.length || !wall) return;
+
+        // V18: collection tabs (Signature / Premium). Panels tagged with
+        // [data-collection-panel] toggle via [data-collection-tab] buttons;
+        // a deep-link hash auto-activates the panel containing the shade.
+        var tabs = wrapper.querySelectorAll('[data-collection-tab]');
+        function activatePanel(key) {
+            for (var t = 0; t < tabs.length; t++) {
+                var on = tabs[t].getAttribute('data-collection-tab') === key;
+                tabs[t].setAttribute('aria-pressed', on ? 'true' : 'false');
+            }
+            var panels = wrapper.querySelectorAll('[data-collection-panel]');
+            for (var p = 0; p < panels.length; p++) {
+                var panelKey = panels[p].getAttribute('data-collection-panel');
+                if (key === 'all' || panelKey === key || panelKey === null) {
+                    panels[p].removeAttribute('hidden');
+                } else {
+                    panels[p].setAttribute('hidden', '');
+                }
+            }
+        }
+        for (var ti = 0; ti < tabs.length; ti++) {
+            (function (tab) {
+                tab.addEventListener('click', function () {
+                    activatePanel(tab.getAttribute('data-collection-tab'));
+                });
+            })(tabs[ti]);
+        }
 
         function applySwatch(swatch, opts) {
             var colour = swatch.getAttribute('data-shade') ||
                          swatch.getAttribute('data-shade-hex') || '';
             var name = swatch.getAttribute('data-shade-name') ||
                        swatch.getAttribute('aria-label') || '';
+            var code = swatch.getAttribute('data-shade-code') || '';
             if (colour) wall.style.setProperty('--wall-color', colour);
-            if (label && name) label.textContent = name;
+            if (label && name) {
+                label.textContent = code ? name + ' · ' + code : name;
+            }
+            // V18 optional readouts (the /colours/ page).
+            if (nameEl) nameEl.textContent = name;
+            if (codeEl) codeEl.textContent = code;
+            if (sticky) {
+                var stickyName = sticky.querySelector('[data-shade-sticky-name]');
+                var stickyCode = sticky.querySelector('[data-shade-sticky-code]');
+                var stickyDot = sticky.querySelector('[data-shade-sticky-dot]');
+                if (stickyName) stickyName.textContent = name;
+                if (stickyCode) stickyCode.textContent = code;
+                if (stickyDot && colour) stickyDot.style.background = colour;
+                sticky.setAttribute('data-has-selection', 'true');
+            }
 
             for (var k = 0; k < swatches.length; k++) {
                 swatches[k].setAttribute('data-active', 'false');
@@ -53,14 +104,16 @@
             swatch.setAttribute('aria-checked', 'true');
             swatch.setAttribute('tabindex', '0');
 
-            // V14: reflect the selection in the URL so the chosen wall
-            // colour is shareable. replaceState = no history entry, no
+            // V14/V18: reflect the selection in the URL so the chosen wall
+            // colour is shareable — #shade=GK-104 on /colours/, the legacy
+            // #colour=<id> elsewhere. replaceState = no history entry, no
             // scroll. Skipped silently when called from the initial hash
             // restore (nothing to change) or for id-less swatches.
-            var id = swatch.getAttribute('data-colour-id');
+            var id = swatch.getAttribute('data-colour-id') || code;
             if (id && !(opts && opts.fromHash) && window.history && history.replaceState) {
+                var prefix = code ? 'shade' : 'colour';
                 history.replaceState(null, '',
-                    location.pathname + location.search + '#colour=' + id);
+                    location.pathname + location.search + '#' + prefix + '=' + id);
             }
 
             // V14: reveal the quiet "Copy link to this colour" button and
@@ -124,12 +177,20 @@
             })(swatches[i], i);
         }
 
-        // V14: restore a shared wall colour from #colour=<id> on load.
-        var m = /^#colour=([a-z-]+)$/.exec(location.hash || '');
+        // V14/V18: restore a shared wall colour from #colour=<id> or
+        // #shade=GK-xxx on load.
+        var m = /^#(?:colour|shade)=([A-Za-z0-9-]+)$/.exec(location.hash || '');
         if (m) {
             for (var h = 0; h < swatches.length; h++) {
-                if (swatches[h].getAttribute('data-colour-id') === m[1]) {
-                    applySwatch(swatches[h], { fromHash: true });
+                var sw = swatches[h];
+                if (sw.getAttribute('data-colour-id') === m[1] ||
+                    sw.getAttribute('data-shade-code') === m[1]) {
+                    // V18: auto-open the collection panel containing the shade.
+                    var panel = sw.closest('[data-collection-panel]');
+                    if (panel && tabs.length) {
+                        activatePanel(panel.getAttribute('data-collection-panel'));
+                    }
+                    applySwatch(sw, { fromHash: true });
                     // V15: the hash matches no element id, so the browser
                     // keeps deep-link arrivals at the top of the page —
                     // quietly bring the study into view instead. Honors

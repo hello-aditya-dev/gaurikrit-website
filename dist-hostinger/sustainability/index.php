@@ -59,6 +59,15 @@ $measurementItems = [
   /* ===== Section rhythm (page-local wrappers only — grounds come from
      the five families; structures are shared §42 blocks). ===== */
   .sustain-section__head { max-width: 48rem; margin-bottom: 2.5rem; }
+  /* V18 §47B: white-ground client imagery in a deliberate catalogue plate. */
+  .resource-step__figure--plate {
+    background: #fff; display: flex; align-items: center; justify-content: center;
+    padding: clamp(0.5rem, 1vw, 0.75rem);
+  }
+  .resource-step__figure--plate img {
+    position: static; inset: auto; width: auto; max-width: 100%;
+    max-height: 100%; height: auto; object-fit: contain;
+  }
 </style>
 
 <!-- ============================================================
@@ -139,44 +148,51 @@ $measurementItems = [
         not extraction.
       </p>
     </div>
+    <!-- V18 §26: three REAL outcomes — wall coatings (real paint), fuel /
+         log application (client-supplied cow-dung logs), wider material
+         directions. The log imagery appears ONCE on this page (never at
+         the same large scale elsewhere). -->
     <div class="resource-steps" data-reveal-stagger>
       <article class="resource-step">
-        <figure class="resource-step__figure">
-          <img src="<?= asset_url('/assets/editorial/raw-material-study.jpg') ?>"
-               alt="Raw natural material study"
-               width="1344" height="768" loading="lazy" decoding="async">
+        <figure class="resource-step__figure resource-step__figure--plate">
+          <picture>
+            <source type="image/webp" srcset="<?= asset_url('/assets/images/client/prakritik-distemper-single-cut.webp') ?>">
+            <img src="<?= asset_url('/assets/images/client/prakritik-distemper-single-cut.png') ?>"
+                 alt="Prakritik Distemper paint pack — the documented wall-coating outcome"
+                 width="801" height="1044" loading="lazy" decoding="async">
+          </picture>
         </figure>
         <div class="resource-step__caption">
-          <span class="resource-step__kicker">Input</span>
-          <h3 class="resource-step__title">Natural &amp; agricultural streams</h3>
-          <p class="resource-step__desc">Material that already exists in rural ecosystems.</p>
+          <span class="resource-step__kicker">Outcome — Wall Coatings</span>
+          <h3 class="resource-step__title">Prakritik Paint</h3>
+          <p class="resource-step__desc">The documented family — real wall coatings in Distemper and Emulsion formats.</p>
         </div>
       </article>
       <article class="resource-step">
         <figure class="resource-step__figure">
           <picture>
-            <source type="image/webp" srcset="<?= asset_url('/assets/products/prakritik-distemper-from-pair.webp') ?>">
-            <img src="<?= asset_url('/assets/products/prakritik-distemper-from-pair.png') ?>"
-                 alt="Prakritik Distemper paint pack — developed natural material"
-                 width="649" height="612" loading="lazy" decoding="async">
+            <source type="image/webp" srcset="<?= asset_url('/assets/images/client/cow-dung-logs-stack.webp') ?>">
+            <img src="<?= asset_url('/assets/images/client/cow-dung-logs-stack.jpg') ?>"
+                 alt="Client-supplied cow-dung log material — the fuel and log application direction"
+                 width="1178" height="893" loading="lazy" decoding="async">
           </picture>
         </figure>
         <div class="resource-step__caption">
-          <span class="resource-step__kicker">Development</span>
-          <h3 class="resource-step__title">Working materials</h3>
-          <p class="resource-step__desc">Processed and developed into useful material families.</p>
+          <span class="resource-step__kicker">Outcome — Fuel &amp; Log Application</span>
+          <h3 class="resource-step__title">Cow-dung log material</h3>
+          <p class="resource-step__desc">Client-supplied log material for fuel and traditional applications, in development.</p>
         </div>
       </article>
       <article class="resource-step">
         <figure class="resource-step__figure">
-          <img src="<?= asset_url('/assets/editorial/finished-surface-study.jpg') ?>"
-               alt="Finished matte wall surface — useful application"
+          <img src="<?= asset_url('/assets/editorial/courtyard-study.jpg') ?>"
+               alt="Lime-plastered courtyard — wider material directions"
                width="1344" height="768" loading="lazy" decoding="async">
         </figure>
         <div class="resource-step__caption">
-          <span class="resource-step__kicker">Output</span>
-          <h3 class="resource-step__title">Everyday applications</h3>
-          <p class="resource-step__desc">Walls, energy and daily-use directions from one base.</p>
+          <span class="resource-step__kicker">Outcome — Wider Directions</span>
+          <h3 class="resource-step__title">Everyday material directions</h3>
+          <p class="resource-step__desc">Utility and everyday-use directions from the same material base.</p>
         </div>
       </article>
     </div>

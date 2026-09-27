@@ -119,3 +119,43 @@ Not supplied. The website does NOT publish office hours or shipping coverage.
 
 ## 17. Production launch configuration
 Confirm that `https://gaurikrit.com` is the final owned production domain before indexing. The production configuration and sitemap currently use this value. Supply and test SMTP credentials on Hostinger; a static GitHub Pages form opens an email draft and does not send server-side. Confirm the brochure PDF is the approved public edition before deploying the package.
+
+---
+
+## V18 — Client-Asset Integration (2026-09-27 batch) — OPEN ITEMS
+
+### LOG PRODUCTS
+- [ ] Does the cylindrical log photo (terracotta plate / stove context) represent **GoCast**?
+- [ ] Does the rectangular briquette-style log photo represent **GoCast or Bio-Coal**? (currently captioned only as "client-supplied cow-dung log reference" — never labelled Bio-Coal)
+- [ ] Official product names for log formats (no invented "GoCast Round / GoCast Brick / Premium Log" names used)
+- [ ] Dimensions / weight / pack sizes
+- [ ] Composition (material percentages)
+- [ ] Use cases (ceremonial? heating? industrial?)
+- [ ] Burn characteristics (duration, heat, smoke) — NONE published
+- [ ] Packaging & availability
+- [ ] Whether "GBP Bio Products" (appears on one log photo + brochure header) has ANY public branding role — site keeps GAURIKRIT as sole master brand until confirmed
+
+### COLOUR COLLECTION (/colours/)
+- [ ] Confirm the 12 Signature collection codes (GK-101…GK-112) and names as printed
+- [ ] Confirm the 24 Premium collection codes (GK-201…GK-230) and names in the five printed groups
+- [ ] Confirm whether BOTH collections are currently available (or Signature-only / order-based)
+- [ ] Confirm whether the collections apply to both Distemper and Emulsion formats
+- [ ] Confirm physical shade-card availability (for accurate digital hexes + "confirm before specifying" copy)
+- [ ] "Nature's Care. India's Future." (palette poster tagline) — campaign-only or intended site-wide? Site keeps "Good for Nature. Good for Life."
+
+### PACKAGING
+- [ ] Is the kraft box (green botanical design) REAL retail packaging or concept art? Site treats it as internal design reference only — never shown as a sold product
+
+### BROCHURE CLAIMS (GBP Broucher1.pdf) — NOT propagated until confirmed
+- [ ] "100% Eco-Friendly", "Low VOC Emissions", "Safe for Children & Families", "Allows Walls to Breathe", "Thermal Insulating" as site-wide claims
+- [ ] The chemical-paint-vs-Prakritik comparison (negative claims about conventional paint) — intentionally NOT published (no fear marketing)
+- [ ] "Sourced from healthy dairy cows" + 6-step process descriptions — kept off-site until confirmed
+- [ ] Khadi India affiliation wording (visible on actual product label + brochure cover "GAURIKRIT KHADI PRAKRITIK PAINT") — may it be referenced on the site?
+- [ ] Brochure address spellings ("Khurayawali / Post Amia / Khuruj") are typos — the company board spellings (Khuriyawali / Arniya / Khurja) are used on the site; confirm
+
+### Already verified via company hoarding board (2026-09-27)
+- [x] Legal name: Gaurikrit Bio Products (OPC) Private Limited
+- [x] Address: 55, Village Khuriyawali, Post Arniya, Khurja, District Bulandshahr, Uttar Pradesh – 203131, India
+- [x] GSTIN 09AAMCG8400F1ZK · seva@gaurikrit.com · +91-9999624446 / 9837638842
+- [x] Tagline: "Good for Nature. Good for Life."
+- [ ] **Premium shade COUNT discrepancy**: the poster headline prints "24 SHADES" but the card grid itself shows 5 groups x 6 = **30 shades (GK-201 to GK-230)**, all enumerated on the card. The site displays all 30 client-supplied shades and deliberately avoids printing a contradicting total ("Premium collection in five groups"). Client to confirm the intended count (are 6 shades pending launch, or is the headline stale?).

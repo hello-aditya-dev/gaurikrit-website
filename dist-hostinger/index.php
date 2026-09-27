@@ -1,32 +1,31 @@
 <?php
 /**
- * Gaurikrit Bio Products — Homepage (V16 story restructure).
+ * Gaurikrit Bio Products — Homepage (V18 client-asset integration).
  *
  * THE STORY: one natural resource → multiple useful material solutions →
  * one circular-economy mission. A visitor understands the company from
  * this page alone (§74 story test).
  *
- * Section order (§12) — exact:
- *   01 HERO                    limewash      material-led field, NOT a
- *                                           paint advert (real pair photo
- *                                           + branching category markers)
+ * Section order (V18 §39) — exact:
+ *   01 HERO                    limewash      TWO real objects: Prakritik
+ *                                           pair (main) + client-supplied
+ *                                           cow-dung-log plate (secondary)
  *   02 FROM WASTE TO RESOURCE  paper         RAW MATERIAL → MATERIAL
  *                                           DEVELOPMENT → USEFUL APPLICATIONS
- *   03 ONE RESOURCE, FOUR      haldi-wash    2×2 editorial chapters,
- *      SOLUTIONS                             Eco-Paints = real imagery;
- *                                           others = type/material plates
- *                                           (never fake product photos)
+ *   03 ONE RESOURCE, FOUR      haldi-wash    2×2 editorial chapters;
+ *      DIRECTIONS                           Eco-Paints + GoCast = real
+ *                                           client imagery; Bio-Coal +
+ *                                           Utility = type/material plates
  *   04 NOTHING GOES TO WASTE   paper         7-stage continuous circular
  *                                           loop, progressive highlight
- *   05 SOLUTIONS FOR MODERN    limewash     application matrix —
- *      INDIA                                APPLICATION DIRECTIONS labels
- *   06 WHY GAURIKRIT           haldi-wash   four ruled principles
- *   07 IMPACT AREAS            paper        five QUALITATIVE areas —
- *                                           no numbers, no fake counters
- *   08 RESEARCH & INNOVATION   limewash     5 focus areas → /innovation/
- *   09 VISION + MISSION        forest       two columns
- *   10 PARTNERSHIP CTA         paper        audience strip + 2 CTAs
- *   11 FOOTER                  forest       (shared include)
+ *   05 DOCUMENTED ECO-PAINT    cool-wash     real pair plate + the two
+ *      FAMILY                                documented formats + colour &
+ *                                           tool links
+ *   06 RESEARCH & INNOVATION   limewash      5 focus areas → /innovation/;
+ *                                           real material samples
+ *   07 VISION + MISSION        forest        two columns
+ *   08 PARTNERSHIP CTA         paper         audience strip + 2 CTAs
+ *   09 FOOTER                  forest        (shared include)
  *
  * Factual data unchanged from data.php. No invented metrics, dates,
  * facilities, partners or certifications.
@@ -41,8 +40,8 @@ $pageClass       = 'home';
 require_once __DIR__ . '/includes/bootstrap.php';
 require ROOT_PATH . '/includes/header.php';
 
-global $COMPANY, $FAMILIES, $CIRCULAR_STAGES, $APPLICATION_GROUPS,
-       $WHY_PRINCIPLES, $IMPACT_AREAS, $INNOVATION_AREAS, $PARTNER_AUDIENCES;
+global $COMPANY, $FAMILIES, $CIRCULAR_STAGES, $PRODUCTS,
+       $INNOVATION_AREAS, $PARTNER_AUDIENCES;
 
 $pairImage = '/assets/products/prakritik-pair.jpg';
 ?>
@@ -78,10 +77,10 @@ $pairImage = '/assets/products/prakritik-pair.jpg';
   /* ===== 04. CIRCULAR MODEL — page-local rhythm (structure §42.4) ===== */
   .circular-section__head { max-width: 48rem; margin-bottom: 2.75rem; }
 
-  /* ===== 05. APPLICATIONS MATRIX (structure §42.5) ===== */
-  .applications-section__head { max-width: 48rem; margin-bottom: 2.5rem; }
+  /* ===== 05. DOCUMENTED ECO-PAINT FAMILY — page-local rhythm ===== */
+  .eco-documented .section-heading { max-width: 48rem; margin-bottom: 2.5rem; }
 
-  /* ===== 08. INNOVATION TEASER — material research composition + rows ===== */
+  /* ===== 06. INNOVATION TEASER — material research composition + rows ===== */
   .innov-teaser__grid {
     display: grid; grid-template-columns: 1fr; gap: 2.5rem; align-items: center;
   }
@@ -107,7 +106,7 @@ $pairImage = '/assets/products/prakritik-pair.jpg';
     text-transform: uppercase; color: var(--fg-muted); padding-top: 1rem;
   }
 
-  /* ===== 10. PARTNERSHIP — page-local rhythm ===== */
+  /* ===== 08. PARTNERSHIP — page-local rhythm ===== */
   .partnership__head { max-width: 48rem; margin-bottom: 1.5rem; }
 </style>
 
@@ -137,11 +136,13 @@ $pairImage = '/assets/products/prakritik-pair.jpg';
         </div>
       </div>
 
-      <!-- Material-led field: real Prakritik Paint photography + texture +
-           branching category markers + restrained haldi/forest chips.
-           NOT a paint advertisement — one resource → many applications. -->
+      <!-- Material-led field (V18 §13): TWO strong real objects — the
+           Prakritik pair (main plane) and the client's clean cow-dung-log
+           plate (secondary plane, deliberate catalogue plate per §47B).
+           One resource, multiple applications — proven with real client
+           imagery, no collage, no mockups. -->
       <div class="hero__visual" data-reveal>
-        <figure class="story-field" aria-label="Gaurikrit material field — Prakritik Paint products and the four ecosystem directions">
+        <figure class="story-field" aria-label="Prakritik Paint packs and client-supplied cow-dung logs — one natural resource, multiple applications">
           <div class="story-field__texture" aria-hidden="true">
             <img src="<?= asset_url('/assets/editorial/raw-material-study.jpg') ?>" alt="" width="1344" height="768" loading="eager" decoding="async">
           </div>
@@ -150,33 +151,32 @@ $pairImage = '/assets/products/prakritik-pair.jpg';
             <span class="story-field__chip story-field__chip--forest"></span>
           </div>
           <div class="story-field__inner">
-            <img class="story-field__photo"
-                 src="<?= asset_url($pairImage) ?>"
-                 alt="Prakritik Distemper and Prakritik Emulsion paint packs — the documented Eco-Paints family"
-                 width="1420" height="618"
-                 loading="eager" fetchpriority="high" decoding="async">
-            <figcaption class="story-field__markers">
-              <span class="story-field__marker story-field__marker--lead">
-                <span class="story-field__marker-dot" aria-hidden="true"></span>
-                <span class="story-field__marker-name">Eco-Paints</span>
-                <span class="story-field__marker-tag">Documented</span>
-              </span>
-              <span class="story-field__marker">
-                <span class="story-field__marker-dot" aria-hidden="true"></span>
-                <span class="story-field__marker-name">GoCast Logs</span>
-                <span class="story-field__marker-tag">Direction</span>
-              </span>
-              <span class="story-field__marker">
-                <span class="story-field__marker-dot" aria-hidden="true"></span>
-                <span class="story-field__marker-name">Bio-Coal Logs</span>
-                <span class="story-field__marker-tag">Direction</span>
-              </span>
-              <span class="story-field__marker">
-                <span class="story-field__marker-dot" aria-hidden="true"></span>
-                <span class="story-field__marker-name">Utility Products</span>
-                <span class="story-field__marker-tag">Direction</span>
-              </span>
-            </figcaption>
+            <div class="story-field__objects">
+              <div class="story-field__object story-field__object--lead">
+                <img class="story-field__photo"
+                     src="<?= asset_url($pairImage) ?>"
+                     alt="Prakritik Distemper and Prakritik Emulsion paint packs — the documented Eco-Paints family"
+                     width="1420" height="618"
+                     loading="eager" fetchpriority="high" decoding="async">
+                <span class="story-field__object-label">
+                  Eco-Paints <small>Documented family</small>
+                </span>
+              </div>
+              <div class="story-field__object">
+                <span class="story-field__secondary">
+                  <picture>
+                    <source type="image/webp" srcset="<?= asset_url('/assets/images/client/cow-dung-logs-plate.webp') ?>">
+                    <img src="<?= asset_url('/assets/images/client/cow-dung-logs-plate.jpg') ?>"
+                         alt="Client-supplied cow-dung logs on a terracotta plate with straw"
+                         width="824" height="667"
+                         loading="lazy" decoding="async">
+                  </picture>
+                </span>
+                <span class="story-field__object-label">
+                  Cow-Dung Logs <small>Client-supplied reference</small>
+                </span>
+              </div>
+            </div>
           </div>
         </figure>
       </div>
@@ -275,30 +275,51 @@ $pairImage = '/assets/products/prakritik-pair.jpg';
 
     <div class="families" data-reveal-stagger>
       <?php
+      // V18 §15: real client imagery where it exists. Eco-Paints keeps the
+      // real pair; GoCast now carries the REAL cow-dung-log photography
+      // (context crop). Bio-Coal + Utility stay honest type/material plates.
       $familyMedia = [
           'eco-paints'        => 'photo',
-          'gocast-logs'       => 'plate',
+          'gocast-logs'       => 'photo',
           'bio-coal-logs'     => 'plate',
           'utility-products'  => 'plate',
       ];
+      $familyPhoto = [
+          'eco-paints'  => [$pairImage, 'Prakritik Distemper and Emulsion paint packs — the Eco-Paints family', 1420, 618],
+          'gocast-logs' => ['/assets/images/client/gocast-logs-context.jpg', 'Client-supplied cow-dung logs stacked beside a clay stove with embers', 1254, 420],
+      ];
+      $familyPhotoWebp = [
+          'gocast-logs' => '/assets/images/client/gocast-logs-context.webp',
+      ];
       $plateTexture = [
-          'gocast-logs'       => '/assets/editorial/raw-material-study.jpg',
           'bio-coal-logs'     => '/assets/editorial/exterior-finish-study.jpg',
           'utility-products'  => '/assets/editorial/courtyard-study.jpg',
       ];
       $plateTextureWebp = [
-          'gocast-logs'       => '/assets/editorial/raw-material-study.webp',
           'bio-coal-logs'     => '/assets/editorial/exterior-finish-study.webp',
           'utility-products'  => '/assets/editorial/courtyard-study.webp',
       ];
       foreach ($FAMILIES as $family): ?>
         <article class="family" id="family-<?= e($family['id']) ?>">
           <?php if ($familyMedia[$family['id']] === 'photo'): ?>
-            <figure class="family__media family__media--photo">
-              <img src="<?= asset_url($pairImage) ?>"
-                   alt="Prakritik Distemper and Emulsion paint packs — the Eco-Paints family"
-                   width="1420" height="618" loading="lazy" decoding="async">
-            </figure>
+            <?php if (isset($familyPhotoWebp[$family['id']])): ?>
+              <figure class="family__media family__media--photo">
+                <picture>
+                  <source type="image/webp" srcset="<?= asset_url($familyPhotoWebp[$family['id']]) ?>">
+                  <img src="<?= asset_url($familyPhoto[$family['id']][0]) ?>"
+                       alt="<?= e($familyPhoto[$family['id']][1]) ?>"
+                       width="<?= e($familyPhoto[$family['id']][2]) ?>" height="<?= e($familyPhoto[$family['id']][3]) ?>"
+                       loading="lazy" decoding="async">
+                </picture>
+              </figure>
+            <?php else: ?>
+              <figure class="family__media family__media--photo">
+                <img src="<?= asset_url($familyPhoto[$family['id']][0]) ?>"
+                     alt="<?= e($familyPhoto[$family['id']][1]) ?>"
+                     width="<?= e($familyPhoto[$family['id']][2]) ?>" height="<?= e($familyPhoto[$family['id']][3]) ?>"
+                     loading="lazy" decoding="async">
+              </figure>
+            <?php endif; ?>
           <?php else: ?>
             <figure class="family__media family__media--plate" aria-label="<?= e($family['name']) ?> — material direction">
               <span class="family__media-plate-texture" aria-hidden="true">
@@ -373,99 +394,61 @@ $pairImage = '/assets/products/prakritik-pair.jpg';
 </section>
 
 <!-- ============================================================
-     05. SOLUTIONS FOR MODERN INDIA — application matrix (§21–22)
-     Organised by APPLICATION. Undocumented subcategories are
-     labelled APPLICATION DIRECTIONS, never products for sale.
+     05. THE DOCUMENTED ECO-PAINT FAMILY (V18 §39.05)
+     The proven outcome: real pair photography + the two documented
+     formats with their supplied specifications + colour + tool links.
+     Ruled editorial rows, NOT a product-card grid.
      ============================================================ -->
-<section class="section section--limewash applications-section" aria-labelledby="applications-title">
+<section class="section section--cool eco-documented" aria-labelledby="eco-documented-title">
   <div class="container">
-    <div class="applications-section__head section-heading section-heading--left" data-reveal>
-      <span class="section-heading__eyebrow">Application Areas</span>
-      <h2 class="section-heading__title" id="applications-title">Sustainable Solutions for Modern India.</h2>
+    <div class="section-heading section-heading--left" data-reveal>
+      <span class="section-heading__eyebrow">The Documented Family</span>
+      <h2 class="section-heading__title" id="eco-documented-title">
+        Eco-Paints, documented end to end.
+      </h2>
       <p class="section-heading__desc">
-        Where the ecosystem works — buildings, energy, traditional applications
-        and everyday living.
+        The one family with full product documentation — two formats, supplied
+        specifications, real client photography and a shade catalogue.
       </p>
     </div>
 
-    <div class="app-matrix" data-reveal-stagger>
-      <?php foreach ($APPLICATION_GROUPS as $group): ?>
-        <div class="app-group">
-          <h3 class="app-group__title"><?= e($group['title']) ?></h3>
-          <ul class="app-group__list">
-            <?php foreach ($group['items'] as $item): ?>
-              <li class="app-group__item<?= $item['live'] ? ' app-group__item--live' : ' app-group__item--direction' ?>">
-                <?php if ($item['href']): ?>
-                  <a href="<?= e($item['href']) ?>"><?= e($item['name']) ?></a>
-                <?php else: ?>
-                  <span><?= e($item['name']) ?></span>
-                <?php endif; ?>
-                <span class="app-group__item-tag"><?= $item['live'] ? 'Family' : 'Direction' ?></span>
-              </li>
-            <?php endforeach; ?>
-          </ul>
-        </div>
-      <?php endforeach; ?>
-    </div>
-    <p class="app-matrix-note" data-reveal>
-      Entries marked <strong>Direction</strong> are application areas under exploration —
-      not products currently for sale. Eco-Paints is the documented family.
-    </p>
-  </div>
-</section>
+    <div class="eco-documented__grid" data-reveal-stagger>
+      <figure class="eco-documented__plate">
+        <img src="<?= asset_url($pairImage) ?>"
+             alt="Prakritik Distemper and Prakritik Emulsion paint packs"
+             width="1420" height="618" loading="lazy" decoding="async">
+      </figure>
 
-<!-- ============================================================
-     06. WHY GAURIKRIT — four principles (§23)
-     ============================================================ -->
-<section class="section section--haldi-wash principles-section" aria-labelledby="principles-title">
-  <div class="container">
-    <div class="section-heading section-heading--left" data-reveal>
-      <span class="section-heading__eyebrow">Why Gaurikrit</span>
-      <h2 class="section-heading__title" id="principles-title">What Makes Us Different.</h2>
-    </div>
-    <div class="principles-grid" data-reveal-stagger>
-      <?php foreach ($WHY_PRINCIPLES as $principle): ?>
-        <div class="principle">
-          <span class="principle__num" aria-hidden="true"><?= e($principle['num']) ?></span>
-          <h3 class="principle__name"><?= e($principle['name']) ?></h3>
-          <p class="principle__desc"><?= e($principle['desc']) ?></p>
+      <div class="eco-documented__rows">
+        <?php foreach ($PRODUCTS as $product): ?>
+          <div class="eco-documented__row">
+            <h3 class="eco-documented__row-name">
+              <a href="<?= e($product['route']) ?>"><?= e($product['name']) ?></a>
+            </h3>
+            <p class="eco-documented__row-meta">
+              <strong><?= e($product['packagingShort']) ?></strong> ·
+              <?= e($product['colour']) ?> · <?= e($product['finish']) ?> ·
+              <?= e($product['coverage']) ?>
+            </p>
+            <a class="eco-documented__row-cta" href="<?= e($product['route']) ?>">
+              View specifications <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        <?php endforeach; ?>
+        <div class="eco-documented__links">
+          <a href="/colours/">Explore Colours</a>
+          <a href="/paint-calculator/">Painting Calculator</a>
+          <a href="/why-prakritik/">Why Prakritik?</a>
         </div>
-      <?php endforeach; ?>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- ============================================================
-     07. IMPACT AREAS — qualitative, NO counters (§24 / §3)
-     ============================================================ -->
-<section class="section section--paper impact-section" aria-labelledby="impact-title">
-  <div class="container">
-    <div class="section-heading section-heading--left" data-reveal>
-      <span class="section-heading__eyebrow">How Impact Is Created</span>
-      <h2 class="section-heading__title" id="impact-title">Every Product Creates Change.</h2>
-      <p class="section-heading__desc">
-        Five impact areas — described qualitatively. Verified figures will be
-        published as project data becomes available.
-      </p>
-    </div>
-    <div class="impact-list" data-reveal-stagger>
-      <?php foreach ($IMPACT_AREAS as $area): ?>
-        <div class="impact-row">
-          <span class="impact-row__label"><?= e($area['label']) ?></span>
-          <span class="impact-row__area"><?= e($area['area']) ?></span>
-          <p class="impact-row__desc"><?= e($area['desc']) ?></p>
-        </div>
-      <?php endforeach; ?>
-    </div>
-    <p class="impact-note" data-reveal>
-      Impact measurement will be added as verified project data becomes available.
-      <a href="/sustainability/">Read the sustainability framework →</a>
-    </p>
-  </div>
-</section>
-
-<!-- ============================================================
-     08. RESEARCH & INNOVATION — focus areas teaser (§25)
+     06. RESEARCH & INNOVATION — focus areas teaser (§25 / §28)
+     Real material samples — paint + cow-dung log material — showing
+     material → application.
      ============================================================ -->
 <section class="section section--limewash innov-teaser" aria-labelledby="innov-title">
   <div class="container">
@@ -479,7 +462,7 @@ $pairImage = '/assets/products/prakritik-pair.jpg';
           <img src="<?= asset_url('/assets/editorial/raw-material-study.jpg') ?>" alt="" width="1344" height="768" loading="lazy" decoding="async">
         </span>
         <span class="innov-composition__plate innov-composition__plate--b">
-          <img src="<?= asset_url('/assets/editorial/finished-surface-study.jpg') ?>" alt="" width="1344" height="768" loading="lazy" decoding="async">
+          <img src="<?= asset_url('/assets/images/client/cow-dung-logs-stack.jpg') ?>" alt="" width="1178" height="893" loading="lazy" decoding="async">
         </span>
         <span class="innov-composition__tag">Material research directions</span>
       </div>
@@ -501,7 +484,7 @@ $pairImage = '/assets/products/prakritik-pair.jpg';
 </section>
 
 <!-- ============================================================
-     09. VISION + MISSION — strong Forest section (§26)
+     07. VISION + MISSION — strong Forest section (§26)
      ============================================================ -->
 <section class="section section--forest vision-mission" aria-labelledby="vision-title">
   <div class="container">
@@ -530,7 +513,7 @@ $pairImage = '/assets/products/prakritik-pair.jpg';
 </section>
 
 <!-- ============================================================
-     10. PARTNERSHIP CTA (§27)
+     08. PARTNERSHIP CTA (§27)
      ============================================================ -->
 <section class="section section--paper partnership" aria-labelledby="partnership-title">
   <div class="container">

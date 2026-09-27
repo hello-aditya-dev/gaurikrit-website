@@ -156,7 +156,24 @@
             <nav class="site-nav" aria-label="Primary" data-spy>
         <a href="./" class="site-nav__link" data-nav-link="/">Home</a>
         <a href="./about/" class="site-nav__link" data-nav-link="/about/">Our Story</a>
-        <a href="./products/" class="site-nav__link" data-nav-link="/products/">Products</a>
+                    <div class="site-nav__item" data-nav-menu>
+                        <button type="button" class="site-nav__link site-nav__link--parent"
+                                data-nav-link="/products/"
+                                aria-expanded="false" aria-haspopup="true" aria-controls="nav-products-menu">
+                            Products
+                            <svg class="site-nav__chevron" width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M2 3.5 5 6.5 8 3.5"/></svg>
+                        </button>
+                        <div class="nav-menu" id="nav-products-menu" hidden>
+                            <a href="./products/" class="nav-menu__link nav-menu__link--strong">Product Ecosystem</a>
+                            <a href="./products/#eco-paints" class="nav-menu__link">Eco-Paints</a>
+                            <a href="./products/prakritik-distemper/" class="nav-menu__link">Prakritik Distemper</a>
+                            <a href="./products/prakritik-emulsion/" class="nav-menu__link">Prakritik Emulsion</a>
+                            <a href="./colours/" class="nav-menu__link">Colours</a>
+                            <a href="./products/#gocast-logs" class="nav-menu__link">GoCast Logs</a>
+                            <a href="./products/#bio-coal-logs" class="nav-menu__link">Bio-Coal</a>
+                            <a href="./products/#utility-products" class="nav-menu__link">Utility Products</a>
+                        </div>
+                    </div>
         <a href="./sustainability/" class="site-nav__link" data-nav-link="/sustainability/">Sustainability</a>
         <a href="./innovation/" class="site-nav__link" data-nav-link="/innovation/">Innovation</a>
         <a href="./for-business/" class="site-nav__link" data-nav-link="/for-business/">Partners</a>
@@ -185,6 +202,16 @@
                 <a href="./" class="mobile-menu__link" data-nav-link="/">Home<span class="mobile-menu__arrow">→</span></a>
                 <a href="./about/" class="mobile-menu__link" data-nav-link="/about/">Our Story<span class="mobile-menu__arrow">→</span></a>
                 <a href="./products/" class="mobile-menu__link" data-nav-link="/products/">Products<span class="mobile-menu__arrow">→</span></a>
+                      <div class="mobile-menu__sub">
+                          <a href="./products/" class="mobile-menu__sub-link">Product Ecosystem</a>
+                          <a href="./products/#eco-paints" class="mobile-menu__sub-link">Eco-Paints</a>
+                          <a href="./products/prakritik-distemper/" class="mobile-menu__sub-link">Prakritik Distemper</a>
+                          <a href="./products/prakritik-emulsion/" class="mobile-menu__sub-link">Prakritik Emulsion</a>
+                          <a href="./colours/" class="mobile-menu__sub-link">Colours</a>
+                          <a href="./products/#gocast-logs" class="mobile-menu__sub-link">GoCast Logs</a>
+                          <a href="./products/#bio-coal-logs" class="mobile-menu__sub-link">Bio-Coal</a>
+                          <a href="./products/#utility-products" class="mobile-menu__sub-link">Utility Products</a>
+                      </div>
                 <a href="./sustainability/" class="mobile-menu__link" data-nav-link="/sustainability/">Sustainability<span class="mobile-menu__arrow">→</span></a>
                 <a href="./innovation/" class="mobile-menu__link" data-nav-link="/innovation/">Innovation<span class="mobile-menu__arrow">→</span></a>
                 <a href="./for-business/" class="mobile-menu__link" data-nav-link="/for-business/">Partners<span class="mobile-menu__arrow">→</span></a>
@@ -634,6 +661,7 @@
                 <a href="./products/#eco-paints">Eco-Paints</a>
                 <a href="./products/prakritik-distemper/">Prakritik Distemper</a>
                 <a href="./products/prakritik-emulsion/">Prakritik Emulsion</a>
+                <a href="./colours/">Colours</a>
                 <a href="./products/#gocast-logs">GoCast Logs</a>
                 <a href="./products/#bio-coal-logs">Bio-Coal Logs</a>
                 <a href="./products/#utility-products">Utility Products</a>

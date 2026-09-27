@@ -1,9 +1,9 @@
 <?php
 /**
- * Gaurikrit Bio Products — Products Overview (V16 ecosystem restructure).
+ * Gaurikrit Bio Products — Products Overview (V18 client-asset integration).
  *
  * THE GAURIKRIT PRODUCT ECOSYSTEM — one natural resource, multiple useful
- * applications (§30–35):
+ * applications (V18 §41 order):
  *   1. Hero — "One natural resource. Multiple useful applications." The
  *      official pair photo stays (the documented products).
  *   2. Eco-Paints family section (#eco-paints) — the DEEPEST section
@@ -12,13 +12,15 @@
  *   3. Distemper chapter (cool format wash — catalogue plate).
  *   4. Emulsion chapter (warm format wash — catalogue plate, reversed).
  *   5. Spec matrix + coverage note (factual data only).
- *   6. Ashta Laabh benefits — paint-specific, INSIDE Eco-Paints context.
- *   7. GoCast Logs (#gocast-logs) — editorial family section, type/material
- *      led, NO invented specifications (§32).
- *   8. Bio-Coal Logs (#bio-coal-logs) — same truthful treatment (§33).
+ *   6. Colour-collection callout — two client-supplied collections
+ *      → /colours/ (V18 §20; the 8-benefit grid now lives ONLY in
+ *      Eco-Paints educational contexts, not here).
+ *   7. GoCast / Cow-Dung Logs (#gocast-logs) — REAL client log
+ *      photography, editorial 45/55 composition (V18 §16–17).
+ *   8. Bio-Coal Logs (#bio-coal-logs) — type/material-led (§33).
  *   9. Utility Products (#utility-products) — same (§34).
  *  10. Application map — "Where the Ecosystem Works." (§35).
- *  11. FAQ + final CTA (retained factual content).
+ *  11. Final CTA (FAQ retired — §41: no generic paint FAQ here).
  *
  * No fake category detail pages — the three undocumented families are
  * presented HERE properly, with enquiry links, never Lorem ipsum.
@@ -33,7 +35,7 @@ $pageClass       = 'products';
 require_once __DIR__ . '/../../includes/bootstrap.php';
 require ROOT_PATH . '/includes/header.php';
 
-global $COMPANY, $PRODUCTS, $ASHTA_LAABH, $FAQ, $COVERAGE_DISCLAIMER, $FAMILIES, $APPLICATION_GROUPS;
+global $COMPANY, $PRODUCTS, $COVERAGE_DISCLAIMER, $FAMILIES, $APPLICATION_GROUPS, $SHADE_SIGNATURE;
 
 $distemper   = get_product('prakritik-distemper');
 $emulsion    = get_product('prakritik-emulsion');
@@ -272,19 +274,15 @@ $pairImageWebp = '/assets/products/prakritik-pair.webp';
   .appmap-section { padding-block: clamp(3rem, 6vw, 5rem); }
   .appmap-section__head { max-width: 48rem; margin-bottom: 2.5rem; }
 
-  /* ===== FAQ ===== */
-  .faq-section {
-    padding-block: clamp(4.5rem, 8vw, 6.5rem);
-    position: relative;
-  }
-  .faq-section .container::before {
-    content: ''; display: block;
-    width: 4rem; height: 2px;
-    background: var(--haldi);
-    margin: 0 0 3rem;
-  }
-  .faq-section__head { max-width: 48rem; margin-bottom: 2rem; }
-  .faq-section .faq-list { max-width: 64rem; }
+  /* ===== COLOUR COLLECTIONS CALLOUT (§20 / §48.5) ===== */
+  .colour-cta-section { padding-block: clamp(2.75rem, 5vw, 4rem); }
+
+  /* ===== GOCAST EDITORIAL FEATURE (§16 / §48.6) — copy numbering echo ===== */
+  .gocast-feature__copy .family-section__num { display: block; margin-bottom: 0.75rem; }
+  .gocast-feature__copy .family-section__name { margin-bottom: 0.5rem; }
+  .gocast-feature__copy .family-section__line { margin-bottom: 1.125rem; }
+  .gocast-feature__copy .family-section__themes { margin-top: 1.25rem; }
+  .gocast-feature__copy .family-section__cta { margin-top: 1.75rem; }
 </style>
 
 <!-- ============================================================
@@ -548,42 +546,62 @@ $pairImageWebp = '/assets/products/prakritik-pair.webp';
 </section>
 
 <!-- ============================================================
-     6. BENEFITS — the shared eight-benefit grid (Eco-Paints context)
+     06. COLOUR COLLECTIONS — quiet callout after the format
+     comparison (V18 §20). TWO separate collections — never
+     "36 unique colours". Swatch strip shows pixel-sampled
+     indicative shades from the client card.
      ============================================================ -->
-<section class="section section--haldi-wash benefits-strip" aria-labelledby="benefits-title">
+<section class="section section--haldi-wash colour-cta-section" aria-labelledby="colour-cta-title">
   <div class="container">
-    <div class="benefits-strip__head section-heading section-heading--left" data-reveal>
-      <span class="section-heading__eyebrow">Ashta Laabh — अष्ट लाभ</span>
-      <h2 class="section-heading__title" id="benefits-title">Eight benefits of Prakritik Paint.</h2>
-      <p class="section-heading__desc">
-        Benefits listed in the supplied Prakritik Paint material.
-      </p>
+    <div class="colour-cta" data-reveal>
+      <div>
+        <span class="colour-cta__eyebrow">Colour Collections</span>
+        <h3 class="colour-cta__title" id="colour-cta-title">
+          Two shade collections, inspired by nature.
+        </h3>
+        <p class="colour-cta__body">
+          <strong>12 Signature shades</strong> and a <strong>Premium
+          collection in five groups</strong> — names and codes exactly as
+          supplied on the client shade card, previewed live on the wall.
+        </p>
+      </div>
+      <div class="colour-cta__swatch-strip" aria-hidden="true">
+        <span class="colour-cta__swatch" style="background: <?= e($SHADE_SIGNATURE[0]['hex']) ?>"></span>
+        <span class="colour-cta__swatch" style="background: <?= e($SHADE_SIGNATURE[3]['hex']) ?>"></span>
+        <span class="colour-cta__swatch" style="background: <?= e($SHADE_SIGNATURE[4]['hex']) ?>"></span>
+        <span class="colour-cta__swatch" style="background: <?= e($SHADE_SIGNATURE[6]['hex']) ?>"></span>
+        <span class="colour-cta__swatch" style="background: <?= e($SHADE_SIGNATURE[8]['hex']) ?>"></span>
+        <span class="colour-cta__swatch" style="background: <?= e($SHADE_SIGNATURE[10]['hex']) ?>"></span>
+        <a class="btn btn--primary" href="/colours/">Explore Colours</a>
+      </div>
     </div>
-    <ol class="benefits-grid" data-reveal-stagger>
-      <?php foreach ($ASHTA_LAABH as $i => $benefit): ?>
-        <li class="benefits-grid__item">
-          <span class="benefits-grid__num" aria-hidden="true"><?= e(sprintf('%02d', $i + 1)) ?></span>
-          <span class="benefits-grid__name"><?= e($benefit['name']) ?></span>
-          <span class="benefits-grid__deva"><?= e($benefit['hindi']) ?></span>
-        </li>
-      <?php endforeach; ?>
-    </ol>
   </div>
 </section>
 
 <!-- ============================================================
-     7. GOCAST LOGS — development direction (§32)
-     Type/material-led family section. NO burn time, density, price,
-     availability, size or wood-equivalent claims.
+     07. GOCAST / COW-DUNG LOGS (V18 §16–17)
+     REAL client-supplied log photography in an editorial
+     composition (image 45 / copy 55). Natural ratio, quiet plate,
+     NO fake product card. NO burn time, density, price, size or
+     wood-equivalent claims; the log photo is NOT labelled Bio-Coal.
      ============================================================ -->
 <section class="section section--paper family-section" id="gocast-logs" aria-labelledby="gocast-title">
   <div class="container">
-    <div class="family-section__grid" data-reveal>
-      <div class="family-section__copy">
+    <div class="gocast-feature" data-reveal>
+      <figure class="gocast-feature__figure">
+        <picture>
+          <source type="image/webp" srcset="<?= asset_url('/assets/images/client/cow-dung-logs-plate.webp') ?>">
+          <img src="<?= asset_url('/assets/images/client/cow-dung-logs-plate.jpg') ?>"
+               alt="Client-supplied cow-dung logs on a terracotta plate with straw"
+               width="824" height="667" loading="lazy" decoding="async">
+        </picture>
+        <figcaption>Client-supplied cow-dung log reference.</figcaption>
+      </figure>
+      <div class="gocast-feature__copy">
         <span class="family-section__num" aria-hidden="true">02</span>
         <h2 class="family-section__name" id="gocast-title">GoCast Logs</h2>
         <p class="family-section__line">Saving trees without changing traditions.</p>
-        <p class="family-section__desc">
+        <p>
           A dense log format developed as an alternative to conventional wood —
           directed at ceremonial and traditional applications where wood has
           long been the default.
@@ -593,22 +611,16 @@ $pairImageWebp = '/assets/products/prakritik-pair.webp';
           <li>Traditional / ceremonial application direction</li>
           <li>Resource-conservation direction</li>
         </ul>
-        <p class="family-section__note">
-          GoCast is a development direction. Specifications, availability and
-          product photography will be published when the client supplies
-          verified information.
+        <p class="muted">
+          GoCast is a development direction — the photographs show
+          client-supplied log material, not a documented product specification.
+          Dimensions, composition and availability will be published when the
+          client supplies verified information.
         </p>
         <div class="family-section__cta">
           <a class="btn btn--outline" href="/contact/?interest=gocast-logs">Enquire About GoCast</a>
         </div>
       </div>
-      <figure class="family-section__plate" aria-label="GoCast Logs — material direction">
-        <span class="family-section__plate-texture" aria-hidden="true">
-          <img src="<?= asset_url('/assets/editorial/raw-material-study.jpg') ?>" alt="" width="1344" height="768" loading="lazy" decoding="async">
-        </span>
-        <span class="family-section__plate-word">GoCast Logs</span>
-        <span class="family-section__plate-tag">Material direction</span>
-      </figure>
     </div>
   </div>
 </section>
@@ -731,32 +743,8 @@ $pairImageWebp = '/assets/products/prakritik-pair.webp';
 </section>
 
 <!-- ============================================================
-     11. FAQ (retained factual content)
-     ============================================================ -->
-<section class="section section--paper faq-section" aria-labelledby="faq-title">
-  <div class="container">
-    <div class="faq-section__head section-heading section-heading--left" data-reveal>
-      <span class="section-heading__eyebrow">Common questions</span>
-      <h2 class="section-heading__title" id="faq-title">Frequently asked.</h2>
-    </div>
-    <div class="faq-list" data-reveal>
-      <?php foreach ($FAQ as $item): ?>
-        <div class="faq-item">
-          <button type="button" class="faq-item__q" aria-expanded="false">
-            <span><?= e($item['q']) ?></span>
-            <svg class="faq-item__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-          </button>
-          <div class="faq-item__a">
-            <div class="faq-item__a-inner"><?= $item['a'] /* FAQ HTML pre-escaped in data.php */ ?></div>
-          </div>
-        </div>
-      <?php endforeach; ?>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     12. NEED HELP CHOOSING — CTA
+     11. NEED HELP CHOOSING — CTA (V18 §41: FAQ retired to the detail
+     pages' context; products stays the ecosystem catalogue)
      ============================================================ -->
 <section class="section section--forest" aria-labelledby="choose-cta-title">
   <div class="container">

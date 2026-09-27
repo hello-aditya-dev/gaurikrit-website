@@ -176,7 +176,24 @@
             <nav class="site-nav" aria-label="Primary" data-spy>
         <a href="../" class="site-nav__link" data-nav-link="/">Home</a>
         <a href="../about/" class="site-nav__link" data-nav-link="/about/">Our Story</a>
-        <a href="../products/" class="site-nav__link" data-nav-link="/products/">Products</a>
+                    <div class="site-nav__item" data-nav-menu>
+                        <button type="button" class="site-nav__link site-nav__link--parent"
+                                data-nav-link="/products/"
+                                aria-expanded="false" aria-haspopup="true" aria-controls="nav-products-menu">
+                            Products
+                            <svg class="site-nav__chevron" width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M2 3.5 5 6.5 8 3.5"/></svg>
+                        </button>
+                        <div class="nav-menu" id="nav-products-menu" hidden>
+                            <a href="../products/" class="nav-menu__link nav-menu__link--strong">Product Ecosystem</a>
+                            <a href="../products/#eco-paints" class="nav-menu__link">Eco-Paints</a>
+                            <a href="../products/prakritik-distemper/" class="nav-menu__link">Prakritik Distemper</a>
+                            <a href="../products/prakritik-emulsion/" class="nav-menu__link">Prakritik Emulsion</a>
+                            <a href="../colours/" class="nav-menu__link">Colours</a>
+                            <a href="../products/#gocast-logs" class="nav-menu__link">GoCast Logs</a>
+                            <a href="../products/#bio-coal-logs" class="nav-menu__link">Bio-Coal</a>
+                            <a href="../products/#utility-products" class="nav-menu__link">Utility Products</a>
+                        </div>
+                    </div>
         <a href="../sustainability/" class="site-nav__link" data-nav-link="/sustainability/">Sustainability</a>
         <a href="../innovation/" class="site-nav__link" data-nav-link="/innovation/">Innovation</a>
         <a href="../for-business/" class="site-nav__link" data-nav-link="/for-business/">Partners</a>
@@ -205,6 +222,16 @@
                 <a href="../" class="mobile-menu__link" data-nav-link="/">Home<span class="mobile-menu__arrow">→</span></a>
                 <a href="../about/" class="mobile-menu__link" data-nav-link="/about/">Our Story<span class="mobile-menu__arrow">→</span></a>
                 <a href="../products/" class="mobile-menu__link" data-nav-link="/products/">Products<span class="mobile-menu__arrow">→</span></a>
+                      <div class="mobile-menu__sub">
+                          <a href="../products/" class="mobile-menu__sub-link">Product Ecosystem</a>
+                          <a href="../products/#eco-paints" class="mobile-menu__sub-link">Eco-Paints</a>
+                          <a href="../products/prakritik-distemper/" class="mobile-menu__sub-link">Prakritik Distemper</a>
+                          <a href="../products/prakritik-emulsion/" class="mobile-menu__sub-link">Prakritik Emulsion</a>
+                          <a href="../colours/" class="mobile-menu__sub-link">Colours</a>
+                          <a href="../products/#gocast-logs" class="mobile-menu__sub-link">GoCast Logs</a>
+                          <a href="../products/#bio-coal-logs" class="mobile-menu__sub-link">Bio-Coal</a>
+                          <a href="../products/#utility-products" class="mobile-menu__sub-link">Utility Products</a>
+                      </div>
                 <a href="../sustainability/" class="mobile-menu__link" data-nav-link="/sustainability/">Sustainability<span class="mobile-menu__arrow">→</span></a>
                 <a href="../innovation/" class="mobile-menu__link" data-nav-link="/innovation/">Innovation<span class="mobile-menu__arrow">→</span></a>
                 <a href="../for-business/" class="mobile-menu__link" data-nav-link="/for-business/">Partners<span class="mobile-menu__arrow">→</span></a>
@@ -246,6 +273,9 @@
 
   /* ===== ECOSYSTEM (compact families, no media) ===== */
   .story-families { margin-top: 2rem; }
+  /* V18 §47B: white-ground client photography in a deliberate plate. */
+  .resource-step__figure--plate { background: #fff; display: flex; align-items: center; justify-content: center; padding: clamp(0.5rem, 1vw, 0.75rem); }
+  .resource-step__figure--plate img { position: static; inset: auto; width: auto; max-width: 100%; max-height: 100%; height: auto; object-fit: contain; }
 
   /* ===== COMPANY PLATE ===== */
   .company-plate-section { padding-block: clamp(3rem, 6vw, 5rem); }
@@ -365,201 +395,72 @@
 </section>
 
 <!-- ============================================================
-     03. THE GAURIKRIT JOURNEY — qualitative, NO dates (§29)
+     04. FROM RESOURCE TO APPLICATION (V18 §40 / §25)
      ============================================================ -->
-<section class="section section--paper story-wrap" id="the-journey" aria-labelledby="journey-ch-title">
+<section class="section section--paper story-wrap" id="from-resource-to-application" aria-labelledby="application-ch-title">
   <div class="container">
     <article class="story-chapter" data-reveal>
       <div>
         <span class="story-chapter__num" aria-hidden="true">03</span>
-        <span class="story-chapter__kicker">The Gaurikrit Journey</span>
+        <span class="story-chapter__kicker">From Resource to Application</span>
       </div>
       <div>
-        <h2 class="story-chapter__title" id="journey-ch-title">A journey of material stages — not dates.</h2>
+        <h2 class="story-chapter__title" id="application-ch-title">
+          A journey of material stages — not dates.
+        </h2>
         <div class="story-chapter__body">
           <p>
             Gaurikrit's story is told through what the material became, not when.
-            Each stage widened the possibility of the resource.
+            The resource became a documented wall coating — and the same material
+            now widens into fuel and utility directions.
           </p>
         </div>
-        <div class="journey-strip" data-reveal>
-        <div class="journey-stop">
-            <span class="journey-stop__stage">Stage 01</span>
-            <h3 class="journey-stop__name">Resource</h3>
-            <p class="journey-stop__desc">Cow dung — recognised and gathered.</p>
-        </div>
-        <div class="journey-stop">
-            <span class="journey-stop__stage">Stage 02</span>
-            <h3 class="journey-stop__name">Idea</h3>
-            <p class="journey-stop__desc">A practical direction for a traditional material.</p>
-        </div>
-        <div class="journey-stop">
-            <span class="journey-stop__stage">Stage 03</span>
-            <h3 class="journey-stop__name">Application</h3>
-            <p class="journey-stop__desc">Prakritik Paint — walls, documented.</p>
-        </div>
-        <div class="journey-stop">
-            <span class="journey-stop__stage">Stage 04</span>
-            <h3 class="journey-stop__name">Ecosystem</h3>
-            <p class="journey-stop__desc">Fuel and utility directions around one resource.</p>
-        </div>
-        </div>
-      </div>
-    </article>
-  </div>
-</section>
 
-<!-- ============================================================
-     04. THE CIRCULAR MODEL
-     ============================================================ -->
-<section class="section section--limewash story-wrap" id="the-circular-model" aria-labelledby="circular-ch-title">
-  <div class="container">
-    <article class="story-chapter" data-reveal>
-      <div>
-        <span class="story-chapter__num" aria-hidden="true">04</span>
-        <span class="story-chapter__kicker">The Circular Model</span>
-      </div>
-      <div>
-        <h2 class="story-chapter__title" id="circular-ch-title">Nothing goes to waste.</h2>
-        <div class="story-chapter__body">
-          <p>
-            The expanded circular model — how the resource enters, is developed,
-            becomes useful products, and renews the cycle.
-          </p>
+        <div class="resource-steps" data-reveal-stagger>
+          <article class="resource-step">
+            <figure class="resource-step__figure">
+              <picture><source type="image/webp" srcset="../assets/editorial/raw-material-study.webp"><img  src="../assets/editorial/raw-material-study.jpg" alt="Raw natural material — a lime-plastered surface study" width="1344" height="768" loading="lazy" decoding="async"></picture>
+            </figure>
+            <div class="resource-step__caption">
+              <span class="resource-step__kicker">Stage 01 — Resource</span>
+              <h3 class="resource-step__title">The natural material</h3>
+              <p class="resource-step__desc">
+                Cow dung — a material traditional India never wasted.
+              </p>
+            </div>
+          </article>
+          <article class="resource-step">
+            <figure class="resource-step__figure">
+              <picture><source type="image/webp" srcset="../assets/products/prakritik-pair.webp"><img  src="../assets/products/prakritik-pair.jpg" alt="Prakritik Distemper and Prakritik Emulsion paint packs — the documented application" width="1420" height="618" loading="lazy" decoding="async"></picture>
+            </figure>
+            <div class="resource-step__caption">
+              <span class="resource-step__kicker">Stage 02 — Application</span>
+              <h3 class="resource-step__title">Prakritik Paint</h3>
+              <p class="resource-step__desc">
+                The documented family — Distemper and Emulsion, walls done.
+              </p>
+            </div>
+          </article>
+          <article class="resource-step">
+            <figure class="resource-step__figure resource-step__figure--plate">
+              <picture><source type="image/webp" srcset="../assets/images/client/cow-dung-logs-stack.webp"><img  src="../assets/images/client/cow-dung-logs-stack.jpg" alt="Client-supplied cow-dung log material — the widening direction" width="1178" height="893" loading="lazy" decoding="async"></picture>
+            </figure>
+            <div class="resource-step__caption">
+              <span class="resource-step__kicker">Stage 03 — Widening</span>
+              <h3 class="resource-step__title">Expanding directions</h3>
+              <p class="resource-step__desc">
+                Client-supplied cow-dung log material — fuel, traditional and
+                utility directions in development.
+              </p>
+            </div>
+          </article>
         </div>
-        <div class="circular" data-circular data-reveal>
-          <ol class="circular__track">
-          <li class="stage">
-            <span class="stage__num">01</span>
-            <h3 class="stage__name">Collection</h3>
-            <p class="stage__desc">Natural and agricultural material streams are gathered.</p>
-          </li>
-          <li class="stage">
-            <span class="stage__num">02</span>
-            <h3 class="stage__name">Processing</h3>
-            <p class="stage__desc">The raw material is prepared and stabilised.</p>
-          </li>
-          <li class="stage">
-            <span class="stage__num">03</span>
-            <h3 class="stage__name">Material Enhancement</h3>
-            <p class="stage__desc">It is developed into useful working materials.</p>
-          </li>
-          <li class="stage">
-            <span class="stage__num">04</span>
-            <h3 class="stage__name">Manufacturing</h3>
-            <p class="stage__desc">Materials are formed into product families.</p>
-          </li>
-          <li class="stage">
-            <span class="stage__num">05</span>
-            <h3 class="stage__name">Products</h3>
-            <p class="stage__desc">Walls, energy and everyday-use applications.</p>
-          </li>
-          <li class="stage">
-            <span class="stage__num">06</span>
-            <h3 class="stage__name">Environmental Impact</h3>
-            <p class="stage__desc">Each use replaces a less sustainable alternative.</p>
-          </li>
-          <li class="stage">
-            <span class="stage__num">07</span>
-            <h3 class="stage__name">Resource Regeneration</h3>
-            <p class="stage__desc">The cycle renews — nothing goes to waste.</p>
-          </li>
-          </ol>
-          <svg class="circular__loop-path" viewBox="0 0 1000 28" preserveAspectRatio="none" aria-hidden="true">
-            <path d="M8,2 L8,20 C8,26 16,26 26,26 L974,26 C984,26 992,26 992,20 L992,10" />
-          </svg>
-          <span class="circular__loop-label" aria-hidden="true">Resource regeneration</span>
-        </div>
-        <p class="impact-note" style="margin-top: 1.5rem;">
-          Read the full framework on <a href="../sustainability/">Sustainability →</a>
+
+        <p class="impact-note" style="margin-top: 1.75rem;">
+          The four-direction ecosystem lives on
+          <a href="../products/">Products →</a> — the circular framework on
+          <a href="../sustainability/">Sustainability →</a>
         </p>
-      </div>
-    </article>
-  </div>
-</section>
-
-<!-- ============================================================
-     05. THE PRODUCT ECOSYSTEM
-     ============================================================ -->
-<section class="section section--paper story-wrap" id="the-ecosystem" aria-labelledby="ecosystem-ch-title">
-  <div class="container">
-    <article class="story-chapter" data-reveal>
-      <div>
-        <span class="story-chapter__num" aria-hidden="true">05</span>
-        <span class="story-chapter__kicker">The Product Ecosystem</span>
-      </div>
-      <div>
-        <h2 class="story-chapter__title" id="ecosystem-ch-title">One resource, four directions.</h2>
-        <div class="story-chapter__body">
-          <p>
-            The ecosystem spans walls, energy, traditional applications and
-            everyday use. Eco-Paints — Prakritik Distemper and Prakritik
-            Emulsion — is the documented family; the other three are
-            development directions.
-          </p>
-        </div>
-        <div class="families story-families" data-reveal-stagger>
-          <article class="family">
-              <div class="family__head">
-                <span class="family__num" aria-hidden="true">01</span>
-                <h3 class="family__name">Eco-Paints</h3>
-              </div>
-              <p class="family__line">Healthy walls inspired by nature.</p>
-              <ul class="family__themes">
-              <li>Eco-conscious formulation</li>
-              <li>Sustainable building applications</li>
-              <li>Natural-finish positioning</li>
-              </ul>
-              <a class="family__cta" href="../products/#eco-paints">
-                Explore Eco-Paints <span aria-hidden="true">→</span>
-              </a>
-            </article>
-          <article class="family">
-              <div class="family__head">
-                <span class="family__num" aria-hidden="true">02</span>
-                <h3 class="family__name">GoCast Logs</h3>
-              </div>
-              <p class="family__line">Saving trees without changing traditions.</p>
-              <ul class="family__themes">
-              <li>Alternative to conventional wood</li>
-              <li>Ceremonial applications</li>
-              <li>Forest-conservation direction</li>
-              </ul>
-              <a class="family__cta" href="../products/#gocast-logs">
-                Explore GoCast Logs <span aria-hidden="true">→</span>
-              </a>
-            </article>
-          <article class="family">
-              <div class="family__head">
-                <span class="family__num" aria-hidden="true">03</span>
-                <h3 class="family__name">Bio-Coal Logs</h3>
-              </div>
-              <p class="family__line">Renewable energy from natural biomass.</p>
-              <ul class="family__themes">
-              <li>Biomass energy</li>
-              <li>Reduced fossil-fuel reliance direction</li>
-              <li>Sustainable fuel applications</li>
-              </ul>
-              <a class="family__cta" href="../products/#bio-coal-logs">
-                Explore Bio-Coal Logs <span aria-hidden="true">→</span>
-              </a>
-            </article>
-          <article class="family">
-              <div class="family__head">
-                <span class="family__num" aria-hidden="true">04</span>
-                <h3 class="family__name">Utility Products</h3>
-              </div>
-              <p class="family__line">Sustainable products for everyday living.</p>
-              <ul class="family__themes">
-              <li>Plastic-reducing alternatives</li>
-              <li>Practical daily-use applications</li>
-              <li>Circular-economy solutions</li>
-              </ul>
-              <a class="family__cta" href="../products/#utility-products">
-                Explore Utility Products <span aria-hidden="true">→</span>
-              </a>
-            </article>
-        </div>
       </div>
     </article>
   </div>
@@ -765,6 +666,7 @@ Uttar Pradesh – 203131</dd>
                 <a href="../products/#eco-paints">Eco-Paints</a>
                 <a href="../products/prakritik-distemper/">Prakritik Distemper</a>
                 <a href="../products/prakritik-emulsion/">Prakritik Emulsion</a>
+                <a href="../colours/">Colours</a>
                 <a href="../products/#gocast-logs">GoCast Logs</a>
                 <a href="../products/#bio-coal-logs">Bio-Coal Logs</a>
                 <a href="../products/#utility-products">Utility Products</a>

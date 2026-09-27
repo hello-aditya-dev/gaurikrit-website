@@ -24,7 +24,7 @@ $pageClass        = 'why-prakritik';
 require_once __DIR__ . '/../includes/bootstrap.php';
 require ROOT_PATH . '/includes/header.php';
 
-global $COMPANY, $PRODUCTS, $ASHTA_LAABH, $COLOUR_STUDY;
+global $COMPANY, $PRODUCTS, $ASHTA_LAABH, $SHADE_SIGNATURE;
 
 $distemper = get_product('prakritik-distemper');
 $emulsion  = get_product('prakritik-emulsion');
@@ -270,9 +270,9 @@ $emulsion  = get_product('prakritik-emulsion');
           </a>
         </li>
         <li class="chapter-index__item">
-          <a class="chapter-index__link" href="#chapter-07-title">
+          <a class="chapter-index__link" href="/colours/">
             <span class="chapter-index__num" aria-hidden="true">07</span>
-            <span class="chapter-index__name">Colours of India — a wall study.</span>
+            <span class="chapter-index__name">Explore the shade collections.</span>
             <span class="chapter-index__arrow" aria-hidden="true">→</span>
           </a>
         </li>
@@ -473,6 +473,29 @@ $emulsion  = get_product('prakritik-emulsion');
         <span class="why-format-card__caption"><?= e($emulsion['packagingShort']) ?> packs</span>
       </div>
     </div>
+
+    <!-- V18 §21: Explore Colours — the end of the paint/formats story.
+         The real client shade catalogue now lives on /colours/. -->
+    <div class="colour-cta" data-reveal style="margin-top: 2rem;">
+      <div>
+        <span class="colour-cta__eyebrow">Colour Collections</span>
+        <h3 class="colour-cta__title">Colours Inspired by Nature.</h3>
+        <p class="colour-cta__body">
+          Two client-supplied collections — <strong>12 Signature shades</strong>
+          and a <strong>Premium collection in five groups</strong> — previewed
+          live on the wall.
+        </p>
+      </div>
+      <div class="colour-cta__swatch-strip" aria-hidden="true">
+        <span class="colour-cta__swatch" style="background: <?= e($SHADE_SIGNATURE[0]['hex']) ?>"></span>
+        <span class="colour-cta__swatch" style="background: <?= e($SHADE_SIGNATURE[3]['hex']) ?>"></span>
+        <span class="colour-cta__swatch" style="background: <?= e($SHADE_SIGNATURE[4]['hex']) ?>"></span>
+        <span class="colour-cta__swatch" style="background: <?= e($SHADE_SIGNATURE[6]['hex']) ?>"></span>
+        <span class="colour-cta__swatch" style="background: <?= e($SHADE_SIGNATURE[8]['hex']) ?>"></span>
+        <span class="colour-cta__swatch" style="background: <?= e($SHADE_SIGNATURE[10]['hex']) ?>"></span>
+        <a class="btn btn--primary" href="/colours/">Explore Colours</a>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -508,74 +531,6 @@ $emulsion  = get_product('prakritik-emulsion');
         </picture>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- ===== 07 COLOURS OF INDIA — wall-plane colour preview (V16: moved
-     from Home into the Eco-Paints educational context, §64). The mask
-     path traces ONLY the wall plane of the elevation photo (1344x768
-     pixel space); door + window are cut out with fill-rule evenodd.
-     preserveAspectRatio "xMidYMid slice" keeps the mask aligned with
-     object-fit: cover. Selected colour affects ONLY the wall plane. ===== -->
-<section class="section section--paper colour-study colours-section" id="colours" aria-labelledby="chapter-07-title" data-colour-study>
-  <div class="container">
-    <div class="colours-section__head section-heading section-heading--left" data-reveal>
-      <span class="section-heading__eyebrow">Editorial colour study</span>
-      <h2 class="colours-section__title" id="chapter-07-title">Colours of India.</h2>
-      <p class="colours-section__sub">
-        Tap a swatch to preview the colour on the wall — only the wall plane
-        changes; the door, window and surroundings stay as they are. These are
-        editorial design moods — not currently available product shades.
-      </p>
-    </div>
-
-    <div class="colours-wall" data-colour-wall data-reveal>
-      <picture>
-        <source type="image/webp" srcset="<?= asset_url('/assets/editorial/colour-wall-study.webp') ?>">
-        <img class="colours-wall__art"
-             src="<?= asset_url('/assets/editorial/colour-wall-study.jpg') ?>"
-             alt="Indian lime-plastered wall elevation with door and window"
-             width="1344" height="768"
-             loading="lazy" decoding="async">
-      </picture>
-      <svg class="colours-wall__tint" viewBox="0 0 1344 768"
-           preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
-        <path class="colours-wall__paint" fill-rule="evenodd"
-              d="M0,104 H1344 V724 H0 Z
-                 M80,370 H304 V768 H80 Z
-                 M894,346 H1180 V654 H894 Z" />
-      </svg>
-      <span class="colours-wall__label">
-        <span data-colour-label>Limewash</span>
-        <small>Editorial colour study</small>
-      </span>
-    </div>
-
-    <div class="colours-swatches" data-reveal-stagger role="radiogroup" aria-label="Wall colour swatches">
-      <?php foreach ($COLOUR_STUDY as $sw): ?>
-        <button type="button"
-                class="colours-swatch"
-                role="radio"
-                aria-checked="false"
-                style="background: <?= e($sw['hex']) ?>;"
-                data-shade="<?= e($sw['hex']) ?>"
-                data-shade-name="<?= e($sw['name']) ?> (<?= e($sw['label']) ?>)"
-                data-colour-id="<?= e(strtolower($sw['name'])) ?>"
-                aria-label="<?= e($sw['name']) ?> — <?= e($sw['label']) ?>">
-          <span class="colours-swatch__label"><?= e($sw['name']) ?></span>
-        </button>
-      <?php endforeach; ?>
-    </div>
-
-    <!-- V14: quiet share affordance — revealed by colour-study.js once a
-         colour is selected; copies the current URL incl. #colour=<id>. -->
-    <p class="colours-share">
-      <button type="button" class="copy-btn" data-colour-copy data-copy="" hidden
-              aria-label="Copy a link to this wall colour">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-        <span class="copy-btn__label">Copy link to this colour</span>
-      </button>
-    </p>
   </div>
 </section>
 
