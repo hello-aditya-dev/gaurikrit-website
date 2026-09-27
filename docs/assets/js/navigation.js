@@ -171,64 +171,194 @@
         }
     }
 
-    // ---- V18 §54: Products dropdown -----------------------------------
-    // Toggle on click (touch + keyboard), open on hover for pointer users,
-    // close on Escape / outside click / focus leaving the group. The panel
-    // holds real links only — focus moves straight into them on open.
+    // ---- V19 §2–7: Products dropdown state machine --------------------
+    // ONE source of truth: the `hidden` attribute + aria-expanded. The CSS
+    // carries `.nav-menu[hidden] { display: none !important; }` so an author
+    // `display: flex` can never defeat the closed state (the V18 bug).
+    //
+    // Behaviour:
+    //  - hover opens (pointer users); a 130ms leave grace closes, cancelled
+    //    by re-entering the group
+    //  - click toggles; click outside / Escape / scroll / resize / link
+    //    click / focus leaving the group / breakpoint change → close
+    //  - keyboard: Enter/Space open; ArrowDown/ArrowUp open AND move focus
+    //    (only keyboard opens ever move focus); Escape closes + refocuses
+    //    the button; arrows wrap within the panel
+    //  - the floating panel exists only while the desktop nav does (≥1024px)
     function initNavDropdown() {
         var items = document.querySelectorAll('[data-nav-menu]');
+        var HOVER_Q = window.matchMedia ? window.matchMedia('(hover: hover) and (pointer: fine)') : null;
+        var DESKTOP_Q = window.matchMedia ? window.matchMedia('(min-width: 1024px)') : null;
+        var GRACE_MS = 130;
+
         for (var i = 0; i < items.length; i++) {
             (function (item) {
                 var btn = item.querySelector('.site-nav__link--parent');
                 var panel = item.querySelector('.nav-menu');
                 if (!btn || !panel) return;
+                var links = [].slice.call(panel.querySelectorAll('a'));
+                var closeTimer = null;
+                var openedByKeyboard = false;
+                var suppressScrollUntil = 0;
 
-                function open() {
-                    panel.removeAttribute('hidden');
-                    btn.setAttribute('aria-expanded', 'true');
+                function desktopNav() {
+                    return DESKTOP_Q ? DESKTOP_Q.matches : window.innerWidth >= 1024;
                 }
-                function close() {
-                    panel.setAttribute('hidden', '');
-                    btn.setAttribute('aria-expanded', 'false');
+                function hoverCapable() {
+                    return HOVER_Q ? HOVER_Q.matches : false;
                 }
                 function isOpen() {
                     return !panel.hasAttribute('hidden');
                 }
-
-                btn.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    if (isOpen()) {
-                        close();
-                    } else {
-                        open();
-                        var first = panel.querySelector('a');
-                        if (first) first.focus();
+                function clearCloseTimer() {
+                    if (closeTimer) { clearTimeout(closeTimer); closeTimer = null; }
+                }
+                function focusLink(idx) {
+                    if (links[idx]) {
+                        // preventScroll: focusing must never fire a scroll event
+                        // (the scroll-close listener would instantly close the
+                        // just-opened panel — the V19 keyboard-open bug).
+                        try { links[idx].focus({ preventScroll: true }); }
+                        catch (e) { links[idx].focus(); }
+                        return true;
                     }
-                });
-
-                // Pointer users: open on hover into the group, close on leave.
-                if (window.matchMedia && window.matchMedia('(hover: hover)').matches) {
-                    item.addEventListener('mouseenter', open);
-                    item.addEventListener('mouseleave', close);
+                    return false;
                 }
 
-                document.addEventListener('keydown', function (e) {
-                    if (e.key === 'Escape' && isOpen()) {
-                        close();
-                        btn.focus();
+                function open(source) {
+                    // The floating panel only exists where the desktop nav does.
+                    if (!desktopNav()) return;
+                    clearCloseTimer();
+                    panel.removeAttribute('hidden');
+                    btn.setAttribute('aria-expanded', 'true');
+                    // Mouse/touch opens never move focus — only openKeyboard does.
+                    openedByKeyboard = false;
+                }
+                function openKeyboard(idx) {
+                    if (!desktopNav()) return;
+                    clearCloseTimer();
+                    // suppress scroll-close briefly: a keyboard open must
+                    // survive any in-flight programmatic smooth scrolling
+                    suppressScrollUntil = Date.now() + 350;
+                    panel.removeAttribute('hidden');
+                    btn.setAttribute('aria-expanded', 'true');
+                    openedByKeyboard = true;
+                    if (!focusLink(idx)) btn.focus();
+                }
+                function close(returnFocus) {
+                    clearCloseTimer();
+                    var wasOpen = isOpen();
+                    var wasKeyboard = openedByKeyboard;
+                    panel.setAttribute('hidden', '');
+                    btn.setAttribute('aria-expanded', 'false');
+                    openedByKeyboard = false;
+                    if (wasOpen && returnFocus && wasKeyboard) {
+                        try { btn.focus({ preventScroll: true }); }
+                        catch (e) { btn.focus(); }
+                    }
+                }
+
+                // --- Button: click toggles (mouse, touch, Enter, Space) ---
+                btn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    if (isOpen()) { close(false); } else { open('pointer'); }
+                });
+
+                // --- Button: arrow keys open + focus (keyboard path) ---
+                btn.addEventListener('keydown', function (e) {
+                    if (e.key === 'ArrowDown') {
+                        e.preventDefault();
+                        if (!isOpen()) openKeyboard(0);
+                    } else if (e.key === 'ArrowUp') {
+                        e.preventDefault();
+                        if (!isOpen()) openKeyboard(links.length - 1);
+                    } else if (e.key === 'Escape' && isOpen()) {
+                        e.stopPropagation();
+                        close(true);
                     }
                 });
 
-                document.addEventListener('click', function (e) {
-                    if (isOpen() && !item.contains(e.target)) close();
+                // --- Panel: arrow navigation while open (wrap-around) ---
+                panel.addEventListener('keydown', function (e) {
+                    var active = document.activeElement;
+                    var idx = links.indexOf(active);
+                    if (e.key === 'ArrowDown') {
+                        e.preventDefault();
+                        focusLink((idx + 1 + links.length) % links.length);
+                    } else if (e.key === 'ArrowUp') {
+                        e.preventDefault();
+                        focusLink((idx - 1 + links.length) % links.length);
+                    } else if (e.key === 'Home') {
+                        e.preventDefault(); focusLink(0);
+                    } else if (e.key === 'End') {
+                        e.preventDefault(); focusLink(links.length - 1);
+                    } else if (e.key === 'Escape') {
+                        e.stopPropagation();
+                        close(true);
+                    } else if (e.key === 'Tab' && isOpen()) {
+                        // Tabbing past the last/first item closes naturally.
+                        setTimeout(function () {
+                            if (!item.contains(document.activeElement)) close(false);
+                        }, 0);
+                    }
                 });
 
-                // Focus leaving the group (e.g. tabbing past the last link).
-                panel.addEventListener('focusout', function (e) {
-                    // wait for the next focus target to settle
+                // --- Pointer: hover opens, leave starts the grace timer ---
+                item.addEventListener('mouseenter', function () {
+                    if (hoverCapable() && desktopNav()) open('pointer');
+                });
+                item.addEventListener('mouseleave', function () {
+                    if (!hoverCapable()) return;
+                    clearCloseTimer();
+                    closeTimer = setTimeout(function () {
+                        closeTimer = null;
+                        close(false);
+                    }, GRACE_MS);
+                });
+
+                // --- Outside click (capture phase catches stops too) ---
+                document.addEventListener('click', function (e) {
+                    if (isOpen() && !item.contains(e.target)) close(false);
+                }, true);
+
+                // --- Escape anywhere (mobile menu handles its own) ---
+                document.addEventListener('keydown', function (e) {
+                    if (e.key === 'Escape' && isOpen()) close(true);
+                });
+
+                // --- Page scroll closes (capture: nested scrollers too).
+                //     Programmatic scrolls fired by our own focus() calls and
+                //     in-flight smooth scrolling right after a keyboard open
+                //     are ignored (suppressScrollUntil). ---
+                window.addEventListener('scroll', function () {
+                    if (Date.now() < suppressScrollUntil) return;
+                    if (closeTimer) clearCloseTimer();
+                    if (isOpen()) close(false);
+                }, { passive: true, capture: true });
+
+                // --- Viewport resize / desktop-nav breakpoint change ---
+                window.addEventListener('resize', function () {
+                    if (isOpen()) close(false);
+                });
+                if (DESKTOP_Q && DESKTOP_Q.addEventListener) {
+                    DESKTOP_Q.addEventListener('change', function () { close(false); });
+                }
+
+                // --- Focus leaving the group closes ---
+                item.addEventListener('focusout', function () {
                     setTimeout(function () {
-                        if (!item.contains(document.activeElement)) close();
+                        if (!item.contains(document.activeElement)) close(false);
                     }, 0);
+                });
+
+                // --- Choosing a link closes immediately ---
+                links.forEach(function (a) {
+                    a.addEventListener('click', function () { close(false); });
+                });
+
+                // --- bfcache restore / route history navigation ---
+                window.addEventListener('pageshow', function (e) {
+                    if (e.persisted) close(false);
                 });
             })(items[i]);
         }

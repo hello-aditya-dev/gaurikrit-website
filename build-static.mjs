@@ -510,6 +510,19 @@ function pic(absWebpPath, absJpgPath, alt, w, h, depth, extra = '') {
     return `<picture><source type="image/webp" srcset="${webp}"><img ${extra} src="${jpg}" alt="${e(alt)}" width="${w}" height="${h}" loading="lazy" decoding="async"></picture>`;
 }
 
+/** V19 image system — responsive ladder helper for the ecosystem
+ *  derivative set (AVIF first, WebP fallback, JPEG <img>). Mirrors the
+ *  PHP eco_srcset()/eco_srcset_webp() helpers in includes/helpers.php. */
+function ecoSrcset(stem, widths, depth) {
+    return widths.map((w) => `${assetUrl(`/assets/images/ecosystem/${stem}-${w}.avif`, depth)} ${w}w`).join(', ');
+}
+function ecoSrcsetWebp(stem, widths, depth) {
+    return widths.map((w) => `${assetUrl(`/assets/images/ecosystem/${stem}-${w}.webp`, depth)} ${w}w`).join(', ');
+}
+function ecoPic(stem, widths, sizes, fallbackW, w, h, alt, depth, extra = '') {
+    return `<picture><source type="image/avif" srcset="${ecoSrcset(stem, widths, depth)}" sizes="${sizes}"><source type="image/webp" srcset="${ecoSrcsetWebp(stem, widths, depth)}" sizes="${sizes}"><img ${extra} src="${assetUrl(`/assets/images/ecosystem/${stem}-${fallbackW}.jpg`, depth)}" alt="${e(alt)}" width="${w}" height="${h}" loading="lazy" decoding="async"></picture>`;
+}
+
 /**
  * Convert an absolute site path (e.g. '/products/') to a relative
  * path from the current page's depth.
@@ -870,39 +883,28 @@ function generatePage(pageMeta, depth, bodyContent) {
 
 // ---- Homepage (index.html) — V4 ----
 function homeBody(depth) {
-    const pairImage = assetUrl('/assets/products/prakritik-pair.jpg', depth);
-    const rawMaterial = pic('/assets/editorial/raw-material-study.webp', '/assets/editorial/raw-material-study.jpg', 'Raw natural material — a lime-plastered surface study', 1344, 768, depth);
-    const finishedSurface = pic('/assets/editorial/finished-surface-study.webp', '/assets/editorial/finished-surface-study.jpg', 'Finished matte wall surface — a useful application', 1344, 768, depth);
-    const distemperProduct = pic('/assets/products/prakritik-distemper-from-pair.webp', '/assets/products/prakritik-distemper-from-pair.png', 'Prakritik Distemper paint pack — developed natural material', 649, 612, depth);
+    // V19 §28: the three stages share one image system (3:2, same
+    // derivatives ladder, same frame treatment).
+    const STAGE_SIZES = '(min-width: 1024px) 30vw, (min-width: 640px) 45vw, calc(100vw - 2.5rem)';
+    const rawMaterial = ecoPic('rawmat', [640, 960, 1280, 1920], STAGE_SIZES, 960, 960, 549, 'Raw material — natural biomass with straw fibre', depth);
+    const finishedSurface = ecoPic('colours-wall', [640, 960, 1280, 1920], STAGE_SIZES, 960, 960, 549, 'Finished limewash wall in a furnished room — a useful application', depth);
+    const distemperProduct = ecoPic('material-development', [640, 960, 1280, 1920], STAGE_SIZES, 960, 960, 640, 'Prakritik Distemper paint pack — developed material product with studio context', depth);
 
     const familiesMarkup = FAMILIES.map((family) => {
-        // V18 §15: real client imagery where it exists — Eco-Paints keeps
-        // the pair; GoCast carries the real log context crop; the other
-        // two stay honest type/material plates.
-        const isPhoto = family.id === 'eco-paints' || family.id === 'gocast-logs';
-        const textures = {
-            'bio-coal-logs': '/assets/editorial/exterior-finish-study',
-            'utility-products': '/assets/editorial/courtyard-study',
+        // V19 §29-30: every family carries a visually strong image — real
+        // client photography for Eco-Paints + GoCast, representative
+        // category visuals for Bio-Coal + Utility (alt text keeps the
+        // distinction honest). One system: 3:2 frames.
+        const mediaSpec = {
+            'eco-paints':       { stem: 'eco-paints-pair', alt: 'Prakritik Distemper and Prakritik Emulsion paint packs - the documented Eco-Paints family', note: false },
+            'gocast-logs':      { stem: 'gocast-editorial', alt: 'Client-supplied cow-dung logs on a terracotta plate with straw', note: false },
+            'bio-coal-logs':    { stem: 'biocoal-editorial', alt: 'Representative biomass briquette material study for the Bio-Coal category', note: true },
+            'utility-products': { stem: 'utility-material-direction', alt: 'Representative moulded natural-material utility forms for the Utility Products direction', note: true },
         };
-        const photoMedia = family.id === 'gocast-logs'
-            ? `            <figure class="family__media family__media--photo">
-                ${pic('/assets/images/client/gocast-logs-context.webp', '/assets/images/client/gocast-logs-context.jpg', 'Client-supplied cow-dung logs stacked beside a clay stove with embers', 1254, 420, depth)}
-            </figure>`
-            : `            <figure class="family__media family__media--photo">
-                <img src="${pairImage}"
-                     alt="Prakritik Distemper and Emulsion paint packs — the Eco-Paints family"
-                     width="1420" height="618"
-                     loading="lazy" decoding="async">
-            </figure>`;
-        const media = isPhoto
-            ? photoMedia
-            : `            <figure class="family__media family__media--plate" aria-label="${e(family.name)} — material direction">
-                <span class="family__media-plate-texture" aria-hidden="true">
-                    ${pic(textures[family.id] + '.webp', textures[family.id] + '.jpg', '', 1344, 768, depth)}
-                </span>
-                <span class="family__media-plate-word">${e(family.name)}</span>
-                <span class="family__media-plate-tag">Material direction</span>
-            </figure>`;
+        const spec = mediaSpec[family.id];
+        const media = `            <figure class="family__media family__media--photo">
+                ${ecoPic(spec.stem, [640, 960, 1280, 1920], '(min-width: 768px) 45vw, calc(100vw - 2.5rem)', 960, 960, 640, spec.alt, depth)}
+${spec.note ? '                <span class="family__media-note">Category visual</span>\n' : ''}            </figure>`;
         const themes = family.themes.map((t) => `              <li>${e(t)}</li>`).join('\n');
         const statusClass = family.status === 'Documented family' ? '' : ' family__status--direction';
         return `        <article class="family" id="family-${e(family.id)}">
@@ -974,7 +976,7 @@ ${items}
     const audienceItems = PARTNER_AUDIENCES.map((a) => `        <li class="partner-strip__item">${e(a)}</li>`).join('\n');
 
     return `<style>
-  /* ===== 01. HERO — story lockup 5 / material field 7 ===== */
+  /* ===== 01. HERO — story lockup 5 / one composed photograph 7 ===== */
   .hero { padding-top: calc(var(--header-h) + 1.5rem); padding-bottom: 1.5rem; }
   @media (min-width: 1024px) {
     .hero { display: flex; align-items: center;
@@ -996,7 +998,28 @@ ${items}
   .hero__body { max-width: 40rem; }
   .hero__ctas { margin-top: 2.25rem; }
 
-  /* ===== 02. RESOURCE STEPS — page-local rhythm only (structure §42.2) ===== */
+  /* V19 §25-27: ONE designed composition — the master carries its own
+     seamless studio sweep; the page just frames it. */
+  .hero__composition { margin: 0; }
+  .hero__composition img {
+    width: 100%; height: auto; display: block;
+    border-radius: 0.1875rem;
+  }
+  .hero__composition-captions {
+    display: flex; flex-wrap: wrap; gap: 0.5rem 1.75rem;
+    margin-top: 0.875rem;
+  }
+  .hero__caption {
+    font-size: 0.5625rem; font-weight: 700; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--fg-muted);
+  }
+  .hero__caption em {
+    display: block; font-style: normal; font-weight: 500;
+    letter-spacing: 0.08em; color: var(--fg-muted); opacity: 0.72;
+    margin-top: 0.1875rem; text-transform: none; font-size: 0.6875rem;
+  }
+
+  /* ===== 02. RESOURCE STEPS — one frame system for all three (§28) ===== */
   .resource-section__head { max-width: 48rem; margin-bottom: 2.5rem; }
 
   /* ===== 03. FOUR SOLUTIONS — page-local rhythm (structure §42.3) ===== */
@@ -1008,30 +1031,27 @@ ${items}
   /* ===== 05. DOCUMENTED ECO-PAINT FAMILY — page-local rhythm ===== */
   .eco-documented .section-heading { max-width: 48rem; margin-bottom: 2.5rem; }
 
-  /* ===== 08. INNOVATION TEASER — material research composition + rows ===== */
+  /* ===== 06. INNOVATION TEASER — one research composition (§33) ===== */
   .innov-teaser__grid {
     display: grid; grid-template-columns: 1fr; gap: 2.5rem; align-items: center;
   }
   @media (min-width: 1024px) { .innov-teaser__grid { grid-template-columns: 5fr 7fr; gap: 3.5rem; } }
-  .innov-composition { position: relative; min-height: 18rem; }
-  .innov-composition__plate {
-    position: absolute; overflow: hidden;
-    border: 1px solid var(--border); border-radius: var(--r-card);
-    background: var(--paper);
+  .innov-composition { margin: 0; }
+  .innov-composition img {
+    width: 100%; height: auto; display: block; border-radius: 0.1875rem;
   }
-  .innov-composition__plate img {
-    width: 100%; height: 100%; object-fit: cover; display: block;
+  .innov-composition__captions {
+    display: flex; gap: 1rem; margin-top: 0.875rem;
   }
-  .innov-composition__plate--a { left: 0; top: 0; width: 62%; aspect-ratio: 4 / 3; }
-  .innov-composition__plate--b { right: 0; bottom: 0; width: 52%; aspect-ratio: 4 / 3; }
-  .innov-composition__plate--b::after {
-    content: ""; position: absolute; left: 0; top: 0; width: 2.5rem; height: 0.25rem;
-    background: var(--haldi);
+  .innov-composition__caption {
+    flex: 1; font-size: 0.5625rem; font-weight: 700; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--fg-muted);
+    padding-top: 0.5rem; border-top: 1px solid var(--border);
   }
-  .innov-composition__tag {
-    position: absolute; left: 0; bottom: -0.5rem; transform: translateY(100%);
-    font-size: 0.5625rem; font-weight: 700; letter-spacing: 0.16em;
-    text-transform: uppercase; color: var(--fg-muted); padding-top: 1rem;
+  .innov-composition__caption em {
+    display: block; font-style: normal; font-weight: 500; letter-spacing: 0.04em;
+    color: var(--fg-muted); opacity: 0.75; margin-top: 0.1875rem;
+    text-transform: none; font-size: 0.6875rem;
   }
 
   /* ===== 08. PARTNERSHIP — page-local rhythm ===== */
@@ -1065,36 +1085,34 @@ ${items}
       </div>
 
       <div class="hero__visual" data-reveal>
-        <figure class="story-field" aria-label="Gaurikrit material field — Prakritik Paint products and the four ecosystem directions">
-          <div class="story-field__texture" aria-hidden="true">
-            <img src="${assetUrl('/assets/editorial/raw-material-study.jpg', depth)}" alt="" width="1344" height="768" loading="eager" decoding="async">
-          </div>
-          <div class="story-field__chips" aria-hidden="true">
-            <span class="story-field__chip story-field__chip--haldi"></span>
-            <span class="story-field__chip story-field__chip--forest"></span>
-          </div>
-          <div class="story-field__inner">
-            <div class="story-field__objects">
-              <div class="story-field__object story-field__object--lead">
-                <img class="story-field__photo"
-                     src="${pairImage}"
-                     alt="Prakritik Distemper and Prakritik Emulsion paint packs — the documented Eco-Paints family"
-                     width="1420" height="618"
-                     loading="eager" fetchpriority="high" decoding="async">
-                <span class="story-field__object-label">
-                  Eco-Paints <small>Documented family</small>
-                </span>
-              </div>
-              <div class="story-field__object">
-                <span class="story-field__secondary">
-                  ${pic('/assets/images/client/cow-dung-logs-plate.webp', '/assets/images/client/cow-dung-logs-plate.jpg', 'Client-supplied cow-dung logs on a terracotta plate with straw', 824, 667, depth)}
-                </span>
-                <span class="story-field__object-label">
-                  Cow-Dung Logs <small>Client-supplied reference</small>
-                </span>
-              </div>
-            </div>
-          </div>
+        <figure class="hero__composition" role="img"
+                aria-label="Prakritik Distemper and Prakritik Emulsion paint packs with client-supplied cow-dung logs on a terracotta plate — one natural resource, multiple applications">
+          <picture>
+            <source type="image/avif" media="(max-width: 899px)"
+                    srcset="${ecoSrcset('home-hero-ecosystem-mobile', [640, 960, 1600], depth)}"
+                    sizes="calc(100vw - 2.5rem)">
+            <source type="image/webp" media="(max-width: 899px)"
+                    srcset="${ecoSrcsetWebp('home-hero-ecosystem-mobile', [640, 960, 1600], depth)}"
+                    sizes="calc(100vw - 2.5rem)">
+            <source type="image/avif"
+                    srcset="${ecoSrcset('home-hero-ecosystem', [640, 960, 1280, 1600, 1920, 2560], depth)}"
+                    sizes="(min-width: 1200px) 58vw, (min-width: 900px) 50vw, calc(100vw - 2.5rem)">
+            <source type="image/webp"
+                    srcset="${ecoSrcsetWebp('home-hero-ecosystem', [640, 960, 1280, 1600, 1920, 2560], depth)}"
+                    sizes="(min-width: 1200px) 58vw, (min-width: 900px) 50vw, calc(100vw - 2.5rem)">
+            <img src="${assetUrl('/assets/images/ecosystem/home-hero-ecosystem-1280.jpg', depth)}"
+                 alt="Prakritik Distemper and Prakritik Emulsion paint packs with client-supplied cow-dung logs on a terracotta plate"
+                 width="1280" height="853"
+                 fetchpriority="high" loading="eager" decoding="async">
+          </picture>
+          <figcaption class="hero__composition-captions">
+            <span class="hero__caption">Eco-Paints
+              <em>Documented family</em>
+            </span>
+            <span class="hero__caption">Cow-Dung Logs
+              <em>Client-supplied reference</em>
+            </span>
+          </figcaption>
         </figure>
       </div>
     </div>
@@ -1223,9 +1241,7 @@ ${circularStages}
 
     <div class="eco-documented__grid" data-reveal-stagger>
       <figure class="eco-documented__plate">
-        <img src="${pairImage}"
-             alt="Prakritik Distemper and Prakritik Emulsion paint packs"
-             width="1420" height="618" loading="lazy" decoding="async">
+        ${ecoPic('eco-paints-pair', [640, 960, 1280, 1920], '(min-width: 1024px) 40vw, calc(100vw - 2.5rem)', 1280, 1280, 800, 'Prakritik Distemper and Prakritik Emulsion paint packs', depth)}
       </figure>
 
       <div class="eco-documented__rows">
@@ -1263,15 +1279,14 @@ ${PRODUCTS.map((product) => `          <div class="eco-documented__row">
       <h2 class="section-heading__title" id="innov-title">Where Tradition Meets Technology.</h2>
     </div>
     <div class="innov-teaser__grid" data-reveal>
-      <div class="innov-composition" aria-hidden="true">
-        <span class="innov-composition__plate innov-composition__plate--a">
-          <img src="${assetUrl('/assets/editorial/raw-material-study.jpg', depth)}" alt="" width="1344" height="768" loading="lazy" decoding="async">
-        </span>
-        <span class="innov-composition__plate innov-composition__plate--b">
-          <img src="${assetUrl('/assets/images/client/cow-dung-logs-stack.jpg', depth)}" alt="" width="1178" height="893" loading="lazy" decoding="async">
-        </span>
-        <span class="innov-composition__tag">Material research directions</span>
-      </div>
+      <figure class="innov-composition" aria-label="Material research samples — raw biomass, processed log and finished coating">
+        ${ecoPic('innovation-research', [640, 960, 1280, 1920], '(min-width: 1024px) 40vw, calc(100vw - 2.5rem)', 1280, 1280, 800, 'Material research samples — raw biomass, processed log and finished coating', depth)}
+        <figcaption class="innov-composition__captions">
+          <span class="innov-composition__caption">Raw material<em>biomass sample</em></span>
+          <span class="innov-composition__caption">Processed<em>log sample</em></span>
+          <span class="innov-composition__caption">Coating<em>finished sample</em></span>
+        </figcaption>
+      </figure>
       <div class="focus-rows">
 ${focusRows}
         <p class="impact-note" style="margin-top:1.25rem;">
@@ -1338,7 +1353,6 @@ ${audienceItems}
 function productsBody(depth) {
     const distemper = getProduct('prakritik-distemper');
     const emulsion = getProduct('prakritik-emulsion');
-    const pairImage = assetUrl('/assets/products/prakritik-pair.jpg', depth);
 
     const appGroups = APPLICATION_GROUPS.map((group) => {
         const items = group.items.map((item) => {
@@ -1360,6 +1374,14 @@ ${items}
     }).join('\n');
 
     const familySection = (num, id, name, line, desc, themes, note, texture, interest, reverse, hlevel) => {
+        // V19: the type plate is retired — every direction section now
+        // carries its representative editorial image.
+        const photoSpec = {
+            'bio-coal-logs':    { stem: 'biocoal-editorial', alt: 'Representative biomass briquette material study for the Bio-Coal category' },
+            'utility-products': { stem: 'utility-material-direction', alt: 'Representative moulded natural-material utility forms for the Utility Products direction' },
+        };
+        const photoStem = photoSpec[id] ? photoSpec[id].stem : texture;
+        const photoAlt = photoSpec[id] ? photoSpec[id].alt : name;
         const themeList = themes.map((t) => `          <li>${e(t)}</li>`).join('\n');
         const rev = reverse ? ' family-section--reverse' : '';
         return `<!-- ============================================================
@@ -1385,12 +1407,9 @@ ${themeList}
           <a class="btn btn--outline" href="${relUrl('/contact/', depth)}?interest=${interest}">Enquire About ${e(name.replace('Eco-Friendly ', ''))}</a>
         </div>
       </div>
-      <figure class="family-section__plate" aria-label="${e(name)} — material direction">
-        <span class="family-section__plate-texture" aria-hidden="true">
-          <img src="${assetUrl(texture, depth)}" alt="" width="1344" height="768" loading="lazy" decoding="async">
-        </span>
-        <span class="family-section__plate-word">${e(name.replace('Eco-Friendly ', ''))}</span>
-        <span class="family-section__plate-tag">Material direction</span>
+      <figure class="family-section__photo" aria-label="${e(name)} — representative category visual">
+        ${ecoPic(photoStem, [640, 960, 1280, 1600], '(min-width: 1024px) 42vw, calc(100vw - 2.5rem)', 1280, 1280, 960, photoAlt, depth)}
+        <figcaption>Representative ${id === 'bio-coal-logs' ? 'category' : 'material-direction'} visual — not a documented product photograph.</figcaption>
       </figure>
     </div>
   </div>
@@ -1407,7 +1426,7 @@ ${themeList}
   <div class="container">
     <div class="gocast-feature" data-reveal>
       <figure class="gocast-feature__figure">
-        ${pic('/assets/images/client/cow-dung-logs-plate.webp', '/assets/images/client/cow-dung-logs-plate.jpg', 'Client-supplied cow-dung logs on a terracotta plate with straw', 824, 667, depth)}
+        ${ecoPic('gocast-editorial', [640, 960, 1280, 1600], '(min-width: 1024px) 45vw, calc(100vw - 2.5rem)', 1280, 1280, 960, 'Client-supplied cow-dung logs on a terracotta plate with straw', depth)}
         <figcaption>Client-supplied cow-dung log reference.</figcaption>
       </figure>
       <div class="gocast-feature__copy">
@@ -1505,15 +1524,30 @@ ${themeList}
   .products-hero__grid { display: grid; gap: 2.5rem; align-items: center; grid-template-columns: 1fr; }
   @media (min-width: 1024px) { .products-hero__grid { grid-template-columns: 45fr 55fr; gap: clamp(2rem, 4vw, 4rem); } }
   .products-hero__lockup { max-width: 42rem; }
-  .products-hero__visual { position: relative; width: 100%; background: var(--paper); border: 1px solid var(--border); border-radius: var(--r-panel); padding: clamp(0.75rem, 2vw, 1.5rem); overflow: hidden; }
-  .products-hero__visual .hero-group-photo { display: block; width: 100%; height: auto; aspect-ratio: 1420 / 618; object-fit: contain; }
+  .products-hero__visual { position: relative; width: 100%; overflow: hidden; }
+  .products-hero__visual .hero-group-photo { display: block; width: 100%; height: auto; border-radius: 0.1875rem; }
+
+  /* V19 §36: representative category photos for Bio-Coal + Utility. */
+  .family-section__photo {
+    border: 1px solid var(--border); border-radius: var(--r-panel);
+    overflow: hidden; background: var(--paper); margin: 0;
+  }
+  .family-section__photo img {
+    display: block; width: 100%; height: auto;
+    transition: transform var(--dur) var(--ease);
+  }
+  .family-section__photo:hover img { transform: scale(1.015); }
+  .family-section__photo figcaption {
+    padding: 0.625rem 1rem; font-size: 0.75rem; color: var(--fg-muted);
+    border-top: 1px solid var(--border); letter-spacing: 0.02em;
+  }
 
   /* ===== 2. ECO-PAINTS FAMILY SECTION ===== */
   .eco-family { padding-block: clamp(3rem, 6vw, 5rem); }
   .eco-family__grid { display: grid; gap: 2.5rem; align-items: center; grid-template-columns: 1fr; }
   @media (min-width: 1024px) { .eco-family__grid { grid-template-columns: 5fr 7fr; gap: clamp(2rem, 4vw, 4rem); } }
-  .eco-family__plate { background: var(--paper); border: 1px solid var(--border); border-radius: var(--r-panel); padding: clamp(0.75rem, 1.5vw, 1.25rem); }
-  .eco-family__plate img { display: block; width: 100%; height: auto; object-fit: contain; aspect-ratio: 1420 / 618; }
+  .eco-family__plate { background: none; border: 0; border-radius: 0; padding: 0; }
+  .eco-family__plate img { display: block; width: 100%; height: auto; }
   .eco-family__head { display: flex; align-items: baseline; gap: 0.875rem; }
   .eco-family__num { font-family: var(--font-display); font-size: clamp(2rem, 3vw, 2.75rem); font-weight: 700; color: var(--haldi-deep); line-height: 1; font-variant-numeric: tabular-nums; }
   .eco-family__name { font-family: var(--font-display); font-size: clamp(1.875rem, 3.5vw, 3rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.05; }
@@ -1537,7 +1571,7 @@ ${themeList}
   .family-section__themes li { font-size: 0.875rem; color: var(--fg-muted); padding-left: 1.125rem; position: relative; line-height: 1.5; }
   .family-section__themes li::before { content: ""; position: absolute; left: 0; top: 0.5em; width: 0.4375rem; height: 1px; background: var(--primary); }
   .family-section__note { margin-top: 1.5rem; font-size: 0.8125rem; color: var(--fg-muted); line-height: 1.55; border-left: 2px solid var(--haldi); padding-left: 1rem; max-width: 40rem; }
-  .family-section__plate { position: relative; aspect-ratio: 4 / 5; max-height: 28rem; border: 1px solid var(--border); border-radius: var(--r-panel); overflow: hidden; background: var(--paper); }
+  .family-section__plate { display: none; }
   .family-section__plate-texture { position: absolute; inset: 0; opacity: 0.15; }
   .family-section__plate-texture img { width: 100%; height: 100%; object-fit: cover; }
   .family-section__plate-word { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; text-align: center; padding: 2rem; font-family: var(--font-display); font-weight: 700; font-size: clamp(1.5rem, 2.5vw, 2.25rem); color: var(--primary); line-height: 1.15; }
@@ -1601,14 +1635,7 @@ ${themeList}
         </p>
       </div>
       <div class="products-hero__visual" data-reveal>
-        <picture>
-          <source type="image/webp" srcset="${assetUrl('/assets/products/prakritik-pair.webp', depth)}">
-          <img class="hero-group-photo"
-               src="${pairImage}"
-               alt="Prakritik Distemper and Emulsion paint packs — the documented Eco-Paints family"
-               width="1420" height="618"
-               loading="eager" fetchpriority="high" decoding="async">
-        </picture>
+        ${ecoPic('eco-paints-pair', [640, 960, 1280, 1600, 1920], '(min-width: 1200px) 52vw, (min-width: 900px) 48vw, calc(100vw - 2.5rem)', 1280, 1280, 800, 'Prakritik Distemper and Emulsion paint packs — the documented Eco-Paints family', depth, 'class="hero-group-photo" loading="eager" fetchpriority="high" ')}
       </div>
     </div>
   </div>
@@ -1639,13 +1666,7 @@ ${themeList}
         </div>
       </div>
       <div class="eco-family__plate" data-reveal>
-        <picture>
-          <source type="image/webp" srcset="${assetUrl('/assets/products/prakritik-pair.webp', depth)}">
-          <img src="${pairImage}"
-               alt="Prakritik Distemper and Emulsion paint packs — real Eco-Paints product photography"
-               width="1420" height="618"
-               loading="lazy" decoding="async">
-        </picture>
+        ${ecoPic('eco-paints-pair', [640, 960, 1280, 1920], '(min-width: 1024px) 45vw, calc(100vw - 2.5rem)', 1280, 1280, 800, 'Prakritik Distemper and Emulsion paint packs — real Eco-Paints product photography', depth)}
       </div>
     </div>
   </div>
@@ -1942,11 +1963,12 @@ function distemperBody(depth) {
     border: 1px solid var(--border);
     border-radius: var(--r-panel); overflow: hidden;
   }
-  .product-detail__stage {
-    position: relative;
-    height: clamp(17rem, 36vw, 25rem);
-    display: grid; place-items: center;
-    padding: clamp(1.5rem, 3.5vw, 3rem) clamp(1.5rem, 3.5vw, 3rem) clamp(0.75rem, 1.5vw, 1.25rem);
+  .product-detail__stage { display: none; }
+  .product-detail__panel { position: relative; aspect-ratio: 5 / 5.6; }
+  @media (max-width: 640px) { .product-detail__panel { aspect-ratio: 1 / 1; } }
+  .product-detail__panel img {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; object-position: center 38%;
   }
   .product-detail__stage .media-product {
     /* Absolute-fill + object-fit: contain — the pack photo stays
@@ -2014,15 +2036,8 @@ function distemperBody(depth) {
       </div>
 
       <figure class="product-detail__media">
-        <div class="product-detail__stage">
-          <picture>
-            <source type="image/webp" srcset="${assetUrl(product.officialImageWebp, depth)}">
-            <img class="media-product"
-                 src="${assetUrl(product.officialImage, depth)}"
-                 alt="${e(product.name)} paint pack"
-                 width="${product.officialImageW}" height="${product.officialImageH}"
-                 loading="eager" fetchpriority="high" decoding="async">
-          </picture>
+        <div class="product-detail__panel">
+          ${ecoPic('prakritik-distemper', [640, 960, 1280, 1600], '(min-width: 1024px) 52vw, calc(100vw - 2.5rem)', 1280, 1280, 1564, 'Prakritik Distemper paint pack - complete label and pack photograph', depth, 'class="media-product" loading="eager" fetchpriority="high" ')}
         </div>
         <div class="product-detail__strip" aria-hidden="true">
           ${interiorFinishStripPic}
@@ -2184,11 +2199,12 @@ function emulsionBody(depth) {
     border: 1px solid var(--border);
     border-radius: var(--r-panel); overflow: hidden;
   }
-  .product-detail__stage {
-    position: relative;
-    height: clamp(17rem, 36vw, 25rem);
-    display: grid; place-items: center;
-    padding: clamp(1.5rem, 3.5vw, 3rem) clamp(1.5rem, 3.5vw, 3rem) clamp(0.75rem, 1.5vw, 1.25rem);
+  .product-detail__stage { display: none; }
+  .product-detail__panel { position: relative; aspect-ratio: 5 / 5.6; }
+  @media (max-width: 640px) { .product-detail__panel { aspect-ratio: 1 / 1; } }
+  .product-detail__panel img {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; object-position: center 38%;
   }
   .product-detail__stage .media-product {
     /* Absolute-fill + object-fit: contain — the pack photo stays
@@ -2239,15 +2255,8 @@ function emulsionBody(depth) {
 
     <div class="product-detail__hero" data-reveal>
       <figure class="product-detail__media">
-        <div class="product-detail__stage">
-          <picture>
-            <source type="image/webp" srcset="${assetUrl(product.officialImageWebp, depth)}">
-            <img class="media-product"
-                 src="${assetUrl(product.officialImage, depth)}"
-                 alt="${e(product.name)} paint pack"
-                 width="${product.officialImageW}" height="${product.officialImageH}"
-                 loading="eager" fetchpriority="high" decoding="async">
-          </picture>
+        <div class="product-detail__panel">
+          ${ecoPic('prakritik-emulsion', [640, 960, 1280, 1600], '(min-width: 1024px) 52vw, calc(100vw - 2.5rem)', 1280, 1280, 1564, 'Prakritik Emulsion paint pack - complete label and pack photograph', depth, 'class="media-product" loading="eager" fetchpriority="high" ')}
         </div>
         <div class="product-detail__strip" aria-hidden="true">
           ${exteriorFinishStripPic}
@@ -2372,8 +2381,9 @@ function whyPrakritikBody(depth) {
         'Raw lime-plastered wall surface — natural material', 1344, 768, depth, 'class="editorial-image"');
     const courtyardCh2Pic = pic('/assets/editorial/courtyard-study.webp', '/assets/editorial/courtyard-study.jpg',
         'Indian limewashed courtyard elevation', 1942, 809, depth, 'class="editorial-image"');
-    const rawMaterialFlowPic = pic('/assets/editorial/raw-material-study.webp', '/assets/editorial/raw-material-study.jpg',
-        'Raw lime-plastered wall surface — natural material', 1344, 768, depth, 'class="editorial-image"');
+    const rawMaterialFlowPic = ecoPic('rawmat', [640, 960, 1280],
+        '(min-width: 1024px) 28vw, (min-width: 640px) 42vw, calc(100vw - 2.5rem)', 960, 960, 549,
+        'Raw natural biomass material', depth, 'class="editorial-image"');
     const finishedSurfaceFlowPic = pic('/assets/editorial/finished-surface-study.webp', '/assets/editorial/finished-surface-study.jpg',
         'Finished matte limewash wall surface', 1344, 768, depth, 'class="editorial-image"');
         const ruralContextPic = pic('/assets/editorial/rural-landscape.webp', '/assets/editorial/rural-landscape.jpg',
@@ -2872,7 +2882,7 @@ ${ashtaItems}
 
 // ---- About — V4 ----
 function aboutBody(depth) {
-    const rawMaterialAbout = pic('/assets/editorial/raw-material-study.webp', '/assets/editorial/raw-material-study.jpg', 'Raw natural material — a lime-plastered surface study', 1344, 768, depth);
+    const rawMaterialAbout = ecoPic('rawmat', [640, 960, 1280], '(min-width: 1024px) 30vw, (min-width: 640px) 45vw, calc(100vw - 2.5rem)', 960, 960, 549, 'Raw natural biomass material - the resource', depth);
 
     const address = COMPANY.address;
     const addressLine = address.slice(0, 6).join('\n');
@@ -3023,7 +3033,7 @@ ${themes}
           </p>
         </div>
         <figure class="story-chapter__visual">
-          ${pic('/assets/editorial/raw-material-study.webp', '/assets/editorial/raw-material-study.jpg', 'Raw lime-plastered wall surface — an Indian natural material tradition', 1344, 768, depth)}
+          ${ecoPic('rawmat', [640, 960, 1280, 1920], '(min-width: 1024px) 42vw, calc(100vw - 2.5rem)', 960, 960, 549, 'Raw natural biomass material with straw fibre - the resource', depth)}
           <figcaption>Raw material study — natural surface traditions of Indian homes.</figcaption>
         </figure>
       </div>
@@ -3055,7 +3065,7 @@ ${themes}
           </p>
         </div>
         <figure class="story-chapter__visual">
-          ${pic('/assets/editorial/finished-surface-study.webp', '/assets/editorial/finished-surface-study.jpg', 'Finished matte wall surface — a developed natural material', 1344, 768, depth)}
+          ${ecoPic('innovation-research', [640, 960, 1280, 1920], '(min-width: 1024px) 42vw, calc(100vw - 2.5rem)', 960, 960, 600, 'Material research samples - raw biomass, processed log and finished coating', depth)}
           <figcaption>Developed material study — the resource carried into a finished surface.</figcaption>
         </figure>
       </div>
@@ -3100,7 +3110,7 @@ ${themes}
           </article>
           <article class="resource-step">
             <figure class="resource-step__figure">
-              ${pic('/assets/products/prakritik-pair.webp', '/assets/products/prakritik-pair.jpg', 'Prakritik Distemper and Prakritik Emulsion paint packs — the documented application', 1420, 618, depth)}
+              ${ecoPic('eco-paints-pair', [640, 960, 1280], '(min-width: 1024px) 30vw, (min-width: 640px) 45vw, calc(100vw - 2.5rem)', 960, 960, 600, 'Prakritik Distemper and Prakritik Emulsion paint packs - the documented application', depth)}
             </figure>
             <div class="resource-step__caption">
               <span class="resource-step__kicker">Stage 02 — Application</span>
@@ -3112,7 +3122,7 @@ ${themes}
           </article>
           <article class="resource-step">
             <figure class="resource-step__figure resource-step__figure--plate">
-              ${pic('/assets/images/client/cow-dung-logs-stack.webp', '/assets/images/client/cow-dung-logs-stack.jpg', 'Client-supplied cow-dung log material — the widening direction', 1178, 893, depth)}
+              ${ecoPic('gocast-material', [640, 960, 1280], '(min-width: 1024px) 30vw, (min-width: 640px) 45vw, calc(100vw - 2.5rem)', 960, 960, 640, 'Client-supplied cow-dung log material - the widening direction', depth)}
             </figure>
             <div class="resource-step__caption">
               <span class="resource-step__kicker">Stage 03 — Widening</span>
@@ -3258,7 +3268,17 @@ function forBusinessBody(depth) {
     ).join('\n');
 
     // V4 picture tags.
-    const archHeroPic = `<picture><source type="image/webp" srcset="${assetUrl('/assets/editorial/business-context-study.webp', depth)}"><img class="editorial-image" src="${assetUrl('/assets/editorial/business-context-study.jpg', depth)}" alt="" width="1344" height="768" loading="eager" decoding="async"></picture>`;
+    const bizTiles = [
+        ['eco-paints-pair', 'Prakritik paint packs'],
+        ['gocast-editorial', 'Cow-dung logs on a terracotta plate'],
+        ['biocoal-editorial', 'Representative biomass briquettes'],
+        ['utility-material-direction', 'Representative moulded utility forms'],
+    ];
+    const archHeroPic = `<div class="biz-hero__ecosystem" role="img" aria-label="The Gaurikrit material ecosystem">
+${bizTiles.map(([stem]) => `          <figure class="biz-hero__tile">
+            ${ecoPic(stem, [640, 960], '(min-width: 1024px) 17vw, (min-width: 640px) 45vw, calc(50vw - 1.5rem)', 640, 640, 480, '', depth)}
+          </figure>`).join('\n')}
+        </div>`;
 
     return `<style>
   /* ===== Editorial image reset (V4 — NO mix-blend-mode, NO blur filters) ===== */
@@ -3561,6 +3581,17 @@ function paintCalculatorBody(depth) {
 
   /* ===== HERO ===== */
   .calc-hero { padding-top: calc(var(--header-h) + 2rem); padding-bottom: 1.5rem; }
+  .calc-hero__grid {
+    display: grid; gap: clamp(1.5rem, 3vw, 3rem);
+    grid-template-columns: 1fr; align-items: center;
+  }
+  @media (min-width: 1024px) { .calc-hero__grid { grid-template-columns: 7fr 5fr; } }
+  @media (max-width: 1023px) { .calc-hero__plate { order: 5; max-width: 34rem; } }
+  .calc-hero__plate { margin: 0; }
+  .calc-hero__plate img {
+    display: block; width: 100%; height: auto;
+    border-radius: 0.1875rem; border: 1px solid var(--border);
+  }
   .calc-hero__inner { display: grid; gap: 1rem; max-width: 60rem; }
   .calc-hero__eyebrow {
     display: inline-flex; align-items: center; gap: 0.5rem;
@@ -3696,7 +3727,9 @@ function paintCalculatorBody(depth) {
       <a href="${relUrl('/', depth)}">Home</a><span>›</span>
       <span>Calculator</span>
     </nav>
-    <div class="calc-hero__inner" data-reveal>
+    <div class="calc-hero__grid">
+      <div class="calc-hero__inner" data-reveal>
+
       <span class="calc-hero__eyebrow">
         <span class="calc-hero__eyebrow-dot" aria-hidden="true"></span>
         Estimate your project
@@ -3708,6 +3741,10 @@ function paintCalculatorBody(depth) {
         Prakritik format, and how much wall area. We summarise the project for
         you to send to Gaurikrit.
       </p>
+      </div>
+      <figure class="calc-hero__plate" data-reveal>
+        ${ecoPic('colours-wall', [640, 960, 1280], '(min-width: 1024px) 40vw, calc(100vw - 2.5rem)', 960, 960, 549, 'Limewash wall interior - the surfaces your estimate covers', depth, 'loading="eager" ')}
+      </figure>
     </div>
   </div>
 </section>
@@ -3745,6 +3782,7 @@ function paintCalculatorBody(depth) {
           <div class="calc-helper__actions">
             <a class="btn btn--secondary" href="${relUrl('/contact/', depth)}?interest=bulk-project">Talk to Us</a>
             <a class="btn btn--outline" href="${relUrl('/products/', depth)}">Explore Products</a>
+          <a class="btn btn--outline btn--lg" href="${relUrl('/contact/', depth)}">Contact</a>
           </div>
         </div>
       </div>
@@ -4402,7 +4440,7 @@ function error404Body(depth) {
       </p>
       <div class="error-page__actions">
         <a class="btn btn--primary btn--lg" href="${relUrl('/', depth)}">Back to Home</a>
-        <a class="btn btn--outline" href="${relUrl('/products/', depth)}">Explore Products</a>
+        <a class="btn btn--outline btn--lg" href="${relUrl('/products/', depth)}">Explore Products</a>
       </div>
     </div>
   </div>
@@ -4503,10 +4541,7 @@ ${items}
         </div>
       </div>
       <figure class="sustain-hero__plate">
-        <img src="${assetUrl('/assets/editorial/raw-material-study.jpg', depth)}"
-             alt="Natural lime-plastered material surface — the resource beginning of the material cycle"
-             width="1344" height="768"
-             loading="eager" fetchpriority="high" decoding="async">
+        ${ecoPic('rawmat', [960, 1280, 1920], '(min-width: 1024px) 44vw, calc(100vw - 2.5rem)', 1280, 1280, 731, 'Natural biomass material with straw fibre - the resource beginning of the material cycle', depth, 'loading="eager" fetchpriority="high" ')}
       </figure>
     </div>
   </div>
@@ -4556,7 +4591,7 @@ ${circularStages}
     <div class="resource-steps" data-reveal-stagger>
       <article class="resource-step">
         <figure class="resource-step__figure resource-step__figure--plate">
-          ${pic('/assets/images/client/prakritik-distemper-single-cut.webp', '/assets/images/client/prakritik-distemper-single-cut.png', 'Prakritik Distemper paint pack — the documented wall-coating outcome', 801, 1044, depth)}
+          ${ecoPic('prakritik-distemper', [640, 960, 1280], '(min-width: 1024px) 30vw, (min-width: 640px) 45vw, calc(100vw - 2.5rem)', 960, 960, 1173, 'Prakritik Distemper paint pack - the documented wall-coating outcome', depth)}
         </figure>
         <div class="resource-step__caption">
           <span class="resource-step__kicker">Outcome — Wall Coatings</span>
@@ -4566,7 +4601,7 @@ ${circularStages}
       </article>
       <article class="resource-step">
         <figure class="resource-step__figure">
-          ${pic('/assets/images/client/cow-dung-logs-stack.webp', '/assets/images/client/cow-dung-logs-stack.jpg', 'Client-supplied cow-dung log material — the fuel and log application direction', 1178, 893, depth)}
+          ${ecoPic('gocast-material', [640, 960, 1280], '(min-width: 1024px) 30vw, (min-width: 640px) 45vw, calc(100vw - 2.5rem)', 960, 960, 640, 'Client-supplied cow-dung log material - the widening direction', depth)}
         </figure>
         <div class="resource-step__caption">
           <span class="resource-step__kicker">Outcome — Fuel &amp; Log Application</span>
@@ -4712,26 +4747,13 @@ function innovationBody(depth) {
     grid-template-columns: 1fr;
   }
   @media (min-width: 1024px) { .innov-hero__grid { grid-template-columns: 6fr 6fr; } }
-  .innov-hero__plate {
-    position: absolute; overflow: hidden;
-    border: 1px solid var(--border); border-radius: var(--r-panel);
-    background: var(--paper);
+  .innov-hero__composition { margin: 0; position: relative; }
+  .innov-hero__composition img {
+    display: block; width: 100%; height: auto; border-radius: 0.1875rem;
   }
-  .innov-hero__plate img {
-    display: block; width: 100%; height: 100%; object-fit: cover;
-  }
-  .innov-hero__plate--a { top: 0; right: 38%; bottom: 32%; left: 0; }
-  .innov-hero__plate--b { top: 36%; right: 0; bottom: 0; left: 40%; }
-  .innov-hero__plate::after {
-    content: ""; position: absolute; left: 0; top: 0; width: 2.5rem; height: 0.25rem;
-    background: var(--haldi); z-index: 2;
-  }
-  .innov-hero__plate-tag {
-    position: absolute; left: 1rem; bottom: 0.75rem; z-index: 2;
-    font-size: 0.5625rem; font-weight: 700; letter-spacing: 0.16em;
-    text-transform: uppercase; color: var(--fg-muted);
-    background: var(--paper); border: 1px solid var(--border);
-    border-radius: 3px; padding: 0.25rem 0.5rem;
+  .innov-hero__composition figcaption {
+    margin-top: 0.875rem; font-size: 0.75rem; color: var(--fg-muted);
+    letter-spacing: 0.02em;
   }
   .innov-section__head { max-width: 48rem; margin-bottom: 2.5rem; }
 </style>
@@ -4759,18 +4781,11 @@ function innovationBody(depth) {
           <a class="btn btn--secondary" href="${relUrl('/sustainability/', depth)}">Sustainability</a>
         </div>
       </div>
-      <div class="innov-hero__plates" style="position: relative; min-height: 22rem;">
-        <span class="innov-hero__plate innov-hero__plate--a">
-          <img src="${assetUrl('/assets/editorial/raw-material-study.jpg', depth)}"
-               alt="Raw natural material study — the research beginning"
-               width="1344" height="768"
-               loading="eager" fetchpriority="high" decoding="async">
-        </span>
-        <span class="innov-hero__plate innov-hero__plate--b">
-          ${pic('/assets/images/client/cow-dung-logs-stack.webp', '/assets/images/client/cow-dung-logs-stack.jpg', 'Client-supplied cow-dung log material — a real material under research', 1178, 893, depth)}
-        </span>
-        <span class="innov-hero__plate-tag">Material research directions</span>
-      </div>
+      <figure class="innov-hero__composition" role="img"
+              aria-label="Material research samples - raw biomass, processed log and finished coating on one studio sweep">
+        ${ecoPic('innovation-research', [960, 1280, 1920, 2560], '(min-width: 1024px) 48vw, calc(100vw - 2.5rem)', 1280, 1280, 800, 'Material research samples - raw biomass, processed log and finished coating', depth, 'loading="eager" fetchpriority="high" ')}
+        <figcaption>Raw material, processed biomass, finished coating - one research line.</figcaption>
+      </figure>
     </div>
   </div>
 </section>
@@ -4830,7 +4845,7 @@ ${methodItems}
           </p>
         </div>
         <figure class="story-chapter__visual">
-          ${pic('/assets/products/prakritik-pair.webp', '/assets/products/prakritik-pair.jpg', 'Prakritik Distemper and Emulsion paint packs — the documented Eco-Paints outcome', 1420, 618, depth)}
+          ${ecoPic('eco-paints-pair', [640, 960, 1280, 1920], '(min-width: 1024px) 42vw, calc(100vw - 2.5rem)', 1280, 1280, 800, 'Prakritik Distemper and Emulsion paint packs - the documented Eco-Paints outcome', depth)}
           <figcaption>Prakritik Distemper and Emulsion — the documented Eco-Paints family.</figcaption>
         </figure>
         <div style="margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 0.75rem;">
@@ -4880,8 +4895,10 @@ ${methodItems}
 // ============================================================
 
 function coloursBody(depth) {
-    const wallPic = pic('/assets/editorial/colour-wall-study.webp', '/assets/editorial/colour-wall-study.jpg',
-        'Indian lime-plastered wall elevation with door and window', 1344, 768, depth, 'class="colours-wall__art"');
+    const wallPic = ecoPic('colours-wall', [960, 1280, 1920, 2560],
+        '(min-width: 1024px) 56vw, calc(100vw - 2.5rem)', 1280, 1280, 731,
+        'Minimal interior with a large flat limewash wall above a wooden bench and jute rug', depth,
+        'class="colours-wall__art" loading="eager" ');
 
     const shadeBtn = (shade) => `          <button type="button" class="shade" role="radio" aria-checked="false"
                   style="--shade: ${shade.hex};"
@@ -5103,9 +5120,8 @@ ${heroStrokes}
           <svg class="colours-wall__tint" viewBox="0 0 1344 768"
                preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
             <path class="colours-wall__paint" fill-rule="evenodd"
-                  d="M0,104 H1344 V724 H0 Z
-                     M80,370 H304 V768 H80 Z
-                     M894,346 H1180 V654 H894 Z" />
+                  d="M101,115 H1236 V645 H101 Z
+                     M1042,578 H1236 V645 H1042 Z" />
           </svg>
           <span class="colours-wall__label">
             <span data-colour-label>Natural limewash</span>
@@ -5452,7 +5468,7 @@ function build() {
     // illustrations/ — legacy SVG fallbacks (zebu-study.png, courtyard-study.png + webp)
     // social/ — 10 OG images (og-home.jpg, og-products.jpg, etc.)
     // fonts/ — 3 woff2 files (noto-serif-devanagari, manrope-latin, newsreader-latin)
-    for (const dir of ['brand', 'products', 'editorial', 'documents', 'illustrations', 'social', 'fonts', 'images']) {
+    for (const dir of ['brand', 'products', 'editorial', 'documents', 'social', 'fonts', 'images']) {
         cpSync(join(SRC, 'assets', dir), join(OUT, 'assets', dir), { recursive: true });
         console.log('STATIC-BUILD (V4): copied assets/' + dir + '/');
     }

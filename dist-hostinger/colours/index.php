@@ -233,19 +233,21 @@ global $SHADE_SIGNATURE, $SHADE_PREMIUM_GROUPS;
       <div class="colour-unit" data-reveal>
         <div class="colours-wall" data-colour-wall>
           <picture>
-            <source type="image/webp" srcset="<?= asset_url('/assets/editorial/colour-wall-study.webp') ?>">
+            <source type="image/avif" srcset="<?= eco_srcset('colours-wall', [960, 1280, 1920, 2560]) ?>"
+                    sizes="(min-width: 1024px) 56vw, calc(100vw - 2.5rem)">
+            <source type="image/webp" srcset="<?= eco_srcset_webp('colours-wall', [960, 1280, 1920, 2560]) ?>"
+                    sizes="(min-width: 1024px) 56vw, calc(100vw - 2.5rem)">
             <img class="colours-wall__art"
-                 src="<?= asset_url('/assets/editorial/colour-wall-study.jpg') ?>"
-                 alt="Indian lime-plastered wall elevation with door and window"
-                 width="1344" height="768"
+                 src="<?= asset_url('/assets/images/ecosystem/colours-wall-1280.jpg') ?>"
+                 alt="Minimal interior with a large flat limewash wall above a wooden bench and jute rug"
+                 width="1280" height="731"
                  loading="eager" decoding="async">
           </picture>
           <svg class="colours-wall__tint" viewBox="0 0 1344 768"
                preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
             <path class="colours-wall__paint" fill-rule="evenodd"
-                  d="M0,104 H1344 V724 H0 Z
-                     M80,370 H304 V768 H80 Z
-                     M894,346 H1180 V654 H894 Z" />
+                  d="M101,115 H1236 V645 H101 Z
+                     M1042,578 H1236 V645 H1042 Z" />
           </svg>
           <span class="colours-wall__label">
             <span data-colour-label>Natural limewash</span>

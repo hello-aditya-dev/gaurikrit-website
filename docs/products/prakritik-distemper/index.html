@@ -302,11 +302,12 @@
     border: 1px solid var(--border);
     border-radius: var(--r-panel); overflow: hidden;
   }
-  .product-detail__stage {
-    position: relative;
-    height: clamp(17rem, 36vw, 25rem);
-    display: grid; place-items: center;
-    padding: clamp(1.5rem, 3.5vw, 3rem) clamp(1.5rem, 3.5vw, 3rem) clamp(0.75rem, 1.5vw, 1.25rem);
+  .product-detail__stage { display: none; }
+  .product-detail__panel { position: relative; aspect-ratio: 5 / 5.6; }
+  @media (max-width: 640px) { .product-detail__panel { aspect-ratio: 1 / 1; } }
+  .product-detail__panel img {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; object-position: center 38%;
   }
   .product-detail__stage .media-product {
     /* Absolute-fill + object-fit: contain — the pack photo stays
@@ -374,15 +375,8 @@
       </div>
 
       <figure class="product-detail__media">
-        <div class="product-detail__stage">
-          <picture>
-            <source type="image/webp" srcset="../../assets/images/client/prakritik-distemper-single-cut.webp">
-            <img class="media-product"
-                 src="../../assets/images/client/prakritik-distemper-single-cut.png"
-                 alt="Prakritik Distemper Paint paint pack"
-                 width="801" height="1044"
-                 loading="eager" fetchpriority="high" decoding="async">
-          </picture>
+        <div class="product-detail__panel">
+          <picture><source type="image/avif" srcset="../../assets/images/ecosystem/prakritik-distemper-640.avif 640w, ../../assets/images/ecosystem/prakritik-distemper-960.avif 960w, ../../assets/images/ecosystem/prakritik-distemper-1280.avif 1280w, ../../assets/images/ecosystem/prakritik-distemper-1600.avif 1600w" sizes="(min-width: 1024px) 52vw, calc(100vw - 2.5rem)"><source type="image/webp" srcset="../../assets/images/ecosystem/prakritik-distemper-640.webp 640w, ../../assets/images/ecosystem/prakritik-distemper-960.webp 960w, ../../assets/images/ecosystem/prakritik-distemper-1280.webp 1280w, ../../assets/images/ecosystem/prakritik-distemper-1600.webp 1600w" sizes="(min-width: 1024px) 52vw, calc(100vw - 2.5rem)"><img class="media-product" loading="eager" fetchpriority="high"  src="../../assets/images/ecosystem/prakritik-distemper-1280.jpg" alt="Prakritik Distemper paint pack - complete label and pack photograph" width="1280" height="1564" loading="lazy" decoding="async"></picture>
         </div>
         <div class="product-detail__strip" aria-hidden="true">
           <picture><source type="image/webp" srcset="../../assets/editorial/interior-finish-study.webp"><img class="media-strip" src="../../assets/editorial/interior-finish-study.jpg" alt="" width="1344" height="768" loading="lazy" decoding="async"></picture>

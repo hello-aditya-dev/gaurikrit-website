@@ -94,10 +94,16 @@ $measurementItems = [
         </div>
       </div>
       <figure class="sustain-hero__plate">
-        <img src="<?= asset_url('/assets/editorial/raw-material-study.jpg') ?>"
-             alt="Natural lime-plastered material surface — the resource beginning of the material cycle"
-             width="1344" height="768"
-             loading="eager" fetchpriority="high" decoding="async">
+        <picture>
+          <source type="image/avif" srcset="<?= eco_srcset('rawmat', [960, 1280, 1920]) ?>"
+                  sizes="(min-width: 1024px) 44vw, calc(100vw - 2.5rem)">
+          <source type="image/webp" srcset="<?= eco_srcset_webp('rawmat', [960, 1280, 1920]) ?>"
+                  sizes="(min-width: 1024px) 44vw, calc(100vw - 2.5rem)">
+          <img src="<?= asset_url('/assets/images/ecosystem/rawmat-1280.jpg') ?>"
+               alt="Natural biomass material with straw fibre — the resource beginning of the material cycle"
+               width="1280" height="731"
+               loading="eager" fetchpriority="high" decoding="async">
+        </picture>
       </figure>
     </div>
   </div>
@@ -156,10 +162,13 @@ $measurementItems = [
       <article class="resource-step">
         <figure class="resource-step__figure resource-step__figure--plate">
           <picture>
-            <source type="image/webp" srcset="<?= asset_url('/assets/images/client/prakritik-distemper-single-cut.webp') ?>">
-            <img src="<?= asset_url('/assets/images/client/prakritik-distemper-single-cut.png') ?>"
+            <source type="image/avif" srcset="<?= eco_srcset('prakritik-distemper', [640, 960, 1280]) ?>"
+                    sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, calc(100vw - 2.5rem)">
+            <source type="image/webp" srcset="<?= eco_srcset_webp('prakritik-distemper', [640, 960, 1280]) ?>"
+                    sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, calc(100vw - 2.5rem)">
+            <img src="<?= asset_url('/assets/images/ecosystem/prakritik-distemper-960.jpg') ?>"
                  alt="Prakritik Distemper paint pack — the documented wall-coating outcome"
-                 width="801" height="1044" loading="lazy" decoding="async">
+                 width="960" height="1173" loading="lazy" decoding="async">
           </picture>
         </figure>
         <div class="resource-step__caption">
@@ -171,10 +180,13 @@ $measurementItems = [
       <article class="resource-step">
         <figure class="resource-step__figure">
           <picture>
-            <source type="image/webp" srcset="<?= asset_url('/assets/images/client/cow-dung-logs-stack.webp') ?>">
-            <img src="<?= asset_url('/assets/images/client/cow-dung-logs-stack.jpg') ?>"
+            <source type="image/avif" srcset="<?= eco_srcset('gocast-material', [640, 960, 1280]) ?>"
+                    sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, calc(100vw - 2.5rem)">
+            <source type="image/webp" srcset="<?= eco_srcset_webp('gocast-material', [640, 960, 1280]) ?>"
+                    sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, calc(100vw - 2.5rem)">
+            <img src="<?= asset_url('/assets/images/ecosystem/gocast-material-960.jpg') ?>"
                  alt="Client-supplied cow-dung log material — the fuel and log application direction"
-                 width="1178" height="893" loading="lazy" decoding="async">
+                 width="960" height="640" loading="lazy" decoding="async">
           </picture>
         </figure>
         <div class="resource-step__caption">

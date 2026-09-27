@@ -46,6 +46,17 @@ $calcConfigJson = json_encode($calcConfig, JSON_UNESCAPED_SLASHES | JSON_UNESCAP
   /* ===== HERO (V5: tighter top spacing for a balanced first screen) ===== */
   .calc-hero { padding-top: calc(var(--header-h) + 1rem); padding-bottom: 1rem; }
   @media (min-width: 1024px) { .calc-hero { padding-top: calc(var(--header-h) + 1.5rem); padding-bottom: 1.5rem; } }
+  .calc-hero__grid {
+    display: grid; gap: clamp(1.5rem, 3vw, 3rem);
+    grid-template-columns: 1fr; align-items: center;
+  }
+  @media (min-width: 1024px) { .calc-hero__grid { grid-template-columns: 7fr 5fr; } }
+  @media (max-width: 1023px) { .calc-hero__plate { order: 5; max-width: 34rem; } }
+  .calc-hero__plate { margin: 0; }
+  .calc-hero__plate img {
+    display: block; width: 100%; height: auto;
+    border-radius: 0.1875rem; border: 1px solid var(--border);
+  }
   .calc-hero__inner { display: grid; gap: 1rem; max-width: 60rem; }
   .calc-hero__eyebrow {
     display: inline-flex; align-items: center; gap: 0.5rem;
@@ -187,18 +198,32 @@ $calcConfigJson = json_encode($calcConfig, JSON_UNESCAPED_SLASHES | JSON_UNESCAP
       <a href="/">Home</a><span>›</span>
       <span>Calculator</span>
     </nav>
-    <div class="calc-hero__inner" data-reveal>
-      <span class="calc-hero__eyebrow">
-        <span class="calc-hero__eyebrow-dot" aria-hidden="true"></span>
-        Estimate your project
-      </span>
-      <hr class="calc-hero__rule">
-      <h1 class="calc-hero__title" id="calc-title">Planning to paint?</h1>
-      <p class="calc-hero__sub">
-        Walk through four quick choices — what you are painting, where, which
-        Prakritik format, and how much wall area. We summarise the project for
-        you to send to Gaurikrit.
-      </p>
+    <div class="calc-hero__grid">
+      <div class="calc-hero__inner" data-reveal>
+        <span class="calc-hero__eyebrow">
+          <span class="calc-hero__eyebrow-dot" aria-hidden="true"></span>
+          Estimate your project
+        </span>
+        <hr class="calc-hero__rule">
+        <h1 class="calc-hero__title" id="calc-title">Planning to paint?</h1>
+        <p class="calc-hero__sub">
+          Walk through four quick choices — what you are painting, where, which
+          Prakritik format, and how much wall area. We summarise the project for
+          you to send to Gaurikrit.
+        </p>
+      </div>
+      <!-- V19 §47: one clean realistic wall plate — the tool stays the page. -->
+      <figure class="calc-hero__plate" data-reveal>
+        <picture>
+          <source type="image/avif" srcset="<?= eco_srcset('colours-wall', [640, 960, 1280]) ?>"
+                  sizes="(min-width: 1024px) 40vw, calc(100vw - 2.5rem)">
+          <source type="image/webp" srcset="<?= eco_srcset_webp('colours-wall', [640, 960, 1280]) ?>"
+                  sizes="(min-width: 1024px) 40vw, calc(100vw - 2.5rem)">
+          <img src="<?= asset_url('/assets/images/ecosystem/colours-wall-960.jpg') ?>"
+               alt="Limewash wall interior — the surfaces your estimate covers"
+               width="960" height="549" loading="eager" decoding="async">
+        </picture>
+      </figure>
     </div>
   </div>
 </section>

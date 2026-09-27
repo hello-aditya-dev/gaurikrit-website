@@ -80,11 +80,13 @@ $specRows = [
     border: 1px solid var(--border);
     border-radius: var(--r-panel); overflow: hidden;
   }
-  .product-detail__stage {
-    position: relative;
-    height: clamp(17rem, 36vw, 25rem);
-    display: grid; place-items: center;
-    padding: clamp(1.5rem, 3.5vw, 3rem) clamp(1.5rem, 3.5vw, 3rem) clamp(0.75rem, 1.5vw, 1.25rem);
+  /* V19 §38: the catalogue master carries its own sweep — a large
+     cover-fit panel replaces the fixed-height cutout stage. */
+  .product-detail__panel { position: relative; aspect-ratio: 5 / 5.6; }
+  @media (max-width: 640px) { .product-detail__panel { aspect-ratio: 1 / 1; } }
+  .product-detail__panel img {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; object-position: center 38%;
   }
   .product-detail__stage .media-product {
     /* Absolute-fill + object-fit: contain — the pack photo stays
@@ -135,13 +137,16 @@ $specRows = [
 
     <div class="product-detail__hero" data-reveal>
       <figure class="product-detail__media">
-        <div class="product-detail__stage">
+        <div class="product-detail__panel">
           <picture>
-            <source type="image/webp" srcset="<?= asset_url($product['officialImageWebp']) ?>">
+            <source type="image/avif" srcset="<?= eco_srcset('prakritik-emulsion', [640, 960, 1280, 1600]) ?>"
+                    sizes="(min-width: 1024px) 52vw, calc(100vw - 2.5rem)">
+            <source type="image/webp" srcset="<?= eco_srcset_webp('prakritik-emulsion', [640, 960, 1280, 1600]) ?>"
+                    sizes="(min-width: 1024px) 52vw, calc(100vw - 2.5rem)">
             <img class="media-product"
-                 src="<?= asset_url($product['officialImage']) ?>"
-                 alt="<?= e($product['name']) ?> paint pack"
-                 width="<?= $product['officialImageW'] ?>" height="<?= $product['officialImageH'] ?>"
+                 src="<?= asset_url('/assets/images/ecosystem/prakritik-emulsion-1280.jpg') ?>"
+                 alt="Prakritik Emulsion paint pack — complete label and pack photograph"
+                 width="1280" height="1564"
                  loading="eager" fetchpriority="high" decoding="async">
           </picture>
         </div>

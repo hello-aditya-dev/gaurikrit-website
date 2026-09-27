@@ -39,8 +39,6 @@ global $COMPANY, $PRODUCTS, $COVERAGE_DISCLAIMER, $FAMILIES, $APPLICATION_GROUPS
 
 $distemper   = get_product('prakritik-distemper');
 $emulsion    = get_product('prakritik-emulsion');
-$pairImage   = '/assets/products/prakritik-pair.jpg';
-$pairImageWebp = '/assets/products/prakritik-pair.webp';
 // V11: the products hero carries the client's official two-bucket comparison
 // image (Distemper left, Emulsion right) — the documented Eco-Paints family.
 ?>
@@ -68,19 +66,31 @@ $pairImageWebp = '/assets/products/prakritik-pair.webp';
     .products-hero__grid { grid-template-columns: 45fr 55fr; gap: clamp(2rem, 4vw, 4rem); }
   }
   .products-hero__lockup { max-width: 42rem; }
+  /* V19: the pair master carries its own sweep — full-bleed, no box. */
   .products-hero__visual {
     position: relative; width: 100%;
-    background: var(--paper);
-    border: 1px solid var(--border);
-    border-radius: var(--r-panel);
-    padding: clamp(0.75rem, 2vw, 1.5rem);
     overflow: hidden;
   }
   .products-hero__visual .hero-group-photo {
     display: block;
     width: 100%; height: auto;
-    aspect-ratio: 1420 / 618;
-    object-fit: contain;
+    border-radius: 0.1875rem;
+  }
+
+  /* V19 §36: representative category photos for Bio-Coal + Utility —
+     same 4:3 frame treatment, honest caption. Retires the type plate. */
+  .family-section__photo {
+    border: 1px solid var(--border); border-radius: var(--r-panel);
+    overflow: hidden; background: var(--paper); margin: 0;
+  }
+  .family-section__photo img {
+    display: block; width: 100%; height: auto;
+    transition: transform var(--dur) var(--ease);
+  }
+  .family-section__photo:hover img { transform: scale(1.015); }
+  .family-section__photo figcaption {
+    padding: 0.625rem 1rem; font-size: 0.75rem; color: var(--fg-muted);
+    border-top: 1px solid var(--border); letter-spacing: 0.02em;
   }
 
   /* ===== 2. ECO-PAINTS FAMILY SECTION — documented family: intro copy,
@@ -95,14 +105,13 @@ $pairImageWebp = '/assets/products/prakritik-pair.webp';
     .eco-family__grid { grid-template-columns: 5fr 7fr; gap: clamp(2rem, 4vw, 4rem); }
   }
   .eco-family__plate {
-    background: var(--paper);
-    border: 1px solid var(--border);
-    border-radius: var(--r-panel);
-    padding: clamp(0.75rem, 1.5vw, 1.25rem);
+    background: none;
+    border: 0;
+    border-radius: 0;
+    padding: 0;
   }
   .eco-family__plate img {
     display: block; width: 100%; height: auto;
-    object-fit: contain; aspect-ratio: 1420 / 618;
   }
   .eco-family__head { display: flex; align-items: baseline; gap: 0.875rem; }
   .eco-family__num {
@@ -307,11 +316,14 @@ $pairImageWebp = '/assets/products/prakritik-pair.webp';
       </div>
       <div class="products-hero__visual" data-reveal>
         <picture>
-          <source type="image/webp" srcset="<?= asset_url($pairImageWebp) ?>">
+          <source type="image/avif" srcset="<?= eco_srcset('eco-paints-pair', [640, 960, 1280, 1600, 1920]) ?>"
+                  sizes="(min-width: 1200px) 52vw, (min-width: 900px) 48vw, calc(100vw - 2.5rem)">
+          <source type="image/webp" srcset="<?= eco_srcset_webp('eco-paints-pair', [640, 960, 1280, 1600, 1920]) ?>"
+                  sizes="(min-width: 1200px) 52vw, (min-width: 900px) 48vw, calc(100vw - 2.5rem)">
           <img class="hero-group-photo"
-               src="<?= asset_url($pairImage) ?>"
+               src="<?= asset_url('/assets/images/ecosystem/eco-paints-pair-1280.jpg') ?>"
                alt="Prakritik Distemper and Emulsion paint packs — the documented Eco-Paints family"
-               width="1420" height="618"
+               width="1280" height="800"
                loading="eager" fetchpriority="high" decoding="async">
         </picture>
       </div>
@@ -346,10 +358,13 @@ $pairImageWebp = '/assets/products/prakritik-pair.webp';
       </div>
       <div class="eco-family__plate" data-reveal>
         <picture>
-          <source type="image/webp" srcset="<?= asset_url($pairImageWebp) ?>">
-          <img src="<?= asset_url($pairImage) ?>"
+          <source type="image/avif" srcset="<?= eco_srcset('eco-paints-pair', [640, 960, 1280, 1920]) ?>"
+                  sizes="(min-width: 1024px) 45vw, calc(100vw - 2.5rem)">
+          <source type="image/webp" srcset="<?= eco_srcset_webp('eco-paints-pair', [640, 960, 1280, 1920]) ?>"
+                  sizes="(min-width: 1024px) 45vw, calc(100vw - 2.5rem)">
+          <img src="<?= asset_url('/assets/images/ecosystem/eco-paints-pair-1280.jpg') ?>"
                alt="Prakritik Distemper and Emulsion paint packs — real Eco-Paints product photography"
-               width="1420" height="618"
+               width="1280" height="800"
                loading="lazy" decoding="async">
         </picture>
       </div>
@@ -590,10 +605,13 @@ $pairImageWebp = '/assets/products/prakritik-pair.webp';
     <div class="gocast-feature" data-reveal>
       <figure class="gocast-feature__figure">
         <picture>
-          <source type="image/webp" srcset="<?= asset_url('/assets/images/client/cow-dung-logs-plate.webp') ?>">
-          <img src="<?= asset_url('/assets/images/client/cow-dung-logs-plate.jpg') ?>"
+          <source type="image/avif" srcset="<?= eco_srcset('gocast-editorial', [640, 960, 1280, 1600]) ?>"
+                  sizes="(min-width: 1024px) 45vw, calc(100vw - 2.5rem)">
+          <source type="image/webp" srcset="<?= eco_srcset_webp('gocast-editorial', [640, 960, 1280, 1600]) ?>"
+                  sizes="(min-width: 1024px) 45vw, calc(100vw - 2.5rem)">
+          <img src="<?= asset_url('/assets/images/ecosystem/gocast-editorial-1280.jpg') ?>"
                alt="Client-supplied cow-dung logs on a terracotta plate with straw"
-               width="824" height="667" loading="lazy" decoding="async">
+               width="1280" height="960" loading="lazy" decoding="async">
         </picture>
         <figcaption>Client-supplied cow-dung log reference.</figcaption>
       </figure>
@@ -656,12 +674,17 @@ $pairImageWebp = '/assets/products/prakritik-pair.webp';
           <a class="btn btn--outline" href="/contact/?interest=bio-coal-logs">Enquire About Bio-Coal</a>
         </div>
       </div>
-      <figure class="family-section__plate" aria-label="Bio-Coal Logs — material direction">
-        <span class="family-section__plate-texture" aria-hidden="true">
-          <img src="<?= asset_url('/assets/editorial/exterior-finish-study.jpg') ?>" alt="" width="1344" height="768" loading="lazy" decoding="async">
-        </span>
-        <span class="family-section__plate-word">Bio-Coal Logs</span>
-        <span class="family-section__plate-tag">Material direction</span>
+      <figure class="family-section__photo" aria-label="Bio-Coal Logs — representative category visual">
+        <picture>
+          <source type="image/avif" srcset="<?= eco_srcset('biocoal-editorial', [640, 960, 1280, 1600]) ?>"
+                  sizes="(min-width: 1024px) 42vw, calc(100vw - 2.5rem)">
+          <source type="image/webp" srcset="<?= eco_srcset_webp('biocoal-editorial', [640, 960, 1280, 1600]) ?>"
+                  sizes="(min-width: 1024px) 42vw, calc(100vw - 2.5rem)">
+          <img src="<?= asset_url('/assets/images/ecosystem/biocoal-editorial-1280.jpg') ?>"
+               alt="Representative biomass briquette material study for the Bio-Coal category"
+               width="1280" height="960" loading="lazy" decoding="async">
+        </picture>
+        <figcaption>Representative category visual — not a documented product photograph.</figcaption>
       </figure>
     </div>
   </div>
@@ -696,12 +719,17 @@ $pairImageWebp = '/assets/products/prakritik-pair.webp';
           <a class="btn btn--outline" href="/contact/?interest=utility-products">Enquire About Utility Products</a>
         </div>
       </div>
-      <figure class="family-section__plate" aria-label="Utility Products — material direction">
-        <span class="family-section__plate-texture" aria-hidden="true">
-          <img src="<?= asset_url('/assets/editorial/courtyard-study.jpg') ?>" alt="" width="1344" height="768" loading="lazy" decoding="async">
-        </span>
-        <span class="family-section__plate-word">Utility Products</span>
-        <span class="family-section__plate-tag">Material direction</span>
+      <figure class="family-section__photo" aria-label="Utility Products — representative material-direction visual">
+        <picture>
+          <source type="image/avif" srcset="<?= eco_srcset('utility-material-direction', [640, 960, 1280, 1600]) ?>"
+                  sizes="(min-width: 1024px) 42vw, calc(100vw - 2.5rem)">
+          <source type="image/webp" srcset="<?= eco_srcset_webp('utility-material-direction', [640, 960, 1280, 1600]) ?>"
+                  sizes="(min-width: 1024px) 42vw, calc(100vw - 2.5rem)">
+          <img src="<?= asset_url('/assets/images/ecosystem/utility-material-direction-1280.jpg') ?>"
+               alt="Representative moulded natural-material utility forms for the Utility Products direction"
+               width="1280" height="960" loading="lazy" decoding="async">
+        </picture>
+        <figcaption>Representative material-direction visual — not a confirmed product range.</figcaption>
       </figure>
     </div>
   </div>

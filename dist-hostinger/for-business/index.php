@@ -68,12 +68,17 @@ $helpfulInclude = [
     .biz-hero__container { grid-template-columns: 5fr 7fr; gap: 3rem; }
   }
   .biz-hero__lockup { max-width: 42rem; }
-  .biz-hero__art {
-    position: relative; aspect-ratio: 1344/768; background: var(--paper-cool);
-    border-radius: var(--r-panel); overflow: hidden;
+  .biz-hero__art { padding: 0; background: none; border: 0; }
+  /* V19 §45: a simple material ecosystem strip — the four directions a
+     partner can work with. Small tiles, form stays dominant. */
+  .biz-hero__ecosystem {
+    display: grid; gap: 0.75rem; grid-template-columns: 1fr 1fr;
   }
-  .biz-hero__art .editorial-image {
-    width: 100%; height: 100%; object-fit: cover; display: block;
+  .biz-hero__tile { margin: 0; overflow: hidden;
+    border-radius: var(--r-card); border: 1px solid var(--border); }
+  .biz-hero__tile img {
+    display: block; width: 100%; height: auto; aspect-ratio: 4 / 3;
+    object-fit: cover;
   }
 
   /* ===== AUDIENCES (V16: the seven partner audiences as a flexible
@@ -177,14 +182,28 @@ $helpfulInclude = [
       <div class="biz-hero__art" aria-hidden="true">
         <!-- V5: business-context-study replaces architectural-elevation
              (more Indian, more contemporary). -->
-        <picture>
-          <source type="image/webp" srcset="<?= asset_url('/assets/editorial/business-context-study.webp') ?>">
-          <img class="editorial-image"
-               src="<?= asset_url('/assets/editorial/business-context-study.jpg') ?>"
-               alt=""
-               width="1344" height="768"
-               loading="eager" decoding="async">
-        </picture>
+        <div class="biz-hero__ecosystem" role="img"
+             aria-label="The Gaurikrit material ecosystem — Eco-Paints, GoCast logs, Bio-Coal and utility directions">
+          <?php
+          $bizTiles = [
+              ['eco-paints-pair', 'Prakritik paint packs'],
+              ['gocast-editorial', 'Cow-dung logs on a terracotta plate'],
+              ['biocoal-editorial', 'Representative biomass briquettes'],
+              ['utility-material-direction', 'Representative moulded utility forms'],
+          ];
+          foreach ($bizTiles as $i => $tile): ?>
+            <figure class="biz-hero__tile">
+              <picture>
+                <source type="image/avif" srcset="<?= eco_srcset($tile[0], [640, 960]) ?>"
+                        sizes="(min-width: 1024px) 17vw, (min-width: 640px) 45vw, calc(50vw - 1.5rem)">
+                <source type="image/webp" srcset="<?= eco_srcset_webp($tile[0], [640, 960]) ?>"
+                        sizes="(min-width: 1024px) 17vw, (min-width: 640px) 45vw, calc(50vw - 1.5rem)">
+                <img src="<?= asset_url('/assets/images/ecosystem/' . $tile[0] . '-640.jpg') ?>"
+                     alt="" width="640" height="480" loading="lazy" decoding="async">
+              </picture>
+            </figure>
+          <?php endforeach; ?>
+        </div>
       </div>
     </div>
   </div>

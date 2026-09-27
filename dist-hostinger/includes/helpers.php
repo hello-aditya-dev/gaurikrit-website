@@ -21,6 +21,29 @@ function asset_url(string $path): string
 }
 
 /**
+ * V19 image system — srcset ladders for the ecosystem derivative set
+ * (AVIF first, WebP fallback). Every placement uses the same helpers so
+ * the responsive ladder stays consistent site-wide.
+ */
+function eco_srcset(string $stem, array $widths): string
+{
+    $out = [];
+    foreach ($widths as $w) {
+        $out[] = asset_url("/assets/images/ecosystem/{$stem}-{$w}.avif") . " {$w}w";
+    }
+    return implode(', ', $out);
+}
+
+function eco_srcset_webp(string $stem, array $widths): string
+{
+    $out = [];
+    foreach ($widths as $w) {
+        $out[] = asset_url("/assets/images/ecosystem/{$stem}-{$w}.webp") . " {$w}w";
+    }
+    return implode(', ', $out);
+}
+
+/**
  * HTML-escape a string for output.
  */
 function e(string $value): string

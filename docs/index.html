@@ -231,7 +231,7 @@
 
     <main id="main" class="site-main">
 <style>
-  /* ===== 01. HERO — story lockup 5 / material field 7 ===== */
+  /* ===== 01. HERO — story lockup 5 / one composed photograph 7 ===== */
   .hero { padding-top: calc(var(--header-h) + 1.5rem); padding-bottom: 1.5rem; }
   @media (min-width: 1024px) {
     .hero { display: flex; align-items: center;
@@ -253,7 +253,28 @@
   .hero__body { max-width: 40rem; }
   .hero__ctas { margin-top: 2.25rem; }
 
-  /* ===== 02. RESOURCE STEPS — page-local rhythm only (structure §42.2) ===== */
+  /* V19 §25-27: ONE designed composition — the master carries its own
+     seamless studio sweep; the page just frames it. */
+  .hero__composition { margin: 0; }
+  .hero__composition img {
+    width: 100%; height: auto; display: block;
+    border-radius: 0.1875rem;
+  }
+  .hero__composition-captions {
+    display: flex; flex-wrap: wrap; gap: 0.5rem 1.75rem;
+    margin-top: 0.875rem;
+  }
+  .hero__caption {
+    font-size: 0.5625rem; font-weight: 700; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--fg-muted);
+  }
+  .hero__caption em {
+    display: block; font-style: normal; font-weight: 500;
+    letter-spacing: 0.08em; color: var(--fg-muted); opacity: 0.72;
+    margin-top: 0.1875rem; text-transform: none; font-size: 0.6875rem;
+  }
+
+  /* ===== 02. RESOURCE STEPS — one frame system for all three (§28) ===== */
   .resource-section__head { max-width: 48rem; margin-bottom: 2.5rem; }
 
   /* ===== 03. FOUR SOLUTIONS — page-local rhythm (structure §42.3) ===== */
@@ -265,30 +286,27 @@
   /* ===== 05. DOCUMENTED ECO-PAINT FAMILY — page-local rhythm ===== */
   .eco-documented .section-heading { max-width: 48rem; margin-bottom: 2.5rem; }
 
-  /* ===== 08. INNOVATION TEASER — material research composition + rows ===== */
+  /* ===== 06. INNOVATION TEASER — one research composition (§33) ===== */
   .innov-teaser__grid {
     display: grid; grid-template-columns: 1fr; gap: 2.5rem; align-items: center;
   }
   @media (min-width: 1024px) { .innov-teaser__grid { grid-template-columns: 5fr 7fr; gap: 3.5rem; } }
-  .innov-composition { position: relative; min-height: 18rem; }
-  .innov-composition__plate {
-    position: absolute; overflow: hidden;
-    border: 1px solid var(--border); border-radius: var(--r-card);
-    background: var(--paper);
+  .innov-composition { margin: 0; }
+  .innov-composition img {
+    width: 100%; height: auto; display: block; border-radius: 0.1875rem;
   }
-  .innov-composition__plate img {
-    width: 100%; height: 100%; object-fit: cover; display: block;
+  .innov-composition__captions {
+    display: flex; gap: 1rem; margin-top: 0.875rem;
   }
-  .innov-composition__plate--a { left: 0; top: 0; width: 62%; aspect-ratio: 4 / 3; }
-  .innov-composition__plate--b { right: 0; bottom: 0; width: 52%; aspect-ratio: 4 / 3; }
-  .innov-composition__plate--b::after {
-    content: ""; position: absolute; left: 0; top: 0; width: 2.5rem; height: 0.25rem;
-    background: var(--haldi);
+  .innov-composition__caption {
+    flex: 1; font-size: 0.5625rem; font-weight: 700; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--fg-muted);
+    padding-top: 0.5rem; border-top: 1px solid var(--border);
   }
-  .innov-composition__tag {
-    position: absolute; left: 0; bottom: -0.5rem; transform: translateY(100%);
-    font-size: 0.5625rem; font-weight: 700; letter-spacing: 0.16em;
-    text-transform: uppercase; color: var(--fg-muted); padding-top: 1rem;
+  .innov-composition__caption em {
+    display: block; font-style: normal; font-weight: 500; letter-spacing: 0.04em;
+    color: var(--fg-muted); opacity: 0.75; margin-top: 0.1875rem;
+    text-transform: none; font-size: 0.6875rem;
   }
 
   /* ===== 08. PARTNERSHIP — page-local rhythm ===== */
@@ -322,36 +340,34 @@
       </div>
 
       <div class="hero__visual" data-reveal>
-        <figure class="story-field" aria-label="Gaurikrit material field — Prakritik Paint products and the four ecosystem directions">
-          <div class="story-field__texture" aria-hidden="true">
-            <img src="./assets/editorial/raw-material-study.jpg" alt="" width="1344" height="768" loading="eager" decoding="async">
-          </div>
-          <div class="story-field__chips" aria-hidden="true">
-            <span class="story-field__chip story-field__chip--haldi"></span>
-            <span class="story-field__chip story-field__chip--forest"></span>
-          </div>
-          <div class="story-field__inner">
-            <div class="story-field__objects">
-              <div class="story-field__object story-field__object--lead">
-                <img class="story-field__photo"
-                     src="./assets/products/prakritik-pair.jpg"
-                     alt="Prakritik Distemper and Prakritik Emulsion paint packs — the documented Eco-Paints family"
-                     width="1420" height="618"
-                     loading="eager" fetchpriority="high" decoding="async">
-                <span class="story-field__object-label">
-                  Eco-Paints <small>Documented family</small>
-                </span>
-              </div>
-              <div class="story-field__object">
-                <span class="story-field__secondary">
-                  <picture><source type="image/webp" srcset="./assets/images/client/cow-dung-logs-plate.webp"><img  src="./assets/images/client/cow-dung-logs-plate.jpg" alt="Client-supplied cow-dung logs on a terracotta plate with straw" width="824" height="667" loading="lazy" decoding="async"></picture>
-                </span>
-                <span class="story-field__object-label">
-                  Cow-Dung Logs <small>Client-supplied reference</small>
-                </span>
-              </div>
-            </div>
-          </div>
+        <figure class="hero__composition" role="img"
+                aria-label="Prakritik Distemper and Prakritik Emulsion paint packs with client-supplied cow-dung logs on a terracotta plate — one natural resource, multiple applications">
+          <picture>
+            <source type="image/avif" media="(max-width: 899px)"
+                    srcset="./assets/images/ecosystem/home-hero-ecosystem-mobile-640.avif 640w, ./assets/images/ecosystem/home-hero-ecosystem-mobile-960.avif 960w, ./assets/images/ecosystem/home-hero-ecosystem-mobile-1600.avif 1600w"
+                    sizes="calc(100vw - 2.5rem)">
+            <source type="image/webp" media="(max-width: 899px)"
+                    srcset="./assets/images/ecosystem/home-hero-ecosystem-mobile-640.webp 640w, ./assets/images/ecosystem/home-hero-ecosystem-mobile-960.webp 960w, ./assets/images/ecosystem/home-hero-ecosystem-mobile-1600.webp 1600w"
+                    sizes="calc(100vw - 2.5rem)">
+            <source type="image/avif"
+                    srcset="./assets/images/ecosystem/home-hero-ecosystem-640.avif 640w, ./assets/images/ecosystem/home-hero-ecosystem-960.avif 960w, ./assets/images/ecosystem/home-hero-ecosystem-1280.avif 1280w, ./assets/images/ecosystem/home-hero-ecosystem-1600.avif 1600w, ./assets/images/ecosystem/home-hero-ecosystem-1920.avif 1920w, ./assets/images/ecosystem/home-hero-ecosystem-2560.avif 2560w"
+                    sizes="(min-width: 1200px) 58vw, (min-width: 900px) 50vw, calc(100vw - 2.5rem)">
+            <source type="image/webp"
+                    srcset="./assets/images/ecosystem/home-hero-ecosystem-640.webp 640w, ./assets/images/ecosystem/home-hero-ecosystem-960.webp 960w, ./assets/images/ecosystem/home-hero-ecosystem-1280.webp 1280w, ./assets/images/ecosystem/home-hero-ecosystem-1600.webp 1600w, ./assets/images/ecosystem/home-hero-ecosystem-1920.webp 1920w, ./assets/images/ecosystem/home-hero-ecosystem-2560.webp 2560w"
+                    sizes="(min-width: 1200px) 58vw, (min-width: 900px) 50vw, calc(100vw - 2.5rem)">
+            <img src="./assets/images/ecosystem/home-hero-ecosystem-1280.jpg"
+                 alt="Prakritik Distemper and Prakritik Emulsion paint packs with client-supplied cow-dung logs on a terracotta plate"
+                 width="1280" height="853"
+                 fetchpriority="high" loading="eager" decoding="async">
+          </picture>
+          <figcaption class="hero__composition-captions">
+            <span class="hero__caption">Eco-Paints
+              <em>Documented family</em>
+            </span>
+            <span class="hero__caption">Cow-Dung Logs
+              <em>Client-supplied reference</em>
+            </span>
+          </figcaption>
         </figure>
       </div>
     </div>
@@ -377,7 +393,7 @@
     <div class="resource-steps" data-reveal-stagger>
       <article class="resource-step">
         <figure class="resource-step__figure">
-          <picture><source type="image/webp" srcset="./assets/editorial/raw-material-study.webp"><img  src="./assets/editorial/raw-material-study.jpg" alt="Raw natural material — a lime-plastered surface study" width="1344" height="768" loading="lazy" decoding="async"></picture>
+          <picture><source type="image/avif" srcset="./assets/images/ecosystem/rawmat-640.avif 640w, ./assets/images/ecosystem/rawmat-960.avif 960w, ./assets/images/ecosystem/rawmat-1280.avif 1280w, ./assets/images/ecosystem/rawmat-1920.avif 1920w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, calc(100vw - 2.5rem)"><source type="image/webp" srcset="./assets/images/ecosystem/rawmat-640.webp 640w, ./assets/images/ecosystem/rawmat-960.webp 960w, ./assets/images/ecosystem/rawmat-1280.webp 1280w, ./assets/images/ecosystem/rawmat-1920.webp 1920w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, calc(100vw - 2.5rem)"><img  src="./assets/images/ecosystem/rawmat-960.jpg" alt="Raw material — natural biomass with straw fibre" width="960" height="549" loading="lazy" decoding="async"></picture>
         </figure>
         <div class="resource-step__caption">
           <span class="resource-step__kicker">Stage 01</span>
@@ -389,7 +405,7 @@
       </article>
       <article class="resource-step">
         <figure class="resource-step__figure">
-          <picture><source type="image/webp" srcset="./assets/products/prakritik-distemper-from-pair.webp"><img  src="./assets/products/prakritik-distemper-from-pair.png" alt="Prakritik Distemper paint pack — developed natural material" width="649" height="612" loading="lazy" decoding="async"></picture>
+          <picture><source type="image/avif" srcset="./assets/images/ecosystem/material-development-640.avif 640w, ./assets/images/ecosystem/material-development-960.avif 960w, ./assets/images/ecosystem/material-development-1280.avif 1280w, ./assets/images/ecosystem/material-development-1920.avif 1920w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, calc(100vw - 2.5rem)"><source type="image/webp" srcset="./assets/images/ecosystem/material-development-640.webp 640w, ./assets/images/ecosystem/material-development-960.webp 960w, ./assets/images/ecosystem/material-development-1280.webp 1280w, ./assets/images/ecosystem/material-development-1920.webp 1920w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, calc(100vw - 2.5rem)"><img  src="./assets/images/ecosystem/material-development-960.jpg" alt="Prakritik Distemper paint pack — developed material product with studio context" width="960" height="640" loading="lazy" decoding="async"></picture>
         </figure>
         <div class="resource-step__caption">
           <span class="resource-step__kicker">Stage 02</span>
@@ -401,7 +417,7 @@
       </article>
       <article class="resource-step">
         <figure class="resource-step__figure">
-          <picture><source type="image/webp" srcset="./assets/editorial/finished-surface-study.webp"><img  src="./assets/editorial/finished-surface-study.jpg" alt="Finished matte wall surface — a useful application" width="1344" height="768" loading="lazy" decoding="async"></picture>
+          <picture><source type="image/avif" srcset="./assets/images/ecosystem/colours-wall-640.avif 640w, ./assets/images/ecosystem/colours-wall-960.avif 960w, ./assets/images/ecosystem/colours-wall-1280.avif 1280w, ./assets/images/ecosystem/colours-wall-1920.avif 1920w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, calc(100vw - 2.5rem)"><source type="image/webp" srcset="./assets/images/ecosystem/colours-wall-640.webp 640w, ./assets/images/ecosystem/colours-wall-960.webp 960w, ./assets/images/ecosystem/colours-wall-1280.webp 1280w, ./assets/images/ecosystem/colours-wall-1920.webp 1920w" sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, calc(100vw - 2.5rem)"><img  src="./assets/images/ecosystem/colours-wall-960.jpg" alt="Finished limewash wall in a furnished room — a useful application" width="960" height="549" loading="lazy" decoding="async"></picture>
         </figure>
         <div class="resource-step__caption">
           <span class="resource-step__kicker">Stage 03</span>
@@ -433,10 +449,7 @@
     <div class="families" data-reveal-stagger>
         <article class="family" id="family-eco-paints">
             <figure class="family__media family__media--photo">
-                <img src="./assets/products/prakritik-pair.jpg"
-                     alt="Prakritik Distemper and Emulsion paint packs — the Eco-Paints family"
-                     width="1420" height="618"
-                     loading="lazy" decoding="async">
+                <picture><source type="image/avif" srcset="./assets/images/ecosystem/eco-paints-pair-640.avif 640w, ./assets/images/ecosystem/eco-paints-pair-960.avif 960w, ./assets/images/ecosystem/eco-paints-pair-1280.avif 1280w, ./assets/images/ecosystem/eco-paints-pair-1920.avif 1920w" sizes="(min-width: 768px) 45vw, calc(100vw - 2.5rem)"><source type="image/webp" srcset="./assets/images/ecosystem/eco-paints-pair-640.webp 640w, ./assets/images/ecosystem/eco-paints-pair-960.webp 960w, ./assets/images/ecosystem/eco-paints-pair-1280.webp 1280w, ./assets/images/ecosystem/eco-paints-pair-1920.webp 1920w" sizes="(min-width: 768px) 45vw, calc(100vw - 2.5rem)"><img  src="./assets/images/ecosystem/eco-paints-pair-960.jpg" alt="Prakritik Distemper and Prakritik Emulsion paint packs - the documented Eco-Paints family" width="960" height="640" loading="lazy" decoding="async"></picture>
             </figure>
 
           <div class="family__head">
@@ -461,7 +474,7 @@
         </article>
         <article class="family" id="family-gocast-logs">
             <figure class="family__media family__media--photo">
-                <picture><source type="image/webp" srcset="./assets/images/client/gocast-logs-context.webp"><img  src="./assets/images/client/gocast-logs-context.jpg" alt="Client-supplied cow-dung logs stacked beside a clay stove with embers" width="1254" height="420" loading="lazy" decoding="async"></picture>
+                <picture><source type="image/avif" srcset="./assets/images/ecosystem/gocast-editorial-640.avif 640w, ./assets/images/ecosystem/gocast-editorial-960.avif 960w, ./assets/images/ecosystem/gocast-editorial-1280.avif 1280w, ./assets/images/ecosystem/gocast-editorial-1920.avif 1920w" sizes="(min-width: 768px) 45vw, calc(100vw - 2.5rem)"><source type="image/webp" srcset="./assets/images/ecosystem/gocast-editorial-640.webp 640w, ./assets/images/ecosystem/gocast-editorial-960.webp 960w, ./assets/images/ecosystem/gocast-editorial-1280.webp 1280w, ./assets/images/ecosystem/gocast-editorial-1920.webp 1920w" sizes="(min-width: 768px) 45vw, calc(100vw - 2.5rem)"><img  src="./assets/images/ecosystem/gocast-editorial-960.jpg" alt="Client-supplied cow-dung logs on a terracotta plate with straw" width="960" height="640" loading="lazy" decoding="async"></picture>
             </figure>
 
           <div class="family__head">
@@ -485,12 +498,9 @@
           </a>
         </article>
         <article class="family" id="family-bio-coal-logs">
-            <figure class="family__media family__media--plate" aria-label="Bio-Coal Logs — material direction">
-                <span class="family__media-plate-texture" aria-hidden="true">
-                    <picture><source type="image/webp" srcset="./assets/editorial/exterior-finish-study.webp"><img  src="./assets/editorial/exterior-finish-study.jpg" alt="" width="1344" height="768" loading="lazy" decoding="async"></picture>
-                </span>
-                <span class="family__media-plate-word">Bio-Coal Logs</span>
-                <span class="family__media-plate-tag">Material direction</span>
+            <figure class="family__media family__media--photo">
+                <picture><source type="image/avif" srcset="./assets/images/ecosystem/biocoal-editorial-640.avif 640w, ./assets/images/ecosystem/biocoal-editorial-960.avif 960w, ./assets/images/ecosystem/biocoal-editorial-1280.avif 1280w, ./assets/images/ecosystem/biocoal-editorial-1920.avif 1920w" sizes="(min-width: 768px) 45vw, calc(100vw - 2.5rem)"><source type="image/webp" srcset="./assets/images/ecosystem/biocoal-editorial-640.webp 640w, ./assets/images/ecosystem/biocoal-editorial-960.webp 960w, ./assets/images/ecosystem/biocoal-editorial-1280.webp 1280w, ./assets/images/ecosystem/biocoal-editorial-1920.webp 1920w" sizes="(min-width: 768px) 45vw, calc(100vw - 2.5rem)"><img  src="./assets/images/ecosystem/biocoal-editorial-960.jpg" alt="Representative biomass briquette material study for the Bio-Coal category" width="960" height="640" loading="lazy" decoding="async"></picture>
+                <span class="family__media-note">Category visual</span>
             </figure>
 
           <div class="family__head">
@@ -514,12 +524,9 @@
           </a>
         </article>
         <article class="family" id="family-utility-products">
-            <figure class="family__media family__media--plate" aria-label="Utility Products — material direction">
-                <span class="family__media-plate-texture" aria-hidden="true">
-                    <picture><source type="image/webp" srcset="./assets/editorial/courtyard-study.webp"><img  src="./assets/editorial/courtyard-study.jpg" alt="" width="1344" height="768" loading="lazy" decoding="async"></picture>
-                </span>
-                <span class="family__media-plate-word">Utility Products</span>
-                <span class="family__media-plate-tag">Material direction</span>
+            <figure class="family__media family__media--photo">
+                <picture><source type="image/avif" srcset="./assets/images/ecosystem/utility-material-direction-640.avif 640w, ./assets/images/ecosystem/utility-material-direction-960.avif 960w, ./assets/images/ecosystem/utility-material-direction-1280.avif 1280w, ./assets/images/ecosystem/utility-material-direction-1920.avif 1920w" sizes="(min-width: 768px) 45vw, calc(100vw - 2.5rem)"><source type="image/webp" srcset="./assets/images/ecosystem/utility-material-direction-640.webp 640w, ./assets/images/ecosystem/utility-material-direction-960.webp 960w, ./assets/images/ecosystem/utility-material-direction-1280.webp 1280w, ./assets/images/ecosystem/utility-material-direction-1920.webp 1920w" sizes="(min-width: 768px) 45vw, calc(100vw - 2.5rem)"><img  src="./assets/images/ecosystem/utility-material-direction-960.jpg" alt="Representative moulded natural-material utility forms for the Utility Products direction" width="960" height="640" loading="lazy" decoding="async"></picture>
+                <span class="family__media-note">Category visual</span>
             </figure>
 
           <div class="family__head">
@@ -624,9 +631,7 @@
 
     <div class="eco-documented__grid" data-reveal-stagger>
       <figure class="eco-documented__plate">
-        <img src="./assets/products/prakritik-pair.jpg"
-             alt="Prakritik Distemper and Prakritik Emulsion paint packs"
-             width="1420" height="618" loading="lazy" decoding="async">
+        <picture><source type="image/avif" srcset="./assets/images/ecosystem/eco-paints-pair-640.avif 640w, ./assets/images/ecosystem/eco-paints-pair-960.avif 960w, ./assets/images/ecosystem/eco-paints-pair-1280.avif 1280w, ./assets/images/ecosystem/eco-paints-pair-1920.avif 1920w" sizes="(min-width: 1024px) 40vw, calc(100vw - 2.5rem)"><source type="image/webp" srcset="./assets/images/ecosystem/eco-paints-pair-640.webp 640w, ./assets/images/ecosystem/eco-paints-pair-960.webp 960w, ./assets/images/ecosystem/eco-paints-pair-1280.webp 1280w, ./assets/images/ecosystem/eco-paints-pair-1920.webp 1920w" sizes="(min-width: 1024px) 40vw, calc(100vw - 2.5rem)"><img  src="./assets/images/ecosystem/eco-paints-pair-1280.jpg" alt="Prakritik Distemper and Prakritik Emulsion paint packs" width="1280" height="800" loading="lazy" decoding="async"></picture>
       </figure>
 
       <div class="eco-documented__rows">
@@ -677,15 +682,14 @@
       <h2 class="section-heading__title" id="innov-title">Where Tradition Meets Technology.</h2>
     </div>
     <div class="innov-teaser__grid" data-reveal>
-      <div class="innov-composition" aria-hidden="true">
-        <span class="innov-composition__plate innov-composition__plate--a">
-          <img src="./assets/editorial/raw-material-study.jpg" alt="" width="1344" height="768" loading="lazy" decoding="async">
-        </span>
-        <span class="innov-composition__plate innov-composition__plate--b">
-          <img src="./assets/images/client/cow-dung-logs-stack.jpg" alt="" width="1178" height="893" loading="lazy" decoding="async">
-        </span>
-        <span class="innov-composition__tag">Material research directions</span>
-      </div>
+      <figure class="innov-composition" aria-label="Material research samples — raw biomass, processed log and finished coating">
+        <picture><source type="image/avif" srcset="./assets/images/ecosystem/innovation-research-640.avif 640w, ./assets/images/ecosystem/innovation-research-960.avif 960w, ./assets/images/ecosystem/innovation-research-1280.avif 1280w, ./assets/images/ecosystem/innovation-research-1920.avif 1920w" sizes="(min-width: 1024px) 40vw, calc(100vw - 2.5rem)"><source type="image/webp" srcset="./assets/images/ecosystem/innovation-research-640.webp 640w, ./assets/images/ecosystem/innovation-research-960.webp 960w, ./assets/images/ecosystem/innovation-research-1280.webp 1280w, ./assets/images/ecosystem/innovation-research-1920.webp 1920w" sizes="(min-width: 1024px) 40vw, calc(100vw - 2.5rem)"><img  src="./assets/images/ecosystem/innovation-research-1280.jpg" alt="Material research samples — raw biomass, processed log and finished coating" width="1280" height="800" loading="lazy" decoding="async"></picture>
+        <figcaption class="innov-composition__captions">
+          <span class="innov-composition__caption">Raw material<em>biomass sample</em></span>
+          <span class="innov-composition__caption">Processed<em>log sample</em></span>
+          <span class="innov-composition__caption">Coating<em>finished sample</em></span>
+        </figcaption>
+      </figure>
       <div class="focus-rows">
           <div class="focus-row">
             <span class="focus-row__num" aria-hidden="true">01</span>

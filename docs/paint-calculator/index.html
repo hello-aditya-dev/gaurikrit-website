@@ -261,6 +261,17 @@
 
   /* ===== HERO ===== */
   .calc-hero { padding-top: calc(var(--header-h) + 2rem); padding-bottom: 1.5rem; }
+  .calc-hero__grid {
+    display: grid; gap: clamp(1.5rem, 3vw, 3rem);
+    grid-template-columns: 1fr; align-items: center;
+  }
+  @media (min-width: 1024px) { .calc-hero__grid { grid-template-columns: 7fr 5fr; } }
+  @media (max-width: 1023px) { .calc-hero__plate { order: 5; max-width: 34rem; } }
+  .calc-hero__plate { margin: 0; }
+  .calc-hero__plate img {
+    display: block; width: 100%; height: auto;
+    border-radius: 0.1875rem; border: 1px solid var(--border);
+  }
   .calc-hero__inner { display: grid; gap: 1rem; max-width: 60rem; }
   .calc-hero__eyebrow {
     display: inline-flex; align-items: center; gap: 0.5rem;
@@ -396,7 +407,9 @@
       <a href="../">Home</a><span>›</span>
       <span>Calculator</span>
     </nav>
-    <div class="calc-hero__inner" data-reveal>
+    <div class="calc-hero__grid">
+      <div class="calc-hero__inner" data-reveal>
+
       <span class="calc-hero__eyebrow">
         <span class="calc-hero__eyebrow-dot" aria-hidden="true"></span>
         Estimate your project
@@ -408,6 +421,10 @@
         Prakritik format, and how much wall area. We summarise the project for
         you to send to Gaurikrit.
       </p>
+      </div>
+      <figure class="calc-hero__plate" data-reveal>
+        <picture><source type="image/avif" srcset="../assets/images/ecosystem/colours-wall-640.avif 640w, ../assets/images/ecosystem/colours-wall-960.avif 960w, ../assets/images/ecosystem/colours-wall-1280.avif 1280w" sizes="(min-width: 1024px) 40vw, calc(100vw - 2.5rem)"><source type="image/webp" srcset="../assets/images/ecosystem/colours-wall-640.webp 640w, ../assets/images/ecosystem/colours-wall-960.webp 960w, ../assets/images/ecosystem/colours-wall-1280.webp 1280w" sizes="(min-width: 1024px) 40vw, calc(100vw - 2.5rem)"><img loading="eager"  src="../assets/images/ecosystem/colours-wall-960.jpg" alt="Limewash wall interior - the surfaces your estimate covers" width="960" height="549" loading="lazy" decoding="async"></picture>
+      </figure>
     </div>
   </div>
 </section>
@@ -445,6 +462,7 @@
           <div class="calc-helper__actions">
             <a class="btn btn--secondary" href="../contact/?interest=bulk-project">Talk to Us</a>
             <a class="btn btn--outline" href="../products/">Explore Products</a>
+          <a class="btn btn--outline btn--lg" href="../contact/">Contact</a>
           </div>
         </div>
       </div>

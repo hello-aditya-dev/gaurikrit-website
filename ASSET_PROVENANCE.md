@@ -195,3 +195,69 @@ V18 worklog). The 10 new originals below extend the 10 originals above
 | `assets/social/og-home.jpg` | pair + #12 | Regenerated: two real objects (paint + logs) |
 
 Archival copies of every derivative: `source-assets/derived/2026-09-27/`.
+
+---
+
+## V19 — Master image system + provenance (2026-09-27, this pass)
+
+V19 built ONE art-directed image system: 4K masters in
+`source-assets/masters/2026-09-27/`, public responsive derivatives in
+`assets/images/ecosystem/` (AVIF + WebP + JPEG, 640–2560 ladder, srcset/sizes
+on every placement). Deterministic pipeline: `scripts/build_v19_masters.py`
+(+ `scripts/build_v19_derivatives.py`). No AI reconstruction of any factual
+product pixel anywhere.
+
+### Master registry (SOURCE / TYPE / PRESERVATION / GENERATIVE AREAS / USE)
+
+| Master | SOURCE | TYPE | FACTUAL PRESERVATION | GENERATIVE AREAS | PUBLIC USE |
+|---|---|---|---|---|---|
+| `home-hero-ecosystem-4k.jpg` (3840×2560) + `-mobile-4k.jpg` (2000×2500) | V11 pair cutouts (#7→`prakritik-distemper/emulsion-from-pair.png`) + client log plate (#12) | **real-enhanced composite** | Both bucket cutouts pasted pixel-exact (labels, colours, rims untouched); plate mirrored + edge-unmixed only | background sweep (procedural limewash, no AI), contact shadows, grain | home hero (LCP, fetchpriority=high; mobile portrait variant ≤899px) |
+| `eco-paints-pair-4k.jpg` (3840×2400) | same pair cutouts | **real-enhanced composite** | identical factual treatment | same procedural background | home four-directions 01 + documented family, products hero/eco-family, about stage 02, sustainability pair contexts |
+| `prakritik-distemper-4k.jpg` (2160×2640) | #15 blue-bucket cutout (`prakritik-distemper-single-cut.png`, V18 flood-key) | **real-enhanced composite** | bucket pixels exact (label/colours unchanged; capped ±6% WB on near-whites only) | procedural sweep + shadow | distemper detail hero (cover-fit panel), sustainability wall-coating outcome |
+| `prakritik-emulsion-4k.jpg` (2160×2640) | `prakritik-emulsion-from-pair.png` | **real-enhanced composite** | same | same | emulsion detail hero |
+| `material-development-4k.jpg` (2880×1920) | #15 cutout | **real-enhanced composite** | same | same | home stage 02 (product WITH context — never a giant label crop) |
+| `gocast-editorial-4k.jpg` (3200×2400) | #12 plate (flood-key cutout, shadow-junk keying) | **real-cropped composite** | plate/logs/straw pixels exact; mirrored for lighting match | sweep + shadow | home four-directions 02, products GoCast feature, partners strip |
+| `gocast-material-4k.jpg` (3840×2560) | #13 stack (end-grain crop 30–94% × 18–82%) | **real-cropped** | crop + contrast only | none | about stage 03, sustainability fuel outcome |
+| `gocast-context-4k.jpg` (3840×1286) | #11 GBP-free band (V18 crop) | **real-cropped** | contrast lift only | none | reserved (not placed in V19 pages) |
+| `innovation-research-4k.jpg` (3840×2400) | rawmat (#gen) + #13 log crop + wall (#gen) as three sample slabs | **hybrid composition** | log chip pixels real; other two chips are from generated category images (below) | slab frame + sweep | home innovation teaser, innovation hero, about idea chapter |
+| `biocoal-editorial-4k.jpg` (3840×2880) | z-ai generation (basis: `/tmp/v19-gen/biocoal-1.png`, prompt archived below) | **representative-generated** | n/a — contains NO Gaurikrit product, NO packaging, NO text, NO logo (VLM-verified) | whole scene | home four-directions 03, products Bio-Coal section, partners strip |
+| `utility-material-direction-4k.jpg` (3840×2880) | z-ai generation (basis `/tmp/v19-gen/utility-1.png`, 5% edge crop) | **representative-generated** | n/a — unbranded moulded natural forms; NO text/logos (VLM-verified) | whole scene | home four-directions 04, products Utility section, partners strip |
+| `colours-wall-4k.jpg` (3840×2192) | z-ai generation (basis `/tmp/v19-gen/wall-2.png`) | **representative-generated** | n/a — generic interior; wall-only SVG tint mask M101,115 H1236 V645 + bench hole | whole scene | /colours/ visualizer, home stage 03, calculator hero plate |
+| `rawmat-4k.jpg` (3840×2192) | z-ai generation (basis `/tmp/v19-gen/rawmat-1.png`) | **representative-generated** | n/a — generic biomass/straw surface, no text | whole scene | home stage 01, about resource chapter, sustainability hero, why-prakritik flow |
+
+### Generation bases (prompts summarised; masters carry the unmix/relight/grain pipeline)
+
+- **Bio-Coal**: "dense dark biomass bio-coal fuel briquettes… matte black/deep
+  charcoal… 3/4 view ~30° above, 55mm, soft side light, warm limestone/paper
+  background, no text/logos/fire/leaves." Dark + dense + industrial vs GoCast's
+  brown fibrous natural logs — the required visual distinction (VLM-verified).
+- **Utility**: "unbranded moulded natural-material forms — trays, discs,
+  pressed tiles, plant-fibre textures, warm tan/kraft/clay, 35° elevated,
+  soft daylight, no text/labels/packaging." Reads as material prototypes,
+  NOT commercial tableware (VLM comparison: utility-1 beat utility-2 which
+  read as dinnerware).
+- **Wall**: "bright minimal room, very large flat warm ivory limewash wall,
+  soft daylight from left, bench + jute rug corner, 50mm, no text/people."
+  Chosen for tintability (9/10 VLM) — wall-1 rejected (props broke the wall).
+- **Raw material**: "raw biomass patty with golden straw fibre drying on warm
+  clay, macro, warm sunlight." Chosen for organic believability (rawmat-2
+  rejected: cloned-straw artifacts).
+
+### V19 alt-text discipline (§58)
+
+Real product images say "Prakritik Distemper/Emulsion paint pack…";
+representative visuals say "Representative biomass briquette material study
+for the Bio-Coal category" / "Representative moulded natural-material utility
+forms…" and carry an on-image "Category visual" tag on home + explicit
+figcaptions on products. No generated image is ever described as a
+documented Gaurikrit product.
+
+### Removed from public assets (§71; originals/masters retained in source-assets/)
+
+`products/prakritik-pair.{jpg,webp}` (superseded by the pair master),
+`products/prakritik-{single-can,two-buckets,distemper,emulsion}.jpg` (legacy
+low-res), `editorial/{colour-wall,finished-wall,interior-wall,exterior-wall,
+exterior-wall-v2,architectural-elevation,business-context,zebu}-study.{jpg,webp}`
+(unreferenced), `illustrations/` folder (legacy). The from-pair cutout PNGs
+(+ webp serving copies) stay: they are live pipeline inputs and are still
+served on the products page catalogue chapters.

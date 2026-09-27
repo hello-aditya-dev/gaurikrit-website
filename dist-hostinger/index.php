@@ -43,10 +43,11 @@ require ROOT_PATH . '/includes/header.php';
 global $COMPANY, $FAMILIES, $CIRCULAR_STAGES, $PRODUCTS,
        $INNOVATION_AREAS, $PARTNER_AUDIENCES;
 
-$pairImage = '/assets/products/prakritik-pair.jpg';
+$HERO_LADDER   = [640, 960, 1280, 1600, 1920, 2560];
+$HERO_M_LADDER = [640, 960, 1600];
 ?>
 <style>
-  /* ===== 01. HERO — story lockup 5 / material field 7 ===== */
+  /* ===== 01. HERO — story lockup 5 / one composed photograph 7 ===== */
   .hero { padding-top: calc(var(--header-h) + 1.5rem); padding-bottom: 1.5rem; }
   @media (min-width: 1024px) {
     .hero { display: flex; align-items: center;
@@ -68,7 +69,29 @@ $pairImage = '/assets/products/prakritik-pair.jpg';
   .hero__body { max-width: 40rem; }
   .hero__ctas { margin-top: 2.25rem; }
 
-  /* ===== 02. RESOURCE STEPS — page-local rhythm only (structure §42.2) ===== */
+  /* V19 §25–27: ONE designed composition — no stacked image cards, no
+     source-background rectangles. The master carries its own seamless
+     studio sweep; the page just frames it. */
+  .hero__composition { margin: 0; }
+  .hero__composition img {
+    width: 100%; height: auto; display: block;
+    border-radius: 0.1875rem;
+  }
+  .hero__composition-captions {
+    display: flex; flex-wrap: wrap; gap: 0.5rem 1.75rem;
+    margin-top: 0.875rem;
+  }
+  .hero__caption {
+    font-size: 0.5625rem; font-weight: 700; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--fg-muted);
+  }
+  .hero__caption em {
+    display: block; font-style: normal; font-weight: 500;
+    letter-spacing: 0.08em; color: var(--fg-muted); opacity: 0.72;
+    margin-top: 0.1875rem; text-transform: none; font-size: 0.6875rem;
+  }
+
+  /* ===== 02. RESOURCE STEPS — one frame system for all three (§28) ===== */
   .resource-section__head { max-width: 48rem; margin-bottom: 2.5rem; }
 
   /* ===== 03. FOUR SOLUTIONS — page-local rhythm (structure §42.3) ===== */
@@ -80,30 +103,27 @@ $pairImage = '/assets/products/prakritik-pair.jpg';
   /* ===== 05. DOCUMENTED ECO-PAINT FAMILY — page-local rhythm ===== */
   .eco-documented .section-heading { max-width: 48rem; margin-bottom: 2.5rem; }
 
-  /* ===== 06. INNOVATION TEASER — material research composition + rows ===== */
+  /* ===== 06. INNOVATION TEASER — one research composition (§33) ===== */
   .innov-teaser__grid {
     display: grid; grid-template-columns: 1fr; gap: 2.5rem; align-items: center;
   }
   @media (min-width: 1024px) { .innov-teaser__grid { grid-template-columns: 5fr 7fr; gap: 3.5rem; } }
-  .innov-composition { position: relative; min-height: 18rem; }
-  .innov-composition__plate {
-    position: absolute; overflow: hidden;
-    border: 1px solid var(--border); border-radius: var(--r-card);
-    background: var(--paper);
+  .innov-composition { margin: 0; }
+  .innov-composition img {
+    width: 100%; height: auto; display: block; border-radius: 0.1875rem;
   }
-  .innov-composition__plate img {
-    width: 100%; height: 100%; object-fit: cover; display: block;
+  .innov-composition__captions {
+    display: flex; gap: 1rem; margin-top: 0.875rem;
   }
-  .innov-composition__plate--a { left: 0; top: 0; width: 62%; aspect-ratio: 4 / 3; }
-  .innov-composition__plate--b { right: 0; bottom: 0; width: 52%; aspect-ratio: 4 / 3; }
-  .innov-composition__plate--b::after {
-    content: ""; position: absolute; left: 0; top: 0; width: 2.5rem; height: 0.25rem;
-    background: var(--haldi);
+  .innov-composition__caption {
+    flex: 1; font-size: 0.5625rem; font-weight: 700; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--fg-muted);
+    padding-top: 0.5rem; border-top: 1px solid var(--border);
   }
-  .innov-composition__tag {
-    position: absolute; left: 0; bottom: -0.5rem; transform: translateY(100%);
-    font-size: 0.5625rem; font-weight: 700; letter-spacing: 0.16em;
-    text-transform: uppercase; color: var(--fg-muted); padding-top: 1rem;
+  .innov-composition__caption em {
+    display: block; font-style: normal; font-weight: 500; letter-spacing: 0.04em;
+    color: var(--fg-muted); opacity: 0.75; margin-top: 0.1875rem;
+    text-transform: none; font-size: 0.6875rem;
   }
 
   /* ===== 08. PARTNERSHIP — page-local rhythm ===== */
@@ -136,48 +156,39 @@ $pairImage = '/assets/products/prakritik-pair.jpg';
         </div>
       </div>
 
-      <!-- Material-led field (V18 §13): TWO strong real objects — the
-           Prakritik pair (main plane) and the client's clean cow-dung-log
-           plate (secondary plane, deliberate catalogue plate per §47B).
-           One resource, multiple applications — proven with real client
-           imagery, no collage, no mockups. -->
+      <!-- V19 §25–27: ONE composed ecosystem photograph — the real
+           Prakritik pair and the client-supplied cow-dung-log plate
+           share one seamless studio sweep (4K master, responsive
+           derivatives). The objects dominate; captions stay quiet. -->
       <div class="hero__visual" data-reveal>
-        <figure class="story-field" aria-label="Prakritik Paint packs and client-supplied cow-dung logs — one natural resource, multiple applications">
-          <div class="story-field__texture" aria-hidden="true">
-            <img src="<?= asset_url('/assets/editorial/raw-material-study.jpg') ?>" alt="" width="1344" height="768" loading="eager" decoding="async">
-          </div>
-          <div class="story-field__chips" aria-hidden="true">
-            <span class="story-field__chip story-field__chip--haldi"></span>
-            <span class="story-field__chip story-field__chip--forest"></span>
-          </div>
-          <div class="story-field__inner">
-            <div class="story-field__objects">
-              <div class="story-field__object story-field__object--lead">
-                <img class="story-field__photo"
-                     src="<?= asset_url($pairImage) ?>"
-                     alt="Prakritik Distemper and Prakritik Emulsion paint packs — the documented Eco-Paints family"
-                     width="1420" height="618"
-                     loading="eager" fetchpriority="high" decoding="async">
-                <span class="story-field__object-label">
-                  Eco-Paints <small>Documented family</small>
-                </span>
-              </div>
-              <div class="story-field__object">
-                <span class="story-field__secondary">
-                  <picture>
-                    <source type="image/webp" srcset="<?= asset_url('/assets/images/client/cow-dung-logs-plate.webp') ?>">
-                    <img src="<?= asset_url('/assets/images/client/cow-dung-logs-plate.jpg') ?>"
-                         alt="Client-supplied cow-dung logs on a terracotta plate with straw"
-                         width="824" height="667"
-                         loading="lazy" decoding="async">
-                  </picture>
-                </span>
-                <span class="story-field__object-label">
-                  Cow-Dung Logs <small>Client-supplied reference</small>
-                </span>
-              </div>
-            </div>
-          </div>
+        <figure class="hero__composition" role="img"
+                aria-label="Prakritik Distemper and Prakritik Emulsion paint packs with client-supplied cow-dung logs on a terracotta plate — one natural resource, multiple applications">
+          <picture>
+            <source type="image/avif" media="(max-width: 899px)"
+                    srcset="<?= eco_srcset('home-hero-ecosystem-mobile', $HERO_M_LADDER) ?>"
+                    sizes="calc(100vw - 2.5rem)">
+            <source type="image/webp" media="(max-width: 899px)"
+                    srcset="<?= eco_srcset_webp('home-hero-ecosystem-mobile', $HERO_M_LADDER) ?>"
+                    sizes="calc(100vw - 2.5rem)">
+            <source type="image/avif"
+                    srcset="<?= eco_srcset('home-hero-ecosystem', $HERO_LADDER) ?>"
+                    sizes="(min-width: 1200px) 58vw, (min-width: 900px) 50vw, calc(100vw - 2.5rem)">
+            <source type="image/webp"
+                    srcset="<?= eco_srcset_webp('home-hero-ecosystem', $HERO_LADDER) ?>"
+                    sizes="(min-width: 1200px) 58vw, (min-width: 900px) 50vw, calc(100vw - 2.5rem)">
+            <img src="<?= asset_url('/assets/images/ecosystem/home-hero-ecosystem-1280.jpg') ?>"
+                 alt="Prakritik Distemper and Prakritik Emulsion paint packs with client-supplied cow-dung logs on a terracotta plate"
+                 width="1280" height="853"
+                 fetchpriority="high" decoding="async">
+          </picture>
+          <figcaption class="hero__composition-captions">
+            <span class="hero__caption">Eco-Paints
+              <em>Documented family</em>
+            </span>
+            <span class="hero__caption">Cow-Dung Logs
+              <em>Client-supplied reference</em>
+            </span>
+          </figcaption>
         </figure>
       </div>
     </div>
@@ -204,10 +215,13 @@ $pairImage = '/assets/products/prakritik-pair.jpg';
       <article class="resource-step">
         <figure class="resource-step__figure">
           <picture>
-            <source type="image/webp" srcset="<?= asset_url('/assets/editorial/raw-material-study.webp') ?>">
-            <img src="<?= asset_url('/assets/editorial/raw-material-study.jpg') ?>"
-                 alt="Raw natural material — a lime-plastered surface study"
-                 width="1344" height="768" loading="lazy" decoding="async">
+            <source type="image/avif" srcset="<?= eco_srcset('rawmat', [640, 960, 1280, 1920]) ?>"
+                    sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, calc(100vw - 2.5rem)">
+            <source type="image/webp" srcset="<?= eco_srcset_webp('rawmat', [640, 960, 1280, 1920]) ?>"
+                    sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, calc(100vw - 2.5rem)">
+            <img src="<?= asset_url('/assets/images/ecosystem/rawmat-960.jpg') ?>"
+                 alt="Raw material — natural biomass with straw fibre"
+                 width="960" height="549" loading="lazy" decoding="async">
           </picture>
         </figure>
         <div class="resource-step__caption">
@@ -221,10 +235,13 @@ $pairImage = '/assets/products/prakritik-pair.jpg';
       <article class="resource-step">
         <figure class="resource-step__figure">
           <picture>
-            <source type="image/webp" srcset="<?= asset_url('/assets/products/prakritik-distemper-from-pair.webp') ?>">
-            <img src="<?= asset_url('/assets/products/prakritik-distemper-from-pair.png') ?>"
-                 alt="Prakritik Distemper paint pack — developed natural material"
-                 width="649" height="612" loading="lazy" decoding="async">
+            <source type="image/avif" srcset="<?= eco_srcset('material-development', [640, 960, 1280, 1920]) ?>"
+                    sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, calc(100vw - 2.5rem)">
+            <source type="image/webp" srcset="<?= eco_srcset_webp('material-development', [640, 960, 1280, 1920]) ?>"
+                    sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, calc(100vw - 2.5rem)">
+            <img src="<?= asset_url('/assets/images/ecosystem/material-development-960.jpg') ?>"
+                 alt="Prakritik Distemper paint pack — developed material product with studio context"
+                 width="960" height="640" loading="lazy" decoding="async">
           </picture>
         </figure>
         <div class="resource-step__caption">
@@ -238,10 +255,13 @@ $pairImage = '/assets/products/prakritik-pair.jpg';
       <article class="resource-step">
         <figure class="resource-step__figure">
           <picture>
-            <source type="image/webp" srcset="<?= asset_url('/assets/editorial/finished-surface-study.webp') ?>">
-            <img src="<?= asset_url('/assets/editorial/finished-surface-study.jpg') ?>"
-                 alt="Finished matte wall surface — a useful application"
-                 width="1344" height="768" loading="lazy" decoding="async">
+            <source type="image/avif" srcset="<?= eco_srcset('colours-wall', [640, 960, 1280, 1920]) ?>"
+                    sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, calc(100vw - 2.5rem)">
+            <source type="image/webp" srcset="<?= eco_srcset_webp('colours-wall', [640, 960, 1280, 1920]) ?>"
+                    sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, calc(100vw - 2.5rem)">
+            <img src="<?= asset_url('/assets/images/ecosystem/colours-wall-960.jpg') ?>"
+                 alt="Finished limewash wall in a furnished room — a useful application"
+                 width="960" height="549" loading="lazy" decoding="async">
           </picture>
         </figure>
         <div class="resource-step__caption">
@@ -274,64 +294,43 @@ $pairImage = '/assets/products/prakritik-pair.jpg';
     </div>
 
     <div class="families" data-reveal-stagger>
-      <?php
-      // V18 §15: real client imagery where it exists. Eco-Paints keeps the
-      // real pair; GoCast now carries the REAL cow-dung-log photography
-      // (context crop). Bio-Coal + Utility stay honest type/material plates.
+<?php
+      // V19 §29-30: every family now carries a visually strong image -
+      // REAL client photography for Eco-Paints and GoCast, and clearly
+      // representative category visuals for Bio-Coal and Utility (the
+      // alt text keeps the distinction honest). One art-direction
+      // system: 3:2 frames, warm backgrounds, consistent density.
       $familyMedia = [
-          'eco-paints'        => 'photo',
-          'gocast-logs'       => 'photo',
-          'bio-coal-logs'     => 'plate',
-          'utility-products'  => 'plate',
-      ];
-      $familyPhoto = [
-          'eco-paints'  => [$pairImage, 'Prakritik Distemper and Emulsion paint packs — the Eco-Paints family', 1420, 618],
-          'gocast-logs' => ['/assets/images/client/gocast-logs-context.jpg', 'Client-supplied cow-dung logs stacked beside a clay stove with embers', 1254, 420],
-      ];
-      $familyPhotoWebp = [
-          'gocast-logs' => '/assets/images/client/gocast-logs-context.webp',
-      ];
-      $plateTexture = [
-          'bio-coal-logs'     => '/assets/editorial/exterior-finish-study.jpg',
-          'utility-products'  => '/assets/editorial/courtyard-study.jpg',
-      ];
-      $plateTextureWebp = [
-          'bio-coal-logs'     => '/assets/editorial/exterior-finish-study.webp',
-          'utility-products'  => '/assets/editorial/courtyard-study.webp',
+          'eco-paints'        => ['stem' => 'eco-paints-pair', 'ladder' => [640, 960, 1280, 1920],
+                                  'alt' => 'Prakritik Distemper and Prakritik Emulsion paint packs - the documented Eco-Paints family',
+                                  'representative' => false],
+          'gocast-logs'       => ['stem' => 'gocast-editorial', 'ladder' => [640, 960, 1280, 1920],
+                                  'alt' => 'Client-supplied cow-dung logs on a terracotta plate with straw',
+                                  'representative' => false],
+          'bio-coal-logs'     => ['stem' => 'biocoal-editorial', 'ladder' => [640, 960, 1280, 1920],
+                                  'alt' => 'Representative biomass briquette material study for the Bio-Coal category',
+                                  'representative' => true],
+          'utility-products'  => ['stem' => 'utility-material-direction', 'ladder' => [640, 960, 1280, 1920],
+                                  'alt' => 'Representative moulded natural-material utility forms for the Utility Products direction',
+                                  'representative' => true],
       ];
       foreach ($FAMILIES as $family): ?>
         <article class="family" id="family-<?= e($family['id']) ?>">
-          <?php if ($familyMedia[$family['id']] === 'photo'): ?>
-            <?php if (isset($familyPhotoWebp[$family['id']])): ?>
-              <figure class="family__media family__media--photo">
-                <picture>
-                  <source type="image/webp" srcset="<?= asset_url($familyPhotoWebp[$family['id']]) ?>">
-                  <img src="<?= asset_url($familyPhoto[$family['id']][0]) ?>"
-                       alt="<?= e($familyPhoto[$family['id']][1]) ?>"
-                       width="<?= e($familyPhoto[$family['id']][2]) ?>" height="<?= e($familyPhoto[$family['id']][3]) ?>"
-                       loading="lazy" decoding="async">
-                </picture>
-              </figure>
-            <?php else: ?>
-              <figure class="family__media family__media--photo">
-                <img src="<?= asset_url($familyPhoto[$family['id']][0]) ?>"
-                     alt="<?= e($familyPhoto[$family['id']][1]) ?>"
-                     width="<?= e($familyPhoto[$family['id']][2]) ?>" height="<?= e($familyPhoto[$family['id']][3]) ?>"
-                     loading="lazy" decoding="async">
-              </figure>
+          <?php $m = $familyMedia[$family['id']]; ?>
+          <figure class="family__media family__media--photo">
+            <picture>
+              <source type="image/avif" srcset="<?= eco_srcset($m['stem'], $m['ladder']) ?>"
+                      sizes="(min-width: 768px) 45vw, calc(100vw - 2.5rem)">
+              <source type="image/webp" srcset="<?= eco_srcset_webp($m['stem'], $m['ladder']) ?>"
+                      sizes="(min-width: 768px) 45vw, calc(100vw - 2.5rem)">
+              <img src="<?= asset_url('/assets/images/ecosystem/' . $m['stem'] . '-960.jpg') ?>"
+                   alt="<?= e($m['alt']) ?>"
+                   width="960" height="640" loading="lazy" decoding="async">
+            </picture>
+            <?php if ($m['representative']): ?>
+              <span class="family__media-note">Category visual</span>
             <?php endif; ?>
-          <?php else: ?>
-            <figure class="family__media family__media--plate" aria-label="<?= e($family['name']) ?> — material direction">
-              <span class="family__media-plate-texture" aria-hidden="true">
-                <picture>
-                  <source type="image/webp" srcset="<?= asset_url($plateTextureWebp[$family['id']]) ?>">
-                  <img src="<?= asset_url($plateTexture[$family['id']]) ?>" alt="" width="1344" height="768" loading="lazy" decoding="async">
-                </picture>
-              </span>
-              <span class="family__media-plate-word"><?= e($family['name']) ?></span>
-              <span class="family__media-plate-tag">Material direction</span>
-            </figure>
-          <?php endif; ?>
+          </figure>
 
           <div class="family__head">
             <span class="family__num" aria-hidden="true"><?= e($family['num']) ?></span>
@@ -414,9 +413,15 @@ $pairImage = '/assets/products/prakritik-pair.jpg';
 
     <div class="eco-documented__grid" data-reveal-stagger>
       <figure class="eco-documented__plate">
-        <img src="<?= asset_url($pairImage) ?>"
-             alt="Prakritik Distemper and Prakritik Emulsion paint packs"
-             width="1420" height="618" loading="lazy" decoding="async">
+        <picture>
+          <source type="image/avif" srcset="<?= eco_srcset('eco-paints-pair', [640, 960, 1280, 1920]) ?>"
+                  sizes="(min-width: 1024px) 40vw, calc(100vw - 2.5rem)">
+          <source type="image/webp" srcset="<?= eco_srcset_webp('eco-paints-pair', [640, 960, 1280, 1920]) ?>"
+                  sizes="(min-width: 1024px) 40vw, calc(100vw - 2.5rem)">
+          <img src="<?= asset_url('/assets/images/ecosystem/eco-paints-pair-1280.jpg') ?>"
+               alt="Prakritik Distemper and Prakritik Emulsion paint packs"
+               width="1280" height="800" loading="lazy" decoding="async">
+        </picture>
       </figure>
 
       <div class="eco-documented__rows">
@@ -457,15 +462,22 @@ $pairImage = '/assets/products/prakritik-pair.jpg';
       <h2 class="section-heading__title" id="innov-title">Where Tradition Meets Technology.</h2>
     </div>
     <div class="innov-teaser__grid" data-reveal>
-      <div class="innov-composition" aria-hidden="true">
-        <span class="innov-composition__plate innov-composition__plate--a">
-          <img src="<?= asset_url('/assets/editorial/raw-material-study.jpg') ?>" alt="" width="1344" height="768" loading="lazy" decoding="async">
-        </span>
-        <span class="innov-composition__plate innov-composition__plate--b">
-          <img src="<?= asset_url('/assets/images/client/cow-dung-logs-stack.jpg') ?>" alt="" width="1178" height="893" loading="lazy" decoding="async">
-        </span>
-        <span class="innov-composition__tag">Material research directions</span>
-      </div>
+      <figure class="innov-composition" aria-label="Material research samples — raw biomass, processed log and finished coating">
+        <picture>
+          <source type="image/avif" srcset="<?= eco_srcset('innovation-research', [640, 960, 1280, 1920]) ?>"
+                  sizes="(min-width: 1024px) 40vw, calc(100vw - 2.5rem)">
+          <source type="image/webp" srcset="<?= eco_srcset_webp('innovation-research', [640, 960, 1280, 1920]) ?>"
+                  sizes="(min-width: 1024px) 40vw, calc(100vw - 2.5rem)">
+          <img src="<?= asset_url('/assets/images/ecosystem/innovation-research-1280.jpg') ?>"
+               alt="Material research samples — raw biomass, processed log and finished coating"
+               width="1280" height="800" loading="lazy" decoding="async">
+        </picture>
+        <figcaption class="innov-composition__captions">
+          <span class="innov-composition__caption">Raw material<em>biomass sample</em></span>
+          <span class="innov-composition__caption">Processed<em>log sample</em></span>
+          <span class="innov-composition__caption">Coating<em>finished sample</em></span>
+        </figcaption>
+      </figure>
       <div class="focus-rows">
         <?php foreach ($INNOVATION_AREAS as $focus): ?>
           <div class="focus-row">

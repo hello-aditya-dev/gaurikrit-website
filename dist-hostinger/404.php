@@ -119,7 +119,8 @@ global $COMPANY;
       </p>
       <div class="error-page__actions">
         <a class="btn btn--primary btn--lg" href="/">Back to Home</a>
-        <a class="btn btn--outline" href="/products/">Explore Products</a>
+        <a class="btn btn--outline btn--lg" href="/products/">Explore Products</a>
+        <a class="btn btn--outline btn--lg" href="/contact/">Contact</a>
       </div>
     </div>
   </div>

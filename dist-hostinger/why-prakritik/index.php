@@ -362,11 +362,14 @@ $emulsion  = get_product('prakritik-emulsion');
       <article class="material-step">
         <figure class="material-step__figure">
           <picture>
-            <source type="image/webp" srcset="<?= asset_url('/assets/editorial/raw-material-study.webp') ?>">
+            <source type="image/avif" srcset="<?= eco_srcset('rawmat', [640, 960, 1280]) ?>"
+                    sizes="(min-width: 1024px) 28vw, (min-width: 640px) 42vw, calc(100vw - 2.5rem)">
+            <source type="image/webp" srcset="<?= eco_srcset_webp('rawmat', [640, 960, 1280]) ?>"
+                    sizes="(min-width: 1024px) 28vw, (min-width: 640px) 42vw, calc(100vw - 2.5rem)">
             <img class="editorial-image"
-                 src="<?= asset_url('/assets/editorial/raw-material-study.jpg') ?>"
-                 alt="Raw lime-plastered wall surface — natural material"
-                 width="1344" height="768"
+                 src="<?= asset_url('/assets/images/ecosystem/rawmat-960.jpg') ?>"
+                 alt="Raw natural biomass material"
+                 width="960" height="549"
                  loading="lazy" decoding="async">
           </picture>
         </figure>

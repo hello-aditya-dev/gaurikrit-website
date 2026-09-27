@@ -201,10 +201,13 @@ $groupImage = '/assets/products/prakritik-group.jpg';
         </div>
         <figure class="story-chapter__visual">
           <picture>
-            <source type="image/webp" srcset="<?= asset_url('/assets/editorial/raw-material-study.webp') ?>">
-            <img src="<?= asset_url('/assets/editorial/raw-material-study.jpg') ?>"
-                 alt="Raw lime-plastered wall surface — an Indian natural material tradition"
-                 width="1344" height="768"
+            <source type="image/avif" srcset="<?= eco_srcset('rawmat', [640, 960, 1280, 1920]) ?>"
+                    sizes="(min-width: 1024px) 42vw, calc(100vw - 2.5rem)">
+            <source type="image/webp" srcset="<?= eco_srcset_webp('rawmat', [640, 960, 1280, 1920]) ?>"
+                    sizes="(min-width: 1024px) 42vw, calc(100vw - 2.5rem)">
+            <img src="<?= asset_url('/assets/images/ecosystem/rawmat-960.jpg') ?>"
+                 alt="Raw natural biomass material with straw fibre — the resource"
+                 width="960" height="549"
                  loading="lazy" decoding="async">
           </picture>
           <figcaption>Raw material study — natural surface traditions of Indian homes.</figcaption>
@@ -238,13 +241,16 @@ $groupImage = '/assets/products/prakritik-group.jpg';
           </p>
         </div>
         <figure class="story-chapter__visual">
-          <picture>
-            <source type="image/webp" srcset="<?= asset_url('/assets/editorial/finished-surface-study.webp') ?>">
-            <img src="<?= asset_url('/assets/editorial/finished-surface-study.jpg') ?>"
-                 alt="Finished matte wall surface — a developed natural material"
-                 width="1344" height="768"
-                 loading="lazy" decoding="async">
-          </picture>
+                      <picture>
+              <source type="image/avif" srcset="<?= eco_srcset('innovation-research', [640, 960, 1280, 1920]) ?>"
+                      sizes="(min-width: 1024px) 42vw, calc(100vw - 2.5rem)">
+              <source type="image/webp" srcset="<?= eco_srcset_webp('innovation-research', [640, 960, 1280, 1920]) ?>"
+                      sizes="(min-width: 1024px) 42vw, calc(100vw - 2.5rem)">
+              <img src="<?= asset_url('/assets/images/ecosystem/innovation-research-960.jpg') ?>"
+                   alt="Material research samples — raw biomass, processed log and finished coating"
+                   width="960" height="600"
+                   loading="lazy" decoding="async">
+            </picture>
           <figcaption>Developed material study — the resource carried into a finished surface.</figcaption>
         </figure>
       </div>
@@ -281,12 +287,16 @@ $groupImage = '/assets/products/prakritik-group.jpg';
         <div class="resource-steps" data-reveal-stagger>
           <article class="resource-step">
             <figure class="resource-step__figure">
-              <picture>
-                <source type="image/webp" srcset="<?= asset_url('/assets/editorial/raw-material-study.webp') ?>">
-                <img src="<?= asset_url('/assets/editorial/raw-material-study.jpg') ?>"
-                     alt="Raw natural material — a lime-plastered surface study"
-                     width="1344" height="768" loading="lazy" decoding="async">
-              </picture>
+                              <picture>
+                  <source type="image/avif" srcset="<?= eco_srcset('rawmat', [640, 960, 1280]) ?>"
+                          sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, calc(100vw - 2.5rem)">
+                  <source type="image/webp" srcset="<?= eco_srcset_webp('rawmat', [640, 960, 1280]) ?>"
+                          sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, calc(100vw - 2.5rem)">
+                  <img src="<?= asset_url('/assets/images/ecosystem/rawmat-960.jpg') ?>"
+                       alt="Raw natural biomass material — the resource"
+                       width="960" height="549"
+                       loading="lazy" decoding="async">
+                </picture>
             </figure>
             <div class="resource-step__caption">
               <span class="resource-step__kicker">Stage 01 — Resource</span>
@@ -298,12 +308,16 @@ $groupImage = '/assets/products/prakritik-group.jpg';
           </article>
           <article class="resource-step">
             <figure class="resource-step__figure">
-              <picture>
-                <source type="image/webp" srcset="<?= asset_url('/assets/products/prakritik-pair.webp') ?>">
-                <img src="<?= asset_url('/assets/products/prakritik-pair.jpg') ?>"
-                     alt="Prakritik Distemper and Prakritik Emulsion paint packs — the documented application"
-                     width="1420" height="618" loading="lazy" decoding="async">
-              </picture>
+                              <picture>
+                  <source type="image/avif" srcset="<?= eco_srcset('eco-paints-pair', [640, 960, 1280]) ?>"
+                          sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, calc(100vw - 2.5rem)">
+                  <source type="image/webp" srcset="<?= eco_srcset_webp('eco-paints-pair', [640, 960, 1280]) ?>"
+                          sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, calc(100vw - 2.5rem)">
+                  <img src="<?= asset_url('/assets/images/ecosystem/eco-paints-pair-960.jpg') ?>"
+                       alt="Prakritik Distemper and Prakritik Emulsion paint packs — the documented application"
+                       width="960" height="600"
+                       loading="lazy" decoding="async">
+                </picture>
             </figure>
             <div class="resource-step__caption">
               <span class="resource-step__kicker">Stage 02 — Application</span>
@@ -315,12 +329,16 @@ $groupImage = '/assets/products/prakritik-group.jpg';
           </article>
           <article class="resource-step">
             <figure class="resource-step__figure resource-step__figure--plate">
-              <picture>
-                <source type="image/webp" srcset="<?= asset_url('/assets/images/client/cow-dung-logs-stack.webp') ?>">
-                <img src="<?= asset_url('/assets/images/client/cow-dung-logs-stack.jpg') ?>"
-                     alt="Client-supplied cow-dung log material — the widening direction"
-                     width="1178" height="893" loading="lazy" decoding="async">
-              </picture>
+                              <picture>
+                  <source type="image/avif" srcset="<?= eco_srcset('gocast-material', [640, 960, 1280]) ?>"
+                          sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, calc(100vw - 2.5rem)">
+                  <source type="image/webp" srcset="<?= eco_srcset_webp('gocast-material', [640, 960, 1280]) ?>"
+                          sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, calc(100vw - 2.5rem)">
+                  <img src="<?= asset_url('/assets/images/ecosystem/gocast-material-960.jpg') ?>"
+                       alt="Client-supplied cow-dung log material — the widening direction"
+                       width="960" height="640"
+                       loading="lazy" decoding="async">
+                </picture>
             </figure>
             <div class="resource-step__caption">
               <span class="resource-step__kicker">Stage 03 — Widening</span>

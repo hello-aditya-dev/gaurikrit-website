@@ -1,0 +1,583 @@
+{
+  "home-hero-ecosystem": {
+    "master": "source-assets/masters/2026-09-27/home-hero-ecosystem-4k.jpg",
+    "derivatives": [
+      {
+        "w": 640,
+        "h": 426,
+        "avif": 22126,
+        "webp": 23042,
+        "jpg": 36702
+      },
+      {
+        "w": 960,
+        "h": 640,
+        "avif": 44902,
+        "webp": 46586,
+        "jpg": 76000
+      },
+      {
+        "w": 1280,
+        "h": 853,
+        "avif": 75193,
+        "webp": 79854,
+        "jpg": 131722
+      },
+      {
+        "w": 1600,
+        "h": 1066,
+        "avif": 110400,
+        "webp": 120070,
+        "jpg": 202085
+      },
+      {
+        "w": 1920,
+        "h": 1280,
+        "avif": 150565,
+        "webp": 167472,
+        "jpg": 286882
+      },
+      {
+        "w": 2560,
+        "h": 1706,
+        "avif": 230175,
+        "webp": 278456,
+        "jpg": 505633
+      }
+    ]
+  },
+  "home-hero-ecosystem-mobile": {
+    "master": "source-assets/masters/2026-09-27/home-hero-ecosystem-mobile-4k.jpg",
+    "derivatives": [
+      {
+        "w": 640,
+        "h": 800,
+        "avif": 53295,
+        "webp": 55264,
+        "jpg": 86394
+      },
+      {
+        "w": 960,
+        "h": 1200,
+        "avif": 102500,
+        "webp": 110014,
+        "jpg": 176391
+      },
+      {
+        "w": 1280,
+        "h": 1600,
+        "avif": 162485,
+        "webp": 181280,
+        "jpg": 301577
+      },
+      {
+        "w": 1600,
+        "h": 2000,
+        "avif": 226893,
+        "webp": 263190,
+        "jpg": 461273
+      }
+    ]
+  },
+  "eco-paints-pair": {
+    "master": "source-assets/masters/2026-09-27/eco-paints-pair-4k.jpg",
+    "derivatives": [
+      {
+        "w": 640,
+        "h": 400,
+        "avif": 19744,
+        "webp": 20892,
+        "jpg": 34193
+      },
+      {
+        "w": 960,
+        "h": 600,
+        "avif": 34444,
+        "webp": 37450,
+        "jpg": 66488
+      },
+      {
+        "w": 1280,
+        "h": 800,
+        "avif": 49768,
+        "webp": 56748,
+        "jpg": 109450
+      },
+      {
+        "w": 1600,
+        "h": 1000,
+        "avif": 63300,
+        "webp": 76102,
+        "jpg": 157380
+      },
+      {
+        "w": 1920,
+        "h": 1200,
+        "avif": 77458,
+        "webp": 97968,
+        "jpg": 218589
+      },
+      {
+        "w": 2560,
+        "h": 1600,
+        "avif": 107342,
+        "webp": 142080,
+        "jpg": 374763
+      }
+    ]
+  },
+  "prakritik-distemper": {
+    "master": "source-assets/masters/2026-09-27/prakritik-distemper-4k.jpg",
+    "derivatives": [
+      {
+        "w": 640,
+        "h": 782,
+        "avif": 45071,
+        "webp": 48630,
+        "jpg": 88971
+      },
+      {
+        "w": 960,
+        "h": 1173,
+        "avif": 85355,
+        "webp": 91776,
+        "jpg": 170876
+      },
+      {
+        "w": 1280,
+        "h": 1564,
+        "avif": 127460,
+        "webp": 140088,
+        "jpg": 277740
+      },
+      {
+        "w": 1600,
+        "h": 1955,
+        "avif": 166610,
+        "webp": 190308,
+        "jpg": 410154
+      }
+    ]
+  },
+  "prakritik-emulsion": {
+    "master": "source-assets/masters/2026-09-27/prakritik-emulsion-4k.jpg",
+    "derivatives": [
+      {
+        "w": 640,
+        "h": 782,
+        "avif": 36505,
+        "webp": 40564,
+        "jpg": 72609
+      },
+      {
+        "w": 960,
+        "h": 1173,
+        "avif": 55041,
+        "webp": 65526,
+        "jpg": 136964
+      },
+      {
+        "w": 1280,
+        "h": 1564,
+        "avif": 73347,
+        "webp": 93110,
+        "jpg": 221981
+      },
+      {
+        "w": 1600,
+        "h": 1955,
+        "avif": 92639,
+        "webp": 125668,
+        "jpg": 332478
+      }
+    ]
+  },
+  "gocast-editorial": {
+    "master": "source-assets/masters/2026-09-27/gocast-editorial-4k.jpg",
+    "derivatives": [
+      {
+        "w": 640,
+        "h": 480,
+        "avif": 37291,
+        "webp": 36668,
+        "jpg": 51221
+      },
+      {
+        "w": 960,
+        "h": 720,
+        "avif": 90314,
+        "webp": 90168,
+        "jpg": 121998
+      },
+      {
+        "w": 1280,
+        "h": 960,
+        "avif": 147514,
+        "webp": 158454,
+        "jpg": 210835
+      },
+      {
+        "w": 1600,
+        "h": 1200,
+        "avif": 206141,
+        "webp": 233720,
+        "jpg": 318230
+      },
+      {
+        "w": 1920,
+        "h": 1440,
+        "avif": 257511,
+        "webp": 311458,
+        "jpg": 437770
+      }
+    ]
+  },
+  "gocast-material": {
+    "master": "source-assets/masters/2026-09-27/gocast-material-4k.jpg",
+    "derivatives": [
+      {
+        "w": 640,
+        "h": 426,
+        "avif": 83553,
+        "webp": 88124,
+        "jpg": 100229
+      },
+      {
+        "w": 960,
+        "h": 640,
+        "avif": 131683,
+        "webp": 154362,
+        "jpg": 185000
+      },
+      {
+        "w": 1280,
+        "h": 853,
+        "avif": 170853,
+        "webp": 214108,
+        "jpg": 283728
+      },
+      {
+        "w": 1600,
+        "h": 1066,
+        "avif": 205707,
+        "webp": 276222,
+        "jpg": 392023
+      },
+      {
+        "w": 1920,
+        "h": 1280,
+        "avif": 239174,
+        "webp": 334338,
+        "jpg": 508433
+      },
+      {
+        "w": 2560,
+        "h": 1706,
+        "avif": 310825,
+        "webp": 458724,
+        "jpg": 774770
+      }
+    ]
+  },
+  "gocast-context": {
+    "master": "source-assets/masters/2026-09-27/gocast-context-4k.jpg",
+    "derivatives": [
+      {
+        "w": 640,
+        "h": 214,
+        "avif": 49823,
+        "webp": 51956,
+        "jpg": 58035
+      },
+      {
+        "w": 960,
+        "h": 321,
+        "avif": 87210,
+        "webp": 95642,
+        "jpg": 112149
+      },
+      {
+        "w": 1280,
+        "h": 428,
+        "avif": 119449,
+        "webp": 138680,
+        "jpg": 171988
+      },
+      {
+        "w": 1600,
+        "h": 535,
+        "avif": 149296,
+        "webp": 179530,
+        "jpg": 235797
+      },
+      {
+        "w": 1920,
+        "h": 643,
+        "avif": 173722,
+        "webp": 218974,
+        "jpg": 308685
+      },
+      {
+        "w": 2560,
+        "h": 857,
+        "avif": 219204,
+        "webp": 298096,
+        "jpg": 463332
+      }
+    ]
+  },
+  "biocoal-editorial": {
+    "master": "source-assets/masters/2026-09-27/biocoal-editorial-4k.jpg",
+    "derivatives": [
+      {
+        "w": 640,
+        "h": 480,
+        "avif": 89059,
+        "webp": 91440,
+        "jpg": 104233
+      },
+      {
+        "w": 960,
+        "h": 720,
+        "avif": 149153,
+        "webp": 168864,
+        "jpg": 197256
+      },
+      {
+        "w": 1280,
+        "h": 960,
+        "avif": 197309,
+        "webp": 239074,
+        "jpg": 298404
+      },
+      {
+        "w": 1600,
+        "h": 1200,
+        "avif": 241710,
+        "webp": 305200,
+        "jpg": 408664
+      },
+      {
+        "w": 1920,
+        "h": 1440,
+        "avif": 282103,
+        "webp": 368552,
+        "jpg": 525351
+      }
+    ]
+  },
+  "utility-material-direction": {
+    "master": "source-assets/masters/2026-09-27/utility-material-direction-4k.jpg",
+    "derivatives": [
+      {
+        "w": 640,
+        "h": 480,
+        "avif": 48058,
+        "webp": 55456,
+        "jpg": 72413
+      },
+      {
+        "w": 960,
+        "h": 720,
+        "avif": 79223,
+        "webp": 99034,
+        "jpg": 143758
+      },
+      {
+        "w": 1280,
+        "h": 960,
+        "avif": 105188,
+        "webp": 140624,
+        "jpg": 222429
+      },
+      {
+        "w": 1600,
+        "h": 1200,
+        "avif": 129717,
+        "webp": 186392,
+        "jpg": 307773
+      },
+      {
+        "w": 1920,
+        "h": 1440,
+        "avif": 154108,
+        "webp": 229292,
+        "jpg": 400990
+      }
+    ]
+  },
+  "colours-wall": {
+    "master": "source-assets/masters/2026-09-27/colours-wall-4k.jpg",
+    "derivatives": [
+      {
+        "w": 640,
+        "h": 365,
+        "avif": 17243,
+        "webp": 19126,
+        "jpg": 34933
+      },
+      {
+        "w": 960,
+        "h": 548,
+        "avif": 36560,
+        "webp": 42968,
+        "jpg": 79073
+      },
+      {
+        "w": 1280,
+        "h": 730,
+        "avif": 53767,
+        "webp": 68886,
+        "jpg": 128980
+      },
+      {
+        "w": 1600,
+        "h": 913,
+        "avif": 69181,
+        "webp": 93508,
+        "jpg": 183521
+      },
+      {
+        "w": 1920,
+        "h": 1096,
+        "avif": 84189,
+        "webp": 117744,
+        "jpg": 242887
+      },
+      {
+        "w": 2560,
+        "h": 1461,
+        "avif": 115042,
+        "webp": 170116,
+        "jpg": 389789
+      }
+    ]
+  },
+  "rawmat": {
+    "master": "source-assets/masters/2026-09-27/rawmat-4k.jpg",
+    "derivatives": [
+      {
+        "w": 640,
+        "h": 365,
+        "avif": 73577,
+        "webp": 77370,
+        "jpg": 92819
+      },
+      {
+        "w": 960,
+        "h": 548,
+        "avif": 121300,
+        "webp": 132460,
+        "jpg": 171220
+      },
+      {
+        "w": 1280,
+        "h": 730,
+        "avif": 160722,
+        "webp": 185142,
+        "jpg": 258998
+      },
+      {
+        "w": 1600,
+        "h": 913,
+        "avif": 197680,
+        "webp": 236114,
+        "jpg": 356664
+      },
+      {
+        "w": 1920,
+        "h": 1096,
+        "avif": 233123,
+        "webp": 288558,
+        "jpg": 464202
+      }
+    ]
+  },
+  "innovation-research": {
+    "master": "source-assets/masters/2026-09-27/innovation-research-4k.jpg",
+    "derivatives": [
+      {
+        "w": 640,
+        "h": 400,
+        "avif": 25347,
+        "webp": 26334,
+        "jpg": 38769
+      },
+      {
+        "w": 960,
+        "h": 600,
+        "avif": 48909,
+        "webp": 52548,
+        "jpg": 81213
+      },
+      {
+        "w": 1280,
+        "h": 800,
+        "avif": 69550,
+        "webp": 78272,
+        "jpg": 131835
+      },
+      {
+        "w": 1600,
+        "h": 1000,
+        "avif": 87602,
+        "webp": 105634,
+        "jpg": 191200
+      },
+      {
+        "w": 1920,
+        "h": 1200,
+        "avif": 103842,
+        "webp": 132058,
+        "jpg": 258810
+      },
+      {
+        "w": 2560,
+        "h": 1600,
+        "avif": 136630,
+        "webp": 189128,
+        "jpg": 427979
+      }
+    ]
+  },
+  "material-development": {
+    "master": "source-assets/masters/2026-09-27/material-development-4k.jpg",
+    "derivatives": [
+      {
+        "w": 640,
+        "h": 426,
+        "avif": 19458,
+        "webp": 21808,
+        "jpg": 39478
+      },
+      {
+        "w": 960,
+        "h": 640,
+        "avif": 35646,
+        "webp": 40496,
+        "jpg": 79414
+      },
+      {
+        "w": 1280,
+        "h": 853,
+        "avif": 57462,
+        "webp": 63850,
+        "jpg": 129969
+      },
+      {
+        "w": 1600,
+        "h": 1066,
+        "avif": 81063,
+        "webp": 90844,
+        "jpg": 192427
+      },
+      {
+        "w": 1920,
+        "h": 1280,
+        "avif": 105758,
+        "webp": 121006,
+        "jpg": 268692
+      }
+    ]
+  }
+}
