@@ -2,8 +2,10 @@
 /**
  * Shared footer + closing body/html.
  * No newsletter. No fake socials. Real contact details. No fake Privacy/Terms links.
+ * V16 §47: story-first column order — COMPANY / PRODUCTS / WORK WITH US /
+ * contact. Family links use /products/#anchors (no nonexistent pages).
  */
-global $COMPANY, $NAV;
+global $COMPANY, $NAV, $NAV_UTILITIES, $FOOTER_PRODUCTS;
 $phones = $COMPANY['phones'] ?? [];
 $addr = $COMPANY['address'] ?? [];
 ?>
@@ -23,20 +25,27 @@ $addr = $COMPANY['address'] ?? [];
                 <p class="site-footer__brandline"><?= e($COMPANY['brandLine']) ?></p>
                 <p class="site-footer__legal-name"><?= e($COMPANY['legalName']) ?></p>
             </div>
-            <nav class="site-footer__col" aria-label="Navigate">
-                <h4 class="site-footer__heading">Navigate</h4>
-                <?php foreach ($NAV as $link): ?>
-                    <a href="<?= e($link['href']) ?>"><?= e($link['label']) ?></a>
-                <?php endforeach; ?>
+            <nav class="site-footer__col site-footer__col--company" aria-label="Company">
+                <h4 class="site-footer__heading">Company</h4>
+                <a href="/">Home</a>
+                <a href="/about/">Our Story</a>
+                <a href="/sustainability/">Sustainability</a>
+                <a href="/innovation/">Innovation</a>
             </nav>
             <nav class="site-footer__col" aria-label="Products">
                 <h4 class="site-footer__heading">Products</h4>
-                <a href="/products/prakritik-distemper/">Prakritik Distemper</a>
-                <a href="/products/prakritik-emulsion/">Prakritik Emulsion</a>
-                <a href="/downloads/">Brochure</a>
-                <a href="/for-business/">For Business</a>
+                <?php foreach ($FOOTER_PRODUCTS as $item): ?>
+                    <a href="<?= e($item['href']) ?>"><?= e($item['label']) ?></a>
+                <?php endforeach; ?>
             </nav>
-            <div class="site-footer__col">
+            <nav class="site-footer__col site-footer__col--work" aria-label="Work with us">
+                <h4 class="site-footer__heading">Work With Us</h4>
+                <a href="/for-business/">Partners</a>
+                <a href="/paint-calculator/">Painting Calculator</a>
+                <a href="/downloads/">Downloads</a>
+                <a href="/contact/">Contact</a>
+            </nav>
+            <div class="site-footer__col site-footer__col--contact">
                 <h4 class="site-footer__heading">Contact</h4>
                 <p class="site-footer__contact-line">
                     <a href="mailto:<?= e($COMPANY['email']) ?>"><?= e($COMPANY['email']) ?></a>
@@ -77,6 +86,7 @@ $addr = $COMPANY['address'] ?? [];
     <script src="<?= asset_url('/assets/js/colour-study.js') ?>"></script>
     <script src="<?= asset_url('/assets/js/forms.js') ?>"></script>
     <script src="<?= asset_url('/assets/js/calculator.js') ?>"></script>
+    <script src="<?= asset_url('/assets/js/story.js') ?>"></script>
     <script src="<?= asset_url('/assets/js/app.js') ?>"></script>
 </body>
 </html>

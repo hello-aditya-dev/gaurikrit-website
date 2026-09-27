@@ -1863,6 +1863,7 @@ ul, ol { list-style: none; }
   justify-content: center;
   padding: 0;
   position: relative;
+  flex: 0 0 auto;   /* V13 fix preserved: never flex-shrink the 44px circles */
   transition: transform var(--dur), border-color var(--dur);
 }
 .colour-study__swatch:hover,
@@ -4706,4 +4707,635 @@ p, li, dd, blockquote { text-wrap: pretty; }
   .chapter-index__list { grid-template-columns: 1fr; column-gap: 0; }
   .chapter-index__name { font-size: 1rem; }
   .spec-plan { margin-top: 1.25rem; padding-left: 1rem; }
+}
+
+
+/* ==========================================================================
+   42. V16 STORY SYSTEM — one resource, four directions, one circular
+       mission. Shared by Home / Our Story / Products / Sustainability /
+       Innovation. Five-family rhythm unchanged; no new ground families.
+   ========================================================================== */
+
+/* 42.0 Mobile-menu utilities block (§46) — quiet list above the CTA foot. */
+.mobile-menu__utilities {
+  padding: 0.875rem 1.25rem 0.5rem;
+  border-top: 1px solid var(--border);
+  background: var(--limewash);
+}
+.mobile-menu__utilities-label {
+  font-size: 0.625rem; font-weight: 700; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--fg-muted);
+  margin-bottom: 0.5rem;
+}
+.mobile-menu__utility-link {
+  display: flex; align-items: center; gap: 0.375rem;
+  padding: 0.5rem 0.5rem 0.5rem 0;
+  font-size: 0.875rem; font-weight: 500; color: var(--primary);
+  border-radius: var(--r-card);
+}
+.mobile-menu__utility-link::before {
+  content: ""; width: 0.375rem; height: 0.375rem; border-radius: 50%;
+  background: var(--haldi); flex: 0 0 auto;
+}
+.mobile-menu__utility-link:hover { color: var(--forest); }
+
+/* 42.0b Footer — V16 five-column reorganisation (§47). */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .site-footer__main { grid-template-columns: 1fr 1fr 1fr; }
+  .site-footer__brand { grid-column: 1 / -1; }
+}
+@media (min-width: 1024px) and (max-width: 1279px) {
+  /* 4 tracks: brand + 3 navs on row 1; contact wraps to row 2. */
+  .site-footer__main { grid-template-columns: 1.8fr 1fr 1fr 1fr; }
+  .site-footer__col--contact { grid-column: 2; margin-top: 2.5rem; }
+}
+@media (min-width: 1280px) {
+  .site-footer__main { grid-template-columns: 2fr 1fr 1.15fr 1fr 1.15fr; }
+}
+
+/* 42.1 STORY HERO (§13–14) — material-led field, not a paint advert.
+       Left: story lockup. Right: one visual field = material texture +
+       the REAL Prakritik pair photography + branching category markers +
+       restrained haldi/forest material chips. */
+.story-field {
+  position: relative;
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: var(--r-panel);
+  padding: clamp(1.25rem, 2.5vw, 2rem);
+  overflow: hidden;
+  isolation: isolate;
+}
+.story-field__texture {
+  position: absolute; inset: 0; z-index: 0;
+  opacity: 0.16; pointer-events: none;
+}
+.story-field__texture img { width: 100%; height: 100%; object-fit: cover; }
+.story-field__inner {
+  position: relative; z-index: 1;
+  display: flex; flex-direction: column; gap: clamp(1rem, 2vw, 1.5rem);
+}
+.story-field__photo {
+  display: block; width: 100%; max-width: 30rem; margin-inline: auto;
+  object-fit: contain; height: auto;
+}
+/* Branching category markers — one resource → four directions. */
+.story-field__markers {
+  border-top: 1px solid var(--border);
+  padding-top: 0.875rem;
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem;
+}
+@media (max-width: 639px) { .story-field__markers { grid-template-columns: repeat(2, 1fr); } }
+.story-field__marker { min-width: 0; }
+.story-field__marker-dot {
+  width: 0.5rem; height: 0.5rem; border-radius: 50%;
+  background: var(--forest); margin-bottom: 0.375rem;
+}
+.story-field__marker--lead .story-field__marker-dot { background: var(--haldi); }
+.story-field__marker-name {
+  font-size: 0.625rem; font-weight: 700; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--primary); line-height: 1.35;
+}
+.story-field__marker-tag {
+  display: block; font-size: 0.5625rem; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--fg-muted); margin-top: 0.125rem; line-height: 1.3;
+}
+/* Restrained material chips — haldi + forest material presence. */
+.story-field__chips {
+  position: absolute; top: clamp(1rem, 2vw, 1.5rem); right: clamp(1rem, 2vw, 1.5rem);
+  z-index: 2; display: flex; flex-direction: column; gap: 0.375rem;
+}
+.story-field__chip {
+  width: 2.25rem; height: 1.125rem; border-radius: 2px;
+  border: 1px solid var(--border);
+}
+.story-field__chip--haldi  { background: var(--haldi); }
+.story-field__chip--forest { background: var(--forest); }
+
+/* 42.2 FROM WASTE TO RESOURCE (§15–16) — RAW MATERIAL → MATERIAL
+       DEVELOPMENT → USEFUL APPLICATIONS. Large editorial material
+       composition; the three plates read as material research plates. */
+.resource-steps {
+  display: grid; gap: clamp(1.25rem, 2.5vw, 2rem);
+  grid-template-columns: 1fr;
+  align-items: stretch;
+}
+@media (min-width: 768px) { .resource-steps { grid-template-columns: repeat(3, 1fr); } }
+.resource-step {
+  display: flex; flex-direction: column; min-width: 0;
+  border-top: 2px solid var(--primary);
+  background: var(--paper);
+}
+.resource-step__figure {
+  position: relative; aspect-ratio: 4 / 3; overflow: hidden;
+  background: var(--limewash);
+  border: 1px solid var(--border); border-top: 0;
+}
+.resource-step__figure img {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover;
+}
+.resource-step__caption {
+  padding: 1.125rem 1.25rem 1.25rem;
+  border: 1px solid var(--border); border-top: 0; flex: 1;
+  background: var(--paper);
+}
+.resource-step__kicker {
+  display: block; font-size: 0.5625rem; font-weight: 700;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--haldi-deep);
+}
+.resource-step__title {
+  font-family: var(--font-display); font-size: 1.375rem; font-weight: 700;
+  margin-top: 0.375rem; letter-spacing: -0.01em;
+}
+.resource-step__desc {
+  margin-top: 0.5rem; font-size: 0.875rem; line-height: 1.6;
+  color: var(--fg-muted);
+}
+.resource-step__arrow {
+  align-self: center; color: var(--primary);
+  font-size: 1.25rem; line-height: 1; flex: 0 0 auto;
+  display: none;
+}
+@media (min-width: 768px) {
+  .resource-step__arrow { display: block; position: absolute; }
+}
+
+/* 42.3 ONE RESOURCE, FOUR SOLUTIONS (§17–18) — editorial chapters,
+       NOT SaaS cards. 2×2 desktop/tablet, 1-col mobile. Focus state:
+       the material field strengthens + a thin haldi indicator moves. */
+.families {
+  display: grid; gap: clamp(1.25rem, 2.5vw, 2.25rem);
+  grid-template-columns: 1fr;
+}
+@media (min-width: 768px) { .families { grid-template-columns: 1fr 1fr; } }
+.family {
+  position: relative; min-width: 0;
+  display: flex; flex-direction: column; gap: 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--r-panel);
+  background: var(--paper);
+  padding: clamp(1.25rem, 2.5vw, 2rem);
+  transition: border-color var(--dur), background var(--dur);
+}
+/* The haldi indicator: a thin rule that grows on hover/focus-within. */
+.family::before {
+  content: ""; position: absolute; top: -1px; left: clamp(1.25rem, 2.5vw, 2rem);
+  height: 2px; width: 2.5rem; background: var(--haldi);
+  transition: width var(--dur) var(--ease);
+}
+.family:hover, .family:focus-within { border-color: var(--primary); }
+.family:hover::before, .family:focus-within::before { width: 4.5rem; }
+.family__head { display: flex; align-items: baseline; gap: 0.875rem; }
+.family__num {
+  font-family: var(--font-display); font-size: clamp(2rem, 3vw, 2.75rem);
+  font-weight: 700; color: var(--haldi-deep); line-height: 1;
+  font-variant-numeric: tabular-nums; flex: 0 0 auto;
+}
+.family__name {
+  font-family: var(--font-display); font-size: clamp(1.5rem, 2.5vw, 2rem);
+  font-weight: 700; letter-spacing: -0.015em; line-height: 1.1;
+}
+.family__line {
+  font-family: var(--font-display); font-style: italic;
+  font-size: 1.0625rem; color: var(--primary); line-height: 1.4;
+}
+.family__desc {
+  font-size: 0.9375rem; line-height: 1.65; color: var(--fg-muted);
+  max-width: 40rem;
+}
+.family__meta {
+  display: flex; flex-wrap: wrap; gap: 0.375rem 0.75rem; align-items: center;
+  font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--fg-muted);
+}
+.family__status {
+  display: inline-flex; align-items: center; gap: 0.375rem;
+}
+.family__status::before {
+  content: ""; width: 0.4375rem; height: 0.4375rem; border-radius: 50%;
+  background: var(--haldi); flex: 0 0 auto;
+}
+.family__status--direction::before { background: var(--paper-cool-strong, #8FA3A8); }
+.family__themes {
+  list-style: none; display: flex; flex-direction: column; gap: 0.375rem;
+  border-top: 1px solid var(--border); padding-top: 0.875rem;
+}
+.family__themes li {
+  font-size: 0.8125rem; line-height: 1.5; color: var(--fg-muted);
+  padding-left: 1rem; position: relative;
+}
+.family__themes li::before {
+  content: ""; position: absolute; left: 0; top: 0.5em;
+  width: 0.375rem; height: 1px; background: var(--primary);
+}
+.family__media {
+  position: relative; order: -1; min-height: 0;
+  border: 1px solid var(--border); border-radius: var(--r-card);
+  background: var(--paper); overflow: hidden;
+}
+.family__media--photo { padding: clamp(0.75rem, 1.5vw, 1.25rem); }
+.family__media--photo img {
+  display: block; width: 100%; height: auto; max-height: 13rem;
+  object-fit: contain; margin-inline: auto;
+  transition: transform var(--dur) var(--ease);
+}
+.family:hover .family__media--photo img,
+.family:focus-within .family__media--photo img { transform: scale(1.02); }
+/* Type/material plate for undocumented families — honest, never a fake
+   product photograph. Texture at low opacity + family wordmark. */
+.family__media--plate { aspect-ratio: 16 / 8; }
+.family__media-plate-texture {
+  position: absolute; inset: 0; opacity: 0.14;
+  transition: opacity var(--dur);
+}
+.family__media-plate-texture img { width: 100%; height: 100%; object-fit: cover; }
+.family:hover .family__media-plate-texture,
+.family:focus-within .family__media-plate-texture { opacity: 0.24; }
+.family__media-plate-word {
+  position: absolute; inset: 0; display: flex; align-items: center;
+  justify-content: center; padding: 1rem;
+  font-family: var(--font-display); font-weight: 700;
+  font-size: clamp(1.125rem, 2vw, 1.625rem); letter-spacing: 0.02em;
+  color: var(--primary); text-align: center; line-height: 1.2;
+}
+.family__media-plate-tag {
+  position: absolute; left: 0.875rem; bottom: 0.75rem;
+  font-size: 0.5625rem; font-weight: 700; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--fg-muted);
+}
+.family__cta {
+  margin-top: auto; padding-top: 0.25rem;
+  display: inline-flex; align-items: center; gap: 0.375rem;
+  font-size: 0.875rem; font-weight: 700; color: var(--primary);
+  transition: gap var(--dur), color var(--dur);
+}
+.family__cta:hover, .family__cta:focus-visible { gap: 0.75rem; color: var(--forest); }
+
+/* 42.4 CIRCULAR MODEL (§19–20) — one continuous loop, seven stages.
+       Desktop: stages on a continuous Forest line with a return path;
+       Mobile: vertical sequence on a left rule. Progressive highlight
+       (story.js adds data-active); all information visible without JS. */
+.circular { position: relative; }
+.circular__track {
+  position: relative;
+  display: grid; gap: clamp(0.75rem, 1.5vw, 1.25rem);
+  grid-template-columns: 1fr;
+  padding-left: 1.75rem;
+}
+.circular__track::before {
+  content: ""; position: absolute; left: 0.375rem; top: 0.5rem; bottom: 0.5rem;
+  width: 1.5px; background: color-mix(in srgb, var(--forest) 45%, var(--paper));
+}
+.stage {
+  position: relative; min-width: 0;
+  padding: 0.375rem 0 0.625rem;
+}
+.stage::before {
+  content: ""; position: absolute; left: -1.625rem; top: 0.6875rem;
+  width: 0.625rem; height: 0.625rem; border-radius: 50%;
+  background: var(--paper); border: 1.5px solid var(--forest);
+  transition: background var(--dur), border-color var(--dur), box-shadow var(--dur);
+}
+.stage__num {
+  font-size: 0.625rem; font-weight: 700; letter-spacing: 0.14em;
+  color: var(--fg-muted); font-variant-numeric: tabular-nums;
+}
+.stage__name {
+  font-family: var(--font-display); font-size: 1.1875rem; font-weight: 700;
+  letter-spacing: -0.01em; margin-top: 0.125rem; color: var(--primary);
+  transition: color var(--dur);
+}
+.stage__desc {
+  margin-top: 0.25rem; font-size: 0.8438rem; line-height: 1.55;
+  color: var(--fg-muted); max-width: 34rem;
+  transition: color var(--dur);
+}
+.stage[data-active="true"]::before {
+  background: var(--haldi); border-color: var(--haldi-deep);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--haldi) 25%, transparent);
+}
+.stage[data-active="true"] .stage__name { color: var(--forest); }
+.stage[data-active="true"] .stage__desc { color: var(--fg); }
+/* Desktop: the seven stages become a horizontal sequence on one line. */
+@media (min-width: 1024px) {
+  .circular__track {
+    grid-template-columns: repeat(7, 1fr);
+    padding-left: 0; gap: clamp(0.875rem, 1.25vw, 1.375rem);
+    padding-bottom: 2.75rem;   /* room for the return path */
+  }
+  .circular__track::before {
+    left: 0; right: 0; top: 0.25rem; bottom: auto;
+    width: auto; height: 1.5px;
+  }
+  .stage { padding-top: 1.125rem; padding-bottom: 0; }
+  .stage::before {
+    left: 0; top: -0.1875rem; width: 0.75rem; height: 0.75rem;
+  }
+  .stage__name { font-size: 1.0625rem; line-height: 1.2; }
+  .stage__desc { font-size: 0.8125rem; }
+  /* The return path — one continuous loop, drawn thin and Forest. */
+  .circular__loop-path {
+    position: absolute; left: 0; right: 0; bottom: 0.75rem; height: 1.75rem;
+    pointer-events: none; display: block; width: 100%;
+  }
+  .circular__loop-path path {
+    fill: none; stroke: color-mix(in srgb, var(--forest) 55%, var(--paper));
+    stroke-width: 1.5;
+  }
+  .circular__loop-label {
+    position: absolute; left: 50%; transform: translateX(-50%);
+    bottom: 0.5rem; font-size: 0.5625rem; font-weight: 700;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--fg-muted); background: var(--paper);
+    padding-inline: 0.75rem;
+  }
+}
+@media (max-width: 1023px) {
+  .circular__loop-path, .circular__loop-label { display: none; }
+}
+
+/* 42.5 APPLICATIONS MATRIX (§21–22) — a materials company's application
+       map. Full-width editorial matrix, large category titles, thin
+       vertical rules. Never four floating cards. */
+.app-matrix {
+  display: grid; grid-template-columns: 1fr;
+  border-top: 1px solid var(--border);
+}
+@media (min-width: 640px) and (max-width: 1023px) { .app-matrix { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 1024px) { .app-matrix { grid-template-columns: repeat(4, 1fr); } }
+.app-group {
+  min-width: 0; padding: 1.5rem 1.375rem 1.75rem;
+  border-left: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  display: flex; flex-direction: column; gap: 1rem;
+  transition: background var(--dur);
+}
+.app-group:nth-child(2n) { background: color-mix(in srgb, var(--limewash) 55%, var(--paper)); }
+@media (min-width: 1024px) {
+  .app-group:nth-child(2n) { background: transparent; }
+  .app-group:nth-child(2) { background: color-mix(in srgb, var(--limewash) 55%, var(--paper)); }
+}
+.app-group:hover { background: var(--limewash); }
+@media (max-width: 639px) { .app-group { border-left: 0; } }
+@media (min-width: 640px) {
+  .app-group:nth-child(2n + 1) { border-left: 0; }
+}
+.app-group__title {
+  font-family: var(--font-display); font-size: 1.25rem; font-weight: 700;
+  letter-spacing: -0.01em; line-height: 1.25; min-height: 2.75rem;
+}
+.app-group__list { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+.app-group__item {
+  display: flex; align-items: baseline; gap: 0.5rem;
+  font-size: 0.9375rem; color: var(--fg);
+}
+.app-group__item a { color: var(--primary); font-weight: 600; }
+.app-group__item a:hover { color: var(--forest); text-decoration: underline; }
+.app-group__item--direction span,
+.app-group__item--direction a { color: var(--fg-muted); font-weight: 500; }
+.app-group__item-tag {
+  flex: 0 0 auto; font-size: 0.5625rem; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--fg-muted);
+  border: 1px solid var(--border); border-radius: 3px;
+  padding: 0.125rem 0.3125rem; line-height: 1.4;
+}
+.app-group__item--live .app-group__item-tag {
+  color: var(--forest); border-color: color-mix(in srgb, var(--forest) 35%, var(--paper));
+}
+.app-matrix-note {
+  margin-top: 1.25rem; font-size: 0.75rem; color: var(--fg-muted);
+  letter-spacing: 0.02em;
+}
+
+/* 42.6 WHY PRINCIPLES (§23) — four columns separated by rules.
+       Reuses the .pathways ruled-column language. */
+.principles-grid {
+  display: grid; grid-template-columns: 1fr; border-top: 1px solid var(--border);
+}
+@media (min-width: 640px) and (max-width: 1023px) { .principles-grid { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 1024px) { .principles-grid { grid-template-columns: repeat(4, 1fr); } }
+.principle {
+  padding: 1.75rem 1.5rem;
+  border-left: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  display: flex; flex-direction: column; gap: 0.5rem;
+  transition: background var(--dur);
+}
+.principle:first-child { border-left: 0; }
+@media (max-width: 639px) { .principle { border-left: 0; } }
+.principle:hover { background: var(--paper); }
+.principle__num {
+  font-family: var(--font-display); font-size: 1.25rem; font-weight: 700;
+  color: var(--haldi-deep); line-height: 1; font-variant-numeric: tabular-nums;
+}
+.principle__name {
+  font-family: var(--font-display); font-size: 1.1875rem; font-weight: 700;
+  letter-spacing: -0.005em;
+}
+.principle__desc { font-size: 0.875rem; color: var(--fg-muted); line-height: 1.6; }
+
+/* 42.7 IMPACT AREAS (§3 / §24) — qualitative, NO counters, NO numbers.
+       Ruled rows: LABEL / AREA / description. */
+.impact-list { border-top: 1px solid var(--border); }
+.impact-row {
+  display: grid; grid-template-columns: 1fr; gap: 0.25rem 1.5rem;
+  padding: 1.375rem 0.375rem;
+  border-bottom: 1px solid var(--border);
+  transition: background var(--dur);
+}
+.impact-row:hover { background: var(--limewash); }
+@media (min-width: 768px) {
+  .impact-row { grid-template-columns: 8rem 12rem 1fr; align-items: baseline; }
+}
+.impact-row__label {
+  font-family: var(--font-display); font-size: 1.375rem; font-weight: 700;
+  color: var(--forest); letter-spacing: -0.01em;
+}
+.impact-row__area {
+  font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--haldi-deep);
+}
+.impact-row__desc { font-size: 0.9375rem; line-height: 1.6; color: var(--fg-muted); }
+.impact-note {
+  margin-top: 1.25rem; font-size: 0.8125rem; color: var(--fg-muted);
+  line-height: 1.55; max-width: 46rem;
+}
+
+/* 42.8 INNOVATION FOCUS (§25 / §40) — five horizontal focus rows +
+       a material research composition. Rows, not cards. */
+.focus-rows { border-top: 1px solid var(--border); }
+.focus-row {
+  display: grid; grid-template-columns: 1fr; gap: 0.25rem 1.5rem;
+  padding: 1.5rem 0.375rem;
+  border-bottom: 1px solid var(--border);
+  transition: background var(--dur);
+}
+@media (min-width: 768px) {
+  .focus-row { grid-template-columns: 3rem 16rem 1fr; align-items: baseline; }
+}
+.focus-row:hover { background: var(--paper); }
+.focus-row__num {
+  font-family: var(--font-display); font-size: 1.125rem; font-weight: 700;
+  color: var(--haldi-deep); font-variant-numeric: tabular-nums; line-height: 1.2;
+}
+.focus-row__name {
+  font-family: var(--font-display); font-size: 1.1875rem; font-weight: 700;
+  letter-spacing: -0.005em; line-height: 1.25;
+}
+.focus-row__desc { font-size: 0.9375rem; line-height: 1.6; color: var(--fg-muted); }
+
+/* 42.9 VISION + MISSION (§26) — strong Forest two-column band. */
+.vision-mission { position: relative; overflow: hidden; }
+.vision-mission__grid {
+  display: grid; grid-template-columns: 1fr; gap: 2.5rem;
+}
+@media (min-width: 768px) {
+  .vision-mission__grid { grid-template-columns: 1fr 1fr; gap: 3.5rem; }
+  .vision-mission__col--mission { border-left: 1px solid rgba(250, 248, 241, 0.18); padding-left: 3.5rem; }
+}
+.vision-mission__eyebrow {
+  font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--haldi);
+}
+.vision-mission__title {
+  font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2.125rem);
+  font-weight: 700; color: var(--paper); margin-top: 0.5rem;
+  letter-spacing: -0.015em;
+}
+.vision-mission__text {
+  margin-top: 1rem; font-size: 1.0625rem; line-height: 1.7;
+  color: rgba(250, 248, 241, 0.82); max-width: 34rem;
+}
+
+/* 42.10 PARTNERSHIP CTA (§27) — audience strip + two CTAs. */
+.partner-strip { border-top: 1px solid var(--border); }
+.partner-strip__list {
+  display: flex; flex-wrap: wrap; gap: 0.625rem 0;
+  padding-block: 1.25rem;
+}
+.partner-strip__item {
+  display: inline-flex; align-items: center;
+  font-size: 0.8125rem; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--primary);
+  padding-right: 0.875rem; margin-right: 0.875rem;
+  border-right: 1px solid var(--border);
+  line-height: 1.4;
+}
+.partner-strip__item:last-child { border-right: 0; margin-right: 0; padding-right: 0; }
+.partner-strip__ctas {
+  display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.5rem;
+}
+
+/* 42.11 STORY PAGE HERO (Our Story / Sustainability / Innovation) —
+       a quiet page hero on limewash: eyebrow, H1, lead, breadcrumb-safe. */
+.story-hero { padding-top: calc(var(--header-h) + 1.5rem); padding-bottom: 1.5rem; }
+@media (min-width: 1024px) {
+  .story-hero { padding-top: calc(var(--header-h) + 2.25rem); padding-bottom: 2.25rem; }
+}
+.story-hero__title {
+  font-family: var(--font-display);
+  font-size: clamp(2.25rem, 5vw, 4.25rem);
+  line-height: 1.05; letter-spacing: -0.02em; text-wrap: balance;
+}
+.story-hero__lead {
+  margin-top: 1.25rem; font-size: clamp(1.0625rem, 1.5vw, 1.25rem);
+  line-height: 1.65; color: var(--fg-muted); max-width: 44rem;
+}
+
+/* 42.12 STORY CHAPTERS (Our Story §28) — numbered narrative chapters
+       with a material plate. Journeys are RESOURCE → IDEA → APPLICATION →
+       ECOSYSTEM (never dates). */
+.story-chapter {
+  display: grid; grid-template-columns: 1fr; gap: 1.5rem;
+  align-items: start; padding-block: clamp(2.5rem, 5vw, 4rem);
+  border-top: 1px solid var(--border);
+}
+@media (min-width: 768px) { .story-chapter { grid-template-columns: 4fr 8fr; gap: 3rem; } }
+.story-chapter__num {
+  font-family: var(--font-display); font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-weight: 700; color: var(--haldi-deep); line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.story-chapter__kicker {
+  display: block; margin-top: 0.5rem; font-size: 0.6875rem; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--fg-muted);
+}
+.story-chapter__title {
+  font-family: var(--font-display); font-size: clamp(1.625rem, 3vw, 2.375rem);
+  font-weight: 700; letter-spacing: -0.015em; line-height: 1.15; text-wrap: balance;
+}
+.story-chapter__body { margin-top: 1.25rem; max-width: 46rem; }
+.story-chapter__body p { line-height: 1.7; color: var(--fg); }
+.story-chapter__body p + p { margin-top: 1.125rem; }
+.story-chapter__body p.muted { color: var(--fg-muted); }
+.story-chapter__visual {
+  margin-top: 1.5rem; border: 1px solid var(--border);
+  border-radius: var(--r-panel); overflow: hidden; background: var(--paper);
+}
+.story-chapter__visual img { display: block; width: 100%; height: auto; }
+.story-chapter__visual figcaption {
+  padding: 0.625rem 1rem; font-size: 0.75rem; color: var(--fg-muted);
+  border-top: 1px solid var(--border); letter-spacing: 0.02em;
+}
+/* The Gaurikrit journey — qualitative, no dates (§29). */
+.journey-strip {
+  display: grid; grid-template-columns: 1fr; gap: 0;
+  margin-top: 2rem; border-top: 1px solid var(--border);
+}
+@media (min-width: 640px) { .journey-strip { grid-template-columns: repeat(4, 1fr); } }
+.journey-stop {
+  padding: 1.25rem 1.125rem;
+  border-bottom: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+}
+.journey-stop:first-child { border-left: 0; }
+@media (max-width: 639px) { .journey-stop { border-left: 0; } }
+.journey-stop__stage {
+  font-size: 0.5625rem; font-weight: 700; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--haldi-deep);
+}
+.journey-stop__name {
+  font-family: var(--font-display); font-size: 1.0625rem; font-weight: 700;
+  margin-top: 0.25rem;
+}
+.journey-stop__desc {
+  margin-top: 0.25rem; font-size: 0.8125rem; color: var(--fg-muted);
+  line-height: 1.5;
+}
+
+/* 42.13 MEASUREMENT FRAMEWORK (§38 S6) — how impact will be measured.
+       Quiet ruled note; explicitly states numbers appear only when
+       verified. */
+.measure-list { border-top: 1px solid var(--border); }
+.measure-item {
+  display: grid; grid-template-columns: 1fr; gap: 0.25rem;
+  padding: 1.125rem 0.375rem; border-bottom: 1px solid var(--border);
+}
+@media (min-width: 768px) { .measure-item { grid-template-columns: 14rem 1fr; gap: 1.5rem; align-items: baseline; } }
+.measure-item__name {
+  font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--haldi-deep);
+}
+.measure-item__desc { font-size: 0.9375rem; color: var(--fg-muted); line-height: 1.6; }
+
+/* 42.14 Ecosystem page-hero plate (Products §30) — the pair photo stays
+       the hero of the ecosystem page (real, documented products). */
+.ecosystem-hero__plate {
+  position: relative; background: var(--paper);
+  border: 1px solid var(--border); border-radius: var(--r-panel);
+  padding: clamp(0.75rem, 1.5vw, 1.25rem);
+}
+.ecosystem-hero__plate img {
+  display: block; width: 100%; height: auto; object-fit: contain;
+}
+
+/* 42.15 Reduced motion — the circular highlight is instant, no motion. */
+@media (prefers-reduced-motion: reduce) {
+  .family::before, .family__media--photo img, .stage::before,
+  .stage__name, .stage__desc, .app-group, .family__media-plate-texture {
+    transition: none;
+  }
 }

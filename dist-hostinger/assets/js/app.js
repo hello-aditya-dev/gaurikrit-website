@@ -270,7 +270,7 @@
     // ---------- Boot ----------
     function boot() {
         // Module init calls — guarded so a missing module never blocks others.
-        var mods = ['Navigation', 'Animations', 'ColourStudy', 'Forms', 'Calculator'];
+        var mods = ['Navigation', 'Animations', 'ColourStudy', 'Forms', 'Calculator', 'Story'];
         for (var i = 0; i < mods.length; i++) {
             var m = mods[i];
             if (G[m] && typeof G[m].init === 'function') {

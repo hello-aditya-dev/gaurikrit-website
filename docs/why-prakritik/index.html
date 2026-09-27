@@ -175,11 +175,11 @@
 
             <nav class="site-nav" aria-label="Primary" data-spy>
         <a href="../" class="site-nav__link" data-nav-link="/">Home</a>
+        <a href="../about/" class="site-nav__link" data-nav-link="/about/">Our Story</a>
         <a href="../products/" class="site-nav__link" data-nav-link="/products/">Products</a>
-        <a href="../why-prakritik/" class="site-nav__link" data-nav-link="/why-prakritik/">Why Prakritik</a>
-        <a href="../about/" class="site-nav__link" data-nav-link="/about/">About</a>
-        <a href="../for-business/" class="site-nav__link" data-nav-link="/for-business/">For Business</a>
-        <a href="../paint-calculator/" class="site-nav__link" data-nav-link="/paint-calculator/">Calculator</a>
+        <a href="../sustainability/" class="site-nav__link" data-nav-link="/sustainability/">Sustainability</a>
+        <a href="../innovation/" class="site-nav__link" data-nav-link="/innovation/">Innovation</a>
+        <a href="../for-business/" class="site-nav__link" data-nav-link="/for-business/">Partners</a>
         <a href="../contact/" class="site-nav__link" data-nav-link="/contact/">Contact</a>
             </nav>
 
@@ -203,13 +203,19 @@
             </div>
             <nav class="mobile-menu__nav" aria-label="Mobile">
                 <a href="../" class="mobile-menu__link" data-nav-link="/">Home<span class="mobile-menu__arrow">→</span></a>
+                <a href="../about/" class="mobile-menu__link" data-nav-link="/about/">Our Story<span class="mobile-menu__arrow">→</span></a>
                 <a href="../products/" class="mobile-menu__link" data-nav-link="/products/">Products<span class="mobile-menu__arrow">→</span></a>
-                <a href="../why-prakritik/" class="mobile-menu__link" data-nav-link="/why-prakritik/">Why Prakritik<span class="mobile-menu__arrow">→</span></a>
-                <a href="../about/" class="mobile-menu__link" data-nav-link="/about/">About<span class="mobile-menu__arrow">→</span></a>
-                <a href="../for-business/" class="mobile-menu__link" data-nav-link="/for-business/">For Business<span class="mobile-menu__arrow">→</span></a>
-                <a href="../paint-calculator/" class="mobile-menu__link" data-nav-link="/paint-calculator/">Calculator<span class="mobile-menu__arrow">→</span></a>
+                <a href="../sustainability/" class="mobile-menu__link" data-nav-link="/sustainability/">Sustainability<span class="mobile-menu__arrow">→</span></a>
+                <a href="../innovation/" class="mobile-menu__link" data-nav-link="/innovation/">Innovation<span class="mobile-menu__arrow">→</span></a>
+                <a href="../for-business/" class="mobile-menu__link" data-nav-link="/for-business/">Partners<span class="mobile-menu__arrow">→</span></a>
                 <a href="../contact/" class="mobile-menu__link" data-nav-link="/contact/">Contact<span class="mobile-menu__arrow">→</span></a>
             </nav>
+            <!-- V16 §46: secondary utilities near the bottom of the menu. -->
+            <div class="mobile-menu__utilities">
+                <p class="mobile-menu__utilities-label">Tools</p>
+                    <a href="../paint-calculator/" class="mobile-menu__utility-link">Painting Calculator</a>
+                    <a href="../downloads/" class="mobile-menu__utility-link">Downloads / Brochure</a>
+            </div>
             <div class="mobile-menu__foot">
                 <a href="../contact/" class="btn btn--primary btn--block">Talk to Us</a>
             </div>
@@ -226,6 +232,16 @@
     object-fit: cover;
   }
   .editorial-image--contain { object-fit: contain; }
+
+  /* ===== 07 COLOURS OF INDIA (V16 move from home — page-local share row;
+     structural colours CSS lives in app.css §19) ===== */
+  .colours-share {
+    min-height: 2rem;
+    margin: 3.5rem 0 0;
+    display: flex;
+    align-items: center;
+  }
+  .colours-share .copy-btn { margin-left: 0; }
 
   /* ===== HERO (V10: single quiet finished-wall study) ===== */
   .why-hero { padding-top: calc(var(--header-h) + 2rem); padding-bottom: 1.5rem; }
@@ -429,6 +445,13 @@
           <a class="chapter-index__link" href="#chapter-06-title">
             <span class="chapter-index__num" aria-hidden="true">06</span>
             <span class="chapter-index__name">From Bulandshahr, Uttar Pradesh.</span>
+            <span class="chapter-index__arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+        <li class="chapter-index__item">
+          <a class="chapter-index__link" href="#chapter-07-title">
+            <span class="chapter-index__num" aria-hidden="true">07</span>
+            <span class="chapter-index__name">Colours of India — a wall study.</span>
             <span class="chapter-index__arrow" aria-hidden="true">→</span>
           </a>
         </li>
@@ -656,13 +679,121 @@
         </div>
         <div class="mission-band__cta" style="margin-top: 1.5rem;">
           <a class="btn btn--primary" href="../products/">Explore Products</a>
-          <a class="btn btn--outline" href="../about/">About Gaurikrit</a>
+          <a class="btn btn--outline" href="../about/">Our Story</a>
         </div>
       </div>
       <div class="why-context-bg" aria-hidden="true">
         <picture><source type="image/webp" srcset="../assets/editorial/rural-landscape.webp"><img class="editorial-image" src="../assets/editorial/rural-landscape.jpg" alt="" width="1344" height="768" loading="lazy" decoding="async"></picture>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ===== 07 COLOURS OF INDIA — wall-plane colour preview (V16: moved
+     from Home into the Eco-Paints educational context) ===== -->
+<section class="section section--paper colour-study colours-section" id="colours" aria-labelledby="chapter-07-title" data-colour-study>
+  <div class="container">
+    <div class="colours-section__head section-heading section-heading--left" data-reveal>
+      <span class="section-heading__eyebrow">Editorial colour study</span>
+      <h2 class="colours-section__title" id="chapter-07-title">Colours of India.</h2>
+      <p class="colours-section__sub">
+        Tap a swatch to preview the colour on the wall — only the wall plane
+        changes; the door, window and surroundings stay as they are. These are
+        editorial design moods — not currently available product shades.
+      </p>
+    </div>
+
+    <div class="colours-wall" data-colour-wall data-reveal>
+      <picture><source type="image/webp" srcset="../assets/editorial/colour-wall-study.webp"><img class="colours-wall__art" src="../assets/editorial/colour-wall-study.jpg" alt="Indian lime-plastered wall elevation with door and window" width="1344" height="768" loading="lazy" decoding="async"></picture>
+      <svg class="colours-wall__tint" viewBox="0 0 1344 768"
+           preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+        <path class="colours-wall__paint" fill-rule="evenodd"
+              d="M0,104 H1344 V724 H0 Z
+                 M80,370 H304 V768 H80 Z
+                 M894,346 H1180 V654 H894 Z" />
+      </svg>
+      <span class="colours-wall__label">
+        <span data-colour-label>Limewash</span>
+        <small>Editorial colour study</small>
+      </span>
+    </div>
+
+    <div class="colours-swatches" data-reveal-stagger role="radiogroup" aria-label="Wall colour swatches">
+        <button type="button"
+                class="colours-swatch"
+                role="radio"
+                aria-checked="false"
+                style="background: #E3A51A;"
+                data-shade="#E3A51A"
+                data-shade-name="Haldi (Turmeric)"
+                data-colour-id="haldi"
+                aria-label="Haldi — Turmeric">
+          <span class="colours-swatch__label">Haldi</span>
+        </button>
+        <button type="button"
+                class="colours-swatch"
+                role="radio"
+                aria-checked="false"
+                style="background: #A86E4B;"
+                data-shade="#A86E4B"
+                data-shade-name="Mitti (Earth)"
+                data-colour-id="mitti"
+                aria-label="Mitti — Earth">
+          <span class="colours-swatch__label">Mitti</span>
+        </button>
+        <button type="button"
+                class="colours-swatch"
+                role="radio"
+                aria-checked="false"
+                style="background: #748468;"
+                data-shade="#748468"
+                data-shade-name="Neem (Leaf)"
+                data-colour-id="neem"
+                aria-label="Neem — Leaf">
+          <span class="colours-swatch__label">Neem</span>
+        </button>
+        <button type="button"
+                class="colours-swatch"
+                role="radio"
+                aria-checked="false"
+                style="background: #B65432;"
+                data-shade="#B65432"
+                data-shade-name="Geru (Ochre)"
+                data-colour-id="geru"
+                aria-label="Geru — Ochre">
+          <span class="colours-swatch__label">Geru</span>
+        </button>
+        <button type="button"
+                class="colours-swatch"
+                role="radio"
+                aria-checked="false"
+                style="background: #365B67;"
+                data-shade="#365B67"
+                data-shade-name="Indigo (Indigo)"
+                data-colour-id="indigo"
+                aria-label="Indigo — Indigo">
+          <span class="colours-swatch__label">Indigo</span>
+        </button>
+        <button type="button"
+                class="colours-swatch"
+                role="radio"
+                aria-checked="false"
+                style="background: #F4EFE2;"
+                data-shade="#F4EFE2"
+                data-shade-name="Chuna (Lime)"
+                data-colour-id="chuna"
+                aria-label="Chuna — Lime">
+          <span class="colours-swatch__label">Chuna</span>
+        </button>
+    </div>
+
+    <p class="colours-share">
+      <button type="button" class="copy-btn" data-colour-copy data-copy="" hidden
+              aria-label="Copy a link to this wall colour">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        <span class="copy-btn__label">Copy link to this colour</span>
+      </button>
+    </p>
   </div>
 </section>
     </main>
@@ -762,24 +893,30 @@
                 <p class="site-footer__brandline">Good for Nature. Good for Life.</p>
                 <p class="site-footer__legal-name">Gaurikrit Bio Products (OPC) Private Limited</p>
             </div>
-            <nav class="site-footer__col" aria-label="Navigate">
-                <h4 class="site-footer__heading">Navigate</h4>
+            <nav class="site-footer__col site-footer__col--company" aria-label="Company">
+                <h4 class="site-footer__heading">Company</h4>
                 <a href="../">Home</a>
-                <a href="../products/">Products</a>
-                <a href="../why-prakritik/">Why Prakritik</a>
-                <a href="../about/">About</a>
-                <a href="../for-business/">For Business</a>
-                <a href="../paint-calculator/">Calculator</a>
-                <a href="../contact/">Contact</a>
+                <a href="../about/">Our Story</a>
+                <a href="../sustainability/">Sustainability</a>
+                <a href="../innovation/">Innovation</a>
             </nav>
             <nav class="site-footer__col" aria-label="Products">
                 <h4 class="site-footer__heading">Products</h4>
+                <a href="../products/#eco-paints">Eco-Paints</a>
                 <a href="../products/prakritik-distemper/">Prakritik Distemper</a>
                 <a href="../products/prakritik-emulsion/">Prakritik Emulsion</a>
-                <a href="../downloads/">Brochure</a>
-                <a href="../for-business/">For Business</a>
+                <a href="../products/#gocast-logs">GoCast Logs</a>
+                <a href="../products/#bio-coal-logs">Bio-Coal Logs</a>
+                <a href="../products/#utility-products">Utility Products</a>
             </nav>
-            <div class="site-footer__col">
+            <nav class="site-footer__col site-footer__col--work" aria-label="Work with us">
+                <h4 class="site-footer__heading">Work With Us</h4>
+                <a href="../for-business/">Partners</a>
+                <a href="../paint-calculator/">Painting Calculator</a>
+                <a href="../downloads/">Downloads</a>
+                <a href="../contact/">Contact</a>
+            </nav>
+            <div class="site-footer__col site-footer__col--contact">
                 <h4 class="site-footer__heading">Contact</h4>
                 <p class="site-footer__contact-line">
                     <a href="mailto:seva@gaurikrit.com">seva@gaurikrit.com</a>
@@ -814,6 +951,7 @@
     <script src="../assets/js/colour-study.js?v=static"></script>
     <script src="../assets/js/forms.js?v=static"></script>
     <script src="../assets/js/calculator.js?v=static"></script>
+    <script src="../assets/js/story.js?v=static"></script>
     <script src="../assets/js/app.js?v=static"></script>
 </body>
 </html>

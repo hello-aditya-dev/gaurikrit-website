@@ -8,25 +8,25 @@
     <link rel="icon" href="../favicon-16x16.png" type="image/png" sizes="16x16">
     <link rel="apple-touch-icon" href="../apple-touch-icon.png">
     <link rel="manifest" href="../site.webmanifest">
-    <title>Downloads — Prakritik Paint Brochure | Gaurikrit</title>
-    <meta name="description" content="View or download the Prakritik Paint brochure for Distemper and Emulsion.">
-    <link rel="canonical" href="https://hello-aditya-dev.github.io/gaurikrit-website/downloads/">
+    <title>Research &amp; Innovation — Gaurikrit</title>
+    <meta name="description" content="Gaurikrit&#39;s research focus areas: natural coatings, biomass energy, bio-composites, carbon reduction technologies and sustainable building materials — where tradition meets technology.">
+    <link rel="canonical" href="https://hello-aditya-dev.github.io/gaurikrit-website/innovation/">
     <meta name="robots" content="noindex, nofollow">
     <meta name="theme-color" content="#173F2B">
-    <meta property="og:title" content="Downloads — Prakritik Paint Brochure | Gaurikrit">
-    <meta property="og:description" content="View or download the Prakritik Paint brochure for Distemper and Emulsion.">
-    <meta property="og:url" content="https://hello-aditya-dev.github.io/gaurikrit-website/downloads/">
+    <meta property="og:title" content="Research &amp; Innovation — Gaurikrit">
+    <meta property="og:description" content="Gaurikrit&#39;s research focus areas: natural coatings, biomass energy, bio-composites, carbon reduction technologies and sustainable building materials — where tradition meets technology.">
+    <meta property="og:url" content="https://hello-aditya-dev.github.io/gaurikrit-website/innovation/">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Gaurikrit Bio Products">
-    <meta property="og:image" content="https://hello-aditya-dev.github.io/gaurikrit-website/assets/social/og-downloads.jpg">
+    <meta property="og:image" content="https://hello-aditya-dev.github.io/gaurikrit-website/assets/social/og-innovation.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Gaurikrit — Downloads — Prakritik Paint Brochure | Gaurikrit">
+    <meta property="og:image:alt" content="Gaurikrit — Research &amp; Innovation — Gaurikrit">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Downloads — Prakritik Paint Brochure | Gaurikrit">
-    <meta name="twitter:description" content="View or download the Prakritik Paint brochure for Distemper and Emulsion.">
-    <meta name="twitter:image" content="https://hello-aditya-dev.github.io/gaurikrit-website/assets/social/og-downloads.jpg">
-    <meta name="twitter:image:alt" content="Gaurikrit — Downloads — Prakritik Paint Brochure | Gaurikrit">
+    <meta name="twitter:title" content="Research &amp; Innovation — Gaurikrit">
+    <meta name="twitter:description" content="Gaurikrit&#39;s research focus areas: natural coatings, biomass energy, bio-composites, carbon reduction technologies and sustainable building materials — where tradition meets technology.">
+    <meta name="twitter:image" content="https://hello-aditya-dev.github.io/gaurikrit-website/assets/social/og-innovation.jpg">
+    <meta name="twitter:image:alt" content="Gaurikrit — Research &amp; Innovation — Gaurikrit">
     <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -65,8 +65,8 @@
     {
       "@type": "ListItem",
       "position": 2,
-      "name": "Downloads",
-      "item": "https://hello-aditya-dev.github.io/gaurikrit-website/downloads/"
+      "name": "Innovation",
+      "item": "https://hello-aditya-dev.github.io/gaurikrit-website/innovation/"
     }
   ]
 }
@@ -75,7 +75,7 @@
     <!-- Fonts are served locally from assets/fonts. -->
     <link rel="stylesheet" href="../assets/css/app.css?v=static">
 </head>
-<body class="page-downloads">
+<body class="page-innovation">
     <a href="#main" class="skip-link">Skip to content</a>
 
     <!-- ===== Site header ===== -->
@@ -224,197 +224,199 @@
 
     <main id="main" class="site-main">
 <style>
-  /* ===== HERO ===== */
-  .dl-hero { padding-top: calc(var(--header-h) + 2rem); padding-bottom: 1.5rem; }
-  .dl-hero__inner { display: grid; gap: 1rem; max-width: 60rem; }
-  .dl-hero__eyebrow {
-    display: inline-flex; align-items: center; gap: 0.5rem;
-    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.22em;
-    text-transform: uppercase; color: var(--primary);
+  /* ===== PAGE HERO — story-hero + research composition ===== */
+  .innov-hero__grid {
+    display: grid; gap: clamp(2rem, 4vw, 4rem); align-items: center;
+    grid-template-columns: 1fr;
   }
-  .dl-hero__eyebrow-dot {
-    display: inline-block; width: 0.375rem; height: 0.375rem;
-    border-radius: 50%; background: var(--haldi);
+  @media (min-width: 1024px) { .innov-hero__grid { grid-template-columns: 6fr 6fr; } }
+  .innov-hero__plate {
+    position: absolute; overflow: hidden;
+    border: 1px solid var(--border); border-radius: var(--r-panel);
+    background: var(--paper);
   }
-  .dl-hero__title {
-    margin-top: 0.5rem; font-family: var(--font-display);
-    font-size: clamp(2.2rem, 5vw, 4rem); letter-spacing: -0.02em;
-    text-wrap: balance; line-height: 1.05;
+  .innov-hero__plate img {
+    display: block; width: 100%; height: 100%; object-fit: cover;
   }
-  .dl-hero__sub {
-    margin-top: 1rem; color: var(--fg-muted);
-    font-size: clamp(1rem, 2vw, 1.125rem); max-width: 60ch;
+  .innov-hero__plate--a { top: 0; right: 38%; bottom: 32%; left: 0; }
+  .innov-hero__plate--b { top: 36%; right: 0; bottom: 0; left: 40%; }
+  .innov-hero__plate::after {
+    content: ""; position: absolute; left: 0; top: 0; width: 2.5rem; height: 0.25rem;
+    background: var(--haldi); z-index: 2;
   }
-
-  /* ===== DOWNLOADS SPLIT — real brochure cover left, details right ===== */
-  .downloads-split {
-    padding-block: clamp(2.5rem, 5vw, 4rem);
-  }
-  /* Real brochure cover — display at its true aspect ratio (848×1200). */
-  .dl-cover {
-    position: relative;
-    aspect-ratio: 848/1200;
-    background: var(--paper-warm);
-    border: 1px solid var(--border-strong);
-    border-radius: var(--r-panel);
-    overflow: hidden;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .dl-cover .dl-cover__image {
-    display: block;
-    width: 100%; height: 100%;
-    object-fit: contain;
-  }
-  .dl-cover:has(.dl-cover__image) .dl-cover__fallback { display: none; }
-  .dl-cover__fallback {
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    width: 100%; height: 100%;
-    text-align: center; padding: 2rem;
-    color: rgba(32, 30, 25, 0.4);
-    font-family: var(--font-display); font-weight: 700;
-    font-size: clamp(1.5rem, 4vw, 3rem);
-    line-height: 1.15; letter-spacing: 0.02em;
-  }
-
-  /* Right column — details + actions */
-  .dl-card { gap: 1.25rem; }
-  .brochure__detail-eyebrow {
-    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.18em;
-    text-transform: uppercase; color: var(--primary);
-  }
-  .brochure__detail-title {
-    font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2.25rem);
-    margin-top: 0.5rem; line-height: 1.15; letter-spacing: -0.01em;
-    text-wrap: balance;
-  }
-  .brochure__detail-desc { color: var(--fg-muted); line-height: 1.7; max-width: 60ch; }
-  .brochure__detail-meta {
-    display: flex; justify-content: space-between; gap: 1rem;
-    padding-block: 0.75rem; border-bottom: 1px solid var(--border);
-    font-size: 0.9375rem;
-  }
-  .brochure__detail-meta:last-of-type { border-bottom: 0; }
-  .brochure__detail-meta dt {
-    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em;
+  .innov-hero__plate-tag {
+    position: absolute; left: 1rem; bottom: 0.75rem; z-index: 2;
+    font-size: 0.5625rem; font-weight: 700; letter-spacing: 0.16em;
     text-transform: uppercase; color: var(--fg-muted);
+    background: var(--paper); border: 1px solid var(--border);
+    border-radius: 3px; padding: 0.25rem 0.5rem;
   }
-  .brochure__detail-meta dd { color: var(--fg); }
-  .brochure__detail-actions {
-    display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.5rem;
-  }
-  .brochure__detail-note {
-    margin-top: 1.25rem; font-size: 0.8125rem; color: var(--fg-muted);
-    line-height: 1.6;
-  }
-
-  /* Missing brochure note */
-  .dl-missing {
-    padding: 1.5rem; background: var(--limewash);
-    border: 1px dashed var(--border-strong); border-radius: var(--r-panel);
-    font-size: 0.9375rem; color: var(--fg-muted); line-height: 1.6;
-  }
-  .dl-missing strong { color: var(--fg); }
-
-  /* ===== Brochure detection (V4 static) — JS HEAD-fetches the PDF and
-     toggles data-brochure-state on the wrapper. Default (unknown /
-     checking / available): show available, hide missing. State="missing":
-     swap. Graceful fallback if JS fails: available block stays visible. ===== */
-  [data-brochure-detect] [data-brochure-if-missing] { display: none; }
-  [data-brochure-detect][data-brochure-state="missing"] [data-brochure-if-available] { display: none; }
-  [data-brochure-detect][data-brochure-state="missing"] [data-brochure-if-missing] { display: block; }
+  .innov-section__head { max-width: 48rem; margin-bottom: 2.5rem; }
 </style>
 
-<!-- ===== HERO ===== -->
-<section class="dl-hero bg-limewash" aria-labelledby="dl-title">
+<!-- ============================================================
+     HERO — Where Tradition Meets Technology.
+     ============================================================ -->
+<section class="story-hero bg-limewash" aria-labelledby="innov-title">
   <div class="container">
     <nav class="breadcrumb" aria-label="Breadcrumb">
       <a href="../">Home</a><span>›</span>
-      <span>Downloads</span>
+      <span>Innovation</span>
     </nav>
-    <div class="dl-hero__inner" data-reveal>
-      <span class="dl-hero__eyebrow">
-        <span class="dl-hero__eyebrow-dot" aria-hidden="true"></span>
-        Brochure
-      </span>
-      <hr class="dl-hero__rule">
-      <h1 class="dl-hero__title" id="dl-title">Prakritik Paint brochure.</h1>
-      <p class="dl-hero__sub">
-        Browse the supplied Prakritik Paint brochure or download a copy.
-      </p>
+    <div class="innov-hero__grid" data-reveal>
+      <div>
+        <span class="eyebrow">Research &amp; Innovation</span>
+        <h1 class="story-hero__title" id="innov-title">Where Tradition Meets Technology.</h1>
+        <p class="story-hero__lead">
+          Gaurikrit's research direction explores how a natural material
+          understood by tradition can be developed with contemporary methods —
+          into coatings, fuels, composites and building materials.
+        </p>
+        <div style="margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 0.75rem;">
+          <a class="btn btn--primary" href="#focus-areas">The Five Focus Areas</a>
+          <a class="btn btn--secondary" href="../sustainability/">Sustainability</a>
+        </div>
+      </div>
+      <div class="innov-hero__plates" style="position: relative; min-height: 22rem;">
+        <span class="innov-hero__plate innov-hero__plate--a">
+          <img src="../assets/editorial/raw-material-study.jpg"
+               alt="Raw natural material study — the research beginning"
+               width="1344" height="768"
+               loading="eager" fetchpriority="high" decoding="async">
+        </span>
+        <span class="innov-hero__plate innov-hero__plate--b">
+          <img src="../assets/editorial/finished-surface-study.jpg"
+               alt="Finished developed material — the research outcome direction"
+               width="1344" height="768"
+               loading="lazy" decoding="async">
+        </span>
+        <span class="innov-hero__plate-tag">Material research directions</span>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ===== DOWNLOADS SPLIT ===== -->
-<section class="section section--paper">
+<!-- ============================================================
+     FOCUS AREAS — five horizontal rows
+     ============================================================ -->
+<section class="section section--paper" id="focus-areas" aria-labelledby="focus-title">
   <div class="container">
-    <div class="downloads-split" data-reveal>
-      <!-- LEFT — real brochure cover (848×1200) -->
-      <div class="dl-cover">
-        <img class="dl-cover__image"
-             src="../assets/documents/prakritik-paint-brochure-cover.jpg"
-             alt="Prakritik Paint brochure cover"
-             width="848" height="1200"
-             loading="eager" fetchpriority="high" decoding="async">
-        <div class="dl-cover__fallback" aria-hidden="true">
-          PRAKRITIK<br>PAINT<br>BROCHURE
+    <div class="innov-section__head section-heading section-heading--left" data-reveal>
+      <span class="section-heading__eyebrow">Focus Areas</span>
+      <h2 class="section-heading__title" id="focus-title">Five directions under exploration.</h2>
+      <p class="section-heading__desc">
+        These are FOCUS AREAS — research directions. They are not presented as
+        proven accomplishments, patents or facilities.
+      </p>
+    </div>
+    <div class="focus-rows" data-reveal-stagger>
+        <div class="focus-row">
+          <span class="focus-row__num" aria-hidden="true">01</span>
+          <h3 class="focus-row__name">Natural Coatings</h3>
+          <p class="focus-row__desc">Wall coatings and finishes from naturally derived materials.</p>
+        </div>
+        <div class="focus-row">
+          <span class="focus-row__num" aria-hidden="true">02</span>
+          <h3 class="focus-row__name">Biomass Energy</h3>
+          <p class="focus-row__desc">Fuel directions from natural biomass material streams.</p>
+        </div>
+        <div class="focus-row">
+          <span class="focus-row__num" aria-hidden="true">03</span>
+          <h3 class="focus-row__name">Bio-Composites</h3>
+          <p class="focus-row__desc">Composite materials that carry natural fibres and minerals.</p>
+        </div>
+        <div class="focus-row">
+          <span class="focus-row__num" aria-hidden="true">04</span>
+          <h3 class="focus-row__name">Carbon Reduction Technologies</h3>
+          <p class="focus-row__desc">Approaches that reduce reliance on fossil-based alternatives.</p>
+        </div>
+        <div class="focus-row">
+          <span class="focus-row__num" aria-hidden="true">05</span>
+          <h3 class="focus-row__name">Sustainable Building Materials</h3>
+          <p class="focus-row__desc">Construction materials from renewable natural resources.</p>
+        </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     METHOD — how Gaurikrit explores materials
+     ============================================================ -->
+<section class="section section--haldi-wash" id="method" aria-labelledby="method-title">
+  <div class="container">
+    <div class="innov-section__head section-heading section-heading--left" data-reveal>
+      <span class="section-heading__eyebrow">How we explore</span>
+      <h2 class="section-heading__title" id="method-title">Material-first, application-led.</h2>
+    </div>
+    <div class="measure-list" data-reveal-stagger>
+        <div class="measure-item">
+          <span class="measure-item__name">Material-first</span>
+          <p class="measure-item__desc">Each direction begins with a natural material and its properties, not a market template.</p>
+        </div>
+        <div class="measure-item">
+          <span class="measure-item__name">Application-led</span>
+          <p class="measure-item__desc">Research is guided by real applications — walls, fuel, ritual and daily use.</p>
+        </div>
+        <div class="measure-item">
+          <span class="measure-item__name">Tradition-aware</span>
+          <p class="measure-item__desc">Indian material traditions inform where technologies should serve, not erase.</p>
+        </div>
+        <div class="measure-item">
+          <span class="measure-item__name">Verified before published</span>
+          <p class="measure-item__desc">Directions are shared as directions. Results are shared only once verified.</p>
+        </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     ECO-PAINTS CONTEXT — the documented research outcome
+     ============================================================ -->
+<section class="section section--paper" id="documented" aria-labelledby="doc-title">
+  <div class="container">
+    <article class="story-chapter" data-reveal>
+      <div>
+        <span class="story-chapter__num" aria-hidden="true">01</span>
+        <span class="story-chapter__kicker">Documented outcome</span>
+      </div>
+      <div>
+        <h2 class="story-chapter__title" id="doc-title">Eco-Paints — where the direction became products.</h2>
+        <div class="story-chapter__body">
+          <p>
+            The natural-coatings focus is the most developed: Prakritik
+            Distemper and Prakritik Emulsion are documented, specified
+            products — the reference point for how a research direction
+            becomes a Gaurikrit family.
+          </p>
+        </div>
+        <figure class="story-chapter__visual">
+          <picture><source type="image/webp" srcset="../assets/products/prakritik-pair.webp"><img  src="../assets/products/prakritik-pair.jpg" alt="Prakritik Distemper and Emulsion paint packs — the documented Eco-Paints outcome" width="1420" height="618" loading="lazy" decoding="async"></picture>
+          <figcaption>Prakritik Distemper and Emulsion — the documented Eco-Paints family.</figcaption>
+        </figure>
+        <div style="margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 0.75rem;">
+          <a class="btn btn--secondary" href="../products/#eco-paints">Explore Eco-Paints</a>
+          <a class="btn btn--outline" href="../why-prakritik/">Why Prakritik</a>
         </div>
       </div>
+    </article>
+  </div>
+</section>
 
-      <!-- RIGHT — title + details + actions.
-           V4 static: both data-brochure-if-available and
-           data-brochure-if-missing blocks are present. The wrapper has
-           data-brochure-state="unknown" initially. app.js's
-           initBrochureDetection() HEAD-fetches the PDF and sets state
-           to "available" (HEAD 2xx) or "missing" (HEAD 4xx/5xx).
-           CSS shows available by default, swaps to missing on demand. -->
-      <div class="dl-card" data-brochure-detect="../assets/documents/prakritik-paint-brochure.pdf" data-brochure-state="unknown">
-        <div data-brochure-if-available>
-          <span class="brochure__detail-eyebrow">Current edition</span>
-          <h2 class="brochure__detail-title">Prakritik Paint — product brochure.</h2>
-          <p class="brochure__detail-desc">
-            The brochure covers both Prakritik Distemper and Prakritik Emulsion:
-            pack sizes, listed specifications, finish, drying time, coverage,
-            V.O.C. and usage. Suitable for architects, builders, institutions and
-            homeowners.
-          </p>
-
-          <dl>
-            <div class="brochure__detail-meta">
-              <dt>Format</dt><dd>PDF</dd>
-            </div>
-            <div class="brochure__detail-meta">
-              <dt>Source</dt><dd>Gaurikrit</dd>
-            </div>
-            <div class="brochure__detail-meta">
-              <dt>Use</dt><dd>Read online or print</dd>
-            </div>
-          </dl>
-
-          <div class="brochure__detail-actions">
-            <a class="btn btn--primary btn--lg" href="../assets/documents/prakritik-paint-brochure.pdf"
-               target="_blank" rel="noopener">View Brochure</a>
-            <a class="btn btn--outline" href="../assets/documents/prakritik-paint-brochure.pdf" download>Download PDF</a>
-          </div>
-          <p class="brochure__detail-note">
-            If the file does not open, the PDF may not be reachable from your
-            network. Contact Gaurikrit directly for a current copy.
-          </p>
-        </div>
-        <div data-brochure-if-missing>
-          <span class="brochure__detail-eyebrow">Brochure pending</span>
-          <h2 class="brochure__detail-title">The current brochure is not yet published here.</h2>
-          <p class="brochure__detail-desc">
-            Please contact Gaurikrit for a copy of the product brochure.
-          </p>
-          <div class="brochure__detail-actions">
-            <a class="btn btn--primary btn--lg" href="../contact/?interest=general">Contact Gaurikrit for the current product brochure</a>
-          </div>
-          <p class="brochure__detail-note">
-            In the meantime, product specifications for both formats are listed
-            on the Distemper and Emulsion detail pages.
-          </p>
-        </div>
+<!-- ============================================================
+     CTA — Discuss a Collaboration
+     ============================================================ -->
+<section class="section section--forest" aria-labelledby="collab-title">
+  <div class="container">
+    <div class="why-cta" data-reveal>
+      <span class="why-cta__eyebrow">Collaboration</span>
+      <h2 class="why-cta__title" id="collab-title">Discuss a Collaboration.</h2>
+      <p class="why-cta__sub">
+        Research programmes, institutions and sustainability partners —
+        talk to Gaurikrit about material directions and collaboration.
+      </p>
+      <div class="why-cta__actions">
+        <a class="btn btn--haldi" href="../for-business/">Become a Partner</a>
+        <a class="btn btn--secondary" href="../contact/">Contact Gaurikrit</a>
       </div>
     </div>
   </div>

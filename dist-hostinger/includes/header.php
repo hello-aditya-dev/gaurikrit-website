@@ -80,6 +80,14 @@ $pageOgImage     = $pageOgImage     ?? null;
                     <a href="<?= e($link['href']) ?>" class="mobile-menu__link" data-nav-link="<?= e($link['href']) ?>"><?= e($link['label']) ?><span class="mobile-menu__arrow">→</span></a>
                 <?php endforeach; ?>
             </nav>
+            <!-- V16 §46: secondary utilities near the bottom of the menu.
+                 Calculator + Downloads are contextual tools, not primary nav. -->
+            <div class="mobile-menu__utilities">
+                <p class="mobile-menu__utilities-label">Tools</p>
+                <?php foreach ($NAV_UTILITIES as $util): ?>
+                    <a href="<?= e($util['href']) ?>" class="mobile-menu__utility-link"><?= e($util['label']) ?></a>
+                <?php endforeach; ?>
+            </div>
             <div class="mobile-menu__foot">
                 <a href="/contact/" class="btn btn--primary btn--block">Talk to Us</a>
             </div>

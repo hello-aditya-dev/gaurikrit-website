@@ -24,7 +24,7 @@
 declare(strict_types=1);
 
 $pageTitle       = 'Talk to Gaurikrit — Contact | Gaurikrit Bio Products';
-$pageDescription = 'Email, phones, address and GSTIN for Gaurikrit Bio Products (OPC) Private Limited. Send an enquiry about Prakritik Distemper, Emulsion, bulk projects, partnerships or Gaushala collaboration.';
+$pageDescription = 'Email, phones, address and GSTIN for Gaurikrit Bio Products (OPC) Private Limited. Send an enquiry about Eco-Paints, Prakritik Distemper or Emulsion, GoCast, Bio-Coal, utility directions, bulk projects, partnerships or Gaushala collaboration.';
 $pageCanonical   = '/contact/';
 $pageClass        = 'contact';
 

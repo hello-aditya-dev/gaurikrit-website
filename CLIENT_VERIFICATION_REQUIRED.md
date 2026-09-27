@@ -62,10 +62,53 @@ It is not confirmed whether either phone (+91 9999624446 / +91 9837638842)
 is WhatsApp-enabled. Both are shown as `tel:` links. Add a WhatsApp link
 if confirmed.
 
-## 14. Additional bio-products
-The concept image shows possible wider bio-product directions (cow-dung
-logs, fertilizer, etc.). These are NOT confirmed current products. The
-website publishes ONLY Prakritik Distemper and Prakritik Emulsion.
+## 14. Additional bio-products — V16 four-family ecosystem
+The client strategy now presents FOUR product families: Eco-Paints
+(documented: Prakritik Distemper + Emulsion) plus GoCast Logs, Bio-Coal
+Logs and Eco-Friendly Utility Products (development directions). The
+website presents the three undocumented families qualitatively ONLY —
+no photography, no specifications, no availability. Verify before
+publishing anything quantitative:
+
+### GoCast Logs
+- Official product photography
+- Sizes, availability and price points
+- Burn characteristics and performance data (burn time, density)
+- Intended ceremonial uses
+- Certifications / test results
+
+### Bio-Coal Logs
+- Official product photography
+- Composition / feedstock statement
+- Calorific value
+- Emissions / test data
+- Sizes and availability
+
+### Utility Products
+- Confirmed product list (no individual products are listed until supplied)
+- Photography
+- Materials and specifications
+- Availability
+
+## 14b. Impact metrics — NO live counters (V16 §3)
+The strategic brief proposes counters (trees saved, waste recycled, fossil
+fuel replaced, carbon emissions reduced, rural livelihoods supported).
+DO NOT display ANY numbers — the site shows five qualitative IMPACT AREAS
+only. Supply, with measurement methodology, before enabling real counters:
+- Trees saved
+- Waste recycled
+- Fossil fuel replaced
+- Carbon reduced
+- Rural livelihoods supported
+
+## 14c. Innovation / R&D claims
+The Innovation page presents five FOCUS AREAS as directions, NOT
+accomplishments. Supply before publishing any of:
+- Actual R&D programmes and their status
+- Research partners / institutional collaborations
+- Patents / IP
+- Facilities
+- Technologies in development
 
 ## 15. Real application instructions / number of coats / primer system
 Not supplied. The website does NOT publish application instructions, coat

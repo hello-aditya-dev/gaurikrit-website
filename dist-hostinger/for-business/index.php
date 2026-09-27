@@ -20,33 +20,33 @@
  */
 declare(strict_types=1);
 
-$pageTitle       = 'For Business — Architects, Builders, CSR, NGOs, Gaushalas | Gaurikrit';
-$pageDescription = 'Discuss Prakritik Paint for residential, commercial, institutional, CSR / NGO and Gaushala collaboration projects with Gaurikrit Bio Products.';
+$pageTitle       = 'Partners & Business Enquiries — Gaurikrit';
+$pageDescription = 'Build with Gaurikrit: distribution, dealership, architecture, contracting, institutional, industrial and sustainability partnerships around the Gaurikrit material ecosystem — Eco-Paints, GoCast, Bio-Coal and utility directions.';
 $pageCanonical   = '/for-business/';
 $pageClass        = 'for-business';
 
 require_once __DIR__ . '/../includes/bootstrap.php';
 require ROOT_PATH . '/includes/header.php';
 
-global $COMPANY, $PROJECT_TYPES;
+global $COMPANY, $PROJECT_TYPES, $PARTNER_AUDIENCES;
 
 $phones = $COMPANY['phones'] ?? [];
 
 $audiences = [
-    ['num' => '01', 'title' => 'Architects & Builders',
+    ['num' => '01', 'title' => 'Distributors & Dealers',
+     'desc' => 'Bring Prakritik Paint — and future Gaurikrit families — to your market.'],
+    ['num' => '02', 'title' => 'Architects & Contractors',
      'desc' => 'Discuss product and project requirements for residential, commercial, or institutional work.'],
-    ['num' => '02', 'title' => 'Institutions / CSR',
+    ['num' => '03', 'title' => 'Institutions, CSR & NGOs',
      'desc' => 'Talk to Gaurikrit about institutional or sustainability-led projects.'],
-    ['num' => '03', 'title' => 'CSR / NGOs',
-     'desc' => 'Discuss sustainability-led projects and community paint programmes.'],
-    ['num' => '04', 'title' => 'Gaushalas / Partners',
-     'desc' => 'Explore collaboration around cow-dung-based bio-products.'],
+    ['num' => '04', 'title' => 'Industries & Sustainability Partners',
+     'desc' => 'Explore collaboration around cow-dung-based bio-products and material directions.'],
 ];
 
 $helpfulInclude = [
-    ['label' => 'Project type',      'hint' => 'Residential / Commercial / Institutional / CSR-NGO / Gaushala / Other'],
-    ['label' => 'City',              'hint' => 'Where the site is located'],
-    ['label' => 'Approximate wall area', 'hint' => 'In sq.ft. if you have a number'],
+    ['label' => 'Interest',           'hint' => 'Eco-Paints, GoCast, Bio-Coal, Utility Products — or a partnership'],
+    ['label' => 'City',               'hint' => 'Where the site or market is located'],
+    ['label' => 'Approximate wall area', 'hint' => 'In sq.ft. if you have a number (for paint projects)'],
     ['label' => 'Paint format',      'hint' => 'Distemper, Emulsion, or not sure yet'],
     ['label' => 'Approximate requirement', 'hint' => 'Approximate quantity, if known'],
 ];
@@ -76,40 +76,10 @@ $helpfulInclude = [
     width: 100%; height: 100%; object-fit: cover; display: block;
   }
 
-  /* ===== AUDIENCES (V5: NO shared image; CSS 4-ruled-columns visual
-     instead — connects directly to the four audience types) ===== */
+  /* ===== AUDIENCES (V16: the seven partner audiences as a flexible
+     partner-strip + four audience cards; the 4-ruled-column visual is
+     retired) ===== */
   .biz-audiences-section { padding-block: clamp(3.5rem, 6vw, 5rem); }
-  /* V5: 4-column rule pattern above the cards — each column has a number
-     + a thin haldi underline, mirroring the four audience types below. */
-  .biz-audiences-rule {
-    display: grid; grid-template-columns: 1fr; gap: 0;
-    margin-bottom: 3rem;
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-  }
-  @media (min-width: 768px) {
-    .biz-audiences-rule { grid-template-columns: repeat(4, 1fr); }
-  }
-  .biz-audiences-rule__col {
-    padding: 1.25rem 1rem; border-top: 2px solid var(--haldi);
-    display: flex; align-items: baseline; gap: 0.625rem;
-  }
-  .biz-audiences-rule__col + .biz-audiences-rule__col {
-    border-left: 1px solid var(--border);
-  }
-  @media (max-width: 767px) {
-    .biz-audiences-rule__col + .biz-audiences-rule__col {
-      border-left: 0; border-top: 1px solid var(--border);
-    }
-  }
-  .biz-audiences-rule__num {
-    font-family: var(--font-display); font-weight: 700; font-size: 0.875rem;
-    color: var(--haldi-deep); letter-spacing: 0.04em;
-  }
-  .biz-audiences-rule__label {
-    font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.18em;
-    text-transform: uppercase; color: var(--fg-muted);
-  }
   .biz-audiences__head { max-width: 48rem; margin-bottom: 2.5rem; }
 
   /* ===== PRACTICAL SECTION ===== */
@@ -180,27 +150,28 @@ $helpfulInclude = [
   .biz-aside-card dt { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fg-muted); }
 </style>
 
-<!-- ===== HERO (V5: business-context-study right) ===== -->
+<!-- ===== HERO (V16 §41: repositioned from paint-projects to the whole
+     ecosystem — "Build with Gaurikrit.") ===== -->
 <section class="biz-hero bg-limewash" aria-labelledby="biz-title">
   <div class="container">
     <nav class="breadcrumb" aria-label="Breadcrumb">
       <a href="/">Home</a><span>›</span>
-      <span>For Business</span>
+      <span>Partners</span>
     </nav>
     <div class="biz-hero__container" data-reveal>
       <div class="biz-hero__lockup">
-        <span class="biz-hero__eyebrow"><span class="biz-hero__eyebrow-dot" aria-hidden="true"></span>For Business</span>
+        <span class="biz-hero__eyebrow"><span class="biz-hero__eyebrow-dot" aria-hidden="true"></span>Partners</span>
         <hr class="biz-hero__rule">
-        <h1 class="biz-hero__title" id="biz-title">Discuss a project with Gaurikrit.</h1>
+        <h1 class="biz-hero__title" id="biz-title">Build with Gaurikrit.</h1>
         <p class="biz-hero__sub">
-          For architects, builders, institutions, CSR programmes, NGOs and
-          Gaushalas. Tell us about the project — site, scale, and what you are
-          painting — and we will talk through Prakritik Distemper and Emulsion
-          for your context.
+          For distributors, dealers, architects, contractors, institutions,
+          industries and sustainability partners. Talk to us about
+          Eco-Paints today — and the GoCast, Bio-Coal and utility directions
+          as they develop.
         </p>
         <div class="biz-hero__ctas">
           <a class="btn btn--primary btn--lg" href="#enquire">Discuss a Project</a>
-          <a class="btn btn--outline" href="/products/">Explore Products</a>
+          <a class="btn btn--outline" href="/products/">Explore the Ecosystem</a>
         </div>
       </div>
       <div class="biz-hero__art" aria-hidden="true">
@@ -219,33 +190,21 @@ $helpfulInclude = [
   </div>
 </section>
 
-<!-- ===== AUDIENCES — V5: CSS 4-ruled-columns visual (no shared image) ===== -->
+<!-- ===== AUDIENCES — V16: the seven partner audiences (§41) as a
+     flexible strip + four audience cards. ===== -->
 <section class="section section--paper biz-audiences-section" aria-labelledby="audiences-title">
   <div class="container">
     <div class="biz-audiences__head section-heading section-heading--left" data-reveal>
       <span class="section-heading__eyebrow">Who this is for</span>
-      <h2 class="section-heading__title" id="audiences-title">Audiences.</h2>
+      <h2 class="section-heading__title" id="audiences-title">Partner with a material ecosystem.</h2>
     </div>
 
-    <!-- V5: simple CSS visual — 4 ruled columns, one per audience type.
-         No shared image (avoids repeating business-context-study from hero). -->
-    <div class="biz-audiences-rule" aria-hidden="true" data-reveal>
-      <div class="biz-audiences-rule__col">
-        <span class="biz-audiences-rule__num">01</span>
-        <span class="biz-audiences-rule__label">Architects</span>
-      </div>
-      <div class="biz-audiences-rule__col">
-        <span class="biz-audiences-rule__num">02</span>
-        <span class="biz-audiences-rule__label">Institutions</span>
-      </div>
-      <div class="biz-audiences-rule__col">
-        <span class="biz-audiences-rule__num">03</span>
-        <span class="biz-audiences-rule__label">CSR / NGOs</span>
-      </div>
-      <div class="biz-audiences-rule__col">
-        <span class="biz-audiences-rule__num">04</span>
-        <span class="biz-audiences-rule__label">Gaushalas</span>
-      </div>
+    <div class="partner-strip" data-reveal>
+      <ul class="partner-strip__list">
+        <?php foreach ($PARTNER_AUDIENCES as $audience): ?>
+          <li class="partner-strip__item"><?= e($audience) ?></li>
+        <?php endforeach; ?>
+      </ul>
     </div>
 
     <div class="biz-audiences" data-reveal-stagger>
@@ -294,9 +253,9 @@ $helpfulInclude = [
           <span class="biz-form-card__eyebrow">Project enquiry</span>
           <h2 class="biz-form-card__title" id="form-title">Discuss a Project.</h2>
           <p class="biz-form-card__note">
-            Tell us about the site and the wall. We will respond with what we
-            can practically supply — pack sizes, format, and how Prakritik Paint
-            fits your project.
+            Tell us about the project or the partnership. We will respond with
+            what we can practically supply — pack sizes, format, and how the
+            Gaurikrit ecosystem fits your project.
           </p>
         </div>
 

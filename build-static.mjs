@@ -105,6 +105,7 @@ const COMPANY = {
         'India',
     ],
     siteUrl: SITE_URL,
+    vision: 'To become a leading circular-economy company transforming natural and agricultural resources into sustainable products for homes, industries and communities.',
 };
 
 const PRODUCTS = [
@@ -190,8 +191,12 @@ const PROJECT_PATHWAYS = [
 
 const INTEREST_OPTIONS = {
     general: 'General enquiry',
+    'eco-paints': 'Eco-Paints',
     'prakritik-distemper': 'Prakritik Distemper',
     'prakritik-emulsion': 'Prakritik Emulsion',
+    'gocast-logs': 'GoCast Logs',
+    'bio-coal-logs': 'Bio-Coal Logs',
+    'utility-products': 'Utility Products',
     'bulk-project': 'Bulk / Project',
     'business-partnership': 'Business Partnership',
     'gaushala-collaboration': 'Gaushala Collaboration',
@@ -203,6 +208,12 @@ const PROJECT_TYPES = [
     'Institutional',
     'CSR / NGO',
     'Gaushala Collaboration',
+    'Eco-Paints',
+    'GoCast Logs',
+    'Bio-Coal Logs',
+    'Utility Products',
+    'Distribution',
+    'Sustainability Collaboration',
     'Other',
 ];
 
@@ -220,12 +231,137 @@ const FAQ = [
 
 const NAV = [
     { label: 'Home', href: '/' },
+    { label: 'Our Story', href: '/about/' },
     { label: 'Products', href: '/products/' },
-    { label: 'Why Prakritik', href: '/why-prakritik/' },
-    { label: 'About', href: '/about/' },
-    { label: 'For Business', href: '/for-business/' },
-    { label: 'Calculator', href: '/paint-calculator/' },
+    { label: 'Sustainability', href: '/sustainability/' },
+    { label: 'Innovation', href: '/innovation/' },
+    { label: 'Partners', href: '/for-business/' },
     { label: 'Contact', href: '/contact/' },
+];
+
+const NAV_UTILITIES = [
+    { label: 'Painting Calculator', href: '/paint-calculator/' },
+    { label: 'Downloads / Brochure', href: '/downloads/' },
+];
+
+const FAMILIES = [
+    {
+        num: '01', id: 'eco-paints', name: 'Eco-Paints',
+        line: 'Healthy walls inspired by nature.',
+        desc: 'Cow dung-based wall coatings in Distemper and Emulsion formats — the most developed family in the Gaurikrit ecosystem, documented with full product specifications.',
+        status: 'Documented family',
+        themes: ['Eco-conscious formulation', 'Sustainable building applications', 'Natural-finish positioning'],
+        href: '/products/#eco-paints',
+    },
+    {
+        num: '02', id: 'gocast-logs', name: 'GoCast Logs',
+        line: 'Saving trees without changing traditions.',
+        desc: 'A dense log format developed as an alternative to conventional wood — directed at ceremonial and traditional applications where wood has long been the default.',
+        status: 'Development direction',
+        themes: ['Alternative to conventional wood', 'Ceremonial applications', 'Forest-conservation direction'],
+        href: '/products/#gocast-logs',
+    },
+    {
+        num: '03', id: 'bio-coal-logs', name: 'Bio-Coal Logs',
+        line: 'Renewable energy from natural biomass.',
+        desc: 'Biomass-based fuel logs — a renewable energy direction that explores how natural material streams can reduce reliance on fossil fuels.',
+        status: 'Development direction',
+        themes: ['Biomass energy', 'Reduced fossil-fuel reliance direction', 'Sustainable fuel applications'],
+        href: '/products/#bio-coal-logs',
+    },
+    {
+        num: '04', id: 'utility-products', name: 'Utility Products',
+        line: 'Sustainable products for everyday living.',
+        desc: 'Practical daily-use products from naturally derived materials — a plastic-reducing direction for homes, gardens and everyday routines.',
+        status: 'Development direction',
+        themes: ['Plastic-reducing alternatives', 'Practical daily-use applications', 'Circular-economy solutions'],
+        href: '/products/#utility-products',
+    },
+];
+
+const CIRCULAR_STAGES = [
+    { num: '01', name: 'Collection', desc: 'Natural and agricultural material streams are gathered.' },
+    { num: '02', name: 'Processing', desc: 'The raw material is prepared and stabilised.' },
+    { num: '03', name: 'Material Enhancement', desc: 'It is developed into useful working materials.' },
+    { num: '04', name: 'Manufacturing', desc: 'Materials are formed into product families.' },
+    { num: '05', name: 'Products', desc: 'Walls, energy and everyday-use applications.' },
+    { num: '06', name: 'Environmental Impact', desc: 'Each use replaces a less sustainable alternative.' },
+    { num: '07', name: 'Resource Regeneration', desc: 'The cycle renews — nothing goes to waste.' },
+];
+
+const IMPACT_AREAS = [
+    { label: 'Trees', area: 'Resource conservation', desc: 'Reducing dependence on conventional resource-intensive alternatives.' },
+    { label: 'Waste', area: 'Material reuse', desc: 'Creating useful applications for natural and agricultural material streams.' },
+    { label: 'Energy', area: 'Alternative fuel', desc: 'Exploring renewable biomass-based fuel applications.' },
+    { label: 'Carbon', area: 'Reduction direction', desc: 'Directional reduction of reliance on fossil-based materials.' },
+    { label: 'Rural', area: 'Value creation', desc: 'Creating additional value around agricultural ecosystems.' },
+];
+
+const INNOVATION_AREAS = [
+    { num: '01', name: 'Natural Coatings', desc: 'Wall coatings and finishes from naturally derived materials.' },
+    { num: '02', name: 'Biomass Energy', desc: 'Fuel directions from natural biomass material streams.' },
+    { num: '03', name: 'Bio-Composites', desc: 'Composite materials that carry natural fibres and minerals.' },
+    { num: '04', name: 'Carbon Reduction Technologies', desc: 'Approaches that reduce reliance on fossil-based alternatives.' },
+    { num: '05', name: 'Sustainable Building Materials', desc: 'Construction materials from renewable natural resources.' },
+];
+
+const APPLICATION_GROUPS = [
+    {
+        title: 'Buildings & Construction',
+        items: [
+            { name: 'Eco-Paints', href: '/products/#eco-paints', live: true },
+            { name: 'Protective Coatings', href: null, live: false },
+            { name: 'Decorative Finishes', href: null, live: false },
+        ],
+    },
+    {
+        title: 'Energy & Fuel',
+        items: [
+            { name: 'Bio-Coal Logs', href: '/products/#bio-coal-logs', live: false },
+            { name: 'Biomass Fuel Solutions', href: null, live: false },
+        ],
+    },
+    {
+        title: 'Traditional & Ritual Applications',
+        items: [
+            { name: 'GoCast Logs', href: '/products/#gocast-logs', live: false },
+            { name: 'Eco Cremation Solutions', href: null, live: false },
+        ],
+    },
+    {
+        title: 'Everyday Sustainable Living',
+        items: [
+            { name: 'Utility Products', href: '/products/#utility-products', live: false },
+            { name: 'Home & Garden Products', href: null, live: false },
+            { name: 'Eco Lifestyle Solutions', href: null, live: false },
+        ],
+    },
+];
+
+const WHY_PRINCIPLES = [
+    { num: '01', name: 'Nature-Led Innovation', desc: 'Products begin with a natural material, not a chemical substitute.' },
+    { num: '02', name: 'Circular Thinking', desc: 'The same resource is designed to serve many applications.' },
+    { num: '03', name: 'Environmental Responsibility', desc: 'Every direction replaces a less sustainable alternative.' },
+    { num: '04', name: 'Rural Value Creation', desc: 'Value is created around agricultural ecosystems.' },
+];
+
+const PARTNER_AUDIENCES = [
+    'Distributors',
+    'Dealers',
+    'Architects',
+    'Contractors',
+    'Institutions',
+    'Industries',
+    'Sustainability Partners',
+];
+
+const FOOTER_PRODUCTS = [
+    { label: 'Eco-Paints', href: '/products/#eco-paints' },
+    { label: 'Prakritik Distemper', href: '/products/prakritik-distemper/' },
+    { label: 'Prakritik Emulsion', href: '/products/prakritik-emulsion/' },
+    { label: 'GoCast Logs', href: '/products/#gocast-logs' },
+    { label: 'Bio-Coal Logs', href: '/products/#bio-coal-logs' },
+    { label: 'Utility Products', href: '/products/#utility-products' },
 ];
 
 const NAV_PRODUCTS = [
@@ -328,6 +464,7 @@ function renderHeader(pageMeta, depth) {
         '/products/prakritik-distemper/':'distemper',
         '/products/prakritik-emulsion/':'emulsion',
         '/why-prakritik/':'why-prakritik','/about/':'about',
+        '/sustainability/':'sustainability','/innovation/':'innovation',
         '/for-business/':'for-business','/paint-calculator/':'calculator',
         '/downloads/':'downloads','/contact/':'contact'})[pageMeta.canonical] || 'home';
     const ogImage = SITE_URL.replace(/\/$/, '') + '/assets/social/og-' + socialSlug + '.jpg';
@@ -363,8 +500,10 @@ function renderHeader(pageMeta, depth) {
         '/products/prakritik-distemper/': 'Prakritik Distemper Paint',
         '/products/prakritik-emulsion/': 'Prakritik Emulsion Paint',
         '/why-prakritik/': 'Why Prakritik',
-        '/about/': 'About',
-        '/for-business/': 'For Business',
+        '/about/': 'Our Story',
+        '/sustainability/': 'Sustainability',
+        '/innovation/': 'Innovation',
+        '/for-business/': 'Partners',
         '/paint-calculator/': 'Paint Calculator',
         '/downloads/': 'Downloads',
         '/contact/': 'Contact',
@@ -423,6 +562,11 @@ ${JSON.stringify(ldProduct, null, 2)}
     const mobileLinks = NAV.map(
         (link) =>
             `                <a href="${relUrl(link.href, depth)}" class="mobile-menu__link" data-nav-link="${e(link.href)}">${e(link.label)}<span class="mobile-menu__arrow">→</span></a>`,
+    ).join('\n');
+
+    const utilityLinks = NAV_UTILITIES.map(
+        (link) =>
+            `                    <a href="${relUrl(link.href, depth)}" class="mobile-menu__utility-link">${e(link.label)}</a>`,
     ).join('\n');
 
     return `<!DOCTYPE html>
@@ -503,6 +647,11 @@ ${navLinks}
             <nav class="mobile-menu__nav" aria-label="Mobile">
 ${mobileLinks}
             </nav>
+            <!-- V16 §46: secondary utilities near the bottom of the menu. -->
+            <div class="mobile-menu__utilities">
+                <p class="mobile-menu__utilities-label">Tools</p>
+${utilityLinks}
+            </div>
             <div class="mobile-menu__foot">
                 <a href="${relUrl('/contact/', depth)}" class="btn btn--primary btn--block">Talk to Us</a>
             </div>
@@ -521,7 +670,7 @@ function renderFooter(depth) {
                 `                <p class="site-footer__contact-line"><a href="tel:${e(phone.replace(/ /g, ''))}">${e(phone)}</a></p>`,
         )
         .join('\n');
-    const navLinks = NAV.map(
+    const productLinks = FOOTER_PRODUCTS.map(
         (link) => `                <a href="${relUrl(link.href, depth)}">${e(link.label)}</a>`,
     ).join('\n');
 
@@ -546,18 +695,25 @@ function renderFooter(depth) {
                 <p class="site-footer__brandline">${e(COMPANY.brandLine)}</p>
                 <p class="site-footer__legal-name">${e(COMPANY.legalName)}</p>
             </div>
-            <nav class="site-footer__col" aria-label="Navigate">
-                <h4 class="site-footer__heading">Navigate</h4>
-${navLinks}
+            <nav class="site-footer__col site-footer__col--company" aria-label="Company">
+                <h4 class="site-footer__heading">Company</h4>
+                <a href="${relUrl('/', depth)}">Home</a>
+                <a href="${relUrl('/about/', depth)}">Our Story</a>
+                <a href="${relUrl('/sustainability/', depth)}">Sustainability</a>
+                <a href="${relUrl('/innovation/', depth)}">Innovation</a>
             </nav>
             <nav class="site-footer__col" aria-label="Products">
                 <h4 class="site-footer__heading">Products</h4>
-                <a href="${relUrl('/products/prakritik-distemper/', depth)}">Prakritik Distemper</a>
-                <a href="${relUrl('/products/prakritik-emulsion/', depth)}">Prakritik Emulsion</a>
-                <a href="${relUrl('/downloads/', depth)}">Brochure</a>
-                <a href="${relUrl('/for-business/', depth)}">For Business</a>
+${productLinks}
             </nav>
-            <div class="site-footer__col">
+            <nav class="site-footer__col site-footer__col--work" aria-label="Work with us">
+                <h4 class="site-footer__heading">Work With Us</h4>
+                <a href="${relUrl('/for-business/', depth)}">Partners</a>
+                <a href="${relUrl('/paint-calculator/', depth)}">Painting Calculator</a>
+                <a href="${relUrl('/downloads/', depth)}">Downloads</a>
+                <a href="${relUrl('/contact/', depth)}">Contact</a>
+            </nav>
+            <div class="site-footer__col site-footer__col--contact">
                 <h4 class="site-footer__heading">Contact</h4>
                 <p class="site-footer__contact-line">
                     <a href="mailto:${e(COMPANY.email)}">${e(COMPANY.email)}</a>
@@ -591,6 +747,7 @@ ${phoneLinks}
     <script src="${jsBase}colour-study.js?v=static"></script>
     <script src="${jsBase}forms.js?v=static"></script>
     <script src="${jsBase}calculator.js?v=static"></script>
+    <script src="${jsBase}story.js?v=static"></script>
     <script src="${jsBase}app.js?v=static"></script>
 </body>
 </html>
@@ -610,72 +767,104 @@ function generatePage(pageMeta, depth, bodyContent) {
 
 // ---- Homepage (index.html) — V4 ----
 function homeBody(depth) {
-    const distemper = getProduct('prakritik-distemper');
-    const emulsion = getProduct('prakritik-emulsion');
-    const groupImage = '/assets/products/prakritik-group.jpg';
-    const groupImg = assetUrl(groupImage, depth);
+    const pairImage = assetUrl('/assets/products/prakritik-pair.jpg', depth);
+    const rawMaterial = pic('/assets/editorial/raw-material-study.webp', '/assets/editorial/raw-material-study.jpg', 'Raw natural material — a lime-plastered surface study', 1344, 768, depth);
+    const finishedSurface = pic('/assets/editorial/finished-surface-study.webp', '/assets/editorial/finished-surface-study.jpg', 'Finished matte wall surface — a useful application', 1344, 768, depth);
+    const distemperProduct = pic('/assets/products/prakritik-distemper-from-pair.webp', '/assets/products/prakritik-distemper-from-pair.png', 'Prakritik Distemper paint pack — developed natural material', 649, 612, depth);
 
-    const ashtaItems = ASHTA_LAABH.map((benefit, i) => {
-        return `        <li class="benefits-grid__item">
-          <span class="benefits-grid__num" aria-hidden="true">${pad2(i + 1)}</span>
-          <span class="benefits-grid__name">${e(benefit.name)}</span>
-          <span class="benefits-grid__deva">${e(benefit.hindi)}</span>
-        </li>`;
+    const familiesMarkup = FAMILIES.map((family) => {
+        const isPhoto = family.id === 'eco-paints';
+        const textures = {
+            'gocast-logs': '/assets/editorial/raw-material-study',
+            'bio-coal-logs': '/assets/editorial/exterior-finish-study',
+            'utility-products': '/assets/editorial/courtyard-study',
+        };
+        const media = isPhoto
+            ? `            <figure class="family__media family__media--photo">
+                <img src="${pairImage}"
+                     alt="Prakritik Distemper and Emulsion paint packs — the Eco-Paints family"
+                     width="1420" height="618"
+                     loading="lazy" decoding="async">
+            </figure>`
+            : `            <figure class="family__media family__media--plate" aria-label="${e(family.name)} — material direction">
+                <span class="family__media-plate-texture" aria-hidden="true">
+                    ${pic(textures[family.id] + '.webp', textures[family.id] + '.jpg', '', 1344, 768, depth)}
+                </span>
+                <span class="family__media-plate-word">${e(family.name)}</span>
+                <span class="family__media-plate-tag">Material direction</span>
+            </figure>`;
+        const themes = family.themes.map((t) => `              <li>${e(t)}</li>`).join('\n');
+        const statusClass = family.status === 'Documented family' ? '' : ' family__status--direction';
+        return `        <article class="family" id="family-${e(family.id)}">
+${media}
+
+          <div class="family__head">
+            <span class="family__num" aria-hidden="true">${e(family.num)}</span>
+            <h3 class="family__name">${e(family.name)}</h3>
+          </div>
+          <p class="family__line">${e(family.line)}</p>
+          <p class="family__desc">${e(family.desc)}</p>
+          <p class="family__meta">
+            <span class="family__status${statusClass}">
+              ${e(family.status)}
+            </span>
+          </p>
+          <ul class="family__themes">
+${themes}
+          </ul>
+          <a class="family__cta" href="${relUrl(family.href, depth)}">
+            Explore ${e(family.name)} <span aria-hidden="true">→</span>
+          </a>
+        </article>`;
     }).join('\n');
 
-    const swatches = COLOUR_STUDY.map(
-        (sw) => `        <button type="button"
-                class="colours-swatch"
-                role="radio"
-                aria-checked="false"
-                style="background: ${e(sw.hex)};"
-                data-shade="${e(sw.hex)}"
-                data-shade-name="${e(sw.name)} (${e(sw.label)})"
-                data-colour-id="${e(sw.name.toLowerCase())}"
-                aria-label="${e(sw.name)} — ${e(sw.label)}">
-          <span class="colours-swatch__label">${e(sw.name)}</span>
-        </button>`,
-    ).join('\n');
+    const circularStages = CIRCULAR_STAGES.map((stage) => `          <li class="stage">
+            <span class="stage__num">${e(stage.num)}</span>
+            <h3 class="stage__name">${e(stage.name)}</h3>
+            <p class="stage__desc">${e(stage.desc)}</p>
+          </li>`).join('\n');
 
-    const pathways = PROJECT_PATHWAYS.map(
-        (p, i) => `        <div class="pathway">
-          <span class="pathway__num">${pad2(i + 1)}</span>
-          <h3 class="pathway__title">${e(p.title)}</h3>
-          <p class="pathway__desc">${e(p.desc)}</p>
-        </div>`,
-    ).join('\n');
+    const appGroups = APPLICATION_GROUPS.map((group) => {
+        const items = group.items.map((item) => {
+            const cls = item.live ? ' app-group__item--live' : ' app-group__item--direction';
+            const name = item.href
+                ? `<a href="${relUrl(item.href, depth)}">${e(item.name)}</a>`
+                : `<span>${e(item.name)}</span>`;
+            return `            <li class="app-group__item${cls}">
+              ${name}
+              <span class="app-group__item-tag">${item.live ? 'Family' : 'Direction'}</span>
+            </li>`;
+        }).join('\n');
+        return `        <div class="app-group">
+          <h3 class="app-group__title">${e(group.title)}</h3>
+          <ul class="app-group__list">
+${items}
+          </ul>
+        </div>`;
+    }).join('\n');
 
-    // Picture tags (V10 — the zebu/courtyard editorial art is retired from
-    // the home page; the material story now uses surface studies and the
-    // colour study uses the purpose-built wall elevation).
-    const rawMaterialMaterialPic = pic('/assets/editorial/raw-material-study.webp', '/assets/editorial/raw-material-study.jpg',
-        'Raw lime-plastered wall surface — an Indian natural wall material', 1344, 768, depth, 'class="editorial-image"');
-    const ruralLandscapePic = pic('/assets/editorial/rural-landscape.webp', '/assets/editorial/rural-landscape.jpg',
-        '', 1344, 768, depth, 'class="editorial-image"');
-    const interiorFinishStripPic = pic('/assets/editorial/interior-finish-study.webp', '/assets/editorial/interior-finish-study.jpg',
-        '', 1344, 768, depth, 'class="chapter-strip"');
-    const exteriorFinishStripPic = pic('/assets/editorial/exterior-finish-study.webp', '/assets/editorial/exterior-finish-study.jpg',
-        '', 1344, 768, depth, 'class="chapter-strip"');
-    const rawMaterialJourneyPic = pic('/assets/editorial/raw-material-study.webp', '/assets/editorial/raw-material-study.jpg',
-        'Raw lime-plastered wall surface — natural material', 1344, 768, depth, 'class="editorial-image"');
-    const finishedSurfaceJourneyPic = pic('/assets/editorial/finished-surface-study.webp', '/assets/editorial/finished-surface-study.jpg',
-        'Finished matte limewash wall surface', 1344, 768, depth, 'class="editorial-image"');
-    const colourWallColoursPic = pic('/assets/editorial/colour-wall-study.webp', '/assets/editorial/colour-wall-study.jpg',
-        'Indian lime-plastered wall elevation with door and window', 1344, 768, depth, 'class="colours-wall__art"');
-    const ruralMissionPic = pic('/assets/editorial/rural-landscape.webp', '/assets/editorial/rural-landscape.jpg',
-        '', 1344, 768, depth, 'class="editorial-image"');
+    const principles = WHY_PRINCIPLES.map((p) => `        <div class="principle">
+          <span class="principle__num" aria-hidden="true">${e(p.num)}</span>
+          <h3 class="principle__name">${e(p.name)}</h3>
+          <p class="principle__desc">${e(p.desc)}</p>
+        </div>`).join('\n');
+
+    const impactRows = IMPACT_AREAS.map((area) => `        <div class="impact-row">
+          <span class="impact-row__label">${e(area.label)}</span>
+          <span class="impact-row__area">${e(area.area)}</span>
+          <p class="impact-row__desc">${e(area.desc)}</p>
+        </div>`).join('\n');
+
+    const focusRows = INNOVATION_AREAS.map((focus) => `          <div class="focus-row">
+            <span class="focus-row__num" aria-hidden="true">${e(focus.num)}</span>
+            <h3 class="focus-row__name">${e(focus.name)}</h3>
+            <p class="focus-row__desc">${e(focus.desc)}</p>
+          </div>`).join('\n');
+
+    const audienceItems = PARTNER_AUDIENCES.map((a) => `        <li class="partner-strip__item">${e(a)}</li>`).join('\n');
 
     return `<style>
-  /* ===== Editorial image reset (V4 — NO mix-blend-mode, NO blur filters) ===== */
-  .editorial-image {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  .editorial-image--contain { object-fit: contain; }
-
-  /* ===== 1. HERO — group photo dominant on a quiet catalogue plate ===== */
+  /* ===== 01. HERO — story lockup 5 / material field 7 ===== */
   .hero { padding-top: calc(var(--header-h) + 1.5rem); padding-bottom: 1.5rem; }
   @media (min-width: 1024px) {
     .hero { display: flex; align-items: center;
@@ -693,187 +882,54 @@ function homeBody(depth) {
     .hero__visual { order: 5; }
   }
   .hero__eyebrow-chip { margin-bottom: 0.875rem; }
-  .hero__title { font-size: clamp(2.5rem, 6vw, 5.5rem); line-height: 1.04; }
-  .hero__body { max-width: 38rem; }
+  .hero__title { font-size: clamp(2.375rem, 5.5vw, 5rem); line-height: 1.04; }
+  .hero__body { max-width: 40rem; }
   .hero__ctas { margin-top: 2.25rem; }
 
-  /* V12 hero visual: the real group photo on a QUIET catalogue plate —
-     paper ground, ONE hairline border, no 3px accent stripe, no shadow,
-     no decorative paint swash. The photo keeps its own light studio
-     ground and is shown complete (contain, natural 1280/621 aspect). */
-  .hero__visual { position: relative; min-height: 0; width: 100%; }
-  .hero__plate {
-    position: relative; z-index: 2;
+  /* ===== 02. RESOURCE STEPS — page-local rhythm only (structure §42.2) ===== */
+  .resource-section__head { max-width: 48rem; margin-bottom: 2.5rem; }
+
+  /* ===== 03. FOUR SOLUTIONS — page-local rhythm (structure §42.3) ===== */
+  .families-section__head { max-width: 48rem; margin-bottom: 2.75rem; }
+
+  /* ===== 04. CIRCULAR MODEL — page-local rhythm (structure §42.4) ===== */
+  .circular-section__head { max-width: 48rem; margin-bottom: 2.75rem; }
+
+  /* ===== 05. APPLICATIONS MATRIX (structure §42.5) ===== */
+  .applications-section__head { max-width: 48rem; margin-bottom: 2.5rem; }
+
+  /* ===== 08. INNOVATION TEASER — material research composition + rows ===== */
+  .innov-teaser__grid {
+    display: grid; grid-template-columns: 1fr; gap: 2.5rem; align-items: center;
+  }
+  @media (min-width: 1024px) { .innov-teaser__grid { grid-template-columns: 5fr 7fr; gap: 3.5rem; } }
+  .innov-composition { position: relative; min-height: 18rem; }
+  .innov-composition__plate {
+    position: absolute; overflow: hidden;
+    border: 1px solid var(--border); border-radius: var(--r-card);
     background: var(--paper);
-    border: 1px solid var(--border);
-    border-radius: var(--r-panel);
-    padding: clamp(0.75rem, 2vw, 1.5rem);
   }
-  .hero__plate img.hero-group-photo {
-    display: block;
-    width: 100%; height: auto;
-    object-fit: contain;
-    aspect-ratio: 1280 / 621;
+  .innov-composition__plate img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
   }
-
-  /* ===== 2. MATERIAL STATEMENT — raw-material-study large right (58%) ===== */
-  .material-statement__visual {
-    aspect-ratio: 1344/768;
-    background: var(--limewash);
-    overflow: hidden;
-    padding: 0;
-    position: relative;
+  .innov-composition__plate--a { left: 0; top: 0; width: 62%; aspect-ratio: 4 / 3; }
+  .innov-composition__plate--b { right: 0; bottom: 0; width: 52%; aspect-ratio: 4 / 3; }
+  .innov-composition__plate--b::after {
+    content: ""; position: absolute; left: 0; top: 0; width: 2.5rem; height: 0.25rem;
+    background: var(--haldi);
   }
-  .material-statement__visual .editorial-image {
-    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  .innov-composition__tag {
+    position: absolute; left: 0; bottom: -0.5rem; transform: translateY(100%);
+    font-size: 0.5625rem; font-weight: 700; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--fg-muted); padding-top: 1rem;
   }
 
-  /* ===== 3/4. PRODUCT CHAPTERS — catalogue plates. Structure lives in
-     app.css §14 (white product stage + wall-finish strip); nothing
-     page-local needed. ===== */
-
-  /* ===== 5. MATERIAL JOURNEY — 3 equal step cards (structure in app.css
-     §17 .material-step); page-local rhythm only. ===== */
-  .material-flow { padding-block: clamp(3rem, 6vw, 5rem); }
-  .material-flow__head { max-width: 48rem; margin-bottom: 2.5rem; }
-
-  /* ===== 6. ASHTA LAABH — the shared typographic benefits grid
-     (structure in app.css §18): numbered ruled entries, haldi numbering,
-     forest names, Hindi secondary. Section ground = soft warm wash.
-     No seal, no radial diagram, no page-local overrides needed. ===== */
-
-  /* ===== 7. COLOURS OF INDIA — wall plane + SVG paint mask (structure in
-     app.css §19: natural-aspect elevation photo + aligned mask path);
-     page-local: label typography + swatch row only. ===== */
-  .colours-section__head { max-width: 48rem; margin-bottom: 2.5rem; }
-  .colours-wall__label {
-    font-family: var(--font-display); font-size: 1.125rem; font-weight: 700;
-    z-index: 2;
-  }
-  .colours-wall__label small {
-    display: block; font-family: var(--font-sans); font-size: 0.625rem;
-    font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase;
-    color: var(--fg-muted); margin-top: 0.125rem;
-  }
-  .colours-swatches {
-    display: flex; flex-wrap: wrap; gap: 1.5rem 1.75rem;
-    margin-top: 2.5rem; justify-content: flex-start;
-  }
-  .colours-swatch {
-    width: 2.75rem; height: 2.75rem; border-radius: 50%;
-    border: 2px solid var(--border); padding: 0; cursor: pointer;
-    position: relative; transition: transform var(--dur), border-color var(--dur);
-    flex: 0 0 auto;  /* V12: never let the swatch row flex-shrink the circles */
-  }
-  .colours-swatch:hover { transform: translateY(-2px); }
-  .colours-swatch[data-active="true"] {
-    border-color: var(--forest); transform: translateY(-2px);
-  }
-  .colours-swatch__label {
-    position: absolute; top: calc(100% + 0.5rem); left: 50%;
-    transform: translateX(-50%); white-space: nowrap;
-    font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.14em;
-    text-transform: uppercase; color: var(--fg-muted);
-  }
-  /* V14: quiet share row under the swatches — only the copy button,
-     revealed after a colour is chosen (no layout shift: reserved height). */
-  .colours-share {
-    min-height: 2rem;
-    margin: 3.5rem 0 0;
-    display: flex;
-    align-items: center;
-  }
-  .colours-share .copy-btn { margin-left: 0; }
-
-  /* ===== 8. MISSION — forest band with rural-landscape engraving ===== */
-  .mission-band {
-    position: relative; padding-block: clamp(4rem, 8vw, 6.5rem);
-    background: var(--forest-deep); color: var(--primary-fg);
-    overflow: hidden;
-  }
-  .mission-band__bg {
-    position: absolute; inset: 0; opacity: 0.10; pointer-events: none;
-    overflow: hidden;
-  }
-  .mission-band__bg .editorial-image { width: 100%; height: 100%; object-fit: cover; }
-  .mission-band__inner {
-    position: relative; z-index: 1; max-width: 48rem;
-  }
-  .mission-band__eyebrow {
-    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.22em;
-    text-transform: uppercase; color: var(--haldi);
-  }
-  .mission-band__title {
-    margin-top: 0.875rem; font-family: var(--font-display); font-style: italic;
-    font-size: clamp(1.75rem, 4vw, 3.25rem); line-height: 1.15;
-    letter-spacing: -0.01em; color: var(--paper); text-wrap: balance;
-  }
-  .mission-band__sub {
-    margin-top: 1.5rem; font-size: 1rem; line-height: 1.7;
-    color: rgba(250, 248, 241, 0.78); max-width: 60ch;
-  }
-  .mission-band__cta { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 0.75rem; }
-
-  /* ===== 9. CALCULATOR TEASER (V7: a miniature of the actual calculator
-     UI — 'this is an interactive estimator', not a W × H poster) ===== */
-  .calc-teaser { padding-block: clamp(3.5rem, 6vw, 5.5rem); }
-  .calc-teaser__art {
-    position: relative;
-    background: var(--paper);
-    /* V9 fix: reset the legacy app.css .calc-teaser__art (flex + 4/3 aspect
-       meant for the old single-artwork composition). The V7 mini-calculator
-       sheet is a header + four stacked rows — block flow, content height. */
-    display: block;
-    aspect-ratio: auto;
-    border: 1px solid var(--border);
-    border-radius: var(--r-panel);
-    overflow: hidden;
-    padding: clamp(1.25rem, 2vw, 1.75rem);
-    box-shadow: 0 2px 12px -4px rgba(32, 30, 25, 0.06);
-  }
-  .calc-teaser__sheet-head {
-    display: flex; align-items: baseline; justify-content: space-between;
-    gap: 1rem; padding-bottom: 0.875rem; margin-bottom: 0.5rem;
-    border-bottom: 1px solid var(--border);
-  }
-  .calc-teaser__sheet-title {
-    font-family: var(--font-display); font-size: 1.125rem; font-weight: 700;
-    color: var(--primary);
-  }
-  .calc-teaser__sheet-tag {
-    font-size: 0.625rem; font-weight: 700; letter-spacing: 0.18em;
-    text-transform: uppercase; color: var(--fg-muted);
-  }
-  .calc-teaser__step {
-    display: grid; grid-template-columns: 2.25rem 1fr auto; gap: 0.875rem;
-    align-items: center;
-    padding: 0.875rem 0;
-    border-bottom: 1px dashed var(--border);
-  }
-  .calc-teaser__step:last-child { border-bottom: 0; }
-  .calc-teaser__step-num {
-    width: 2rem; height: 2rem; display: flex; align-items: center; justify-content: center;
-    border-radius: 50%;
-    background: color-mix(in srgb, var(--haldi) 22%, transparent);
-    border: 1px solid var(--forest);
-    font-size: 0.75rem; font-weight: 700; color: var(--forest);
-  }
-  .calc-teaser__step-label {
-    font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.16em;
-    text-transform: uppercase; color: var(--fg-muted);
-  }
-  .calc-teaser__step-value {
-    font-family: var(--font-display); font-size: 0.9375rem; font-weight: 700;
-    color: var(--primary); text-align: right;
-  }
-
-  /* ===== 10. PROJECT PATHWAYS (V7: audiences are the design — no generic
-     suburban house artwork) ===== */
-  .pathways-section { padding-block: clamp(3rem, 6vw, 5rem); }
+  /* ===== 10. PARTNERSHIP — page-local rhythm ===== */
+  .partnership__head { max-width: 48rem; margin-bottom: 1.5rem; }
 </style>
 
 <!-- ============================================================
-     1. HERO — 12-col (text 5 / visual 7), dominant group photo
+     01. HERO — one resource, many applications (§13-14)
      ============================================================ -->
 <section class="hero bg-limewash" aria-labelledby="hero-title">
   <div class="container">
@@ -884,216 +940,115 @@ function homeBody(depth) {
           GAURIKRIT BIO PRODUCTS
         </span>
         <span class="hero__devanagari" aria-hidden="true">${e(COMPANY.devanagari)}</span>
-        <h1 class="hero__title" id="hero-title">${e(COMPANY.headline)}</h1>
+        <h1 class="hero__title" id="hero-title">
+          Reimagining cow dung as a resource for sustainable living.
+        </h1>
         <p class="hero__body">
-          Cow dung-based Prakritik Paint in Distemper and Emulsion formats for interior and exterior walls.
+          Nature provides the resource. Gaurikrit explores how cow dung can be
+          carried into practical material solutions — from Prakritik Paint to
+          fuel and utility applications.
         </p>
         <div class="hero__ctas">
-          <a class="btn btn--primary btn--lg" href="${relUrl('/products/', depth)}">Explore Prakritik Paint</a>
-          <a class="btn btn--secondary btn--lg" href="${relUrl('/why-prakritik/', depth)}">Why Prakritik?</a>
+          <a class="btn btn--primary btn--lg" href="${relUrl('/products/', depth)}">Explore the Ecosystem</a>
+          <a class="btn btn--secondary btn--lg" href="${relUrl('/about/', depth)}">Our Story</a>
         </div>
       </div>
 
       <div class="hero__visual" data-reveal>
-        <div class="hero__plate">
-          <img class="hero-group-photo"
-               src="${assetUrl(groupImage, depth)}"
-               alt="Prakritik Distemper and Emulsion paint packs"
-               width="1280" height="621"
-               loading="eager" fetchpriority="high" decoding="async">
-        </div>
+        <figure class="story-field" aria-label="Gaurikrit material field — Prakritik Paint products and the four ecosystem directions">
+          <div class="story-field__texture" aria-hidden="true">
+            <img src="${assetUrl('/assets/editorial/raw-material-study.jpg', depth)}" alt="" width="1344" height="768" loading="eager" decoding="async">
+          </div>
+          <div class="story-field__chips" aria-hidden="true">
+            <span class="story-field__chip story-field__chip--haldi"></span>
+            <span class="story-field__chip story-field__chip--forest"></span>
+          </div>
+          <div class="story-field__inner">
+            <img class="story-field__photo"
+                 src="${pairImage}"
+                 alt="Prakritik Distemper and Prakritik Emulsion paint packs — the documented Eco-Paints family"
+                 width="1420" height="618"
+                 loading="eager" fetchpriority="high" decoding="async">
+            <figcaption class="story-field__markers">
+              <span class="story-field__marker story-field__marker--lead">
+                <span class="story-field__marker-dot" aria-hidden="true"></span>
+                <span class="story-field__marker-name">Eco-Paints</span>
+                <span class="story-field__marker-tag">Documented</span>
+              </span>
+              <span class="story-field__marker">
+                <span class="story-field__marker-dot" aria-hidden="true"></span>
+                <span class="story-field__marker-name">GoCast Logs</span>
+                <span class="story-field__marker-tag">Direction</span>
+              </span>
+              <span class="story-field__marker">
+                <span class="story-field__marker-dot" aria-hidden="true"></span>
+                <span class="story-field__marker-name">Bio-Coal Logs</span>
+                <span class="story-field__marker-tag">Direction</span>
+              </span>
+              <span class="story-field__marker">
+                <span class="story-field__marker-dot" aria-hidden="true"></span>
+                <span class="story-field__marker-name">Utility Products</span>
+                <span class="story-field__marker-tag">Direction</span>
+              </span>
+            </figcaption>
+          </div>
+        </figure>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ============================================================
-     2. MATERIAL STATEMENT — copy 42 / raw-material-study 58
+     02. FROM WASTE TO RESOURCE — the Gaurikrit story (§15-16)
      ============================================================ -->
-<section class="section section--paper" aria-labelledby="material-title">
+<section class="section section--paper resource-section" aria-labelledby="resource-title">
   <div class="container">
-    <div class="material-statement" data-reveal style="grid-template-columns: 42fr 58fr;">
-      <div class="material-statement__copy">
-        <span class="material-statement__eyebrow">An old Indian material idea</span>
-        <h2 class="material-statement__headline" id="material-title">
-          An old Indian material idea, reconsidered for modern walls.
-        </h2>
-        <hr class="material-statement__rule">
-        <div class="material-statement__body">
-          <p>
-            Traditional Indian homes have long used cow-dung-based coatings on
-            walls and floors. Prakritik Paint brings that material idea into
-            contemporary Distemper and Emulsion formats.
-          </p>
-          <p>
-            Both formats are listed for interior and exterior use.
-          </p>
-        </div>
-      </div>
-      <div class="material-statement__visual">
-        ${rawMaterialMaterialPic}
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     3. DISTEMPER PRODUCT CHAPTER (cool section, indigo accent)
-     Catalogue plate: complete pack photo + interior-finish strip.
-     ============================================================ -->
-<section class="product-chapter product-chapter--distemper" aria-labelledby="distemper-chapter-title">
-  <div class="container">
-    <div class="product-chapter__inner" data-reveal>
-      <figure class="product-chapter__visual">
-        <div class="product-chapter__stage">
-          <picture>
-            <source type="image/webp" srcset="${assetUrl(distemper.officialImageWebp, depth)}">
-            <img class="chapter-product chapter-product--distemper"
-                 src="${assetUrl(distemper.officialImage, depth)}"
-                 alt="${e(distemper.name)} paint pack"
-                 width="${distemper.officialImageW}" height="${distemper.officialImageH}"
-                 loading="lazy" decoding="async">
-          </picture>
-        </div>
-        <div class="product-chapter__strip" aria-hidden="true">
-          ${interiorFinishStripPic}
-        </div>
-      </figure>
-      <div class="product-chapter__copy">
-        <span class="product-chapter__eyebrow">Format 01 — Distemper</span>
-        <h3 class="product-chapter__name" id="distemper-chapter-title">
-          ${e(distemper.name)}
-        </h3>
-        <p class="product-chapter__desc">
-          ${e(distemper.descriptor)}. A paint listed for interior
-          and exterior walls. Supplied in ${e(distemper.packagingShort)} packs.
-        </p>
-        <dl class="product-chapter__specs">
-          <div class="duo-panel__row">
-            <dt>Finish</dt><dd>${e(distemper.finish)}</dd>
-          </div>
-          <div class="duo-panel__row">
-            <dt>Drying time</dt><dd>${e(distemper.dryingTime)}</dd>
-          </div>
-          <div class="duo-panel__row">
-            <dt>Coverage</dt><dd>${e(distemper.coverage)}</dd>
-          </div>
-          <div class="duo-panel__row">
-            <dt>V.O.C.</dt><dd>${e(distemper.voc)}</dd>
-          </div>
-        </dl>
-        <div class="product-chapter__cta">
-          <a class="btn btn--secondary" href="${relUrl(distemper.route, depth)}">View Distemper</a>
-          <a class="btn btn--outline" href="${relUrl('/contact/', depth)}?interest=prakritik-distemper">Enquire About Distemper</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     4. EMULSION PRODUCT CHAPTER (warm section, leaf accent, reversed)
-     Catalogue plate: complete pack photo + exterior-finish strip.
-     ============================================================ -->
-<section class="product-chapter product-chapter--emulsion" aria-labelledby="emulsion-chapter-title">
-  <div class="container">
-    <div class="product-chapter__inner" data-reveal>
-      <figure class="product-chapter__visual">
-        <div class="product-chapter__stage">
-          <picture>
-            <source type="image/webp" srcset="${assetUrl(emulsion.officialImageWebp, depth)}">
-            <img class="chapter-product chapter-product--emulsion"
-                 src="${assetUrl(emulsion.officialImage, depth)}"
-                 alt="${e(emulsion.name)} paint pack"
-                 width="${emulsion.officialImageW}" height="${emulsion.officialImageH}"
-                 loading="lazy" decoding="async">
-          </picture>
-        </div>
-        <div class="product-chapter__strip" aria-hidden="true">
-          ${exteriorFinishStripPic}
-        </div>
-      </figure>
-      <div class="product-chapter__copy">
-        <span class="product-chapter__eyebrow">Format 02 — Emulsion</span>
-        <h3 class="product-chapter__name" id="emulsion-chapter-title">
-          ${e(emulsion.name)}
-        </h3>
-        <p class="product-chapter__desc">
-          ${e(emulsion.descriptor)}. A paint listed for interior
-          and exterior walls. Supplied in ${e(emulsion.packagingShort)} packs.
-        </p>
-        <dl class="product-chapter__specs">
-          <div class="duo-panel__row">
-            <dt>Finish</dt><dd>${e(emulsion.finish)}</dd>
-          </div>
-          <div class="duo-panel__row">
-            <dt>Drying time</dt><dd>${e(emulsion.dryingTime)}</dd>
-          </div>
-          <div class="duo-panel__row">
-            <dt>Coverage</dt><dd>${e(emulsion.coverage)}</dd>
-          </div>
-          <div class="duo-panel__row">
-            <dt>V.O.C.</dt><dd>${e(emulsion.voc)}</dd>
-          </div>
-        </dl>
-        <div class="product-chapter__cta">
-          <a class="btn btn--secondary" href="${relUrl(emulsion.route, depth)}">View Emulsion</a>
-          <a class="btn btn--outline" href="${relUrl('/contact/', depth)}?interest=prakritik-emulsion">Enquire About Emulsion</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     5. MATERIAL JOURNEY — three equal step cards
-     ============================================================ -->
-<section class="section section--paper material-flow" aria-labelledby="journey-title">
-  <div class="container">
-    <div class="material-flow__head section-heading section-heading--left" data-reveal>
-      <span class="section-heading__eyebrow">Material to wall</span>
-      <h2 class="section-heading__title" id="journey-title">From a natural material to a finished wall.</h2>
+    <div class="resource-section__head section-heading section-heading--left" data-reveal>
+      <span class="section-heading__eyebrow">The Gaurikrit Story</span>
+      <h2 class="section-heading__title" id="resource-title">From Waste to Resource.</h2>
       <p class="section-heading__desc">
-        The raw material, the paint made from it, and the finished surface —
-        three steps, one material idea.
+        Traditional India has long recognised cow dung as a useful material.
+        Gaurikrit's direction is to carry that resource into practical
+        contemporary applications — from naturally derived material to products
+        for walls, energy and everyday use.
       </p>
     </div>
-    <div class="material-steps" data-reveal>
-      <article class="material-step">
-        <figure class="material-step__figure">
-          ${rawMaterialJourneyPic}
+
+    <div class="resource-steps" data-reveal-stagger>
+      <article class="resource-step">
+        <figure class="resource-step__figure">
+          ${rawMaterial}
         </figure>
-        <div class="material-step__caption">
-          <span class="material-step__num">01</span>
-          <h3 class="material-step__title">Natural material</h3>
-          <p class="material-step__desc">Cow dung is the material inspiration.</p>
+        <div class="resource-step__caption">
+          <span class="resource-step__kicker">Stage 01</span>
+          <h3 class="resource-step__title">Raw Material</h3>
+          <p class="resource-step__desc">
+            Cow dung — a natural material long valued in traditional Indian homes.
+          </p>
         </div>
       </article>
-      <article class="material-step material-step--product">
-        <figure class="material-step__figure">
-          <picture>
-            <source type="image/webp" srcset="${assetUrl(distemper.officialImageWebp, depth)}">
-            <img class="material-step__product"
-                 src="${assetUrl(distemper.officialImage, depth)}"
-                 alt="Prakritik Distemper paint pack"
-                 width="${distemper.officialImageW}" height="${distemper.officialImageH}"
-                 loading="lazy" decoding="async">
-          </picture>
+      <article class="resource-step">
+        <figure class="resource-step__figure">
+          ${distemperProduct}
         </figure>
-        <div class="material-step__caption">
-          <span class="material-step__num">02</span>
-          <h3 class="material-step__title">Prakritik Paint</h3>
-          <p class="material-step__desc">Available as Distemper and Emulsion.</p>
+        <div class="resource-step__caption">
+          <span class="resource-step__kicker">Stage 02</span>
+          <h3 class="resource-step__title">Material Development</h3>
+          <p class="resource-step__desc">
+            The resource is processed and developed into useful working materials.
+          </p>
         </div>
       </article>
-      <article class="material-step">
-        <figure class="material-step__figure">
-          ${finishedSurfaceJourneyPic}
+      <article class="resource-step">
+        <figure class="resource-step__figure">
+          ${finishedSurface}
         </figure>
-        <div class="material-step__caption">
-          <span class="material-step__num">03</span>
-          <h3 class="material-step__title">Finished wall</h3>
-          <p class="material-step__desc">Both are listed for interior and exterior use.</p>
+        <div class="resource-step__caption">
+          <span class="resource-step__kicker">Stage 03</span>
+          <h3 class="resource-step__title">Useful Applications</h3>
+          <p class="resource-step__desc">
+            Products for walls, energy and everyday use — nothing goes to waste.
+          </p>
         </div>
       </article>
     </div>
@@ -1101,188 +1056,286 @@ function homeBody(depth) {
 </section>
 
 <!-- ============================================================
-     6. ASHTA LAABH — interactive SVG seal + benefit list
+     03. ONE RESOURCE, FOUR SOLUTIONS — the ecosystem (§17-18)
      ============================================================ -->
-<section class="section section--haldi-wash ashta-section" aria-labelledby="ashta-title">
+<section class="section section--haldi-wash families-section" aria-labelledby="families-title">
   <div class="container">
-    <div class="section-heading section-heading--left" data-reveal>
-      <span class="section-heading__eyebrow">Ashta Laabh — अष्ट लाभ</span>
-      <h2 class="section-heading__title" id="ashta-title">Eight benefits of Prakritik Paint.</h2>
-      <p class="section-heading__desc">Benefits listed in the supplied Prakritik Paint material.</p>
+    <div class="families-section__head section-heading section-heading--left" data-reveal>
+      <span class="section-heading__eyebrow">The Gaurikrit Ecosystem</span>
+      <h2 class="section-heading__title" id="families-title">One resource. Four directions.</h2>
+      <p class="section-heading__desc">
+        Cow dung is the shared material beginning. Gaurikrit develops it in four
+        directions — Eco-Paints is the documented family; the others are
+        development directions presented without invented products.
+      </p>
     </div>
-    <ol class="benefits-grid" data-reveal-stagger>
-${ashtaItems}
-    </ol>
+
+    <div class="families" data-reveal-stagger>
+${familiesMarkup}
+    </div>
   </div>
 </section>
 
 <!-- ============================================================
-     7. COLOURS OF INDIA — wall-plane colour preview (SVG paint mask)
-     The mask path traces ONLY the wall plane of the elevation photo
-     (1344x768 pixel space); the door and window are cut out with
-     fill-rule evenodd so they never recolour. preserveAspectRatio
-     "xMidYMid slice" keeps the mask aligned with object-fit: cover.
+     04. NOTHING GOES TO WASTE — the circular model (§19-20)
      ============================================================ -->
-<section class="section section--paper colour-study colours-section" aria-labelledby="colours-title" data-colour-study>
+<section class="section section--paper circular-section" aria-labelledby="circular-title">
   <div class="container">
-    <div class="colours-section__head section-heading section-heading--left" data-reveal>
-      <span class="section-heading__eyebrow">Editorial colour study</span>
-      <h2 class="colours-section__title" id="colours-title">Colours of India.</h2>
-      <p class="colours-section__sub">
-        Tap a swatch to preview the colour on the wall — only the wall plane
-        changes; the door, window and surroundings stay as they are. These are
-        editorial design moods — not currently available product shades.
+    <div class="circular-section__head section-heading section-heading--left" data-reveal>
+      <span class="section-heading__eyebrow">The Circular Model</span>
+      <h2 class="section-heading__title" id="circular-title">Nothing Goes to Waste.</h2>
+      <p class="section-heading__desc">
+        One continuous cycle: the resource enters, is developed, becomes useful
+        products — and creates a new value cycle.
       </p>
     </div>
 
-    <div class="colours-wall" data-colour-wall data-reveal>
-      ${colourWallColoursPic}
-      <svg class="colours-wall__tint" viewBox="0 0 1344 768"
-           preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
-        <path class="colours-wall__paint" fill-rule="evenodd"
-              d="M0,104 H1344 V724 H0 Z
-                 M80,370 H304 V768 H80 Z
-                 M894,346 H1180 V654 H894 Z" />
+    <div class="circular" data-circular data-reveal>
+      <ol class="circular__track">
+${circularStages}
+      </ol>
+      <svg class="circular__loop-path" viewBox="0 0 1000 28" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M8,2 L8,20 C8,26 16,26 26,26 L974,26 C984,26 992,26 992,20 L992,10" />
       </svg>
-      <span class="colours-wall__label">
-        <span data-colour-label>Limewash</span>
-        <small>Editorial colour study</small>
-      </span>
+      <span class="circular__loop-label" aria-hidden="true">Resource regeneration</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     05. SOLUTIONS FOR MODERN INDIA — application matrix (§21-22)
+     ============================================================ -->
+<section class="section section--limewash applications-section" aria-labelledby="applications-title">
+  <div class="container">
+    <div class="applications-section__head section-heading section-heading--left" data-reveal>
+      <span class="section-heading__eyebrow">Application Areas</span>
+      <h2 class="section-heading__title" id="applications-title">Sustainable Solutions for Modern India.</h2>
+      <p class="section-heading__desc">
+        Where the ecosystem works — buildings, energy, traditional applications
+        and everyday living.
+      </p>
     </div>
 
-    <div class="colours-swatches" data-reveal-stagger role="radiogroup" aria-label="Wall colour swatches">
-${swatches}
+    <div class="app-matrix" data-reveal-stagger>
+${appGroups}
     </div>
-
-    <!-- V14: quiet share affordance — revealed by colour-study.js once a
-         colour is selected; copies the current URL incl. #colour=<id>. -->
-    <p class="colours-share">
-      <button type="button" class="copy-btn" data-colour-copy data-copy="" hidden
-              aria-label="Copy a link to this wall colour">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-        <span class="copy-btn__label">Copy link to this colour</span>
-      </button>
+    <p class="app-matrix-note" data-reveal>
+      Entries marked <strong>Direction</strong> are application areas under exploration —
+      not products currently for sale. Eco-Paints is the documented family.
     </p>
   </div>
 </section>
 
 <!-- ============================================================
-     8. MISSION — deep forest band with rural-landscape engraving
+     06. WHY GAURIKRIT — four principles (§23)
      ============================================================ -->
-<section class="mission-band" aria-labelledby="mission-title">
-  <div class="mission-band__bg" aria-hidden="true">
-    ${ruralMissionPic}
-  </div>
+<section class="section section--haldi-wash principles-section" aria-labelledby="principles-title">
   <div class="container">
-    <div class="mission-band__inner" data-reveal>
-      <span class="mission-band__eyebrow">Our direction</span>
-      <h2 class="mission-band__title" id="mission-title">
-        ${e(COMPANY.mission)}
-      </h2>
-      <p class="mission-band__sub">
-        ${e(COMPANY.legalName)} — ${e(COMPANY.brandLine)}
+    <div class="section-heading section-heading--left" data-reveal>
+      <span class="section-heading__eyebrow">Why Gaurikrit</span>
+      <h2 class="section-heading__title" id="principles-title">What Makes Us Different.</h2>
+    </div>
+    <div class="principles-grid" data-reveal-stagger>
+${principles}
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     07. IMPACT AREAS — qualitative, NO counters (§24 / §3)
+     ============================================================ -->
+<section class="section section--paper impact-section" aria-labelledby="impact-title">
+  <div class="container">
+    <div class="section-heading section-heading--left" data-reveal>
+      <span class="section-heading__eyebrow">How Impact Is Created</span>
+      <h2 class="section-heading__title" id="impact-title">Every Product Creates Change.</h2>
+      <p class="section-heading__desc">
+        Five impact areas — described qualitatively. Verified figures will be
+        published as project data becomes available.
       </p>
-      <div class="mission-band__cta">
-        <a class="btn btn--haldi" href="${relUrl('/about/', depth)}">About Gaurikrit</a>
-        <a class="btn btn--secondary" href="${relUrl('/why-prakritik/', depth)}">Why Prakritik</a>
-      </div>
     </div>
+    <div class="impact-list" data-reveal-stagger>
+${impactRows}
+    </div>
+    <p class="impact-note" data-reveal>
+      Impact measurement will be added as verified project data becomes available.
+      <a href="${relUrl('/sustainability/', depth)}">Read the sustainability framework →</a>
+    </p>
   </div>
 </section>
 
 <!-- ============================================================
-     9. CALCULATOR TEASER — mini project-summary + wall elevation
+     08. RESEARCH & INNOVATION — focus areas teaser (§25)
      ============================================================ -->
-<section class="section section--limewash calc-teaser" aria-labelledby="calc-teaser-title">
+<section class="section section--limewash innov-teaser" aria-labelledby="innov-title">
   <div class="container">
-    <div class="calc-teaser__inner" data-reveal>
-      <div>
-        <span class="calc-teaser__eyebrow">Planning to paint?</span>
-        <h2 class="calc-teaser__heading" id="calc-teaser-title">Estimate your project.</h2>
-        <p class="calc-teaser__body">
-          Walk through four quick choices — what you are painting, where, which
-          Prakritik format, and the wall area. We summarise the project for you to
-          send to Gaurikrit to discuss your project.
+    <div class="section-heading section-heading--left" data-reveal>
+      <span class="section-heading__eyebrow">Research &amp; Innovation</span>
+      <h2 class="section-heading__title" id="innov-title">Where Tradition Meets Technology.</h2>
+    </div>
+    <div class="innov-teaser__grid" data-reveal>
+      <div class="innov-composition" aria-hidden="true">
+        <span class="innov-composition__plate innov-composition__plate--a">
+          <img src="${assetUrl('/assets/editorial/raw-material-study.jpg', depth)}" alt="" width="1344" height="768" loading="lazy" decoding="async">
+        </span>
+        <span class="innov-composition__plate innov-composition__plate--b">
+          <img src="${assetUrl('/assets/editorial/finished-surface-study.jpg', depth)}" alt="" width="1344" height="768" loading="lazy" decoding="async">
+        </span>
+        <span class="innov-composition__tag">Material research directions</span>
+      </div>
+      <div class="focus-rows">
+${focusRows}
+        <p class="impact-note" style="margin-top:1.25rem;">
+          These are FOCUS AREAS — research directions, not proven
+          accomplishments. <a href="${relUrl('/innovation/', depth)}">Explore Innovation →</a>
         </p>
-        <div class="calc-teaser__cta">
-          <a class="btn btn--primary btn--lg" href="${relUrl('/paint-calculator/', depth)}">Open Painting Calculator</a>
-        </div>
-      </div>
-      <div class="calc-teaser__art" aria-hidden="true">
-        <div class="calc-teaser__sheet-head">
-          <span class="calc-teaser__sheet-title">Your project</span>
-          <span class="calc-teaser__sheet-tag">4 steps</span>
-        </div>
-        <div class="calc-teaser__step">
-          <span class="calc-teaser__step-num">01</span>
-          <span class="calc-teaser__step-label">Painting type</span>
-          <span class="calc-teaser__step-value">Fresh / Repaint</span>
-        </div>
-        <div class="calc-teaser__step">
-          <span class="calc-teaser__step-num">02</span>
-          <span class="calc-teaser__step-label">Location</span>
-          <span class="calc-teaser__step-value">Interior / Exterior</span>
-        </div>
-        <div class="calc-teaser__step">
-          <span class="calc-teaser__step-num">03</span>
-          <span class="calc-teaser__step-label">Paint</span>
-          <span class="calc-teaser__step-value">Distemper / Emulsion</span>
-        </div>
-        <div class="calc-teaser__step">
-          <span class="calc-teaser__step-num">04</span>
-          <span class="calc-teaser__step-label">Wall area</span>
-          <span class="calc-teaser__step-value">sq.ft.</span>
-        </div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ============================================================
-     10. PROJECT PATHWAYS — V5: business-context-study shared + 4 ruled columns
+     09. VISION + MISSION — strong Forest section (§26)
      ============================================================ -->
-<section class="section section--paper pathways-section" aria-labelledby="pathways-title">
+<section class="section section--forest vision-mission" aria-labelledby="vision-title">
   <div class="container">
-    <div class="pathways-section__head section-heading section-heading--left" data-reveal>
-      <span class="section-heading__eyebrow">Project pathways</span>
-      <h2 class="pathways-section__title" id="pathways-title">Who is Prakritik Paint for?</h2>
-    </div>
-
-    <div class="pathways" data-reveal-stagger>
-${pathways}
-    </div>
-
-    <div class="pathways-foot">
-      <a class="btn btn--secondary" href="${relUrl('/for-business/', depth)}">Talk to Gaurikrit</a>
+    <div class="vision-mission__grid">
+      <div class="vision-mission__col">
+        <span class="vision-mission__eyebrow">Vision</span>
+        <h2 class="vision-mission__title" id="vision-title">
+          A circular-economy company in the making.
+        </h2>
+        <p class="vision-mission__text">
+          ${e(COMPANY.vision)}
+        </p>
+      </div>
+      <div class="vision-mission__col vision-mission__col--mission">
+        <span class="vision-mission__eyebrow">Mission</span>
+        <h2 class="vision-mission__title">
+          Practical alternatives, responsibly made.
+        </h2>
+        <p class="vision-mission__text">
+          To replace less sustainable alternatives with practical, accessible and
+          environmentally responsible product solutions.
+        </p>
+      </div>
     </div>
   </div>
 </section>
 
+<!-- ============================================================
+     10. PARTNERSHIP CTA (§27)
+     ============================================================ -->
+<section class="section section--paper partnership" aria-labelledby="partnership-title">
+  <div class="container">
+    <div class="partnership__head section-heading section-heading--left" data-reveal>
+      <span class="section-heading__eyebrow">Partnership</span>
+      <h2 class="section-heading__title" id="partnership-title">Let's Build a Greener Future Together.</h2>
+    </div>
+    <div class="partner-strip" data-reveal>
+      <ul class="partner-strip__list">
+${audienceItems}
+      </ul>
+      <div class="partner-strip__ctas">
+        <a class="btn btn--primary" href="${relUrl('/for-business/', depth)}">Become a Partner</a>
+        <a class="btn btn--secondary" href="${relUrl('/contact/', depth)}">Request Product Information</a>
+      </div>
+    </div>
+  </div>
+</section>
 `;
 }
 
-// ---- Products Overview (products/index.html) ----
 function productsBody(depth) {
     const distemper = getProduct('prakritik-distemper');
     const emulsion = getProduct('prakritik-emulsion');
-    const groupImage = '/assets/products/prakritik-pair.jpg';
-    const groupImg = assetUrl(groupImage, depth);
-    const groupImgWebp = assetUrl('/assets/products/prakritik-pair.webp', depth);
-    // V11: the products hero carries the client's official two-bucket comparison
-    // image (Distemper left, Emulsion right) — it is the visual argument for
-    // "Two formats of Prakritik Paint". The higher-resolution three-bucket shelf
-    // photo stays on the home + about heroes (prakritik-group.jpg).
+    const pairImage = assetUrl('/assets/products/prakritik-pair.jpg', depth);
 
-    const benefitsItems = ASHTA_LAABH.map(
-        (benefit, i) => `        <li class="benefits-grid__item">
+    const appGroups = APPLICATION_GROUPS.map((group) => {
+        const items = group.items.map((item) => {
+            const cls = item.live ? ' app-group__item--live' : ' app-group__item--direction';
+            const name = item.href
+                ? `<a href="${relUrl(item.href, depth)}">${e(item.name)}</a>`
+                : `<span>${e(item.name)}</span>`;
+            return `            <li class="app-group__item${cls}">
+              ${name}
+              <span class="app-group__item-tag">${item.live ? 'Family' : 'Direction'}</span>
+            </li>`;
+        }).join('\n');
+        return `        <div class="app-group">
+          <h3 class="app-group__title">${e(group.title)}</h3>
+          <ul class="app-group__list">
+${items}
+          </ul>
+        </div>`;
+    }).join('\n');
+
+    const familySection = (num, id, name, line, desc, themes, note, texture, interest, reverse, hlevel) => {
+        const themeList = themes.map((t) => `          <li>${e(t)}</li>`).join('\n');
+        const rev = reverse ? ' family-section--reverse' : '';
+        return `<!-- ============================================================
+     ${num}. ${name.toUpperCase()} — development direction
+     ============================================================ -->
+<section class="section section--${reverse ? 'limewash' : 'paper'} family-section${rev}" id="${id}" aria-labelledby="${id}-title">
+  <div class="container">
+    <div class="family-section__grid" data-reveal>
+      <div class="family-section__copy">
+        <span class="family-section__num" aria-hidden="true">${num}</span>
+        <h${hlevel} class="family-section__name" id="${id}-title">${e(name)}</h${hlevel}>
+        <p class="family-section__line">${e(line)}</p>
+        <p class="family-section__desc">
+          ${e(desc)}
+        </p>
+        <ul class="family-section__themes">
+${themeList}
+        </ul>
+        <p class="family-section__note">
+          ${e(note)}
+        </p>
+        <div class="family-section__cta">
+          <a class="btn btn--outline" href="${relUrl('/contact/', depth)}?interest=${interest}">Enquire About ${e(name.replace('Eco-Friendly ', ''))}</a>
+        </div>
+      </div>
+      <figure class="family-section__plate" aria-label="${e(name)} — material direction">
+        <span class="family-section__plate-texture" aria-hidden="true">
+          <img src="${assetUrl(texture, depth)}" alt="" width="1344" height="768" loading="lazy" decoding="async">
+        </span>
+        <span class="family-section__plate-word">${e(name.replace('Eco-Friendly ', ''))}</span>
+        <span class="family-section__plate-tag">Material direction</span>
+      </figure>
+    </div>
+  </div>
+</section>`;
+    };
+
+    const gocastSection = familySection('02', 'gocast-logs', 'GoCast Logs',
+        'Saving trees without changing traditions.',
+        'A dense log format developed as an alternative to conventional wood — directed at ceremonial and traditional applications where wood has long been the default.',
+        ['Alternative to conventional wood', 'Traditional / ceremonial application direction', 'Resource-conservation direction'],
+        'GoCast is a development direction. Specifications, availability and product photography will be published when the client supplies verified information.',
+        '/assets/editorial/raw-material-study.jpg', 'gocast-logs', false, '2');
+
+    const biocoalSection = familySection('03', 'bio-coal-logs', 'Bio-Coal Logs',
+        'Renewable energy from natural biomass.',
+        'Biomass-based fuel logs — a renewable energy direction that explores how natural material streams can reduce reliance on fossil fuels.',
+        ['Biomass energy', 'Reduced fossil-fuel reliance direction', 'Alternative fuel applications', 'Circular material use'],
+        'Bio-Coal is a development direction. Composition, calorific value and test data will be published when the client supplies verified information.',
+        '/assets/editorial/exterior-finish-study.jpg', 'bio-coal-logs', true, '2');
+
+    const utilitySection = familySection('04', 'utility-products', 'Eco-Friendly Utility Products',
+        'Sustainable products for everyday living.',
+        'Practical daily-use products from naturally derived materials — a plastic-reducing direction for homes, gardens and everyday routines.',
+        ['Plastic-reducing alternatives', 'Material reuse', 'Home / garden / lifestyle direction', 'Circular-economy solutions'],
+        'Utility Products is a development direction. A confirmed product list will be published when the client supplies verified information.',
+        '/assets/editorial/courtyard-study.jpg', 'utility-products', false, '2');
+
+    const ashtaItems = ASHTA_LAABH.map((benefit, i) => `        <li class="benefits-grid__item">
           <span class="benefits-grid__num" aria-hidden="true">${pad2(i + 1)}</span>
           <span class="benefits-grid__name">${e(benefit.name)}</span>
           <span class="benefits-grid__deva">${e(benefit.hindi)}</span>
-        </li>`,
-    ).join('\n');
+        </li>`).join('\n');
 
-    const faqItems = FAQ.map(
-        (item) => `        <div class="faq-item">
+    const faqItems = FAQ.map((item) => `        <div class="faq-item">
           <button type="button" class="faq-item__q" aria-expanded="false">
             <span>${e(item.q)}</span>
             <svg class="faq-item__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
@@ -1290,165 +1343,122 @@ function productsBody(depth) {
           <div class="faq-item__a">
             <div class="faq-item__a-inner">${item.a}</div>
           </div>
-        </div>`,
-    ).join('\n');
+        </div>`).join('\n');
 
-    // V10 picture tags for the catalogue-plate wall-finish strips.
-    const interiorFinishStripPic = pic('/assets/editorial/interior-finish-study.webp', '/assets/editorial/interior-finish-study.jpg',
-        '', 1344, 768, depth, 'class="chapter-strip"');
-    const exteriorFinishStripPic = pic('/assets/editorial/exterior-finish-study.webp', '/assets/editorial/exterior-finish-study.jpg',
-        '', 1344, 768, depth, 'class="chapter-strip"');
+    const specMatrixRows = [
+        ['Pack sizes', distemper.packagingShort, emulsion.packagingShort],
+        ['Colour', distemper.colour, emulsion.colour],
+        ['Finish', distemper.finish, emulsion.finish],
+        ['Drying time', distemper.dryingTime, emulsion.dryingTime],
+        ['Coverage', distemper.coverage, emulsion.coverage],
+        ['V.O.C.', distemper.voc, emulsion.voc],
+        ['Usage', distemper.usage, emulsion.usage],
+    ].map(([label, d, m]) => `      <div class="spec-matrix__row">
+        <span class="spec-matrix__label">${e(label)}</span>
+        <span class="spec-matrix__value">${e(d)}</span>
+        <span class="spec-matrix__value">${e(m)}</span>
+      </div>`).join('\n');
+
+    const specMobile = (product) => specMatrixRowsSource(product).map(([label, v]) => `        <div class="spec-matrix-mobile__row"><span class="k">${e(label)}</span><span class="v">${e(v)}</span></div>`).join('\n');
+
+    function specMatrixRowsSource(product) {
+        return [
+            ['Pack sizes', product.packagingShort],
+            ['Colour', product.colour],
+            ['Finish', product.finish],
+            ['Drying time', product.dryingTime],
+            ['Coverage', product.coverage],
+            ['V.O.C.', product.voc],
+            ['Usage', product.usage],
+        ];
+    }
 
     return `<style>
-  /* ===== Editorial image reset (V4 — NO mix-blend-mode, NO blur filters) ===== */
-  .editorial-image {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
+  /* ===== Editorial image reset (V4) ===== */
+  .editorial-image { display: block; width: 100%; height: 100%; object-fit: cover; }
 
-  /* ===== 1. PRODUCTS HERO (45 / 55) — the official pair photo on a quiet
-     catalogue plate: hairline border, paper ground, natural 1420/618
-     aspect. No min-height dead zones, no accent stripe, no shadow. ===== */
-  .products-hero {
-    padding-top: calc(var(--header-h) + 2rem);
-    padding-bottom: 1.5rem;
-  }
-  .products-hero__grid {
-    display: grid; gap: 2.5rem; align-items: center;
-    grid-template-columns: 1fr;
-  }
-  @media (min-width: 1024px) {
-    .products-hero__grid { grid-template-columns: 45fr 55fr; gap: clamp(2rem, 4vw, 4rem); }
-  }
+  /* ===== 1. ECOSYSTEM HERO ===== */
+  .products-hero { padding-top: calc(var(--header-h) + 2rem); padding-bottom: 1.5rem; }
+  .products-hero__grid { display: grid; gap: 2.5rem; align-items: center; grid-template-columns: 1fr; }
+  @media (min-width: 1024px) { .products-hero__grid { grid-template-columns: 45fr 55fr; gap: clamp(2rem, 4vw, 4rem); } }
   .products-hero__lockup { max-width: 42rem; }
-  .products-hero__visual {
-    position: relative; width: 100%;
-    background: var(--paper);
-    border: 1px solid var(--border);
-    border-radius: var(--r-panel);
-    padding: clamp(0.75rem, 2vw, 1.5rem);
-    overflow: hidden;
-  }
-  .products-hero__visual .hero-group-photo {
-    display: block;
-    width: 100%; height: auto;
-    aspect-ratio: 1420 / 618;
-    object-fit: contain;
-  }
+  .products-hero__visual { position: relative; width: 100%; background: var(--paper); border: 1px solid var(--border); border-radius: var(--r-panel); padding: clamp(0.75rem, 2vw, 1.5rem); overflow: hidden; }
+  .products-hero__visual .hero-group-photo { display: block; width: 100%; height: auto; aspect-ratio: 1420 / 618; object-fit: contain; }
 
-  /* ===== 2/3. PRODUCT CHAPTERS — catalogue plates (structure in
-     app.css §14: white product stage + wall-finish strip); nothing
-     page-local needed. ===== */
+  /* ===== 2. ECO-PAINTS FAMILY SECTION ===== */
+  .eco-family { padding-block: clamp(3rem, 6vw, 5rem); }
+  .eco-family__grid { display: grid; gap: 2.5rem; align-items: center; grid-template-columns: 1fr; }
+  @media (min-width: 1024px) { .eco-family__grid { grid-template-columns: 5fr 7fr; gap: clamp(2rem, 4vw, 4rem); } }
+  .eco-family__plate { background: var(--paper); border: 1px solid var(--border); border-radius: var(--r-panel); padding: clamp(0.75rem, 1.5vw, 1.25rem); }
+  .eco-family__plate img { display: block; width: 100%; height: auto; object-fit: contain; aspect-ratio: 1420 / 618; }
+  .eco-family__head { display: flex; align-items: baseline; gap: 0.875rem; }
+  .eco-family__num { font-family: var(--font-display); font-size: clamp(2rem, 3vw, 2.75rem); font-weight: 700; color: var(--haldi-deep); line-height: 1; font-variant-numeric: tabular-nums; }
+  .eco-family__name { font-family: var(--font-display); font-size: clamp(1.875rem, 3.5vw, 3rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.05; }
+  .eco-family__line { font-family: var(--font-display); font-style: italic; font-size: 1.125rem; color: var(--primary); margin-top: 0.75rem; }
+  .eco-family__sub { margin-top: 1rem; max-width: 40rem; line-height: 1.65; }
+  .eco-family__links { margin-top: 1.75rem; display: flex; flex-wrap: wrap; gap: 0.75rem; }
 
-  /* ===== SPEC MATRIX (V5: header row + zebra striping + taller rows
-     + bolder labels — a real product comparison, not a sparse list) ===== */
+  /* ===== UNDOCUMENTED FAMILY SECTIONS ===== */
+  .family-section { padding-block: clamp(3rem, 6vw, 5rem); }
+  .family-section__grid { display: grid; gap: 2.5rem; align-items: center; grid-template-columns: 1fr; }
+  @media (min-width: 1024px) {
+    .family-section__grid { grid-template-columns: 7fr 5fr; gap: clamp(2.5rem, 5vw, 4.5rem); }
+    .family-section--reverse .family-section__grid { grid-template-columns: 5fr 7fr; }
+    .family-section--reverse .family-section__copy { order: 2; }
+  }
+  .family-section__num { font-family: var(--font-display); font-size: clamp(2rem, 3vw, 2.75rem); font-weight: 700; color: var(--haldi-deep); line-height: 1; font-variant-numeric: tabular-nums; }
+  .family-section__name { font-family: var(--font-display); font-size: clamp(1.75rem, 3.5vw, 2.75rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.05; margin-top: 0.5rem; }
+  .family-section__line { font-family: var(--font-display); font-style: italic; font-size: 1.125rem; color: var(--primary); margin-top: 0.625rem; }
+  .family-section__desc { margin-top: 1rem; max-width: 40rem; line-height: 1.7; }
+  .family-section__themes { list-style: none; margin-top: 1.25rem; display: flex; flex-direction: column; gap: 0.5rem; border-top: 1px solid var(--border); padding-top: 1.125rem; }
+  .family-section__themes li { font-size: 0.875rem; color: var(--fg-muted); padding-left: 1.125rem; position: relative; line-height: 1.5; }
+  .family-section__themes li::before { content: ""; position: absolute; left: 0; top: 0.5em; width: 0.4375rem; height: 1px; background: var(--primary); }
+  .family-section__note { margin-top: 1.5rem; font-size: 0.8125rem; color: var(--fg-muted); line-height: 1.55; border-left: 2px solid var(--haldi); padding-left: 1rem; max-width: 40rem; }
+  .family-section__plate { position: relative; aspect-ratio: 4 / 5; max-height: 28rem; border: 1px solid var(--border); border-radius: var(--r-panel); overflow: hidden; background: var(--paper); }
+  .family-section__plate-texture { position: absolute; inset: 0; opacity: 0.15; }
+  .family-section__plate-texture img { width: 100%; height: 100%; object-fit: cover; }
+  .family-section__plate-word { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; text-align: center; padding: 2rem; font-family: var(--font-display); font-weight: 700; font-size: clamp(1.5rem, 2.5vw, 2.25rem); color: var(--primary); line-height: 1.15; }
+  .family-section__plate-tag { position: absolute; left: 1rem; bottom: 0.875rem; font-size: 0.5625rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--fg-muted); }
+  .family-section__cta { margin-top: 1.75rem; }
+
+  /* ===== SPEC MATRIX ===== */
   .spec-matrix-section { padding-block: clamp(3rem, 6vw, 5rem); }
   .spec-matrix-section__head { max-width: 48rem; margin-bottom: 2.5rem; }
-  /* V5: wrap the matrix in a soft paper panel so the striping reads. */
-  .spec-matrix {
-    border: 1px solid var(--border);
-    border-radius: var(--r-panel);
-    overflow: hidden;
-    background: var(--paper);
-  }
-  .spec-matrix__row {
-    grid-template-columns: 1fr; gap: 0.75rem;
-    padding: 1.75rem 1.25rem;  /* V5: taller, more padding */
-    border-bottom: 1px solid var(--border);
-  }
-  @media (min-width: 768px) {
-    .spec-matrix__row {
-      grid-template-columns: 12rem 1fr 1fr; gap: 1.5rem; padding: 1.75rem 1.5rem;
-    }
-  }
-  /* V5: zebra striping — alternating rows at haldi 3% opacity. */
-  .spec-matrix__row:nth-child(even) {
-    background: color-mix(in srgb, var(--haldi) 3%, transparent);
-  }
-  /* V7: header row clearly legible — forest text, tinted ground, strong rule. */
-  .spec-matrix__row:first-child {
-    border-bottom: 2px solid var(--forest);
-    background: color-mix(in srgb, var(--limewash) 80%, var(--paper));
-  }
+  .spec-matrix { border: 1px solid var(--border); border-radius: var(--r-panel); overflow: hidden; background: var(--paper); }
+  .spec-matrix__row { grid-template-columns: 1fr; gap: 0.75rem; padding: 1.75rem 1.25rem; border-bottom: 1px solid var(--border); }
+  @media (min-width: 768px) { .spec-matrix__row { grid-template-columns: 12rem 1fr 1fr; gap: 1.5rem; padding: 1.75rem 1.5rem; } }
+  .spec-matrix__row:nth-child(even) { background: color-mix(in srgb, var(--haldi) 3%, transparent); }
+  .spec-matrix__row:first-child { border-bottom: 2px solid var(--forest); background: color-mix(in srgb, var(--limewash) 80%, var(--paper)); }
   .spec-matrix__row:last-child { border-bottom: 0; }
-  .spec-matrix__col-head {
-    font-size: 0.8125rem; font-weight: 700; letter-spacing: 0.14em;
-    text-transform: uppercase; color: var(--forest);
-  }
+  .spec-matrix__col-head { font-size: 0.8125rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--forest); }
   .spec-matrix__col-head--distemper { color: var(--indigo); }
   .spec-matrix__col-head--emulsion { color: var(--leaf); }
-  /* V5: bolder spec labels. */
-  .spec-matrix__label {
-    font-weight: 700 !important;
-    font-size: 0.875rem !important;
-    color: var(--fg) !important;
-    letter-spacing: 0.02em;
-  }
-  .spec-matrix__value {
-    font-weight: 600 !important;
-    color: var(--fg) !important;
-  }
-  /* V7: below 640px the 3-column matrix is unreadable — two stacked spec
-     sheets instead (Distemper block + Emulsion block). */
+  .spec-matrix__label { font-weight: 700 !important; font-size: 0.875rem !important; color: var(--fg) !important; letter-spacing: 0.02em; }
+  .spec-matrix__value { font-weight: 600 !important; color: var(--fg) !important; }
   .spec-matrix-mobile { display: none; }
-  @media (max-width: 639px) {
-    .spec-matrix { display: none; }
-    .spec-matrix-mobile { display: grid; gap: 1.5rem; }
-  }
-  .spec-matrix-mobile__block {
-    border: 1px solid var(--border);
-    border-top: 3px solid var(--forest);
-    border-radius: var(--r-panel);
-    background: var(--paper);
-    overflow: hidden;
-  }
+  @media (max-width: 639px) { .spec-matrix { display: none; } .spec-matrix-mobile { display: grid; gap: 1.5rem; } }
+  .spec-matrix-mobile__block { border: 1px solid var(--border); border-top: 3px solid var(--forest); border-radius: var(--r-panel); background: var(--paper); overflow: hidden; }
   .spec-matrix-mobile__block--emulsion { border-top-color: var(--leaf); }
-  .spec-matrix-mobile__name {
-    padding: 1rem 1.25rem;
-    font-size: 0.8125rem; font-weight: 700; letter-spacing: 0.14em;
-    text-transform: uppercase; color: var(--forest);
-    background: color-mix(in srgb, var(--limewash) 80%, var(--paper));
-    border-bottom: 1px solid var(--border);
-  }
+  .spec-matrix-mobile__name { padding: 1rem 1.25rem; font-size: 0.8125rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--forest); background: color-mix(in srgb, var(--limewash) 80%, var(--paper)); border-bottom: 1px solid var(--border); }
   .spec-matrix-mobile__block--emulsion .spec-matrix-mobile__name { color: var(--leaf); }
-  .spec-matrix-mobile__row {
-    display: flex; justify-content: space-between; align-items: baseline; gap: 1rem;
-    padding: 0.75rem 1.25rem;
-    border-bottom: 1px solid var(--border);
-  }
+  .spec-matrix-mobile__row { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding: 0.75rem 1.25rem; border-bottom: 1px solid var(--border); }
   .spec-matrix-mobile__row:last-child { border-bottom: 0; }
-  .spec-matrix-mobile__row .k {
-    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em;
-    text-transform: uppercase; color: var(--fg-muted);
-  }
+  .spec-matrix-mobile__row .k { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--fg-muted); }
   .spec-matrix-mobile__row .v { font-weight: 600; color: var(--fg); text-align: right; }
 
-  /* ===== BENEFITS — the shared typographic grid (structure in app.css
-     §18: identical to Home / Why / detail pages). Nothing page-local. ===== */
+  /* ===== BENEFITS / APP MAP / FAQ ===== */
   .benefits-strip { padding-block: clamp(3rem, 6vw, 5rem); }
   .benefits-strip__head { max-width: 48rem; margin-bottom: 2rem; }
-
-  /* ===== FAQ (V5: more spacing above + haldi divider line) ===== */
-  .faq-section {
-    padding-block: clamp(4.5rem, 8vw, 6.5rem);  /* V5: increased */
-    position: relative;
-  }
-  /* V7: haldi divider line aligned to the content grid (container), never
-     the viewport edge. FAQ constrained to a readable 64rem measure. */
-  .faq-section .container::before {
-    content: ''; display: block;
-    width: 4rem; height: 2px;
-    background: var(--haldi);
-    margin: 0 0 3rem;
-  }
+  .appmap-section { padding-block: clamp(3rem, 6vw, 5rem); }
+  .appmap-section__head { max-width: 48rem; margin-bottom: 2.5rem; }
+  .faq-section { padding-block: clamp(4.5rem, 8vw, 6.5rem); position: relative; }
+  .faq-section .container::before { content: ''; display: block; width: 4rem; height: 2px; background: var(--haldi); margin: 0 0 3rem; }
   .faq-section__head { max-width: 48rem; margin-bottom: 2rem; }
   .faq-section .faq-list { max-width: 64rem; }
 </style>
 
 <!-- ============================================================
-     1. HERO — 45 / 55 (text / product group visual)
+     1. HERO — THE GAURIKRIT PRODUCT ECOSYSTEM (§30)
      ============================================================ -->
 <section class="products-hero bg-limewash" aria-labelledby="products-hero-title">
   <div class="container">
@@ -1458,21 +1468,21 @@ function productsBody(depth) {
     </nav>
     <div class="products-hero__grid">
       <div class="products-hero__lockup" data-reveal>
-        <span class="eyebrow"><span class="products-hero__eyebrow-dot" aria-hidden="true"></span>Prakritik Paint</span>
+        <span class="eyebrow"><span class="products-hero__eyebrow-dot" aria-hidden="true"></span>The Gaurikrit Product Ecosystem</span>
         <hr class="products-hero__rule">
-        <h1 class="products-hero__title" id="products-hero-title">Two formats of Prakritik Paint.</h1>
+        <h1 class="products-hero__title" id="products-hero-title">One natural resource. Multiple useful applications.</h1>
         <p class="products-hero__sub">
-          Cow dung-based paint, made for interior and exterior walls. Prakritik
-          Distemper and Prakritik Emulsion. Two formats, one
-          material idea.
+          Cow dung is the shared material beginning. Gaurikrit develops it in
+          four directions — Eco-Paints is the documented family; GoCast Logs,
+          Bio-Coal Logs and Utility Products are development directions.
         </p>
       </div>
       <div class="products-hero__visual" data-reveal>
         <picture>
-          <source type="image/webp" srcset="${groupImgWebp}">
+          <source type="image/webp" srcset="${assetUrl('/assets/products/prakritik-pair.webp', depth)}">
           <img class="hero-group-photo"
-               src="${groupImg}"
-               alt="Prakritik Distemper and Emulsion paint packs"
+               src="${pairImage}"
+               alt="Prakritik Distemper and Emulsion paint packs — the documented Eco-Paints family"
                width="1420" height="618"
                loading="eager" fetchpriority="high" decoding="async">
         </picture>
@@ -1482,8 +1492,44 @@ function productsBody(depth) {
 </section>
 
 <!-- ============================================================
-     2. DISTEMPER PRODUCT CHAPTER — catalogue plate
-     (complete pack photo + interior-finish strip; structure in app.css §14)
+     2. ECO-PAINTS — the documented family (§31)
+     ============================================================ -->
+<section class="section section--paper eco-family" id="eco-paints" aria-labelledby="eco-family-title">
+  <div class="container">
+    <div class="eco-family__grid" data-reveal>
+      <div class="eco-family__copy">
+        <div class="eco-family__head">
+          <span class="eco-family__num" aria-hidden="true">01</span>
+          <h2 class="eco-family__name" id="eco-family-title">Eco-Paints</h2>
+        </div>
+        <p class="eco-family__line">Healthy walls inspired by nature.</p>
+        <p class="eco-family__sub">
+          Cow dung-based wall coatings in Distemper and Emulsion formats — the
+          most developed family in the Gaurikrit ecosystem, documented with
+          full product specifications.
+        </p>
+        <div class="eco-family__links">
+          <a class="btn btn--primary" href="${relUrl(distemper.route, depth)}">View Distemper</a>
+          <a class="btn btn--secondary" href="${relUrl(emulsion.route, depth)}">View Emulsion</a>
+          <a class="btn btn--outline" href="${relUrl('/paint-calculator/', depth)}">Painting Calculator</a>
+          <a class="btn btn--outline" href="${relUrl('/why-prakritik/', depth)}">Why Prakritik?</a>
+        </div>
+      </div>
+      <div class="eco-family__plate" data-reveal>
+        <picture>
+          <source type="image/webp" srcset="${assetUrl('/assets/products/prakritik-pair.webp', depth)}">
+          <img src="${pairImage}"
+               alt="Prakritik Distemper and Emulsion paint packs — real Eco-Paints product photography"
+               width="1420" height="618"
+               loading="lazy" decoding="async">
+        </picture>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     3. DISTEMPER PRODUCT CHAPTER — catalogue plate
      ============================================================ -->
 <section class="product-chapter product-chapter--distemper" aria-labelledby="distemper-chapter-title">
   <div class="container">
@@ -1500,11 +1546,18 @@ function productsBody(depth) {
           </picture>
         </div>
         <div class="product-chapter__strip" aria-hidden="true">
-          ${interiorFinishStripPic}
+          <picture>
+            <source type="image/webp" srcset="${assetUrl('/assets/editorial/interior-finish-study.webp', depth)}">
+            <img class="chapter-strip"
+                 src="${assetUrl('/assets/editorial/interior-finish-study.jpg', depth)}"
+                 alt=""
+                 width="1344" height="768"
+                 loading="lazy" decoding="async">
+          </picture>
         </div>
       </figure>
       <div class="product-chapter__copy">
-        <span class="product-chapter__eyebrow">Format 01 — Distemper</span>
+        <span class="product-chapter__eyebrow">Eco-Paints — Distemper</span>
         <h2 class="product-chapter__name" id="distemper-chapter-title">
           ${e(distemper.name)}
         </h2>
@@ -1528,8 +1581,7 @@ function productsBody(depth) {
 </section>
 
 <!-- ============================================================
-     3. EMULSION PRODUCT CHAPTER (reversed) — catalogue plate
-     (complete pack photo + exterior-finish strip; structure in app.css §14)
+     4. EMULSION PRODUCT CHAPTER (reversed) — catalogue plate
      ============================================================ -->
 <section class="product-chapter product-chapter--emulsion" aria-labelledby="emulsion-chapter-title">
   <div class="container">
@@ -1546,11 +1598,18 @@ function productsBody(depth) {
           </picture>
         </div>
         <div class="product-chapter__strip" aria-hidden="true">
-          ${exteriorFinishStripPic}
+          <picture>
+            <source type="image/webp" srcset="${assetUrl('/assets/editorial/exterior-finish-study.webp', depth)}">
+            <img class="chapter-strip"
+                 src="${assetUrl('/assets/editorial/exterior-finish-study.jpg', depth)}"
+                 alt=""
+                 width="1344" height="768"
+                 loading="lazy" decoding="async">
+          </picture>
         </div>
       </figure>
       <div class="product-chapter__copy">
-        <span class="product-chapter__eyebrow">Format 02 — Emulsion</span>
+        <span class="product-chapter__eyebrow">Eco-Paints — Emulsion</span>
         <h2 class="product-chapter__name" id="emulsion-chapter-title">
           ${e(emulsion.name)}
         </h2>
@@ -1574,12 +1633,12 @@ function productsBody(depth) {
 </section>
 
 <!-- ============================================================
-     4. SPEC MATRIX — large ruled comparison, NO outer card
+     5. SPEC MATRIX — factual comparison of the two documented formats
      ============================================================ -->
 <section class="section section--paper spec-matrix-section" aria-labelledby="compare-title">
   <div class="container">
     <div class="spec-matrix-section__head section-heading section-heading--left" data-reveal>
-      <span class="section-heading__eyebrow">Side by side</span>
+      <span class="section-heading__eyebrow">Eco-Paints — side by side</span>
       <h2 class="section-heading__title" id="compare-title">Compare the two formats.</h2>
     </div>
 
@@ -1589,63 +1648,17 @@ function productsBody(depth) {
         <span class="spec-matrix__col-head spec-matrix__col-head--distemper">Prakritik Distemper</span>
         <span class="spec-matrix__col-head spec-matrix__col-head--emulsion">Prakritik Emulsion</span>
       </div>
-      <div class="spec-matrix__row">
-        <span class="spec-matrix__label">Pack sizes</span>
-        <span class="spec-matrix__value">${e(distemper.packagingShort)}</span>
-        <span class="spec-matrix__value">${e(emulsion.packagingShort)}</span>
-      </div>
-      <div class="spec-matrix__row">
-        <span class="spec-matrix__label">Colour</span>
-        <span class="spec-matrix__value">${e(distemper.colour)}</span>
-        <span class="spec-matrix__value">${e(emulsion.colour)}</span>
-      </div>
-      <div class="spec-matrix__row">
-        <span class="spec-matrix__label">Finish</span>
-        <span class="spec-matrix__value">${e(distemper.finish)}</span>
-        <span class="spec-matrix__value">${e(emulsion.finish)}</span>
-      </div>
-      <div class="spec-matrix__row">
-        <span class="spec-matrix__label">Drying time</span>
-        <span class="spec-matrix__value">${e(distemper.dryingTime)}</span>
-        <span class="spec-matrix__value">${e(emulsion.dryingTime)}</span>
-      </div>
-      <div class="spec-matrix__row">
-        <span class="spec-matrix__label">Coverage</span>
-        <span class="spec-matrix__value">${e(distemper.coverage)}</span>
-        <span class="spec-matrix__value">${e(emulsion.coverage)}</span>
-      </div>
-      <div class="spec-matrix__row">
-        <span class="spec-matrix__label">V.O.C.</span>
-        <span class="spec-matrix__value">${e(distemper.voc)}</span>
-        <span class="spec-matrix__value">${e(emulsion.voc)}</span>
-      </div>
-      <div class="spec-matrix__row">
-        <span class="spec-matrix__label">Usage</span>
-        <span class="spec-matrix__value">${e(distemper.usage)}</span>
-        <span class="spec-matrix__value">${e(emulsion.usage)}</span>
-      </div>
+${specMatrixRows}
     </div>
 
     <div class="spec-matrix-mobile" data-reveal>
       <div class="spec-matrix-mobile__block">
         <div class="spec-matrix-mobile__name">${e(distemper.name)}</div>
-        <div class="spec-matrix-mobile__row"><span class="k">Pack sizes</span><span class="v">${e(distemper.packagingShort)}</span></div>
-        <div class="spec-matrix-mobile__row"><span class="k">Colour</span><span class="v">${e(distemper.colour)}</span></div>
-        <div class="spec-matrix-mobile__row"><span class="k">Finish</span><span class="v">${e(distemper.finish)}</span></div>
-        <div class="spec-matrix-mobile__row"><span class="k">Drying time</span><span class="v">${e(distemper.dryingTime)}</span></div>
-        <div class="spec-matrix-mobile__row"><span class="k">Coverage</span><span class="v">${e(distemper.coverage)}</span></div>
-        <div class="spec-matrix-mobile__row"><span class="k">V.O.C.</span><span class="v">${e(distemper.voc)}</span></div>
-        <div class="spec-matrix-mobile__row"><span class="k">Usage</span><span class="v">${e(distemper.usage)}</span></div>
+${specMobile(distemper)}
       </div>
       <div class="spec-matrix-mobile__block spec-matrix-mobile__block--emulsion">
         <div class="spec-matrix-mobile__name">${e(emulsion.name)}</div>
-        <div class="spec-matrix-mobile__row"><span class="k">Pack sizes</span><span class="v">${e(emulsion.packagingShort)}</span></div>
-        <div class="spec-matrix-mobile__row"><span class="k">Colour</span><span class="v">${e(emulsion.colour)}</span></div>
-        <div class="spec-matrix-mobile__row"><span class="k">Finish</span><span class="v">${e(emulsion.finish)}</span></div>
-        <div class="spec-matrix-mobile__row"><span class="k">Drying time</span><span class="v">${e(emulsion.dryingTime)}</span></div>
-        <div class="spec-matrix-mobile__row"><span class="k">Coverage</span><span class="v">${e(emulsion.coverage)}</span></div>
-        <div class="spec-matrix-mobile__row"><span class="k">V.O.C.</span><span class="v">${e(emulsion.voc)}</span></div>
-        <div class="spec-matrix-mobile__row"><span class="k">Usage</span><span class="v">${e(emulsion.usage)}</span></div>
+${specMobile(emulsion)}
       </div>
     </div>
 
@@ -1657,7 +1670,7 @@ function productsBody(depth) {
 </section>
 
 <!-- ============================================================
-     5. BENEFITS STRIP — numbered typographic list, NO 8 cards
+     6. BENEFITS — the shared eight-benefit grid (Eco-Paints context)
      ============================================================ -->
 <section class="section section--haldi-wash benefits-strip" aria-labelledby="benefits-title">
   <div class="container">
@@ -1669,13 +1682,38 @@ function productsBody(depth) {
       </p>
     </div>
     <ol class="benefits-grid" data-reveal-stagger>
-${benefitsItems}
+${ashtaItems}
     </ol>
   </div>
 </section>
 
+${gocastSection}
+
+${biocoalSection}
+
+${utilitySection}
+
 <!-- ============================================================
-     6. FAQ (consumed here per spec — only styled for Products / Why-Prakritik)
+     10. APPLICATION MAP — where the ecosystem works (§35)
+     ============================================================ -->
+<section class="section section--haldi-wash appmap-section" aria-labelledby="appmap-title">
+  <div class="container">
+    <div class="appmap-section__head section-heading section-heading--left" data-reveal>
+      <span class="section-heading__eyebrow">Application map</span>
+      <h2 class="section-heading__title" id="appmap-title">Where the Ecosystem Works.</h2>
+    </div>
+    <div class="app-matrix" data-reveal-stagger>
+${appGroups}
+    </div>
+    <p class="app-matrix-note" data-reveal>
+      Entries marked <strong>Direction</strong> are application areas under exploration —
+      not products currently for sale.
+    </p>
+  </div>
+</section>
+
+<!-- ============================================================
+     11. FAQ (retained factual content)
      ============================================================ -->
 <section class="section section--paper faq-section" aria-labelledby="faq-title">
   <div class="container">
@@ -1690,7 +1728,7 @@ ${faqItems}
 </section>
 
 <!-- ============================================================
-     7. NEED HELP CHOOSING — CTA
+     12. NEED HELP CHOOSING — CTA
      ============================================================ -->
 <section class="section section--forest" aria-labelledby="choose-cta-title">
   <div class="container">
@@ -1711,7 +1749,6 @@ ${faqItems}
 `;
 }
 
-// ---- Prakritik Distemper detail — V4 ----
 function distemperBody(depth) {
     const product = getProduct('prakritik-distemper');
     const emulsion = getProduct('prakritik-emulsion');
@@ -2221,6 +2258,23 @@ function whyPrakritikBody(depth) {
         const ruralContextPic = pic('/assets/editorial/rural-landscape.webp', '/assets/editorial/rural-landscape.jpg',
         '', 1344, 768, depth, 'class="editorial-image"');
 
+    // V16: the Colours of India study moved here from Home (Eco-Paints
+    // educational context, §64). Wall-only SVG paint mask + swatches.
+    const colourSwatches = COLOUR_STUDY.map((sw) => {
+        const id = sw.name.toLowerCase();
+        return `        <button type="button"
+                class="colours-swatch"
+                role="radio"
+                aria-checked="false"
+                style="background: ${e(sw.hex)};"
+                data-shade="${e(sw.hex)}"
+                data-shade-name="${e(sw.name)} (${e(sw.label)})"
+                data-colour-id="${e(id)}"
+                aria-label="${e(sw.name)} — ${e(sw.label)}">
+          <span class="colours-swatch__label">${e(sw.name)}</span>
+        </button>`;
+    }).join('\n');
+
     return `<style>
   /* ===== Editorial image reset (V4 — NO mix-blend-mode, NO blur filters) ===== */
   .editorial-image {
@@ -2230,6 +2284,16 @@ function whyPrakritikBody(depth) {
     object-fit: cover;
   }
   .editorial-image--contain { object-fit: contain; }
+
+  /* ===== 07 COLOURS OF INDIA (V16 move from home — page-local share row;
+     structural colours CSS lives in app.css §19) ===== */
+  .colours-share {
+    min-height: 2rem;
+    margin: 3.5rem 0 0;
+    display: flex;
+    align-items: center;
+  }
+  .colours-share .copy-btn { margin-left: 0; }
 
   /* ===== HERO (V10: single quiet finished-wall study) ===== */
   .why-hero { padding-top: calc(var(--header-h) + 2rem); padding-bottom: 1.5rem; }
@@ -2436,6 +2500,13 @@ function whyPrakritikBody(depth) {
             <span class="chapter-index__arrow" aria-hidden="true">→</span>
           </a>
         </li>
+        <li class="chapter-index__item">
+          <a class="chapter-index__link" href="#chapter-07-title">
+            <span class="chapter-index__num" aria-hidden="true">07</span>
+            <span class="chapter-index__name">Colours of India — a wall study.</span>
+            <span class="chapter-index__arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
       </ol>
     </nav>
   </div>
@@ -2621,7 +2692,7 @@ ${ashtaItems}
         </div>
         <div class="mission-band__cta" style="margin-top: 1.5rem;">
           <a class="btn btn--primary" href="${relUrl('/products/', depth)}">Explore Products</a>
-          <a class="btn btn--outline" href="${relUrl('/about/', depth)}">About Gaurikrit</a>
+          <a class="btn btn--outline" href="${relUrl('/about/', depth)}">Our Story</a>
         </div>
       </div>
       <div class="why-context-bg" aria-hidden="true">
@@ -2630,193 +2701,151 @@ ${ashtaItems}
     </div>
   </div>
 </section>
+
+<!-- ===== 07 COLOURS OF INDIA — wall-plane colour preview (V16: moved
+     from Home into the Eco-Paints educational context) ===== -->
+<section class="section section--paper colour-study colours-section" id="colours" aria-labelledby="chapter-07-title" data-colour-study>
+  <div class="container">
+    <div class="colours-section__head section-heading section-heading--left" data-reveal>
+      <span class="section-heading__eyebrow">Editorial colour study</span>
+      <h2 class="colours-section__title" id="chapter-07-title">Colours of India.</h2>
+      <p class="colours-section__sub">
+        Tap a swatch to preview the colour on the wall — only the wall plane
+        changes; the door, window and surroundings stay as they are. These are
+        editorial design moods — not currently available product shades.
+      </p>
+    </div>
+
+    <div class="colours-wall" data-colour-wall data-reveal>
+      ${pic('/assets/editorial/colour-wall-study.webp', '/assets/editorial/colour-wall-study.jpg', 'Indian lime-plastered wall elevation with door and window', 1344, 768, depth, 'class="colours-wall__art"')}
+      <svg class="colours-wall__tint" viewBox="0 0 1344 768"
+           preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+        <path class="colours-wall__paint" fill-rule="evenodd"
+              d="M0,104 H1344 V724 H0 Z
+                 M80,370 H304 V768 H80 Z
+                 M894,346 H1180 V654 H894 Z" />
+      </svg>
+      <span class="colours-wall__label">
+        <span data-colour-label>Limewash</span>
+        <small>Editorial colour study</small>
+      </span>
+    </div>
+
+    <div class="colours-swatches" data-reveal-stagger role="radiogroup" aria-label="Wall colour swatches">
+${colourSwatches}
+    </div>
+
+    <p class="colours-share">
+      <button type="button" class="copy-btn" data-colour-copy data-copy="" hidden
+              aria-label="Copy a link to this wall colour">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        <span class="copy-btn__label">Copy link to this colour</span>
+      </button>
+    </p>
+  </div>
+</section>
 `;
 }
 
 // ---- About — V4 ----
 function aboutBody(depth) {
-    const distemper = getProduct('prakritik-distemper');
-    const emulsion = getProduct('prakritik-emulsion');
-
     const address = COMPANY.address;
-    const addressLine = address.join('\n');
+    const addressLine = address.slice(0, 6).join('\n');
+    const groupImage = assetUrl('/assets/products/prakritik-group.jpg', depth);
 
-    const phoneRows = COMPANY.phones.map((phone) => `        <div class="company-plate__row">
-          <dt>Phone</dt>
-          <dd>
-            <a href="tel:${e(phone.replace(/ /g, ''))}">${e(phone)}</a>
-          </dd>
+    const journeyStops = [
+        ['Stage 01', 'Resource', 'Cow dung — recognised and gathered.'],
+        ['Stage 02', 'Idea', 'A practical direction for a traditional material.'],
+        ['Stage 03', 'Application', 'Prakritik Paint — walls, documented.'],
+        ['Stage 04', 'Ecosystem', 'Fuel and utility directions around one resource.'],
+    ].map(([stage, name, desc]) => `        <div class="journey-stop">
+            <span class="journey-stop__stage">${e(stage)}</span>
+            <h3 class="journey-stop__name">${e(name)}</h3>
+            <p class="journey-stop__desc">${e(desc)}</p>
         </div>`).join('\n');
 
-    // V4 picture tags.
-    const rawMaterialDirectionPic = pic('/assets/editorial/raw-material-study.webp', '/assets/editorial/raw-material-study.jpg',
-        'Raw lime-plastered wall surface — an Indian natural wall material', 1344, 768, depth, 'class="editorial-image"');
-    const ruralMissionPic = pic('/assets/editorial/rural-landscape.webp', '/assets/editorial/rural-landscape.jpg',
-        '', 1344, 768, depth, 'class="editorial-image"');
+    const circularStages = CIRCULAR_STAGES.map((stage) => `          <li class="stage">
+            <span class="stage__num">${e(stage.num)}</span>
+            <h3 class="stage__name">${e(stage.name)}</h3>
+            <p class="stage__desc">${e(stage.desc)}</p>
+          </li>`).join('\n');
+
+    const familiesMarkup = FAMILIES.map((family) => {
+        const themes = family.themes.map((t) => `              <li>${e(t)}</li>`).join('\n');
+        return `          <article class="family">
+              <div class="family__head">
+                <span class="family__num" aria-hidden="true">${e(family.num)}</span>
+                <h3 class="family__name">${e(family.name)}</h3>
+              </div>
+              <p class="family__line">${e(family.line)}</p>
+              <ul class="family__themes">
+${themes}
+              </ul>
+              <a class="family__cta" href="${relUrl(family.href, depth)}">
+                Explore ${e(family.name)} <span aria-hidden="true">→</span>
+              </a>
+            </article>`;
+    }).join('\n');
+
+    const phoneRows = COMPANY.phones.map((phone) => `      <div class="company-plate__row">
+        <dt>Phone</dt>
+        <dd>
+          <a href="tel:${e(phone.replace(/ /g, ''))}">${e(phone)}</a>
+        </dd>
+      </div>`).join('\n');
 
     return `<style>
-  /* ===== Editorial image reset (V4 — NO mix-blend-mode, NO blur filters) ===== */
-  .editorial-image {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  /* ===== HERO (V7: 5/7 — brand identity left, real product plate right) ===== */
-  .about-hero { padding-top: calc(var(--header-h) + clamp(1.25rem, 3vw, 2rem)); padding-bottom: clamp(1.25rem, 3vw, 2rem); }
-  .about-hero__container { display: grid; gap: clamp(1.5rem, 4vw, 3rem); align-items: center; }
-  @media (min-width: 1024px) {
-    .about-hero__container { grid-template-columns: 5fr 7fr; }
-  }
+  /* ===== STORY HERO — brand identity left, real product plate right ===== */
+  .about-hero { padding-top: calc(var(--header-h) + 2rem); padding-bottom: 1.5rem; }
+  .about-hero__container { display: grid; gap: clamp(2rem, 4vw, 4rem); align-items: center; grid-template-columns: 1fr; }
+  @media (min-width: 1024px) { .about-hero__container { grid-template-columns: 5fr 7fr; } }
   .about-hero__lockup { display: flex; flex-direction: column; gap: 0.75rem; }
-  .about-hero__deva {
-    font-family: var(--font-deva); font-size: clamp(1.5rem, 3vw, 2rem);
-    font-weight: 700; color: var(--haldi-deep);
-  }
-  .about-hero__brand-sub {
-    font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.22em;
-    text-transform: uppercase; color: var(--primary);
-  }
-  .about-hero__title {
-    font-family: var(--font-display); font-size: clamp(2.2rem, 5vw, 4rem);
-    line-height: 1.05; letter-spacing: -0.02em; text-wrap: balance;
-    margin-top: 0.5rem;
-  }
-  .about-hero__body {
-    margin-top: 1rem; font-size: clamp(1rem, 2vw, 1.125rem);
-    color: var(--fg-muted); line-height: 1.65; max-width: 60ch;
-  }
-  /* V12: the hero shows WHO the brand is + WHAT it actually makes — the
-     real product group photo on a quiet catalogue plate with the official
-     mark. Hairline border only: no accent stripe, no shadow. */
-  .about-hero__plate {
-    background: var(--paper);
-    border: 1px solid var(--border);
-    border-radius: var(--r-panel);
-    padding: clamp(1rem, 2vw, 1.5rem);
-  }
-  .about-hero__plate-head {
-    display: flex; align-items: center; gap: 0.625rem;
-    padding-bottom: 0.75rem; margin-bottom: 0.75rem;
-    border-bottom: 1px solid var(--border);
-  }
-  .about-hero__plate-mark { width: 40px; height: 40px; flex: none; object-fit: contain; }
-  .about-hero__plate-brand {
-    font-family: var(--font-deva); font-size: 0.9375rem; color: var(--haldi-deep);
-    line-height: 1.2;
-  }
-  .about-hero__plate-brand small {
-    display: block; font-family: var(--font-sans); font-size: 0.5625rem;
-    font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--fg-muted); margin-top: 0.125rem;
-  }
-  .about-hero__plate-photo {
-    display: block; width: 100%; height: auto;
-    object-fit: contain; aspect-ratio: 1280 / 621;
-  }
+  .about-hero__deva { font-family: var(--font-deva); font-size: 1.75rem; color: var(--primary); line-height: 1.2; }
+  .about-hero__brand-sub { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--fg-muted); }
+  .about-hero__title { font-family: var(--font-display); font-size: clamp(2.25rem, 4.5vw, 3.75rem); line-height: 1.06; letter-spacing: -0.02em; }
+  .about-hero__body { max-width: 38rem; font-size: 1.0625rem; line-height: 1.65; color: var(--fg-muted); }
+  .about-hero__plate { background: var(--paper); border: 1px solid var(--border); border-radius: var(--r-panel); padding: clamp(1rem, 2vw, 1.5rem); display: flex; flex-direction: column; gap: 1rem; }
+  .about-hero__plate-head { display: flex; align-items: center; gap: 0.875rem; padding-bottom: 0.875rem; border-bottom: 1px solid var(--border); }
+  .about-hero__plate-mark { border-radius: 6px; }
+  .about-hero__plate-brand { font-family: var(--font-deva); font-size: 1.25rem; color: var(--primary); line-height: 1.2; display: flex; flex-direction: column; gap: 0.125rem; }
+  .about-hero__plate-brand small { font-family: var(--font-sans); font-size: 0.5625rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--fg-muted); }
+  .about-hero__plate-photo { display: block; width: 100%; height: auto; object-fit: contain; }
 
-  /* ===== WHO WE ARE (V7: 35/65 ledger-left, body right) ===== */
-  .about-wrap { padding-block: clamp(3.5rem, 6vw, 5rem); }
-  .about-section .about-section__body { max-width: 65ch; }
+  /* ===== STORY WRAP ===== */
+  .story-wrap { padding-block: clamp(3.5rem, 6vw, 5.5rem); }
+  .story-wrap--first { padding-top: clamp(3rem, 5vw, 4.5rem); }
 
-  /* ===== WHAT WE PRESENT ===== */
-  .about-products-section { padding-block: clamp(3.5rem, 6vw, 5rem); }
-  .about-products { margin-top: 2rem; }
-  .about-product-card__media {
-    position: relative; aspect-ratio: 4/3; background: var(--limewash);
-    border-radius: var(--r-panel); overflow: hidden;
-    margin-bottom: 1rem;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .about-product-card__media .about-product-photo {
-    display: block;
-    max-height: 88%;
-    max-width: 80%;
-    width: auto; height: auto;
-    object-fit: contain;
-    filter: drop-shadow(0 10px 16px rgba(34, 36, 27, 0.12));
-  }
-  .about-product-card__media--distemper .about-product-photo,
-  .about-product-card__media--emulsion .about-product-photo {
-    max-width: min(82%, 460px);
-  }
-
-  /* ===== MATERIAL DIRECTION (V10: raw plaster surface — the material
-     itself, printed onto the page with no panel chrome) ===== */
-  .about-direction-section { padding-block: clamp(3.5rem, 6vw, 5rem); }
-  .about-direction__visual {
-    background: transparent;
-    border-radius: 0;
-    overflow: hidden;
-    position: relative;
-    aspect-ratio: 1344 / 768;
-  }
-  .about-direction__visual .editorial-image {
-    position: absolute; inset: 0; width: 100%; height: 100%;
-    object-fit: cover;
-  }
-
-  /* ===== MISSION BAND ===== */
-  .about-mission {
-    position: relative; padding-block: clamp(4rem, 8vw, 6.5rem);
-    background: var(--forest-deep); color: var(--primary-fg);
-    overflow: hidden;
-  }
-  .about-mission__bg {
-    position: absolute; inset: 0; opacity: 0.10; pointer-events: none;
-    overflow: hidden;
-  }
-  .about-mission__bg .editorial-image { width: 100%; height: 100%; object-fit: cover; }
-  .about-mission__inner {
-    position: relative; z-index: 1; max-width: 48rem;
-  }
-  .about-mission__eyebrow {
-    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.22em;
-    text-transform: uppercase; color: var(--haldi);
-  }
-  .about-mission__title {
-    margin-top: 0.875rem; font-family: var(--font-display); font-style: italic;
-    font-size: clamp(1.75rem, 4vw, 3.25rem); line-height: 1.15;
-    color: var(--paper); text-wrap: balance;
-  }
-  .about-mission__sub {
-    margin-top: 1.5rem; color: rgba(250, 248, 241, 0.78);
-    line-height: 1.7; max-width: 60ch;
-  }
-  .about-mission__cta { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 0.75rem; }
+  /* ===== ECOSYSTEM (compact families, no media) ===== */
+  .story-families { margin-top: 2rem; }
 
   /* ===== COMPANY PLATE ===== */
-  .company-plate-section { padding-block: clamp(3.5rem, 6vw, 5rem); }
-  /* V7: a formal ledger reads at 56rem, not stretched across 1400px. */
-  .company-plate { max-width: 56rem; }
-  .company-plate__head { margin-bottom: 2rem; }
+  .company-plate-section { padding-block: clamp(3rem, 6vw, 5rem); }
+  .company-plate__head { max-width: 48rem; margin-bottom: 2.5rem; }
+  .company-plate { display: grid; gap: 0; border: 1px solid var(--border); border-radius: var(--r-panel); background: var(--paper); overflow: hidden; max-width: 56rem; }
+  .company-plate__row { display: grid; gap: 0.75rem; padding: 1.125rem 1.5rem; border-bottom: 1px solid var(--border); }
+  .company-plate__row:last-child { border-bottom: 0; }
+  @media (min-width: 768px) { .company-plate__row { grid-template-columns: 12rem 1fr; align-items: baseline; } }
   .company-plate dt { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--fg-muted); }
   .company-plate dd { color: var(--fg); }
   .company-plate__address { white-space: pre-line; }
-  .company-plate__row {
-    border-top: 1px solid var(--border); border-bottom: 0;
-    padding: 1.25rem 0; align-items: baseline;
-  }
-  .company-plate__row:last-child { border-bottom: 1px solid var(--border); }
 </style>
 
-<!-- ===== HERO (V7: 5/7 — brand identity left, real product plate right) ===== -->
+<!-- ===== STORY HERO ===== -->
 <section class="about-hero bg-limewash" aria-labelledby="about-title">
   <div class="container">
     <nav class="breadcrumb" aria-label="Breadcrumb">
       <a href="${relUrl('/', depth)}">Home</a><span>›</span>
-      <span>About</span>
+      <span>Our Story</span>
     </nav>
     <div class="about-hero__container" data-reveal>
       <div class="about-hero__lockup">
         <span class="about-hero__deva">${e(COMPANY.devanagari)}</span>
         <span class="about-hero__brand-sub">Gaurikrit Bio Products</span>
-        <h1 class="about-hero__title" id="about-title">Nature. Culture. Useful materials.</h1>
+        <h1 class="about-hero__title" id="about-title">One resource. One idea. A widening material story.</h1>
         <p class="about-hero__body">
-          ${e(COMPANY.legalName)} makes Prakritik Paint — a cow dung-based
-          paint in two formats, Distemper and Emulsion, for interior and
-          exterior walls. The company is based in ${e(address[3] || '')},
+          ${e(COMPANY.legalName)} builds a material ecosystem around one
+          natural resource — cow dung — from Prakritik Paint to fuel and utility
+          directions. Based in ${e(address[3] || '')},
           ${e(address[4] || '')}, Uttar Pradesh.
         </p>
       </div>
@@ -2833,8 +2862,8 @@ function aboutBody(depth) {
           </div>
         </div>
         <img class="about-hero__plate-photo"
-             src="${assetUrl('/assets/products/prakritik-group.jpg', depth)}"
-             alt="Prakritik Distemper and Emulsion paint packs"
+             src="${groupImage}"
+             alt="Prakritik Distemper and Emulsion paint packs — the documented Eco-Paints family"
              width="1280" height="621"
              loading="eager" fetchpriority="high" decoding="async">
       </div>
@@ -2842,136 +2871,195 @@ function aboutBody(depth) {
   </div>
 </section>
 
-<!-- ===== WHO WE ARE — legal identity ===== -->
-<section class="section section--paper about-wrap" aria-labelledby="who-title">
+<!-- ============================================================
+     01. THE RESOURCE
+     ============================================================ -->
+<section class="section section--paper story-wrap story-wrap--first" id="the-resource" aria-labelledby="resource-ch-title">
   <div class="container">
-    <div class="about-section" data-reveal>
+    <article class="story-chapter" data-reveal>
       <div>
-        <span class="about-section__eyebrow">Who we are</span>
-        <p class="about-section__lead">
-          ${e(COMPANY.legalName)} — a One Person Company registered in
-          ${e(address[4] || '')}, ${e(address[5] || '')}.
-        </p>
+        <span class="story-chapter__num" aria-hidden="true">01</span>
+        <span class="story-chapter__kicker">The Resource</span>
       </div>
-      <div class="about-section__body">
-        <p>
-          ${e(COMPANY.name)} makes Prakritik Paint, a cow dung-based
-          paint in two formats: Prakritik Distemper and Prakritik
-          Emulsion. Both are matt finish, listed for interior and
-          exterior use.
-        </p>
-        <p>
-          The company carries an old Indian material idea — cow dung on walls —
-          into a contemporary paint format. A useful
-          material, reconsidered for modern walls.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== WHAT WE CURRENTLY PRESENT — 2 real product photos ===== -->
-<section class="section section--limewash about-products-section" aria-labelledby="present-title">
-  <div class="container">
-    <div class="section-heading section-heading--left" data-reveal>
-      <span class="section-heading__eyebrow">What we currently present</span>
-      <h2 class="section-heading__title" id="present-title">Two paint formats.</h2>
-      <p class="section-heading__desc">
-        Cow dung-based, matt finish, interior &amp; exterior usage.
-      </p>
-    </div>
-
-    <div class="about-products" data-reveal-stagger>
-      <article class="about-product-card">
-        <div class="about-product-card__media about-product-card__media--distemper">
-          <picture>
-            <source type="image/webp" srcset="${assetUrl(distemper.officialImageWebp, depth)}">
-            <img class="about-product-photo"
-                 src="${assetUrl(distemper.officialImage, depth)}"
-                 alt="${e(distemper.name)}"
-                 width="${distemper.officialImageW}" height="${distemper.officialImageH}"
-                 loading="lazy" decoding="async">
-          </picture>
-        </div>
-        <h3 class="about-product-card__name">${e(distemper.name)}</h3>
-        <p class="about-product-card__desc">
-          ${e(distemper.packagingShort)} packs · ${e(distemper.coverage)} coverage · ${e(distemper.finish)} finish.
-        </p>
-        <a class="about-product-card__link" href="${relUrl(distemper.route, depth)}">View Distemper →</a>
-      </article>
-      <article class="about-product-card">
-        <div class="about-product-card__media about-product-card__media--emulsion">
-          <picture>
-            <source type="image/webp" srcset="${assetUrl(emulsion.officialImageWebp, depth)}">
-            <img class="about-product-photo"
-                 src="${assetUrl(emulsion.officialImage, depth)}"
-                 alt="${e(emulsion.name)}"
-                 width="${emulsion.officialImageW}" height="${emulsion.officialImageH}"
-                 loading="lazy" decoding="async">
-          </picture>
-        </div>
-        <h3 class="about-product-card__name">${e(emulsion.name)}</h3>
-        <p class="about-product-card__desc">
-          ${e(emulsion.packagingShort)} packs · ${e(emulsion.coverage)} coverage · ${e(emulsion.finish)} finish.
-        </p>
-        <a class="about-product-card__link" href="${relUrl(emulsion.route, depth)}">View Emulsion →</a>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- ===== MATERIAL DIRECTION — the raw material surface ===== -->
-<section class="section section--paper about-direction-section" aria-labelledby="direction-title">
-  <div class="container">
-    <div class="about-section" data-reveal>
       <div>
-        <span class="about-section__eyebrow">Material direction</span>
-        <p class="about-section__lead">
-          An old Indian material idea, carried into a contemporary paint format.
-        </p>
-        <div class="about-section__body">
+        <h2 class="story-chapter__title" id="resource-ch-title">A material traditional India never wasted.</h2>
+        <div class="story-chapter__body">
           <p>
-            Cow dung has been used on Indian walls and floors for generations.
-            Gaurikrit offers cow dung-based Prakritik Paint in two formats.
+            Traditional India has long recognised cow dung as a useful material —
+            applied to walls and floors, valued in daily rural life, and treated
+            as a resource rather than a waste.
           </p>
-          <p>
-            The cow is in the material. The wall is where it goes.
+          <p class="muted">
+            Gaurikrit begins from that recognition: a natural, renewable material
+            already embedded in Indian material culture.
           </p>
         </div>
-        <div class="about-mission__cta" style="margin-top: 1.5rem;">
-          <a class="btn btn--primary" href="${relUrl('/why-prakritik/', depth)}">Why Prakritik</a>
+        <figure class="story-chapter__visual">
+          ${pic('/assets/editorial/raw-material-study.webp', '/assets/editorial/raw-material-study.jpg', 'Raw lime-plastered wall surface — an Indian natural material tradition', 1344, 768, depth)}
+          <figcaption>Raw material study — natural surface traditions of Indian homes.</figcaption>
+        </figure>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============================================================
+     02. THE IDEA
+     ============================================================ -->
+<section class="section section--limewash story-wrap" id="the-idea" aria-labelledby="idea-ch-title">
+  <div class="container">
+    <article class="story-chapter" data-reveal>
+      <div>
+        <span class="story-chapter__num" aria-hidden="true">02</span>
+        <span class="story-chapter__kicker">The Idea</span>
+      </div>
+      <div>
+        <h2 class="story-chapter__title" id="idea-ch-title">Carry the resource into contemporary applications.</h2>
+        <div class="story-chapter__body">
+          <p>
+            The idea is directional, not nostalgic: take a material India already
+            understands and develop it into practical contemporary products —
+            from naturally derived wall coatings to fuel and utility directions.
+          </p>
+          <p class="muted">
+            From naturally derived material to products for walls, energy and
+            everyday use.
+          </p>
+        </div>
+        <figure class="story-chapter__visual">
+          ${pic('/assets/editorial/finished-surface-study.webp', '/assets/editorial/finished-surface-study.jpg', 'Finished matte wall surface — a developed natural material', 1344, 768, depth)}
+          <figcaption>Developed material study — the resource carried into a finished surface.</figcaption>
+        </figure>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============================================================
+     03. THE GAURIKRIT JOURNEY — qualitative, NO dates (§29)
+     ============================================================ -->
+<section class="section section--paper story-wrap" id="the-journey" aria-labelledby="journey-ch-title">
+  <div class="container">
+    <article class="story-chapter" data-reveal>
+      <div>
+        <span class="story-chapter__num" aria-hidden="true">03</span>
+        <span class="story-chapter__kicker">The Gaurikrit Journey</span>
+      </div>
+      <div>
+        <h2 class="story-chapter__title" id="journey-ch-title">A journey of material stages — not dates.</h2>
+        <div class="story-chapter__body">
+          <p>
+            Gaurikrit's story is told through what the material became, not when.
+            Each stage widened the possibility of the resource.
+          </p>
+        </div>
+        <div class="journey-strip" data-reveal>
+${journeyStops}
         </div>
       </div>
-      <div class="about-direction__visual">
-        ${rawMaterialDirectionPic}
-      </div>
-    </div>
+    </article>
   </div>
 </section>
 
-<!-- ===== MISSION BAND — rural-landscape engraving ===== -->
-<section class="about-mission" aria-labelledby="about-mission-title">
-  <div class="about-mission__bg" aria-hidden="true">
-    ${ruralMissionPic}
-  </div>
+<!-- ============================================================
+     04. THE CIRCULAR MODEL
+     ============================================================ -->
+<section class="section section--limewash story-wrap" id="the-circular-model" aria-labelledby="circular-ch-title">
   <div class="container">
-    <div class="about-mission__inner" data-reveal>
-      <span class="about-mission__eyebrow">Our direction</span>
-      <h2 class="about-mission__title" id="about-mission-title">
-        ${e(COMPANY.mission)}
-      </h2>
-      <p class="about-mission__sub">
-        ${e(COMPANY.brandLine)}
-      </p>
-      <div class="about-mission__cta">
-        <a class="btn btn--haldi" href="${relUrl('/products/', depth)}">Explore Prakritik Paint</a>
-        <a class="btn btn--secondary" href="${relUrl('/contact/', depth)}">Talk to Us</a>
+    <article class="story-chapter" data-reveal>
+      <div>
+        <span class="story-chapter__num" aria-hidden="true">04</span>
+        <span class="story-chapter__kicker">The Circular Model</span>
+      </div>
+      <div>
+        <h2 class="story-chapter__title" id="circular-ch-title">Nothing goes to waste.</h2>
+        <div class="story-chapter__body">
+          <p>
+            The expanded circular model — how the resource enters, is developed,
+            becomes useful products, and renews the cycle.
+          </p>
+        </div>
+        <div class="circular" data-circular data-reveal>
+          <ol class="circular__track">
+${circularStages}
+          </ol>
+          <svg class="circular__loop-path" viewBox="0 0 1000 28" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M8,2 L8,20 C8,26 16,26 26,26 L974,26 C984,26 992,26 992,20 L992,10" />
+          </svg>
+          <span class="circular__loop-label" aria-hidden="true">Resource regeneration</span>
+        </div>
+        <p class="impact-note" style="margin-top: 1.5rem;">
+          Read the full framework on <a href="${relUrl('/sustainability/', depth)}">Sustainability →</a>
+        </p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============================================================
+     05. THE PRODUCT ECOSYSTEM
+     ============================================================ -->
+<section class="section section--paper story-wrap" id="the-ecosystem" aria-labelledby="ecosystem-ch-title">
+  <div class="container">
+    <article class="story-chapter" data-reveal>
+      <div>
+        <span class="story-chapter__num" aria-hidden="true">05</span>
+        <span class="story-chapter__kicker">The Product Ecosystem</span>
+      </div>
+      <div>
+        <h2 class="story-chapter__title" id="ecosystem-ch-title">One resource, four directions.</h2>
+        <div class="story-chapter__body">
+          <p>
+            The ecosystem spans walls, energy, traditional applications and
+            everyday use. Eco-Paints — Prakritik Distemper and Prakritik
+            Emulsion — is the documented family; the other three are
+            development directions.
+          </p>
+        </div>
+        <div class="families story-families" data-reveal-stagger>
+${familiesMarkup}
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============================================================
+     06 + 07. VISION + MISSION
+     ============================================================ -->
+<section class="section section--forest vision-mission" aria-labelledby="story-vision-title">
+  <div class="container">
+    <div class="vision-mission__grid">
+      <div class="vision-mission__col">
+        <span class="vision-mission__eyebrow">Vision</span>
+        <h2 class="vision-mission__title" id="story-vision-title">
+          A circular-economy company in the making.
+        </h2>
+        <p class="vision-mission__text">
+          ${e(COMPANY.vision)}
+        </p>
+      </div>
+      <div class="vision-mission__col vision-mission__col--mission">
+        <span class="vision-mission__eyebrow">Mission</span>
+        <h2 class="vision-mission__title">
+          Practical alternatives, responsibly made.
+        </h2>
+        <p class="vision-mission__text">
+          To replace less sustainable alternatives with practical, accessible and
+          environmentally responsible product solutions.
+        </p>
+        <div style="margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 0.75rem;">
+          <a class="btn btn--haldi" href="${relUrl('/products/', depth)}">Explore the Ecosystem</a>
+          <a class="btn btn--secondary" href="${relUrl('/contact/', depth)}">Talk to Us</a>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===== COMPANY INFORMATION — modern ledger plate ===== -->
+<!-- ============================================================
+     08. COMPANY INFORMATION — verified legal ledger
+     ============================================================ -->
 <section class="section section--paper company-plate-section" aria-labelledby="company-info-title">
   <div class="container">
     <div class="company-plate__head section-heading section-heading--left" data-reveal>
@@ -3007,35 +3095,36 @@ ${phoneRows}
 
     <div class="company-info__actions" style="margin-top: 2.5rem;">
       <a class="btn btn--primary" href="${relUrl('/contact/', depth)}">Talk to Us</a>
-      <a class="btn btn--outline" href="${relUrl('/for-business/', depth)}">For Business</a>
+      <a class="btn btn--outline" href="${relUrl('/for-business/', depth)}">Partners</a>
     </div>
   </div>
 </section>
 `;
 }
 
-// ---- For Business — V4 ----
 function forBusinessBody(depth) {
     const phones = COMPANY.phones;
 
     const audiences = [
-        { num: '01', title: 'Architects & Builders',
+        { num: '01', title: 'Distributors & Dealers',
+          desc: 'Bring Prakritik Paint — and future Gaurikrit families — to your market.' },
+        { num: '02', title: 'Architects & Contractors',
           desc: 'Discuss product and project requirements for residential, commercial, or institutional work.' },
-        { num: '02', title: 'Institutions / CSR',
+        { num: '03', title: 'Institutions, CSR & NGOs',
           desc: 'Talk to Gaurikrit about institutional or sustainability-led projects.' },
-        { num: '03', title: 'CSR / NGOs',
-          desc: 'Discuss sustainability-led projects and community paint programmes.' },
-        { num: '04', title: 'Gaushalas / Partners',
-          desc: 'Explore collaboration around cow-dung-based bio-products.' },
+        { num: '04', title: 'Industries & Sustainability Partners',
+          desc: 'Explore collaboration around cow-dung-based bio-products and material directions.' },
     ];
 
     const helpfulInclude = [
-        { label: 'Project type',      hint: 'Residential / Commercial / Institutional / CSR-NGO / Gaushala / Other' },
-        { label: 'City',              hint: 'Where the site is located' },
-        { label: 'Approximate wall area', hint: 'In sq.ft. if you have a number' },
+        { label: 'Interest',           hint: 'Eco-Paints, GoCast, Bio-Coal, Utility Products — or a partnership' },
+        { label: 'City',               hint: 'Where the site or market is located' },
+        { label: 'Approximate wall area', hint: 'In sq.ft. if you have a number (for paint projects)' },
         { label: 'Paint format',      hint: 'Distemper, Emulsion, or not sure yet' },
         { label: 'Approximate requirement', hint: 'Approximate quantity, if known' },
     ];
+
+    const audienceStripItems = PARTNER_AUDIENCES.map((a) => `        <li class="partner-strip__item">${e(a)}</li>`).join('\n');
 
     const audienceCards = audiences.map((a) => `        <div class="audience-card">
           <span class="audience-card__num">${e(a.num)}</span>
@@ -3085,39 +3174,11 @@ function forBusinessBody(depth) {
     width: 100%; height: 100%; object-fit: cover; display: block;
   }
 
-  /* ===== AUDIENCES — 4-ruled-columns visual (no shared image; connects
-     directly to the four audience types) ===== */
+  /* ===== AUDIENCES (V16: the seven partner audiences as a flexible
+     partner-strip + four audience cards; the 4-ruled-column visual is
+     retired) ===== */
   .biz-audiences-section { padding-block: clamp(3.5rem, 6vw, 5rem); }
   .biz-audiences__head { max-width: 48rem; margin-bottom: 2.5rem; }
-  .biz-audiences-rule {
-    display: grid; grid-template-columns: 1fr; gap: 0;
-    margin-bottom: 3rem;
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-  }
-  @media (min-width: 768px) {
-    .biz-audiences-rule { grid-template-columns: repeat(4, 1fr); }
-  }
-  .biz-audiences-rule__col {
-    padding: 1.25rem 1rem; border-top: 2px solid var(--haldi);
-    display: flex; align-items: baseline; gap: 0.625rem;
-  }
-  .biz-audiences-rule__col + .biz-audiences-rule__col {
-    border-left: 1px solid var(--border);
-  }
-  @media (max-width: 767px) {
-    .biz-audiences-rule__col + .biz-audiences-rule__col {
-      border-left: 0; border-top: 1px solid var(--border);
-    }
-  }
-  .biz-audiences-rule__num {
-    font-family: var(--font-display); font-weight: 700; font-size: 0.875rem;
-    color: var(--haldi-deep); letter-spacing: 0.04em;
-  }
-  .biz-audiences-rule__label {
-    font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.18em;
-    text-transform: uppercase; color: var(--fg-muted);
-  }
 
   /* ===== PRACTICAL SECTION ===== */
   .biz-practical { padding-block: clamp(3.5rem, 6vw, 5rem); }
@@ -3185,27 +3246,27 @@ function forBusinessBody(depth) {
   .biz-aside-card dt { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fg-muted); }
 </style>
 
-<!-- ===== HERO ===== -->
+<!-- ===== HERO (V16 §41: "Build with Gaurikrit." — the whole ecosystem) ===== -->
 <section class="biz-hero bg-limewash" aria-labelledby="biz-title">
   <div class="container">
     <nav class="breadcrumb" aria-label="Breadcrumb">
       <a href="${relUrl('/', depth)}">Home</a><span>›</span>
-      <span>For Business</span>
+      <span>Partners</span>
     </nav>
     <div class="biz-hero__container" data-reveal>
       <div class="biz-hero__lockup">
-        <span class="biz-hero__eyebrow"><span class="biz-hero__eyebrow-dot" aria-hidden="true"></span>For Business</span>
+        <span class="biz-hero__eyebrow"><span class="biz-hero__eyebrow-dot" aria-hidden="true"></span>Partners</span>
         <hr class="biz-hero__rule">
-        <h1 class="biz-hero__title" id="biz-title">Discuss a project with Gaurikrit.</h1>
+        <h1 class="biz-hero__title" id="biz-title">Build with Gaurikrit.</h1>
         <p class="biz-hero__sub">
-          For architects, builders, institutions, CSR programmes, NGOs and
-          Gaushalas. Tell us about the project — site, scale, and what you are
-          painting — and we will talk through Prakritik Distemper and Emulsion
-          for your context.
+          For distributors, dealers, architects, contractors, institutions,
+          industries and sustainability partners. Talk to us about
+          Eco-Paints today — and the GoCast, Bio-Coal and utility directions
+          as they develop.
         </p>
         <div class="biz-hero__ctas">
           <a class="btn btn--primary btn--lg" href="#enquire">Discuss a Project</a>
-          <a class="btn btn--outline" href="${relUrl('/products/', depth)}">Explore Products</a>
+          <a class="btn btn--outline" href="${relUrl('/products/', depth)}">Explore the Ecosystem</a>
         </div>
       </div>
       <div class="biz-hero__art" aria-hidden="true">
@@ -3215,31 +3276,19 @@ function forBusinessBody(depth) {
   </div>
 </section>
 
-<!-- ===== AUDIENCES — 4-ruled-columns visual (no shared image) ===== -->
+<!-- ===== AUDIENCES — V16: the seven partner audiences as a flexible
+     partner-strip + four audience cards. ===== -->
 <section class="section section--paper biz-audiences-section" aria-labelledby="audiences-title">
   <div class="container">
     <div class="biz-audiences__head section-heading section-heading--left" data-reveal>
       <span class="section-heading__eyebrow">Who this is for</span>
-      <h2 class="section-heading__title" id="audiences-title">Audiences.</h2>
+      <h2 class="section-heading__title" id="audiences-title">Partner with a material ecosystem.</h2>
     </div>
 
-    <div class="biz-audiences-rule" aria-hidden="true" data-reveal>
-      <div class="biz-audiences-rule__col">
-        <span class="biz-audiences-rule__num">01</span>
-        <span class="biz-audiences-rule__label">Architects</span>
-      </div>
-      <div class="biz-audiences-rule__col">
-        <span class="biz-audiences-rule__num">02</span>
-        <span class="biz-audiences-rule__label">Institutions</span>
-      </div>
-      <div class="biz-audiences-rule__col">
-        <span class="biz-audiences-rule__num">03</span>
-        <span class="biz-audiences-rule__label">CSR / NGOs</span>
-      </div>
-      <div class="biz-audiences-rule__col">
-        <span class="biz-audiences-rule__num">04</span>
-        <span class="biz-audiences-rule__label">Gaushalas</span>
-      </div>
+    <div class="partner-strip" data-reveal>
+      <ul class="partner-strip__list">
+${audienceStripItems}
+      </ul>
     </div>
 
     <div class="biz-audiences" data-reveal-stagger>
@@ -3277,9 +3326,9 @@ ${helpfulItems}
           <span class="biz-form-card__eyebrow">Project enquiry</span>
           <h2 class="biz-form-card__title" id="form-title">Discuss a Project.</h2>
           <p class="biz-form-card__note">
-            Tell us about the site and the wall. We will respond with what we
-            can practically supply — pack sizes, format, and how Prakritik Paint
-            fits your project.
+            Tell us about the project or the partnership. We will respond with
+            what we can practically supply — pack sizes, format, and how the
+            Gaurikrit ecosystem fits your project.
           </p>
         </div>
 
@@ -4250,6 +4299,458 @@ function error404Body(depth) {
 `;
 }
 
+// ---- Sustainability (V16 NEW route /sustainability/) ----
+function sustainabilityBody(depth) {
+    const circularStages = CIRCULAR_STAGES.map((stage) => `          <li class="stage">
+            <span class="stage__num">${e(stage.num)}</span>
+            <h3 class="stage__name">${e(stage.name)}</h3>
+            <p class="stage__desc">${e(stage.desc)}</p>
+          </li>`).join('\n');
+
+    const appGroups = APPLICATION_GROUPS.map((group) => {
+        const items = group.items.map((item) => {
+            const cls = item.live ? ' app-group__item--live' : ' app-group__item--direction';
+            const name = item.href
+                ? `<a href="${relUrl(item.href, depth)}">${e(item.name)}</a>`
+                : `<span>${e(item.name)}</span>`;
+            return `            <li class="app-group__item${cls}">
+              ${name}
+              <span class="app-group__item-tag">${item.live ? 'Family' : 'Direction'}</span>
+            </li>`;
+        }).join('\n');
+        return `        <div class="app-group">
+          <h3 class="app-group__title">${e(group.title)}</h3>
+          <ul class="app-group__list">
+${items}
+          </ul>
+        </div>`;
+    }).join('\n');
+
+    const impactRows = IMPACT_AREAS.map((area) => `        <div class="impact-row">
+          <span class="impact-row__label">${e(area.label)}</span>
+          <span class="impact-row__area">${e(area.area)}</span>
+          <p class="impact-row__desc">${e(area.desc)}</p>
+        </div>`).join('\n');
+
+    const measurementItems = [
+        ['Trees / Resource conservation', 'Trees saved through GoCast and material directions — measured when verified project data is available.'],
+        ['Waste / Material reuse', 'Natural and agricultural material streams carried into products.'],
+        ['Energy / Fossil fuel replaced', 'Biomass fuel applications replacing conventional fuel use.'],
+        ['Carbon / Reduction', 'Emissions reduction from verified lifecycle analysis.'],
+        ['Rural livelihoods', 'Additional value created around agricultural ecosystems.'],
+    ].map(([name, desc]) => `        <div class="measure-item">
+          <span class="measure-item__name">${e(name)}</span>
+          <p class="measure-item__desc">${e(desc)}</p>
+        </div>`).join('\n');
+
+    return `<style>
+  /* ===== PAGE HERO — story-hero (shared §42.11) + material plate ===== */
+  .sustain-hero__grid {
+    display: grid; gap: clamp(2rem, 4vw, 4rem); align-items: center;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 1024px) { .sustain-hero__grid { grid-template-columns: 7fr 5fr; } }
+  .sustain-hero__plate {
+    position: relative; aspect-ratio: 4 / 3;
+    border: 1px solid var(--border); border-radius: var(--r-panel);
+    overflow: hidden; background: var(--paper);
+  }
+  .sustain-hero__plate img {
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  }
+  .sustain-hero__plate::after {
+    content: ""; position: absolute; left: 0; top: 0; width: 2.5rem; height: 0.25rem;
+    background: var(--haldi);
+  }
+  .sustain-section__head { max-width: 48rem; margin-bottom: 2.5rem; }
+</style>
+
+<!-- ============================================================
+     HERO — One Resource. A Wider Material Cycle.
+     ============================================================ -->
+<section class="story-hero bg-limewash" aria-labelledby="sustain-title">
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="${relUrl('/', depth)}">Home</a><span>›</span>
+      <span>Sustainability</span>
+    </nav>
+    <div class="sustain-hero__grid" data-reveal>
+      <div>
+        <span class="eyebrow">Sustainability &amp; Circular Economy</span>
+        <h1 class="story-hero__title" id="sustain-title">One Resource. A Wider Material Cycle.</h1>
+        <p class="story-hero__lead">
+          Gaurikrit's sustainability approach is a material system, not a
+          marketing dashboard: one natural resource, developed into useful
+          products, in a cycle designed so nothing goes to waste.
+        </p>
+        <div style="margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 0.75rem;">
+          <a class="btn btn--primary" href="#impact-areas">How Impact Is Created</a>
+          <a class="btn btn--secondary" href="${relUrl('/about/', depth)}">Our Story</a>
+        </div>
+      </div>
+      <figure class="sustain-hero__plate">
+        <img src="${assetUrl('/assets/editorial/raw-material-study.jpg', depth)}"
+             alt="Natural lime-plastered material surface — the resource beginning of the material cycle"
+             width="1344" height="768"
+             loading="eager" fetchpriority="high" decoding="async">
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     S1. CIRCULAR ECONOMY — the seven-stage loop
+     ============================================================ -->
+<section class="section section--paper" id="circular-economy" aria-labelledby="circ-title">
+  <div class="container">
+    <div class="sustain-section__head section-heading section-heading--left" data-reveal>
+      <span class="section-heading__eyebrow">Section 01 — Circular Economy</span>
+      <h2 class="section-heading__title" id="circ-title">The cycle is the product system.</h2>
+      <p class="section-heading__desc">
+        Gaurikrit's circular model describes how the resource enters, is
+        developed, becomes useful products — and renews the cycle.
+      </p>
+    </div>
+    <div class="circular" data-circular data-reveal>
+      <ol class="circular__track">
+${circularStages}
+      </ol>
+      <svg class="circular__loop-path" viewBox="0 0 1000 28" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M8,2 L8,20 C8,26 16,26 26,26 L974,26 C984,26 992,26 992,20 L992,10" />
+      </svg>
+      <span class="circular__loop-label" aria-hidden="true">Resource regeneration</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     S2. RESOURCE UTILISATION
+     ============================================================ -->
+<section class="section section--haldi-wash" id="resource-utilisation" aria-labelledby="util-title">
+  <div class="container">
+    <div class="sustain-section__head section-heading section-heading--left" data-reveal>
+      <span class="section-heading__eyebrow">Section 02 — Resource Utilisation</span>
+      <h2 class="section-heading__title" id="util-title">One resource, used many ways.</h2>
+      <p class="section-heading__desc">
+        The same natural material base is developed into wall coatings, fuel
+        directions and utility directions — value multiplied by application,
+        not extraction.
+      </p>
+    </div>
+    <div class="resource-steps" data-reveal-stagger>
+      <article class="resource-step">
+        <figure class="resource-step__figure">
+          ${pic('/assets/editorial/raw-material-study.webp', '/assets/editorial/raw-material-study.jpg', 'Raw natural material study', 1344, 768, depth)}
+        </figure>
+        <div class="resource-step__caption">
+          <span class="resource-step__kicker">Input</span>
+          <h3 class="resource-step__title">Natural &amp; agricultural streams</h3>
+          <p class="resource-step__desc">Material that already exists in rural ecosystems.</p>
+        </div>
+      </article>
+      <article class="resource-step">
+        <figure class="resource-step__figure">
+          ${pic('/assets/products/prakritik-distemper-from-pair.webp', '/assets/products/prakritik-distemper-from-pair.png', 'Prakritik Distemper paint pack — developed natural material', 649, 612, depth)}
+        </figure>
+        <div class="resource-step__caption">
+          <span class="resource-step__kicker">Development</span>
+          <h3 class="resource-step__title">Working materials</h3>
+          <p class="resource-step__desc">Processed and developed into useful material families.</p>
+        </div>
+      </article>
+      <article class="resource-step">
+        <figure class="resource-step__figure">
+          ${pic('/assets/editorial/finished-surface-study.webp', '/assets/editorial/finished-surface-study.jpg', 'Finished matte wall surface — useful application', 1344, 768, depth)}
+        </figure>
+        <div class="resource-step__caption">
+          <span class="resource-step__kicker">Output</span>
+          <h3 class="resource-step__title">Everyday applications</h3>
+          <p class="resource-step__desc">Walls, energy and daily-use directions from one base.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     S3. IMPACT AREAS — qualitative, NO counters
+     ============================================================ -->
+<section class="section section--paper" id="impact-areas" aria-labelledby="imp-title">
+  <div class="container">
+    <div class="sustain-section__head section-heading section-heading--left" data-reveal>
+      <span class="section-heading__eyebrow">Section 03 — Impact Areas</span>
+      <h2 class="section-heading__title" id="imp-title">How impact is created.</h2>
+      <p class="section-heading__desc">
+        Five areas, described qualitatively — no numbers until verified data
+        exists.
+      </p>
+    </div>
+    <div class="impact-list" data-reveal-stagger>
+${impactRows}
+    </div>
+    <p class="impact-note" data-reveal>
+      Verified figures will be published as project data becomes available —
+      see the measurement framework below.
+    </p>
+  </div>
+</section>
+
+<!-- ============================================================
+     S4. APPLICATIONS THAT REPLACE LESS SUSTAINABLE ALTERNATIVES
+     ============================================================ -->
+<section class="section section--limewash" id="replacing" aria-labelledby="rep-title">
+  <div class="container">
+    <div class="sustain-section__head section-heading section-heading--left" data-reveal>
+      <span class="section-heading__eyebrow">Section 04 — Replacement</span>
+      <h2 class="section-heading__title" id="rep-title">Applications that replace less sustainable alternatives.</h2>
+      <p class="section-heading__desc">
+        Every ecosystem direction exists to substitute a conventional,
+        resource-intensive alternative.
+      </p>
+    </div>
+    <div class="app-matrix" data-reveal-stagger>
+${appGroups}
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     S5. RURAL VALUE CREATION
+     ============================================================ -->
+<section class="section section--haldi-wash" id="rural-value" aria-labelledby="rural-title">
+  <div class="container">
+    <article class="story-chapter" data-reveal>
+      <div>
+        <span class="story-chapter__num" aria-hidden="true">05</span>
+        <span class="story-chapter__kicker">Rural Value Creation</span>
+      </div>
+      <div>
+        <h2 class="story-chapter__title" id="rural-title">Value created where the resource already is.</h2>
+        <div class="story-chapter__body">
+          <p>
+            Cow dung is gathered in rural and agricultural ecosystems. Developing
+            it into products creates additional value around those ecosystems —
+            for households, gaushalas and agricultural communities.
+          </p>
+          <p class="muted">
+            Gaurikrit works with Gaushalas and institutions exploring
+            cow-dung-based bio-products — see <a href="${relUrl('/for-business/', depth)}">Partners</a>.
+          </p>
+        </div>
+        <figure class="story-chapter__visual">
+          ${pic('/assets/editorial/rural-landscape.webp', '/assets/editorial/rural-landscape.jpg', 'Rural agricultural landscape — where the material cycle begins', 1344, 768, depth)}
+          <figcaption>Rural landscape study — the resource context of the material cycle.</figcaption>
+        </figure>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============================================================
+     S6. MEASUREMENT FRAMEWORK — numbers only when verified
+     ============================================================ -->
+<section class="section section--paper" id="measurement" aria-labelledby="meas-title">
+  <div class="container">
+    <div class="sustain-section__head section-heading section-heading--left" data-reveal>
+      <span class="section-heading__eyebrow">Section 06 — Measurement Framework</span>
+      <h2 class="section-heading__title" id="meas-title">What we will measure — and how it appears.</h2>
+      <p class="section-heading__desc">
+        Quantified impact is published only when verified project data exists.
+        Nothing on this page is a projected, estimated or aspirational number.
+      </p>
+    </div>
+    <div class="measure-list" data-reveal-stagger>
+${measurementItems}
+    </div>
+    <div style="margin-top: 2.5rem; display: flex; flex-wrap: wrap; gap: 0.75rem;" data-reveal>
+      <a class="btn btn--primary" href="${relUrl('/innovation/', depth)}">Research &amp; Innovation</a>
+      <a class="btn btn--outline" href="${relUrl('/contact/', depth)}">Discuss a Collaboration</a>
+    </div>
+  </div>
+</section>
+`;
+}
+
+// ---- Innovation (V16 NEW route /innovation/) ----
+function innovationBody(depth) {
+    const focusRows = INNOVATION_AREAS.map((focus) => `        <div class="focus-row">
+          <span class="focus-row__num" aria-hidden="true">${e(focus.num)}</span>
+          <h3 class="focus-row__name">${e(focus.name)}</h3>
+          <p class="focus-row__desc">${e(focus.desc)}</p>
+        </div>`).join('\n');
+
+    const methodItems = [
+        ['Material-first', 'Each direction begins with a natural material and its properties, not a market template.'],
+        ['Application-led', 'Research is guided by real applications — walls, fuel, ritual and daily use.'],
+        ['Tradition-aware', 'Indian material traditions inform where technologies should serve, not erase.'],
+        ['Verified before published', 'Directions are shared as directions. Results are shared only once verified.'],
+    ].map(([name, desc]) => `        <div class="measure-item">
+          <span class="measure-item__name">${e(name)}</span>
+          <p class="measure-item__desc">${e(desc)}</p>
+        </div>`).join('\n');
+
+    return `<style>
+  /* ===== PAGE HERO — story-hero + research composition ===== */
+  .innov-hero__grid {
+    display: grid; gap: clamp(2rem, 4vw, 4rem); align-items: center;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 1024px) { .innov-hero__grid { grid-template-columns: 6fr 6fr; } }
+  .innov-hero__plate {
+    position: absolute; overflow: hidden;
+    border: 1px solid var(--border); border-radius: var(--r-panel);
+    background: var(--paper);
+  }
+  .innov-hero__plate img {
+    display: block; width: 100%; height: 100%; object-fit: cover;
+  }
+  .innov-hero__plate--a { top: 0; right: 38%; bottom: 32%; left: 0; }
+  .innov-hero__plate--b { top: 36%; right: 0; bottom: 0; left: 40%; }
+  .innov-hero__plate::after {
+    content: ""; position: absolute; left: 0; top: 0; width: 2.5rem; height: 0.25rem;
+    background: var(--haldi); z-index: 2;
+  }
+  .innov-hero__plate-tag {
+    position: absolute; left: 1rem; bottom: 0.75rem; z-index: 2;
+    font-size: 0.5625rem; font-weight: 700; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--fg-muted);
+    background: var(--paper); border: 1px solid var(--border);
+    border-radius: 3px; padding: 0.25rem 0.5rem;
+  }
+  .innov-section__head { max-width: 48rem; margin-bottom: 2.5rem; }
+</style>
+
+<!-- ============================================================
+     HERO — Where Tradition Meets Technology.
+     ============================================================ -->
+<section class="story-hero bg-limewash" aria-labelledby="innov-title">
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="${relUrl('/', depth)}">Home</a><span>›</span>
+      <span>Innovation</span>
+    </nav>
+    <div class="innov-hero__grid" data-reveal>
+      <div>
+        <span class="eyebrow">Research &amp; Innovation</span>
+        <h1 class="story-hero__title" id="innov-title">Where Tradition Meets Technology.</h1>
+        <p class="story-hero__lead">
+          Gaurikrit's research direction explores how a natural material
+          understood by tradition can be developed with contemporary methods —
+          into coatings, fuels, composites and building materials.
+        </p>
+        <div style="margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 0.75rem;">
+          <a class="btn btn--primary" href="#focus-areas">The Five Focus Areas</a>
+          <a class="btn btn--secondary" href="${relUrl('/sustainability/', depth)}">Sustainability</a>
+        </div>
+      </div>
+      <div class="innov-hero__plates" style="position: relative; min-height: 22rem;">
+        <span class="innov-hero__plate innov-hero__plate--a">
+          <img src="${assetUrl('/assets/editorial/raw-material-study.jpg', depth)}"
+               alt="Raw natural material study — the research beginning"
+               width="1344" height="768"
+               loading="eager" fetchpriority="high" decoding="async">
+        </span>
+        <span class="innov-hero__plate innov-hero__plate--b">
+          <img src="${assetUrl('/assets/editorial/finished-surface-study.jpg', depth)}"
+               alt="Finished developed material — the research outcome direction"
+               width="1344" height="768"
+               loading="lazy" decoding="async">
+        </span>
+        <span class="innov-hero__plate-tag">Material research directions</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FOCUS AREAS — five horizontal rows
+     ============================================================ -->
+<section class="section section--paper" id="focus-areas" aria-labelledby="focus-title">
+  <div class="container">
+    <div class="innov-section__head section-heading section-heading--left" data-reveal>
+      <span class="section-heading__eyebrow">Focus Areas</span>
+      <h2 class="section-heading__title" id="focus-title">Five directions under exploration.</h2>
+      <p class="section-heading__desc">
+        These are FOCUS AREAS — research directions. They are not presented as
+        proven accomplishments, patents or facilities.
+      </p>
+    </div>
+    <div class="focus-rows" data-reveal-stagger>
+${focusRows}
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     METHOD — how Gaurikrit explores materials
+     ============================================================ -->
+<section class="section section--haldi-wash" id="method" aria-labelledby="method-title">
+  <div class="container">
+    <div class="innov-section__head section-heading section-heading--left" data-reveal>
+      <span class="section-heading__eyebrow">How we explore</span>
+      <h2 class="section-heading__title" id="method-title">Material-first, application-led.</h2>
+    </div>
+    <div class="measure-list" data-reveal-stagger>
+${methodItems}
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     ECO-PAINTS CONTEXT — the documented research outcome
+     ============================================================ -->
+<section class="section section--paper" id="documented" aria-labelledby="doc-title">
+  <div class="container">
+    <article class="story-chapter" data-reveal>
+      <div>
+        <span class="story-chapter__num" aria-hidden="true">01</span>
+        <span class="story-chapter__kicker">Documented outcome</span>
+      </div>
+      <div>
+        <h2 class="story-chapter__title" id="doc-title">Eco-Paints — where the direction became products.</h2>
+        <div class="story-chapter__body">
+          <p>
+            The natural-coatings focus is the most developed: Prakritik
+            Distemper and Prakritik Emulsion are documented, specified
+            products — the reference point for how a research direction
+            becomes a Gaurikrit family.
+          </p>
+        </div>
+        <figure class="story-chapter__visual">
+          ${pic('/assets/products/prakritik-pair.webp', '/assets/products/prakritik-pair.jpg', 'Prakritik Distemper and Emulsion paint packs — the documented Eco-Paints outcome', 1420, 618, depth)}
+          <figcaption>Prakritik Distemper and Emulsion — the documented Eco-Paints family.</figcaption>
+        </figure>
+        <div style="margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 0.75rem;">
+          <a class="btn btn--secondary" href="${relUrl('/products/', depth)}#eco-paints">Explore Eco-Paints</a>
+          <a class="btn btn--outline" href="${relUrl('/why-prakritik/', depth)}">Why Prakritik</a>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============================================================
+     CTA — Discuss a Collaboration
+     ============================================================ -->
+<section class="section section--forest" aria-labelledby="collab-title">
+  <div class="container">
+    <div class="why-cta" data-reveal>
+      <span class="why-cta__eyebrow">Collaboration</span>
+      <h2 class="why-cta__title" id="collab-title">Discuss a Collaboration.</h2>
+      <p class="why-cta__sub">
+        Research programmes, institutions and sustainability partners —
+        talk to Gaurikrit about material directions and collaboration.
+      </p>
+      <div class="why-cta__actions">
+        <a class="btn btn--haldi" href="${relUrl('/for-business/', depth)}">Become a Partner</a>
+        <a class="btn btn--secondary" href="${relUrl('/contact/', depth)}">Contact Gaurikrit</a>
+      </div>
+    </div>
+  </div>
+</section>
+`;
+}
+
 // ============================================================
 // 5. BUILD ORCHESTRATION
 // ============================================================
@@ -4264,9 +4765,9 @@ const PAGES = [
         route: 'index.html',
         depth: 0,
         pageMeta: {
-            title: 'Gaurikrit — Prakritik Paint & Bio Products',
+            title: 'Gaurikrit — Circular Material Solutions from Natural Resources',
             description:
-                'Cow dung-based Prakritik Paint in Distemper and Emulsion formats for interior and exterior walls. Gaurikrit Bio Products, Khurja, District Bulandshahr, Uttar Pradesh.',
+                'Gaurikrit builds a material ecosystem around one natural resource — cow dung — from Prakritik Eco-Paints to GoCast and Bio-Coal fuel directions and utility products. Circular economy from Khurja, Uttar Pradesh.',
             canonical: '/',
             pageClass: 'home',
         },
@@ -4276,9 +4777,9 @@ const PAGES = [
         route: 'products/index.html',
         depth: 1,
         pageMeta: {
-            title: 'Prakritik Paint Products — Distemper & Emulsion | Gaurikrit',
+            title: 'Products — Eco-Paints, Biomass & Sustainable Material Solutions | Gaurikrit',
             description:
-                'Two formats of Prakritik Paint: Distemper (1, 5, 10 and 20 kg packs) and Emulsion (1, 4, 10 and 20 litre packs). Matt finish, interior & exterior use. Cow-dung-based, from Gaurikrit Bio Products.',
+                'The Gaurikrit product ecosystem: Eco-Paints (Prakritik Distemper and Emulsion, fully documented) plus GoCast Logs, Bio-Coal Logs and Utility Product development directions — one natural resource, multiple applications.',
             canonical: '/products/',
             pageClass: 'products',
         },
@@ -4324,21 +4825,45 @@ const PAGES = [
         route: 'about/index.html',
         depth: 1,
         pageMeta: {
-            title: 'About Gaurikrit Bio Products — Nature. Culture. Useful materials.',
+            title: 'Our Story — Gaurikrit Bio Products',
             description:
-                'Gaurikrit Bio Products (OPC) Private Limited — Khurja, District Bulandshahr, Uttar Pradesh. Makers of Prakritik Distemper and Emulsion Paint. GSTIN 09AAMCG8400F1ZK.',
+                'The Gaurikrit story: one natural resource — cow dung — recognised by traditional India, carried into practical contemporary applications: Eco-Paints, fuel directions and utility products. Khurja, District Bulandshahr, Uttar Pradesh.',
             canonical: '/about/',
             pageClass: 'about',
         },
         body: aboutBody,
     },
     {
+        route: 'sustainability/index.html',
+        depth: 1,
+        pageMeta: {
+            title: 'Sustainability & Circular Economy — Gaurikrit',
+            description:
+                "Gaurikrit's sustainability framework: circular economy, resource utilisation, qualitative impact areas, applications that replace less sustainable alternatives, rural value creation and the measurement framework.",
+            canonical: '/sustainability/',
+            pageClass: 'sustainability',
+        },
+        body: sustainabilityBody,
+    },
+    {
+        route: 'innovation/index.html',
+        depth: 1,
+        pageMeta: {
+            title: 'Research & Innovation — Gaurikrit',
+            description:
+                "Gaurikrit's research focus areas: natural coatings, biomass energy, bio-composites, carbon reduction technologies and sustainable building materials — where tradition meets technology.",
+            canonical: '/innovation/',
+            pageClass: 'innovation',
+        },
+        body: innovationBody,
+    },
+    {
         route: 'for-business/index.html',
         depth: 1,
         pageMeta: {
-            title: 'For Business — Architects, Builders, CSR, NGOs, Gaushalas | Gaurikrit',
+            title: 'Partners & Business Enquiries — Gaurikrit',
             description:
-                'Discuss Prakritik Paint for residential, commercial, institutional, CSR / NGO and Gaushala collaboration projects with Gaurikrit Bio Products.',
+                'Build with Gaurikrit: distribution, dealership, architecture, contracting, institutional, industrial and sustainability partnerships around the Gaurikrit material ecosystem — Eco-Paints, GoCast, Bio-Coal and utility directions.',
             canonical: '/for-business/',
             pageClass: 'for-business',
         },

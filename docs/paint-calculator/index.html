@@ -175,11 +175,11 @@
 
             <nav class="site-nav" aria-label="Primary" data-spy>
         <a href="../" class="site-nav__link" data-nav-link="/">Home</a>
+        <a href="../about/" class="site-nav__link" data-nav-link="/about/">Our Story</a>
         <a href="../products/" class="site-nav__link" data-nav-link="/products/">Products</a>
-        <a href="../why-prakritik/" class="site-nav__link" data-nav-link="/why-prakritik/">Why Prakritik</a>
-        <a href="../about/" class="site-nav__link" data-nav-link="/about/">About</a>
-        <a href="../for-business/" class="site-nav__link" data-nav-link="/for-business/">For Business</a>
-        <a href="../paint-calculator/" class="site-nav__link" data-nav-link="/paint-calculator/">Calculator</a>
+        <a href="../sustainability/" class="site-nav__link" data-nav-link="/sustainability/">Sustainability</a>
+        <a href="../innovation/" class="site-nav__link" data-nav-link="/innovation/">Innovation</a>
+        <a href="../for-business/" class="site-nav__link" data-nav-link="/for-business/">Partners</a>
         <a href="../contact/" class="site-nav__link" data-nav-link="/contact/">Contact</a>
             </nav>
 
@@ -203,13 +203,19 @@
             </div>
             <nav class="mobile-menu__nav" aria-label="Mobile">
                 <a href="../" class="mobile-menu__link" data-nav-link="/">Home<span class="mobile-menu__arrow">→</span></a>
+                <a href="../about/" class="mobile-menu__link" data-nav-link="/about/">Our Story<span class="mobile-menu__arrow">→</span></a>
                 <a href="../products/" class="mobile-menu__link" data-nav-link="/products/">Products<span class="mobile-menu__arrow">→</span></a>
-                <a href="../why-prakritik/" class="mobile-menu__link" data-nav-link="/why-prakritik/">Why Prakritik<span class="mobile-menu__arrow">→</span></a>
-                <a href="../about/" class="mobile-menu__link" data-nav-link="/about/">About<span class="mobile-menu__arrow">→</span></a>
-                <a href="../for-business/" class="mobile-menu__link" data-nav-link="/for-business/">For Business<span class="mobile-menu__arrow">→</span></a>
-                <a href="../paint-calculator/" class="mobile-menu__link" data-nav-link="/paint-calculator/">Calculator<span class="mobile-menu__arrow">→</span></a>
+                <a href="../sustainability/" class="mobile-menu__link" data-nav-link="/sustainability/">Sustainability<span class="mobile-menu__arrow">→</span></a>
+                <a href="../innovation/" class="mobile-menu__link" data-nav-link="/innovation/">Innovation<span class="mobile-menu__arrow">→</span></a>
+                <a href="../for-business/" class="mobile-menu__link" data-nav-link="/for-business/">Partners<span class="mobile-menu__arrow">→</span></a>
                 <a href="../contact/" class="mobile-menu__link" data-nav-link="/contact/">Contact<span class="mobile-menu__arrow">→</span></a>
             </nav>
+            <!-- V16 §46: secondary utilities near the bottom of the menu. -->
+            <div class="mobile-menu__utilities">
+                <p class="mobile-menu__utilities-label">Tools</p>
+                    <a href="../paint-calculator/" class="mobile-menu__utility-link">Painting Calculator</a>
+                    <a href="../downloads/" class="mobile-menu__utility-link">Downloads / Brochure</a>
+            </div>
             <div class="mobile-menu__foot">
                 <a href="../contact/" class="btn btn--primary btn--block">Talk to Us</a>
             </div>
@@ -539,24 +545,30 @@
                 <p class="site-footer__brandline">Good for Nature. Good for Life.</p>
                 <p class="site-footer__legal-name">Gaurikrit Bio Products (OPC) Private Limited</p>
             </div>
-            <nav class="site-footer__col" aria-label="Navigate">
-                <h4 class="site-footer__heading">Navigate</h4>
+            <nav class="site-footer__col site-footer__col--company" aria-label="Company">
+                <h4 class="site-footer__heading">Company</h4>
                 <a href="../">Home</a>
-                <a href="../products/">Products</a>
-                <a href="../why-prakritik/">Why Prakritik</a>
-                <a href="../about/">About</a>
-                <a href="../for-business/">For Business</a>
-                <a href="../paint-calculator/">Calculator</a>
-                <a href="../contact/">Contact</a>
+                <a href="../about/">Our Story</a>
+                <a href="../sustainability/">Sustainability</a>
+                <a href="../innovation/">Innovation</a>
             </nav>
             <nav class="site-footer__col" aria-label="Products">
                 <h4 class="site-footer__heading">Products</h4>
+                <a href="../products/#eco-paints">Eco-Paints</a>
                 <a href="../products/prakritik-distemper/">Prakritik Distemper</a>
                 <a href="../products/prakritik-emulsion/">Prakritik Emulsion</a>
-                <a href="../downloads/">Brochure</a>
-                <a href="../for-business/">For Business</a>
+                <a href="../products/#gocast-logs">GoCast Logs</a>
+                <a href="../products/#bio-coal-logs">Bio-Coal Logs</a>
+                <a href="../products/#utility-products">Utility Products</a>
             </nav>
-            <div class="site-footer__col">
+            <nav class="site-footer__col site-footer__col--work" aria-label="Work with us">
+                <h4 class="site-footer__heading">Work With Us</h4>
+                <a href="../for-business/">Partners</a>
+                <a href="../paint-calculator/">Painting Calculator</a>
+                <a href="../downloads/">Downloads</a>
+                <a href="../contact/">Contact</a>
+            </nav>
+            <div class="site-footer__col site-footer__col--contact">
                 <h4 class="site-footer__heading">Contact</h4>
                 <p class="site-footer__contact-line">
                     <a href="mailto:seva@gaurikrit.com">seva@gaurikrit.com</a>
@@ -591,6 +603,7 @@
     <script src="../assets/js/colour-study.js?v=static"></script>
     <script src="../assets/js/forms.js?v=static"></script>
     <script src="../assets/js/calculator.js?v=static"></script>
+    <script src="../assets/js/story.js?v=static"></script>
     <script src="../assets/js/app.js?v=static"></script>
 </body>
 </html>
