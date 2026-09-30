@@ -19,7 +19,7 @@
 declare(strict_types=1);
 
 $pageTitle       = 'Sustainability & Circular Economy — Gaurikrit';
-$pageDescription = 'Gaurikrit\'s sustainability framework: circular economy, resource utilisation, qualitative impact areas, applications that replace less sustainable alternatives, rural value creation and the measurement framework.';
+$pageDescription = 'Gaurikrit\'s sustainability framework: circular material direction, resource utilisation, qualitative impact areas, application directions, rural value creation and the measurement framework.';
 $pageCanonical   = '/sustainability/';
 $pageClass       = 'sustainability';
 
@@ -86,10 +86,10 @@ $measurementItems = [
         <p class="story-hero__lead">
           Gaurikrit's sustainability approach is a material system, not a
           marketing dashboard: one natural resource, developed into useful
-          products, in a cycle designed so nothing goes to waste.
+          products, within a circular material direction.
         </p>
         <div style="margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 0.75rem;">
-          <a class="btn btn--primary" href="#impact-areas">How Impact Is Created</a>
+          <a class="btn btn--primary" href="#impact-areas">Impact Areas</a>
           <a class="btn btn--secondary" href="/about/">Our Story</a>
         </div>
       </div>
@@ -119,7 +119,9 @@ $measurementItems = [
       <h2 class="section-heading__title" id="circ-title">The cycle is the product system.</h2>
       <p class="section-heading__desc">
         Gaurikrit's circular model describes how the resource enters, is
-        developed, becomes useful products — and renews the cycle.
+        developed, becomes useful products — and how the material cycle
+        continues. A conceptual process description, not an audited
+        life-cycle assessment.
       </p>
     </div>
     <div class="circular" data-circular data-reveal>
@@ -218,7 +220,7 @@ $measurementItems = [
   <div class="container">
     <div class="sustain-section__head section-heading section-heading--left" data-reveal>
       <span class="section-heading__eyebrow">Section 03 — Impact Areas</span>
-      <h2 class="section-heading__title" id="imp-title">How impact is created.</h2>
+      <h2 class="section-heading__title" id="imp-title">Impact areas to evaluate.</h2>
       <p class="section-heading__desc">
         Five areas, described qualitatively — no numbers until verified data
         exists.
@@ -241,16 +243,16 @@ $measurementItems = [
 </section>
 
 <!-- ============================================================
-     S4. APPLICATIONS THAT REPLACE LESS SUSTAINABLE ALTERNATIVES
+     S4. APPLICATION DIRECTIONS
      ============================================================ -->
 <section class="section section--limewash" id="replacing" aria-labelledby="rep-title">
   <div class="container">
     <div class="sustain-section__head section-heading section-heading--left" data-reveal>
-      <span class="section-heading__eyebrow">Section 04 — Replacement</span>
-      <h2 class="section-heading__title" id="rep-title">Applications that replace less sustainable alternatives.</h2>
+      <span class="section-heading__eyebrow">Section 04 — Applications</span>
+      <h2 class="section-heading__title" id="rep-title">Application directions.</h2>
       <p class="section-heading__desc">
-        Every ecosystem direction exists to substitute a conventional,
-        resource-intensive alternative.
+        Each ecosystem direction explores a practical alternative to
+        conventional, resource-intensive materials.
       </p>
     </div>
     <div class="app-matrix" data-reveal-stagger>
@@ -290,7 +292,8 @@ $measurementItems = [
         <div class="story-chapter__body">
           <p>
             Cow dung is gathered in rural and agricultural ecosystems. Developing
-            it into products creates additional value around those ecosystems —
+            it into products could create additional value around those
+            ecosystems —
             for households, gaushalas and agricultural communities.
           </p>
           <p class="muted">
@@ -298,16 +301,8 @@ $measurementItems = [
             cow-dung-based bio-products — see <a href="/for-business/">Partners</a>.
           </p>
         </div>
-        <figure class="story-chapter__visual">
-          <picture>
-            <source type="image/webp" srcset="<?= asset_url('/assets/editorial/rural-landscape.webp') ?>">
-            <img src="<?= asset_url('/assets/editorial/rural-landscape.jpg') ?>"
-                 alt="Rural agricultural landscape — where the material cycle begins"
-                 width="1344" height="768"
-                 loading="lazy" decoding="async">
-          </picture>
-          <figcaption>Rural landscape study — the resource context of the material cycle.</figcaption>
-        </figure>
+        <!-- V20 §49: the generated rural-landscape illustration is retired —
+             no fake rural/project photography; the section is typographic. -->
       </div>
     </article>
   </div>
@@ -320,7 +315,7 @@ $measurementItems = [
   <div class="container">
     <div class="sustain-section__head section-heading section-heading--left" data-reveal>
       <span class="section-heading__eyebrow">Section 06 — Measurement Framework</span>
-      <h2 class="section-heading__title" id="meas-title">What we will measure — and how it appears.</h2>
+      <h2 class="section-heading__title" id="meas-title">How progress can be measured.</h2>
       <p class="section-heading__desc">
         Quantified impact is published only when verified project data exists.
         Nothing on this page is a projected, estimated or aspirational number.

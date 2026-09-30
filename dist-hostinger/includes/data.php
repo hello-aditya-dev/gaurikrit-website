@@ -120,10 +120,12 @@ $ASHTA_LAABH = [
 
 /**
  * V18 — Prakritik Paint shade catalogue (client-supplied, 2026-09-27 batch).
- * 12 Signature shades + 24 Premium shades in five supplied groups.
- * Names and codes are EXACTLY as printed on the client shade cards
- * (posters #16–18 in ASSET_PROVENANCE.md). Signature and Premium are
- * SEPARATE collections — repeated names are NOT merged.
+ * Signature collection (GK-101…GK-112) + Premium collection in the five
+ * supplied groups (GK-201…GK-230 as printed on the card). Names and codes
+ * are transcribed from the supplied Gaurikrit shade references. Signature
+ * and Premium are SEPARATE collections — repeated names are NOT merged.
+ * (No public numeric shade-count claim: the poster headline prints "24
+ * SHADES" while the card enumerates 30 — see CLIENT_VERIFICATION_REQUIRED.)
  *
  * Hex values are pixel-sampled approximations of the printed swatches
  * (median swatch colour + VLM cross-check). Indicative digital previews
@@ -147,7 +149,9 @@ $SHADE_SIGNATURE = [
 ];
 
 /**
- * Premium Collection — 24 shades in the five groups printed on the card:
+ * Premium Collection — shades in the five groups printed on the card
+ * (GK-201…GK-230). No numeric count claimed publicly (V20: headline/card
+ * discrepancy is a client verification item, not a site decision).
  * NATURAL NEUTRALS / SUNSHINE COLLECTION / NATURE GREENS /
  * SKY & WATER / EARTH & HERITAGE.
  */
@@ -349,45 +353,47 @@ $FAMILIES = [
         'num'      => '02',
         'id'       => 'gocast-logs',
         'name'     => 'GoCast Logs',
-        'line'     => 'Saving trees without changing traditions.',
-        'desc'     => 'A dense log format developed as an alternative to conventional wood — directed at ceremonial and traditional applications where wood has long been the default.',
+        'line'     => 'A cow-dung log direction.',
+        'desc'     => 'A dense log format shaped from cow dung — a development direction exploring material uses where wood has traditionally been used.',
         'status'   => 'Development direction',
-        'themes'   => ['Alternative to conventional wood', 'Ceremonial applications', 'Forest-conservation direction'],
+        'themes'   => ['Natural material format', 'Traditional-use direction', 'Resource-conscious direction'],
         'href'     => '/products/#gocast-logs',
     ],
     [
         'num'      => '03',
         'id'       => 'bio-coal-logs',
         'name'     => 'Bio-Coal Logs',
-        'line'     => 'Renewable energy from natural biomass.',
-        'desc'     => 'Biomass-based fuel logs — a renewable energy direction that explores how natural material streams can reduce reliance on fossil fuels.',
+        'line'     => 'A bio-based fuel material direction.',
+        'desc'     => 'Biomass-based fuel logs — a development direction exploring how natural material streams could serve fuel applications.',
         'status'   => 'Development direction',
-        'themes'   => ['Biomass energy', 'Reduced fossil-fuel reliance direction', 'Sustainable fuel applications'],
+        'themes'   => ['Bio-based fuel material', 'Biomass applications', 'Fuel-material direction'],
         'href'     => '/products/#bio-coal-logs',
     ],
     [
         'num'      => '04',
         'id'       => 'utility-products',
         'name'     => 'Utility Products',
-        'line'     => 'Sustainable products for everyday living.',
-        'desc'     => 'Practical daily-use products from naturally derived materials — a plastic-reducing direction for homes, gardens and everyday routines.',
+        'line'     => 'A natural-material utility direction.',
+        'desc'     => 'Practical daily-use products from naturally derived materials — a development direction for homes, gardens and everyday routines.',
         'status'   => 'Development direction',
-        'themes'   => ['Plastic-reducing alternatives', 'Practical daily-use applications', 'Circular-economy solutions'],
+        'themes'   => ['Natural-material utility direction', 'Moulded material forms', 'Everyday-use applications'],
         'href'     => '/products/#utility-products',
     ],
 ];
 
 /**
- * The circular model — seven qualitative stages. No factory imagery, no numbers.
+ * The circular model — seven qualitative stages (V20 safe wording: a
+ * conceptual process description, NOT an audited zero-waste claim).
+ * No factory imagery, no numbers, no environmental-outcome assertions.
  */
 $CIRCULAR_STAGES = [
-    ['num' => '01', 'name' => 'Collection',      'desc' => 'Natural and agricultural material streams are gathered.'],
-    ['num' => '02', 'name' => 'Processing',      'desc' => 'The raw material is prepared and stabilised.'],
-    ['num' => '03', 'name' => 'Material Enhancement', 'desc' => 'It is developed into useful working materials.'],
-    ['num' => '04', 'name' => 'Manufacturing',   'desc' => 'Materials are formed into product families.'],
-    ['num' => '05', 'name' => 'Products',        'desc' => 'Walls, energy and everyday-use applications.'],
-    ['num' => '06', 'name' => 'Environmental Impact', 'desc' => 'Each use replaces a less sustainable alternative.'],
-    ['num' => '07', 'name' => 'Resource Regeneration', 'desc' => 'The cycle renews — nothing goes to waste.'],
+    ['num' => '01', 'name' => 'Resource',      'desc' => 'Natural and agricultural material streams.'],
+    ['num' => '02', 'name' => 'Preparation',   'desc' => 'Material is prepared for further development.'],
+    ['num' => '03', 'name' => 'Material Development', 'desc' => 'Material is developed into useful formats.'],
+    ['num' => '04', 'name' => 'Production',    'desc' => 'Documented or developing applications take shape.'],
+    ['num' => '05', 'name' => 'Application',   'desc' => 'Products and material directions are put to practical use.'],
+    ['num' => '06', 'name' => 'Review',        'desc' => 'Use, material value and environmental considerations are evaluated.'],
+    ['num' => '07', 'name' => 'Next Cycle',    'desc' => 'Further reuse and material opportunities are explored.'],
 ];
 
 /**
@@ -396,11 +402,11 @@ $CIRCULAR_STAGES = [
  * (see CLIENT_VERIFICATION_REQUIRED.md).
  */
 $IMPACT_AREAS = [
-    ['label' => 'Trees',     'area' => 'Resource conservation', 'desc' => 'Reducing dependence on conventional resource-intensive alternatives.'],
-    ['label' => 'Waste',     'area' => 'Material reuse',        'desc' => 'Creating useful applications for natural and agricultural material streams.'],
-    ['label' => 'Energy',    'area' => 'Alternative fuel',      'desc' => 'Exploring renewable biomass-based fuel applications.'],
-    ['label' => 'Carbon',    'area' => 'Reduction direction',   'desc' => 'Directional reduction of reliance on fossil-based materials.'],
-    ['label' => 'Rural',     'area' => 'Value creation',        'desc' => 'Creating additional value around agricultural ecosystems.'],
+    ['label' => 'Trees',     'area' => 'Resource conservation', 'desc' => 'A direction to evaluate: dependence on conventional resource-intensive alternatives.'],
+    ['label' => 'Waste',     'area' => 'Material reuse',        'desc' => 'Exploring useful applications for natural and agricultural material streams.'],
+    ['label' => 'Energy',    'area' => 'Alternative fuel',      'desc' => 'Exploring biomass-based fuel applications.'],
+    ['label' => 'Carbon',    'area' => 'Reduction direction',   'desc' => 'A direction under evaluation: how bio-based materials relate to fossil-based alternatives.'],
+    ['label' => 'Rural',     'area' => 'Value creation',        'desc' => 'Exploring additional value around agricultural ecosystems.'],
 ];
 
 /**
@@ -410,7 +416,7 @@ $INNOVATION_AREAS = [
     ['num' => '01', 'name' => 'Natural Coatings',             'desc' => 'Wall coatings and finishes from naturally derived materials.'],
     ['num' => '02', 'name' => 'Biomass Energy',               'desc' => 'Fuel directions from natural biomass material streams.'],
     ['num' => '03', 'name' => 'Bio-Composites',               'desc' => 'Composite materials that carry natural fibres and minerals.'],
-    ['num' => '04', 'name' => 'Carbon Reduction Technologies', 'desc' => 'Approaches that reduce reliance on fossil-based alternatives.'],
+    ['num' => '04', 'name' => 'Carbon Reduction Technologies', 'desc' => 'Approaches exploring alternatives to fossil-based materials.'],
     ['num' => '05', 'name' => 'Sustainable Building Materials', 'desc' => 'Construction materials from renewable natural resources.'],
 ];
 
@@ -458,7 +464,7 @@ $APPLICATION_GROUPS = [
 $WHY_PRINCIPLES = [
     ['num' => '01', 'name' => 'Nature-Led Innovation',    'desc' => 'Products begin with a natural material, not a chemical substitute.'],
     ['num' => '02', 'name' => 'Circular Thinking',        'desc' => 'The same resource is designed to serve many applications.'],
-    ['num' => '03', 'name' => 'Environmental Responsibility', 'desc' => 'Every direction replaces a less sustainable alternative.'],
+    ['num' => '03', 'name' => 'Environmental Responsibility', 'desc' => 'Each direction is evaluated for its environmental responsibility.'],
     ['num' => '04', 'name' => 'Rural Value Creation',     'desc' => 'Value is created around agricultural ecosystems.'],
 ];
 

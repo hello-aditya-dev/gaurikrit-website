@@ -157,7 +157,7 @@ $groupImage = '/assets/products/prakritik-group.jpg';
       <div class="about-hero__plate">
         <div class="about-hero__plate-head">
           <img class="about-hero__plate-mark"
-               src="<?= asset_url('/assets/brand/gaurikrit-logo-mark.png') ?>"
+               src="<?= asset_url('/assets/brand/gaurikrit-logo-mark-sm.png') ?>"
                alt="Gaurikrit brand mark"
                width="40" height="40"
                loading="eager" decoding="async">
@@ -187,16 +187,17 @@ $groupImage = '/assets/products/prakritik-group.jpg';
         <span class="story-chapter__kicker">The Resource</span>
       </div>
       <div>
-        <h2 class="story-chapter__title" id="resource-ch-title">A material traditional India never wasted.</h2>
+        <h2 class="story-chapter__title" id="resource-ch-title">A material long used in Indian homes.</h2>
         <div class="story-chapter__body">
           <p>
-            Traditional India has long recognised cow dung as a useful material —
-            applied to walls and floors, valued in daily rural life, and treated
-            as a resource rather than a waste.
+            Cow dung has long been used in traditional Indian wall and floor
+            coatings — valued in daily rural life and treated as a useful
+            material rather than a waste.
           </p>
           <p class="muted">
-            Gaurikrit begins from that recognition: a natural, renewable material
-            already embedded in Indian material culture.
+            Gaurikrit begins from that recognition: a natural material already
+            embedded in Indian material culture. Its Prakritik Paint carries
+            that material idea into a contemporary paint format.
           </p>
         </div>
         <figure class="story-chapter__visual">
@@ -302,7 +303,7 @@ $groupImage = '/assets/products/prakritik-group.jpg';
               <span class="resource-step__kicker">Stage 01 — Resource</span>
               <h3 class="resource-step__title">The natural material</h3>
               <p class="resource-step__desc">
-                Cow dung — a material traditional India never wasted.
+                Cow dung — a material long used in traditional Indian homes.
               </p>
             </div>
           </article>
@@ -382,8 +383,9 @@ $groupImage = '/assets/products/prakritik-group.jpg';
           Practical alternatives, responsibly made.
         </h2>
         <p class="vision-mission__text">
-          To replace less sustainable alternatives with practical, accessible and
-          environmentally responsible product solutions.
+          To develop practical, accessible and environmentally responsible
+          material solutions — and to evaluate every direction for its
+          environmental responsibility.
         </p>
         <div style="margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 0.75rem;">
           <a class="btn btn--haldi" href="/products/">Explore the Ecosystem</a>

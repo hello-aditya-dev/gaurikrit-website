@@ -21,7 +21,7 @@
  */
 declare(strict_types=1);
 
-$pageTitle       = 'Paint Calculator — Estimate Your Project | Gaurikrit';
+$pageTitle       = 'Painting Calculator — Plan Your Paint Requirement | Gaurikrit';
 $pageDescription = 'Walk through four quick choices to estimate your Prakritik Paint project. What you are painting, where, which format, and how much wall area. Send the summary to Gaurikrit.';
 $pageCanonical   = '/paint-calculator/';
 $pageClass        = 'paint-calculator';
@@ -202,7 +202,7 @@ $calcConfigJson = json_encode($calcConfig, JSON_UNESCAPED_SLASHES | JSON_UNESCAP
       <div class="calc-hero__inner" data-reveal>
         <span class="calc-hero__eyebrow">
           <span class="calc-hero__eyebrow-dot" aria-hidden="true"></span>
-          Estimate your project
+          Plan your paint requirement
         </span>
         <hr class="calc-hero__rule">
         <h1 class="calc-hero__title" id="calc-title">Planning to paint?</h1>

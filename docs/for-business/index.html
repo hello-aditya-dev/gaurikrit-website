@@ -82,8 +82,8 @@
     <header class="site-header" id="site-header" data-scrolled="false">
         <div class="container site-header__inner">
             <a href="../" class="brand" aria-label="Gaurikrit home">
-                <span class="brand__mark" data-official-image="../assets/brand/gaurikrit-logo-mark.png">
-                    <img class="brand__official" src="../assets/brand/gaurikrit-logo-mark.png" alt="Gaurikrit" width="36" height="36">
+                <span class="brand__mark" data-official-image="../assets/brand/gaurikrit-logo-mark-sm.png">
+                    <img class="brand__official" src="../assets/brand/gaurikrit-logo-mark-sm.png" alt="Gaurikrit" width="36" height="36">
                     <span class="brand__fallback"><svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg"
      class="brand__mark-svg"
      role="img" aria-hidden="true"
@@ -259,7 +259,7 @@
     object-fit: cover;
   }
 
-  /* ===== HERO (text left / architectural-elevation right — NO floating blob) ===== */
+  /* ===== HERO (V5: text left / business-context-study right — NO floating blob) ===== */
   .biz-hero { padding-top: calc(var(--header-h) + 2rem); padding-bottom: 1.5rem; }
   @media (min-width: 1024px) { .biz-hero { padding-bottom: 2.5rem; } }
   .biz-hero__container { display: grid; gap: 2rem; align-items: center; }
@@ -267,12 +267,27 @@
     .biz-hero__container { grid-template-columns: 5fr 7fr; gap: 3rem; }
   }
   .biz-hero__lockup { max-width: 42rem; }
-  .biz-hero__art {
-    position: relative; aspect-ratio: 1344/768; background: var(--paper-cool);
-    border-radius: var(--r-panel); overflow: hidden;
+  .biz-hero__art { padding: 0; background: none; border: 0; }
+  /* V20 §56: ONE two-material composition — the REAL Prakritik pair and
+     the REAL client-supplied cow-dung log plate share one studio sweep
+     (partners-hero master). No generated Bio-Coal / Utility in the hero:
+     the hero is about working with Gaurikrit, not proving all four
+     categories. Hairline plate, objects uncropped. */
+  .biz-hero__plate { margin: 0; overflow: hidden;
+    border-radius: var(--r-panel); border: 1px solid var(--border);
+    background: var(--paper); }
+  .biz-hero__plate img {
+    display: block; width: 100%; height: auto; aspect-ratio: 16 / 10;
+    object-fit: cover; object-position: center 56%;
   }
-  .biz-hero__art .editorial-image {
-    width: 100%; height: 100%; object-fit: cover; display: block;
+  .biz-hero__plate figcaption {
+    padding: 0.625rem 1rem; border-top: 1px solid var(--border);
+    display: flex; justify-content: space-between; gap: 1rem;
+    font-size: 0.6875rem; letter-spacing: 0.04em; text-transform: uppercase;
+    color: var(--fg-muted);
+  }
+  .biz-hero__plate figcaption em {
+    font-style: normal; opacity: 0.75; text-transform: none;
   }
 
   /* ===== AUDIENCES (V16: the seven partner audiences as a flexible
@@ -282,7 +297,7 @@
   .biz-audiences__head { max-width: 48rem; margin-bottom: 2.5rem; }
 
   /* ===== PRACTICAL SECTION ===== */
-  .biz-practical { padding-block: clamp(3.5rem, 6vw, 5rem); }
+  .biz-practical { padding-block: clamp(2.75rem, 5vw, 4.25rem); }
   .biz-practical__grid {
     display: grid; gap: 2rem; align-items: start;
   }
@@ -315,8 +330,9 @@
   }
   .biz-practical__item-hint { font-size: 0.9375rem; color: var(--fg); }
 
-  /* ===== FORM (12-col: left 4 help/contact, right 8 fields) ===== */
-  .biz-form-section { padding-block: clamp(3.5rem, 6vw, 5rem); }
+  /* ===== FORM (V5: more padding, looser field spacing, clearer focus states) ===== */
+  /* V20 §61: tightened transition from the practical section (was clamp(3.5rem, 6vw, 5rem)) */
+  .biz-form-section { padding-block: clamp(2.5rem, 4vw, 3.5rem) 5rem; }
   .biz-form-layout__aside { display: flex; flex-direction: column; gap: 1.5rem; }
   .biz-form-layout__aside .help-cta { padding: 1.5rem; }
   .biz-form-card {
@@ -370,22 +386,13 @@
           <a class="btn btn--outline" href="../products/">Explore the Ecosystem</a>
         </div>
       </div>
-      <div class="biz-hero__art" aria-hidden="true">
-        <div class="biz-hero__ecosystem" role="img" aria-label="The Gaurikrit material ecosystem">
-          <figure class="biz-hero__tile">
-            <picture><source type="image/avif" srcset="../assets/images/ecosystem/eco-paints-pair-640.avif 640w, ../assets/images/ecosystem/eco-paints-pair-960.avif 960w" sizes="(min-width: 1024px) 17vw, (min-width: 640px) 45vw, calc(50vw - 1.5rem)"><source type="image/webp" srcset="../assets/images/ecosystem/eco-paints-pair-640.webp 640w, ../assets/images/ecosystem/eco-paints-pair-960.webp 960w" sizes="(min-width: 1024px) 17vw, (min-width: 640px) 45vw, calc(50vw - 1.5rem)"><img  src="../assets/images/ecosystem/eco-paints-pair-640.jpg" alt="" width="640" height="480" loading="lazy" decoding="async"></picture>
-          </figure>
-          <figure class="biz-hero__tile">
-            <picture><source type="image/avif" srcset="../assets/images/ecosystem/gocast-editorial-640.avif 640w, ../assets/images/ecosystem/gocast-editorial-960.avif 960w" sizes="(min-width: 1024px) 17vw, (min-width: 640px) 45vw, calc(50vw - 1.5rem)"><source type="image/webp" srcset="../assets/images/ecosystem/gocast-editorial-640.webp 640w, ../assets/images/ecosystem/gocast-editorial-960.webp 960w" sizes="(min-width: 1024px) 17vw, (min-width: 640px) 45vw, calc(50vw - 1.5rem)"><img  src="../assets/images/ecosystem/gocast-editorial-640.jpg" alt="" width="640" height="480" loading="lazy" decoding="async"></picture>
-          </figure>
-          <figure class="biz-hero__tile">
-            <picture><source type="image/avif" srcset="../assets/images/ecosystem/biocoal-editorial-640.avif 640w, ../assets/images/ecosystem/biocoal-editorial-960.avif 960w" sizes="(min-width: 1024px) 17vw, (min-width: 640px) 45vw, calc(50vw - 1.5rem)"><source type="image/webp" srcset="../assets/images/ecosystem/biocoal-editorial-640.webp 640w, ../assets/images/ecosystem/biocoal-editorial-960.webp 960w" sizes="(min-width: 1024px) 17vw, (min-width: 640px) 45vw, calc(50vw - 1.5rem)"><img  src="../assets/images/ecosystem/biocoal-editorial-640.jpg" alt="" width="640" height="480" loading="lazy" decoding="async"></picture>
-          </figure>
-          <figure class="biz-hero__tile">
-            <picture><source type="image/avif" srcset="../assets/images/ecosystem/utility-material-direction-640.avif 640w, ../assets/images/ecosystem/utility-material-direction-960.avif 960w" sizes="(min-width: 1024px) 17vw, (min-width: 640px) 45vw, calc(50vw - 1.5rem)"><source type="image/webp" srcset="../assets/images/ecosystem/utility-material-direction-640.webp 640w, ../assets/images/ecosystem/utility-material-direction-960.webp 960w" sizes="(min-width: 1024px) 17vw, (min-width: 640px) 45vw, calc(50vw - 1.5rem)"><img  src="../assets/images/ecosystem/utility-material-direction-640.jpg" alt="" width="640" height="480" loading="lazy" decoding="async"></picture>
-          </figure>
-        </div>
-      </div>
+      <figure class="biz-hero__plate" data-reveal>
+        <picture><source type="image/avif" srcset="../assets/images/ecosystem/partners-hero-640.avif 640w, ../assets/images/ecosystem/partners-hero-960.avif 960w, ../assets/images/ecosystem/partners-hero-1280.avif 1280w, ../assets/images/ecosystem/partners-hero-1600.avif 1600w, ../assets/images/ecosystem/partners-hero-1920.avif 1920w" sizes="(min-width: 1024px) 55vw, calc(100vw - 2.5rem)"><source type="image/webp" srcset="../assets/images/ecosystem/partners-hero-640.webp 640w, ../assets/images/ecosystem/partners-hero-960.webp 960w, ../assets/images/ecosystem/partners-hero-1280.webp 1280w, ../assets/images/ecosystem/partners-hero-1600.webp 1600w, ../assets/images/ecosystem/partners-hero-1920.webp 1920w" sizes="(min-width: 1024px) 55vw, calc(100vw - 2.5rem)"><img loading="eager"  src="../assets/images/ecosystem/partners-hero-1280.jpg" alt="Prakritik Distemper and Prakritik Emulsion paint packs with client-supplied cow-dung logs on a terracotta plate — the two documented materials of the Gaurikrit ecosystem" width="1280" height="720" loading="lazy" decoding="async"></picture>
+        <figcaption>
+          <span>Eco-Paints <em>Documented family</em></span>
+          <span>Cow-Dung Logs <em>Client-supplied reference</em></span>
+        </figcaption>
+      </figure>
     </div>
   </div>
 </section>
@@ -399,18 +406,8 @@
       <h2 class="section-heading__title" id="audiences-title">Partner with a material ecosystem.</h2>
     </div>
 
-    <div class="partner-strip" data-reveal>
-      <ul class="partner-strip__list">
-        <li class="partner-strip__item">Distributors</li>
-        <li class="partner-strip__item">Dealers</li>
-        <li class="partner-strip__item">Architects</li>
-        <li class="partner-strip__item">Contractors</li>
-        <li class="partner-strip__item">Institutions</li>
-        <li class="partner-strip__item">Industries</li>
-        <li class="partner-strip__item">Sustainability Partners</li>
-      </ul>
-    </div>
-
+    <!-- V20 §57: the small horizontal audience strip is REMOVED — the
+         four audience cards below already carry this information. -->
     <div class="biz-audiences" data-reveal-stagger>
         <div class="audience-card">
           <span class="audience-card__num">01</span>
@@ -445,29 +442,26 @@
         <h2 class="biz-practical__title" id="include-title">Include these details for a faster response.</h2>
         <p class="biz-practical__body">
           A few practical details up front let us respond with what we can
-          supply — pack sizes, format, and how Prakritik Paint fits your project.
+          supply — for paint projects, pack sizes and format; for the other
+          directions, scale and requirement.
         </p>
       </div>
       <ul class="biz-practical__list">
         <li class="biz-practical__item">
           <span class="biz-practical__item-label">Interest</span>
-          <span class="biz-practical__item-hint">Eco-Paints, GoCast, Bio-Coal, Utility Products — or a partnership</span>
+          <span class="biz-practical__item-hint">Eco-Paints, GoCast, Bio-Coal, Utility Products, distribution or collaboration</span>
         </li>
         <li class="biz-practical__item">
-          <span class="biz-practical__item-label">City</span>
-          <span class="biz-practical__item-hint">Where the site or market is located</span>
+          <span class="biz-practical__item-label">City / market</span>
+          <span class="biz-practical__item-hint">Where the requirement is located</span>
         </li>
         <li class="biz-practical__item">
-          <span class="biz-practical__item-label">Approximate wall area</span>
-          <span class="biz-practical__item-hint">In sq.ft. if you have a number (for paint projects)</span>
+          <span class="biz-practical__item-label">Use case / requirement</span>
+          <span class="biz-practical__item-hint">What your organisation needs</span>
         </li>
         <li class="biz-practical__item">
-          <span class="biz-practical__item-label">Paint format</span>
-          <span class="biz-practical__item-hint">Distemper, Emulsion, or not sure yet</span>
-        </li>
-        <li class="biz-practical__item">
-          <span class="biz-practical__item-label">Approximate requirement</span>
-          <span class="biz-practical__item-hint">Approximate quantity, if known</span>
+          <span class="biz-practical__item-label">Approximate quantity</span>
+          <span class="biz-practical__item-hint">If known</span>
         </li>
       </ul>
     </div>
@@ -485,8 +479,8 @@
           <h2 class="biz-form-card__title" id="form-title">Discuss a Project.</h2>
           <p class="biz-form-card__note">
             Tell us about the project or the partnership. We will respond with
-            what we can practically supply — pack sizes, format, and how the
-            Gaurikrit ecosystem fits your project.
+            what we can practically supply — for paint projects, pack sizes
+            and format; for the other directions, scale and availability.
           </p>
         </div>
 
@@ -568,35 +562,51 @@
             <div class="form-error" data-error-for="city" role="alert"></div>
           </div>
           <div class="form-field">
-            <label class="form-label" for="biz-project-type">Project type <span class="req">*</span></label>
-            <select class="form-select" id="biz-project-type" name="project_type" required>
+            <label class="form-label" for="biz-interest">Interest <span class="req">*</span></label>
+            <select class="form-select" id="biz-interest" name="interest" required
+                    data-interest-toggle>
               <option value="" disabled selected>Choose…</option>
-                <option value="Residential">Residential</option>
-                <option value="Commercial">Commercial</option>
-                <option value="Institutional">Institutional</option>
-                <option value="CSR / NGO">CSR / NGO</option>
-                <option value="Gaushala Collaboration">Gaushala Collaboration</option>
-                <option value="Eco-Paints">Eco-Paints</option>
-                <option value="GoCast Logs">GoCast Logs</option>
-                <option value="Bio-Coal Logs">Bio-Coal Logs</option>
-                <option value="Utility Products">Utility Products</option>
-                <option value="Distribution">Distribution</option>
-                <option value="Sustainability Collaboration">Sustainability Collaboration</option>
-                <option value="Other">Other</option>
+                <option value="general">General enquiry</option>
+                <option value="eco-paints">Eco-Paints</option>
+                <option value="prakritik-distemper">Prakritik Distemper</option>
+                <option value="prakritik-emulsion">Prakritik Emulsion</option>
+                <option value="gocast-logs">GoCast Logs</option>
+                <option value="bio-coal-logs">Bio-Coal Logs</option>
+                <option value="utility-products">Utility Products</option>
+                <option value="bulk-project">Bulk / Project</option>
+                <option value="business-partnership">Business Partnership</option>
+                <option value="gaushala-collaboration">Gaushala Collaboration</option>
             </select>
-            <div class="form-error" data-error-for="project_type" role="alert"></div>
+            <div class="form-error" data-error-for="interest" role="alert"></div>
+          </div>
+          <!-- V20 §60: paint-specific fields shown ONLY for Eco-Paints
+               interest (progressive enhancement — present in the no-JS
+               default markup, hidden by JS for non-paint interests). -->
+          <div class="form-field" data-paint-fields>
+            <label class="form-label" for="biz-wall-area">Approximate wall area</label>
+            <input class="form-input" type="text" id="biz-wall-area"
+                   name="wall_area" maxlength="60" inputmode="numeric"
+                   placeholder="sq.ft., if you have a number">
+          </div>
+          <div class="form-field" data-paint-fields>
+            <label class="form-label" for="biz-paint-format">Paint format</label>
+            <select class="form-select" id="biz-paint-format" name="paint_format">
+              <option value="" selected>Not sure yet</option>
+              <option value="distemper">Prakritik Distemper</option>
+              <option value="emulsion">Prakritik Emulsion</option>
+            </select>
           </div>
           <div class="form-field">
             <label class="form-label" for="biz-requirement">Approximate requirement</label>
             <input class="form-input" type="text" id="biz-requirement"
                    name="approximate_requirement" maxlength="100"
-                   placeholder="e.g. 20 packs / 80 litres / not sure yet">
+                   placeholder="Quantity or scale, if known.">
           </div>
           <div class="form-field form-field--full">
             <label class="form-label" for="biz-message">About the project <span class="req">*</span></label>
             <textarea class="form-textarea" id="biz-message" name="message" required
                       maxlength="2000" rows="6"
-                      placeholder="Tell us about the site, the walls, and what you are painting."></textarea>
+                      placeholder="Tell us what you need, where it is required, and what you would like to discuss."></textarea>
             <div class="form-error" data-error-for="message" role="alert"></div>
           </div>
         </div>
@@ -617,8 +627,8 @@
         <div class="container site-footer__main">
             <div class="site-footer__brand">
                 <a href="../" class="brand brand--footer">
-                    <span class="brand__mark" data-official-image="../assets/brand/gaurikrit-logo-mark.png">
-                        <img class="brand__official" src="../assets/brand/gaurikrit-logo-mark.png" alt="Gaurikrit" width="36" height="36">
+                    <span class="brand__mark" data-official-image="../assets/brand/gaurikrit-logo-mark-sm.png">
+                        <img class="brand__official" src="../assets/brand/gaurikrit-logo-mark-sm.png" alt="Gaurikrit" width="36" height="36">
                         <span class="brand__fallback"><svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg"
      class="brand__mark-svg"
      role="img" aria-hidden="true"

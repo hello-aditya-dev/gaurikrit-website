@@ -103,8 +103,8 @@
     <header class="site-header" id="site-header" data-scrolled="false">
         <div class="container site-header__inner">
             <a href="../../" class="brand" aria-label="Gaurikrit home">
-                <span class="brand__mark" data-official-image="../../assets/brand/gaurikrit-logo-mark.png">
-                    <img class="brand__official" src="../../assets/brand/gaurikrit-logo-mark.png" alt="Gaurikrit" width="36" height="36">
+                <span class="brand__mark" data-official-image="../../assets/brand/gaurikrit-logo-mark-sm.png">
+                    <img class="brand__official" src="../../assets/brand/gaurikrit-logo-mark-sm.png" alt="Gaurikrit" width="36" height="36">
                     <span class="brand__fallback"><svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg"
      class="brand__mark-svg"
      role="img" aria-hidden="true"
@@ -288,7 +288,7 @@
   }
   @media (min-width: 1024px) {
     .product-detail__hero {
-      grid-template-columns: 7fr 5fr; gap: clamp(2.5rem, 5vw, 4rem);
+      grid-template-columns: 11fr 9fr; gap: clamp(2.5rem, 5vw, 4rem);
     }
     /* Reversed: product is the first child, on the left. */
     .product-detail--warm .product-detail__hero > :first-child { order: 1; }
@@ -305,22 +305,15 @@
     border: 1px solid var(--border);
     border-radius: var(--r-panel); overflow: hidden;
   }
-  .product-detail__stage { display: none; }
-  .product-detail__panel { position: relative; aspect-ratio: 5 / 5.6; }
-  @media (max-width: 640px) { .product-detail__panel { aspect-ratio: 1 / 1; } }
+  /* V19 §38: the catalogue master carries its own sweep — a large
+     cover-fit panel replaces the fixed-height cutout stage. */
+  /* V20 §37: landscape catalogue presentation — the new 3200x2400
+     master IS the composition (product at native-scale with negative
+     space), so contain-fit shows the whole designed plate. Product is
+     never cropped: lid, body and base always visible. */
+  .product-detail__panel { position: relative; aspect-ratio: 4 / 3; }
   .product-detail__panel img {
     position: absolute; inset: 0; width: 100%; height: 100%;
-    object-fit: cover; object-position: center 38%;
-  }
-  .product-detail__stage .media-product {
-    /* Absolute-fill + object-fit: contain — the pack photo stays
-       COMPLETE inside the fixed-height stage (never cropped). The box
-       is biased downward so the pack stands toward the panel's base. */
-    position: absolute;
-    top: clamp(1.5rem, 3.5vw, 3rem);
-    left: clamp(1.5rem, 3.5vw, 3rem);
-    width: calc(100% - 2 * clamp(1.5rem, 3.5vw, 3rem));
-    height: calc(100% - clamp(1.5rem, 3.5vw, 3rem) - clamp(0.75rem, 1.5vw, 1.25rem));
     object-fit: contain;
   }
   .product-detail__strip {
@@ -362,7 +355,7 @@
     <div class="product-detail__hero" data-reveal>
       <figure class="product-detail__media">
         <div class="product-detail__panel">
-          <picture><source type="image/avif" srcset="../../assets/images/ecosystem/prakritik-emulsion-640.avif 640w, ../../assets/images/ecosystem/prakritik-emulsion-960.avif 960w, ../../assets/images/ecosystem/prakritik-emulsion-1280.avif 1280w, ../../assets/images/ecosystem/prakritik-emulsion-1600.avif 1600w" sizes="(min-width: 1024px) 52vw, calc(100vw - 2.5rem)"><source type="image/webp" srcset="../../assets/images/ecosystem/prakritik-emulsion-640.webp 640w, ../../assets/images/ecosystem/prakritik-emulsion-960.webp 960w, ../../assets/images/ecosystem/prakritik-emulsion-1280.webp 1280w, ../../assets/images/ecosystem/prakritik-emulsion-1600.webp 1600w" sizes="(min-width: 1024px) 52vw, calc(100vw - 2.5rem)"><img class="media-product" loading="eager" fetchpriority="high"  src="../../assets/images/ecosystem/prakritik-emulsion-1280.jpg" alt="Prakritik Emulsion paint pack - complete label and pack photograph" width="1280" height="1564" loading="lazy" decoding="async"></picture>
+          <picture><source type="image/avif" srcset="../../assets/images/ecosystem/prakritik-emulsion-640.avif 640w, ../../assets/images/ecosystem/prakritik-emulsion-960.avif 960w, ../../assets/images/ecosystem/prakritik-emulsion-1280.avif 1280w, ../../assets/images/ecosystem/prakritik-emulsion-1600.avif 1600w" sizes="(min-width: 1200px) 630px, (min-width: 1024px) 55vw, calc(100vw - 2.5rem)"><source type="image/webp" srcset="../../assets/images/ecosystem/prakritik-emulsion-640.webp 640w, ../../assets/images/ecosystem/prakritik-emulsion-960.webp 960w, ../../assets/images/ecosystem/prakritik-emulsion-1280.webp 1280w, ../../assets/images/ecosystem/prakritik-emulsion-1600.webp 1600w" sizes="(min-width: 1200px) 630px, (min-width: 1024px) 55vw, calc(100vw - 2.5rem)"><img class="media-product" loading="eager" fetchpriority="high"  src="../../assets/images/ecosystem/prakritik-emulsion-1280.jpg" alt="Prakritik Emulsion paint pack — complete label and pack photograph" width="1280" height="960" loading="lazy" decoding="async"></picture>
         </div>
         <div class="product-detail__strip" aria-hidden="true">
           <picture><source type="image/webp" srcset="../../assets/editorial/exterior-finish-study.webp"><img class="media-strip" src="../../assets/editorial/exterior-finish-study.jpg" alt="" width="1344" height="768" loading="lazy" decoding="async"></picture>
@@ -483,6 +476,15 @@
         <span class="spec-plan__arrow" aria-hidden="true">→</span>
       </a>
     </p>
+    <!-- V20 §39: contextual colour route — supplied shade references,
+         never implying every shade exists in this format. -->
+    <p class="spec-plan" data-reveal style="margin-top: 0.5rem;">
+      <span class="spec-plan__label">Explore colours</span>
+      <a class="spec-plan__link" href="../../colours/">
+        Explore supplied shade references
+        <span class="spec-plan__arrow" aria-hidden="true">→</span>
+      </a>
+    </p>
   </div>
 </section>
 
@@ -569,8 +571,8 @@
         <div class="container site-footer__main">
             <div class="site-footer__brand">
                 <a href="../../" class="brand brand--footer">
-                    <span class="brand__mark" data-official-image="../../assets/brand/gaurikrit-logo-mark.png">
-                        <img class="brand__official" src="../../assets/brand/gaurikrit-logo-mark.png" alt="Gaurikrit" width="36" height="36">
+                    <span class="brand__mark" data-official-image="../../assets/brand/gaurikrit-logo-mark-sm.png">
+                        <img class="brand__official" src="../../assets/brand/gaurikrit-logo-mark-sm.png" alt="Gaurikrit" width="36" height="36">
                         <span class="brand__fallback"><svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg"
      class="brand__mark-svg"
      role="img" aria-hidden="true"

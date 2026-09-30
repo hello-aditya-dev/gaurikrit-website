@@ -1,20 +1,19 @@
 <?php
 /**
- * Gaurikrit Bio Products — For Business (V5 finish pass).
- * Task V5-FINISH.
+ * Gaurikrit Bio Products — Partners (V20 source-truth pass).
  *
- * Refines the V4 composition: hero replaces architectural-elevation with
- * business-context-study (more Indian, contemporary); audiences section
- * drops the shared illustration in favour of a CSS-only 4-ruled-columns
- * visual that connects to the four audience types; enquiry copy is
- * rewritten in calm, direct language; form gets more padding, looser
- * field spacing, and clearer focus states. Factual data unchanged.
- *
- * Composition:
- *   1. Hero — V5: business-context-study right (was architectural-elevation).
- *   2. Audiences — V5: NO shared image; CSS 4-ruled-columns visual instead.
- *   3. Practical section — V5: rewritten enquiry copy.
- *   4. Business Form — V5: more padding, looser field spacing, clearer focus.
+ * V20 changes (§55-61):
+ *   1. Hero — ONE two-material composition (partners-hero master: REAL
+ *      Prakritik pair + REAL client-supplied cow-dung log plate on one
+ *      studio sweep). The old 4-tile cover-crop grid is removed — no
+ *      generated Bio-Coal / Utility in the hero.
+ *   2. Audiences — the duplicated 7-audience strip removed; the four
+ *      audience cards carry the information.
+ *   3. Practical section — universal details (Interest / City / market /
+ *      Use case / Approximate quantity); paint fields are conditional.
+ *   4. Form — Interest select (canonical $INTEREST_OPTIONS slugs) with
+ *      conditional wall-area/paint-format fields for Eco-Paints
+ *      interests (progressive enhancement, no-JS safe).
  *      CTA "Discuss a Project". Posts to /api/business-enquiry.php.
  *      csrf_field() + honeypot.
  */
@@ -28,7 +27,7 @@ $pageClass        = 'for-business';
 require_once __DIR__ . '/../includes/bootstrap.php';
 require ROOT_PATH . '/includes/header.php';
 
-global $COMPANY, $PROJECT_TYPES, $PARTNER_AUDIENCES;
+global $COMPANY, $INTEREST_OPTIONS;
 
 $phones = $COMPANY['phones'] ?? [];
 
@@ -43,12 +42,15 @@ $audiences = [
      'desc' => 'Explore collaboration around cow-dung-based bio-products and material directions.'],
 ];
 
+// V20 §58: universal practical details — wall area / paint format are
+// NOT universal (they made no sense for GoCast / Bio-Coal / Utility /
+// distribution / collaboration enquiries); they remain in the FORM as
+// conditional fields shown only for Eco-Paints interest.
 $helpfulInclude = [
-    ['label' => 'Interest',           'hint' => 'Eco-Paints, GoCast, Bio-Coal, Utility Products — or a partnership'],
-    ['label' => 'City',               'hint' => 'Where the site or market is located'],
-    ['label' => 'Approximate wall area', 'hint' => 'In sq.ft. if you have a number (for paint projects)'],
-    ['label' => 'Paint format',      'hint' => 'Distemper, Emulsion, or not sure yet'],
-    ['label' => 'Approximate requirement', 'hint' => 'Approximate quantity, if known'],
+    ['label' => 'Interest',   'hint' => 'Eco-Paints, GoCast, Bio-Coal, Utility Products, distribution or collaboration'],
+    ['label' => 'City / market', 'hint' => 'Where the requirement is located'],
+    ['label' => 'Use case / requirement', 'hint' => 'What your organisation needs'],
+    ['label' => 'Approximate quantity', 'hint' => 'If known'],
 ];
 ?>
 <style>
@@ -60,7 +62,7 @@ $helpfulInclude = [
     object-fit: cover;
   }
 
-  /* ===== HERO (V5: text left / business-context-study right — NO floating blob) ===== */
+  /* ===== HERO (V20: text left / partners-hero two-material plate right) ===== */
   .biz-hero { padding-top: calc(var(--header-h) + 2rem); padding-bottom: 1.5rem; }
   @media (min-width: 1024px) { .biz-hero { padding-bottom: 2.5rem; } }
   .biz-hero__container { display: grid; gap: 2rem; align-items: center; }
@@ -69,16 +71,26 @@ $helpfulInclude = [
   }
   .biz-hero__lockup { max-width: 42rem; }
   .biz-hero__art { padding: 0; background: none; border: 0; }
-  /* V19 §45: a simple material ecosystem strip — the four directions a
-     partner can work with. Small tiles, form stays dominant. */
-  .biz-hero__ecosystem {
-    display: grid; gap: 0.75rem; grid-template-columns: 1fr 1fr;
+  /* V20 §56: ONE two-material composition — the REAL Prakritik pair and
+     the REAL client-supplied cow-dung log plate share one studio sweep
+     (partners-hero master). No generated Bio-Coal / Utility in the hero:
+     the hero is about working with Gaurikrit, not proving all four
+     categories. Hairline plate, objects uncropped. */
+  .biz-hero__plate { margin: 0; overflow: hidden;
+    border-radius: var(--r-panel); border: 1px solid var(--border);
+    background: var(--paper); }
+  .biz-hero__plate img {
+    display: block; width: 100%; height: auto; aspect-ratio: 16 / 10;
+    object-fit: cover; object-position: center 56%;
   }
-  .biz-hero__tile { margin: 0; overflow: hidden;
-    border-radius: var(--r-card); border: 1px solid var(--border); }
-  .biz-hero__tile img {
-    display: block; width: 100%; height: auto; aspect-ratio: 4 / 3;
-    object-fit: cover;
+  .biz-hero__plate figcaption {
+    padding: 0.625rem 1rem; border-top: 1px solid var(--border);
+    display: flex; justify-content: space-between; gap: 1rem;
+    font-size: 0.6875rem; letter-spacing: 0.04em; text-transform: uppercase;
+    color: var(--fg-muted);
+  }
+  .biz-hero__plate figcaption em {
+    font-style: normal; opacity: 0.75; text-transform: none;
   }
 
   /* ===== AUDIENCES (V16: the seven partner audiences as a flexible
@@ -88,7 +100,7 @@ $helpfulInclude = [
   .biz-audiences__head { max-width: 48rem; margin-bottom: 2.5rem; }
 
   /* ===== PRACTICAL SECTION ===== */
-  .biz-practical { padding-block: clamp(3.5rem, 6vw, 5rem); }
+  .biz-practical { padding-block: clamp(2.75rem, 5vw, 4.25rem); }
   .biz-practical__grid {
     display: grid; gap: 2rem; align-items: start;
   }
@@ -122,7 +134,8 @@ $helpfulInclude = [
   .biz-practical__item-hint { font-size: 0.9375rem; color: var(--fg); }
 
   /* ===== FORM (V5: more padding, looser field spacing, clearer focus states) ===== */
-  .biz-form-section { padding-block: clamp(3.5rem, 6vw, 5rem); }
+  /* V20 §61: tightened transition from the practical section (was clamp(3.5rem, 6vw, 5rem)) */
+  .biz-form-section { padding-block: clamp(2.5rem, 4vw, 3.5rem) 5rem; }
   .biz-form-layout__aside { display: flex; flex-direction: column; gap: 1.5rem; }
   .biz-form-layout__aside .help-cta { padding: 1.5rem; }
   /* V5: more padding + soft shadow for premium feel. */
@@ -179,32 +192,21 @@ $helpfulInclude = [
           <a class="btn btn--outline" href="/products/">Explore the Ecosystem</a>
         </div>
       </div>
-      <div class="biz-hero__art" aria-hidden="true">
-        <!-- V5: business-context-study replaces architectural-elevation
-             (more Indian, more contemporary). -->
-        <div class="biz-hero__ecosystem" role="img"
-             aria-label="The Gaurikrit material ecosystem — Eco-Paints, GoCast logs, Bio-Coal and utility directions">
-          <?php
-          $bizTiles = [
-              ['eco-paints-pair', 'Prakritik paint packs'],
-              ['gocast-editorial', 'Cow-dung logs on a terracotta plate'],
-              ['biocoal-editorial', 'Representative biomass briquettes'],
-              ['utility-material-direction', 'Representative moulded utility forms'],
-          ];
-          foreach ($bizTiles as $i => $tile): ?>
-            <figure class="biz-hero__tile">
-              <picture>
-                <source type="image/avif" srcset="<?= eco_srcset($tile[0], [640, 960]) ?>"
-                        sizes="(min-width: 1024px) 17vw, (min-width: 640px) 45vw, calc(50vw - 1.5rem)">
-                <source type="image/webp" srcset="<?= eco_srcset_webp($tile[0], [640, 960]) ?>"
-                        sizes="(min-width: 1024px) 17vw, (min-width: 640px) 45vw, calc(50vw - 1.5rem)">
-                <img src="<?= asset_url('/assets/images/ecosystem/' . $tile[0] . '-640.jpg') ?>"
-                     alt="" width="640" height="480" loading="lazy" decoding="async">
-              </picture>
-            </figure>
-          <?php endforeach; ?>
-        </div>
-      </div>
+      <figure class="biz-hero__plate" data-reveal>
+        <picture>
+          <source type="image/avif" srcset="<?= eco_srcset('partners-hero', [640, 960, 1280, 1600, 1920]) ?>"
+                  sizes="(min-width: 1024px) 55vw, calc(100vw - 2.5rem)">
+          <source type="image/webp" srcset="<?= eco_srcset_webp('partners-hero', [640, 960, 1280, 1600, 1920]) ?>"
+                  sizes="(min-width: 1024px) 55vw, calc(100vw - 2.5rem)">
+          <img src="<?= asset_url('/assets/images/ecosystem/partners-hero-1280.jpg') ?>"
+               alt="Prakritik Distemper and Prakritik Emulsion paint packs with client-supplied cow-dung logs on a terracotta plate — the two documented materials of the Gaurikrit ecosystem"
+               width="1280" height="720" loading="eager" decoding="async">
+        </picture>
+        <figcaption>
+          <span>Eco-Paints <em>Documented family</em></span>
+          <span>Cow-Dung Logs <em>Client-supplied reference</em></span>
+        </figcaption>
+      </figure>
     </div>
   </div>
 </section>
@@ -218,14 +220,8 @@ $helpfulInclude = [
       <h2 class="section-heading__title" id="audiences-title">Partner with a material ecosystem.</h2>
     </div>
 
-    <div class="partner-strip" data-reveal>
-      <ul class="partner-strip__list">
-        <?php foreach ($PARTNER_AUDIENCES as $audience): ?>
-          <li class="partner-strip__item"><?= e($audience) ?></li>
-        <?php endforeach; ?>
-      </ul>
-    </div>
-
+    <!-- V20 §57: the small horizontal audience strip is REMOVED — the
+         four audience cards below already carry this information. -->
     <div class="biz-audiences" data-reveal-stagger>
       <?php foreach ($audiences as $a): ?>
         <div class="audience-card">
@@ -247,7 +243,8 @@ $helpfulInclude = [
         <h2 class="biz-practical__title" id="include-title">Include these details for a faster response.</h2>
         <p class="biz-practical__body">
           A few practical details up front let us respond with what we can
-          supply — pack sizes, format, and how Prakritik Paint fits your project.
+          supply — for paint projects, pack sizes and format; for the other
+          directions, scale and requirement.
         </p>
       </div>
       <ul class="biz-practical__list">
@@ -273,8 +270,8 @@ $helpfulInclude = [
           <h2 class="biz-form-card__title" id="form-title">Discuss a Project.</h2>
           <p class="biz-form-card__note">
             Tell us about the project or the partnership. We will respond with
-            what we can practically supply — pack sizes, format, and how the
-            Gaurikrit ecosystem fits your project.
+            what we can practically supply — for paint projects, pack sizes
+            and format; for the other directions, scale and availability.
           </p>
         </div>
 
@@ -356,26 +353,44 @@ $helpfulInclude = [
             <div class="form-error" data-error-for="city" role="alert"></div>
           </div>
           <div class="form-field">
-            <label class="form-label" for="biz-project-type">Project type <span class="req">*</span></label>
-            <select class="form-select" id="biz-project-type" name="project_type" required>
+            <label class="form-label" for="biz-interest">Interest <span class="req">*</span></label>
+            <select class="form-select" id="biz-interest" name="interest" required
+                    data-interest-toggle>
               <option value="" disabled selected>Choose…</option>
-              <?php foreach ($PROJECT_TYPES as $type): ?>
-                <option value="<?= e($type) ?>"><?= e($type) ?></option>
+              <?php foreach ($INTEREST_OPTIONS as $value => $label): ?>
+                <option value="<?= e($value) ?>"><?= e($label) ?></option>
               <?php endforeach; ?>
             </select>
-            <div class="form-error" data-error-for="project_type" role="alert"></div>
+            <div class="form-error" data-error-for="interest" role="alert"></div>
+          </div>
+          <!-- V20 §60: paint-specific fields shown ONLY for Eco-Paints
+               interest (progressive enhancement — present in the no-JS
+               default markup, hidden by JS for non-paint interests). -->
+          <div class="form-field" data-paint-fields>
+            <label class="form-label" for="biz-wall-area">Approximate wall area</label>
+            <input class="form-input" type="text" id="biz-wall-area"
+                   name="wall_area" maxlength="60" inputmode="numeric"
+                   placeholder="sq.ft., if you have a number">
+          </div>
+          <div class="form-field" data-paint-fields>
+            <label class="form-label" for="biz-paint-format">Paint format</label>
+            <select class="form-select" id="biz-paint-format" name="paint_format">
+              <option value="" selected>Not sure yet</option>
+              <option value="distemper">Prakritik Distemper</option>
+              <option value="emulsion">Prakritik Emulsion</option>
+            </select>
           </div>
           <div class="form-field">
             <label class="form-label" for="biz-requirement">Approximate requirement</label>
             <input class="form-input" type="text" id="biz-requirement"
                    name="approximate_requirement" maxlength="100"
-                   placeholder="e.g. 20 packs / 80 litres / not sure yet">
+                   placeholder="Quantity or scale, if known.">
           </div>
           <div class="form-field form-field--full">
             <label class="form-label" for="biz-message">About the project <span class="req">*</span></label>
             <textarea class="form-textarea" id="biz-message" name="message" required
                       maxlength="2000" rows="6"
-                      placeholder="Tell us about the site, the walls, and what you are painting."></textarea>
+                      placeholder="Tell us what you need, where it is required, and what you would like to discuss."></textarea>
             <div class="form-error" data-error-for="message" role="alert"></div>
           </div>
         </div>

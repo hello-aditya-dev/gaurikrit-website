@@ -1,6 +1,6 @@
 /**
  * Gaurikrit Bio Products — calculator.js
- * 4-step painting budget calculator. Vanilla JS. No dependencies.
+ * 4-step paint requirement calculator (NO prices — rates pending client supply). Vanilla JS. No dependencies.
  *
  * NO RUPEE VALUES. Commercial rates have not been supplied by the
  * client; the calculator-config.php file ships with all rates set
@@ -137,7 +137,7 @@
         mount.innerHTML = '';
         mount.setAttribute('data-calculator-ready', 'true');
 
-        var root = el('div', { class: 'calc', role: 'group', 'aria-label': 'Painting budget calculator' });
+        var root = el('div', { class: 'calc', role: 'group', 'aria-label': 'Painting calculator' });
 
         // ---- Progress indicator ----
         var progress = el('ol', { class: 'calc__progress', 'data-calc-progress': '', 'aria-label': 'Calculator steps' });

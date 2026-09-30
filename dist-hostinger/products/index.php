@@ -618,16 +618,15 @@ $emulsion    = get_product('prakritik-emulsion');
       <div class="gocast-feature__copy">
         <span class="family-section__num" aria-hidden="true">02</span>
         <h2 class="family-section__name" id="gocast-title">GoCast Logs</h2>
-        <p class="family-section__line">Saving trees without changing traditions.</p>
+        <p class="family-section__line">A cow-dung log direction.</p>
         <p>
-          A dense log format developed as an alternative to conventional wood —
-          directed at ceremonial and traditional applications where wood has
-          long been the default.
+          A dense log format shaped from cow dung — a development direction
+          exploring material uses where wood has traditionally been used.
         </p>
         <ul class="family-section__themes">
-          <li>Alternative to conventional wood</li>
-          <li>Traditional / ceremonial application direction</li>
-          <li>Resource-conservation direction</li>
+          <li>Natural material format</li>
+          <li>Traditional-use direction</li>
+          <li>Resource-conscious direction</li>
         </ul>
         <p class="muted">
           GoCast is a development direction — the photographs show
@@ -654,15 +653,15 @@ $emulsion    = get_product('prakritik-emulsion');
       <div class="family-section__copy">
         <span class="family-section__num" aria-hidden="true">03</span>
         <h2 class="family-section__name" id="biocoal-title">Bio-Coal Logs</h2>
-        <p class="family-section__line">Renewable energy from natural biomass.</p>
+        <p class="family-section__line">A bio-based fuel material direction.</p>
         <p class="family-section__desc">
-          Biomass-based fuel logs — a renewable energy direction that explores
-          how natural material streams can reduce reliance on fossil fuels.
+          Biomass-based fuel logs — a development direction exploring how
+          natural material streams could serve fuel applications.
         </p>
         <ul class="family-section__themes">
-          <li>Biomass energy</li>
-          <li>Reduced fossil-fuel reliance direction</li>
-          <li>Alternative fuel applications</li>
+          <li>Bio-based fuel material</li>
+          <li>Biomass applications</li>
+          <li>Fuel-material direction</li>
           <li>Circular material use</li>
         </ul>
         <p class="family-section__note">
@@ -700,16 +699,16 @@ $emulsion    = get_product('prakritik-emulsion');
       <div class="family-section__copy">
         <span class="family-section__num" aria-hidden="true">04</span>
         <h2 class="family-section__name" id="utility-title">Eco-Friendly Utility Products</h2>
-        <p class="family-section__line">Sustainable products for everyday living.</p>
+        <p class="family-section__line">A natural-material utility direction.</p>
         <p class="family-section__desc">
           Practical daily-use products from naturally derived materials — a
-          plastic-reducing direction for homes, gardens and everyday routines.
+          development direction for homes, gardens and everyday routines.
         </p>
         <ul class="family-section__themes">
-          <li>Plastic-reducing alternatives</li>
-          <li>Material reuse</li>
+          <li>Natural-material utility direction</li>
+          <li>Moulded material forms</li>
           <li>Home / garden / lifestyle direction</li>
-          <li>Circular-economy solutions</li>
+          <li>Circular-economy direction</li>
         </ul>
         <p class="family-section__note">
           Utility Products is a development direction. A confirmed product
@@ -785,7 +784,7 @@ $emulsion    = get_product('prakritik-emulsion');
       </p>
       <div class="why-cta__actions">
         <a class="btn btn--haldi" href="/contact/">Talk to Us</a>
-        <a class="btn btn--secondary" href="/paint-calculator/">Estimate Your Project</a>
+        <a class="btn btn--secondary" href="/paint-calculator/">Painting Calculator</a>
       </div>
     </div>
   </div>

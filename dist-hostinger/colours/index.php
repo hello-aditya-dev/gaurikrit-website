@@ -8,11 +8,13 @@
  *   02 WALL       wall-only visualizer (SVG mask, multiply blend) +
  *                 selected-shade readout + collection tabs
  *   03 SIGNATURE  12 client-supplied shades, real HTML swatch grid
- *   04 PREMIUM    24 shades in the five supplied groups
+ *   04 PREMIUM    shades in the five supplied groups (no numeric count claimed)
  *   05 NOTE       quiet permanent digital-colour disclaimer
  *   06 CTA        Eco-Paints family + calculator
  *
- * Shade names + codes are EXACTLY as printed on the client shade cards.
+ * Shade names + codes are transcribed from the supplied Gaurikrit shade
+ * references (V20: softened per §43; count discrepancy logged in
+ * CLIENT_VERIFICATION_REQUIRED.md).
  * Hex values are pixel-sampled approximations (see ASSET_PROVENANCE.md).
  * Selected colour tints ONLY the wall plane — door, window, trim, ground
  * and plants stay untouched (SVG evenodd mask over the elevation photo).
@@ -185,8 +187,10 @@ global $SHADE_SIGNATURE, $SHADE_PREMIUM_GROUPS;
         <h1 class="story-hero__title" id="colours-title">Colours Inspired by Nature.</h1>
         <p class="story-hero__lead">
           Explore the Signature and Premium shade collections supplied for
-          Gaurikrit Prakritik Paint — every shade name and code exactly as
-          printed on the client shade card, previewed live on the wall.
+          Gaurikrit Prakritik Paint. Shade names and codes are transcribed
+          from the supplied Gaurikrit shade references — confirm the current
+          physical shade card and availability with Gaurikrit before
+          specification.
         </p>
         <div class="story-hero__ctas">
           <a class="btn btn--primary" href="#wall-preview">Preview Shades on the Wall</a>
@@ -293,7 +297,7 @@ global $SHADE_SIGNATURE, $SHADE_PREMIUM_GROUPS;
         <span class="section-heading__eyebrow">Signature Collection</span>
         <h2 class="section-heading__title" id="signature-title">Twelve signature shades.</h2>
         <p class="section-heading__desc">
-          The Signature Collection as printed on the client shade card —
+          The Signature Collection, transcribed from the supplied shade references —
           codes GK-101 to GK-112.
         </p>
       </div>
@@ -314,14 +318,14 @@ global $SHADE_SIGNATURE, $SHADE_PREMIUM_GROUPS;
     </div>
   </section>
 
-  <!-- ===== 04. PREMIUM COLLECTION — 24 shades in five groups (§9) ===== -->
+  <!-- ===== 04. PREMIUM COLLECTION — five supplied groups (§9; V20 §42: no numeric count) ===== -->
   <section class="section section--paper" id="premium" aria-labelledby="premium-title" data-collection-panel="premium" hidden>
     <div class="container">
       <div class="section-heading section-heading--left" data-reveal>
         <span class="section-heading__eyebrow">Premium Collection</span>
         <h2 class="section-heading__title" id="premium-title">The Premium Collection, in five groups.</h2>
         <p class="section-heading__desc">
-          As printed on the client shade card — Natural Neutrals, Sunshine,
+          Five supplied groups — Natural Neutrals, Sunshine,
           Nature Greens, Sky &amp; Water and Earth &amp; Heritage, codes
           GK-201 to GK-230.
         </p>
@@ -373,7 +377,7 @@ global $SHADE_SIGNATURE, $SHADE_PREMIUM_GROUPS;
         </p>
         <p>
           Signature and Premium are two separate shade collections supplied by
-          Gaurikrit. Shade names and codes are shown exactly as printed on the
+          Gaurikrit. Shade names and codes are transcribed from the supplied
           shade card — confirm physical shade cards, availability across the
           Distemper and Emulsion formats, and current stock with Gaurikrit
           before specifying. <a href="/contact/">Ask about shade availability →</a>

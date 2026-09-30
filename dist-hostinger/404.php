@@ -100,7 +100,7 @@ global $COMPANY;
         <img class="error-page__seal-img"
              src="<?= asset_url('/assets/brand/gaurikrit-logo-mark.png') ?>"
              alt=""
-             width="696" height="700"
+             width="512" height="512"
              loading="eager" decoding="async"
              onerror="this.style.visibility='hidden';">
         <span class="error-page__seal-fallback">

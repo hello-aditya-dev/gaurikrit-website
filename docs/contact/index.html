@@ -82,8 +82,8 @@
     <header class="site-header" id="site-header" data-scrolled="false">
         <div class="container site-header__inner">
             <a href="../" class="brand" aria-label="Gaurikrit home">
-                <span class="brand__mark" data-official-image="../assets/brand/gaurikrit-logo-mark.png">
-                    <img class="brand__official" src="../assets/brand/gaurikrit-logo-mark.png" alt="Gaurikrit" width="36" height="36">
+                <span class="brand__mark" data-official-image="../assets/brand/gaurikrit-logo-mark-sm.png">
+                    <img class="brand__official" src="../assets/brand/gaurikrit-logo-mark-sm.png" alt="Gaurikrit" width="36" height="36">
                     <span class="brand__fallback"><svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg"
      class="brand__mark-svg"
      role="img" aria-hidden="true"
@@ -252,7 +252,11 @@
     <main id="main" class="site-main">
 <style>
   /* ===== HERO (V7: 7/5 — copy left, direct-lines plate right) ===== */
-  .contact-hero { padding-top: calc(var(--header-h) + clamp(1.25rem, 3vw, 2rem)); padding-bottom: clamp(1.25rem, 3vw, 2rem); }
+  /* V20 §65: tightened ~15% — calm, not empty. */
+  .contact-hero {
+    padding-top: calc(var(--header-h) + clamp(1rem, 2.5vw, 1.75rem));
+    padding-bottom: clamp(1rem, 2.5vw, 1.75rem);
+  }
   .contact-hero__container { display: grid; gap: clamp(1.5rem, 4vw, 3rem); align-items: start; }
   @media (min-width: 1024px) {
     .contact-hero__container { grid-template-columns: 7fr 5fr; align-items: center; }
@@ -400,7 +404,7 @@
       <dl class="contact-direct" data-reveal>
         <div class="contact-direct__head">
           <img class="contact-direct__mark"
-               src="../assets/brand/gaurikrit-logo-mark.png"
+               src="../assets/brand/gaurikrit-logo-mark-sm.png"
                alt="Gaurikrit brand mark"
                width="44" height="44"
                loading="eager" decoding="async">
@@ -454,8 +458,11 @@
     <div class="contact-section" data-reveal>
       <!-- LEFT — company info / contact plate -->
       <aside>
-        <span class="contact-hero__eyebrow">Direct lines</span>
-        <h2 class="spec-sheet__title" style="margin-top: 0.5rem;">Company &amp; contact.</h2>
+        <span class="contact-hero__eyebrow">Company</span>
+        <!-- V20 §62-63: the hero plate above already surfaces email,
+             phones and address with copy buttons — this lower panel keeps
+             ONLY the registered-company facts (no duplication). -->
+        <h2 class="spec-sheet__title" style="margin-top: 0.5rem;">Registered company.</h2>
 
         <dl class="contact-info">
           <div class="contact-info__row">
@@ -463,29 +470,15 @@
             <dd>Gaurikrit Bio Products (OPC) Private Limited</dd>
           </div>
           <div class="contact-info__row">
+            <dt>Brand name</dt>
+            <dd>Gaurikrit</dd>
+          </div>
+          <div class="contact-info__row">
             <dt>GSTIN</dt>
             <dd>09AAMCG8400F1ZK</dd>
           </div>
           <div class="contact-info__row">
-            <dt>Email</dt>
-            <dd>
-              <a href="mailto:seva@gaurikrit.com">seva@gaurikrit.com</a>
-            </dd>
-          </div>
-          <div class="contact-info__row">
-            <dt>Phone</dt>
-            <dd>
-              <a href="tel:+919999624446">+91 9999624446</a>
-            </dd>
-          </div>
-          <div class="contact-info__row">
-            <dt>Phone</dt>
-            <dd>
-              <a href="tel:+919837638842">+91 9837638842</a>
-            </dd>
-          </div>
-          <div class="contact-info__row">
-            <dt>Address</dt>
+            <dt>Registered address</dt>
             <dd class="contact-info__address">House No. 55
 Village Khuriyawali
 Post Arniya
@@ -496,9 +489,9 @@ India</dd>
           </div>
         </dl>
 
-        <!-- V7: one subtle link row instead of competing CTA buttons. -->
+        <!-- V20 §94: canonical public labels — Partners, Painting Calculator. -->
         <p class="contact-info__links">
-          <a href="../for-business/">For Business</a>
+          <a href="../for-business/">Partners</a>
           <span aria-hidden="true">·</span>
           <a href="../paint-calculator/">Painting Calculator</a>
         </p>
@@ -553,7 +546,7 @@ India</dd>
             <label class="form-label" for="contact-message">Message <span class="req">*</span></label>
             <textarea class="form-textarea" id="contact-message" name="message" required
                       maxlength="2000" rows="6"
-                      placeholder="Tell us a bit about what you are painting."></textarea>
+                      placeholder="Tell us what you need or would like to discuss."></textarea>
             <div class="form-error" data-error-for="message" role="alert"></div>
           </div>
         </div>
@@ -567,9 +560,9 @@ India</dd>
         <!-- V5: supporting CTAs as small text links below the form — no
              longer competing as buttons with the form's submit. -->
         <p class="contact-form__foot-links">
-          <a href="../for-business/">For Business</a>
+          <a href="../for-business/">Partners</a>
           <span aria-hidden="true">·</span>
-          <a href="../paint-calculator/">Estimate Your Project</a>
+          <a href="../paint-calculator/">Painting Calculator</a>
         </p>
       </form>
     </div>
@@ -582,8 +575,8 @@ India</dd>
         <div class="container site-footer__main">
             <div class="site-footer__brand">
                 <a href="../" class="brand brand--footer">
-                    <span class="brand__mark" data-official-image="../assets/brand/gaurikrit-logo-mark.png">
-                        <img class="brand__official" src="../assets/brand/gaurikrit-logo-mark.png" alt="Gaurikrit" width="36" height="36">
+                    <span class="brand__mark" data-official-image="../assets/brand/gaurikrit-logo-mark-sm.png">
+                        <img class="brand__official" src="../assets/brand/gaurikrit-logo-mark-sm.png" alt="Gaurikrit" width="36" height="36">
                         <span class="brand__fallback"><svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg"
      class="brand__mark-svg"
      role="img" aria-hidden="true"

@@ -1,6 +1,6 @@
 <?php
 /**
- * Painting Budget Calculator — rate configuration.
+ * Painting Calculator — rate configuration (dormant until client supplies rates; NO rupee values are shown).
  *
  * Pricing/rate data has NOT been supplied by the client.
  * All rates are null. The calculator UI works fully but does NOT show

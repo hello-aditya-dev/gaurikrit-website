@@ -78,21 +78,13 @@ $specRows = [
   }
   /* V19 §38: the catalogue master carries its own sweep — a large
      cover-fit panel replaces the fixed-height cutout stage. */
-  .product-detail__panel { position: relative; aspect-ratio: 5 / 5.6; }
-  @media (max-width: 640px) { .product-detail__panel { aspect-ratio: 1 / 1; } }
+  /* V20 §37: landscape catalogue presentation — the new 3200x2400
+     master IS the composition (product at native-scale with negative
+     space), so contain-fit shows the whole designed plate. Product is
+     never cropped: lid, body and base always visible. */
+  .product-detail__panel { position: relative; aspect-ratio: 4 / 3; }
   .product-detail__panel img {
     position: absolute; inset: 0; width: 100%; height: 100%;
-    object-fit: cover; object-position: center 38%;
-  }
-  .product-detail__stage .media-product {
-    /* Absolute-fill + object-fit: contain — the pack photo stays
-       COMPLETE inside the fixed-height stage (never cropped). The box
-       is biased downward so the pack stands toward the panel's base. */
-    position: absolute;
-    top: clamp(1.5rem, 3.5vw, 3rem);
-    left: clamp(1.5rem, 3.5vw, 3rem);
-    width: calc(100% - 2 * clamp(1.5rem, 3.5vw, 3rem));
-    height: calc(100% - clamp(1.5rem, 3.5vw, 3rem) - clamp(0.75rem, 1.5vw, 1.25rem));
     object-fit: contain;
   }
   .product-detail__strip {
@@ -153,13 +145,13 @@ $specRows = [
         <div class="product-detail__panel">
           <picture>
             <source type="image/avif" srcset="<?= eco_srcset('prakritik-distemper', [640, 960, 1280, 1600]) ?>"
-                    sizes="(min-width: 1024px) 52vw, calc(100vw - 2.5rem)">
+                    sizes="(min-width: 1200px) 630px, (min-width: 1024px) 55vw, calc(100vw - 2.5rem)">
             <source type="image/webp" srcset="<?= eco_srcset_webp('prakritik-distemper', [640, 960, 1280, 1600]) ?>"
-                    sizes="(min-width: 1024px) 52vw, calc(100vw - 2.5rem)">
+                    sizes="(min-width: 1200px) 630px, (min-width: 1024px) 55vw, calc(100vw - 2.5rem)">
             <img class="media-product"
                  src="<?= asset_url('/assets/images/ecosystem/prakritik-distemper-1280.jpg') ?>"
                  alt="Prakritik Distemper paint pack — complete label and pack photograph"
-                 width="1280" height="1564"
+                 width="1280" height="960"
                  loading="eager" fetchpriority="high" decoding="async">
           </picture>
         </div>
@@ -220,6 +212,15 @@ $specRows = [
       <span class="spec-plan__label">Plan your quantity</span>
       <a class="spec-plan__link" href="/paint-calculator/?paint=distemper">
         Open the paint calculator, pre-set for Prakritik Distemper
+        <span class="spec-plan__arrow" aria-hidden="true">→</span>
+      </a>
+    </p>
+    <!-- V20 §39: contextual colour route — supplied shade references,
+         never implying every shade exists in this format. -->
+    <p class="spec-plan" data-reveal style="margin-top: 0.5rem;">
+      <span class="spec-plan__label">Explore colours</span>
+      <a class="spec-plan__link" href="/colours/">
+        Explore supplied shade references
         <span class="spec-plan__arrow" aria-hidden="true">→</span>
       </a>
     </p>

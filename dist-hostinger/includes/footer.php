@@ -16,8 +16,8 @@ $addr = $COMPANY['address'] ?? [];
         <div class="container site-footer__main">
             <div class="site-footer__brand">
                 <a href="/" class="brand brand--footer">
-                    <span class="brand__mark" data-official-image="/assets/brand/gaurikrit-logo-mark.png">
-                        <img class="brand__official" src="/assets/brand/gaurikrit-logo-mark.png" alt="Gaurikrit" width="36" height="36">
+                    <span class="brand__mark" data-official-image="/assets/brand/gaurikrit-logo-mark-sm.png">
+                        <img class="brand__official" src="/assets/brand/gaurikrit-logo-mark-sm.png" alt="Gaurikrit" width="36" height="36">
                         <span class="brand__fallback"><?php render_illustration('gaurikrit-cow-mark', ['class' => 'brand__mark-svg']); ?></span>
                     </span>
                     <span class="brand__name">Gaurikrit</span>

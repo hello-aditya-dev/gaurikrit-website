@@ -2771,3 +2771,20 @@ Stage Summary:
 - Commit a80399f "v8: uncropped product photos — complete-bucket crops + parity fix" pushed to origin/main (87c2012..a80399f).
 - Product photos now show each bucket COMPLETE (lid, handle apex, base, both sides); only the honest shelf-photo context (neighbour sliver / wood) remains at photo edges.
 - Standing rule for future passes: never re-crop product derivatives tighter than the V8 boxes; if new product art arrives, prefer client originals with complete objects.
+---
+Task ID: V20.1
+Agent: Z.ai Code (main agent)
+Task: Recover the unpushed V20 from deploy artifacts + public GitHub Pages release.
+
+Work Log:
+- Sandbox was reset again after V20: the local v20 commit (c5b6c52) and the repo clone were lost; remote main was still at 9fb8781 (v19). Deployable V20 artifacts survived outside the repo: gaurikrit-hostinger-deploy.zip (V20 dist-hostinger) and the synced static preview (V20 docs/ transformed).
+- Restored dist-hostinger/ byte-for-byte from the V20 deploy ZIP (400 tree changes: V20 template edits, new image ladders, logo system, partners-hero; retired rural-landscape/zebu/single-can assets deleted).
+- Restored docs/ by reversing the two preview-only rewrites of scripts-sync-preview.sh (href index.html → directory URLs; calculator.js CTA). Post-reversal audit: zero index.html refs, zero absolute paths — fully portable for GitHub Pages project hosting.
+- Pages release additions: docs/.nojekyll, docs/robots.txt switched from preview Disallow to Allow + sitemap, docs/sitemap.xml (13 routes). Canonical/og URLs already targeted hello-aditya-dev.github.io/gaurikrit-website/ from the V20 build.
+- Wrote V20-RECONSTRUCTION.md recording the recovery, the reversal method, and what is lost (V20 build-static.mjs mirror, V20 scripts, FACTS_LOCK.md et al. — V19 versions remain in-tree; docs/ is source of truth until re-mirror).
+- Committed with author hello-aditya-dev <hi.aditya.dev@gmail.com>; pushed to origin/main; repo switched to public via API; GitHub Pages enabled from main /docs via API.
+- Live verification of https://hello-aditya-dev.github.io/gaurikrit-website/ performed after the Pages build went green.
+
+Stage Summary:
+- Repo public at https://github.com/hello-aditya-dev/gaurikrit-website; site live at https://hello-aditya-dev.github.io/gaurikrit-website/ (V20 static build, canonical URL home).
+- Standing rules unchanged: never re-crop product derivatives; keep docs/ as source of truth until build-static.mjs is re-mirrored; re-create FACTS_LOCK.md before any copy-editing pass; dist-hostinger/ (gaurikrit.com) and docs/ (github.io) are two canonical homes — decide noindex strategy if gaurikrit.com goes live.

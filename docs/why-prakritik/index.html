@@ -82,8 +82,8 @@
     <header class="site-header" id="site-header" data-scrolled="false">
         <div class="container site-header__inner">
             <a href="../" class="brand" aria-label="Gaurikrit home">
-                <span class="brand__mark" data-official-image="../assets/brand/gaurikrit-logo-mark.png">
-                    <img class="brand__official" src="../assets/brand/gaurikrit-logo-mark.png" alt="Gaurikrit" width="36" height="36">
+                <span class="brand__mark" data-official-image="../assets/brand/gaurikrit-logo-mark-sm.png">
+                    <img class="brand__official" src="../assets/brand/gaurikrit-logo-mark-sm.png" alt="Gaurikrit" width="36" height="36">
                     <span class="brand__fallback"><svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg"
      class="brand__mark-svg"
      role="img" aria-hidden="true"
@@ -393,15 +393,27 @@
   .why-format-card--distemper .why-format-card__caption { color: var(--indigo); }
   .why-format-card--emulsion  .why-format-card__caption { color: var(--leaf); }
 
-  /* === Chapter 06 — CONTEXT: framed editorial band (rural-landscape
-     = regional context only, never company premises). Copy ~4 / band ~8. === */
+  /* === Chapter 06 — CONTEXT: typographic band (V20 §68: the generated
+     rural-landscape engraving is retired; ruled facts carry the region.) === */
   .why-context-section { padding-block: clamp(3.5rem, 6vw, 5rem); }
-  .why-context-bg {
-    position: relative; width: 100%; aspect-ratio: 1344/768;
-    background: var(--limewash); border-radius: var(--r-panel);
-    border: 1px solid var(--border);
-    overflow: hidden; align-self: center;
+  .why-context-facts {
+    margin: 0; align-self: center; width: 100%;
+    display: grid; gap: 0;
+    border-top: 1px solid var(--border);
   }
+  .why-context-facts > div {
+    display: grid; gap: 0.25rem; padding: 0.875rem 0;
+    border-bottom: 1px solid var(--border);
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 640px) {
+    .why-context-facts > div { grid-template-columns: 10rem 1fr; gap: 1rem; align-items: baseline; }
+  }
+  .why-context-facts dt {
+    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--fg-muted);
+  }
+  .why-context-facts dd { margin: 0; font-family: var(--font-display); font-size: 1.0625rem; }
 </style>
 
 <!-- ===== HERO ===== -->
@@ -753,9 +765,24 @@
           <a class="btn btn--outline" href="../about/">Our Story</a>
         </div>
       </div>
-      <div class="why-context-bg" aria-hidden="true">
-        <picture><source type="image/webp" srcset="../assets/editorial/rural-landscape.webp"><img class="editorial-image" src="../assets/editorial/rural-landscape.jpg" alt="" width="1344" height="768" loading="lazy" decoding="async"></picture>
-      </div>
+      <!-- V20 §68: the generated rural-landscape illustration is retired —
+           no image is better than a misleading one. The closing band is
+           typographic: strong copy + ruled company facts, no fake rural
+           photography, no engraving. -->
+      <dl class="why-context-facts" data-reveal>
+        <div>
+          <dt>Company</dt>
+          <dd>Gaurikrit Bio Products (OPC) Private Limited</dd>
+        </div>
+        <div>
+          <dt>Location</dt>
+          <dd>Khurja, District Bulandshahr</dd>
+        </div>
+        <div>
+          <dt>Registered</dt>
+          <dd>GSTIN 09AAMCG8400F1ZK</dd>
+        </div>
+      </dl>
     </div>
   </div>
 </section>
@@ -767,8 +794,8 @@
         <div class="container site-footer__main">
             <div class="site-footer__brand">
                 <a href="../" class="brand brand--footer">
-                    <span class="brand__mark" data-official-image="../assets/brand/gaurikrit-logo-mark.png">
-                        <img class="brand__official" src="../assets/brand/gaurikrit-logo-mark.png" alt="Gaurikrit" width="36" height="36">
+                    <span class="brand__mark" data-official-image="../assets/brand/gaurikrit-logo-mark-sm.png">
+                        <img class="brand__official" src="../assets/brand/gaurikrit-logo-mark-sm.png" alt="Gaurikrit" width="36" height="36">
                         <span class="brand__fallback"><svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg"
      class="brand__mark-svg"
      role="img" aria-hidden="true"

@@ -268,7 +268,7 @@ $HERO_M_LADDER = [640, 960, 1600];
           <span class="resource-step__kicker">Stage 03</span>
           <h3 class="resource-step__title">Useful Applications</h3>
           <p class="resource-step__desc">
-            Products for walls, energy and everyday use — nothing goes to waste.
+            Products and material directions for walls, energy and everyday use.
           </p>
         </div>
       </article>
@@ -358,7 +358,7 @@ $HERO_M_LADDER = [640, 960, 1600];
 </section>
 
 <!-- ============================================================
-     04. NOTHING GOES TO WASTE — the circular model (§19–20)
+     04. A CIRCULAR MATERIAL DIRECTION — the circular model (§19–20)
      One continuous loop. Progressive highlight via story.js
      (progressive enhancement — everything readable without JS).
      ============================================================ -->
@@ -366,10 +366,10 @@ $HERO_M_LADDER = [640, 960, 1600];
   <div class="container">
     <div class="circular-section__head section-heading section-heading--left" data-reveal>
       <span class="section-heading__eyebrow">The Circular Model</span>
-      <h2 class="section-heading__title" id="circular-title">Nothing Goes to Waste.</h2>
+      <h2 class="section-heading__title" id="circular-title">A Circular Material Direction.</h2>
       <p class="section-heading__desc">
         One continuous cycle: the resource enters, is developed, becomes useful
-        products — and creates a new value cycle.
+        products — and the material cycle continues.
       </p>
     </div>
 
@@ -383,11 +383,11 @@ $HERO_M_LADDER = [640, 960, 1600];
           </li>
         <?php endforeach; ?>
       </ol>
-      <!-- The return path — resource regeneration closes the loop. -->
+      <!-- The return path — the material cycle continues. -->
       <svg class="circular__loop-path" viewBox="0 0 1000 28" preserveAspectRatio="none" aria-hidden="true">
         <path d="M8,2 L8,20 C8,26 16,26 26,26 L974,26 C984,26 992,26 992,20 L992,10" />
       </svg>
-      <span class="circular__loop-label" aria-hidden="true">Resource regeneration</span>
+      <span class="circular__loop-label" aria-hidden="true">The material cycle continues</span>
     </div>
   </div>
 </section>
@@ -516,8 +516,9 @@ $HERO_M_LADDER = [640, 960, 1600];
           Practical alternatives, responsibly made.
         </h2>
         <p class="vision-mission__text">
-          To replace less sustainable alternatives with practical, accessible and
-          environmentally responsible product solutions.
+          To develop practical, accessible and environmentally responsible
+          material solutions — and to evaluate every direction for its
+          environmental responsibility.
         </p>
       </div>
     </div>

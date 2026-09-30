@@ -307,6 +307,35 @@
                 networkErrorMsg: 'We could not submit your enquiry right now. Please contact Gaurikrit directly by phone or email.'
             });
         }
+        initBusinessInterestToggle();
+    }
+
+    // V20 §60: paint-specific fields (wall area / paint format) appear in
+    // the no-JS markup by default; with JS they are hidden unless the
+    // Interest select is an Eco-Paints entry. Progressive enhancement —
+    // the form stays complete and valid either way.
+    function initBusinessInterestToggle() {
+        var PAINT_VALUES = ['eco-paints', 'prakritik-distemper',
+                            'prakritik-emulsion', 'bulk-project'];
+        var form = document.querySelector('[data-business-form]');
+        if (!form) return;
+        var select = form.querySelector('select[data-interest-toggle]');
+        if (!select) return;
+
+        function paintFields() {
+            return form.querySelectorAll('[data-paint-fields]');
+        }
+
+        function apply() {
+            var isPaint = PAINT_VALUES.indexOf(select.value) !== -1;
+            var fields = paintFields();
+            for (var i = 0; i < fields.length; i++) {
+                fields[i].hidden = !isPaint;
+            }
+        }
+
+        select.addEventListener('change', apply);
+        apply();
     }
 
     // Pre-fill the contact form's interest select from ?interest=.

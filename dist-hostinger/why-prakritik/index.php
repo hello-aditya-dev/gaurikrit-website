@@ -179,16 +179,27 @@ $emulsion  = get_product('prakritik-emulsion');
   .why-format-card--distemper .why-format-card__caption { color: var(--indigo); }
   .why-format-card--emulsion  .why-format-card__caption { color: var(--leaf); }
 
-  /* === Chapter 06 — CONTEXT: framed editorial band (rural-landscape
-     = regional context only, never company premises). V12 fixes the
-     legacy band/bg class drift: the framed band now matches the markup. === */
+  /* === Chapter 06 — CONTEXT: typographic band (V20 §68: the generated
+     rural-landscape engraving is retired; ruled facts carry the region.) === */
   .why-context-section { padding-block: clamp(3.5rem, 6vw, 5rem); }
-  .why-context-bg {
-    position: relative; width: 100%; aspect-ratio: 1344/768;
-    background: var(--limewash); border-radius: var(--r-panel);
-    border: 1px solid var(--border);
-    overflow: hidden; align-self: center;
+  .why-context-facts {
+    margin: 0; align-self: center; width: 100%;
+    display: grid; gap: 0;
+    border-top: 1px solid var(--border);
   }
+  .why-context-facts > div {
+    display: grid; gap: 0.25rem; padding: 0.875rem 0;
+    border-bottom: 1px solid var(--border);
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 640px) {
+    .why-context-facts > div { grid-template-columns: 10rem 1fr; gap: 1rem; align-items: baseline; }
+  }
+  .why-context-facts dt {
+    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--fg-muted);
+  }
+  .why-context-facts dd { margin: 0; font-family: var(--font-display); font-size: 1.0625rem; }
 </style>
 
 <!-- ===== HERO — single quiet finished-wall study ===== -->
@@ -523,16 +534,24 @@ $emulsion  = get_product('prakritik-emulsion');
           <a class="btn btn--outline" href="/about/">Our Story</a>
         </div>
       </div>
-      <div class="why-context-bg" aria-hidden="true">
-        <picture>
-          <source type="image/webp" srcset="<?= asset_url('/assets/editorial/rural-landscape.webp') ?>">
-          <img class="editorial-image"
-               src="<?= asset_url('/assets/editorial/rural-landscape.jpg') ?>"
-               alt=""
-               width="1344" height="768"
-               loading="lazy" decoding="async">
-        </picture>
-      </div>
+      <!-- V20 §68: the generated rural-landscape illustration is retired —
+           no image is better than a misleading one. The closing band is
+           typographic: strong copy + ruled company facts, no fake rural
+           photography, no engraving. -->
+      <dl class="why-context-facts" data-reveal>
+        <div>
+          <dt>Company</dt>
+          <dd><?= e($COMPANY['legalName']) ?></dd>
+        </div>
+        <div>
+          <dt>Location</dt>
+          <dd><?= e($COMPANY['address'][3] ?? '') ?>, <?= e($COMPANY['address'][4] ?? '') ?></dd>
+        </div>
+        <div>
+          <dt>Registered</dt>
+          <dd>GSTIN <?= e($COMPANY['gstin']) ?></dd>
+        </div>
+      </dl>
     </div>
   </div>
 </section>

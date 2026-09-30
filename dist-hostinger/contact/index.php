@@ -47,9 +47,10 @@ if ($interestParam !== '' && array_key_exists($interestParam, $INTEREST_OPTIONS)
 ?>
 <style>
   /* ===== HERO (V7: 7/5 — copy left, direct-lines plate right) ===== */
+  /* V20 §65: tightened ~15% — calm, not empty. */
   .contact-hero {
-    padding-top: calc(var(--header-h) + clamp(1.25rem, 3vw, 2rem));
-    padding-bottom: clamp(1.25rem, 3vw, 2rem);
+    padding-top: calc(var(--header-h) + clamp(1rem, 2.5vw, 1.75rem));
+    padding-bottom: clamp(1rem, 2.5vw, 1.75rem);
   }
   .contact-hero__container {
     display: grid; gap: clamp(1.5rem, 4vw, 3rem); align-items: start;
@@ -210,7 +211,7 @@ if ($interestParam !== '' && array_key_exists($interestParam, $INTEREST_OPTIONS)
       <dl class="contact-direct" data-reveal>
         <div class="contact-direct__head">
           <img class="contact-direct__mark"
-               src="<?= asset_url('/assets/brand/gaurikrit-logo-mark.png') ?>"
+               src="<?= asset_url('/assets/brand/gaurikrit-logo-mark-sm.png') ?>"
                alt="Gaurikrit brand mark"
                width="44" height="44"
                loading="eager" decoding="async">
@@ -256,8 +257,11 @@ if ($interestParam !== '' && array_key_exists($interestParam, $INTEREST_OPTIONS)
     <div class="contact-section" data-reveal>
       <!-- LEFT — company info / contact plate -->
       <aside>
-        <span class="contact-hero__eyebrow">Direct lines</span>
-        <h2 class="spec-sheet__title" style="margin-top: 0.5rem;">Company &amp; contact.</h2>
+        <span class="contact-hero__eyebrow">Company</span>
+        <!-- V20 §62-63: the hero plate above already surfaces email,
+             phones and address with copy buttons — this lower panel keeps
+             ONLY the registered-company facts (no duplication). -->
+        <h2 class="spec-sheet__title" style="margin-top: 0.5rem;">Registered company.</h2>
 
         <dl class="contact-info">
           <div class="contact-info__row">
@@ -265,32 +269,22 @@ if ($interestParam !== '' && array_key_exists($interestParam, $INTEREST_OPTIONS)
             <dd><?= e($COMPANY['legalName']) ?></dd>
           </div>
           <div class="contact-info__row">
+            <dt>Brand name</dt>
+            <dd><?= e($COMPANY['name']) ?></dd>
+          </div>
+          <div class="contact-info__row">
             <dt>GSTIN</dt>
             <dd><?= e($COMPANY['gstin']) ?></dd>
           </div>
           <div class="contact-info__row">
-            <dt>Email</dt>
-            <dd>
-              <a href="mailto:<?= e($COMPANY['email']) ?>"><?= e($COMPANY['email']) ?></a>
-            </dd>
-          </div>
-          <?php foreach ($phones as $phone): ?>
-            <div class="contact-info__row">
-              <dt>Phone</dt>
-              <dd>
-                <a href="tel:<?= e(str_replace(' ', '', $phone)) ?>"><?= e($phone) ?></a>
-              </dd>
-            </div>
-          <?php endforeach; ?>
-          <div class="contact-info__row">
-            <dt>Address</dt>
+            <dt>Registered address</dt>
             <dd class="contact-info__address"><?= e($addressLine) ?></dd>
           </div>
         </dl>
 
-        <!-- V7: one subtle link row instead of competing CTA buttons. -->
+        <!-- V20 §94: canonical public labels — Partners, Painting Calculator. -->
         <p class="contact-info__links">
-          <a href="/for-business/">For Business</a>
+          <a href="/for-business/">Partners</a>
           <span aria-hidden="true">·</span>
           <a href="/paint-calculator/">Painting Calculator</a>
         </p>
@@ -344,7 +338,7 @@ if ($interestParam !== '' && array_key_exists($interestParam, $INTEREST_OPTIONS)
             <label class="form-label" for="contact-message">Message <span class="req">*</span></label>
             <textarea class="form-textarea" id="contact-message" name="message" required
                       maxlength="2000" rows="6"
-                      placeholder="Tell us a bit about what you are painting."></textarea>
+                      placeholder="Tell us what you need or would like to discuss."></textarea>
             <div class="form-error" data-error-for="message" role="alert"></div>
           </div>
         </div>
@@ -358,9 +352,9 @@ if ($interestParam !== '' && array_key_exists($interestParam, $INTEREST_OPTIONS)
         <!-- V5: supporting CTAs as small text links below the form — no
              longer competing as buttons with the form's submit. -->
         <p class="contact-form__foot-links">
-          <a href="/for-business/">For Business</a>
+          <a href="/for-business/">Partners</a>
           <span aria-hidden="true">·</span>
-          <a href="/paint-calculator/">Estimate Your Project</a>
+          <a href="/paint-calculator/">Painting Calculator</a>
         </p>
       </form>
     </div>

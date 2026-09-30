@@ -41,8 +41,8 @@ $pageOgImage     = $pageOgImage     ?? null;
     <header class="site-header" id="site-header" data-scrolled="false">
         <div class="container site-header__inner">
             <a href="/" class="brand" aria-label="Gaurikrit home">
-                <span class="brand__mark" data-official-image="/assets/brand/gaurikrit-logo-mark.png">
-                    <img class="brand__official" src="/assets/brand/gaurikrit-logo-mark.png" alt="Gaurikrit" width="36" height="36">
+                <span class="brand__mark" data-official-image="/assets/brand/gaurikrit-logo-mark-sm.png">
+                    <img class="brand__official" src="/assets/brand/gaurikrit-logo-mark-sm.png" alt="Gaurikrit" width="36" height="36">
                     <span class="brand__fallback"><?php render_illustration('gaurikrit-cow-mark', ['class' => 'brand__mark-svg']); ?></span>
                 </span>
                 <span class="brand__text">

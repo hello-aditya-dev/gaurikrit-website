@@ -13,7 +13,8 @@
  * NO logs ever include SMTP passwords or base64-encoded credentials.
  *
  * Fields: name, organisation, role, phone, email, city,
- *         project_type (must be one of $PROJECT_TYPES),
+ *         interest (must be one of $INTEREST_OPTIONS — V20 §59),
+ *         wall_area + paint_format (optional, Eco-Paints interest only),
  *         approximate_requirement, message.
  */
 
@@ -21,7 +22,7 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/../includes/bootstrap.php';
 
-global $PROJECT_TYPES;
+global $PROJECT_TYPES, $INTEREST_OPTIONS;
 
 // POST only.
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -54,7 +55,12 @@ $role          = clean_text($_POST['role'] ?? '', 80);
 $phone         = clean_text($_POST['phone'] ?? '', 20);
 $email         = clean_text($_POST['email'] ?? '', 254);
 $city          = clean_text($_POST['city'] ?? '', 80);
-$projectType   = clean_text($_POST['project_type'] ?? '', 50);
+// V20 §59: the canonical field is `interest` (slugs from
+// $INTEREST_OPTIONS). Legacy `project_type` values are still accepted
+// and mapped where possible so no older submission breaks.
+$interest      = clean_text($_POST['interest'] ?? '', 50);
+$wallArea      = clean_text($_POST['wall_area'] ?? '', 60);
+$paintFormat   = clean_text($_POST['paint_format'] ?? '', 30);
 $approxReq     = clean_text($_POST['approximate_requirement'] ?? '', 100);
 $message       = clean_text($_POST['message'] ?? '', 2000);
 
@@ -75,11 +81,31 @@ if (mb_strlen($message) < 10) {
     $errors['message'] = 'Please tell us a bit more about the project (at least 10 characters).';
 }
 
-// Project type must be one of the canonical $PROJECT_TYPES values.
-if ($projectType === '') {
-    $errors['project_type'] = 'Please choose a project type.';
-} elseif (!in_array($projectType, $PROJECT_TYPES, true)) {
-    $errors['project_type'] = 'Please choose a valid project type.';
+// Interest must be one of the canonical $INTEREST_OPTIONS keys (V20 §59).
+$interestLabels = $INTEREST_OPTIONS;
+if ($interest === '') {
+    $interest = clean_text($_POST['project_type'] ?? '', 50); // legacy
+}
+if ($interest === '') {
+    $errors['interest'] = 'Please choose an interest.';
+} elseif (isset($interestLabels[$interest])) {
+    $interestLabel = $interestLabels[$interest];
+} elseif (in_array($interest, $interestLabels, true)) {
+    $interestLabel = $interest;                    // legacy label value
+} else {
+    $errors['interest'] = 'Please choose a valid interest.';
+}
+
+// Paint-specific optional fields — only meaningful for paint interests.
+$paintInterests = ['eco-paints', 'prakritik-distemper', 'prakritik-emulsion',
+                   'bulk-project'];
+$isPaintInterest = isset($interestLabels[$interest])
+    && in_array($interest, $paintInterests, true);
+if (!$isPaintInterest) {
+    $wallArea = '';
+    $paintFormat = '';
+} elseif ($paintFormat !== '' && !in_array($paintFormat, ['distemper', 'emulsion'], true)) {
+    $errors['paint_format'] = 'Please choose a valid paint format.';
 }
 
 if (!empty($errors)) {
@@ -100,7 +126,9 @@ $htmlBody = "<html><body style='font-family: sans-serif; color: #1a1a1a;'>\n"
     . "<tr><td><strong>Phone:</strong></td><td>" . htmlspecialchars($phone, ENT_QUOTES, 'UTF-8') . "</td></tr>\n"
     . "<tr><td><strong>Email:</strong></td><td>" . htmlspecialchars($email, ENT_QUOTES, 'UTF-8') . "</td></tr>\n"
     . "<tr><td><strong>City:</strong></td><td>" . htmlspecialchars($city, ENT_QUOTES, 'UTF-8') . "</td></tr>\n"
-    . "<tr><td><strong>Project type:</strong></td><td>" . htmlspecialchars($projectType, ENT_QUOTES, 'UTF-8') . "</td></tr>\n"
+    . "<tr><td><strong>Interest:</strong></td><td>" . htmlspecialchars(($interestLabel ?? $interest), ENT_QUOTES, 'UTF-8') . "</td></tr>\n"
+    . (($wallArea !== '') ? "<tr><td><strong>Wall area:</strong></td><td>" . htmlspecialchars($wallArea, ENT_QUOTES, 'UTF-8') . "</td></tr>\n" : '')
+    . (($paintFormat !== '') ? "<tr><td><strong>Paint format:</strong></td><td>" . htmlspecialchars(ucfirst($paintFormat), ENT_QUOTES, 'UTF-8') . "</td></tr>\n" : '')
     . "<tr><td><strong>Approximate requirement:</strong></td><td>" . htmlspecialchars($approxReq, ENT_QUOTES, 'UTF-8') . "</td></tr>\n"
     . "<tr><td><strong>Message:</strong></td><td>" . nl2br(htmlspecialchars($message, ENT_QUOTES, 'UTF-8')) . "</td></tr>\n"
     . "<tr><td><strong>IP:</strong></td><td>" . htmlspecialchars(client_ip(), ENT_QUOTES, 'UTF-8') . "</td></tr>\n"
@@ -115,7 +143,9 @@ $textBody = "New business enquiry\n\n"
     . "Phone: $phone\n"
     . "Email: $email\n"
     . "City: $city\n"
-    . "Project type: $projectType\n"
+    . "Interest: " . ($interestLabel ?? $interest) . "\n"
+    . (($wallArea !== '') ? "Wall area: $wallArea\n" : '')
+    . (($paintFormat !== '') ? "Paint format: " . ucfirst($paintFormat) . "\n" : '')
     . "Approximate requirement: $approxReq\n"
     . "Message: $message\n"
     . "IP: " . client_ip() . "\n"
@@ -147,7 +177,7 @@ if (!empty($config['db_host'])) {
         );
         $stmt->execute([
             $name, $organisation, $role, $phone, $email, $city,
-            $projectType, $approxReq, $message, client_ip(),
+            ($interestLabel ?? $interest), $approxReq, $message, client_ip(),
         ]);
         $dbSaved = true;
     } catch (Throwable $e) {
