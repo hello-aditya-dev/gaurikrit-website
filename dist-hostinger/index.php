@@ -43,8 +43,29 @@ require ROOT_PATH . '/includes/header.php';
 global $COMPANY, $FAMILIES, $CIRCULAR_STAGES, $PRODUCTS,
        $INNOVATION_AREAS, $PARTNER_AUDIENCES;
 
-$HERO_LADDER   = [640, 960, 1280, 1600, 1920, 2560];
-$HERO_M_LADDER = [640, 960, 1600];
+// V20 — hero transitioning product showcase. Four client-supplied
+// product directions (originals dated 2026-10-16, stored untouched in
+// source-assets/client-originals/). Derived responsive ladders live in
+// assets/images/ecosystem/hero-<slug>-<W>.{avif,webp,jpg} and are emitted
+// through the same eco_srcset()/eco_srcset_webp() helpers as the rest of
+// the V19 image system. Each width is the ACTUAL pixel width of that
+// file, so the srcset w-descriptor stays truthful — the portrait utility
+// poster therefore advertises 426w / 853w (not a long-edge label).
+$HERO_SLIDES = [
+  ['stem'=>'hero-eco-paints',           'widths'=>[640,1280], 'w'=>1280,'h'=>853,
+   'label'=>'Eco-Paints',          'sub'=>'Prakritik Paint family',
+   'alt'=>'Three Prakritik Paint buckets — Emulsion, Emulsion and Distemper — eco-friendly cow dung paint by Gaurikrit'],
+  ['stem'=>'hero-bio-coal-logs',        'widths'=>[640,1024], 'w'=>1024,'h'=>1024,
+   'label'=>'Bio-Coal Logs',       'sub'=>'Bio-Briquettes',
+   'alt'=>'Gaurikrit Bio-Briquettes — premium renewable biomass fuel, cylindrical hollow briquettes'],
+  ['stem'=>'hero-cow-dung-logs',        'widths'=>[640,1024], 'w'=>1024,'h'=>1024,
+   'label'=>'Cow-Dung Logs',       'sub'=>'Premium biomass fuel',
+   'alt'=>'Gaurikrit Cow-Dung Logs — premium biomass fuel for havan, crematorium, boiler and industrial use'],
+  ['stem'=>'hero-eco-utility-products','widths'=>[426,853],  'w'=>853, 'h'=>1280,
+   'label'=>'Eco Utility Products','sub'=>'Dhoop, diyas, plates, cups',
+   'alt'=>'Gaurikrit Eco Utility Products — dhoop cups, cow-dung diyas, biodegradable plates and eco glasses'],
+];
+$HERO_SIZES = '(min-width: 1200px) 58vw, (min-width: 900px) 50vw, calc(100vw - 2.5rem)';
 ?>
 <style>
   /* ===== 01. HERO — story lockup 5 / one composed photograph 7 ===== */
@@ -69,26 +90,89 @@ $HERO_M_LADDER = [640, 960, 1600];
   .hero__body { max-width: 40rem; }
   .hero__ctas { margin-top: 2.25rem; }
 
-  /* V19 §25–27: ONE designed composition — no stacked image cards, no
-     source-background rectangles. The master carries its own seamless
-     studio sweep; the page just frames it. */
-  .hero__composition { margin: 0; }
-  .hero__composition img {
-    width: 100%; height: auto; display: block;
-    border-radius: 0.1875rem;
+  /* V20 — transitioning product showcase. One stable 4/3 frame (no
+     layout shift), four client product posters crossfade inside it on
+     object-fit:contain so every label, pack and claim stays fully
+     visible (no cropping of factual identity). Captions + dots +
+     arrows sit below the frame. Autoplay/pause/keyboard/reduced-motion
+     behaviour is in assets/js/hero-carousel.js. */
+  .hero-showcase { position: relative; }
+  .hero-showcase__frame {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    background: var(--paper-warm);
+    border: 1px solid var(--border);
+    border-radius: 0.25rem;
+    box-shadow: 0 1px 2px rgba(32,30,25,0.06), 0 10px 28px -14px rgba(32,30,25,0.18);
+    overflow: hidden;
   }
-  .hero__composition-captions {
-    display: flex; flex-wrap: wrap; gap: 0.5rem 1.75rem;
-    margin-top: 0.875rem;
+  .hero-showcase__track { position: absolute; inset: 0; }
+  .hero-showcase__slide {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0; padding: clamp(0.875rem, 2.2vw, 1.75rem);
+    opacity: 0; visibility: hidden;
+    transition: opacity 0.9s cubic-bezier(0.22,1,0.36,1), visibility 0s linear 0.9s;
+    pointer-events: none;
   }
-  .hero__caption {
-    font-size: 0.5625rem; font-weight: 700; letter-spacing: 0.16em;
-    text-transform: uppercase; color: var(--fg-muted);
+  .hero-showcase__slide[aria-hidden="false"] {
+    opacity: 1; visibility: visible;
+    transition: opacity 0.9s cubic-bezier(0.22,1,0.36,1), visibility 0s;
+    pointer-events: auto;
   }
-  .hero__caption em {
-    display: block; font-style: normal; font-weight: 500;
-    letter-spacing: 0.08em; color: var(--fg-muted); opacity: 0.72;
-    margin-top: 0.1875rem; text-transform: none; font-size: 0.6875rem;
+  .hero-showcase__slide picture { display: block; max-width: 100%; max-height: 100%; margin: 0; }
+  .hero-showcase__slide img {
+    display: block; max-width: 100%; max-height: 100%;
+    width: auto; height: auto; margin: 0 auto;
+    border-radius: 0.125rem;
+  }
+  .hero-showcase__controls {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 0.75rem 1.25rem; margin-top: 1rem; flex-wrap: wrap;
+  }
+  .hero-showcase__caption { display: flex; flex-direction: column; gap: 0.0625rem; min-width: 0; }
+  .hero-showcase__label {
+    font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--forest);
+  }
+  .hero-showcase__sub {
+    font-size: 0.75rem; font-weight: 500; letter-spacing: 0.02em;
+    color: var(--fg-muted);
+  }
+  .hero-showcase__dots { display: flex; gap: 0.4375rem; align-items: center; }
+  .hero-showcase__dot {
+    width: 0.5rem; height: 0.5rem; padding: 0; margin: 0; border: 0;
+    border-radius: 999px; background: var(--border-strong);
+    cursor: pointer; appearance: none; -webkit-appearance: none;
+    transition: background 0.3s ease, width 0.3s ease;
+  }
+  .hero-showcase__dot[aria-selected="true"] { background: var(--forest); width: 1.5rem; }
+  .hero-showcase__dot:focus-visible { outline: 2px solid var(--haldi); outline-offset: 3px; }
+  .hero-showcase__arrows { display: flex; gap: 0.5rem; }
+  .hero-showcase__arrow {
+    width: 2.25rem; height: 2.25rem; display: inline-flex;
+    align-items: center; justify-content: center;
+    border: 1px solid var(--border-strong); border-radius: 999px;
+    background: var(--paper); color: var(--forest);
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  }
+  .hero-showcase__arrow:hover { background: var(--forest); color: var(--paper); border-color: var(--forest); }
+  .hero-showcase__arrow:focus-visible { outline: 2px solid var(--haldi); outline-offset: 2px; }
+  .hero-showcase__arrow svg { width: 1.125rem; height: 1.125rem; }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-showcase__slide,
+    .hero-showcase__dot,
+    .hero-showcase__arrow { transition: none; }
+  }
+  @media (max-width: 560px) {
+    .hero-showcase__controls { flex-direction: column; align-items: center; gap: 0.875rem; }
+    .hero-showcase__caption { order: 1; align-items: center; }
+    .hero-showcase__dots { order: 2; }
+    .hero-showcase__arrows { order: 3; }
+    .hero-showcase__arrow { width: 2.75rem; height: 2.75rem; }
+    .hero-showcase__dot { width: 0.625rem; height: 0.625rem; }
+    .hero-showcase__dot[aria-selected="true"] { width: 1.75rem; }
   }
 
   /* ===== 02. RESOURCE STEPS — one frame system for all three (§28) ===== */
@@ -156,40 +240,69 @@ $HERO_M_LADDER = [640, 960, 1600];
         </div>
       </div>
 
-      <!-- V19 §25–27: ONE composed ecosystem photograph — the real
-           Prakritik pair and the client-supplied cow-dung-log plate
-           share one seamless studio sweep (4K master, responsive
-           derivatives). The objects dominate; captions stay quiet. -->
+      <!-- V20 — transitioning product showcase. Four client-supplied
+           product directions (2026-10-16 originals) crossfade inside one
+           stable 4/3 frame. Autoplay 5s, pause on hover/focus, prev/next,
+           dots, ArrowLeft/Right keyboard, prefers-reduced-motion aware
+           (no autoplay, instant switching). See assets/js/hero-carousel.js. -->
       <div class="hero__visual" data-reveal>
-        <figure class="hero__composition" role="img"
-                aria-label="Prakritik Distemper and Prakritik Emulsion paint packs with client-supplied cow-dung logs on a terracotta plate — one natural resource, multiple applications">
-          <picture>
-            <source type="image/avif" media="(max-width: 899px)"
-                    srcset="<?= eco_srcset('home-hero-ecosystem-mobile', $HERO_M_LADDER) ?>"
-                    sizes="calc(100vw - 2.5rem)">
-            <source type="image/webp" media="(max-width: 899px)"
-                    srcset="<?= eco_srcset_webp('home-hero-ecosystem-mobile', $HERO_M_LADDER) ?>"
-                    sizes="calc(100vw - 2.5rem)">
-            <source type="image/avif"
-                    srcset="<?= eco_srcset('home-hero-ecosystem', $HERO_LADDER) ?>"
-                    sizes="(min-width: 1200px) 58vw, (min-width: 900px) 50vw, calc(100vw - 2.5rem)">
-            <source type="image/webp"
-                    srcset="<?= eco_srcset_webp('home-hero-ecosystem', $HERO_LADDER) ?>"
-                    sizes="(min-width: 1200px) 58vw, (min-width: 900px) 50vw, calc(100vw - 2.5rem)">
-            <img src="<?= asset_url('/assets/images/ecosystem/home-hero-ecosystem-1280.jpg') ?>"
-                 alt="Prakritik Distemper and Prakritik Emulsion paint packs with client-supplied cow-dung logs on a terracotta plate"
-                 width="1280" height="853"
-                 fetchpriority="high" decoding="async">
-          </picture>
-          <figcaption class="hero__composition-captions">
-            <span class="hero__caption">Eco-Paints
-              <em>Documented family</em>
+        <div class="hero-showcase" data-hero-carousel
+             role="region" aria-roledescription="carousel"
+             aria-label="Gaurikrit product showcase — four natural-resource directions"
+             data-autoplay="5000" tabindex="0">
+          <div class="hero-showcase__frame">
+            <div class="hero-showcase__track">
+<?php foreach ($HERO_SLIDES as $i => $s):
+  $is_active = $i === 0; ?>
+              <figure class="hero-showcase__slide" role="group"
+                      aria-label="Slide <?= $i + 1 ?> of <?= count($HERO_SLIDES) ?>: <?= e($s['label']) ?>"
+                      aria-hidden="<?= $is_active ? 'false' : 'true' ?>"
+                      data-slide="<?= $i ?>"
+                      data-label="<?= e($s['label']) ?>"
+                      data-sub="<?= e($s['sub']) ?>">
+                <picture>
+                  <source type="image/avif"
+                          srcset="<?= eco_srcset($s['stem'], $s['widths']) ?>"
+                          sizes="<?= $HERO_SIZES ?>">
+                  <source type="image/webp"
+                          srcset="<?= eco_srcset_webp($s['stem'], $s['widths']) ?>"
+                          sizes="<?= $HERO_SIZES ?>">
+                  <img src="<?= asset_url('/assets/images/ecosystem/' . $s['stem'] . '-' . end($s['widths']) . '.jpg') ?>"
+                       alt="<?= e($s['alt']) ?>"
+                       width="<?= $s['w'] ?>" height="<?= $s['h'] ?>"
+                       <?= $is_active ? 'fetchpriority="high" loading="eager"' : 'loading="lazy"' ?>
+                       decoding="async">
+                </picture>
+              </figure>
+<?php endforeach; ?>
+            </div>
+          </div>
+
+          <div class="hero-showcase__controls">
+            <span class="hero-showcase__caption" data-hero-caption>
+              <span class="hero-showcase__label"><?= e($HERO_SLIDES[0]['label']) ?></span>
+              <span class="hero-showcase__sub"><?= e($HERO_SLIDES[0]['sub']) ?></span>
             </span>
-            <span class="hero__caption">Cow-Dung Logs
-              <em>Client-supplied reference</em>
-            </span>
-          </figcaption>
-        </figure>
+            <div class="hero-showcase__dots" role="tablist" aria-label="Choose product direction">
+<?php foreach ($HERO_SLIDES as $i => $s): ?>
+              <button type="button" class="hero-showcase__dot" role="tab"
+                      aria-selected="<?= $i === 0 ? 'true' : 'false' ?>"
+                      aria-label="Show <?= e($s['label']) ?>"
+                      data-dot="<?= $i ?>"></button>
+<?php endforeach; ?>
+            </div>
+            <div class="hero-showcase__arrows">
+              <button type="button" class="hero-showcase__arrow" data-hero-prev
+                      aria-label="Previous product direction">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+              </button>
+              <button type="button" class="hero-showcase__arrow" data-hero-next
+                      aria-label="Next product direction">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -295,11 +408,14 @@ $HERO_M_LADDER = [640, 960, 1600];
 
     <div class="families" data-reveal-stagger>
 <?php
-      // V19 §29-30: every family now carries a visually strong image -
-      // REAL client photography for Eco-Paints and GoCast, and clearly
-      // representative category visuals for Bio-Coal and Utility (the
-      // alt text keeps the distinction honest). One art-direction
-      // system: 3:2 frames, warm backgrounds, consistent density.
+      // V20 §29-30: every family now carries REAL client-supplied
+      // imagery — Eco-Paints and GoCast client photography, plus the
+      // 2026-10-16 client product posters for Bio-Coal (Bio-Briquettes)
+      // and Utility (Eco Utility Products). Each visual is a clean 3/2
+      // crop that preserves product identity and label text; the
+      // "Category visual" honesty tag is no longer needed for the two
+      // upgraded cards. One art-direction system: 3:2 frames, warm
+      // backgrounds, consistent density.
       $familyMedia = [
           'eco-paints'        => ['stem' => 'eco-paints-pair', 'ladder' => [640, 960, 1280, 1920],
                                   'alt' => 'Prakritik Distemper and Prakritik Emulsion paint packs - the documented Eco-Paints family',
@@ -307,12 +423,12 @@ $HERO_M_LADDER = [640, 960, 1600];
           'gocast-logs'       => ['stem' => 'gocast-editorial', 'ladder' => [640, 960, 1280, 1920],
                                   'alt' => 'Client-supplied cow-dung logs on a terracotta plate with straw',
                                   'representative' => false],
-          'bio-coal-logs'     => ['stem' => 'biocoal-editorial', 'ladder' => [640, 960, 1280, 1920],
-                                  'alt' => 'Representative biomass briquette material study for the Bio-Coal category',
-                                  'representative' => true],
-          'utility-products'  => ['stem' => 'utility-material-direction', 'ladder' => [640, 960, 1280, 1920],
-                                  'alt' => 'Representative moulded natural-material utility forms for the Utility Products direction',
-                                  'representative' => true],
+          'bio-coal-logs'     => ['stem' => 'family-bio-coal-logs', 'ladder' => [640, 960, 1024],
+                                  'alt' => 'Client-supplied Gaurikrit Bio-Briquettes product poster — premium renewable biomass fuel',
+                                  'representative' => false],
+          'utility-products'  => ['stem' => 'family-eco-utility-products', 'ladder' => [640, 853],
+                                  'alt' => 'Client-supplied Gaurikrit Eco Utility Products poster — dhoop cups, cow-dung diyas, biodegradable plates and eco glasses',
+                                  'representative' => false],
       ];
       foreach ($FAMILIES as $family): ?>
         <article class="family" id="family-<?= e($family['id']) ?>">
@@ -323,7 +439,7 @@ $HERO_M_LADDER = [640, 960, 1600];
                       sizes="(min-width: 768px) 45vw, calc(100vw - 2.5rem)">
               <source type="image/webp" srcset="<?= eco_srcset_webp($m['stem'], $m['ladder']) ?>"
                       sizes="(min-width: 768px) 45vw, calc(100vw - 2.5rem)">
-              <img src="<?= asset_url('/assets/images/ecosystem/' . $m['stem'] . '-960.jpg') ?>"
+              <img src="<?= asset_url('/assets/images/ecosystem/' . $m['stem'] . '-' . max($m['ladder']) . '.jpg') ?>"
                    alt="<?= e($m['alt']) ?>"
                    width="960" height="640" loading="lazy" decoding="async">
             </picture>

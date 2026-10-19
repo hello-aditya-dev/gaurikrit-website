@@ -1,0 +1,46 @@
+[
+  {
+    "stem": "hero-eco-paints",
+    "widths": [
+      640,
+      1280
+    ],
+    "intrinsic": [
+      1280,
+      853
+    ]
+  },
+  {
+    "stem": "hero-bio-coal-logs",
+    "widths": [
+      640,
+      1024
+    ],
+    "intrinsic": [
+      1024,
+      1024
+    ]
+  },
+  {
+    "stem": "hero-cow-dung-logs",
+    "widths": [
+      640,
+      1024
+    ],
+    "intrinsic": [
+      1024,
+      1024
+    ]
+  },
+  {
+    "stem": "hero-eco-utility-products",
+    "widths": [
+      426,
+      853
+    ],
+    "intrinsic": [
+      853,
+      1280
+    ]
+  }
+]

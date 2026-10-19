@@ -261,3 +261,72 @@ exterior-wall-v2,architectural-elevation,business-context,zebu}-study.{jpg,webp}
 (unreferenced), `illustrations/` folder (legacy). The from-pair cutout PNGs
 (+ webp serving copies) stay: they are live pipeline inputs and are still
 served on the products page catalogue chapters.
+
+---
+
+## V20 — hero transitioning showcase + Bio-Coal/Utility client-poster upgrade (2026-10-16 originals)
+
+### New client originals (untouched, in `source-assets/client-originals/`)
+
+| File | Product direction | VLM-verified contents |
+|---|---|---|
+| `WhatsApp Image 2026-10-16 at 7.45.04 AM.jpeg` (1280×853) | Eco-Paints | Three Prakritik Paint buckets (Emulsion, Emulsion, Distemper); Gaurikrit + Khadi India branding; "प्रकृतिक पेंट"; anti-bacterial/anti-fungal/eco-friendly claims |
+| `WhatsApp Image 2026-10-16 at 7.45.05 AM.jpeg` (1024×1024) | Bio-Coal Logs | Gaurikrit BIO-BRIQUETTES poster — "Premium Renewable Biomass Fuel"; cylindrical hollow briquettes; high-calorific / low-moisture / low-ash claims |
+| `WhatsApp Image 2026-10-16 at 7.45.05 AM (1).jpeg` (1024×1024) | Cow-Dung Logs | Gaurikrit COW-DUNG LOGS poster — "Premium Biomass Fuel"; made from processed cow dung; havan/crematorium/boiler/industrial use |
+| `WhatsApp Image 2026-10-16 at 7.45.05 AM (2).jpeg` (853×1280) | Eco Utility Products | Gaurikrit ECO UTILITY PRODUCTS poster — Dhoop Cups, Cow-Dung Diyas, Biodegradable Disposable Plates, Eco Glasses/Cups |
+
+### Derived hero carousel ladders (`scripts/prepare_hero_carousel_assets.py`)
+
+Pillow avif+webp+jpg, 2 rungs per slide (long-edge 640 + native-max capped at
+1280; NO upscaling). Files named by ACTUAL pixel width so the `<source srcset
+Ww>` descriptor is truthful (the portrait utility poster therefore advertises
+426w / 853w). Lives in both `dist-hostinger/assets/images/ecosystem/` (public)
+and `source-assets/client-derived/hero/` (archive + `manifest.json`).
+
+| Slide stem | Rungs (px w) | Intrinsic | Used in |
+|---|---|---|---|
+| `hero-eco-paints` | 640, 1280 | 1280×853 | hero slide 1 |
+| `hero-bio-coal-logs` | 640, 1024 | 1024×1024 | hero slide 2 |
+| `hero-cow-dung-logs` | 640, 1024 | 1024×1024 | hero slide 3 |
+| `hero-eco-utility-products` | 426, 853 | 853×1280 | hero slide 4 |
+
+### Derived family-card crops (`scripts/prepare_family_card_assets.py`)
+
+3/2 crops that preserve product identity + label text (Part 6 upgrade of the
+homepage "Four directions" grid and the Products page direction sections).
+
+| Stem | Source | Crop anchor | Intrinsic crop | Rungs | Replaces |
+|---|---|---|---|---|---|
+| `family-bio-coal-logs` | bio-briquettes poster | center | 1024×683 | 640, 960, 1024 | `biocoal-editorial` (representative-generated) |
+| `family-eco-utility-products` | utility poster | top | 853×569 | 640, 853 | `utility-material-direction` (representative-generated) |
+
+### Factual-discipline changes
+
+The homepage 4-card grid and the Products page Bio-Coal + Utility direction
+sections previously labelled these two as "Category visual" / "Representative …
+visual — not a documented product photograph" because the imagery was
+unbranded generated material studies. With the 2026-10-16 client product
+posters now integrated, those disclaimers are removed and the alt text /
+figcaptions / aria-labels now read "Client-supplied Gaurikrit … product
+poster". No invented claims/specs/certifications were added — all claims
+visible on screen are the client's own poster copy. The `biocoal-editorial`
+and `utility-material-direction` masters are retained on disk (still used by
+the For-Business `biz-hero__ecosystem` tile mosaic); only the homepage grid
+and Products direction sections switched to client imagery.
+
+### Components / files touched
+
+- `dist-hostinger/index.php` — hero `<style>` + markup + `$HERO_SLIDES` data;
+  `$familyMedia` array (Bio-Coal/Utility stems + representative=false); family
+  card `<img>` fallback now uses `max($m['ladder'])`.
+- `build-static.mjs` — JS twin of all the above (HERO_SLIDES, heroSlides,
+  heroDots, `.hero-showcase*` CSS, carousel markup, mediaSpec with widths/fb,
+  familySection photoSpec with w/h/fb/real, accurate figcaptions); added
+  `hero-carousel.js` script tag.
+- `dist-hostinger/products/index.php` — Bio-Coal + Utility direction-section
+  figures upgraded to client crops (accurate width/height, no CLS).
+- `dist-hostinger/includes/footer.php` — `hero-carousel.js` script tag.
+- `dist-hostinger/assets/js/hero-carousel.js` — NEW vanilla-JS carousel module.
+- `dist-hostinger/assets/js/app.js` — `HeroCarousel` added to boot `mods`.
+- `scripts/prepare_hero_carousel_assets.py` + `prepare_family_card_assets.py`
+  — NEW reproducible asset pipelines (Pillow).

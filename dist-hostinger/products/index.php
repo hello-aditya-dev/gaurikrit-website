@@ -673,17 +673,17 @@ $emulsion    = get_product('prakritik-emulsion');
           <a class="btn btn--outline" href="/contact/?interest=bio-coal-logs">Enquire About Bio-Coal</a>
         </div>
       </div>
-      <figure class="family-section__photo" aria-label="Bio-Coal Logs — representative category visual">
+      <figure class="family-section__photo" aria-label="Bio-Coal Logs — client-supplied product poster">
         <picture>
-          <source type="image/avif" srcset="<?= eco_srcset('biocoal-editorial', [640, 960, 1280, 1600]) ?>"
+          <source type="image/avif" srcset="<?= eco_srcset('family-bio-coal-logs', [640, 960, 1024]) ?>"
                   sizes="(min-width: 1024px) 42vw, calc(100vw - 2.5rem)">
-          <source type="image/webp" srcset="<?= eco_srcset_webp('biocoal-editorial', [640, 960, 1280, 1600]) ?>"
+          <source type="image/webp" srcset="<?= eco_srcset_webp('family-bio-coal-logs', [640, 960, 1024]) ?>"
                   sizes="(min-width: 1024px) 42vw, calc(100vw - 2.5rem)">
-          <img src="<?= asset_url('/assets/images/ecosystem/biocoal-editorial-1280.jpg') ?>"
-               alt="Representative biomass briquette material study for the Bio-Coal category"
-               width="1280" height="960" loading="lazy" decoding="async">
+          <img src="<?= asset_url('/assets/images/ecosystem/family-bio-coal-logs-960.jpg') ?>"
+               alt="Client-supplied Gaurikrit Bio-Briquettes product poster — premium renewable biomass fuel"
+               width="960" height="640" loading="lazy" decoding="async">
         </picture>
-        <figcaption>Representative category visual — not a documented product photograph.</figcaption>
+        <figcaption>Client-supplied Bio-Coal Logs product poster.</figcaption>
       </figure>
     </div>
   </div>
@@ -718,17 +718,17 @@ $emulsion    = get_product('prakritik-emulsion');
           <a class="btn btn--outline" href="/contact/?interest=utility-products">Enquire About Utility Products</a>
         </div>
       </div>
-      <figure class="family-section__photo" aria-label="Utility Products — representative material-direction visual">
+      <figure class="family-section__photo" aria-label="Utility Products — client-supplied product poster">
         <picture>
-          <source type="image/avif" srcset="<?= eco_srcset('utility-material-direction', [640, 960, 1280, 1600]) ?>"
+          <source type="image/avif" srcset="<?= eco_srcset('family-eco-utility-products', [640, 853]) ?>"
                   sizes="(min-width: 1024px) 42vw, calc(100vw - 2.5rem)">
-          <source type="image/webp" srcset="<?= eco_srcset_webp('utility-material-direction', [640, 960, 1280, 1600]) ?>"
+          <source type="image/webp" srcset="<?= eco_srcset_webp('family-eco-utility-products', [640, 853]) ?>"
                   sizes="(min-width: 1024px) 42vw, calc(100vw - 2.5rem)">
-          <img src="<?= asset_url('/assets/images/ecosystem/utility-material-direction-1280.jpg') ?>"
-               alt="Representative moulded natural-material utility forms for the Utility Products direction"
-               width="1280" height="960" loading="lazy" decoding="async">
+          <img src="<?= asset_url('/assets/images/ecosystem/family-eco-utility-products-853.jpg') ?>"
+               alt="Client-supplied Gaurikrit Eco Utility Products poster — dhoop cups, cow-dung diyas, biodegradable plates and eco glasses"
+               width="853" height="569" loading="lazy" decoding="async">
         </picture>
-        <figcaption>Representative material-direction visual — not a confirmed product range.</figcaption>
+        <figcaption>Client-supplied Utility Products product poster.</figcaption>
       </figure>
     </div>
   </div>

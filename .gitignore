@@ -66,3 +66,6 @@ server.log
 # tool results (ephemeral)
 /tool-results/
 agent-ctx/
+verify-*.png
+preview-server.log
+/verify-*.png

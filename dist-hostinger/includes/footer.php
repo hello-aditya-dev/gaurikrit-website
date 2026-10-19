@@ -83,6 +83,7 @@ $addr = $COMPANY['address'] ?? [];
     -->
     <script src="<?= asset_url('/assets/js/navigation.js') ?>"></script>
     <script src="<?= asset_url('/assets/js/animations.js') ?>"></script>
+    <script src="<?= asset_url('/assets/js/hero-carousel.js') ?>"></script>
     <script src="<?= asset_url('/assets/js/colour-study.js') ?>"></script>
     <script src="<?= asset_url('/assets/js/forms.js') ?>"></script>
     <script src="<?= asset_url('/assets/js/calculator.js') ?>"></script>

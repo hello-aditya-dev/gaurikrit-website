@@ -1,0 +1,27 @@
+[
+  {
+    "stem": "family-bio-coal-logs",
+    "widths": [
+      640,
+      960,
+      1024
+    ],
+    "intrinsic_crop": [
+      1024,
+      683
+    ],
+    "anchor": "center"
+  },
+  {
+    "stem": "family-eco-utility-products",
+    "widths": [
+      640,
+      853
+    ],
+    "intrinsic_crop": [
+      853,
+      569
+    ],
+    "anchor": "top"
+  }
+]
