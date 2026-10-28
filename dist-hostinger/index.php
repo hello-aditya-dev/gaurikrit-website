@@ -86,9 +86,15 @@ $HERO_SIZES = '(min-width: 1200px) 58vw, (min-width: 900px) 50vw, calc(100vw - 2
     .hero__visual { order: 5; }
   }
   .hero__eyebrow-chip { margin-bottom: 0.875rem; }
-  .hero__title { font-size: clamp(2.375rem, 5.5vw, 5rem); line-height: 1.04; }
+  .hero__title { font-size: clamp(1.75rem, 3vw, 2.5rem); line-height: 1.12; letter-spacing: -0.015em; }
   .hero__body { max-width: 40rem; }
   .hero__ctas { margin-top: 2.25rem; }
+
+  /* V21 — brand descriptor lockup: company name + secondary descriptor line */
+  .hero__brand-lockup { display: flex; flex-direction: column; gap: 0.0625rem; margin-bottom: 0.875rem; }
+  .hero__brand-name { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--forest); }
+  .hero__brand-desc { font-size: 0.5625rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fg-muted); }
+  .hero__strapline { margin-top: 1.25rem; font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.04em; color: var(--forest); font-style: italic; }
 
   /* V20 — transitioning product showcase. One stable 4/3 frame (no
      layout shift), four client product posters crossfade inside it on
@@ -111,6 +117,7 @@ $HERO_SIZES = '(min-width: 1200px) 58vw, (min-width: 900px) 50vw, calc(100vw - 2
     position: absolute; inset: 0;
     display: flex; align-items: center; justify-content: center;
     margin: 0; padding: clamp(0.875rem, 2.2vw, 1.75rem);
+    box-sizing: border-box;
     opacity: 0; visibility: hidden;
     transition: opacity 0.9s cubic-bezier(0.22,1,0.36,1), visibility 0s linear 0.9s;
     pointer-events: none;
@@ -120,10 +127,20 @@ $HERO_SIZES = '(min-width: 1200px) 58vw, (min-width: 900px) 50vw, calc(100vw - 2
     transition: opacity 0.9s cubic-bezier(0.22,1,0.36,1), visibility 0s;
     pointer-events: auto;
   }
-  .hero-showcase__slide picture { display: block; max-width: 100%; max-height: 100%; margin: 0; }
+  /* V21 — bulletproof contain: picture fills the slide content box (definite
+     height via inset:0 + box-sizing), img uses object-fit:contain so every
+     poster — landscape, square or portrait — is shown in full without
+     clipping packaging or labels. */
+  .hero-showcase__slide picture {
+    display: flex; align-items: center; justify-content: center;
+    width: 100%; height: 100%; max-width: 100%; max-height: 100%;
+    margin: 0;
+  }
   .hero-showcase__slide img {
-    display: block; max-width: 100%; max-height: 100%;
-    width: auto; height: auto; margin: 0 auto;
+    display: block;
+    max-width: 100%; max-height: 100%;
+    width: auto; height: auto;
+    object-fit: contain; object-position: center;
     border-radius: 0.125rem;
   }
   .hero-showcase__controls {
@@ -148,7 +165,7 @@ $HERO_SIZES = '(min-width: 1200px) 58vw, (min-width: 900px) 50vw, calc(100vw - 2
   }
   .hero-showcase__dot[aria-selected="true"] { background: var(--forest); width: 1.5rem; }
   .hero-showcase__dot:focus-visible { outline: 2px solid var(--haldi); outline-offset: 3px; }
-  .hero-showcase__arrows { display: flex; gap: 0.5rem; }
+  .hero-showcase__arrows { display: flex; gap: 0.5rem; align-items: center; }
   .hero-showcase__arrow {
     width: 2.25rem; height: 2.25rem; display: inline-flex;
     align-items: center; justify-content: center;
@@ -160,6 +177,18 @@ $HERO_SIZES = '(min-width: 1200px) 58vw, (min-width: 900px) 50vw, calc(100vw - 2
   .hero-showcase__arrow:hover { background: var(--forest); color: var(--paper); border-color: var(--forest); }
   .hero-showcase__arrow:focus-visible { outline: 2px solid var(--haldi); outline-offset: 2px; }
   .hero-showcase__arrow svg { width: 1.125rem; height: 1.125rem; }
+  /* V21 — accessible play/pause toggle */
+  .hero-showcase__toggle {
+    width: 2.25rem; height: 2.25rem; display: inline-flex;
+    align-items: center; justify-content: center;
+    border: 1px solid var(--border-strong); border-radius: 999px;
+    background: var(--paper); color: var(--forest);
+    cursor: pointer; margin-right: 0.25rem;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  }
+  .hero-showcase__toggle:hover { background: var(--forest); color: var(--paper); border-color: var(--forest); }
+  .hero-showcase__toggle:focus-visible { outline: 2px solid var(--haldi); outline-offset: 2px; }
+  .hero-showcase__toggle svg { width: 1.125rem; height: 1.125rem; }
   @media (prefers-reduced-motion: reduce) {
     .hero-showcase__slide,
     .hero-showcase__dot,
@@ -170,9 +199,34 @@ $HERO_SIZES = '(min-width: 1200px) 58vw, (min-width: 900px) 50vw, calc(100vw - 2
     .hero-showcase__caption { order: 1; align-items: center; }
     .hero-showcase__dots { order: 2; }
     .hero-showcase__arrows { order: 3; }
-    .hero-showcase__arrow { width: 2.75rem; height: 2.75rem; }
+    .hero-showcase__arrow, .hero-showcase__toggle { width: 2.75rem; height: 2.75rem; }
     .hero-showcase__dot { width: 0.625rem; height: 0.625rem; }
     .hero-showcase__dot[aria-selected="true"] { width: 1.75rem; }
+  }
+
+  /* V21 — mission statement callout inside the story section */
+  .resource-mission {
+    margin-top: 1.75rem; padding: 1.25rem 1.5rem;
+    border-left: 3px solid var(--haldi);
+    background: color-mix(in srgb, var(--haldi) 6%, transparent);
+    border-radius: 0 0.25rem 0.25rem 0;
+  }
+  .resource-mission__label {
+    display: block; font-size: 0.5625rem; font-weight: 700;
+    letter-spacing: 0.16em; text-transform: uppercase; color: var(--fg-muted);
+    margin-bottom: 0.375rem;
+  }
+  .resource-mission__text {
+    font-size: 1.0625rem; font-weight: 600; line-height: 1.4;
+    color: var(--forest); margin: 0;
+  }
+
+  /* V21 — corporate tagline in the closing brand section */
+  .brand-close__tagline {
+    text-align: center; margin-top: 1.5rem; padding-top: 1.5rem;
+    border-top: 1px solid color-mix(in srgb, var(--paper) 25%, transparent);
+    font-size: 1rem; font-weight: 700; letter-spacing: 0.04em;
+    color: var(--paper);
   }
 
   /* ===== 02. RESOURCE STEPS — one frame system for all three (§28) ===== */
@@ -221,18 +275,22 @@ $HERO_SIZES = '(min-width: 1200px) 58vw, (min-width: 900px) 50vw, calc(100vw - 2
   <div class="container">
     <div class="hero__grid">
       <div class="hero__lockup">
-        <span class="hero__eyebrow-chip">
-          <span class="hero__eyebrow-dot" aria-hidden="true"></span>
-          GAURIKRIT BIO PRODUCTS
-        </span>
+        <div class="hero__brand-lockup">
+          <span class="hero__brand-name">GAURIKRIT&reg;</span>
+          <span class="hero__brand-desc">Circular Economy &amp; Carbon Reduction Company</span>
+        </div>
         <span class="hero__devanagari" aria-hidden="true"><?= e($COMPANY['devanagari']) ?></span>
         <h1 class="hero__title" id="hero-title">
-          Reimagining cow dung as a resource for sustainable living.
+          Reimagining Cow-Dung<br>as a Resource for Sustainable Living.
         </h1>
         <p class="hero__body">
-          Nature provides the resource. Gaurikrit explores how cow dung can be
-          carried into practical material solutions — from Prakritik Paint to
-          fuel and utility applications.
+          Nature provides the resource. Gaurikrit explores how natural waste
+          can be transformed into practical material solutions&mdash;from
+          Prakritik Paint to organic fuel and environmentally friendly utility
+          products that help build a cleaner future.
+        </p>
+        <p class="hero__strapline">
+          Transforming Natural Resources. Redefining Sustainable Living.
         </p>
         <div class="hero__ctas">
           <a class="btn btn--primary btn--lg" href="/products/">Explore the Ecosystem</a>
@@ -292,6 +350,11 @@ $HERO_SIZES = '(min-width: 1200px) 58vw, (min-width: 900px) 50vw, calc(100vw - 2
 <?php endforeach; ?>
             </div>
             <div class="hero-showcase__arrows">
+              <button type="button" class="hero-showcase__toggle" data-hero-toggle
+                      aria-pressed="true" aria-label="Pause product showcase autoplay">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-icon-pause><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-icon-play hidden><path d="M7 4v16l13-8z"/></svg>
+              </button>
               <button type="button" class="hero-showcase__arrow" data-hero-prev
                       aria-label="Previous product direction">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
@@ -319,9 +382,15 @@ $HERO_SIZES = '(min-width: 1200px) 58vw, (min-width: 900px) 50vw, calc(100vw - 2
       <p class="section-heading__desc">
         Traditional India has long recognised cow dung as a useful material.
         Gaurikrit's direction is to carry that resource into practical
-        contemporary applications — from naturally derived material to products
+        contemporary applications &mdash; from naturally derived material to products
         for walls, energy and everyday use.
       </p>
+      <div class="resource-mission" data-reveal>
+        <span class="resource-mission__label">Our Mission</span>
+        <p class="resource-mission__text">
+          Transforming Cow Dung into Innovative Solutions for Sustainable Living.
+        </p>
+      </div>
     </div>
 
     <div class="resource-steps" data-reveal-stagger>
@@ -329,39 +398,59 @@ $HERO_SIZES = '(min-width: 1200px) 58vw, (min-width: 900px) 50vw, calc(100vw - 2
         <figure class="resource-step__figure">
           <picture>
             <source type="image/avif" srcset="<?= eco_srcset('rawmat', [640, 960, 1280, 1920]) ?>"
-                    sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, calc(100vw - 2.5rem)">
+                    sizes="(min-width: 1100px) 22vw, (min-width: 768px) 45vw, calc(100vw - 2.5rem)">
             <source type="image/webp" srcset="<?= eco_srcset_webp('rawmat', [640, 960, 1280, 1920]) ?>"
-                    sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, calc(100vw - 2.5rem)">
+                    sizes="(min-width: 1100px) 22vw, (min-width: 768px) 45vw, calc(100vw - 2.5rem)">
             <img src="<?= asset_url('/assets/images/ecosystem/rawmat-960.jpg') ?>"
-                 alt="Raw material — natural biomass with straw fibre"
+                 alt="Natural biomass &mdash; the raw material beginning, with straw fibre"
                  width="960" height="549" loading="lazy" decoding="async">
           </picture>
         </figure>
         <div class="resource-step__caption">
           <span class="resource-step__kicker">Stage 01</span>
-          <h3 class="resource-step__title">Raw Material</h3>
+          <h3 class="resource-step__title">Cow Dung</h3>
           <p class="resource-step__desc">
-            Cow dung — a natural material long valued in traditional Indian homes.
+            A natural material long valued in traditional Indian homes &mdash; the shared starting point for every Gaurikrit direction.
           </p>
         </div>
       </article>
       <article class="resource-step">
         <figure class="resource-step__figure">
           <picture>
-            <source type="image/avif" srcset="<?= eco_srcset('material-development', [640, 960, 1280, 1920]) ?>"
-                    sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, calc(100vw - 2.5rem)">
-            <source type="image/webp" srcset="<?= eco_srcset_webp('material-development', [640, 960, 1280, 1920]) ?>"
-                    sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, calc(100vw - 2.5rem)">
-            <img src="<?= asset_url('/assets/images/ecosystem/material-development-960.jpg') ?>"
-                 alt="Prakritik Distemper paint pack — developed material product with studio context"
-                 width="960" height="640" loading="lazy" decoding="async">
+            <source type="image/avif" srcset="<?= eco_srcset('innovation-research', [640, 960, 1280, 1920]) ?>"
+                    sizes="(min-width: 1100px) 22vw, (min-width: 768px) 45vw, calc(100vw - 2.5rem)">
+            <source type="image/webp" srcset="<?= eco_srcset_webp('innovation-research', [640, 960, 1280, 1920]) ?>"
+                    sizes="(min-width: 1100px) 22vw, (min-width: 768px) 45vw, calc(100vw - 2.5rem)">
+            <img src="<?= asset_url('/assets/images/ecosystem/innovation-research-960.jpg') ?>"
+                 alt="Material research samples &mdash; raw biomass, processed log and finished coating"
+                 width="960" height="600" loading="lazy" decoding="async">
           </picture>
         </figure>
         <div class="resource-step__caption">
           <span class="resource-step__kicker">Stage 02</span>
-          <h3 class="resource-step__title">Material Development</h3>
+          <h3 class="resource-step__title">Processing &amp; Innovation</h3>
           <p class="resource-step__desc">
-            The resource is processed and developed into useful working materials.
+            The resource is studied, processed and developed into useful working materials &mdash; from coatings to fuel formats.
+          </p>
+        </div>
+      </article>
+      <article class="resource-step">
+        <figure class="resource-step__figure">
+          <picture>
+            <source type="image/avif" srcset="<?= eco_srcset('eco-paints-pair', [640, 960, 1280, 1920]) ?>"
+                    sizes="(min-width: 1100px) 22vw, (min-width: 768px) 45vw, calc(100vw - 2.5rem)">
+            <source type="image/webp" srcset="<?= eco_srcset_webp('eco-paints-pair', [640, 960, 1280, 1920]) ?>"
+                    sizes="(min-width: 1100px) 22vw, (min-width: 768px) 45vw, calc(100vw - 2.5rem)">
+            <img src="<?= asset_url('/assets/images/ecosystem/eco-paints-pair-1280.jpg') ?>"
+                 alt="Prakritik Distemper and Emulsion paint packs &mdash; the documented product family"
+                 width="1280" height="800" loading="lazy" decoding="async">
+          </picture>
+        </figure>
+        <div class="resource-step__caption">
+          <span class="resource-step__kicker">Stage 03</span>
+          <h3 class="resource-step__title">Product Portfolio</h3>
+          <p class="resource-step__desc">
+            Four directions from one resource: Eco-Paints, Cow-Dung Logs, Bio-Coal Logs and Eco Utility Products.
           </p>
         </div>
       </article>
@@ -369,19 +458,19 @@ $HERO_SIZES = '(min-width: 1200px) 58vw, (min-width: 900px) 50vw, calc(100vw - 2
         <figure class="resource-step__figure">
           <picture>
             <source type="image/avif" srcset="<?= eco_srcset('colours-wall', [640, 960, 1280, 1920]) ?>"
-                    sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, calc(100vw - 2.5rem)">
+                    sizes="(min-width: 1100px) 22vw, (min-width: 768px) 45vw, calc(100vw - 2.5rem)">
             <source type="image/webp" srcset="<?= eco_srcset_webp('colours-wall', [640, 960, 1280, 1920]) ?>"
-                    sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, calc(100vw - 2.5rem)">
+                    sizes="(min-width: 1100px) 22vw, (min-width: 768px) 45vw, calc(100vw - 2.5rem)">
             <img src="<?= asset_url('/assets/images/ecosystem/colours-wall-960.jpg') ?>"
-                 alt="Finished limewash wall in a furnished room — a useful application"
+                 alt="Finished natural-coating wall in a furnished room &mdash; a useful, sustainable application"
                  width="960" height="549" loading="lazy" decoding="async">
           </picture>
         </figure>
         <div class="resource-step__caption">
-          <span class="resource-step__kicker">Stage 03</span>
-          <h3 class="resource-step__title">Useful Applications</h3>
+          <span class="resource-step__kicker">Stage 04</span>
+          <h3 class="resource-step__title">Environmental Impact</h3>
           <p class="resource-step__desc">
-            Products and material directions for walls, energy and everyday use.
+            Products that carry natural material back into everyday use &mdash; building a circular-economy direction for the future.
           </p>
         </div>
       </article>
@@ -398,11 +487,14 @@ $HERO_SIZES = '(min-width: 1200px) 58vw, (min-width: 900px) 50vw, calc(100vw - 2
   <div class="container">
     <div class="families-section__head section-heading section-heading--left" data-reveal>
       <span class="section-heading__eyebrow">The Gaurikrit Ecosystem</span>
-      <h2 class="section-heading__title" id="families-title">One resource. Four directions.</h2>
+      <h2 class="section-heading__title" id="families-title">One resource. Four solutions.</h2>
       <p class="section-heading__desc">
         Cow dung is the shared material beginning. Gaurikrit develops it in four
-        directions — Eco-Paints is the documented family; the others are
+        directions &mdash; Eco-Paints is the documented family; the others are
         development directions presented without invented products.
+      </p>
+      <p class="section-heading__desc">
+        Every product we create contributes to a circular economy where waste becomes value and sustainability becomes practical.
       </p>
     </div>
 
@@ -578,20 +670,20 @@ $HERO_SIZES = '(min-width: 1200px) 58vw, (min-width: 900px) 50vw, calc(100vw - 2
       <h2 class="section-heading__title" id="innov-title">Where Tradition Meets Technology.</h2>
     </div>
     <div class="innov-teaser__grid" data-reveal>
-      <figure class="innov-composition" aria-label="Material research samples — raw biomass, processed log and finished coating">
+      <figure class="innov-composition" aria-label="Compressed biomass fuel material — a research sample from the Gaurikrit material-development direction">
         <picture>
-          <source type="image/avif" srcset="<?= eco_srcset('innovation-research', [640, 960, 1280, 1920]) ?>"
+          <source type="image/avif" srcset="<?= eco_srcset('gocast-material', [640, 960, 1280, 1920]) ?>"
                   sizes="(min-width: 1024px) 40vw, calc(100vw - 2.5rem)">
-          <source type="image/webp" srcset="<?= eco_srcset_webp('innovation-research', [640, 960, 1280, 1920]) ?>"
+          <source type="image/webp" srcset="<?= eco_srcset_webp('gocast-material', [640, 960, 1280, 1920]) ?>"
                   sizes="(min-width: 1024px) 40vw, calc(100vw - 2.5rem)">
-          <img src="<?= asset_url('/assets/images/ecosystem/innovation-research-1280.jpg') ?>"
-               alt="Material research samples — raw biomass, processed log and finished coating"
-               width="1280" height="800" loading="lazy" decoding="async">
+          <img src="<?= asset_url('/assets/images/ecosystem/gocast-material-1280.jpg') ?>"
+               alt="Compressed biomass fuel material — a research sample from the Gaurikrit material-development direction"
+               width="1280" height="853" loading="lazy" decoding="async">
         </picture>
         <figcaption class="innov-composition__captions">
-          <span class="innov-composition__caption">Raw material<em>biomass sample</em></span>
-          <span class="innov-composition__caption">Processed<em>log sample</em></span>
-          <span class="innov-composition__caption">Coating<em>finished sample</em></span>
+          <span class="innov-composition__caption">Natural material<em>biomass source</em></span>
+          <span class="innov-composition__caption">Compressed format<em>fuel sample</em></span>
+          <span class="innov-composition__caption">Energy direction<em>application study</em></span>
         </figcaption>
       </figure>
       <div class="focus-rows">
@@ -633,11 +725,12 @@ $HERO_SIZES = '(min-width: 1200px) 58vw, (min-width: 900px) 50vw, calc(100vw - 2
         </h2>
         <p class="vision-mission__text">
           To develop practical, accessible and environmentally responsible
-          material solutions — and to evaluate every direction for its
+          material solutions &mdash; and to evaluate every direction for its
           environmental responsibility.
         </p>
       </div>
     </div>
+    <p class="brand-close__tagline">Redefining Resources. Regenerating the Future.</p>
   </div>
 </section>
 

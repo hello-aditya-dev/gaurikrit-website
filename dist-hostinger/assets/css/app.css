@@ -4821,7 +4821,8 @@ p, li, dd, blockquote { text-wrap: pretty; }
   grid-template-columns: 1fr;
   align-items: stretch;
 }
-@media (min-width: 768px) { .resource-steps { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 768px) { .resource-steps { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1100px) { .resource-steps { grid-template-columns: repeat(4, 1fr); } }
 .resource-step {
   display: flex; flex-direction: column; min-width: 0;
   border-top: 2px solid var(--primary);
