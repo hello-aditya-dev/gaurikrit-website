@@ -220,20 +220,21 @@ $HERO_SIZES = '(min-width: 1200px) 58vw, (min-width: 900px) 50vw, calc(100vw - 2
     color: var(--forest); margin: 0;
   }
 
-  /* V22 — Stage 03 Product Portfolio: a 2×2 mini-grid of the four client
-     product artworks inside the standard 4/3 stage figure. Posters use
-     object-fit:contain so labels stay intact; thin gaps read as a mat. */
-  .resource-step__figure--grid {
-    display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr;
-    gap: 2px; background: var(--paper-warm);
+  /* V22 — Stage 03 Product Portfolio: the client-supplied biodegradable
+     product showcase artwork (portrait 2:3). object-fit:contain preserves
+     the complete poster — embedded labels, logos and product imagery are
+     never cropped to fill the frame. */
+  .resource-step__figure--poster {
+    display: flex; align-items: center; justify-content: center;
+    background: var(--paper-warm); overflow: hidden;
   }
-  .resource-step__figure--grid picture {
-    position: relative; display: block; overflow: hidden;
-    background: var(--paper-warm);
+  .resource-step__figure--poster picture {
+    display: block; width: 100%; height: 100%;
   }
-  .resource-step__figure--grid img {
-    position: absolute; inset: 0; width: 100%; height: 100%;
+  .resource-step__figure--poster img {
+    width: 100%; height: 100%;
     object-fit: contain; object-position: center;
+    display: block;
   }
 
   /* V21 — corporate tagline in the closing brand section */
@@ -450,37 +451,19 @@ $HERO_SIZES = '(min-width: 1200px) 58vw, (min-width: 900px) 50vw, calc(100vw - 2
         </div>
       </article>
       <article class="resource-step">
-        <figure class="resource-step__figure resource-step__figure--grid" aria-label="The four Gaurikrit product directions">
+        <figure class="resource-step__figure resource-step__figure--poster" aria-label="Gaurikrit biodegradable product showcase">
           <picture>
-            <source type="image/avif" srcset="<?= asset_url('/assets/images/ecosystem/carousel-eco-paints-640.avif') ?> 640w" sizes="(min-width: 1100px) 11vw, (min-width: 768px) 22vw, calc(50vw - 2.5rem)">
-            <source type="image/webp" srcset="<?= asset_url('/assets/images/ecosystem/carousel-eco-paints-640.webp') ?> 640w" sizes="(min-width: 1100px) 11vw, (min-width: 768px) 22vw, calc(50vw - 2.5rem)">
-            <img src="<?= asset_url('/assets/images/ecosystem/carousel-eco-paints-640.jpg') ?>"
-                 alt="Eco-Paints &mdash; Prakritik Paint artwork" width="640" height="360" loading="lazy" decoding="async">
-          </picture>
-          <picture>
-            <source type="image/avif" srcset="<?= asset_url('/assets/images/ecosystem/carousel-cow-dung-logs-640.avif') ?> 640w" sizes="(min-width: 1100px) 11vw, (min-width: 768px) 22vw, calc(50vw - 2.5rem)">
-            <source type="image/webp" srcset="<?= asset_url('/assets/images/ecosystem/carousel-cow-dung-logs-640.webp') ?> 640w" sizes="(min-width: 1100px) 11vw, (min-width: 768px) 22vw, calc(50vw - 2.5rem)">
-            <img src="<?= asset_url('/assets/images/ecosystem/carousel-cow-dung-logs-640.jpg') ?>"
-                 alt="Cow-Dung Logs artwork" width="640" height="360" loading="lazy" decoding="async">
-          </picture>
-          <picture>
-            <source type="image/avif" srcset="<?= asset_url('/assets/images/ecosystem/carousel-bio-briquettes-640.avif') ?> 640w" sizes="(min-width: 1100px) 11vw, (min-width: 768px) 22vw, calc(50vw - 2.5rem)">
-            <source type="image/webp" srcset="<?= asset_url('/assets/images/ecosystem/carousel-bio-briquettes-640.webp') ?> 640w" sizes="(min-width: 1100px) 11vw, (min-width: 768px) 22vw, calc(50vw - 2.5rem)">
-            <img src="<?= asset_url('/assets/images/ecosystem/carousel-bio-briquettes-640.jpg') ?>"
-                 alt="Bio-Briquettes artwork" width="640" height="360" loading="lazy" decoding="async">
-          </picture>
-          <picture>
-            <source type="image/avif" srcset="<?= asset_url('/assets/images/ecosystem/carousel-eco-utility-products-640.avif') ?> 640w" sizes="(min-width: 1100px) 11vw, (min-width: 768px) 22vw, calc(50vw - 2.5rem)">
-            <source type="image/webp" srcset="<?= asset_url('/assets/images/ecosystem/carousel-eco-utility-products-640.webp') ?> 640w" sizes="(min-width: 1100px) 11vw, (min-width: 768px) 22vw, calc(50vw - 2.5rem)">
-            <img src="<?= asset_url('/assets/images/ecosystem/carousel-eco-utility-products-640.jpg') ?>"
-                 alt="Eco Utility Products artwork" width="640" height="360" loading="lazy" decoding="async">
+            <source type="image/avif" srcset="<?= asset_url('/assets/images/ecosystem/flow-portfolio-640.avif') ?> 640w, <?= asset_url('/assets/images/ecosystem/flow-portfolio-960.avif') ?> 960w" sizes="(min-width: 1100px) 22vw, (min-width: 768px) 45vw, calc(100vw - 2.5rem)">
+            <source type="image/webp" srcset="<?= asset_url('/assets/images/ecosystem/flow-portfolio-640.webp') ?> 640w, <?= asset_url('/assets/images/ecosystem/flow-portfolio-960.webp') ?> 960w" sizes="(min-width: 1100px) 22vw, (min-width: 768px) 45vw, calc(100vw - 2.5rem)">
+            <img src="<?= asset_url('/assets/images/ecosystem/flow-portfolio-960.jpg') ?>"
+                 alt="Gaurikrit biodegradable product showcase &mdash; dhoop cups, cow-dung diyas, biodegradable plates and eco glasses" width="960" height="1440" loading="lazy" decoding="async">
           </picture>
         </figure>
         <div class="resource-step__caption">
           <span class="resource-step__kicker">Stage 03</span>
           <h3 class="resource-step__title">Product Portfolio</h3>
           <p class="resource-step__desc">
-            Four directions from one resource: Eco-Paints, Cow-Dung Logs, Bio-Briquettes and Eco Utility Products.
+            Four solutions from one resource: Eco-Paints, Cow-Dung Logs, Bio-Briquettes and Eco Utility Products.
           </p>
         </div>
       </article>

@@ -91,10 +91,12 @@ $PRODUCTS = [
         'coverage'      => '300 sq.ft.**',
         'voc'           => 'Negligible',
         'usage'         => 'Interior & Exterior',
-        'officialImage' => '/assets/products/prakritik-emulsion-from-pair.png',
-        'officialImageWebp' => '/assets/products/prakritik-emulsion-from-pair.webp',
-        'officialImageW' => 638,
-        'officialImageH' => 612,
+        // V23: clean single-bucket cutout from the client's 2026-10-16 photo
+        // (replaces the low-res pair-graphic cutout that showed pink edge remnants).
+        'officialImage' => '/assets/images/client/prakritik-emulsion-single-cut.png',
+        'officialImageWebp' => '/assets/images/client/prakritik-emulsion-single-cut.webp',
+        'officialImageW' => 410,
+        'officialImageH' => 526,
         'image'         => 'prakritik-emulsion',
         'accent'        => 'haldi',
         'route'         => '/products/prakritik-emulsion/',
@@ -230,7 +232,7 @@ $PRODUCTS_MENU = [
     ['label' => 'Colours',             'href' => '/colours/'],
     ['label' => 'Cow-Dung Logs',       'href' => '/products/#cow-dung-logs'],
     ['label' => 'Bio-Briquettes',      'href' => '/products/#bio-briquettes'],
-    ['label' => 'Utility Products',    'href' => '/products/#utility-products'],
+    ['label' => 'Eco Utility Products',    'href' => '/products/#utility-products'],
 ];
 
 /**
@@ -291,7 +293,7 @@ $INTEREST_OPTIONS = [
     'prakritik-emulsion'   => 'Prakritik Emulsion',
     'gocast-logs'          => 'Cow-Dung Logs',
     'bio-coal-logs'        => 'Bio-Briquettes',
-    'utility-products'     => 'Utility Products',
+    'utility-products'     => 'Eco Utility Products',
     'bulk-project'         => 'Bulk / Project',
     'business-partnership' => 'Business Partnership',
     'gaushala-collaboration' => 'Gaushala Collaboration',
@@ -311,7 +313,7 @@ $PROJECT_TYPES = [
     'Eco-Paints',
     'Cow-Dung Logs',
     'Bio-Briquettes',
-    'Utility Products',
+    'Eco Utility Products',
     'Distribution',
     'Sustainability Collaboration',
     'Other',
@@ -377,7 +379,7 @@ $FAMILIES = [
     [
         'num'      => '04',
         'id'       => 'utility-products',
-        'name'     => 'Utility Products',
+        'name'     => 'Eco Utility Products',
         'line'     => 'A natural-material utility direction.',
         'desc'     => 'Practical daily-use products from naturally derived materials — a development direction for homes, gardens and everyday routines.',
         'status'   => 'Development direction',
@@ -456,7 +458,7 @@ $APPLICATION_GROUPS = [
     [
         'title' => 'Everyday Sustainable Living',
         'items' => [
-            ['name' => 'Utility Products',       'href' => '/products/#utility-products', 'live' => false],
+            ['name' => 'Eco Utility Products',       'href' => '/products/#utility-products', 'live' => false],
             ['name' => 'Home & Garden Products', 'href' => null, 'live' => false],
             ['name' => 'Eco Lifestyle Solutions','href' => null, 'live' => false],
         ],
@@ -507,7 +509,7 @@ $FOOTER_PRODUCTS = [
     ['label' => 'Colours',          'href' => '/colours/'],
     ['label' => 'Cow-Dung Logs',    'href' => '/products/#cow-dung-logs'],
     ['label' => 'Bio-Briquettes',   'href' => '/products/#bio-briquettes'],
-    ['label' => 'Utility Products', 'href' => '/products/#utility-products'],
+    ['label' => 'Eco Utility Products', 'href' => '/products/#utility-products'],
 ];
 
 function get_product(string $slug): ?array

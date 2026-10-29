@@ -373,14 +373,14 @@ $emulsion  = get_product('prakritik-emulsion');
       <article class="material-step">
         <figure class="material-step__figure">
           <picture>
-            <source type="image/avif" srcset="<?= eco_srcset('rawmat', [640, 960, 1280]) ?>"
+            <source type="image/avif" srcset="<?= eco_srcset('rawmat-tree', [640, 960]) ?>"
                     sizes="(min-width: 1024px) 28vw, (min-width: 640px) 42vw, calc(100vw - 2.5rem)">
-            <source type="image/webp" srcset="<?= eco_srcset_webp('rawmat', [640, 960, 1280]) ?>"
+            <source type="image/webp" srcset="<?= eco_srcset_webp('rawmat-tree', [640, 960]) ?>"
                     sizes="(min-width: 1024px) 28vw, (min-width: 640px) 42vw, calc(100vw - 2.5rem)">
             <img class="editorial-image"
-                 src="<?= asset_url('/assets/images/ecosystem/rawmat-960.jpg') ?>"
-                 alt="Raw natural biomass material"
-                 width="960" height="549"
+                 src="<?= asset_url('/assets/images/ecosystem/rawmat-tree-960.jpg') ?>"
+                 alt="Cow dung — the shared starting material for every Gaurikrit direction"
+                 width="960" height="960"
                  loading="lazy" decoding="async">
           </picture>
         </figure>

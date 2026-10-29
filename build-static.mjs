@@ -196,9 +196,9 @@ const INTEREST_OPTIONS = {
     'eco-paints': 'Eco-Paints',
     'prakritik-distemper': 'Prakritik Distemper',
     'prakritik-emulsion': 'Prakritik Emulsion',
-    'gocast-logs': 'GoCast Logs',
-    'bio-coal-logs': 'Bio-Coal Logs',
-    'utility-products': 'Utility Products',
+    'gocast-logs': 'Cow-Dung Logs',
+    'bio-coal-logs': 'Bio-Briquettes',
+    'utility-products': 'Eco Utility Products',
     'bulk-project': 'Bulk / Project',
     'business-partnership': 'Business Partnership',
     'gaushala-collaboration': 'Gaushala Collaboration',
@@ -211,9 +211,9 @@ const PROJECT_TYPES = [
     'CSR / NGO',
     'Gaushala Collaboration',
     'Eco-Paints',
-    'GoCast Logs',
-    'Bio-Coal Logs',
-    'Utility Products',
+    'Cow-Dung Logs',
+    'Bio-Briquettes',
+    'Eco Utility Products',
     'Distribution',
     'Sustainability Collaboration',
     'Other',
@@ -256,7 +256,7 @@ const FAMILIES = [
         href: '/products/#eco-paints',
     },
     {
-        num: '02', id: 'gocast-logs', name: 'GoCast Logs',
+        num: '02', id: 'gocast-logs', name: 'Cow-Dung Logs',
         line: 'Saving trees without changing traditions.',
         desc: 'A dense log format developed as an alternative to conventional wood — directed at ceremonial and traditional applications where wood has long been the default.',
         status: 'Development direction',
@@ -264,7 +264,7 @@ const FAMILIES = [
         href: '/products/#gocast-logs',
     },
     {
-        num: '03', id: 'bio-coal-logs', name: 'Bio-Coal Logs',
+        num: '03', id: 'bio-coal-logs', name: 'Bio-Briquettes',
         line: 'Renewable energy from natural biomass.',
         desc: 'Biomass-based fuel logs — a renewable energy direction that explores how natural material streams can reduce reliance on fossil fuels.',
         status: 'Development direction',
@@ -272,7 +272,7 @@ const FAMILIES = [
         href: '/products/#bio-coal-logs',
     },
     {
-        num: '04', id: 'utility-products', name: 'Utility Products',
+        num: '04', id: 'utility-products', name: 'Eco Utility Products',
         line: 'Sustainable products for everyday living.',
         desc: 'Practical daily-use products from naturally derived materials — a plastic-reducing direction for homes, gardens and everyday routines.',
         status: 'Development direction',
@@ -319,21 +319,21 @@ const APPLICATION_GROUPS = [
     {
         title: 'Energy & Fuel',
         items: [
-            { name: 'Bio-Coal Logs', href: '/products/#bio-coal-logs', live: false },
+            { name: 'Bio-Briquettes', href: '/products/#bio-coal-logs', live: false },
             { name: 'Biomass Fuel Solutions', href: null, live: false },
         ],
     },
     {
         title: 'Traditional & Ritual Applications',
         items: [
-            { name: 'GoCast Logs', href: '/products/#gocast-logs', live: false },
+            { name: 'Cow-Dung Logs', href: '/products/#gocast-logs', live: false },
             { name: 'Eco Cremation Solutions', href: null, live: false },
         ],
     },
     {
         title: 'Everyday Sustainable Living',
         items: [
-            { name: 'Utility Products', href: '/products/#utility-products', live: false },
+            { name: 'Eco Utility Products', href: '/products/#utility-products', live: false },
             { name: 'Home & Garden Products', href: null, live: false },
             { name: 'Eco Lifestyle Solutions', href: null, live: false },
         ],
@@ -362,9 +362,9 @@ const FOOTER_PRODUCTS = [
     { label: 'Prakritik Distemper', href: '/products/prakritik-distemper/' },
     { label: 'Prakritik Emulsion', href: '/products/prakritik-emulsion/' },
     { label: 'Colours', href: '/colours/' },
-    { label: 'GoCast Logs', href: '/products/#gocast-logs' },
-    { label: 'Bio-Coal Logs', href: '/products/#bio-coal-logs' },
-    { label: 'Utility Products', href: '/products/#utility-products' },
+    { label: 'Cow-Dung Logs', href: '/products/#gocast-logs' },
+    { label: 'Bio-Briquettes', href: '/products/#bio-coal-logs' },
+    { label: 'Eco Utility Products', href: '/products/#utility-products' },
 ];
 
 // V18 §54 — Products dropdown (desktop) + mobile menu sub-group.
@@ -374,9 +374,9 @@ const PRODUCTS_MENU = [
     { label: 'Prakritik Distemper', href: '/products/prakritik-distemper/' },
     { label: 'Prakritik Emulsion', href: '/products/prakritik-emulsion/' },
     { label: 'Colours', href: '/colours/' },
-    { label: 'GoCast Logs', href: '/products/#gocast-logs' },
-    { label: 'Bio-Coal', href: '/products/#bio-coal-logs' },
-    { label: 'Utility Products', href: '/products/#utility-products' },
+    { label: 'Cow-Dung Logs', href: '/products/#gocast-logs' },
+    { label: 'Bio-Briquettes', href: '/products/#bio-coal-logs' },
+    { label: 'Eco Utility Products', href: '/products/#utility-products' },
 ];
 
 // V18 — Prakritik Paint shade catalogue (client-supplied, 2026-09-27
@@ -520,7 +520,10 @@ function ecoSrcsetWebp(stem, widths, depth) {
     return widths.map((w) => `${assetUrl(`/assets/images/ecosystem/${stem}-${w}.webp`, depth)} ${w}w`).join(', ');
 }
 function ecoPic(stem, widths, sizes, fallbackW, w, h, alt, depth, extra = '') {
-    return `<picture><source type="image/avif" srcset="${ecoSrcset(stem, widths, depth)}" sizes="${sizes}"><source type="image/webp" srcset="${ecoSrcsetWebp(stem, widths, depth)}" sizes="${sizes}"><img ${extra} src="${assetUrl(`/assets/images/ecosystem/${stem}-${fallbackW}.jpg`, depth)}" alt="${e(alt)}" width="${w}" height="${h}" loading="lazy" decoding="async"></picture>`;
+    // If the caller passed a loading= attribute in extra (e.g. loading="eager"),
+    // do not also emit loading="lazy" — duplicate attributes are invalid HTML.
+    const loadingAttr = /\bloading=/.test(extra) ? '' : ' loading="lazy"';
+    return `<picture><source type="image/avif" srcset="${ecoSrcset(stem, widths, depth)}" sizes="${sizes}"><source type="image/webp" srcset="${ecoSrcsetWebp(stem, widths, depth)}" sizes="${sizes}"><img ${extra} src="${assetUrl(`/assets/images/ecosystem/${stem}-${fallbackW}.jpg`, depth)}" alt="${e(alt)}" width="${w}" height="${h}"${loadingAttr} decoding="async"></picture>`;
 }
 
 /**
@@ -884,30 +887,32 @@ function generatePage(pageMeta, depth, bodyContent) {
 
 // ---- Homepage (index.html) — V4 ----
 function homeBody(depth) {
-    // V19 §28: the three stages share one image system (3:2, same
-    // derivatives ladder, same frame treatment).
-    const STAGE_SIZES = '(min-width: 1024px) 30vw, (min-width: 640px) 45vw, calc(100vw - 2.5rem)';
-    const rawMaterial = ecoPic('rawmat', [640, 960, 1280, 1920], STAGE_SIZES, 960, 960, 549, 'Raw material — natural biomass with straw fibre', depth);
-    const finishedSurface = ecoPic('colours-wall', [640, 960, 1280, 1920], STAGE_SIZES, 960, 960, 549, 'Finished limewash wall in a furnished room — a useful application', depth);
-    const distemperProduct = ecoPic('material-development', [640, 960, 1280, 1920], STAGE_SIZES, 960, 960, 640, 'Prakritik Distemper paint pack — developed material product with studio context', depth);
+    // V22 — the four stages share one image system. flow-cow-dung (3:2),
+    // flow-processing (1:1), flow-portfolio (2:3 portrait, poster frame)
+    // and flow-impact (1:1).
+    const STAGE_SIZES = '(min-width: 1100px) 22vw, (min-width: 768px) 45vw, calc(100vw - 2.5rem)';
+    const stageCowDung = ecoPic('flow-cow-dung', [640, 960, 1280], STAGE_SIZES, 960, 960, 540, 'Raw cow dung in a rural setting — the natural material starting point', depth);
+    const stageProcessing = ecoPic('flow-processing', [640, 960], STAGE_SIZES, 960, 960, 960, 'Conceptual visual of natural-waste processing — biomass handling and material development', depth);
+    const stageImpact = ecoPic('flow-impact', [640, 960], STAGE_SIZES, 960, 960, 960, 'Earth encircled by a leaf recycling symbol — a circular-economy direction', depth);
 
     const familiesMarkup = FAMILIES.map((family) => {
-        // V20 §29-30: every family carries REAL client-supplied imagery —
-        // Eco-Paints + GoCast client photography, plus the 2026-10-16
-        // client product posters for Bio-Coal (Bio-Briquettes) and
-        // Utility (Eco Utility Products). Each is a clean 3/2 crop that
-        // preserves product identity; the "Category visual" tag is no
-        // longer needed. One system: 3:2 frames.
+        // V22: every family carries the final client-supplied landscape
+        // artworks from the 2026-10-29 batch (the same official product
+        // posters as the hero carousel — browser-cached, so no extra
+        // download). 16:9 frames with object-fit:contain preserve product
+        // identity and label text. Client terminology: "Cow-Dung Logs"
+        // (formerly GoCast Logs) and "Bio-Briquettes" (formerly Bio-Coal
+        // Logs) — see data.php and ASSET_PROVENANCE.md.
         const mediaSpec = {
-            'eco-paints':       { stem: 'eco-paints-pair', alt: 'Prakritik Distemper and Prakritik Emulsion paint packs - the documented Eco-Paints family', note: false, widths: [640, 960, 1280, 1920], fb: 960 },
-            'gocast-logs':      { stem: 'gocast-editorial', alt: 'Client-supplied cow-dung logs on a terracotta plate with straw', note: false, widths: [640, 960, 1280, 1920], fb: 960 },
-            'bio-coal-logs':    { stem: 'family-bio-coal-logs', alt: 'Client-supplied Gaurikrit Bio-Briquettes product poster — premium renewable biomass fuel', note: false, widths: [640, 960, 1024], fb: 960 },
-            'utility-products': { stem: 'family-eco-utility-products', alt: 'Client-supplied Gaurikrit Eco Utility Products poster — dhoop cups, cow-dung diyas, biodegradable plates and eco glasses', note: false, widths: [640, 853], fb: 853 },
+            'eco-paints':       { stem: 'carousel-eco-paints', alt: 'Gaurikrit Eco-Paints — Prakritik Paint artwork, the documented product family', widths: [640, 960, 1280, 1920], fb: 1920, w: 1920, h: 1080 },
+            'gocast-logs':      { stem: 'carousel-cow-dung-logs', alt: 'Gaurikrit Cow-Dung Logs — premium biomass fuel artwork', widths: [640, 960, 1280], fb: 1280, w: 1672, h: 941 },
+            'bio-coal-logs':    { stem: 'carousel-bio-briquettes', alt: 'Gaurikrit Bio-Briquettes — premium renewable biomass fuel artwork', widths: [640, 960, 1280, 1920], fb: 1920, w: 1920, h: 1080 },
+            'utility-products': { stem: 'carousel-eco-utility-products', alt: 'Gaurikrit Eco Utility Products — dhoop cups, cow-dung diyas, biodegradable plates and eco glasses artwork', widths: [640, 960, 1280, 1920], fb: 1920, w: 1920, h: 1080 },
         };
         const spec = mediaSpec[family.id];
         const media = `            <figure class="family__media family__media--photo">
-                ${ecoPic(spec.stem, spec.widths, '(min-width: 768px) 45vw, calc(100vw - 2.5rem)', spec.fb, 960, 640, spec.alt, depth)}
-${spec.note ? '                <span class="family__media-note">Category visual</span>\n' : ''}            </figure>`;
+                ${ecoPic(spec.stem, spec.widths, '(min-width: 768px) 45vw, calc(100vw - 2.5rem)', spec.fb, spec.w, spec.h, spec.alt, depth)}
+            </figure>`;
         const themes = family.themes.map((t) => `              <li>${e(t)}</li>`).join('\n');
         const statusClass = family.status === 'Documented family' ? '' : ' family__status--direction';
         return `        <article class="family" id="family-${e(family.id)}">
@@ -978,25 +983,26 @@ ${items}
 
     const audienceItems = PARTNER_AUDIENCES.map((a) => `        <li class="partner-strip__item">${e(a)}</li>`).join('\n');
 
-    // V20 — hero transitioning product showcase. Four client-supplied
-    // product directions (originals dated 2026-10-16, in
-    // source-assets/client-originals/). Derived ladders live in
-    // assets/images/ecosystem/hero-<slug>-<W>.{avif,webp,jpg} and are
+    // V22 — hero transitioning product showcase. Four final client-selected
+    // landscape artworks (originals dated 2026-10-29, in
+    // source-assets/client-originals/2026-10-29-update/Gaurikrit_Final_4_Carousel_Images/).
+    // Derived responsive ladders live in
+    // assets/images/ecosystem/carousel-<slug>-<W>.{avif,webp,jpg} and are
     // emitted through the same ecoSrcset()/ecoSrcsetWebp() helpers as the
     // rest of the V19 image system. Widths are the ACTUAL pixel widths
-    // (truthful srcset w-descriptors); the portrait utility poster
-    // therefore advertises 426w / 853w.
+    // (truthful srcset w-descriptors). Slide order: Eco-Paints,
+    // Bio-Briquettes, Cow-Dung Logs, Eco Utility Products.
     const HERO_SLIDES = [
-      {stem:'hero-eco-paints',           widths:[640,1280], w:1280, h:853,
+      {stem:'carousel-eco-paints',           widths:[640,960,1280,1920], w:1920, h:1080,
        label:'Eco-Paints',          sub:'Prakritik Paint family',
-       alt:'Three Prakritik Paint buckets — Emulsion, Emulsion and Distemper — eco-friendly cow dung paint by Gaurikrit'},
-      {stem:'hero-bio-coal-logs',         widths:[640,1024], w:1024, h:1024,
-       label:'Bio-Coal Logs',       sub:'Bio-Briquettes',
-       alt:'Gaurikrit Bio-Briquettes — premium renewable biomass fuel, cylindrical hollow briquettes'},
-      {stem:'hero-cow-dung-logs',         widths:[640,1024], w:1024, h:1024,
+       alt:'Gaurikrit Prakritik Paint — eco-friendly cow dung paint, Distemper and Emulsion buckets with natural backdrop'},
+      {stem:'carousel-bio-briquettes',       widths:[640,960,1280,1920], w:1920, h:1080,
+       label:'Bio-Briquettes',      sub:'Premium biomass fuel',
+       alt:'Gaurikrit Bio-Briquettes — premium renewable biomass fuel, cylindrical hollow briquettes on wood'},
+      {stem:'carousel-cow-dung-logs',        widths:[640,960,1280],      w:1672, h:941,
        label:'Cow-Dung Logs',       sub:'Premium biomass fuel',
-       alt:'Gaurikrit Cow-Dung Logs — premium biomass fuel for havan, crematorium, boiler and industrial use'},
-      {stem:'hero-eco-utility-products',  widths:[426,853],  w:853,  h:1280,
+       alt:'Gaurikrit Cow-Dung Logs — premium biomass fuel logs stacked on wood with rural backdrop'},
+      {stem:'carousel-eco-utility-products', widths:[640,960,1280,1920], w:1920, h:1080,
        label:'Eco Utility Products', sub:'Dhoop, diyas, plates, cups',
        alt:'Gaurikrit Eco Utility Products — dhoop cups, cow-dung diyas, biodegradable plates and eco glasses'},
     ];
@@ -1049,20 +1055,26 @@ ${items}
     .hero__visual { order: 5; }
   }
   .hero__eyebrow-chip { margin-bottom: 0.875rem; }
-  .hero__title { font-size: clamp(2.375rem, 5.5vw, 5rem); line-height: 1.04; }
+  /* V21 — brand descriptor lockup: company name + secondary descriptor line */
+  .hero__brand-lockup { display: flex; flex-direction: column; gap: 0.0625rem; margin-bottom: 0.875rem; }
+  .hero__brand-name { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--forest); }
+  .hero__brand-desc { font-size: 0.5625rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fg-muted); }
+  .hero__strapline { margin-top: 1.25rem; font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.04em; color: var(--forest); font-style: italic; }
+
+  .hero__title { font-size: clamp(1.75rem, 3vw, 2.5rem); line-height: 1.12; letter-spacing: -0.015em; }
   .hero__body { max-width: 40rem; }
   .hero__ctas { margin-top: 2.25rem; }
 
-  /* V20 — transitioning product showcase. One stable 4/3 frame (no
-     layout shift), four client product posters crossfade inside it on
-     object-fit:contain so every label, pack and claim stays fully
-     visible (no cropping of factual identity). Captions + dots +
-     arrows sit below the frame. Autoplay/pause/keyboard/reduced-motion
-     behaviour is in assets/js/hero-carousel.js. */
+  /* V22 — transitioning product showcase. One stable 16/9 frame (no
+     layout shift) matching the client's four ~16:9 landscape artworks.
+     object-fit:contain keeps every label, pack and claim fully visible
+     (no cropping of factual identity). Captions + dots + arrows sit
+     below the frame. Autoplay/pause/keyboard/reduced-motion behaviour
+     is in assets/js/hero-carousel.js. */
   .hero-showcase { position: relative; }
   .hero-showcase__frame {
     position: relative;
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 16 / 9;
     background: var(--paper-warm);
     border: 1px solid var(--border);
     border-radius: 0.25rem;
@@ -1074,6 +1086,7 @@ ${items}
     position: absolute; inset: 0;
     display: flex; align-items: center; justify-content: center;
     margin: 0; padding: clamp(0.875rem, 2.2vw, 1.75rem);
+    box-sizing: border-box;
     opacity: 0; visibility: hidden;
     transition: opacity 0.9s cubic-bezier(0.22,1,0.36,1), visibility 0s linear 0.9s;
     pointer-events: none;
@@ -1083,10 +1096,20 @@ ${items}
     transition: opacity 0.9s cubic-bezier(0.22,1,0.36,1), visibility 0s;
     pointer-events: auto;
   }
-  .hero-showcase__slide picture { display: block; max-width: 100%; max-height: 100%; margin: 0; }
+  /* V21 — bulletproof contain: picture fills the slide content box (definite
+     height via inset:0 + box-sizing), img uses object-fit:contain so every
+     poster — landscape, square or portrait — is shown in full without
+     clipping packaging or labels. */
+  .hero-showcase__slide picture {
+    display: flex; align-items: center; justify-content: center;
+    width: 100%; height: 100%; max-width: 100%; max-height: 100%;
+    margin: 0;
+  }
   .hero-showcase__slide img {
-    display: block; max-width: 100%; max-height: 100%;
-    width: auto; height: auto; margin: 0 auto;
+    display: block;
+    max-width: 100%; max-height: 100%;
+    width: auto; height: auto;
+    object-fit: contain; object-position: center;
     border-radius: 0.125rem;
   }
   .hero-showcase__controls {
@@ -1111,7 +1134,7 @@ ${items}
   }
   .hero-showcase__dot[aria-selected="true"] { background: var(--forest); width: 1.5rem; }
   .hero-showcase__dot:focus-visible { outline: 2px solid var(--haldi); outline-offset: 3px; }
-  .hero-showcase__arrows { display: flex; gap: 0.5rem; }
+  .hero-showcase__arrows { display: flex; gap: 0.5rem; align-items: center; }
   .hero-showcase__arrow {
     width: 2.25rem; height: 2.25rem; display: inline-flex;
     align-items: center; justify-content: center;
@@ -1123,6 +1146,18 @@ ${items}
   .hero-showcase__arrow:hover { background: var(--forest); color: var(--paper); border-color: var(--forest); }
   .hero-showcase__arrow:focus-visible { outline: 2px solid var(--haldi); outline-offset: 2px; }
   .hero-showcase__arrow svg { width: 1.125rem; height: 1.125rem; }
+  /* V21 — accessible play/pause toggle */
+  .hero-showcase__toggle {
+    width: 2.25rem; height: 2.25rem; display: inline-flex;
+    align-items: center; justify-content: center;
+    border: 1px solid var(--border-strong); border-radius: 999px;
+    background: var(--paper); color: var(--forest);
+    cursor: pointer; margin-right: 0.25rem;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  }
+  .hero-showcase__toggle:hover { background: var(--forest); color: var(--paper); border-color: var(--forest); }
+  .hero-showcase__toggle:focus-visible { outline: 2px solid var(--haldi); outline-offset: 2px; }
+  .hero-showcase__toggle svg { width: 1.125rem; height: 1.125rem; }
   @media (prefers-reduced-motion: reduce) {
     .hero-showcase__slide,
     .hero-showcase__dot,
@@ -1133,9 +1168,51 @@ ${items}
     .hero-showcase__caption { order: 1; align-items: center; }
     .hero-showcase__dots { order: 2; }
     .hero-showcase__arrows { order: 3; }
-    .hero-showcase__arrow { width: 2.75rem; height: 2.75rem; }
+    .hero-showcase__arrow, .hero-showcase__toggle { width: 2.75rem; height: 2.75rem; }
     .hero-showcase__dot { width: 0.625rem; height: 0.625rem; }
     .hero-showcase__dot[aria-selected="true"] { width: 1.75rem; }
+  }
+
+  /* V21 — mission statement callout inside the story section */
+  .resource-mission {
+    margin-top: 1.75rem; padding: 1.25rem 1.5rem;
+    border-left: 3px solid var(--haldi);
+    background: color-mix(in srgb, var(--haldi) 6%, transparent);
+    border-radius: 0 0.25rem 0.25rem 0;
+  }
+  .resource-mission__label {
+    display: block; font-size: 0.5625rem; font-weight: 700;
+    letter-spacing: 0.16em; text-transform: uppercase; color: var(--fg-muted);
+    margin-bottom: 0.375rem;
+  }
+  .resource-mission__text {
+    font-size: 1.0625rem; font-weight: 600; line-height: 1.4;
+    color: var(--forest); margin: 0;
+  }
+
+  /* V22 — Stage 03 Product Portfolio: the client-supplied biodegradable
+     product showcase artwork (portrait 2:3). object-fit:contain preserves
+     the complete poster — embedded labels, logos and product imagery are
+     never cropped to fill the frame. */
+  .resource-step__figure--poster {
+    display: flex; align-items: center; justify-content: center;
+    background: var(--paper-warm); overflow: hidden;
+  }
+  .resource-step__figure--poster picture {
+    display: block; width: 100%; height: 100%;
+  }
+  .resource-step__figure--poster img {
+    width: 100%; height: 100%;
+    object-fit: contain; object-position: center;
+    display: block;
+  }
+
+  /* V21 — corporate tagline in the closing brand section */
+  .brand-close__tagline {
+    text-align: center; margin-top: 1.5rem; padding-top: 1.5rem;
+    border-top: 1px solid color-mix(in srgb, var(--paper) 25%, transparent);
+    font-size: 1rem; font-weight: 700; letter-spacing: 0.04em;
+    color: var(--paper);
   }
 
   /* ===== 02. RESOURCE STEPS — one frame system for all three (§28) ===== */
@@ -1184,18 +1261,22 @@ ${items}
   <div class="container">
     <div class="hero__grid">
       <div class="hero__lockup">
-        <span class="hero__eyebrow-chip">
-          <span class="hero__eyebrow-dot" aria-hidden="true"></span>
-          GAURIKRIT BIO PRODUCTS
-        </span>
+        <div class="hero__brand-lockup">
+          <span class="hero__brand-name">GAURIKRIT&reg;</span>
+          <span class="hero__brand-desc">Circular Economy &amp; Carbon Reduction Company</span>
+        </div>
         <span class="hero__devanagari" aria-hidden="true">${e(COMPANY.devanagari)}</span>
         <h1 class="hero__title" id="hero-title">
-          Reimagining cow dung as a resource for sustainable living.
+          Reimagining Cow-Dung<br>as a Resource for Sustainable Living.
         </h1>
         <p class="hero__body">
-          Nature provides the resource. Gaurikrit explores how cow dung can be
-          carried into practical material solutions — from Prakritik Paint to
-          fuel and utility applications.
+          Nature provides the resource. Gaurikrit explores how natural waste
+          can be carried into practical material solutions&mdash;from
+          Prakritik Paint to organic fuel and environmentally friendly utility
+          products that help build a cleaner future.
+        </p>
+        <p class="hero__strapline">
+          Transforming Natural Resources. Redefining Sustainable Living.
         </p>
         <div class="hero__ctas">
           <a class="btn btn--primary btn--lg" href="${relUrl('/products/', depth)}">Explore the Ecosystem</a>
@@ -1203,10 +1284,10 @@ ${items}
         </div>
       </div>
 
-      <!-- V20 — transitioning product showcase. Four client-supplied
-           product directions (2026-10-16 originals) crossfade inside one
-           stable 4/3 frame. Autoplay 5s, pause on hover/focus, prev/next,
-           dots, ArrowLeft/Right keyboard, prefers-reduced-motion aware
+      <!-- V22 — transitioning product showcase. Four final client-selected
+           landscape artworks (2026-10-29 originals) crossfade inside one
+           stable 16/9 frame. Autoplay 5s, accessible play/pause, prev/next,
+           dots, ArrowLeft/Right keyboard, swipe, prefers-reduced-motion aware
            (no autoplay, instant switching). See assets/js/hero-carousel.js. -->
       <div class="hero__visual" data-reveal>
         <div class="hero-showcase" data-hero-carousel
@@ -1228,6 +1309,11 @@ ${heroSlides}
 ${heroDots}
             </div>
             <div class="hero-showcase__arrows">
+              <button type="button" class="hero-showcase__toggle" data-hero-toggle
+                      aria-pressed="true" aria-label="Pause product showcase autoplay">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-icon-pause><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-icon-play hidden><path d="M7 4v16l13-8z"/></svg>
+              </button>
               <button type="button" class="hero-showcase__arrow" data-hero-prev
                       aria-label="Previous product direction">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
@@ -1255,45 +1341,63 @@ ${heroDots}
       <p class="section-heading__desc">
         Traditional India has long recognised cow dung as a useful material.
         Gaurikrit's direction is to carry that resource into practical
-        contemporary applications — from naturally derived material to products
+        contemporary applications &mdash; from naturally derived material to products
         for walls, energy and everyday use.
       </p>
+      <div class="resource-mission" data-reveal>
+        <span class="resource-mission__label">Our Mission</span>
+        <p class="resource-mission__text">
+          Transforming Cow Dung into Innovative Solutions for Sustainable Living.
+        </p>
+      </div>
     </div>
 
     <div class="resource-steps" data-reveal-stagger>
       <article class="resource-step">
         <figure class="resource-step__figure">
-          ${rawMaterial}
+          ${stageCowDung}
         </figure>
         <div class="resource-step__caption">
           <span class="resource-step__kicker">Stage 01</span>
-          <h3 class="resource-step__title">Raw Material</h3>
+          <h3 class="resource-step__title">Cow Dung</h3>
           <p class="resource-step__desc">
-            Cow dung — a natural material long valued in traditional Indian homes.
+            A natural material long valued in traditional Indian homes &mdash; the shared starting point for every Gaurikrit direction.
           </p>
         </div>
       </article>
       <article class="resource-step">
         <figure class="resource-step__figure">
-          ${distemperProduct}
+          ${stageProcessing}
         </figure>
         <div class="resource-step__caption">
           <span class="resource-step__kicker">Stage 02</span>
-          <h3 class="resource-step__title">Material Development</h3>
+          <h3 class="resource-step__title">Processing &amp; Innovation</h3>
           <p class="resource-step__desc">
-            The resource is processed and developed into useful working materials.
+            The resource is studied, processed and developed into useful working materials &mdash; from coatings to fuel formats.
+          </p>
+        </div>
+      </article>
+      <article class="resource-step">
+        <figure class="resource-step__figure resource-step__figure--poster" aria-label="Gaurikrit biodegradable product showcase">
+          ${ecoPic('flow-portfolio', [640, 960], STAGE_SIZES, 960, 960, 1440, 'Gaurikrit biodegradable product showcase — dhoop cups, cow-dung diyas, biodegradable plates and eco glasses', depth)}
+        </figure>
+        <div class="resource-step__caption">
+          <span class="resource-step__kicker">Stage 03</span>
+          <h3 class="resource-step__title">Product Portfolio</h3>
+          <p class="resource-step__desc">
+            Four solutions from one resource: Eco-Paints, Cow-Dung Logs, Bio-Briquettes and Eco Utility Products.
           </p>
         </div>
       </article>
       <article class="resource-step">
         <figure class="resource-step__figure">
-          ${finishedSurface}
+          ${stageImpact}
         </figure>
         <div class="resource-step__caption">
-          <span class="resource-step__kicker">Stage 03</span>
-          <h3 class="resource-step__title">Useful Applications</h3>
+          <span class="resource-step__kicker">Stage 04</span>
+          <h3 class="resource-step__title">Environmental Impact</h3>
           <p class="resource-step__desc">
-            Products for walls, energy and everyday use — nothing goes to waste.
+            Products that carry natural material back into everyday use &mdash; building a circular-economy direction for the future.
           </p>
         </div>
       </article>
@@ -1303,16 +1407,21 @@ ${heroDots}
 
 <!-- ============================================================
      03. ONE RESOURCE, FOUR SOLUTIONS — the ecosystem (§17-18)
+     Editorial chapters, NOT SaaS cards. Eco-Paints uses REAL
+     photography; the other families are honest type/material plates.
      ============================================================ -->
 <section class="section section--haldi-wash families-section" aria-labelledby="families-title">
   <div class="container">
     <div class="families-section__head section-heading section-heading--left" data-reveal>
       <span class="section-heading__eyebrow">The Gaurikrit Ecosystem</span>
-      <h2 class="section-heading__title" id="families-title">One resource. Four directions.</h2>
+      <h2 class="section-heading__title" id="families-title">One resource. Four solutions.</h2>
       <p class="section-heading__desc">
         Cow dung is the shared material beginning. Gaurikrit develops it in four
-        directions — Eco-Paints is the documented family; the others are
+        directions &mdash; Eco-Paints is the documented family; the others are
         development directions presented without invented products.
+      </p>
+      <p class="section-heading__desc">
+        Every product we create contributes to a circular economy where waste becomes value and sustainability becomes practical.
       </p>
     </div>
 
@@ -1323,27 +1432,25 @@ ${familiesMarkup}
 </section>
 
 <!-- ============================================================
-     04. NOTHING GOES TO WASTE — the circular model (§19-20)
+     04. A CIRCULAR MATERIAL DIRECTION — compact cycle summary
+     V22: the homepage four-stage flow above is now the main visual
+     narrative. This section is a brief closing statement + link to the
+     full seven-stage model on /sustainability/ (kept intact there) —
+     removing the duplicated timeline without losing substance.
      ============================================================ -->
 <section class="section section--paper circular-section" aria-labelledby="circular-title">
   <div class="container">
     <div class="circular-section__head section-heading section-heading--left" data-reveal>
       <span class="section-heading__eyebrow">The Circular Model</span>
-      <h2 class="section-heading__title" id="circular-title">Nothing Goes to Waste.</h2>
+      <h2 class="section-heading__title" id="circular-title">A Circular Material Direction.</h2>
       <p class="section-heading__desc">
-        One continuous cycle: the resource enters, is developed, becomes useful
-        products — and creates a new value cycle.
+        The stages above repeat as one continuous cycle: the resource enters,
+        is developed, becomes useful products &mdash; and further material
+        opportunities keep the cycle going.
       </p>
-    </div>
-
-    <div class="circular" data-circular data-reveal>
-      <ol class="circular__track">
-${circularStages}
-      </ol>
-      <svg class="circular__loop-path" viewBox="0 0 1000 28" preserveAspectRatio="none" aria-hidden="true">
-        <path d="M8,2 L8,20 C8,26 16,26 26,26 L974,26 C984,26 992,26 992,20 L992,10" />
-      </svg>
-      <span class="circular__loop-label" aria-hidden="true">Resource regeneration</span>
+      <p class="circular-section__cta" style="margin-top:1.25rem;">
+        <a class="btn btn--outline" href="${relUrl('/sustainability/#circular-economy', depth)}">Explore the Full Circular Model <span aria-hidden="true">→</span></a>
+      </p>
     </div>
   </div>
 </section>
@@ -1444,11 +1551,13 @@ ${focusRows}
           Practical alternatives, responsibly made.
         </h2>
         <p class="vision-mission__text">
-          To replace less sustainable alternatives with practical, accessible and
-          environmentally responsible product solutions.
+          To develop practical, accessible and environmentally responsible
+          material solutions &mdash; and to evaluate every direction for its
+          environmental responsibility.
         </p>
       </div>
     </div>
+    <p class="brand-close__tagline">Redefining Resources. Regenerating the Future.</p>
   </div>
 </section>
 
@@ -1498,26 +1607,12 @@ ${items}
         </div>`;
     }).join('\n');
 
-    const familySection = (num, id, name, line, desc, themes, note, texture, interest, reverse, hlevel) => {
-        // V20: the type plate is retired — every direction section carries
-        // a real visual. Bio-Coal and Utility now use the 2026-10-16 client
-        // product posters (clean 3/2 crops); other directions fall back to
-        // their editorial texture.
-        const photoSpec = {
-            'bio-coal-logs':    { stem: 'family-bio-coal-logs', alt: 'Client-supplied Gaurikrit Bio-Briquettes product poster — premium renewable biomass fuel', widths: [640, 960, 1024], fb: 960, w: 960, h: 640, real: true },
-            'utility-products': { stem: 'family-eco-utility-products', alt: 'Client-supplied Gaurikrit Eco Utility Products poster — dhoop cups, cow-dung diyas, biodegradable plates and eco glasses', widths: [640, 853], fb: 853, w: 853, h: 569, real: true },
-        };
-        const ps = photoSpec[id];
-        const photoStem = ps ? ps.stem : texture;
-        const photoAlt = ps ? ps.alt : name;
-        const photoWidths = ps ? ps.widths : [640, 960, 1280, 1600];
-        const photoFb = ps ? ps.fb : 1280;
-        const photoW = ps ? ps.w : 1280;
-        const photoH = ps ? ps.h : 960;
-        const photoReal = !!(ps && ps.real);
+    const familySection = (num, id, aliasId, name, line, desc, themes, note, photoStem, photoWidths, photoFb, photoW, photoH, photoAlt, photoCaption, interest, reverse, hlevel) => {
         const themeList = themes.map((t) => `          <li>${e(t)}</li>`).join('\n');
         const rev = reverse ? ' family-section--reverse' : '';
-        return `<!-- ============================================================
+        const aliasSpan = aliasId ? `\n<span id="${aliasId}" aria-hidden="true"></span>` : '';
+        return `${aliasSpan}
+<!-- ============================================================
      ${num}. ${name.toUpperCase()} — development direction
      ============================================================ -->
 <section class="section section--${reverse ? 'limewash' : 'paper'} family-section${rev}" id="${id}" aria-labelledby="${id}-title">
@@ -1540,69 +1635,76 @@ ${themeList}
           <a class="btn btn--outline" href="${relUrl('/contact/', depth)}?interest=${interest}">Enquire About ${e(name.replace('Eco-Friendly ', ''))}</a>
         </div>
       </div>
-      <figure class="family-section__photo" aria-label="${e(name)} — ${photoReal ? 'client-supplied product poster' : 'representative category visual'}">
+      <figure class="family-section__photo" aria-label="${e(name)} — client-supplied product artwork">
         ${ecoPic(photoStem, photoWidths, '(min-width: 1024px) 42vw, calc(100vw - 2.5rem)', photoFb, photoW, photoH, photoAlt, depth)}
-        <figcaption>${photoReal ? ('Client-supplied ' + e(name) + ' product poster.') : ('Representative ' + (id === 'bio-coal-logs' ? 'category' : 'material-direction') + ' visual — not a documented product photograph.')}</figcaption>
+        <figcaption>${e(photoCaption)}</figcaption>
       </figure>
     </div>
   </div>
 </section>`;
     };
 
-    // V18 §16–17: GoCast gets the REAL client log photography in an
-    // editorial 45/55 composition — never a fake "product card".
+    // V22 §16–17: Cow-Dung Logs gets the official client artwork in an
+    // editorial 45/55 composition. Legacy anchor #gocast-logs preserved as
+    // an invisible alias before the renamed #cow-dung-logs section.
     const gocastSection = `
 <!-- ============================================================
-     07. GOCAST / COW-DUNG LOGS (V18 §16-17)
+     07. COW-DUNG LOGS — development direction (V18 §16-17, V22 rename)
      ============================================================ -->
-<section class="section section--paper family-section" id="gocast-logs" aria-labelledby="gocast-title">
+<span id="gocast-logs" aria-hidden="true"></span>
+<section class="section section--paper family-section" id="cow-dung-logs" aria-labelledby="cowdunglogs-title">
   <div class="container">
     <div class="gocast-feature" data-reveal>
       <figure class="gocast-feature__figure">
-        ${ecoPic('gocast-editorial', [640, 960, 1280, 1600], '(min-width: 1024px) 45vw, calc(100vw - 2.5rem)', 1280, 1280, 960, 'Client-supplied cow-dung logs on a terracotta plate with straw', depth)}
-        <figcaption>Client-supplied cow-dung log reference.</figcaption>
+        ${ecoPic('carousel-cow-dung-logs', [640, 960, 1280], '(min-width: 1024px) 45vw, calc(100vw - 2.5rem)', 1280, 1672, 941, 'Gaurikrit Cow-Dung Logs — client-supplied product artwork, premium biomass fuel', depth)}
+        <figcaption>Client-supplied Cow-Dung Logs product artwork.</figcaption>
       </figure>
       <div class="gocast-feature__copy">
         <span class="family-section__num" aria-hidden="true">02</span>
-        <h2 class="family-section__name" id="gocast-title">GoCast Logs</h2>
-        <p class="family-section__line">Saving trees without changing traditions.</p>
+        <h2 class="family-section__name" id="cowdunglogs-title">Cow-Dung Logs</h2>
+        <p class="family-section__line">A cow-dung log direction.</p>
         <p>
-          A dense log format developed as an alternative to conventional wood —
-          directed at ceremonial and traditional applications where wood has
-          long been the default.
+          A dense log format shaped from cow dung — a development direction
+          exploring material uses where wood has traditionally been used.
         </p>
         <ul class="family-section__themes">
-          <li>Alternative to conventional wood</li>
-          <li>Traditional / ceremonial application direction</li>
-          <li>Resource-conservation direction</li>
+          <li>Natural material format</li>
+          <li>Traditional-use direction</li>
+          <li>Resource-conscious direction</li>
         </ul>
         <p class="muted">
-          GoCast is a development direction — the photographs show
-          client-supplied log material, not a documented product specification.
+          Cow-Dung Logs is a development direction — the artwork shows the
+          client's supplied product visual, not a documented product specification.
           Dimensions, composition and availability will be published when the
           client supplies verified information.
         </p>
         <div class="family-section__cta">
-          <a class="btn btn--outline" href="${relUrl('/contact/?interest=gocast-logs', depth)}">Enquire About GoCast</a>
+          <a class="btn btn--outline" href="${relUrl('/contact/?interest=gocast-logs', depth)}">Enquire About Cow-Dung Logs</a>
         </div>
       </div>
     </div>
   </div>
 </section>`;
 
-    const biocoalSection = familySection('03', 'bio-coal-logs', 'Bio-Coal Logs',
-        'Renewable energy from natural biomass.',
-        'Biomass-based fuel logs — a renewable energy direction that explores how natural material streams can reduce reliance on fossil fuels.',
-        ['Biomass energy', 'Reduced fossil-fuel reliance direction', 'Alternative fuel applications', 'Circular material use'],
-        'Bio-Coal is a development direction. Composition, calorific value and test data will be published when the client supplies verified information.',
-        '/assets/editorial/exterior-finish-study.jpg', 'bio-coal-logs', true, '2');
+    const biocoalSection = familySection('03', 'bio-briquettes', 'bio-coal-logs', 'Bio-Briquettes',
+        'A bio-based fuel material direction.',
+        'Biomass-based fuel briquettes — a development direction exploring how natural material streams could serve fuel applications.',
+        ['Bio-based fuel material', 'Biomass applications', 'Fuel-material direction', 'Circular material use'],
+        'Bio-Briquettes is a development direction. Composition, calorific value and test data will be published when the client supplies verified information.',
+        'carousel-bio-briquettes', [640, 960, 1280, 1920], 1280, 1920, 1080,
+        'Gaurikrit Bio-Briquettes — client-supplied product artwork, premium renewable biomass fuel',
+        'Client-supplied Bio-Briquettes product artwork.',
+        'bio-coal-logs', true, '2');
 
-    const utilitySection = familySection('04', 'utility-products', 'Eco-Friendly Utility Products',
-        'Sustainable products for everyday living.',
-        'Practical daily-use products from naturally derived materials — a plastic-reducing direction for homes, gardens and everyday routines.',
-        ['Plastic-reducing alternatives', 'Material reuse', 'Home / garden / lifestyle direction', 'Circular-economy solutions'],
-        'Utility Products is a development direction. A confirmed product list will be published when the client supplies verified information.',
-        '/assets/editorial/courtyard-study.jpg', 'utility-products', false, '2');
+    const utilitySection = familySection('04', 'utility-products', null, 'Eco Utility Products',
+        'A natural-material utility direction.',
+        'Practical daily-use products from naturally derived materials — a development direction for homes, gardens and everyday routines.',
+        ['Natural-material utility direction', 'Moulded material forms', 'Home / garden / lifestyle direction', 'Circular-economy direction'],
+        'Eco Utility Products is a development direction. A confirmed product list will be published when the client supplies verified information.',
+        'carousel-eco-utility-products', [640, 960, 1280, 1920], 1280, 1920, 1080,
+        'Gaurikrit Eco Utility Products — client-supplied product artwork: dhoop cups, cow-dung diyas, biodegradable plates and eco glasses',
+        'Client-supplied Eco Utility Products product artwork.',
+        'utility-products', false, '2');
 
     const ashtaItems = ASHTA_LAABH.map((benefit, i) => `        <li class="benefits-grid__item">
           <span class="benefits-grid__num" aria-hidden="true">${pad2(i + 1)}</span>
@@ -1763,8 +1865,8 @@ ${themeList}
         <h1 class="products-hero__title" id="products-hero-title">One natural resource. Multiple useful applications.</h1>
         <p class="products-hero__sub">
           Cow dung is the shared material beginning. Gaurikrit develops it in
-          four directions — Eco-Paints is the documented family; GoCast Logs,
-          Bio-Coal Logs and Utility Products are development directions.
+          four directions — Eco-Paints is the documented family; Cow-Dung Logs,
+          Bio-Briquettes and Eco Utility Products are development directions.
         </p>
       </div>
       <div class="products-hero__visual" data-reveal>
@@ -2016,7 +2118,7 @@ ${appGroups}
       </p>
       <div class="why-cta__actions">
         <a class="btn btn--haldi" href="${relUrl('/contact/', depth)}">Talk to Us</a>
-        <a class="btn btn--secondary" href="${relUrl('/paint-calculator/', depth)}">Estimate Your Project</a>
+        <a class="btn btn--secondary" href="${relUrl('/paint-calculator/', depth)}">Painting Calculator</a>
       </div>
     </div>
   </div>
@@ -2096,22 +2198,13 @@ function distemperBody(depth) {
     border: 1px solid var(--border);
     border-radius: var(--r-panel); overflow: hidden;
   }
-  .product-detail__stage { display: none; }
-  .product-detail__panel { position: relative; aspect-ratio: 5 / 5.6; }
-  @media (max-width: 640px) { .product-detail__panel { aspect-ratio: 1 / 1; } }
+  /* V20 §37: landscape catalogue presentation — the new master IS the
+     composition (product at native-scale with negative space), so
+     contain-fit shows the whole designed plate. Product is never cropped:
+     lid, body and base always visible. */
+  .product-detail__panel { position: relative; aspect-ratio: 4 / 3; }
   .product-detail__panel img {
     position: absolute; inset: 0; width: 100%; height: 100%;
-    object-fit: cover; object-position: center 38%;
-  }
-  .product-detail__stage .media-product {
-    /* Absolute-fill + object-fit: contain — the pack photo stays
-       COMPLETE inside the fixed-height stage (never cropped). The box
-       is biased downward so the pack stands toward the panel's base. */
-    position: absolute;
-    top: clamp(1.5rem, 3.5vw, 3rem);
-    left: clamp(1.5rem, 3.5vw, 3rem);
-    width: calc(100% - 2 * clamp(1.5rem, 3.5vw, 3rem));
-    height: calc(100% - clamp(1.5rem, 3.5vw, 3rem) - clamp(0.75rem, 1.5vw, 1.25rem));
     object-fit: contain;
   }
   .product-detail__strip {
@@ -2170,7 +2263,7 @@ function distemperBody(depth) {
 
       <figure class="product-detail__media">
         <div class="product-detail__panel">
-          ${ecoPic('prakritik-distemper', [640, 960, 1280, 1600], '(min-width: 1024px) 52vw, calc(100vw - 2.5rem)', 1280, 1280, 1564, 'Prakritik Distemper paint pack - complete label and pack photograph', depth, 'class="media-product" loading="eager" fetchpriority="high" ')}
+          ${ecoPic('prakritik-distemper', [640, 960, 1280, 1600], '(min-width: 1200px) 630px, (min-width: 1024px) 55vw, calc(100vw - 2.5rem)', 1280, 1280, 960, 'Prakritik Distemper paint pack — complete label and pack photograph', depth, 'class="media-product" loading="eager" fetchpriority="high" ')}
         </div>
         <div class="product-detail__strip" aria-hidden="true">
           ${interiorFinishStripPic}
@@ -2209,6 +2302,15 @@ ${specItems}
       <span class="spec-plan__label">Plan your quantity</span>
       <a class="spec-plan__link" href="${relUrl('/paint-calculator/', depth)}?paint=distemper">
         Open the paint calculator, pre-set for Prakritik Distemper
+        <span class="spec-plan__arrow" aria-hidden="true">→</span>
+      </a>
+    </p>
+    <!-- V20 §39: contextual colour route — supplied shade references,
+         never implying every shade exists in this format. -->
+    <p class="spec-plan" data-reveal style="margin-top: 0.5rem;">
+      <span class="spec-plan__label">Explore colours</span>
+      <a class="spec-plan__link" href="${relUrl('/colours/', depth)}">
+        Explore supplied shade references
         <span class="spec-plan__arrow" aria-hidden="true">→</span>
       </a>
     </p>
@@ -2315,7 +2417,7 @@ function emulsionBody(depth) {
   }
   @media (min-width: 1024px) {
     .product-detail__hero {
-      grid-template-columns: 7fr 5fr; gap: clamp(2.5rem, 5vw, 4rem);
+      grid-template-columns: 11fr 9fr; gap: clamp(2.5rem, 5vw, 4rem);
     }
     /* Reversed: product is the first child, on the left. */
     .product-detail--warm .product-detail__hero > :first-child { order: 1; }
@@ -2332,22 +2434,13 @@ function emulsionBody(depth) {
     border: 1px solid var(--border);
     border-radius: var(--r-panel); overflow: hidden;
   }
-  .product-detail__stage { display: none; }
-  .product-detail__panel { position: relative; aspect-ratio: 5 / 5.6; }
-  @media (max-width: 640px) { .product-detail__panel { aspect-ratio: 1 / 1; } }
+  /* V20 §37: landscape catalogue presentation — the new master IS the
+     composition (product at native-scale with negative space), so
+     contain-fit shows the whole designed plate. Product is never cropped:
+     lid, body and base always visible. */
+  .product-detail__panel { position: relative; aspect-ratio: 4 / 3; }
   .product-detail__panel img {
     position: absolute; inset: 0; width: 100%; height: 100%;
-    object-fit: cover; object-position: center 38%;
-  }
-  .product-detail__stage .media-product {
-    /* Absolute-fill + object-fit: contain — the pack photo stays
-       COMPLETE inside the fixed-height stage (never cropped). The box
-       is biased downward so the pack stands toward the panel's base. */
-    position: absolute;
-    top: clamp(1.5rem, 3.5vw, 3rem);
-    left: clamp(1.5rem, 3.5vw, 3rem);
-    width: calc(100% - 2 * clamp(1.5rem, 3.5vw, 3rem));
-    height: calc(100% - clamp(1.5rem, 3.5vw, 3rem) - clamp(0.75rem, 1.5vw, 1.25rem));
     object-fit: contain;
   }
   .product-detail__strip {
@@ -2372,7 +2465,7 @@ function emulsionBody(depth) {
   /* ===== COVERAGE DISCLAIMER ===== */
   .coverage-disclaimer { margin-top: 2rem; border-left-color: var(--leaf); }
 
-  /* ===== ASHTA LAABH ===== */
+  /* ===== ASHTA LAABH — the shared typographic grid (app.css §18) ===== */
   .emulsion-ashta-section { padding-block: clamp(3rem, 6vw, 5rem); }
   .emulsion-ashta-section__head { max-width: 48rem; margin-bottom: 2.5rem; }
 </style>
@@ -2389,7 +2482,7 @@ function emulsionBody(depth) {
     <div class="product-detail__hero" data-reveal>
       <figure class="product-detail__media">
         <div class="product-detail__panel">
-          ${ecoPic('prakritik-emulsion', [640, 960, 1280, 1600], '(min-width: 1024px) 52vw, calc(100vw - 2.5rem)', 1280, 1280, 1564, 'Prakritik Emulsion paint pack - complete label and pack photograph', depth, 'class="media-product" loading="eager" fetchpriority="high" ')}
+          ${ecoPic('prakritik-emulsion', [640, 960, 1280, 1600], '(min-width: 1200px) 630px, (min-width: 1024px) 55vw, calc(100vw - 2.5rem)', 1280, 1280, 960, 'Prakritik Emulsion paint pack — complete label and pack photograph', depth, 'class="media-product" loading="eager" fetchpriority="high" ')}
         </div>
         <div class="product-detail__strip" aria-hidden="true">
           ${exteriorFinishStripPic}
@@ -2443,6 +2536,15 @@ ${specItems}
       <span class="spec-plan__label">Plan your quantity</span>
       <a class="spec-plan__link" href="${relUrl('/paint-calculator/', depth)}?paint=emulsion">
         Open the paint calculator, pre-set for Prakritik Emulsion
+        <span class="spec-plan__arrow" aria-hidden="true">→</span>
+      </a>
+    </p>
+    <!-- V20 §39: contextual colour route — supplied shade references,
+         never implying every shade exists in this format. -->
+    <p class="spec-plan" data-reveal style="margin-top: 0.5rem;">
+      <span class="spec-plan__label">Explore colours</span>
+      <a class="spec-plan__link" href="${relUrl('/colours/', depth)}">
+        Explore supplied shade references
         <span class="spec-plan__arrow" aria-hidden="true">→</span>
       </a>
     </p>
@@ -2514,13 +2616,11 @@ function whyPrakritikBody(depth) {
         'Raw lime-plastered wall surface — natural material', 1344, 768, depth, 'class="editorial-image"');
     const courtyardCh2Pic = pic('/assets/editorial/courtyard-study.webp', '/assets/editorial/courtyard-study.jpg',
         'Indian limewashed courtyard elevation', 1942, 809, depth, 'class="editorial-image"');
-    const rawMaterialFlowPic = ecoPic('rawmat', [640, 960, 1280],
-        '(min-width: 1024px) 28vw, (min-width: 640px) 42vw, calc(100vw - 2.5rem)', 960, 960, 549,
-        'Raw natural biomass material', depth, 'class="editorial-image"');
+    const rawMaterialFlowPic = ecoPic('rawmat-tree', [640, 960],
+        '(min-width: 1024px) 28vw, (min-width: 640px) 42vw, calc(100vw - 2.5rem)', 960, 960, 960,
+        'Cow dung — the shared starting material for every Gaurikrit direction', depth, 'class="editorial-image"');
     const finishedSurfaceFlowPic = pic('/assets/editorial/finished-surface-study.webp', '/assets/editorial/finished-surface-study.jpg',
         'Finished matte limewash wall surface', 1344, 768, depth, 'class="editorial-image"');
-        const ruralContextPic = pic('/assets/editorial/rural-landscape.webp', '/assets/editorial/rural-landscape.jpg',
-        '', 1344, 768, depth, 'class="editorial-image"');
 
     // V16: the Colours of India study moved here from Home (Eco-Paints
     // educational context, §64). Wall-only SVG paint mask + swatches.
@@ -2682,15 +2782,27 @@ function whyPrakritikBody(depth) {
   .why-format-card--distemper .why-format-card__caption { color: var(--indigo); }
   .why-format-card--emulsion  .why-format-card__caption { color: var(--leaf); }
 
-  /* === Chapter 06 — CONTEXT: framed editorial band (rural-landscape
-     = regional context only, never company premises). Copy ~4 / band ~8. === */
+  /* === Chapter 06 — CONTEXT: typographic band (V20 §68: the generated
+     rural-landscape engraving is retired; ruled facts carry the region.) === */
   .why-context-section { padding-block: clamp(3.5rem, 6vw, 5rem); }
-  .why-context-bg {
-    position: relative; width: 100%; aspect-ratio: 1344/768;
-    background: var(--limewash); border-radius: var(--r-panel);
-    border: 1px solid var(--border);
-    overflow: hidden; align-self: center;
+  .why-context-facts {
+    margin: 0; align-self: center; width: 100%;
+    display: grid; gap: 0;
+    border-top: 1px solid var(--border);
   }
+  .why-context-facts > div {
+    display: grid; gap: 0.25rem; padding: 0.875rem 0;
+    border-bottom: 1px solid var(--border);
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 640px) {
+    .why-context-facts > div { grid-template-columns: 10rem 1fr; gap: 1rem; align-items: baseline; }
+  }
+  .why-context-facts dt {
+    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--fg-muted);
+  }
+  .why-context-facts dd { margin: 0; font-family: var(--font-display); font-size: 1.0625rem; }
 </style>
 
 <!-- ===== HERO ===== -->
@@ -2773,28 +2885,6 @@ function whyPrakritikBody(depth) {
         </li>
       </ol>
     </nav>
-    <!-- V18 §21: Explore Colours — the end of the paint/formats story. -->
-    <div class="colour-cta" data-reveal style="margin-top: 2rem;">
-      <div>
-        <span class="colour-cta__eyebrow">Colour Collections</span>
-        <h3 class="colour-cta__title">Colours Inspired by Nature.</h3>
-        <p class="colour-cta__body">
-          Two client-supplied collections — <strong>12 Signature shades</strong>
-          and a <strong>Premium collection in five groups</strong> — previewed
-          live on the wall.
-        </p>
-      </div>
-      <div class="colour-cta__swatch-strip" aria-hidden="true">
-        <span class="colour-cta__swatch" style="background: ${SHADE_SIGNATURE[0].hex}"></span>
-        <span class="colour-cta__swatch" style="background: ${SHADE_SIGNATURE[3].hex}"></span>
-        <span class="colour-cta__swatch" style="background: ${SHADE_SIGNATURE[4].hex}"></span>
-        <span class="colour-cta__swatch" style="background: ${SHADE_SIGNATURE[6].hex}"></span>
-        <span class="colour-cta__swatch" style="background: ${SHADE_SIGNATURE[8].hex}"></span>
-        <span class="colour-cta__swatch" style="background: ${SHADE_SIGNATURE[10].hex}"></span>
-        <a class="btn btn--primary" href="${relUrl('/colours/', depth)}">Explore Colours</a>
-      </div>
-    </div>
-  </div>
   </div>
 </section>
 
@@ -2858,8 +2948,7 @@ function whyPrakritikBody(depth) {
       <span class="why-chapter__eyebrow">Material to wall</span>
       <h2 class="why-chapter__title" id="chapter-03-title">From a natural material to a finished wall.</h2>
       <p class="why-chapter__body">
-        The raw material, the paint made from it, and the finished surface —
-        three steps, one material idea.
+        Natural material, Prakritik Paint, finished walls.
       </p>
     </div>
     <div class="material-steps" data-reveal>
@@ -3003,9 +3092,24 @@ ${ashtaItems}
           <a class="btn btn--outline" href="${relUrl('/about/', depth)}">Our Story</a>
         </div>
       </div>
-      <div class="why-context-bg" aria-hidden="true">
-        ${ruralContextPic}
-      </div>
+      <!-- V20 §68: the generated rural-landscape illustration is retired —
+           no image is better than a misleading one. The closing band is
+           typographic: strong copy + ruled company facts, no fake rural
+           photography, no engraving. -->
+      <dl class="why-context-facts" data-reveal>
+        <div>
+          <dt>Company</dt>
+          <dd>${e(COMPANY.legalName)}</dd>
+        </div>
+        <div>
+          <dt>Location</dt>
+          <dd>${e(COMPANY.address[3] || '')}, ${e(COMPANY.address[4] || '')}</dd>
+        </div>
+        <div>
+          <dt>Registered</dt>
+          <dd>GSTIN ${e(COMPANY.gstin)}</dd>
+        </div>
+      </dl>
     </div>
   </div>
 </section>
@@ -3015,45 +3119,9 @@ ${ashtaItems}
 
 // ---- About — V4 ----
 function aboutBody(depth) {
-    const rawMaterialAbout = ecoPic('rawmat', [640, 960, 1280], '(min-width: 1024px) 30vw, (min-width: 640px) 45vw, calc(100vw - 2.5rem)', 960, 960, 549, 'Raw natural biomass material - the resource', depth);
-
     const address = COMPANY.address;
     const addressLine = address.slice(0, 6).join('\n');
     const groupImage = assetUrl('/assets/products/prakritik-group.jpg', depth);
-
-    const journeyStops = [
-        ['Stage 01', 'Resource', 'Cow dung — recognised and gathered.'],
-        ['Stage 02', 'Idea', 'A practical direction for a traditional material.'],
-        ['Stage 03', 'Application', 'Prakritik Paint — walls, documented.'],
-        ['Stage 04', 'Ecosystem', 'Fuel and utility directions around one resource.'],
-    ].map(([stage, name, desc]) => `        <div class="journey-stop">
-            <span class="journey-stop__stage">${e(stage)}</span>
-            <h3 class="journey-stop__name">${e(name)}</h3>
-            <p class="journey-stop__desc">${e(desc)}</p>
-        </div>`).join('\n');
-
-    const circularStages = CIRCULAR_STAGES.map((stage) => `          <li class="stage">
-            <span class="stage__num">${e(stage.num)}</span>
-            <h3 class="stage__name">${e(stage.name)}</h3>
-            <p class="stage__desc">${e(stage.desc)}</p>
-          </li>`).join('\n');
-
-    const familiesMarkup = FAMILIES.map((family) => {
-        const themes = family.themes.map((t) => `              <li>${e(t)}</li>`).join('\n');
-        return `          <article class="family">
-              <div class="family__head">
-                <span class="family__num" aria-hidden="true">${e(family.num)}</span>
-                <h3 class="family__name">${e(family.name)}</h3>
-              </div>
-              <p class="family__line">${e(family.line)}</p>
-              <ul class="family__themes">
-${themes}
-              </ul>
-              <a class="family__cta" href="${relUrl(family.href, depth)}">
-                Explore ${e(family.name)} <span aria-hidden="true">→</span>
-              </a>
-            </article>`;
-    }).join('\n');
 
     const phoneRows = COMPANY.phones.map((phone) => `      <div class="company-plate__row">
         <dt>Phone</dt>
@@ -3123,7 +3191,7 @@ ${themes}
       <div class="about-hero__plate">
         <div class="about-hero__plate-head">
           <img class="about-hero__plate-mark"
-               src="${assetUrl('/assets/brand/gaurikrit-logo-mark.png', depth)}"
+               src="${assetUrl('/assets/brand/gaurikrit-logo-mark-sm.png', depth)}"
                alt="Gaurikrit brand mark"
                width="40" height="40"
                loading="eager" decoding="async">
@@ -3143,7 +3211,7 @@ ${themes}
 </section>
 
 <!-- ============================================================
-     01. THE RESOURCE
+     01. THE RESOURCE — cow dung as a traditionally useful material
      ============================================================ -->
 <section class="section section--paper story-wrap story-wrap--first" id="the-resource" aria-labelledby="resource-ch-title">
   <div class="container">
@@ -3153,21 +3221,22 @@ ${themes}
         <span class="story-chapter__kicker">The Resource</span>
       </div>
       <div>
-        <h2 class="story-chapter__title" id="resource-ch-title">A material traditional India never wasted.</h2>
+        <h2 class="story-chapter__title" id="resource-ch-title">A material long used in Indian homes.</h2>
         <div class="story-chapter__body">
           <p>
-            Traditional India has long recognised cow dung as a useful material —
-            applied to walls and floors, valued in daily rural life, and treated
-            as a resource rather than a waste.
+            Cow dung has long been used in traditional Indian wall and floor
+            coatings — valued in daily rural life and treated as a useful
+            material rather than a waste.
           </p>
           <p class="muted">
-            Gaurikrit begins from that recognition: a natural, renewable material
-            already embedded in Indian material culture.
+            Gaurikrit begins from that recognition: a natural material already
+            embedded in Indian material culture. Its Prakritik Paint carries
+            that material idea into a contemporary paint format.
           </p>
         </div>
         <figure class="story-chapter__visual">
-          ${ecoPic('rawmat', [640, 960, 1280, 1920], '(min-width: 1024px) 42vw, calc(100vw - 2.5rem)', 960, 960, 549, 'Raw natural biomass material with straw fibre - the resource', depth)}
-          <figcaption>Raw material study — natural surface traditions of Indian homes.</figcaption>
+          ${ecoPic('rawmat-shed', [640, 960, 1280], '(min-width: 1024px) 42vw, calc(100vw - 2.5rem)', 1280, 1280, 853, 'Raw cow dung — the natural material starting point', depth)}
+          <figcaption>Cow dung — the raw material, client-supplied photograph.</figcaption>
         </figure>
       </div>
     </article>
@@ -3175,7 +3244,7 @@ ${themes}
 </section>
 
 <!-- ============================================================
-     02. THE IDEA
+     02. THE IDEA — from resource to practical applications
      ============================================================ -->
 <section class="section section--limewash story-wrap" id="the-idea" aria-labelledby="idea-ch-title">
   <div class="container">
@@ -3198,7 +3267,7 @@ ${themes}
           </p>
         </div>
         <figure class="story-chapter__visual">
-          ${ecoPic('innovation-research', [640, 960, 1280, 1920], '(min-width: 1024px) 42vw, calc(100vw - 2.5rem)', 960, 960, 600, 'Material research samples - raw biomass, processed log and finished coating', depth)}
+          ${ecoPic('innovation-research', [640, 960, 1280, 1920], '(min-width: 1024px) 42vw, calc(100vw - 2.5rem)', 960, 960, 600, 'Material research samples — raw biomass, processed log and finished coating', depth)}
           <figcaption>Developed material study — the resource carried into a finished surface.</figcaption>
         </figure>
       </div>
@@ -3207,7 +3276,12 @@ ${themes}
 </section>
 
 <!-- ============================================================
-     04. FROM RESOURCE TO APPLICATION (V18 §40 / §25)
+     03. FROM RESOURCE TO APPLICATION (V18 §40 / §25)
+     The story's widening, told with REAL assets: the client-supplied
+     photograph of the actual raw material, the documented application
+     (real paint), the expanding direction (client-supplied cow-dung
+     logs). NOT the same beige plaster three times; NOT the kraft-box
+     mockup. The journey is stages, not dates.
      ============================================================ -->
 <section class="section section--paper story-wrap" id="from-resource-to-application" aria-labelledby="application-ch-title">
   <div class="container">
@@ -3231,19 +3305,19 @@ ${themes}
         <div class="resource-steps" data-reveal-stagger>
           <article class="resource-step">
             <figure class="resource-step__figure">
-              ${rawMaterialAbout}
+              ${ecoPic('rawmat-shed', [640, 960, 1280], '(min-width: 1024px) 30vw, (min-width: 640px) 45vw, calc(100vw - 2.5rem)', 1280, 1280, 853, 'Raw cow dung — the natural material starting point', depth)}
             </figure>
             <div class="resource-step__caption">
               <span class="resource-step__kicker">Stage 01 — Resource</span>
               <h3 class="resource-step__title">The natural material</h3>
               <p class="resource-step__desc">
-                Cow dung — a material traditional India never wasted.
+                Cow dung — a material long used in traditional Indian homes.
               </p>
             </div>
           </article>
           <article class="resource-step">
             <figure class="resource-step__figure">
-              ${ecoPic('eco-paints-pair', [640, 960, 1280], '(min-width: 1024px) 30vw, (min-width: 640px) 45vw, calc(100vw - 2.5rem)', 960, 960, 600, 'Prakritik Distemper and Prakritik Emulsion paint packs - the documented application', depth)}
+              ${ecoPic('eco-paints-pair', [640, 960, 1280], '(min-width: 1024px) 30vw, (min-width: 640px) 45vw, calc(100vw - 2.5rem)', 960, 960, 600, 'Prakritik Distemper and Prakritik Emulsion paint packs — the documented application', depth)}
             </figure>
             <div class="resource-step__caption">
               <span class="resource-step__kicker">Stage 02 — Application</span>
@@ -3255,7 +3329,7 @@ ${themes}
           </article>
           <article class="resource-step">
             <figure class="resource-step__figure resource-step__figure--plate">
-              ${ecoPic('gocast-material', [640, 960, 1280], '(min-width: 1024px) 30vw, (min-width: 640px) 45vw, calc(100vw - 2.5rem)', 960, 960, 640, 'Client-supplied cow-dung log material - the widening direction', depth)}
+              ${ecoPic('gocast-material', [640, 960, 1280], '(min-width: 1024px) 30vw, (min-width: 640px) 45vw, calc(100vw - 2.5rem)', 960, 960, 640, 'Client-supplied cow-dung log material — the widening direction', depth)}
             </figure>
             <div class="resource-step__caption">
               <span class="resource-step__kicker">Stage 03 — Widening</span>
@@ -3279,7 +3353,7 @@ ${themes}
 </section>
 
 <!-- ============================================================
-     06 + 07. VISION + MISSION
+     06 + 07. VISION + MISSION — forest two-column (§26 language)
      ============================================================ -->
 <section class="section section--forest vision-mission" aria-labelledby="story-vision-title">
   <div class="container">
@@ -3299,8 +3373,9 @@ ${themes}
           Practical alternatives, responsibly made.
         </h2>
         <p class="vision-mission__text">
-          To replace less sustainable alternatives with practical, accessible and
-          environmentally responsible product solutions.
+          To develop practical, accessible and environmentally responsible
+          material solutions — and to evaluate every direction for its
+          environmental responsibility.
         </p>
         <div style="margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 0.75rem;">
           <a class="btn btn--haldi" href="${relUrl('/products/', depth)}">Explore the Ecosystem</a>
@@ -3312,7 +3387,7 @@ ${themes}
 </section>
 
 <!-- ============================================================
-     08. COMPANY INFORMATION — verified legal ledger
+     08. COMPANY INFORMATION — verified legal ledger (retained)
      ============================================================ -->
 <section class="section section--paper company-plate-section" aria-labelledby="company-info-title">
   <div class="container">
@@ -3370,15 +3445,15 @@ function forBusinessBody(depth) {
           desc: 'Explore collaboration around cow-dung-based bio-products and material directions.' },
     ];
 
+    // V20 §58: universal practical details — wall area / paint format are
+    // NOT universal; they remain in the FORM as conditional fields shown
+    // only for Eco-Paints interest.
     const helpfulInclude = [
-        { label: 'Interest',           hint: 'Eco-Paints, GoCast, Bio-Coal, Utility Products — or a partnership' },
-        { label: 'City',               hint: 'Where the site or market is located' },
-        { label: 'Approximate wall area', hint: 'In sq.ft. if you have a number (for paint projects)' },
-        { label: 'Paint format',      hint: 'Distemper, Emulsion, or not sure yet' },
-        { label: 'Approximate requirement', hint: 'Approximate quantity, if known' },
+        { label: 'Interest',           hint: 'Eco-Paints, Cow-Dung Logs, Bio-Briquettes, Eco Utility Products, distribution or collaboration' },
+        { label: 'City / market',      hint: 'Where the requirement is located' },
+        { label: 'Use case / requirement', hint: 'What your organisation needs' },
+        { label: 'Approximate quantity', hint: 'If known' },
     ];
-
-    const audienceStripItems = PARTNER_AUDIENCES.map((a) => `        <li class="partner-strip__item">${e(a)}</li>`).join('\n');
 
     const audienceCards = audiences.map((a) => `        <div class="audience-card">
           <span class="audience-card__num">${e(a.num)}</span>
@@ -3396,22 +3471,23 @@ function forBusinessBody(depth) {
           <dd><a href="tel:${e(phone.replace(/ /g, ''))}">${e(phone)}</a></dd>
         </div>`).join('\n');
 
-    const projectTypeOptions = PROJECT_TYPES.map(
-        (type) => `                <option value="${e(type)}">${e(type)}</option>`,
-    ).join('\n');
-
-    // V4 picture tags.
+    // V23: four client-supplied product artworks in a 2x2 mat grid —
+    // the same official product posters as the hero carousel.
     const bizTiles = [
-        ['eco-paints-pair', 'Prakritik paint packs'],
-        ['gocast-editorial', 'Cow-dung logs on a terracotta plate'],
-        ['biocoal-editorial', 'Representative biomass briquettes'],
-        ['utility-material-direction', 'Representative moulded utility forms'],
+        'carousel-eco-paints',
+        'carousel-cow-dung-logs',
+        'carousel-bio-briquettes',
+        'carousel-eco-utility-products',
     ];
-    const archHeroPic = `<div class="biz-hero__ecosystem" role="img" aria-label="The Gaurikrit material ecosystem">
-${bizTiles.map(([stem]) => `          <figure class="biz-hero__tile">
-            ${ecoPic(stem, [640, 960], '(min-width: 1024px) 17vw, (min-width: 640px) 45vw, calc(50vw - 1.5rem)', 640, 640, 480, '', depth)}
+    const bizHeroPic = `<div class="biz-hero__ecosystem" role="img" aria-label="The Gaurikrit material ecosystem — Eco-Paints, Cow-Dung Logs, Bio-Briquettes and Eco Utility Products client artwork">
+${bizTiles.map((stem) => `          <figure class="biz-hero__tile">
+            ${ecoPic(stem, [640, 960, 1280], '(min-width: 1024px) 34vw, calc(100vw - 2.5rem)', 1280, 1280, 720, '', depth)}
           </figure>`).join('\n')}
         </div>`;
+
+    const interestOptions = Object.entries(INTEREST_OPTIONS).map(
+        ([value, label]) => `                <option value="${e(value)}">${e(label)}</option>`,
+    ).join('\n');
 
     return `<style>
   /* ===== Editorial image reset (V4 — NO mix-blend-mode, NO blur filters) ===== */
@@ -3422,7 +3498,7 @@ ${bizTiles.map(([stem]) => `          <figure class="biz-hero__tile">
     object-fit: cover;
   }
 
-  /* ===== HERO (text left / architectural-elevation right — NO floating blob) ===== */
+  /* ===== HERO (V23: text left / 2x2 client-artwork tile grid right) ===== */
   .biz-hero { padding-top: calc(var(--header-h) + 2rem); padding-bottom: 1.5rem; }
   @media (min-width: 1024px) { .biz-hero { padding-bottom: 2.5rem; } }
   .biz-hero__container { display: grid; gap: 2rem; align-items: center; }
@@ -3430,22 +3506,31 @@ ${bizTiles.map(([stem]) => `          <figure class="biz-hero__tile">
     .biz-hero__container { grid-template-columns: 5fr 7fr; gap: 3rem; }
   }
   .biz-hero__lockup { max-width: 42rem; }
-  .biz-hero__art {
-    position: relative; aspect-ratio: 1344/768; background: var(--paper-cool);
-    border-radius: var(--r-panel); overflow: hidden;
+  .biz-hero__art { padding: 0; background: none; border: 0; }
+  /* V23: four client-supplied product artworks in a 2x2 mat grid —
+     same reading as the homepage portfolio; nothing cropped (16:9 tiles
+     + object-fit:contain keep every label/claim fully visible). */
+  .biz-hero__ecosystem {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4px;
   }
-  .biz-hero__art .editorial-image {
-    width: 100%; height: 100%; object-fit: cover; display: block;
+  .biz-hero__tile {
+    margin: 0; overflow: hidden;
+    background: var(--paper-warm);
+    border: 1px solid var(--border); border-radius: 0.25rem;
+    aspect-ratio: 16 / 9;
+  }
+  .biz-hero__tile picture { display: block; width: 100%; height: 100%; margin: 0; }
+  .biz-hero__tile img {
+    display: block; width: 100%; height: 100%;
+    object-fit: contain; object-position: center;
   }
 
-  /* ===== AUDIENCES (V16: the seven partner audiences as a flexible
-     partner-strip + four audience cards; the 4-ruled-column visual is
-     retired) ===== */
+  /* ===== AUDIENCES ===== */
   .biz-audiences-section { padding-block: clamp(3.5rem, 6vw, 5rem); }
   .biz-audiences__head { max-width: 48rem; margin-bottom: 2.5rem; }
 
   /* ===== PRACTICAL SECTION ===== */
-  .biz-practical { padding-block: clamp(3.5rem, 6vw, 5rem); }
+  .biz-practical { padding-block: clamp(2.75rem, 5vw, 4.25rem); }
   .biz-practical__grid {
     display: grid; gap: 2rem; align-items: start;
   }
@@ -3478,8 +3563,8 @@ ${bizTiles.map(([stem]) => `          <figure class="biz-hero__tile">
   }
   .biz-practical__item-hint { font-size: 0.9375rem; color: var(--fg); }
 
-  /* ===== FORM (12-col: left 4 help/contact, right 8 fields) ===== */
-  .biz-form-section { padding-block: clamp(3.5rem, 6vw, 5rem); }
+  /* ===== FORM ===== */
+  .biz-form-section { padding-block: clamp(2.5rem, 4vw, 3.5rem) 5rem; }
   .biz-form-layout__aside { display: flex; flex-direction: column; gap: 1.5rem; }
   .biz-form-layout__aside .help-cta { padding: 1.5rem; }
   .biz-form-card {
@@ -3525,7 +3610,7 @@ ${bizTiles.map(([stem]) => `          <figure class="biz-hero__tile">
         <p class="biz-hero__sub">
           For distributors, dealers, architects, contractors, institutions,
           industries and sustainability partners. Talk to us about
-          Eco-Paints today — and the GoCast, Bio-Coal and utility directions
+          Eco-Paints today — and the Cow-Dung Logs, Bio-Briquettes and utility directions
           as they develop.
         </p>
         <div class="biz-hero__ctas">
@@ -3534,25 +3619,18 @@ ${bizTiles.map(([stem]) => `          <figure class="biz-hero__tile">
         </div>
       </div>
       <div class="biz-hero__art" aria-hidden="true">
-        ${archHeroPic}
+        ${bizHeroPic}
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===== AUDIENCES — V16: the seven partner audiences as a flexible
-     partner-strip + four audience cards. ===== -->
+<!-- ===== AUDIENCES — four audience cards. ===== -->
 <section class="section section--paper biz-audiences-section" aria-labelledby="audiences-title">
   <div class="container">
     <div class="biz-audiences__head section-heading section-heading--left" data-reveal>
       <span class="section-heading__eyebrow">Who this is for</span>
       <h2 class="section-heading__title" id="audiences-title">Partner with a material ecosystem.</h2>
-    </div>
-
-    <div class="partner-strip" data-reveal>
-      <ul class="partner-strip__list">
-${audienceStripItems}
-      </ul>
     </div>
 
     <div class="biz-audiences" data-reveal-stagger>
@@ -3561,7 +3639,7 @@ ${audienceCards}
   </div>
 </section>
 
-<!-- ===== PRACTICAL SECTION — "When you enquire, it helps to include" ===== -->
+<!-- ===== PRACTICAL SECTION — universal enquiry details ===== -->
 <section class="section section--limewash biz-practical" aria-labelledby="include-title">
   <div class="container">
     <div class="biz-practical__grid" data-reveal>
@@ -3570,7 +3648,8 @@ ${audienceCards}
         <h2 class="biz-practical__title" id="include-title">Include these details for a faster response.</h2>
         <p class="biz-practical__body">
           A few practical details up front let us respond with what we can
-          supply — pack sizes, format, and how Prakritik Paint fits your project.
+          supply — for paint projects, pack sizes and format; for the other
+          directions, scale and requirement.
         </p>
       </div>
       <ul class="biz-practical__list">
@@ -3591,8 +3670,8 @@ ${helpfulItems}
           <h2 class="biz-form-card__title" id="form-title">Discuss a Project.</h2>
           <p class="biz-form-card__note">
             Tell us about the project or the partnership. We will respond with
-            what we can practically supply — pack sizes, format, and how the
-            Gaurikrit ecosystem fits your project.
+            what we can practically supply — for paint projects, pack sizes
+            and format; for the other directions, scale and availability.
           </p>
         </div>
 
@@ -3620,8 +3699,7 @@ ${phoneAsideRows}
       </aside>
 
       <!-- RIGHT 8 col: form fields -->
-      
-           
+
       <!-- data-static-preview: forms.js opens a pre-filled mailto draft
            instead of POSTing (no PHP endpoint on the static build). -->
       <form class="biz-form-card" action="mailto:seva@gaurikrit.com" method="post"
@@ -3667,24 +3745,42 @@ ${phoneAsideRows}
             <div class="form-error" data-error-for="city" role="alert"></div>
           </div>
           <div class="form-field">
-            <label class="form-label" for="biz-project-type">Project type <span class="req">*</span></label>
-            <select class="form-select" id="biz-project-type" name="project_type" required>
+            <label class="form-label" for="biz-interest">Interest <span class="req">*</span></label>
+            <select class="form-select" id="biz-interest" name="interest" required
+                    data-interest-toggle>
               <option value="" disabled selected>Choose…</option>
-${projectTypeOptions}
+${interestOptions}
             </select>
-            <div class="form-error" data-error-for="project_type" role="alert"></div>
+            <div class="form-error" data-error-for="interest" role="alert"></div>
+          </div>
+          <!-- V20 §60: paint-specific fields shown ONLY for Eco-Paints
+               interest (progressive enhancement — present in the no-JS
+               default markup, hidden by JS for non-paint interests). -->
+          <div class="form-field" data-paint-fields>
+            <label class="form-label" for="biz-wall-area">Approximate wall area</label>
+            <input class="form-input" type="text" id="biz-wall-area"
+                   name="wall_area" maxlength="60" inputmode="numeric"
+                   placeholder="sq.ft., if you have a number">
+          </div>
+          <div class="form-field" data-paint-fields>
+            <label class="form-label" for="biz-paint-format">Paint format</label>
+            <select class="form-select" id="biz-paint-format" name="paint_format">
+              <option value="" selected>Not sure yet</option>
+              <option value="distemper">Prakritik Distemper</option>
+              <option value="emulsion">Prakritik Emulsion</option>
+            </select>
           </div>
           <div class="form-field">
             <label class="form-label" for="biz-requirement">Approximate requirement</label>
             <input class="form-input" type="text" id="biz-requirement"
                    name="approximate_requirement" maxlength="100"
-                   placeholder="e.g. 20 packs / 80 litres / not sure yet">
+                   placeholder="Quantity or scale, if known.">
           </div>
           <div class="form-field form-field--full">
             <label class="form-label" for="biz-message">About the project <span class="req">*</span></label>
             <textarea class="form-textarea" id="biz-message" name="message" required
                       maxlength="2000" rows="6"
-                      placeholder="Tell us about the site, the walls, and what you are painting."></textarea>
+                      placeholder="Tell us what you need, where it is required, and what you would like to discuss."></textarea>
             <div class="form-error" data-error-for="message" role="alert"></div>
           </div>
         </div>
@@ -3876,7 +3972,7 @@ function paintCalculatorBody(depth) {
       </p>
       </div>
       <figure class="calc-hero__plate" data-reveal>
-        ${ecoPic('colours-wall', [640, 960, 1280], '(min-width: 1024px) 40vw, calc(100vw - 2.5rem)', 960, 960, 549, 'Limewash wall interior - the surfaces your estimate covers', depth, 'loading="eager" ')}
+        ${ecoPic('colours-wall', [640, 960, 1280], '(min-width: 1024px) 40vw, calc(100vw - 2.5rem)', 960, 960, 549, 'Limewash wall interior — the surfaces your estimate covers', depth, 'loading="eager" ')}
       </figure>
     </div>
   </div>
@@ -4615,7 +4711,7 @@ ${items}
         </div>`).join('\n');
 
     const measurementItems = [
-        ['Trees / Resource conservation', 'Trees saved through GoCast and material directions — measured when verified project data is available.'],
+        ['Trees / Resource conservation', 'Trees saved through Cow-Dung Logs and material directions — measured when verified project data is available.'],
         ['Waste / Material reuse', 'Natural and agricultural material streams carried into products.'],
         ['Energy / Fossil fuel replaced', 'Biomass fuel applications replacing conventional fuel use.'],
         ['Carbon / Reduction', 'Emissions reduction from verified lifecycle analysis.'],
@@ -4666,22 +4762,22 @@ ${items}
         <p class="story-hero__lead">
           Gaurikrit's sustainability approach is a material system, not a
           marketing dashboard: one natural resource, developed into useful
-          products, in a cycle designed so nothing goes to waste.
+          products, within a circular material direction.
         </p>
         <div style="margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 0.75rem;">
-          <a class="btn btn--primary" href="#impact-areas">How Impact Is Created</a>
+          <a class="btn btn--primary" href="#impact-areas">Impact Areas</a>
           <a class="btn btn--secondary" href="${relUrl('/about/', depth)}">Our Story</a>
         </div>
       </div>
       <figure class="sustain-hero__plate">
-        ${ecoPic('rawmat', [960, 1280, 1920], '(min-width: 1024px) 44vw, calc(100vw - 2.5rem)', 1280, 1280, 731, 'Natural biomass material with straw fibre - the resource beginning of the material cycle', depth, 'loading="eager" fetchpriority="high" ')}
+        ${ecoPic('rawmat-cakes', [640, 960, 1280], '(min-width: 1024px) 44vw, calc(100vw - 2.5rem)', 1280, 1280, 720, 'Cow dung — the raw material at the start of the circular cycle', depth, 'loading="eager" fetchpriority="high" ')}
       </figure>
     </div>
   </div>
 </section>
 
 <!-- ============================================================
-     S1. CIRCULAR ECONOMY — the seven-stage loop
+     S1. CIRCULAR ECONOMY — the seven-stage loop (§38)
      ============================================================ -->
 <section class="section section--paper" id="circular-economy" aria-labelledby="circ-title">
   <div class="container">
@@ -4690,7 +4786,9 @@ ${items}
       <h2 class="section-heading__title" id="circ-title">The cycle is the product system.</h2>
       <p class="section-heading__desc">
         Gaurikrit's circular model describes how the resource enters, is
-        developed, becomes useful products — and renews the cycle.
+        developed, becomes useful products &mdash; and how the material cycle
+        continues. A conceptual process description, not an audited
+        life-cycle assessment.
       </p>
     </div>
     <div class="circular" data-circular data-reveal>
@@ -4715,16 +4813,18 @@ ${circularStages}
       <h2 class="section-heading__title" id="util-title">One resource, used many ways.</h2>
       <p class="section-heading__desc">
         The same natural material base is developed into wall coatings, fuel
-        directions and utility directions — value multiplied by application,
+        directions and utility directions &mdash; value multiplied by application,
         not extraction.
       </p>
     </div>
     <!-- V18 §26: three REAL outcomes — wall coatings (real paint), fuel /
-         log application (client-supplied cow-dung logs), wider directions. -->
+         log application (client-supplied cow-dung logs), wider material
+         directions. The log imagery appears ONCE on this page (never at
+         the same large scale elsewhere). -->
     <div class="resource-steps" data-reveal-stagger>
       <article class="resource-step">
         <figure class="resource-step__figure resource-step__figure--plate">
-          ${ecoPic('prakritik-distemper', [640, 960, 1280], '(min-width: 1024px) 30vw, (min-width: 640px) 45vw, calc(100vw - 2.5rem)', 960, 960, 1173, 'Prakritik Distemper paint pack - the documented wall-coating outcome', depth)}
+          ${ecoPic('prakritik-distemper', [640, 960, 1280], '(min-width: 1024px) 30vw, (min-width: 640px) 45vw, calc(100vw - 2.5rem)', 960, 960, 1173, 'Prakritik Distemper paint pack — the documented wall-coating outcome', depth)}
         </figure>
         <div class="resource-step__caption">
           <span class="resource-step__kicker">Outcome — Wall Coatings</span>
@@ -4734,7 +4834,7 @@ ${circularStages}
       </article>
       <article class="resource-step">
         <figure class="resource-step__figure">
-          ${ecoPic('gocast-material', [640, 960, 1280], '(min-width: 1024px) 30vw, (min-width: 640px) 45vw, calc(100vw - 2.5rem)', 960, 960, 640, 'Client-supplied cow-dung log material - the widening direction', depth)}
+          ${ecoPic('gocast-material', [640, 960, 1280], '(min-width: 1024px) 30vw, (min-width: 640px) 45vw, calc(100vw - 2.5rem)', 960, 960, 640, 'Client-supplied cow-dung log material — the fuel and log application direction', depth)}
         </figure>
         <div class="resource-step__caption">
           <span class="resource-step__kicker">Outcome — Fuel &amp; Log Application</span>
@@ -4757,15 +4857,15 @@ ${circularStages}
 </section>
 
 <!-- ============================================================
-     S3. IMPACT AREAS — qualitative, NO counters
+     S3. IMPACT AREAS — qualitative, NO counters (§38 S3 / §24)
      ============================================================ -->
 <section class="section section--paper" id="impact-areas" aria-labelledby="imp-title">
   <div class="container">
     <div class="sustain-section__head section-heading section-heading--left" data-reveal>
       <span class="section-heading__eyebrow">Section 03 — Impact Areas</span>
-      <h2 class="section-heading__title" id="imp-title">How impact is created.</h2>
+      <h2 class="section-heading__title" id="imp-title">Impact areas to evaluate.</h2>
       <p class="section-heading__desc">
-        Five areas, described qualitatively — no numbers until verified data
+        Five areas, described qualitatively &mdash; no numbers until verified data
         exists.
       </p>
     </div>
@@ -4773,23 +4873,23 @@ ${circularStages}
 ${impactRows}
     </div>
     <p class="impact-note" data-reveal>
-      Verified figures will be published as project data becomes available —
+      Verified figures will be published as project data becomes available &mdash;
       see the measurement framework below.
     </p>
   </div>
 </section>
 
 <!-- ============================================================
-     S4. APPLICATIONS THAT REPLACE LESS SUSTAINABLE ALTERNATIVES
+     S4. APPLICATION DIRECTIONS
      ============================================================ -->
 <section class="section section--limewash" id="replacing" aria-labelledby="rep-title">
   <div class="container">
     <div class="sustain-section__head section-heading section-heading--left" data-reveal>
-      <span class="section-heading__eyebrow">Section 04 — Replacement</span>
-      <h2 class="section-heading__title" id="rep-title">Applications that replace less sustainable alternatives.</h2>
+      <span class="section-heading__eyebrow">Section 04 — Applications</span>
+      <h2 class="section-heading__title" id="rep-title">Application directions.</h2>
       <p class="section-heading__desc">
-        Every ecosystem direction exists to substitute a conventional,
-        resource-intensive alternative.
+        Each ecosystem direction explores a practical alternative to
+        conventional, resource-intensive materials.
       </p>
     </div>
     <div class="app-matrix" data-reveal-stagger>
@@ -4813,31 +4913,30 @@ ${appGroups}
         <div class="story-chapter__body">
           <p>
             Cow dung is gathered in rural and agricultural ecosystems. Developing
-            it into products creates additional value around those ecosystems —
+            it into products could create additional value around those
+            ecosystems &mdash;
             for households, gaushalas and agricultural communities.
           </p>
           <p class="muted">
             Gaurikrit works with Gaushalas and institutions exploring
-            cow-dung-based bio-products — see <a href="${relUrl('/for-business/', depth)}">Partners</a>.
+            cow-dung-based bio-products &mdash; see <a href="${relUrl('/for-business/', depth)}">Partners</a>.
           </p>
         </div>
-        <figure class="story-chapter__visual">
-          ${pic('/assets/editorial/rural-landscape.webp', '/assets/editorial/rural-landscape.jpg', 'Rural agricultural landscape — where the material cycle begins', 1344, 768, depth)}
-          <figcaption>Rural landscape study — the resource context of the material cycle.</figcaption>
-        </figure>
+        <!-- V20 §49: the generated rural-landscape illustration is retired —
+             no fake rural/project photography; the section is typographic. -->
       </div>
     </article>
   </div>
 </section>
 
 <!-- ============================================================
-     S6. MEASUREMENT FRAMEWORK — numbers only when verified
+     S6. MEASUREMENT FRAMEWORK — numbers only when verified (§38)
      ============================================================ -->
 <section class="section section--paper" id="measurement" aria-labelledby="meas-title">
   <div class="container">
     <div class="sustain-section__head section-heading section-heading--left" data-reveal>
       <span class="section-heading__eyebrow">Section 06 — Measurement Framework</span>
-      <h2 class="section-heading__title" id="meas-title">What we will measure — and how it appears.</h2>
+      <h2 class="section-heading__title" id="meas-title">How progress can be measured.</h2>
       <p class="section-heading__desc">
         Quantified impact is published only when verified project data exists.
         Nothing on this page is a projected, estimated or aspirational number.
@@ -4915,9 +5014,9 @@ function innovationBody(depth) {
         </div>
       </div>
       <figure class="innov-hero__composition" role="img"
-              aria-label="Material research samples - raw biomass, processed log and finished coating on one studio sweep">
-        ${ecoPic('innovation-research', [960, 1280, 1920, 2560], '(min-width: 1024px) 48vw, calc(100vw - 2.5rem)', 1280, 1280, 800, 'Material research samples - raw biomass, processed log and finished coating', depth, 'loading="eager" fetchpriority="high" ')}
-        <figcaption>Raw material, processed biomass, finished coating - one research line.</figcaption>
+              aria-label="Material research samples — raw biomass, processed log and finished coating on one studio sweep">
+        ${ecoPic('innovation-research', [960, 1280, 1920, 2560], '(min-width: 1024px) 48vw, calc(100vw - 2.5rem)', 1280, 1280, 800, 'Material research samples — raw biomass, processed log and finished coating', depth, 'loading="eager" fetchpriority="high" ')}
+        <figcaption>Raw material · processed biomass · finished coating — one research line.</figcaption>
       </figure>
     </div>
   </div>
@@ -4978,7 +5077,7 @@ ${methodItems}
           </p>
         </div>
         <figure class="story-chapter__visual">
-          ${ecoPic('eco-paints-pair', [640, 960, 1280, 1920], '(min-width: 1024px) 42vw, calc(100vw - 2.5rem)', 1280, 1280, 800, 'Prakritik Distemper and Emulsion paint packs - the documented Eco-Paints outcome', depth)}
+          ${ecoPic('eco-paints-pair', [640, 960, 1280, 1920], '(min-width: 1024px) 42vw, calc(100vw - 2.5rem)', 1280, 1280, 800, 'Prakritik Distemper and Emulsion paint packs — the documented Eco-Paints outcome', depth)}
           <figcaption>Prakritik Distemper and Emulsion — the documented Eco-Paints family.</figcaption>
         </figure>
         <div style="margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 0.75rem;">
@@ -5386,7 +5485,7 @@ const PAGES = [
         pageMeta: {
             title: 'Gaurikrit — Circular Material Solutions from Natural Resources',
             description:
-                'Gaurikrit builds a material ecosystem around one natural resource — cow dung — from Prakritik Eco-Paints to GoCast and Bio-Coal fuel directions and utility products. Circular economy from Khurja, Uttar Pradesh.',
+                'Gaurikrit builds a material ecosystem around one natural resource — cow dung — from Prakritik Eco-Paints to Cow-Dung Logs and Bio-Briquettes fuel directions and Eco Utility Products. Circular economy from Khurja, Uttar Pradesh.',
             canonical: '/',
             pageClass: 'home',
         },
@@ -5398,7 +5497,7 @@ const PAGES = [
         pageMeta: {
             title: 'Products — Eco-Paints, Biomass & Sustainable Material Solutions | Gaurikrit',
             description:
-                'The Gaurikrit product ecosystem: Eco-Paints (Prakritik Distemper and Emulsion, fully documented) plus GoCast Logs, Bio-Coal Logs and Utility Product development directions — one natural resource, multiple applications.',
+                'The Gaurikrit product ecosystem: Eco-Paints (Prakritik Distemper and Emulsion, fully documented) plus Cow-Dung Logs, Bio-Briquettes and Eco Utility Products development directions — one natural resource, multiple applications.',
             canonical: '/products/',
             pageClass: 'products',
         },
@@ -5494,7 +5593,7 @@ const PAGES = [
         pageMeta: {
             title: 'Partners & Business Enquiries — Gaurikrit',
             description:
-                'Build with Gaurikrit: distribution, dealership, architecture, contracting, institutional, industrial and sustainability partnerships around the Gaurikrit material ecosystem — Eco-Paints, GoCast, Bio-Coal and utility directions.',
+                'Build with Gaurikrit: distribution, dealership, architecture, contracting, institutional, industrial and sustainability partnerships around the Gaurikrit material ecosystem — Eco-Paints, Cow-Dung Logs, Bio-Briquettes and Eco Utility Products directions.',
             canonical: '/for-business/',
             pageClass: 'for-business',
         },

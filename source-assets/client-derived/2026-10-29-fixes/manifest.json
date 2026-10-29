@@ -1,0 +1,59 @@
+{
+  "emulsion-single-cut": {
+    "source": "source-assets/client-originals/WhatsApp Image 2026-10-16 at 7.45.04 AM.jpeg",
+    "outputs": [
+      "dist-hostinger/assets/images/client/prakritik-emulsion-single-cut.png",
+      "dist-hostinger/assets/images/client/prakritik-emulsion-single-cut.webp",
+      "dist-hostinger/assets/images/ecosystem/prakritik-emulsion-{640,960,1280,1600}.{avif,webp,jpg}",
+      "dist-hostinger/assets/social/og-emulsion.jpg"
+    ]
+  },
+  "rawmat": {
+    "rawmat-shed": {
+      "source": "source-assets/client-originals/2026-10-29-update/Cow-Dung pile-2.png",
+      "widths": [
+        640,
+        960,
+        1280
+      ]
+    },
+    "rawmat-cakes": {
+      "source": "source-assets/client-originals/2026-10-29-update/Cow-Dung pile-4.png",
+      "widths": [
+        640,
+        960,
+        1280
+      ]
+    },
+    "rawmat-tree": {
+      "source": "source-assets/client-originals/2026-10-29-update/Cow-Dung pile-1.png",
+      "widths": [
+        640,
+        960,
+        1280
+      ]
+    }
+  },
+  "flow-portfolio": {
+    "source": "source-assets/client-originals/2026-10-29-update/GBP Futureline Products Showcase-2.png",
+    "client_request_name": "Biodegradable Product Showcase.png",
+    "substitution_note": "Exact filename not present in shared folders; GBP Futureline Products Showcase-2.png is the closest content match (comprehensive 2x2 biodegradable utility-products showcase).",
+    "intrinsic": [
+      1024,
+      1536
+    ],
+    "sha256": "2539773079f6a8f42b33b1ea7ff7342e442f8f3c7c7024d4de86856df0569917",
+    "widths": [
+      640,
+      960
+    ],
+    "outputs": [
+      "dist-hostinger/assets/images/ecosystem/flow-portfolio-640.avif",
+      "dist-hostinger/assets/images/ecosystem/flow-portfolio-640.webp",
+      "dist-hostinger/assets/images/ecosystem/flow-portfolio-640.jpg",
+      "dist-hostinger/assets/images/ecosystem/flow-portfolio-960.avif",
+      "dist-hostinger/assets/images/ecosystem/flow-portfolio-960.webp",
+      "dist-hostinger/assets/images/ecosystem/flow-portfolio-960.jpg"
+    ]
+  }
+}

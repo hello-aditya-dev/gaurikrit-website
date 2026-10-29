@@ -311,7 +311,7 @@ $emulsion    = get_product('prakritik-emulsion');
         <p class="products-hero__sub">
           Cow dung is the shared material beginning. Gaurikrit develops it in
           four directions — Eco-Paints is the documented family; Cow-Dung Logs,
-          Bio-Briquettes and Utility Products are development directions.
+          Bio-Briquettes and Eco Utility Products are development directions.
         </p>
       </div>
       <div class="products-hero__visual" data-reveal>
@@ -703,7 +703,7 @@ $emulsion    = get_product('prakritik-emulsion');
     <div class="family-section__grid" data-reveal>
       <div class="family-section__copy">
         <span class="family-section__num" aria-hidden="true">04</span>
-        <h2 class="family-section__name" id="utility-title">Eco-Friendly Utility Products</h2>
+        <h2 class="family-section__name" id="utility-title">Eco Utility Products</h2>
         <p class="family-section__line">A natural-material utility direction.</p>
         <p class="family-section__desc">
           Practical daily-use products from naturally derived materials — a
@@ -716,14 +716,14 @@ $emulsion    = get_product('prakritik-emulsion');
           <li>Circular-economy direction</li>
         </ul>
         <p class="family-section__note">
-          Utility Products is a development direction. A confirmed product
+          Eco Utility Products is a development direction. A confirmed product
           list will be published when the client supplies verified information.
         </p>
         <div class="family-section__cta">
-          <a class="btn btn--outline" href="/contact/?interest=utility-products">Enquire About Utility Products</a>
+          <a class="btn btn--outline" href="/contact/?interest=utility-products">Enquire About Eco Utility Products</a>
         </div>
       </div>
-      <figure class="family-section__photo" aria-label="Utility Products — client-supplied product artwork">
+      <figure class="family-section__photo" aria-label="Eco Utility Products — client-supplied product artwork">
         <picture>
           <source type="image/avif" srcset="<?= eco_srcset('carousel-eco-utility-products', [640, 960, 1280, 1920]) ?>"
                   sizes="(min-width: 1024px) 42vw, calc(100vw - 2.5rem)">
@@ -733,7 +733,7 @@ $emulsion    = get_product('prakritik-emulsion');
                alt="Gaurikrit Eco Utility Products — client-supplied product artwork: dhoop cups, cow-dung diyas, biodegradable plates and eco glasses"
                width="1920" height="1080" loading="lazy" decoding="async">
         </picture>
-        <figcaption>Client-supplied Utility Products product artwork.</figcaption>
+        <figcaption>Client-supplied Eco Utility Products product artwork.</figcaption>
       </figure>
     </div>
   </div>

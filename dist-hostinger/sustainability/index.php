@@ -95,13 +95,13 @@ $measurementItems = [
       </div>
       <figure class="sustain-hero__plate">
         <picture>
-          <source type="image/avif" srcset="<?= eco_srcset('rawmat', [960, 1280, 1920]) ?>"
+          <source type="image/avif" srcset="<?= eco_srcset('rawmat-cakes', [640, 960, 1280]) ?>"
                   sizes="(min-width: 1024px) 44vw, calc(100vw - 2.5rem)">
-          <source type="image/webp" srcset="<?= eco_srcset_webp('rawmat', [960, 1280, 1920]) ?>"
+          <source type="image/webp" srcset="<?= eco_srcset_webp('rawmat-cakes', [640, 960, 1280]) ?>"
                   sizes="(min-width: 1024px) 44vw, calc(100vw - 2.5rem)">
-          <img src="<?= asset_url('/assets/images/ecosystem/rawmat-1280.jpg') ?>"
-               alt="Natural biomass material with straw fibre — the resource beginning of the material cycle"
-               width="1280" height="731"
+          <img src="<?= asset_url('/assets/images/ecosystem/rawmat-cakes-1280.jpg') ?>"
+               alt="Cow dung — the raw material at the start of the circular cycle"
+               width="1280" height="720"
                loading="eager" fetchpriority="high" decoding="async">
         </picture>
       </figure>

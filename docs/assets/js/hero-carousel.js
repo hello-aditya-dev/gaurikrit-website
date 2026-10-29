@@ -3,7 +3,7 @@
  * Vanilla JS module. No bundler. No dependencies.
  *
  * V21 — drives the homepage hero transitioning product showcase. Four
- * client-supplied product directions (Eco-Paints, Bio-Coal Logs,
+ * client-supplied product directions (Eco-Paints, Bio-Briquettes,
  * Cow-Dung Logs, Eco Utility Products) crossfade inside one stable 4/3
  * frame. The fade itself is pure CSS (opacity transition on
  * .hero-showcase__slide[aria-hidden]); this module only toggles

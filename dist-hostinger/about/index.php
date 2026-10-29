@@ -202,16 +202,16 @@ $groupImage = '/assets/products/prakritik-group.jpg';
         </div>
         <figure class="story-chapter__visual">
           <picture>
-            <source type="image/avif" srcset="<?= eco_srcset('rawmat', [640, 960, 1280, 1920]) ?>"
+            <source type="image/avif" srcset="<?= eco_srcset('rawmat-shed', [640, 960, 1280]) ?>"
                     sizes="(min-width: 1024px) 42vw, calc(100vw - 2.5rem)">
-            <source type="image/webp" srcset="<?= eco_srcset_webp('rawmat', [640, 960, 1280, 1920]) ?>"
+            <source type="image/webp" srcset="<?= eco_srcset_webp('rawmat-shed', [640, 960, 1280]) ?>"
                     sizes="(min-width: 1024px) 42vw, calc(100vw - 2.5rem)">
-            <img src="<?= asset_url('/assets/images/ecosystem/rawmat-960.jpg') ?>"
-                 alt="Raw natural biomass material with straw fibre — the resource"
-                 width="960" height="549"
+            <img src="<?= asset_url('/assets/images/ecosystem/rawmat-shed-1280.jpg') ?>"
+                 alt="Raw cow dung — the natural material starting point"
+                 width="1280" height="853"
                  loading="lazy" decoding="async">
           </picture>
-          <figcaption>Raw material study — natural surface traditions of Indian homes.</figcaption>
+          <figcaption>Cow dung — the raw material, client-supplied photograph.</figcaption>
         </figure>
       </div>
     </article>
@@ -261,10 +261,11 @@ $groupImage = '/assets/products/prakritik-group.jpg';
 
 <!-- ============================================================
      04. FROM RESOURCE TO APPLICATION (V18 §40 / §25)
-     The story's widening, told with REAL assets: the natural material,
-     the documented application (real paint), the expanding direction
-     (client-supplied cow-dung logs). NOT the same beige plaster three
-     times; NOT the kraft-box mockup. The journey is stages, not dates.
+     The story's widening, told with REAL assets: the client-supplied
+     photograph of the actual raw material, the documented application
+     (real paint), the expanding direction (client-supplied cow-dung
+     logs). NOT the same beige plaster three times; NOT the kraft-box
+     mockup. The journey is stages, not dates.
      ============================================================ -->
 <section class="section section--paper story-wrap" id="from-resource-to-application" aria-labelledby="application-ch-title">
   <div class="container">
@@ -289,13 +290,13 @@ $groupImage = '/assets/products/prakritik-group.jpg';
           <article class="resource-step">
             <figure class="resource-step__figure">
                               <picture>
-                  <source type="image/avif" srcset="<?= eco_srcset('rawmat', [640, 960, 1280]) ?>"
+                  <source type="image/avif" srcset="<?= eco_srcset('rawmat-shed', [640, 960, 1280]) ?>"
                           sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, calc(100vw - 2.5rem)">
-                  <source type="image/webp" srcset="<?= eco_srcset_webp('rawmat', [640, 960, 1280]) ?>"
+                  <source type="image/webp" srcset="<?= eco_srcset_webp('rawmat-shed', [640, 960, 1280]) ?>"
                           sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, calc(100vw - 2.5rem)">
-                  <img src="<?= asset_url('/assets/images/ecosystem/rawmat-960.jpg') ?>"
-                       alt="Raw natural biomass material — the resource"
-                       width="960" height="549"
+                  <img src="<?= asset_url('/assets/images/ecosystem/rawmat-shed-1280.jpg') ?>"
+                       alt="Raw cow dung — the natural material starting point"
+                       width="1280" height="853"
                        loading="lazy" decoding="async">
                 </picture>
             </figure>

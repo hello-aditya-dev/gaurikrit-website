@@ -189,9 +189,9 @@
                             <a href="../products/prakritik-distemper/" class="nav-menu__link">Prakritik Distemper</a>
                             <a href="../products/prakritik-emulsion/" class="nav-menu__link">Prakritik Emulsion</a>
                             <a href="../colours/" class="nav-menu__link">Colours</a>
-                            <a href="../products/#cow-dung-logs" class="nav-menu__link">Cow-Dung Logs</a>
-                            <a href="../products/#bio-briquettes" class="nav-menu__link">Bio-Briquettes</a>
-                            <a href="../products/#utility-products" class="nav-menu__link">Utility Products</a>
+                            <a href="../products/#gocast-logs" class="nav-menu__link">Cow-Dung Logs</a>
+                            <a href="../products/#bio-coal-logs" class="nav-menu__link">Bio-Briquettes</a>
+                            <a href="../products/#utility-products" class="nav-menu__link">Eco Utility Products</a>
                         </div>
                     </div>
         <a href="../sustainability/" class="site-nav__link" data-nav-link="/sustainability/">Sustainability</a>
@@ -228,9 +228,9 @@
                           <a href="../products/prakritik-distemper/" class="mobile-menu__sub-link">Prakritik Distemper</a>
                           <a href="../products/prakritik-emulsion/" class="mobile-menu__sub-link">Prakritik Emulsion</a>
                           <a href="../colours/" class="mobile-menu__sub-link">Colours</a>
-                          <a href="../products/#cow-dung-logs" class="mobile-menu__sub-link">Cow-Dung Logs</a>
-                          <a href="../products/#bio-briquettes" class="mobile-menu__sub-link">Bio-Briquettes</a>
-                          <a href="../products/#utility-products" class="mobile-menu__sub-link">Utility Products</a>
+                          <a href="../products/#gocast-logs" class="mobile-menu__sub-link">Cow-Dung Logs</a>
+                          <a href="../products/#bio-coal-logs" class="mobile-menu__sub-link">Bio-Briquettes</a>
+                          <a href="../products/#utility-products" class="mobile-menu__sub-link">Eco Utility Products</a>
                       </div>
                 <a href="../sustainability/" class="mobile-menu__link" data-nav-link="/sustainability/">Sustainability<span class="mobile-menu__arrow">→</span></a>
                 <a href="../innovation/" class="mobile-menu__link" data-nav-link="/innovation/">Innovation<span class="mobile-menu__arrow">→</span></a>
@@ -393,15 +393,27 @@
   .why-format-card--distemper .why-format-card__caption { color: var(--indigo); }
   .why-format-card--emulsion  .why-format-card__caption { color: var(--leaf); }
 
-  /* === Chapter 06 — CONTEXT: framed editorial band (rural-landscape
-     = regional context only, never company premises). Copy ~4 / band ~8. === */
+  /* === Chapter 06 — CONTEXT: typographic band (V20 §68: the generated
+     rural-landscape engraving is retired; ruled facts carry the region.) === */
   .why-context-section { padding-block: clamp(3.5rem, 6vw, 5rem); }
-  .why-context-bg {
-    position: relative; width: 100%; aspect-ratio: 1344/768;
-    background: var(--limewash); border-radius: var(--r-panel);
-    border: 1px solid var(--border);
-    overflow: hidden; align-self: center;
+  .why-context-facts {
+    margin: 0; align-self: center; width: 100%;
+    display: grid; gap: 0;
+    border-top: 1px solid var(--border);
   }
+  .why-context-facts > div {
+    display: grid; gap: 0.25rem; padding: 0.875rem 0;
+    border-bottom: 1px solid var(--border);
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 640px) {
+    .why-context-facts > div { grid-template-columns: 10rem 1fr; gap: 1rem; align-items: baseline; }
+  }
+  .why-context-facts dt {
+    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--fg-muted);
+  }
+  .why-context-facts dd { margin: 0; font-family: var(--font-display); font-size: 1.0625rem; }
 </style>
 
 <!-- ===== HERO ===== -->
@@ -484,28 +496,6 @@
         </li>
       </ol>
     </nav>
-    <!-- V18 §21: Explore Colours — the end of the paint/formats story. -->
-    <div class="colour-cta" data-reveal style="margin-top: 2rem;">
-      <div>
-        <span class="colour-cta__eyebrow">Colour Collections</span>
-        <h3 class="colour-cta__title">Colours Inspired by Nature.</h3>
-        <p class="colour-cta__body">
-          Two client-supplied collections — <strong>12 Signature shades</strong>
-          and a <strong>Premium collection in five groups</strong> — previewed
-          live on the wall.
-        </p>
-      </div>
-      <div class="colour-cta__swatch-strip" aria-hidden="true">
-        <span class="colour-cta__swatch" style="background: #F5EDE0"></span>
-        <span class="colour-cta__swatch" style="background: #F8AE03"></span>
-        <span class="colour-cta__swatch" style="background: #D58F18"></span>
-        <span class="colour-cta__swatch" style="background: #1E4825"></span>
-        <span class="colour-cta__swatch" style="background: #8BC3E7"></span>
-        <span class="colour-cta__swatch" style="background: #D14B1D"></span>
-        <a class="btn btn--primary" href="../colours/">Explore Colours</a>
-      </div>
-    </div>
-  </div>
   </div>
 </section>
 
@@ -569,14 +559,13 @@
       <span class="why-chapter__eyebrow">Material to wall</span>
       <h2 class="why-chapter__title" id="chapter-03-title">From a natural material to a finished wall.</h2>
       <p class="why-chapter__body">
-        The raw material, the paint made from it, and the finished surface —
-        three steps, one material idea.
+        Natural material, Prakritik Paint, finished walls.
       </p>
     </div>
     <div class="material-steps" data-reveal>
       <article class="material-step">
         <figure class="material-step__figure">
-          <picture><source type="image/avif" srcset="../assets/images/ecosystem/rawmat-640.avif 640w, ../assets/images/ecosystem/rawmat-960.avif 960w, ../assets/images/ecosystem/rawmat-1280.avif 1280w" sizes="(min-width: 1024px) 28vw, (min-width: 640px) 42vw, calc(100vw - 2.5rem)"><source type="image/webp" srcset="../assets/images/ecosystem/rawmat-640.webp 640w, ../assets/images/ecosystem/rawmat-960.webp 960w, ../assets/images/ecosystem/rawmat-1280.webp 1280w" sizes="(min-width: 1024px) 28vw, (min-width: 640px) 42vw, calc(100vw - 2.5rem)"><img class="editorial-image" src="../assets/images/ecosystem/rawmat-960.jpg" alt="Raw natural biomass material" width="960" height="549" loading="lazy" decoding="async"></picture>
+          <picture><source type="image/avif" srcset="../assets/images/ecosystem/rawmat-tree-640.avif 640w, ../assets/images/ecosystem/rawmat-tree-960.avif 960w" sizes="(min-width: 1024px) 28vw, (min-width: 640px) 42vw, calc(100vw - 2.5rem)"><source type="image/webp" srcset="../assets/images/ecosystem/rawmat-tree-640.webp 640w, ../assets/images/ecosystem/rawmat-tree-960.webp 960w" sizes="(min-width: 1024px) 28vw, (min-width: 640px) 42vw, calc(100vw - 2.5rem)"><img class="editorial-image" src="../assets/images/ecosystem/rawmat-tree-960.jpg" alt="Cow dung — the shared starting material for every Gaurikrit direction" width="960" height="960" loading="lazy" decoding="async"></picture>
         </figure>
         <div class="material-step__caption">
           <span class="material-step__num">01</span>
@@ -755,7 +744,22 @@
       </div>
       <!-- V20 §68: the generated rural-landscape illustration is retired —
            no image is better than a misleading one. The closing band is
-           typographic: strong copy + ruled company facts. -->
+           typographic: strong copy + ruled company facts, no fake rural
+           photography, no engraving. -->
+      <dl class="why-context-facts" data-reveal>
+        <div>
+          <dt>Company</dt>
+          <dd>Gaurikrit Bio Products (OPC) Private Limited</dd>
+        </div>
+        <div>
+          <dt>Location</dt>
+          <dd>Khurja, District Bulandshahr</dd>
+        </div>
+        <div>
+          <dt>Registered</dt>
+          <dd>GSTIN 09AAMCG8400F1ZK</dd>
+        </div>
+      </dl>
     </div>
   </div>
 </section>
@@ -870,9 +874,9 @@
                 <a href="../products/prakritik-distemper/">Prakritik Distemper</a>
                 <a href="../products/prakritik-emulsion/">Prakritik Emulsion</a>
                 <a href="../colours/">Colours</a>
-                <a href="../products/#cow-dung-logs">Cow-Dung Logs</a>
-                <a href="../products/#bio-briquettes">Bio-Briquettes</a>
-                <a href="../products/#utility-products">Utility Products</a>
+                <a href="../products/#gocast-logs">Cow-Dung Logs</a>
+                <a href="../products/#bio-coal-logs">Bio-Briquettes</a>
+                <a href="../products/#utility-products">Eco Utility Products</a>
             </nav>
             <nav class="site-footer__col site-footer__col--work" aria-label="Work with us">
                 <h4 class="site-footer__heading">Work With Us</h4>

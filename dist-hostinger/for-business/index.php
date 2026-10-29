@@ -2,11 +2,10 @@
 /**
  * Gaurikrit Bio Products — Partners (V20 source-truth pass).
  *
- * V20 changes (§55-61):
- *   1. Hero — ONE two-material composition (partners-hero master: REAL
- *      Prakritik pair + REAL client-supplied cow-dung log plate on one
- *      studio sweep). The old 4-tile cover-crop grid is removed — no
- *      generated Bio-Coal / Utility in the hero.
+ * V20 changes (§55-61), V23 hero revision:
+ *   1. Hero — 2x2 grid of the four client-supplied product artworks
+ *      (carousel-* ecosystem stems); the retired two-material hero
+ *      composite is no longer referenced.
  *   2. Audiences — the duplicated 7-audience strip removed; the four
  *      audience cards carry the information.
  *   3. Practical section — universal details (Interest / City / market /
@@ -47,7 +46,7 @@ $audiences = [
 // distribution / collaboration enquiries); they remain in the FORM as
 // conditional fields shown only for Eco-Paints interest.
 $helpfulInclude = [
-    ['label' => 'Interest',   'hint' => 'Eco-Paints, Cow-Dung Logs, Bio-Briquettes, Utility Products, distribution or collaboration'],
+    ['label' => 'Interest',   'hint' => 'Eco-Paints, Cow-Dung Logs, Bio-Briquettes, Eco Utility Products, distribution or collaboration'],
     ['label' => 'City / market', 'hint' => 'Where the requirement is located'],
     ['label' => 'Use case / requirement', 'hint' => 'What your organisation needs'],
     ['label' => 'Approximate quantity', 'hint' => 'If known'],
@@ -62,7 +61,7 @@ $helpfulInclude = [
     object-fit: cover;
   }
 
-  /* ===== HERO (V20: text left / partners-hero two-material plate right) ===== */
+  /* ===== HERO (V23: text left / 2x2 client-artwork tile grid right) ===== */
   .biz-hero { padding-top: calc(var(--header-h) + 2rem); padding-bottom: 1.5rem; }
   @media (min-width: 1024px) { .biz-hero { padding-bottom: 2.5rem; } }
   .biz-hero__container { display: grid; gap: 2rem; align-items: center; }
@@ -71,26 +70,22 @@ $helpfulInclude = [
   }
   .biz-hero__lockup { max-width: 42rem; }
   .biz-hero__art { padding: 0; background: none; border: 0; }
-  /* V20 §56: ONE two-material composition — the REAL Prakritik pair and
-     the REAL client-supplied cow-dung log plate share one studio sweep
-     (partners-hero master). No generated Bio-Coal / Utility in the hero:
-     the hero is about working with Gaurikrit, not proving all four
-     categories. Hairline plate, objects uncropped. */
-  .biz-hero__plate { margin: 0; overflow: hidden;
-    border-radius: var(--r-panel); border: 1px solid var(--border);
-    background: var(--paper); }
-  .biz-hero__plate img {
-    display: block; width: 100%; height: auto; aspect-ratio: 16 / 10;
-    object-fit: cover; object-position: center 56%;
+  /* V23: four client-supplied product artworks in a 2x2 mat grid —
+     same reading as the homepage portfolio; nothing cropped (16:9 tiles
+     + object-fit:contain keep every label/claim fully visible). */
+  .biz-hero__ecosystem {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4px;
   }
-  .biz-hero__plate figcaption {
-    padding: 0.625rem 1rem; border-top: 1px solid var(--border);
-    display: flex; justify-content: space-between; gap: 1rem;
-    font-size: 0.6875rem; letter-spacing: 0.04em; text-transform: uppercase;
-    color: var(--fg-muted);
+  .biz-hero__tile {
+    margin: 0; overflow: hidden;
+    background: var(--paper-warm);
+    border: 1px solid var(--border); border-radius: 0.25rem;
+    aspect-ratio: 16 / 9;
   }
-  .biz-hero__plate figcaption em {
-    font-style: normal; opacity: 0.75; text-transform: none;
+  .biz-hero__tile picture { display: block; width: 100%; height: 100%; margin: 0; }
+  .biz-hero__tile img {
+    display: block; width: 100%; height: 100%;
+    object-fit: contain; object-position: center;
   }
 
   /* ===== AUDIENCES (V16: the seven partner audiences as a flexible
@@ -192,21 +187,38 @@ $helpfulInclude = [
           <a class="btn btn--outline" href="/products/">Explore the Ecosystem</a>
         </div>
       </div>
-      <figure class="biz-hero__plate" data-reveal>
-        <picture>
-          <source type="image/avif" srcset="<?= eco_srcset('partners-hero', [640, 960, 1280, 1600, 1920]) ?>"
-                  sizes="(min-width: 1024px) 55vw, calc(100vw - 2.5rem)">
-          <source type="image/webp" srcset="<?= eco_srcset_webp('partners-hero', [640, 960, 1280, 1600, 1920]) ?>"
-                  sizes="(min-width: 1024px) 55vw, calc(100vw - 2.5rem)">
-          <img src="<?= asset_url('/assets/images/ecosystem/partners-hero-1280.jpg') ?>"
-               alt="Prakritik Distemper and Prakritik Emulsion paint packs with client-supplied cow-dung logs on a terracotta plate — the two documented materials of the Gaurikrit ecosystem"
-               width="1280" height="720" loading="eager" decoding="async">
-        </picture>
-        <figcaption>
-          <span>Eco-Paints <em>Documented family</em></span>
-          <span>Cow-Dung Logs <em>Client-supplied reference</em></span>
-        </figcaption>
-      </figure>
+      <div class="biz-hero__art" aria-hidden="true">
+        <div class="biz-hero__ecosystem" role="img" aria-label="The Gaurikrit material ecosystem — Eco-Paints, Cow-Dung Logs, Bio-Briquettes and Eco Utility Products client artwork">
+          <figure class="biz-hero__tile">
+            <picture>
+              <source type="image/avif" srcset="<?= eco_srcset('carousel-eco-paints', [640, 960, 1280]) ?>" sizes="(min-width: 1024px) 34vw, calc(100vw - 2.5rem)">
+              <source type="image/webp" srcset="<?= eco_srcset_webp('carousel-eco-paints', [640, 960, 1280]) ?>" sizes="(min-width: 1024px) 34vw, calc(100vw - 2.5rem)">
+              <img src="<?= asset_url('/assets/images/ecosystem/carousel-eco-paints-1280.jpg') ?>" alt="" width="1280" height="720" loading="lazy" decoding="async">
+            </picture>
+          </figure>
+          <figure class="biz-hero__tile">
+            <picture>
+              <source type="image/avif" srcset="<?= eco_srcset('carousel-cow-dung-logs', [640, 960, 1280]) ?>" sizes="(min-width: 1024px) 34vw, calc(100vw - 2.5rem)">
+              <source type="image/webp" srcset="<?= eco_srcset_webp('carousel-cow-dung-logs', [640, 960, 1280]) ?>" sizes="(min-width: 1024px) 34vw, calc(100vw - 2.5rem)">
+              <img src="<?= asset_url('/assets/images/ecosystem/carousel-cow-dung-logs-1280.jpg') ?>" alt="" width="1280" height="720" loading="lazy" decoding="async">
+            </picture>
+          </figure>
+          <figure class="biz-hero__tile">
+            <picture>
+              <source type="image/avif" srcset="<?= eco_srcset('carousel-bio-briquettes', [640, 960, 1280]) ?>" sizes="(min-width: 1024px) 34vw, calc(100vw - 2.5rem)">
+              <source type="image/webp" srcset="<?= eco_srcset_webp('carousel-bio-briquettes', [640, 960, 1280]) ?>" sizes="(min-width: 1024px) 34vw, calc(100vw - 2.5rem)">
+              <img src="<?= asset_url('/assets/images/ecosystem/carousel-bio-briquettes-1280.jpg') ?>" alt="" width="1280" height="720" loading="lazy" decoding="async">
+            </picture>
+          </figure>
+          <figure class="biz-hero__tile">
+            <picture>
+              <source type="image/avif" srcset="<?= eco_srcset('carousel-eco-utility-products', [640, 960, 1280]) ?>" sizes="(min-width: 1024px) 34vw, calc(100vw - 2.5rem)">
+              <source type="image/webp" srcset="<?= eco_srcset_webp('carousel-eco-utility-products', [640, 960, 1280]) ?>" sizes="(min-width: 1024px) 34vw, calc(100vw - 2.5rem)">
+              <img src="<?= asset_url('/assets/images/ecosystem/carousel-eco-utility-products-1280.jpg') ?>" alt="" width="1280" height="720" loading="lazy" decoding="async">
+            </picture>
+          </figure>
+        </div>
+      </div>
     </div>
   </div>
 </section>

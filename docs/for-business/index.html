@@ -9,12 +9,12 @@
     <link rel="apple-touch-icon" href="../apple-touch-icon.png">
     <link rel="manifest" href="../site.webmanifest">
     <title>Partners &amp; Business Enquiries — Gaurikrit</title>
-    <meta name="description" content="Build with Gaurikrit: distribution, dealership, architecture, contracting, institutional, industrial and sustainability partnerships around the Gaurikrit material ecosystem — Eco-Paints, Cow-Dung Logs, Bio-Briquettes and utility directions.">
+    <meta name="description" content="Build with Gaurikrit: distribution, dealership, architecture, contracting, institutional, industrial and sustainability partnerships around the Gaurikrit material ecosystem — Eco-Paints, Cow-Dung Logs, Bio-Briquettes and Eco Utility Products directions.">
     <link rel="canonical" href="https://hello-aditya-dev.github.io/gaurikrit-website/for-business/">
     <meta name="robots" content="noindex, nofollow">
     <meta name="theme-color" content="#173F2B">
     <meta property="og:title" content="Partners &amp; Business Enquiries — Gaurikrit">
-    <meta property="og:description" content="Build with Gaurikrit: distribution, dealership, architecture, contracting, institutional, industrial and sustainability partnerships around the Gaurikrit material ecosystem — Eco-Paints, Cow-Dung Logs, Bio-Briquettes and utility directions.">
+    <meta property="og:description" content="Build with Gaurikrit: distribution, dealership, architecture, contracting, institutional, industrial and sustainability partnerships around the Gaurikrit material ecosystem — Eco-Paints, Cow-Dung Logs, Bio-Briquettes and Eco Utility Products directions.">
     <meta property="og:url" content="https://hello-aditya-dev.github.io/gaurikrit-website/for-business/">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Gaurikrit Bio Products">
@@ -24,7 +24,7 @@
     <meta property="og:image:alt" content="Gaurikrit — Partners &amp; Business Enquiries — Gaurikrit">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Partners &amp; Business Enquiries — Gaurikrit">
-    <meta name="twitter:description" content="Build with Gaurikrit: distribution, dealership, architecture, contracting, institutional, industrial and sustainability partnerships around the Gaurikrit material ecosystem — Eco-Paints, Cow-Dung Logs, Bio-Briquettes and utility directions.">
+    <meta name="twitter:description" content="Build with Gaurikrit: distribution, dealership, architecture, contracting, institutional, industrial and sustainability partnerships around the Gaurikrit material ecosystem — Eco-Paints, Cow-Dung Logs, Bio-Briquettes and Eco Utility Products directions.">
     <meta name="twitter:image" content="https://hello-aditya-dev.github.io/gaurikrit-website/assets/social/og-for-business.jpg">
     <meta name="twitter:image:alt" content="Gaurikrit — Partners &amp; Business Enquiries — Gaurikrit">
     <script type="application/ld+json">
@@ -189,9 +189,9 @@
                             <a href="../products/prakritik-distemper/" class="nav-menu__link">Prakritik Distemper</a>
                             <a href="../products/prakritik-emulsion/" class="nav-menu__link">Prakritik Emulsion</a>
                             <a href="../colours/" class="nav-menu__link">Colours</a>
-                            <a href="../products/#cow-dung-logs" class="nav-menu__link">Cow-Dung Logs</a>
-                            <a href="../products/#bio-briquettes" class="nav-menu__link">Bio-Briquettes</a>
-                            <a href="../products/#utility-products" class="nav-menu__link">Utility Products</a>
+                            <a href="../products/#gocast-logs" class="nav-menu__link">Cow-Dung Logs</a>
+                            <a href="../products/#bio-coal-logs" class="nav-menu__link">Bio-Briquettes</a>
+                            <a href="../products/#utility-products" class="nav-menu__link">Eco Utility Products</a>
                         </div>
                     </div>
         <a href="../sustainability/" class="site-nav__link" data-nav-link="/sustainability/">Sustainability</a>
@@ -228,9 +228,9 @@
                           <a href="../products/prakritik-distemper/" class="mobile-menu__sub-link">Prakritik Distemper</a>
                           <a href="../products/prakritik-emulsion/" class="mobile-menu__sub-link">Prakritik Emulsion</a>
                           <a href="../colours/" class="mobile-menu__sub-link">Colours</a>
-                          <a href="../products/#cow-dung-logs" class="mobile-menu__sub-link">Cow-Dung Logs</a>
-                          <a href="../products/#bio-briquettes" class="mobile-menu__sub-link">Bio-Briquettes</a>
-                          <a href="../products/#utility-products" class="mobile-menu__sub-link">Utility Products</a>
+                          <a href="../products/#gocast-logs" class="mobile-menu__sub-link">Cow-Dung Logs</a>
+                          <a href="../products/#bio-coal-logs" class="mobile-menu__sub-link">Bio-Briquettes</a>
+                          <a href="../products/#utility-products" class="mobile-menu__sub-link">Eco Utility Products</a>
                       </div>
                 <a href="../sustainability/" class="mobile-menu__link" data-nav-link="/sustainability/">Sustainability<span class="mobile-menu__arrow">→</span></a>
                 <a href="../innovation/" class="mobile-menu__link" data-nav-link="/innovation/">Innovation<span class="mobile-menu__arrow">→</span></a>
@@ -259,7 +259,7 @@
     object-fit: cover;
   }
 
-  /* ===== HERO (text left / architectural-elevation right — NO floating blob) ===== */
+  /* ===== HERO (V23: text left / 2x2 client-artwork tile grid right) ===== */
   .biz-hero { padding-top: calc(var(--header-h) + 2rem); padding-bottom: 1.5rem; }
   @media (min-width: 1024px) { .biz-hero { padding-bottom: 2.5rem; } }
   .biz-hero__container { display: grid; gap: 2rem; align-items: center; }
@@ -267,22 +267,31 @@
     .biz-hero__container { grid-template-columns: 5fr 7fr; gap: 3rem; }
   }
   .biz-hero__lockup { max-width: 42rem; }
-  .biz-hero__art {
-    position: relative; aspect-ratio: 1344/768; background: var(--paper-cool);
-    border-radius: var(--r-panel); overflow: hidden;
+  .biz-hero__art { padding: 0; background: none; border: 0; }
+  /* V23: four client-supplied product artworks in a 2x2 mat grid —
+     same reading as the homepage portfolio; nothing cropped (16:9 tiles
+     + object-fit:contain keep every label/claim fully visible). */
+  .biz-hero__ecosystem {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4px;
   }
-  .biz-hero__art .editorial-image {
-    width: 100%; height: 100%; object-fit: cover; display: block;
+  .biz-hero__tile {
+    margin: 0; overflow: hidden;
+    background: var(--paper-warm);
+    border: 1px solid var(--border); border-radius: 0.25rem;
+    aspect-ratio: 16 / 9;
+  }
+  .biz-hero__tile picture { display: block; width: 100%; height: 100%; margin: 0; }
+  .biz-hero__tile img {
+    display: block; width: 100%; height: 100%;
+    object-fit: contain; object-position: center;
   }
 
-  /* ===== AUDIENCES (V16: the seven partner audiences as a flexible
-     partner-strip + four audience cards; the 4-ruled-column visual is
-     retired) ===== */
+  /* ===== AUDIENCES ===== */
   .biz-audiences-section { padding-block: clamp(3.5rem, 6vw, 5rem); }
   .biz-audiences__head { max-width: 48rem; margin-bottom: 2.5rem; }
 
   /* ===== PRACTICAL SECTION ===== */
-  .biz-practical { padding-block: clamp(3.5rem, 6vw, 5rem); }
+  .biz-practical { padding-block: clamp(2.75rem, 5vw, 4.25rem); }
   .biz-practical__grid {
     display: grid; gap: 2rem; align-items: start;
   }
@@ -315,8 +324,8 @@
   }
   .biz-practical__item-hint { font-size: 0.9375rem; color: var(--fg); }
 
-  /* ===== FORM (12-col: left 4 help/contact, right 8 fields) ===== */
-  .biz-form-section { padding-block: clamp(3.5rem, 6vw, 5rem); }
+  /* ===== FORM ===== */
+  .biz-form-section { padding-block: clamp(2.5rem, 4vw, 3.5rem) 5rem; }
   .biz-form-layout__aside { display: flex; flex-direction: column; gap: 1.5rem; }
   .biz-form-layout__aside .help-cta { padding: 1.5rem; }
   .biz-form-card {
@@ -371,18 +380,18 @@
         </div>
       </div>
       <div class="biz-hero__art" aria-hidden="true">
-        <div class="biz-hero__ecosystem" role="img" aria-label="The Gaurikrit material ecosystem">
+        <div class="biz-hero__ecosystem" role="img" aria-label="The Gaurikrit material ecosystem — Eco-Paints, Cow-Dung Logs, Bio-Briquettes and Eco Utility Products client artwork">
           <figure class="biz-hero__tile">
-            <picture><source type="image/avif" srcset="../assets/images/ecosystem/eco-paints-pair-640.avif 640w, ../assets/images/ecosystem/eco-paints-pair-960.avif 960w" sizes="(min-width: 1024px) 17vw, (min-width: 640px) 45vw, calc(50vw - 1.5rem)"><source type="image/webp" srcset="../assets/images/ecosystem/eco-paints-pair-640.webp 640w, ../assets/images/ecosystem/eco-paints-pair-960.webp 960w" sizes="(min-width: 1024px) 17vw, (min-width: 640px) 45vw, calc(50vw - 1.5rem)"><img  src="../assets/images/ecosystem/eco-paints-pair-640.jpg" alt="" width="640" height="480" loading="lazy" decoding="async"></picture>
+            <picture><source type="image/avif" srcset="../assets/images/ecosystem/carousel-eco-paints-640.avif 640w, ../assets/images/ecosystem/carousel-eco-paints-960.avif 960w, ../assets/images/ecosystem/carousel-eco-paints-1280.avif 1280w" sizes="(min-width: 1024px) 34vw, calc(100vw - 2.5rem)"><source type="image/webp" srcset="../assets/images/ecosystem/carousel-eco-paints-640.webp 640w, ../assets/images/ecosystem/carousel-eco-paints-960.webp 960w, ../assets/images/ecosystem/carousel-eco-paints-1280.webp 1280w" sizes="(min-width: 1024px) 34vw, calc(100vw - 2.5rem)"><img  src="../assets/images/ecosystem/carousel-eco-paints-1280.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async"></picture>
           </figure>
           <figure class="biz-hero__tile">
-            <picture><source type="image/avif" srcset="../assets/images/ecosystem/gocast-editorial-640.avif 640w, ../assets/images/ecosystem/gocast-editorial-960.avif 960w" sizes="(min-width: 1024px) 17vw, (min-width: 640px) 45vw, calc(50vw - 1.5rem)"><source type="image/webp" srcset="../assets/images/ecosystem/gocast-editorial-640.webp 640w, ../assets/images/ecosystem/gocast-editorial-960.webp 960w" sizes="(min-width: 1024px) 17vw, (min-width: 640px) 45vw, calc(50vw - 1.5rem)"><img  src="../assets/images/ecosystem/gocast-editorial-640.jpg" alt="" width="640" height="480" loading="lazy" decoding="async"></picture>
+            <picture><source type="image/avif" srcset="../assets/images/ecosystem/carousel-cow-dung-logs-640.avif 640w, ../assets/images/ecosystem/carousel-cow-dung-logs-960.avif 960w, ../assets/images/ecosystem/carousel-cow-dung-logs-1280.avif 1280w" sizes="(min-width: 1024px) 34vw, calc(100vw - 2.5rem)"><source type="image/webp" srcset="../assets/images/ecosystem/carousel-cow-dung-logs-640.webp 640w, ../assets/images/ecosystem/carousel-cow-dung-logs-960.webp 960w, ../assets/images/ecosystem/carousel-cow-dung-logs-1280.webp 1280w" sizes="(min-width: 1024px) 34vw, calc(100vw - 2.5rem)"><img  src="../assets/images/ecosystem/carousel-cow-dung-logs-1280.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async"></picture>
           </figure>
           <figure class="biz-hero__tile">
-            <picture><source type="image/avif" srcset="../assets/images/ecosystem/biocoal-editorial-640.avif 640w, ../assets/images/ecosystem/biocoal-editorial-960.avif 960w" sizes="(min-width: 1024px) 17vw, (min-width: 640px) 45vw, calc(50vw - 1.5rem)"><source type="image/webp" srcset="../assets/images/ecosystem/biocoal-editorial-640.webp 640w, ../assets/images/ecosystem/biocoal-editorial-960.webp 960w" sizes="(min-width: 1024px) 17vw, (min-width: 640px) 45vw, calc(50vw - 1.5rem)"><img  src="../assets/images/ecosystem/biocoal-editorial-640.jpg" alt="" width="640" height="480" loading="lazy" decoding="async"></picture>
+            <picture><source type="image/avif" srcset="../assets/images/ecosystem/carousel-bio-briquettes-640.avif 640w, ../assets/images/ecosystem/carousel-bio-briquettes-960.avif 960w, ../assets/images/ecosystem/carousel-bio-briquettes-1280.avif 1280w" sizes="(min-width: 1024px) 34vw, calc(100vw - 2.5rem)"><source type="image/webp" srcset="../assets/images/ecosystem/carousel-bio-briquettes-640.webp 640w, ../assets/images/ecosystem/carousel-bio-briquettes-960.webp 960w, ../assets/images/ecosystem/carousel-bio-briquettes-1280.webp 1280w" sizes="(min-width: 1024px) 34vw, calc(100vw - 2.5rem)"><img  src="../assets/images/ecosystem/carousel-bio-briquettes-1280.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async"></picture>
           </figure>
           <figure class="biz-hero__tile">
-            <picture><source type="image/avif" srcset="../assets/images/ecosystem/utility-material-direction-640.avif 640w, ../assets/images/ecosystem/utility-material-direction-960.avif 960w" sizes="(min-width: 1024px) 17vw, (min-width: 640px) 45vw, calc(50vw - 1.5rem)"><source type="image/webp" srcset="../assets/images/ecosystem/utility-material-direction-640.webp 640w, ../assets/images/ecosystem/utility-material-direction-960.webp 960w" sizes="(min-width: 1024px) 17vw, (min-width: 640px) 45vw, calc(50vw - 1.5rem)"><img  src="../assets/images/ecosystem/utility-material-direction-640.jpg" alt="" width="640" height="480" loading="lazy" decoding="async"></picture>
+            <picture><source type="image/avif" srcset="../assets/images/ecosystem/carousel-eco-utility-products-640.avif 640w, ../assets/images/ecosystem/carousel-eco-utility-products-960.avif 960w, ../assets/images/ecosystem/carousel-eco-utility-products-1280.avif 1280w" sizes="(min-width: 1024px) 34vw, calc(100vw - 2.5rem)"><source type="image/webp" srcset="../assets/images/ecosystem/carousel-eco-utility-products-640.webp 640w, ../assets/images/ecosystem/carousel-eco-utility-products-960.webp 960w, ../assets/images/ecosystem/carousel-eco-utility-products-1280.webp 1280w" sizes="(min-width: 1024px) 34vw, calc(100vw - 2.5rem)"><img  src="../assets/images/ecosystem/carousel-eco-utility-products-1280.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async"></picture>
           </figure>
         </div>
       </div>
@@ -390,25 +399,12 @@
   </div>
 </section>
 
-<!-- ===== AUDIENCES — V16: the seven partner audiences as a flexible
-     partner-strip + four audience cards. ===== -->
+<!-- ===== AUDIENCES — four audience cards. ===== -->
 <section class="section section--paper biz-audiences-section" aria-labelledby="audiences-title">
   <div class="container">
     <div class="biz-audiences__head section-heading section-heading--left" data-reveal>
       <span class="section-heading__eyebrow">Who this is for</span>
       <h2 class="section-heading__title" id="audiences-title">Partner with a material ecosystem.</h2>
-    </div>
-
-    <div class="partner-strip" data-reveal>
-      <ul class="partner-strip__list">
-        <li class="partner-strip__item">Distributors</li>
-        <li class="partner-strip__item">Dealers</li>
-        <li class="partner-strip__item">Architects</li>
-        <li class="partner-strip__item">Contractors</li>
-        <li class="partner-strip__item">Institutions</li>
-        <li class="partner-strip__item">Industries</li>
-        <li class="partner-strip__item">Sustainability Partners</li>
-      </ul>
     </div>
 
     <div class="biz-audiences" data-reveal-stagger>
@@ -436,7 +432,7 @@
   </div>
 </section>
 
-<!-- ===== PRACTICAL SECTION — "When you enquire, it helps to include" ===== -->
+<!-- ===== PRACTICAL SECTION — universal enquiry details ===== -->
 <section class="section section--limewash biz-practical" aria-labelledby="include-title">
   <div class="container">
     <div class="biz-practical__grid" data-reveal>
@@ -445,29 +441,26 @@
         <h2 class="biz-practical__title" id="include-title">Include these details for a faster response.</h2>
         <p class="biz-practical__body">
           A few practical details up front let us respond with what we can
-          supply — pack sizes, format, and how Prakritik Paint fits your project.
+          supply — for paint projects, pack sizes and format; for the other
+          directions, scale and requirement.
         </p>
       </div>
       <ul class="biz-practical__list">
         <li class="biz-practical__item">
           <span class="biz-practical__item-label">Interest</span>
-          <span class="biz-practical__item-hint">Eco-Paints, Cow-Dung Logs, Bio-Briquettes, Utility Products — or a partnership</span>
+          <span class="biz-practical__item-hint">Eco-Paints, Cow-Dung Logs, Bio-Briquettes, Eco Utility Products, distribution or collaboration</span>
         </li>
         <li class="biz-practical__item">
-          <span class="biz-practical__item-label">City</span>
-          <span class="biz-practical__item-hint">Where the site or market is located</span>
+          <span class="biz-practical__item-label">City / market</span>
+          <span class="biz-practical__item-hint">Where the requirement is located</span>
         </li>
         <li class="biz-practical__item">
-          <span class="biz-practical__item-label">Approximate wall area</span>
-          <span class="biz-practical__item-hint">In sq.ft. if you have a number (for paint projects)</span>
+          <span class="biz-practical__item-label">Use case / requirement</span>
+          <span class="biz-practical__item-hint">What your organisation needs</span>
         </li>
         <li class="biz-practical__item">
-          <span class="biz-practical__item-label">Paint format</span>
-          <span class="biz-practical__item-hint">Distemper, Emulsion, or not sure yet</span>
-        </li>
-        <li class="biz-practical__item">
-          <span class="biz-practical__item-label">Approximate requirement</span>
-          <span class="biz-practical__item-hint">Approximate quantity, if known</span>
+          <span class="biz-practical__item-label">Approximate quantity</span>
+          <span class="biz-practical__item-hint">If known</span>
         </li>
       </ul>
     </div>
@@ -485,8 +478,8 @@
           <h2 class="biz-form-card__title" id="form-title">Discuss a Project.</h2>
           <p class="biz-form-card__note">
             Tell us about the project or the partnership. We will respond with
-            what we can practically supply — pack sizes, format, and how the
-            Gaurikrit ecosystem fits your project.
+            what we can practically supply — for paint projects, pack sizes
+            and format; for the other directions, scale and availability.
           </p>
         </div>
 
@@ -521,8 +514,7 @@
       </aside>
 
       <!-- RIGHT 8 col: form fields -->
-      
-           
+
       <!-- data-static-preview: forms.js opens a pre-filled mailto draft
            instead of POSTing (no PHP endpoint on the static build). -->
       <form class="biz-form-card" action="mailto:seva@gaurikrit.com" method="post"
@@ -568,35 +560,51 @@
             <div class="form-error" data-error-for="city" role="alert"></div>
           </div>
           <div class="form-field">
-            <label class="form-label" for="biz-project-type">Project type <span class="req">*</span></label>
-            <select class="form-select" id="biz-project-type" name="project_type" required>
+            <label class="form-label" for="biz-interest">Interest <span class="req">*</span></label>
+            <select class="form-select" id="biz-interest" name="interest" required
+                    data-interest-toggle>
               <option value="" disabled selected>Choose…</option>
-                <option value="Residential">Residential</option>
-                <option value="Commercial">Commercial</option>
-                <option value="Institutional">Institutional</option>
-                <option value="CSR / NGO">CSR / NGO</option>
-                <option value="Gaushala Collaboration">Gaushala Collaboration</option>
-                <option value="Eco-Paints">Eco-Paints</option>
-                <option value="Cow-Dung Logs">Cow-Dung Logs</option>
-                <option value="Bio-Briquettes">Bio-Briquettes</option>
-                <option value="Utility Products">Utility Products</option>
-                <option value="Distribution">Distribution</option>
-                <option value="Sustainability Collaboration">Sustainability Collaboration</option>
-                <option value="Other">Other</option>
+                <option value="general">General enquiry</option>
+                <option value="eco-paints">Eco-Paints</option>
+                <option value="prakritik-distemper">Prakritik Distemper</option>
+                <option value="prakritik-emulsion">Prakritik Emulsion</option>
+                <option value="gocast-logs">Cow-Dung Logs</option>
+                <option value="bio-coal-logs">Bio-Briquettes</option>
+                <option value="utility-products">Eco Utility Products</option>
+                <option value="bulk-project">Bulk / Project</option>
+                <option value="business-partnership">Business Partnership</option>
+                <option value="gaushala-collaboration">Gaushala Collaboration</option>
             </select>
-            <div class="form-error" data-error-for="project_type" role="alert"></div>
+            <div class="form-error" data-error-for="interest" role="alert"></div>
+          </div>
+          <!-- V20 §60: paint-specific fields shown ONLY for Eco-Paints
+               interest (progressive enhancement — present in the no-JS
+               default markup, hidden by JS for non-paint interests). -->
+          <div class="form-field" data-paint-fields>
+            <label class="form-label" for="biz-wall-area">Approximate wall area</label>
+            <input class="form-input" type="text" id="biz-wall-area"
+                   name="wall_area" maxlength="60" inputmode="numeric"
+                   placeholder="sq.ft., if you have a number">
+          </div>
+          <div class="form-field" data-paint-fields>
+            <label class="form-label" for="biz-paint-format">Paint format</label>
+            <select class="form-select" id="biz-paint-format" name="paint_format">
+              <option value="" selected>Not sure yet</option>
+              <option value="distemper">Prakritik Distemper</option>
+              <option value="emulsion">Prakritik Emulsion</option>
+            </select>
           </div>
           <div class="form-field">
             <label class="form-label" for="biz-requirement">Approximate requirement</label>
             <input class="form-input" type="text" id="biz-requirement"
                    name="approximate_requirement" maxlength="100"
-                   placeholder="e.g. 20 packs / 80 litres / not sure yet">
+                   placeholder="Quantity or scale, if known.">
           </div>
           <div class="form-field form-field--full">
             <label class="form-label" for="biz-message">About the project <span class="req">*</span></label>
             <textarea class="form-textarea" id="biz-message" name="message" required
                       maxlength="2000" rows="6"
-                      placeholder="Tell us about the site, the walls, and what you are painting."></textarea>
+                      placeholder="Tell us what you need, where it is required, and what you would like to discuss."></textarea>
             <div class="form-error" data-error-for="message" role="alert"></div>
           </div>
         </div>
@@ -720,9 +728,9 @@
                 <a href="../products/prakritik-distemper/">Prakritik Distemper</a>
                 <a href="../products/prakritik-emulsion/">Prakritik Emulsion</a>
                 <a href="../colours/">Colours</a>
-                <a href="../products/#cow-dung-logs">Cow-Dung Logs</a>
-                <a href="../products/#bio-briquettes">Bio-Briquettes</a>
-                <a href="../products/#utility-products">Utility Products</a>
+                <a href="../products/#gocast-logs">Cow-Dung Logs</a>
+                <a href="../products/#bio-coal-logs">Bio-Briquettes</a>
+                <a href="../products/#utility-products">Eco Utility Products</a>
             </nav>
             <nav class="site-footer__col site-footer__col--work" aria-label="Work with us">
                 <h4 class="site-footer__heading">Work With Us</h4>
