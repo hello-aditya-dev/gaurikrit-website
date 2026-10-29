@@ -9,12 +9,12 @@
     <link rel="apple-touch-icon" href="./apple-touch-icon.png">
     <link rel="manifest" href="./site.webmanifest">
     <title>Gaurikrit — Circular Material Solutions from Natural Resources</title>
-    <meta name="description" content="Gaurikrit builds a material ecosystem around one natural resource — cow dung — from Prakritik Eco-Paints to GoCast and Bio-Coal fuel directions and utility products. Circular economy from Khurja, Uttar Pradesh.">
+    <meta name="description" content="Gaurikrit builds a material ecosystem around one natural resource — cow dung — from Prakritik Eco-Paints to Cow-Dung Logs, Bio-Briquettes fuel and Eco Utility Products. Circular economy from Khurja, Uttar Pradesh.">
     <link rel="canonical" href="https://hello-aditya-dev.github.io/gaurikrit-website/">
     <meta name="robots" content="noindex, nofollow">
     <meta name="theme-color" content="#173F2B">
     <meta property="og:title" content="Gaurikrit — Circular Material Solutions from Natural Resources">
-    <meta property="og:description" content="Gaurikrit builds a material ecosystem around one natural resource — cow dung — from Prakritik Eco-Paints to GoCast and Bio-Coal fuel directions and utility products. Circular economy from Khurja, Uttar Pradesh.">
+    <meta property="og:description" content="Gaurikrit builds a material ecosystem around one natural resource — cow dung — from Prakritik Eco-Paints to Cow-Dung Logs, Bio-Briquettes fuel and Eco Utility Products. Circular economy from Khurja, Uttar Pradesh.">
     <meta property="og:url" content="https://hello-aditya-dev.github.io/gaurikrit-website/">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Gaurikrit Bio Products">
@@ -24,7 +24,7 @@
     <meta property="og:image:alt" content="Gaurikrit — Gaurikrit — Circular Material Solutions from Natural Resources">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Gaurikrit — Circular Material Solutions from Natural Resources">
-    <meta name="twitter:description" content="Gaurikrit builds a material ecosystem around one natural resource — cow dung — from Prakritik Eco-Paints to GoCast and Bio-Coal fuel directions and utility products. Circular economy from Khurja, Uttar Pradesh.">
+    <meta name="twitter:description" content="Gaurikrit builds a material ecosystem around one natural resource — cow dung — from Prakritik Eco-Paints to Cow-Dung Logs, Bio-Briquettes fuel and Eco Utility Products. Circular economy from Khurja, Uttar Pradesh.">
     <meta name="twitter:image" content="https://hello-aditya-dev.github.io/gaurikrit-website/assets/social/og-home.jpg">
     <meta name="twitter:image:alt" content="Gaurikrit — Gaurikrit — Circular Material Solutions from Natural Resources">
     <script type="application/ld+json">
@@ -169,8 +169,8 @@
                             <a href="./products/prakritik-distemper/" class="nav-menu__link">Prakritik Distemper</a>
                             <a href="./products/prakritik-emulsion/" class="nav-menu__link">Prakritik Emulsion</a>
                             <a href="./colours/" class="nav-menu__link">Colours</a>
-                            <a href="./products/#gocast-logs" class="nav-menu__link">GoCast Logs</a>
-                            <a href="./products/#bio-coal-logs" class="nav-menu__link">Bio-Coal</a>
+                            <a href="./products/#cow-dung-logs" class="nav-menu__link">Cow-Dung Logs</a>
+                            <a href="./products/#bio-briquettes" class="nav-menu__link">Bio-Briquettes</a>
                             <a href="./products/#utility-products" class="nav-menu__link">Utility Products</a>
                         </div>
                     </div>
@@ -208,8 +208,8 @@
                           <a href="./products/prakritik-distemper/" class="mobile-menu__sub-link">Prakritik Distemper</a>
                           <a href="./products/prakritik-emulsion/" class="mobile-menu__sub-link">Prakritik Emulsion</a>
                           <a href="./colours/" class="mobile-menu__sub-link">Colours</a>
-                          <a href="./products/#gocast-logs" class="mobile-menu__sub-link">GoCast Logs</a>
-                          <a href="./products/#bio-coal-logs" class="mobile-menu__sub-link">Bio-Coal</a>
+                          <a href="./products/#cow-dung-logs" class="mobile-menu__sub-link">Cow-Dung Logs</a>
+                          <a href="./products/#bio-briquettes" class="mobile-menu__sub-link">Bio-Briquettes</a>
                           <a href="./products/#utility-products" class="mobile-menu__sub-link">Utility Products</a>
                       </div>
                 <a href="./sustainability/" class="mobile-menu__link" data-nav-link="/sustainability/">Sustainability<span class="mobile-menu__arrow">→</span></a>
@@ -259,16 +259,16 @@
   .hero__brand-desc { font-size: 0.5625rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fg-muted); }
   .hero__strapline { margin-top: 1.25rem; font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.04em; color: var(--forest); font-style: italic; }
 
-  /* V20 — transitioning product showcase. One stable 4/3 frame (no
-     layout shift), four client product posters crossfade inside it on
-     object-fit:contain so every label, pack and claim stays fully
-     visible (no cropping of factual identity). Captions + dots +
-     arrows sit below the frame. Autoplay/pause/keyboard/reduced-motion
-     behaviour is in assets/js/hero-carousel.js. */
+  /* V22 — transitioning product showcase. One stable 16/9 frame (no
+     layout shift) matching the client's four ~16:9 landscape artworks.
+     object-fit:contain keeps every label, pack and claim fully visible
+     (no cropping of factual identity). Captions + dots + arrows sit
+     below the frame. Autoplay/pause/keyboard/reduced-motion behaviour
+     is in assets/js/hero-carousel.js. */
   .hero-showcase { position: relative; }
   .hero-showcase__frame {
     position: relative;
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 16 / 9;
     background: var(--paper-warm);
     border: 1px solid var(--border);
     border-radius: 0.25rem;
@@ -384,6 +384,22 @@
     color: var(--forest); margin: 0;
   }
 
+  /* V22 — Stage 03 Product Portfolio: a 2×2 mini-grid of the four client
+     product artworks inside the standard 4/3 stage figure. Posters use
+     object-fit:contain so labels stay intact; thin gaps read as a mat. */
+  .resource-step__figure--grid {
+    display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr;
+    gap: 2px; background: var(--paper-warm);
+  }
+  .resource-step__figure--grid picture {
+    position: relative; display: block; overflow: hidden;
+    background: var(--paper-warm);
+  }
+  .resource-step__figure--grid img {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: contain; object-position: center;
+  }
+
   /* V21 — corporate tagline in the closing brand section */
   .brand-close__tagline {
     text-align: center; margin-top: 1.5rem; padding-top: 1.5rem;
@@ -448,7 +464,7 @@
         </h1>
         <p class="hero__body">
           Nature provides the resource. Gaurikrit explores how natural waste
-          can be transformed into practical material solutions&mdash;from
+          can be carried into practical material solutions&mdash;from
           Prakritik Paint to organic fuel and environmentally friendly utility
           products that help build a cleaner future.
         </p>
@@ -481,34 +497,34 @@
                       data-sub="Prakritik Paint family">
                 <picture>
                   <source type="image/avif"
-                          srcset="./assets/images/ecosystem/hero-eco-paints-640.avif 640w, ./assets/images/ecosystem/hero-eco-paints-1280.avif 1280w"
+                          srcset="./assets/images/ecosystem/carousel-eco-paints-640.avif 640w, ./assets/images/ecosystem/carousel-eco-paints-960.avif 960w, ./assets/images/ecosystem/carousel-eco-paints-1280.avif 1280w, ./assets/images/ecosystem/carousel-eco-paints-1920.avif 1920w"
                           sizes="(min-width: 1200px) 58vw, (min-width: 900px) 50vw, calc(100vw - 2.5rem)">
                   <source type="image/webp"
-                          srcset="./assets/images/ecosystem/hero-eco-paints-640.webp 640w, ./assets/images/ecosystem/hero-eco-paints-1280.webp 1280w"
+                          srcset="./assets/images/ecosystem/carousel-eco-paints-640.webp 640w, ./assets/images/ecosystem/carousel-eco-paints-960.webp 960w, ./assets/images/ecosystem/carousel-eco-paints-1280.webp 1280w, ./assets/images/ecosystem/carousel-eco-paints-1920.webp 1920w"
                           sizes="(min-width: 1200px) 58vw, (min-width: 900px) 50vw, calc(100vw - 2.5rem)">
-                  <img src="./assets/images/ecosystem/hero-eco-paints-1280.jpg"
-                       alt="Three Prakritik Paint buckets — Emulsion, Emulsion and Distemper — eco-friendly cow dung paint by Gaurikrit"
-                       width="1280" height="853"
+                  <img src="./assets/images/ecosystem/carousel-eco-paints-1920.jpg"
+                       alt="Gaurikrit Prakritik Paint — eco-friendly cow dung paint, Distemper and Emulsion buckets with natural backdrop"
+                       width="1920" height="1080"
                        fetchpriority="high" loading="eager"
                        decoding="async">
                 </picture>
               </figure>
               <figure class="hero-showcase__slide" role="group"
-                      aria-label="Slide 2 of 4: Bio-Coal Logs"
+                      aria-label="Slide 2 of 4: Bio-Briquettes"
                       aria-hidden="true"
                       data-slide="1"
-                      data-label="Bio-Coal Logs"
-                      data-sub="Bio-Briquettes">
+                      data-label="Bio-Briquettes"
+                      data-sub="Premium biomass fuel">
                 <picture>
                   <source type="image/avif"
-                          srcset="./assets/images/ecosystem/hero-bio-coal-logs-640.avif 640w, ./assets/images/ecosystem/hero-bio-coal-logs-1024.avif 1024w"
+                          srcset="./assets/images/ecosystem/carousel-bio-briquettes-640.avif 640w, ./assets/images/ecosystem/carousel-bio-briquettes-960.avif 960w, ./assets/images/ecosystem/carousel-bio-briquettes-1280.avif 1280w, ./assets/images/ecosystem/carousel-bio-briquettes-1920.avif 1920w"
                           sizes="(min-width: 1200px) 58vw, (min-width: 900px) 50vw, calc(100vw - 2.5rem)">
                   <source type="image/webp"
-                          srcset="./assets/images/ecosystem/hero-bio-coal-logs-640.webp 640w, ./assets/images/ecosystem/hero-bio-coal-logs-1024.webp 1024w"
+                          srcset="./assets/images/ecosystem/carousel-bio-briquettes-640.webp 640w, ./assets/images/ecosystem/carousel-bio-briquettes-960.webp 960w, ./assets/images/ecosystem/carousel-bio-briquettes-1280.webp 1280w, ./assets/images/ecosystem/carousel-bio-briquettes-1920.webp 1920w"
                           sizes="(min-width: 1200px) 58vw, (min-width: 900px) 50vw, calc(100vw - 2.5rem)">
-                  <img src="./assets/images/ecosystem/hero-bio-coal-logs-1024.jpg"
-                       alt="Gaurikrit Bio-Briquettes — premium renewable biomass fuel, cylindrical hollow briquettes"
-                       width="1024" height="1024"
+                  <img src="./assets/images/ecosystem/carousel-bio-briquettes-1920.jpg"
+                       alt="Gaurikrit Bio-Briquettes — premium renewable biomass fuel, cylindrical hollow briquettes on wood"
+                       width="1920" height="1080"
                        loading="lazy"
                        decoding="async">
                 </picture>
@@ -521,14 +537,14 @@
                       data-sub="Premium biomass fuel">
                 <picture>
                   <source type="image/avif"
-                          srcset="./assets/images/ecosystem/hero-cow-dung-logs-640.avif 640w, ./assets/images/ecosystem/hero-cow-dung-logs-1024.avif 1024w"
+                          srcset="./assets/images/ecosystem/carousel-cow-dung-logs-640.avif 640w, ./assets/images/ecosystem/carousel-cow-dung-logs-960.avif 960w, ./assets/images/ecosystem/carousel-cow-dung-logs-1280.avif 1280w"
                           sizes="(min-width: 1200px) 58vw, (min-width: 900px) 50vw, calc(100vw - 2.5rem)">
                   <source type="image/webp"
-                          srcset="./assets/images/ecosystem/hero-cow-dung-logs-640.webp 640w, ./assets/images/ecosystem/hero-cow-dung-logs-1024.webp 1024w"
+                          srcset="./assets/images/ecosystem/carousel-cow-dung-logs-640.webp 640w, ./assets/images/ecosystem/carousel-cow-dung-logs-960.webp 960w, ./assets/images/ecosystem/carousel-cow-dung-logs-1280.webp 1280w"
                           sizes="(min-width: 1200px) 58vw, (min-width: 900px) 50vw, calc(100vw - 2.5rem)">
-                  <img src="./assets/images/ecosystem/hero-cow-dung-logs-1024.jpg"
-                       alt="Gaurikrit Cow-Dung Logs — premium biomass fuel for havan, crematorium, boiler and industrial use"
-                       width="1024" height="1024"
+                  <img src="./assets/images/ecosystem/carousel-cow-dung-logs-1280.jpg"
+                       alt="Gaurikrit Cow-Dung Logs — premium biomass fuel logs stacked on wood with rural backdrop"
+                       width="1672" height="941"
                        loading="lazy"
                        decoding="async">
                 </picture>
@@ -541,14 +557,14 @@
                       data-sub="Dhoop, diyas, plates, cups">
                 <picture>
                   <source type="image/avif"
-                          srcset="./assets/images/ecosystem/hero-eco-utility-products-426.avif 426w, ./assets/images/ecosystem/hero-eco-utility-products-853.avif 853w"
+                          srcset="./assets/images/ecosystem/carousel-eco-utility-products-640.avif 640w, ./assets/images/ecosystem/carousel-eco-utility-products-960.avif 960w, ./assets/images/ecosystem/carousel-eco-utility-products-1280.avif 1280w, ./assets/images/ecosystem/carousel-eco-utility-products-1920.avif 1920w"
                           sizes="(min-width: 1200px) 58vw, (min-width: 900px) 50vw, calc(100vw - 2.5rem)">
                   <source type="image/webp"
-                          srcset="./assets/images/ecosystem/hero-eco-utility-products-426.webp 426w, ./assets/images/ecosystem/hero-eco-utility-products-853.webp 853w"
+                          srcset="./assets/images/ecosystem/carousel-eco-utility-products-640.webp 640w, ./assets/images/ecosystem/carousel-eco-utility-products-960.webp 960w, ./assets/images/ecosystem/carousel-eco-utility-products-1280.webp 1280w, ./assets/images/ecosystem/carousel-eco-utility-products-1920.webp 1920w"
                           sizes="(min-width: 1200px) 58vw, (min-width: 900px) 50vw, calc(100vw - 2.5rem)">
-                  <img src="./assets/images/ecosystem/hero-eco-utility-products-853.jpg"
+                  <img src="./assets/images/ecosystem/carousel-eco-utility-products-1920.jpg"
                        alt="Gaurikrit Eco Utility Products — dhoop cups, cow-dung diyas, biodegradable plates and eco glasses"
-                       width="853" height="1280"
+                       width="1920" height="1080"
                        loading="lazy"
                        decoding="async">
                 </picture>
@@ -568,7 +584,7 @@
                       data-dot="0"></button>
               <button type="button" class="hero-showcase__dot" role="tab"
                       aria-selected="false"
-                      aria-label="Show Bio-Coal Logs"
+                      aria-label="Show Bio-Briquettes"
                       data-dot="1"></button>
               <button type="button" class="hero-showcase__dot" role="tab"
                       aria-selected="false"
@@ -626,7 +642,7 @@
     <div class="resource-steps" data-reveal-stagger>
       <article class="resource-step">
         <figure class="resource-step__figure">
-          <picture><source type="image/avif" srcset="./assets/images/ecosystem/rawmat-640.avif 640w, ./assets/images/ecosystem/rawmat-960.avif 960w, ./assets/images/ecosystem/rawmat-1280.avif 1280w, ./assets/images/ecosystem/rawmat-1920.avif 1920w" sizes="(min-width: 1100px) 22vw, (min-width: 768px) 45vw, calc(100vw - 2.5rem)"><source type="image/webp" srcset="./assets/images/ecosystem/rawmat-640.webp 640w, ./assets/images/ecosystem/rawmat-960.webp 960w, ./assets/images/ecosystem/rawmat-1280.webp 1280w, ./assets/images/ecosystem/rawmat-1920.webp 1920w" sizes="(min-width: 1100px) 22vw, (min-width: 768px) 45vw, calc(100vw - 2.5rem)"><img  src="./assets/images/ecosystem/rawmat-960.jpg" alt="Natural biomass &mdash; the raw material beginning, with straw fibre" width="960" height="549" loading="lazy" decoding="async"></picture>
+          <picture><source type="image/avif" srcset="./assets/images/ecosystem/flow-cow-dung-640.avif 640w, ./assets/images/ecosystem/flow-cow-dung-960.avif 960w, ./assets/images/ecosystem/flow-cow-dung-1280.avif 1280w" sizes="(min-width: 1100px) 22vw, (min-width: 768px) 45vw, calc(100vw - 2.5rem)"><source type="image/webp" srcset="./assets/images/ecosystem/flow-cow-dung-640.webp 640w, ./assets/images/ecosystem/flow-cow-dung-960.webp 960w, ./assets/images/ecosystem/flow-cow-dung-1280.webp 1280w" sizes="(min-width: 1100px) 22vw, (min-width: 768px) 45vw, calc(100vw - 2.5rem)"><img  src="./assets/images/ecosystem/flow-cow-dung-960.jpg" alt="Raw cow dung in a rural setting &mdash; the natural material starting point" width="960" height="540" loading="lazy" decoding="async"></picture>
         </figure>
         <div class="resource-step__caption">
           <span class="resource-step__kicker">Stage 01</span>
@@ -638,7 +654,7 @@
       </article>
       <article class="resource-step">
         <figure class="resource-step__figure">
-          <picture><source type="image/avif" srcset="./assets/images/ecosystem/innovation-research-640.avif 640w, ./assets/images/ecosystem/innovation-research-960.avif 960w, ./assets/images/ecosystem/innovation-research-1280.avif 1280w, ./assets/images/ecosystem/innovation-research-1920.avif 1920w" sizes="(min-width: 1100px) 22vw, (min-width: 768px) 45vw, calc(100vw - 2.5rem)"><source type="image/webp" srcset="./assets/images/ecosystem/innovation-research-640.webp 640w, ./assets/images/ecosystem/innovation-research-960.webp 960w, ./assets/images/ecosystem/innovation-research-1280.webp 1280w, ./assets/images/ecosystem/innovation-research-1920.webp 1920w" sizes="(min-width: 1100px) 22vw, (min-width: 768px) 45vw, calc(100vw - 2.5rem)"><img  src="./assets/images/ecosystem/innovation-research-960.jpg" alt="Material research samples &mdash; raw biomass, processed log and finished coating" width="960" height="600" loading="lazy" decoding="async"></picture>
+          <picture><source type="image/avif" srcset="./assets/images/ecosystem/flow-processing-640.avif 640w, ./assets/images/ecosystem/flow-processing-960.avif 960w" sizes="(min-width: 1100px) 22vw, (min-width: 768px) 45vw, calc(100vw - 2.5rem)"><source type="image/webp" srcset="./assets/images/ecosystem/flow-processing-640.webp 640w, ./assets/images/ecosystem/flow-processing-960.webp 960w" sizes="(min-width: 1100px) 22vw, (min-width: 768px) 45vw, calc(100vw - 2.5rem)"><img  src="./assets/images/ecosystem/flow-processing-960.jpg" alt="Conceptual visual of natural-waste processing &mdash; biomass handling and material development" width="960" height="960" loading="lazy" decoding="async"></picture>
         </figure>
         <div class="resource-step__caption">
           <span class="resource-step__kicker">Stage 02</span>
@@ -649,20 +665,23 @@
         </div>
       </article>
       <article class="resource-step">
-        <figure class="resource-step__figure">
-          <picture><source type="image/avif" srcset="./assets/images/ecosystem/eco-paints-pair-640.avif 640w, ./assets/images/ecosystem/eco-paints-pair-960.avif 960w, ./assets/images/ecosystem/eco-paints-pair-1280.avif 1280w, ./assets/images/ecosystem/eco-paints-pair-1920.avif 1920w" sizes="(min-width: 1100px) 22vw, (min-width: 768px) 45vw, calc(100vw - 2.5rem)"><source type="image/webp" srcset="./assets/images/ecosystem/eco-paints-pair-640.webp 640w, ./assets/images/ecosystem/eco-paints-pair-960.webp 960w, ./assets/images/ecosystem/eco-paints-pair-1280.webp 1280w, ./assets/images/ecosystem/eco-paints-pair-1920.webp 1920w" sizes="(min-width: 1100px) 22vw, (min-width: 768px) 45vw, calc(100vw - 2.5rem)"><img  src="./assets/images/ecosystem/eco-paints-pair-1280.jpg" alt="Prakritik Distemper and Emulsion paint packs &mdash; the documented product family" width="1280" height="800" loading="lazy" decoding="async"></picture>
+        <figure class="resource-step__figure resource-step__figure--grid" aria-label="The four Gaurikrit product directions">
+          <picture><source type="image/avif" srcset="./assets/images/ecosystem/carousel-eco-paints-640.avif 640w" sizes="(min-width: 1100px) 11vw, (min-width: 768px) 22vw, calc(50vw - 2.5rem)"><source type="image/webp" srcset="./assets/images/ecosystem/carousel-eco-paints-640.webp 640w" sizes="(min-width: 1100px) 11vw, (min-width: 768px) 22vw, calc(50vw - 2.5rem)"><img  src="./assets/images/ecosystem/carousel-eco-paints-640.jpg" alt="Eco-Paints &mdash; Prakritik Paint artwork" width="640" height="360" loading="lazy" decoding="async"></picture>
+          <picture><source type="image/avif" srcset="./assets/images/ecosystem/carousel-cow-dung-logs-640.avif 640w" sizes="(min-width: 1100px) 11vw, (min-width: 768px) 22vw, calc(50vw - 2.5rem)"><source type="image/webp" srcset="./assets/images/ecosystem/carousel-cow-dung-logs-640.webp 640w" sizes="(min-width: 1100px) 11vw, (min-width: 768px) 22vw, calc(50vw - 2.5rem)"><img  src="./assets/images/ecosystem/carousel-cow-dung-logs-640.jpg" alt="Cow-Dung Logs artwork" width="640" height="360" loading="lazy" decoding="async"></picture>
+          <picture><source type="image/avif" srcset="./assets/images/ecosystem/carousel-bio-briquettes-640.avif 640w" sizes="(min-width: 1100px) 11vw, (min-width: 768px) 22vw, calc(50vw - 2.5rem)"><source type="image/webp" srcset="./assets/images/ecosystem/carousel-bio-briquettes-640.webp 640w" sizes="(min-width: 1100px) 11vw, (min-width: 768px) 22vw, calc(50vw - 2.5rem)"><img  src="./assets/images/ecosystem/carousel-bio-briquettes-640.jpg" alt="Bio-Briquettes artwork" width="640" height="360" loading="lazy" decoding="async"></picture>
+          <picture><source type="image/avif" srcset="./assets/images/ecosystem/carousel-eco-utility-products-640.avif 640w" sizes="(min-width: 1100px) 11vw, (min-width: 768px) 22vw, calc(50vw - 2.5rem)"><source type="image/webp" srcset="./assets/images/ecosystem/carousel-eco-utility-products-640.webp 640w" sizes="(min-width: 1100px) 11vw, (min-width: 768px) 22vw, calc(50vw - 2.5rem)"><img  src="./assets/images/ecosystem/carousel-eco-utility-products-640.jpg" alt="Eco Utility Products artwork" width="640" height="360" loading="lazy" decoding="async"></picture>
         </figure>
         <div class="resource-step__caption">
           <span class="resource-step__kicker">Stage 03</span>
           <h3 class="resource-step__title">Product Portfolio</h3>
           <p class="resource-step__desc">
-            Four directions from one resource: Eco-Paints, Cow-Dung Logs, Bio-Coal Logs and Eco Utility Products.
+            Four directions from one resource: Eco-Paints, Cow-Dung Logs, Bio-Briquettes and Eco Utility Products.
           </p>
         </div>
       </article>
       <article class="resource-step">
         <figure class="resource-step__figure">
-          <picture><source type="image/avif" srcset="./assets/images/ecosystem/colours-wall-640.avif 640w, ./assets/images/ecosystem/colours-wall-960.avif 960w, ./assets/images/ecosystem/colours-wall-1280.avif 1280w, ./assets/images/ecosystem/colours-wall-1920.avif 1920w" sizes="(min-width: 1100px) 22vw, (min-width: 768px) 45vw, calc(100vw - 2.5rem)"><source type="image/webp" srcset="./assets/images/ecosystem/colours-wall-640.webp 640w, ./assets/images/ecosystem/colours-wall-960.webp 960w, ./assets/images/ecosystem/colours-wall-1280.webp 1280w, ./assets/images/ecosystem/colours-wall-1920.webp 1920w" sizes="(min-width: 1100px) 22vw, (min-width: 768px) 45vw, calc(100vw - 2.5rem)"><img  src="./assets/images/ecosystem/colours-wall-960.jpg" alt="Finished natural-coating wall in a furnished room &mdash; a useful, sustainable application" width="960" height="549" loading="lazy" decoding="async"></picture>
+          <picture><source type="image/avif" srcset="./assets/images/ecosystem/flow-impact-640.avif 640w, ./assets/images/ecosystem/flow-impact-960.avif 960w" sizes="(min-width: 1100px) 22vw, (min-width: 768px) 45vw, calc(100vw - 2.5rem)"><source type="image/webp" srcset="./assets/images/ecosystem/flow-impact-640.webp 640w, ./assets/images/ecosystem/flow-impact-960.webp 960w" sizes="(min-width: 1100px) 22vw, (min-width: 768px) 45vw, calc(100vw - 2.5rem)"><img  src="./assets/images/ecosystem/flow-impact-960.jpg" alt="Earth encircled by a leaf recycling symbol &mdash; a circular-economy direction" width="960" height="960" loading="lazy" decoding="async"></picture>
         </figure>
         <div class="resource-step__caption">
           <span class="resource-step__kicker">Stage 04</span>
@@ -697,7 +716,7 @@
     <div class="families" data-reveal-stagger>
         <article class="family" id="family-eco-paints">
             <figure class="family__media family__media--photo">
-                <picture><source type="image/avif" srcset="./assets/images/ecosystem/eco-paints-pair-640.avif 640w, ./assets/images/ecosystem/eco-paints-pair-960.avif 960w, ./assets/images/ecosystem/eco-paints-pair-1280.avif 1280w, ./assets/images/ecosystem/eco-paints-pair-1920.avif 1920w" sizes="(min-width: 768px) 45vw, calc(100vw - 2.5rem)"><source type="image/webp" srcset="./assets/images/ecosystem/eco-paints-pair-640.webp 640w, ./assets/images/ecosystem/eco-paints-pair-960.webp 960w, ./assets/images/ecosystem/eco-paints-pair-1280.webp 1280w, ./assets/images/ecosystem/eco-paints-pair-1920.webp 1920w" sizes="(min-width: 768px) 45vw, calc(100vw - 2.5rem)"><img  src="./assets/images/ecosystem/eco-paints-pair-960.jpg" alt="Prakritik Distemper and Prakritik Emulsion paint packs - the documented Eco-Paints family" width="960" height="640" loading="lazy" decoding="async"></picture>
+                <picture><source type="image/avif" srcset="./assets/images/ecosystem/carousel-eco-paints-640.avif 640w, ./assets/images/ecosystem/carousel-eco-paints-960.avif 960w, ./assets/images/ecosystem/carousel-eco-paints-1280.avif 1280w, ./assets/images/ecosystem/carousel-eco-paints-1920.avif 1920w" sizes="(min-width: 768px) 45vw, calc(100vw - 2.5rem)"><source type="image/webp" srcset="./assets/images/ecosystem/carousel-eco-paints-640.webp 640w, ./assets/images/ecosystem/carousel-eco-paints-960.webp 960w, ./assets/images/ecosystem/carousel-eco-paints-1280.webp 1280w, ./assets/images/ecosystem/carousel-eco-paints-1920.webp 1920w" sizes="(min-width: 768px) 45vw, calc(100vw - 2.5rem)"><img  src="./assets/images/ecosystem/carousel-eco-paints-1920.jpg" alt="Gaurikrit Eco-Paints — Prakritik Paint artwork, the documented product family" width="1920" height="1080" loading="lazy" decoding="async"></picture>
             </figure>
 
           <div class="family__head">
@@ -720,14 +739,14 @@
             Explore Eco-Paints <span aria-hidden="true">→</span>
           </a>
         </article>
-        <article class="family" id="family-gocast-logs">
+        <article class="family" id="family-cow-dung-logs">
             <figure class="family__media family__media--photo">
-                <picture><source type="image/avif" srcset="./assets/images/ecosystem/gocast-editorial-640.avif 640w, ./assets/images/ecosystem/gocast-editorial-960.avif 960w, ./assets/images/ecosystem/gocast-editorial-1280.avif 1280w, ./assets/images/ecosystem/gocast-editorial-1920.avif 1920w" sizes="(min-width: 768px) 45vw, calc(100vw - 2.5rem)"><source type="image/webp" srcset="./assets/images/ecosystem/gocast-editorial-640.webp 640w, ./assets/images/ecosystem/gocast-editorial-960.webp 960w, ./assets/images/ecosystem/gocast-editorial-1280.webp 1280w, ./assets/images/ecosystem/gocast-editorial-1920.webp 1920w" sizes="(min-width: 768px) 45vw, calc(100vw - 2.5rem)"><img  src="./assets/images/ecosystem/gocast-editorial-960.jpg" alt="Client-supplied cow-dung logs on a terracotta plate with straw" width="960" height="640" loading="lazy" decoding="async"></picture>
+                <picture><source type="image/avif" srcset="./assets/images/ecosystem/carousel-cow-dung-logs-640.avif 640w, ./assets/images/ecosystem/carousel-cow-dung-logs-960.avif 960w, ./assets/images/ecosystem/carousel-cow-dung-logs-1280.avif 1280w" sizes="(min-width: 768px) 45vw, calc(100vw - 2.5rem)"><source type="image/webp" srcset="./assets/images/ecosystem/carousel-cow-dung-logs-640.webp 640w, ./assets/images/ecosystem/carousel-cow-dung-logs-960.webp 960w, ./assets/images/ecosystem/carousel-cow-dung-logs-1280.webp 1280w" sizes="(min-width: 768px) 45vw, calc(100vw - 2.5rem)"><img  src="./assets/images/ecosystem/carousel-cow-dung-logs-1280.jpg" alt="Gaurikrit Cow-Dung Logs — premium biomass fuel artwork" width="1672" height="941" loading="lazy" decoding="async"></picture>
             </figure>
 
           <div class="family__head">
             <span class="family__num" aria-hidden="true">02</span>
-            <h3 class="family__name">GoCast Logs</h3>
+            <h3 class="family__name">Cow-Dung Logs</h3>
           </div>
           <p class="family__line">Saving trees without changing traditions.</p>
           <p class="family__desc">A dense log format developed as an alternative to conventional wood — directed at ceremonial and traditional applications where wood has long been the default.</p>
@@ -741,21 +760,21 @@
               <li>Ceremonial applications</li>
               <li>Forest-conservation direction</li>
           </ul>
-          <a class="family__cta" href="./products/#gocast-logs">
-            Explore GoCast Logs <span aria-hidden="true">→</span>
+          <a class="family__cta" href="./products/#cow-dung-logs">
+            Explore Cow-Dung Logs <span aria-hidden="true">→</span>
           </a>
         </article>
-        <article class="family" id="family-bio-coal-logs">
+        <article class="family" id="family-bio-briquettes">
             <figure class="family__media family__media--photo">
-                <picture><source type="image/avif" srcset="./assets/images/ecosystem/family-bio-coal-logs-640.avif 640w, ./assets/images/ecosystem/family-bio-coal-logs-960.avif 960w, ./assets/images/ecosystem/family-bio-coal-logs-1024.avif 1024w" sizes="(min-width: 768px) 45vw, calc(100vw - 2.5rem)"><source type="image/webp" srcset="./assets/images/ecosystem/family-bio-coal-logs-640.webp 640w, ./assets/images/ecosystem/family-bio-coal-logs-960.webp 960w, ./assets/images/ecosystem/family-bio-coal-logs-1024.webp 1024w" sizes="(min-width: 768px) 45vw, calc(100vw - 2.5rem)"><img  src="./assets/images/ecosystem/family-bio-coal-logs-960.jpg" alt="Client-supplied Gaurikrit Bio-Briquettes product poster — premium renewable biomass fuel" width="960" height="640" loading="lazy" decoding="async"></picture>
+                <picture><source type="image/avif" srcset="./assets/images/ecosystem/carousel-bio-briquettes-640.avif 640w, ./assets/images/ecosystem/carousel-bio-briquettes-960.avif 960w, ./assets/images/ecosystem/carousel-bio-briquettes-1280.avif 1280w, ./assets/images/ecosystem/carousel-bio-briquettes-1920.avif 1920w" sizes="(min-width: 768px) 45vw, calc(100vw - 2.5rem)"><source type="image/webp" srcset="./assets/images/ecosystem/carousel-bio-briquettes-640.webp 640w, ./assets/images/ecosystem/carousel-bio-briquettes-960.webp 960w, ./assets/images/ecosystem/carousel-bio-briquettes-1280.webp 1280w, ./assets/images/ecosystem/carousel-bio-briquettes-1920.webp 1920w" sizes="(min-width: 768px) 45vw, calc(100vw - 2.5rem)"><img  src="./assets/images/ecosystem/carousel-bio-briquettes-1920.jpg" alt="Gaurikrit Bio-Briquettes — premium renewable biomass fuel artwork" width="1920" height="1080" loading="lazy" decoding="async"></picture>
             </figure>
 
           <div class="family__head">
             <span class="family__num" aria-hidden="true">03</span>
-            <h3 class="family__name">Bio-Coal Logs</h3>
+            <h3 class="family__name">Bio-Briquettes</h3>
           </div>
           <p class="family__line">Renewable energy from natural biomass.</p>
-          <p class="family__desc">Biomass-based fuel logs — a renewable energy direction that explores how natural material streams can reduce reliance on fossil fuels.</p>
+          <p class="family__desc">Biomass-based fuel briquettes — a development direction exploring how natural material streams could serve fuel applications.</p>
           <p class="family__meta">
             <span class="family__status family__status--direction">
               Development direction
@@ -766,13 +785,13 @@
               <li>Reduced fossil-fuel reliance direction</li>
               <li>Sustainable fuel applications</li>
           </ul>
-          <a class="family__cta" href="./products/#bio-coal-logs">
-            Explore Bio-Coal Logs <span aria-hidden="true">→</span>
+          <a class="family__cta" href="./products/#bio-briquettes">
+            Explore Bio-Briquettes <span aria-hidden="true">→</span>
           </a>
         </article>
         <article class="family" id="family-utility-products">
             <figure class="family__media family__media--photo">
-                <picture><source type="image/avif" srcset="./assets/images/ecosystem/family-eco-utility-products-640.avif 640w, ./assets/images/ecosystem/family-eco-utility-products-853.avif 853w" sizes="(min-width: 768px) 45vw, calc(100vw - 2.5rem)"><source type="image/webp" srcset="./assets/images/ecosystem/family-eco-utility-products-640.webp 640w, ./assets/images/ecosystem/family-eco-utility-products-853.webp 853w" sizes="(min-width: 768px) 45vw, calc(100vw - 2.5rem)"><img  src="./assets/images/ecosystem/family-eco-utility-products-853.jpg" alt="Client-supplied Gaurikrit Eco Utility Products poster — dhoop cups, cow-dung diyas, biodegradable plates and eco glasses" width="960" height="640" loading="lazy" decoding="async"></picture>
+                <picture><source type="image/avif" srcset="./assets/images/ecosystem/carousel-eco-utility-products-640.avif 640w, ./assets/images/ecosystem/carousel-eco-utility-products-960.avif 960w, ./assets/images/ecosystem/carousel-eco-utility-products-1280.avif 1280w, ./assets/images/ecosystem/carousel-eco-utility-products-1920.avif 1920w" sizes="(min-width: 768px) 45vw, calc(100vw - 2.5rem)"><source type="image/webp" srcset="./assets/images/ecosystem/carousel-eco-utility-products-640.webp 640w, ./assets/images/ecosystem/carousel-eco-utility-products-960.webp 960w, ./assets/images/ecosystem/carousel-eco-utility-products-1280.webp 1280w, ./assets/images/ecosystem/carousel-eco-utility-products-1920.webp 1920w" sizes="(min-width: 768px) 45vw, calc(100vw - 2.5rem)"><img  src="./assets/images/ecosystem/carousel-eco-utility-products-1920.jpg" alt="Gaurikrit Eco Utility Products — dhoop cups, cow-dung diyas, biodegradable plates and eco glasses artwork" width="1920" height="1080" loading="lazy" decoding="async"></picture>
             </figure>
 
           <div class="family__head">
@@ -800,61 +819,25 @@
 </section>
 
 <!-- ============================================================
-     04. NOTHING GOES TO WASTE — the circular model (§19-20)
+     04. A CIRCULAR MATERIAL DIRECTION — compact cycle summary
+     V22: the homepage four-stage flow above is now the main visual
+     narrative. This section is a brief closing statement + link to the
+     full seven-stage model on /sustainability/ (kept intact there) —
+     removing the duplicated timeline without losing substance.
      ============================================================ -->
 <section class="section section--paper circular-section" aria-labelledby="circular-title">
   <div class="container">
     <div class="circular-section__head section-heading section-heading--left" data-reveal>
       <span class="section-heading__eyebrow">The Circular Model</span>
-      <h2 class="section-heading__title" id="circular-title">Nothing Goes to Waste.</h2>
+      <h2 class="section-heading__title" id="circular-title">A Circular Material Direction.</h2>
       <p class="section-heading__desc">
-        One continuous cycle: the resource enters, is developed, becomes useful
-        products — and creates a new value cycle.
+        The stages above repeat as one continuous cycle: the resource enters,
+        is developed, becomes useful products &mdash; and further material
+        opportunities keep the cycle going.
       </p>
-    </div>
-
-    <div class="circular" data-circular data-reveal>
-      <ol class="circular__track">
-          <li class="stage">
-            <span class="stage__num">01</span>
-            <h3 class="stage__name">Collection</h3>
-            <p class="stage__desc">Natural and agricultural material streams are gathered.</p>
-          </li>
-          <li class="stage">
-            <span class="stage__num">02</span>
-            <h3 class="stage__name">Processing</h3>
-            <p class="stage__desc">The raw material is prepared and stabilised.</p>
-          </li>
-          <li class="stage">
-            <span class="stage__num">03</span>
-            <h3 class="stage__name">Material Enhancement</h3>
-            <p class="stage__desc">It is developed into useful working materials.</p>
-          </li>
-          <li class="stage">
-            <span class="stage__num">04</span>
-            <h3 class="stage__name">Manufacturing</h3>
-            <p class="stage__desc">Materials are formed into product families.</p>
-          </li>
-          <li class="stage">
-            <span class="stage__num">05</span>
-            <h3 class="stage__name">Products</h3>
-            <p class="stage__desc">Walls, energy and everyday-use applications.</p>
-          </li>
-          <li class="stage">
-            <span class="stage__num">06</span>
-            <h3 class="stage__name">Environmental Impact</h3>
-            <p class="stage__desc">Each use replaces a less sustainable alternative.</p>
-          </li>
-          <li class="stage">
-            <span class="stage__num">07</span>
-            <h3 class="stage__name">Resource Regeneration</h3>
-            <p class="stage__desc">The cycle renews — nothing goes to waste.</p>
-          </li>
-      </ol>
-      <svg class="circular__loop-path" viewBox="0 0 1000 28" preserveAspectRatio="none" aria-hidden="true">
-        <path d="M8,2 L8,20 C8,26 16,26 26,26 L974,26 C984,26 992,26 992,20 L992,10" />
-      </svg>
-      <span class="circular__loop-label" aria-hidden="true">Resource regeneration</span>
+      <p class="circular-section__cta" style="margin-top:1.25rem;">
+        <a class="btn btn--outline" href="./sustainability/#circular-economy">Explore the Full Circular Model <span aria-hidden="true">→</span></a>
+      </p>
     </div>
   </div>
 </section>
@@ -928,12 +911,12 @@
       <h2 class="section-heading__title" id="innov-title">Where Tradition Meets Technology.</h2>
     </div>
     <div class="innov-teaser__grid" data-reveal>
-      <figure class="innov-composition" aria-label="Compressed biomass fuel material — a research sample from the Gaurikrit material-development direction">
-        <picture><source type="image/avif" srcset="./assets/images/ecosystem/gocast-material-640.avif 640w, ./assets/images/ecosystem/gocast-material-960.avif 960w, ./assets/images/ecosystem/gocast-material-1280.avif 1280w, ./assets/images/ecosystem/gocast-material-1920.avif 1920w" sizes="(min-width: 1024px) 40vw, calc(100vw - 2.5rem)"><source type="image/webp" srcset="./assets/images/ecosystem/gocast-material-640.webp 640w, ./assets/images/ecosystem/gocast-material-960.webp 960w, ./assets/images/ecosystem/gocast-material-1280.webp 1280w, ./assets/images/ecosystem/gocast-material-1920.webp 1920w" sizes="(min-width: 1024px) 40vw, calc(100vw - 2.5rem)"><img  src="./assets/images/ecosystem/gocast-material-1280.jpg" alt="Compressed biomass fuel material — a research sample from the Gaurikrit material-development direction" width="1280" height="853" loading="lazy" decoding="async"></picture>
+      <figure class="innov-composition" aria-label="Material research samples — raw biomass, processed log and finished coating">
+        <picture><source type="image/avif" srcset="./assets/images/ecosystem/innovation-research-640.avif 640w, ./assets/images/ecosystem/innovation-research-960.avif 960w, ./assets/images/ecosystem/innovation-research-1280.avif 1280w, ./assets/images/ecosystem/innovation-research-1920.avif 1920w" sizes="(min-width: 1024px) 40vw, calc(100vw - 2.5rem)"><source type="image/webp" srcset="./assets/images/ecosystem/innovation-research-640.webp 640w, ./assets/images/ecosystem/innovation-research-960.webp 960w, ./assets/images/ecosystem/innovation-research-1280.webp 1280w, ./assets/images/ecosystem/innovation-research-1920.webp 1920w" sizes="(min-width: 1024px) 40vw, calc(100vw - 2.5rem)"><img  src="./assets/images/ecosystem/innovation-research-1280.jpg" alt="Material research samples — raw biomass, processed log and finished coating" width="1280" height="800" loading="lazy" decoding="async"></picture>
         <figcaption class="innov-composition__captions">
-          <span class="innov-composition__caption">Natural material<em>biomass source</em></span>
-          <span class="innov-composition__caption">Compressed format<em>fuel sample</em></span>
-          <span class="innov-composition__caption">Energy direction<em>application study</em></span>
+          <span class="innov-composition__caption">Raw material<em>biomass sample</em></span>
+          <span class="innov-composition__caption">Processed<em>log sample</em></span>
+          <span class="innov-composition__caption">Coating<em>finished sample</em></span>
         </figcaption>
       </figure>
       <div class="focus-rows">
@@ -1138,8 +1121,8 @@
                 <a href="./products/prakritik-distemper/">Prakritik Distemper</a>
                 <a href="./products/prakritik-emulsion/">Prakritik Emulsion</a>
                 <a href="./colours/">Colours</a>
-                <a href="./products/#gocast-logs">GoCast Logs</a>
-                <a href="./products/#bio-coal-logs">Bio-Coal Logs</a>
+                <a href="./products/#cow-dung-logs">Cow-Dung Logs</a>
+                <a href="./products/#bio-briquettes">Bio-Briquettes</a>
                 <a href="./products/#utility-products">Utility Products</a>
             </nav>
             <nav class="site-footer__col site-footer__col--work" aria-label="Work with us">

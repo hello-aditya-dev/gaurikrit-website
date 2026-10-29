@@ -29,7 +29,7 @@ require ROOT_PATH . '/includes/header.php';
 global $COMPANY, $CIRCULAR_STAGES, $IMPACT_AREAS, $APPLICATION_GROUPS;
 
 $measurementItems = [
-    ['name' => 'Trees / Resource conservation', 'desc' => 'Trees saved through GoCast and material directions — measured when verified project data is available.'],
+    ['name' => 'Trees / Resource conservation', 'desc' => 'Trees saved through Cow-Dung Logs and material directions — measured when verified project data is available.'],
     ['name' => 'Waste / Material reuse',        'desc' => 'Natural and agricultural material streams carried into products.'],
     ['name' => 'Energy / Fossil fuel replaced', 'desc' => 'Biomass fuel applications replacing conventional fuel use.'],
     ['name' => 'Carbon / Reduction',            'desc' => 'Emissions reduction from verified lifecycle analysis.'],

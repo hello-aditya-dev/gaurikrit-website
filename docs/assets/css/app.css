@@ -4936,13 +4936,15 @@ p, li, dd, blockquote { text-wrap: pretty; }
   border: 1px solid var(--border); border-radius: var(--r-card);
   background: var(--paper); overflow: hidden;
 }
-/* V19 §30: full-bleed 3:2 editorial frame — one art-direction system for
-   all four families. No paper inset, no object-contain box. */
+/* V22 §30: full-bleed 16:9 editorial frame matching the client's four
+   ~16:9 landscape product artworks (2026-10-29 batch). object-fit:contain
+   preserves embedded labels, logos and packaging text. One art-direction
+   system for all four families. */
 .family__media--photo { padding: 0; }
 .family__media--photo picture,
 .family__media--photo img {
-  display: block; width: 100%; height: auto; aspect-ratio: 3 / 2;
-  object-fit: cover;
+  display: block; width: 100%; height: auto; aspect-ratio: 16 / 9;
+  object-fit: contain; background: var(--paper-warm);
   transition: transform var(--dur) var(--ease);
 }
 .family__media--photo img { border-radius: calc(var(--r-card) - 0.1875rem); }

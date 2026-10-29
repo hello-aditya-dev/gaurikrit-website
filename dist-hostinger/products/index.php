@@ -15,9 +15,9 @@
  *   6. Colour-collection callout — two client-supplied collections
  *      → /colours/ (V18 §20; the 8-benefit grid now lives ONLY in
  *      Eco-Paints educational contexts, not here).
- *   7. GoCast / Cow-Dung Logs (#gocast-logs) — REAL client log
+ *   7. Cow-Dung Logs (#cow-dung-logs) — client artwork (legacy #gocast-logs)
  *      photography, editorial 45/55 composition (V18 §16–17).
- *   8. Bio-Coal Logs (#bio-coal-logs) — type/material-led (§33).
+ *   8. Bio-Briquettes (#bio-briquettes) — client artwork (legacy #bio-coal-logs).
  *   9. Utility Products (#utility-products) — same (§34).
  *  10. Application map — "Where the Ecosystem Works." (§35).
  *  11. Final CTA (FAQ retired — §41: no generic paint FAQ here).
@@ -28,7 +28,7 @@
 declare(strict_types=1);
 
 $pageTitle       = 'Products — Eco-Paints, Biomass & Sustainable Material Solutions | Gaurikrit';
-$pageDescription = 'The Gaurikrit product ecosystem: Eco-Paints (Prakritik Distemper and Emulsion, fully documented) plus GoCast Logs, Bio-Coal Logs and Utility Product development directions — one natural resource, multiple applications.';
+$pageDescription = 'The Gaurikrit product ecosystem: Eco-Paints (Prakritik Distemper and Emulsion, fully documented) plus Cow-Dung Logs, Bio-Briquettes and Utility Product development directions — one natural resource, multiple applications.';
 $pageCanonical   = '/products/';
 $pageClass       = 'products';
 
@@ -310,8 +310,8 @@ $emulsion    = get_product('prakritik-emulsion');
         <h1 class="products-hero__title" id="products-hero-title">One natural resource. Multiple useful applications.</h1>
         <p class="products-hero__sub">
           Cow dung is the shared material beginning. Gaurikrit develops it in
-          four directions — Eco-Paints is the documented family; GoCast Logs,
-          Bio-Coal Logs and Utility Products are development directions.
+          four directions — Eco-Paints is the documented family; Cow-Dung Logs,
+          Bio-Briquettes and Utility Products are development directions.
         </p>
       </div>
       <div class="products-hero__visual" data-reveal>
@@ -594,30 +594,32 @@ $emulsion    = get_product('prakritik-emulsion');
 </section>
 
 <!-- ============================================================
-     07. GOCAST / COW-DUNG LOGS (V18 §16–17)
-     REAL client-supplied log photography in an editorial
-     composition (image 45 / copy 55). Natural ratio, quiet plate,
-     NO fake product card. NO burn time, density, price, size or
-     wood-equivalent claims; the log photo is NOT labelled Bio-Coal.
+     07. COW-DUNG LOGS — development direction (V18 §16–17, V22 rename)
+     V22: renamed from "GoCast Logs" to the client's current wording
+     (the name printed on the supplied product artwork). The official
+     client artwork (2026-10-29 batch) replaces the reference photo.
+     NO burn time, density, price, size or wood-equivalent claims.
+     Legacy anchor #gocast-logs preserved as an invisible alias.
      ============================================================ -->
-<section class="section section--paper family-section" id="gocast-logs" aria-labelledby="gocast-title">
+<span id="gocast-logs" aria-hidden="true"></span>
+<section class="section section--paper family-section" id="cow-dung-logs" aria-labelledby="cowdunglogs-title">
   <div class="container">
     <div class="gocast-feature" data-reveal>
       <figure class="gocast-feature__figure">
         <picture>
-          <source type="image/avif" srcset="<?= eco_srcset('gocast-editorial', [640, 960, 1280, 1600]) ?>"
+          <source type="image/avif" srcset="<?= eco_srcset('carousel-cow-dung-logs', [640, 960, 1280]) ?>"
                   sizes="(min-width: 1024px) 45vw, calc(100vw - 2.5rem)">
-          <source type="image/webp" srcset="<?= eco_srcset_webp('gocast-editorial', [640, 960, 1280, 1600]) ?>"
+          <source type="image/webp" srcset="<?= eco_srcset_webp('carousel-cow-dung-logs', [640, 960, 1280]) ?>"
                   sizes="(min-width: 1024px) 45vw, calc(100vw - 2.5rem)">
-          <img src="<?= asset_url('/assets/images/ecosystem/gocast-editorial-1280.jpg') ?>"
-               alt="Client-supplied cow-dung logs on a terracotta plate with straw"
-               width="1280" height="960" loading="lazy" decoding="async">
+          <img src="<?= asset_url('/assets/images/ecosystem/carousel-cow-dung-logs-1280.jpg') ?>"
+               alt="Gaurikrit Cow-Dung Logs — client-supplied product artwork, premium biomass fuel"
+               width="1672" height="941" loading="lazy" decoding="async">
         </picture>
-        <figcaption>Client-supplied cow-dung log reference.</figcaption>
+        <figcaption>Client-supplied Cow-Dung Logs product artwork.</figcaption>
       </figure>
       <div class="gocast-feature__copy">
         <span class="family-section__num" aria-hidden="true">02</span>
-        <h2 class="family-section__name" id="gocast-title">GoCast Logs</h2>
+        <h2 class="family-section__name" id="cowdunglogs-title">Cow-Dung Logs</h2>
         <p class="family-section__line">A cow-dung log direction.</p>
         <p>
           A dense log format shaped from cow dung — a development direction
@@ -629,13 +631,13 @@ $emulsion    = get_product('prakritik-emulsion');
           <li>Resource-conscious direction</li>
         </ul>
         <p class="muted">
-          GoCast is a development direction — the photographs show
-          client-supplied log material, not a documented product specification.
+          Cow-Dung Logs is a development direction — the artwork shows the
+          client's supplied product visual, not a documented specification.
           Dimensions, composition and availability will be published when the
           client supplies verified information.
         </p>
         <div class="family-section__cta">
-          <a class="btn btn--outline" href="/contact/?interest=gocast-logs">Enquire About GoCast</a>
+          <a class="btn btn--outline" href="/contact/?interest=gocast-logs">Enquire About Cow-Dung Logs</a>
         </div>
       </div>
     </div>
@@ -643,19 +645,22 @@ $emulsion    = get_product('prakritik-emulsion');
 </section>
 
 <!-- ============================================================
-     8. BIO-COAL LOGS — development direction (§33)
-     No calorific values, emissions percentages, "smokeless" or
-     "carbon neutral" claims.
+     08. BIO-BRIQUETTES — development direction (§33, V22 rename)
+     V22: renamed from "Bio-Coal Logs" to the client's current wording
+     (the name printed on the supplied product artwork). No calorific
+     values, emissions percentages, "smokeless" or "carbon neutral" claims.
+     Legacy anchor #bio-coal-logs preserved as an invisible alias.
      ============================================================ -->
-<section class="section section--limewash family-section family-section--reverse" id="bio-coal-logs" aria-labelledby="biocoal-title">
+<span id="bio-coal-logs" aria-hidden="true"></span>
+<section class="section section--limewash family-section family-section--reverse" id="bio-briquettes" aria-labelledby="biobriquettes-title">
   <div class="container">
     <div class="family-section__grid" data-reveal>
       <div class="family-section__copy">
         <span class="family-section__num" aria-hidden="true">03</span>
-        <h2 class="family-section__name" id="biocoal-title">Bio-Coal Logs</h2>
+        <h2 class="family-section__name" id="biobriquettes-title">Bio-Briquettes</h2>
         <p class="family-section__line">A bio-based fuel material direction.</p>
         <p class="family-section__desc">
-          Biomass-based fuel logs — a development direction exploring how
+          Biomass-based fuel briquettes — a development direction exploring how
           natural material streams could serve fuel applications.
         </p>
         <ul class="family-section__themes">
@@ -665,25 +670,25 @@ $emulsion    = get_product('prakritik-emulsion');
           <li>Circular material use</li>
         </ul>
         <p class="family-section__note">
-          Bio-Coal is a development direction. Composition, calorific value
+          Bio-Briquettes is a development direction. Composition, calorific value
           and test data will be published when the client supplies verified
           information.
         </p>
         <div class="family-section__cta">
-          <a class="btn btn--outline" href="/contact/?interest=bio-coal-logs">Enquire About Bio-Coal</a>
+          <a class="btn btn--outline" href="/contact/?interest=bio-coal-logs">Enquire About Bio-Briquettes</a>
         </div>
       </div>
-      <figure class="family-section__photo" aria-label="Bio-Coal Logs — client-supplied product poster">
+      <figure class="family-section__photo" aria-label="Bio-Briquettes — client-supplied product artwork">
         <picture>
-          <source type="image/avif" srcset="<?= eco_srcset('family-bio-coal-logs', [640, 960, 1024]) ?>"
+          <source type="image/avif" srcset="<?= eco_srcset('carousel-bio-briquettes', [640, 960, 1280, 1920]) ?>"
                   sizes="(min-width: 1024px) 42vw, calc(100vw - 2.5rem)">
-          <source type="image/webp" srcset="<?= eco_srcset_webp('family-bio-coal-logs', [640, 960, 1024]) ?>"
+          <source type="image/webp" srcset="<?= eco_srcset_webp('carousel-bio-briquettes', [640, 960, 1280, 1920]) ?>"
                   sizes="(min-width: 1024px) 42vw, calc(100vw - 2.5rem)">
-          <img src="<?= asset_url('/assets/images/ecosystem/family-bio-coal-logs-960.jpg') ?>"
-               alt="Client-supplied Gaurikrit Bio-Briquettes product poster — premium renewable biomass fuel"
-               width="960" height="640" loading="lazy" decoding="async">
+          <img src="<?= asset_url('/assets/images/ecosystem/carousel-bio-briquettes-1280.jpg') ?>"
+               alt="Gaurikrit Bio-Briquettes — client-supplied product artwork, premium renewable biomass fuel"
+               width="1920" height="1080" loading="lazy" decoding="async">
         </picture>
-        <figcaption>Client-supplied Bio-Coal Logs product poster.</figcaption>
+        <figcaption>Client-supplied Bio-Briquettes product artwork.</figcaption>
       </figure>
     </div>
   </div>
@@ -718,17 +723,17 @@ $emulsion    = get_product('prakritik-emulsion');
           <a class="btn btn--outline" href="/contact/?interest=utility-products">Enquire About Utility Products</a>
         </div>
       </div>
-      <figure class="family-section__photo" aria-label="Utility Products — client-supplied product poster">
+      <figure class="family-section__photo" aria-label="Utility Products — client-supplied product artwork">
         <picture>
-          <source type="image/avif" srcset="<?= eco_srcset('family-eco-utility-products', [640, 853]) ?>"
+          <source type="image/avif" srcset="<?= eco_srcset('carousel-eco-utility-products', [640, 960, 1280, 1920]) ?>"
                   sizes="(min-width: 1024px) 42vw, calc(100vw - 2.5rem)">
-          <source type="image/webp" srcset="<?= eco_srcset_webp('family-eco-utility-products', [640, 853]) ?>"
+          <source type="image/webp" srcset="<?= eco_srcset_webp('carousel-eco-utility-products', [640, 960, 1280, 1920]) ?>"
                   sizes="(min-width: 1024px) 42vw, calc(100vw - 2.5rem)">
-          <img src="<?= asset_url('/assets/images/ecosystem/family-eco-utility-products-853.jpg') ?>"
-               alt="Client-supplied Gaurikrit Eco Utility Products poster — dhoop cups, cow-dung diyas, biodegradable plates and eco glasses"
-               width="853" height="569" loading="lazy" decoding="async">
+          <img src="<?= asset_url('/assets/images/ecosystem/carousel-eco-utility-products-1280.jpg') ?>"
+               alt="Gaurikrit Eco Utility Products — client-supplied product artwork: dhoop cups, cow-dung diyas, biodegradable plates and eco glasses"
+               width="1920" height="1080" loading="lazy" decoding="async">
         </picture>
-        <figcaption>Client-supplied Utility Products product poster.</figcaption>
+        <figcaption>Client-supplied Utility Products product artwork.</figcaption>
       </figure>
     </div>
   </div>

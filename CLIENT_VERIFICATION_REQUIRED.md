@@ -159,3 +159,20 @@ Confirm that `https://gaurikrit.com` is the final owned production domain before
 - [x] GSTIN 09AAMCG8400F1ZK · seva@gaurikrit.com · +91-9999624446 / 9837638842
 - [x] Tagline: "Good for Nature. Good for Life."
 - [ ] **Premium shade COUNT discrepancy**: the poster headline prints "24 SHADES" but the card grid itself shows 5 groups x 6 = **30 shades (GK-201 to GK-230)**, all enumerated on the card. The site displays all 30 client-supplied shades and deliberately avoids printing a contradicting total ("Premium collection in five groups"). Client to confirm the intended count (are 6 shades pending launch, or is the headline stale?).
+
+---
+
+## V22 (2026-10-29 batch) — terminology + imagery record
+
+### Product-name change (client-directed, applied site-wide)
+- "GoCast Logs" is now displayed as **"Cow-Dung Logs"** — the name printed on the client's 2026-10-29 product artwork.
+- "Bio-Coal Logs" is now displayed as **"Bio-Briquettes"** — same reason.
+- Legacy anchors `/products/#gocast-logs` and `/products/#bio-coal-logs` remain as invisible alias anchors; form values unchanged.
+- [ ] Client to confirm: is the old "GoCast" brand name fully retired, or should it be referenced anywhere (e.g. as a product-line name on the logs)?
+
+### New imagery (all client-supplied, 2026-10-29)
+- Four final carousel artworks (Eco-Paints, Bio-Briquettes, Cow-Dung Logs, Eco Utility Products) now used across hero carousel, portfolio and products page.
+- `Natural waste processing.png` (Stage 02) is a **conceptual 3D render** — the site's caption/alt text describes it neutrally ("conceptual visual of natural-waste processing") and does NOT claim it is Gaurikrit's actual facility. [ ] Client to supply real facility photography if/when available.
+- `Earth globe with green leaf arrows` (Stage 04) is a 3D render used for the circular-economy direction — no quantified impact claims accompany it.
+- `Cow-Dung pile-3.png` (Stage 01) is a real photograph of raw cow dung in a rural setting — [ ] Client to confirm it may be shown as representative raw-material photography.
+- Marketing copy embedded inside the client's product artworks (e.g. "premium renewable biomass fuel", "havan, crematorium, boiler and industrial use") is shown ONLY as artwork pixels — it has NOT been converted into unqualified HTML text on the site.

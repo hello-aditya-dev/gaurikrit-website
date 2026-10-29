@@ -228,8 +228,8 @@ $PRODUCTS_MENU = [
     ['label' => 'Prakritik Distemper', 'href' => '/products/prakritik-distemper/'],
     ['label' => 'Prakritik Emulsion',  'href' => '/products/prakritik-emulsion/'],
     ['label' => 'Colours',             'href' => '/colours/'],
-    ['label' => 'GoCast Logs',         'href' => '/products/#gocast-logs'],
-    ['label' => 'Bio-Coal',            'href' => '/products/#bio-coal-logs'],
+    ['label' => 'Cow-Dung Logs',       'href' => '/products/#cow-dung-logs'],
+    ['label' => 'Bio-Briquettes',      'href' => '/products/#bio-briquettes'],
     ['label' => 'Utility Products',    'href' => '/products/#utility-products'],
 ];
 
@@ -289,8 +289,8 @@ $INTEREST_OPTIONS = [
     'eco-paints'           => 'Eco-Paints',
     'prakritik-distemper'  => 'Prakritik Distemper',
     'prakritik-emulsion'   => 'Prakritik Emulsion',
-    'gocast-logs'          => 'GoCast Logs',
-    'bio-coal-logs'        => 'Bio-Coal Logs',
+    'gocast-logs'          => 'Cow-Dung Logs',
+    'bio-coal-logs'        => 'Bio-Briquettes',
     'utility-products'     => 'Utility Products',
     'bulk-project'         => 'Bulk / Project',
     'business-partnership' => 'Business Partnership',
@@ -309,8 +309,8 @@ $PROJECT_TYPES = [
     'CSR / NGO',
     'Gaushala Collaboration',
     'Eco-Paints',
-    'GoCast Logs',
-    'Bio-Coal Logs',
+    'Cow-Dung Logs',
+    'Bio-Briquettes',
     'Utility Products',
     'Distribution',
     'Sustainability Collaboration',
@@ -333,10 +333,15 @@ $FAQ = [
 ];
 
 /**
- * The four Gaurikrit product families — ONE resource, FOUR directions.
- * Family names + core lines come from the client strategy. Eco-Paints is
- * the only family with documented products; the other three are presented
- * as DIRECTIONS (no fake photography, no invented specifications).
+ * The four Gaurikrit product families — ONE resource, FOUR solutions.
+ * Family names reflect the client's current product wording (V22,
+ * 2026-10-29 batch): "Cow-Dung Logs" (formerly "GoCast Logs") and
+ * "Bio-Briquettes" (formerly "Bio-Coal Logs") — the names printed on
+ * the supplied product artworks. Eco-Paints is the only family with
+ * documented products; the other three are presented as DIRECTIONS
+ * (no invented specifications).
+ * Legacy anchors: /products/#gocast-logs and /products/#bio-coal-logs
+ * remain as invisible alias anchors on the products page.
  */
 $FAMILIES = [
     [
@@ -351,23 +356,23 @@ $FAMILIES = [
     ],
     [
         'num'      => '02',
-        'id'       => 'gocast-logs',
-        'name'     => 'GoCast Logs',
+        'id'       => 'cow-dung-logs',
+        'name'     => 'Cow-Dung Logs',
         'line'     => 'A cow-dung log direction.',
         'desc'     => 'A dense log format shaped from cow dung — a development direction exploring material uses where wood has traditionally been used.',
         'status'   => 'Development direction',
         'themes'   => ['Natural material format', 'Traditional-use direction', 'Resource-conscious direction'],
-        'href'     => '/products/#gocast-logs',
+        'href'     => '/products/#cow-dung-logs',
     ],
     [
         'num'      => '03',
-        'id'       => 'bio-coal-logs',
-        'name'     => 'Bio-Coal Logs',
+        'id'       => 'bio-briquettes',
+        'name'     => 'Bio-Briquettes',
         'line'     => 'A bio-based fuel material direction.',
-        'desc'     => 'Biomass-based fuel logs — a development direction exploring how natural material streams could serve fuel applications.',
+        'desc'     => 'Biomass-based fuel briquettes — a development direction exploring how natural material streams could serve fuel applications.',
         'status'   => 'Development direction',
         'themes'   => ['Bio-based fuel material', 'Biomass applications', 'Fuel-material direction'],
-        'href'     => '/products/#bio-coal-logs',
+        'href'     => '/products/#bio-briquettes',
     ],
     [
         'num'      => '04',
@@ -437,14 +442,14 @@ $APPLICATION_GROUPS = [
     [
         'title' => 'Energy & Fuel',
         'items' => [
-            ['name' => 'Bio-Coal Logs',          'href' => '/products/#bio-coal-logs', 'live' => false],
+            ['name' => 'Bio-Briquettes',         'href' => '/products/#bio-briquettes', 'live' => false],
             ['name' => 'Biomass Fuel Solutions', 'href' => null, 'live' => false],
         ],
     ],
     [
         'title' => 'Traditional & Ritual Applications',
         'items' => [
-            ['name' => 'GoCast Logs',            'href' => '/products/#gocast-logs', 'live' => false],
+            ['name' => 'Cow-Dung Logs',          'href' => '/products/#cow-dung-logs', 'live' => false],
             ['name' => 'Eco Cremation Solutions','href' => null, 'live' => false],
         ],
     ],
@@ -500,8 +505,8 @@ $FOOTER_PRODUCTS = [
     ['label' => 'Prakritik Distemper', 'href' => '/products/prakritik-distemper/'],
     ['label' => 'Prakritik Emulsion',  'href' => '/products/prakritik-emulsion/'],
     ['label' => 'Colours',          'href' => '/colours/'],
-    ['label' => 'GoCast Logs',      'href' => '/products/#gocast-logs'],
-    ['label' => 'Bio-Coal Logs',    'href' => '/products/#bio-coal-logs'],
+    ['label' => 'Cow-Dung Logs',    'href' => '/products/#cow-dung-logs'],
+    ['label' => 'Bio-Briquettes',   'href' => '/products/#bio-briquettes'],
     ['label' => 'Utility Products', 'href' => '/products/#utility-products'],
 ];
 

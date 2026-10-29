@@ -330,3 +330,84 @@ and Products direction sections switched to client imagery.
 - `dist-hostinger/assets/js/app.js` — `HeroCarousel` added to boot `mods`.
 - `scripts/prepare_hero_carousel_assets.py` + `prepare_family_card_assets.py`
   — NEW reproducible asset pipelines (Pillow).
+
+---
+
+## V22 — 2026-10-29 client batch (OneDrive ZIP): final carousel artworks + four-stage flow imagery
+
+**Source originals (preserved verbatim, never modified):**
+`source-assets/client-originals/2026-10-29-update/` — 19 files from the client's
+OneDrive ZIP (`OneDrive_2026-10-29.zip`). Full inventory with SHA-256 hashes
+recorded at intake; every file visually inspected (VLM) before selection.
+
+### Selected and used on the site
+
+| Original | Dimensions | Type | Used for |
+|---|---|---|---|
+| `Gaurikrit_Final_4_Carousel_Images/Gaurikrit_Eco_Paints_1920x1080.webp` | 1920×1080 | Client artwork (paint buckets) | Hero slide 1 + Eco-Paints portfolio card |
+| `Gaurikrit_Final_4_Carousel_Images/Gaurikrit_Bio_Briquettes_1920x1080.webp` | 1920×1080 | Client artwork (briquettes) | Hero slide 2 + Bio-Briquettes portfolio card + Products page |
+| `Gaurikrit_Final_4_Carousel_Images/Gaurikrit_Cow_Dung_Logs.png` | 1672×941 | Client artwork (logs) | Hero slide 3 + Cow-Dung Logs portfolio card + Products page |
+| `Gaurikrit_Final_4_Carousel_Images/Gaurikrit_Eco_Utility_Products_1920x1080.webp` | 1920×1080 | Client artwork (utility) | Hero slide 4 + Utility portfolio card + Products page |
+| `Cow-Dung pile-3.png` | 1672×941 | Photograph (no text) | Four-stage flow — Stage 01 Cow Dung |
+| `Natural waste processing.png` | 1254×1254 | Conceptual 3D render | Four-stage flow — Stage 02 Processing & Innovation (caption stays neutral: "conceptual visual", NOT claimed as Gaurikrit's facility) |
+| `Earth globe with green leaf arrows-4.png` | 1254×1254 | 3D render (no text) | Four-stage flow — Stage 04 Environmental Impact |
+
+### Preserved but not embedded on the site
+
+| Original | Notes |
+|---|---|
+| `Cow-Dung pile-1/2/4.png` | Alternative raw-material photography (pile-3 selected — clearest composition). Available for future use. |
+| `From Cow Dung to a Greener Future.png` | Wide lifecycle illustration — used as a visual reference for the four-stage flow; NOT embedded (embedded words would be unreadable at card size; the flow is recreated in accessible HTML per client instruction). |
+| `From Cow Dung to Sustainable Solutions-1.png` | Wide four-stage flow graphic (1983×793) — same treatment: reference only. |
+| `GBP Paint Bucket.png`, `GBP Products Banner.png` | Older promotional materials — superseded by the Final-4 carousel artworks. |
+| `GBP Bio-Briquettes.jpeg`, `GBP Cow-Dung Logs.jpeg` | Square poster variants — superseded by the landscape carousel artworks. |
+| `GBP Futureline Products Showcase-1/2/3.png` | Older utility showcase materials — superseded. |
+
+### Derived responsive ladders (`scripts/derive_client_assets_2026_10_29.py`)
+
+Pillow avif (q58/s6) + webp (q82/m6) + jpg (q87 progressive), resized from the
+preserved originals only (never from other derivatives), never upscaled, files
+named by ACTUAL pixel width. Archive copies + `manifest.json` in
+`source-assets/client-derived/2026-10-29/`.
+
+| Stem | Source | Rungs | Used on |
+|---|---|---|---|
+| `carousel-eco-paints` | Eco-Paints artwork | 640, 960, 1280, 1920 | Homepage hero + portfolio + mini-grid |
+| `carousel-bio-briquettes` | Bio-Briquettes artwork | 640, 960, 1280, 1920 | Homepage hero + portfolio + mini-grid + /products/ |
+| `carousel-cow-dung-logs` | Cow-Dung Logs artwork | 640, 960, 1280 | Homepage hero + portfolio + mini-grid + /products/ |
+| `carousel-eco-utility-products` | Eco Utility artwork | 640, 960, 1280, 1920 | Homepage hero + portfolio + mini-grid + /products/ |
+| `flow-cow-dung` | Cow-Dung pile-3.png | 640, 960, 1280 | Homepage flow Stage 01 |
+| `flow-processing` | Natural waste processing.png | 640, 960 | Homepage flow Stage 02 |
+| `flow-impact` | Earth globe PNG | 640, 960 | Homepage flow Stage 04 |
+
+### Terminology change (recorded per client instruction, V22)
+
+- **"GoCast Logs" → "Cow-Dung Logs"** — the name printed on the client's
+  supplied product artwork. Family ID `gocast-logs` → `cow-dung-logs`;
+  legacy anchor `/products/#gocast-logs` preserved as an invisible alias.
+- **"Bio-Coal Logs" → "Bio-Briquettes"** — same reason. Family ID
+  `bio-coal-logs` → `bio-briquettes`; legacy anchor
+  `/products/#bio-coal-logs` preserved as an invisible alias.
+- Form field VALUES (`gocast-logs`, `bio-coal-logs` in `$INTEREST_OPTIONS`)
+  deliberately kept stable so existing enquiry deep links and backend
+  validation continue to work; only the visible LABELS changed.
+
+### Components / files touched (V22)
+
+- `dist-hostinger/index.php` — `$HERO_SLIDES` (4 landscape artworks, 16/9
+  frame), flow stages 01/02/03/04 (new imagery + 2×2 mini-grid for Stage 03),
+  `$familyMedia` (carousel stems), circular section condensed to a summary +
+  link to /sustainability/, innovation section restored to
+  `innovation-research`.
+- `dist-hostinger/includes/data.php` — `$FAMILIES` renamed entries, menus,
+  footer links, form labels, application groups.
+- `dist-hostinger/products/index.php` — direction sections renamed with new
+  anchors + legacy alias spans; figures switched to client artworks.
+- `dist-hostinger/assets/css/app.css` — `.family__media--photo` frame 3:2→16:9
+  with `object-fit: contain`.
+- `dist-hostinger/contact|for-business|sustainability/index.php` — wording.
+- Mirrors of all of the above under `docs/`.
+- Retired from use (files kept on disk): `hero-*` carousel ladders (V20),
+  `family-bio-coal-logs`, `family-eco-utility-products`, `rawmat` /
+  `innovation-research` on the flow (innovation-research still used in the
+  Research & Innovation section), `colours-wall` on the flow.

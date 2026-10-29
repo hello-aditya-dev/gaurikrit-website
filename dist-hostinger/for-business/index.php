@@ -20,7 +20,7 @@
 declare(strict_types=1);
 
 $pageTitle       = 'Partners & Business Enquiries — Gaurikrit';
-$pageDescription = 'Build with Gaurikrit: distribution, dealership, architecture, contracting, institutional, industrial and sustainability partnerships around the Gaurikrit material ecosystem — Eco-Paints, GoCast, Bio-Coal and utility directions.';
+$pageDescription = 'Build with Gaurikrit: distribution, dealership, architecture, contracting, institutional, industrial and sustainability partnerships around the Gaurikrit material ecosystem — Eco-Paints, Cow-Dung Logs, Bio-Briquettes and utility directions.';
 $pageCanonical   = '/for-business/';
 $pageClass        = 'for-business';
 
@@ -47,7 +47,7 @@ $audiences = [
 // distribution / collaboration enquiries); they remain in the FORM as
 // conditional fields shown only for Eco-Paints interest.
 $helpfulInclude = [
-    ['label' => 'Interest',   'hint' => 'Eco-Paints, GoCast, Bio-Coal, Utility Products, distribution or collaboration'],
+    ['label' => 'Interest',   'hint' => 'Eco-Paints, Cow-Dung Logs, Bio-Briquettes, Utility Products, distribution or collaboration'],
     ['label' => 'City / market', 'hint' => 'Where the requirement is located'],
     ['label' => 'Use case / requirement', 'hint' => 'What your organisation needs'],
     ['label' => 'Approximate quantity', 'hint' => 'If known'],
@@ -184,7 +184,7 @@ $helpfulInclude = [
         <p class="biz-hero__sub">
           For distributors, dealers, architects, contractors, institutions,
           industries and sustainability partners. Talk to us about
-          Eco-Paints today — and the GoCast, Bio-Coal and utility directions
+          Eco-Paints today — and the Cow-Dung Logs, Bio-Briquettes and utility directions
           as they develop.
         </p>
         <div class="biz-hero__ctas">

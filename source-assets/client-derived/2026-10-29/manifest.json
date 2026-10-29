@@ -1,0 +1,94 @@
+[
+  {
+    "stem": "carousel-eco-paints",
+    "source": "source-assets/client-originals/2026-10-29-update/Gaurikrit_Final_4_Carousel_Images/Gaurikrit_Eco_Paints_1920x1080.webp",
+    "widths": [
+      640,
+      960,
+      1280,
+      1920
+    ],
+    "intrinsic": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "stem": "carousel-bio-briquettes",
+    "source": "source-assets/client-originals/2026-10-29-update/Gaurikrit_Final_4_Carousel_Images/Gaurikrit_Bio_Briquettes_1920x1080.webp",
+    "widths": [
+      640,
+      960,
+      1280,
+      1920
+    ],
+    "intrinsic": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "stem": "carousel-cow-dung-logs",
+    "source": "source-assets/client-originals/2026-10-29-update/Gaurikrit_Final_4_Carousel_Images/Gaurikrit_Cow_Dung_Logs.png",
+    "widths": [
+      640,
+      960,
+      1280
+    ],
+    "intrinsic": [
+      1672,
+      941
+    ]
+  },
+  {
+    "stem": "carousel-eco-utility-products",
+    "source": "source-assets/client-originals/2026-10-29-update/Gaurikrit_Final_4_Carousel_Images/Gaurikrit_Eco_Utility_Products_1920x1080.webp",
+    "widths": [
+      640,
+      960,
+      1280,
+      1920
+    ],
+    "intrinsic": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "stem": "flow-cow-dung",
+    "source": "source-assets/client-originals/2026-10-29-update/Cow-Dung pile-3.png",
+    "widths": [
+      640,
+      960,
+      1280
+    ],
+    "intrinsic": [
+      1672,
+      941
+    ]
+  },
+  {
+    "stem": "flow-processing",
+    "source": "source-assets/client-originals/2026-10-29-update/Natural waste processing.png",
+    "widths": [
+      640,
+      960
+    ],
+    "intrinsic": [
+      1254,
+      1254
+    ]
+  },
+  {
+    "stem": "flow-impact",
+    "source": "source-assets/client-originals/2026-10-29-update/Earth globe with green leaf arrows-4.png",
+    "widths": [
+      640,
+      960
+    ],
+    "intrinsic": [
+      1254,
+      1254
+    ]
+  }
+]
