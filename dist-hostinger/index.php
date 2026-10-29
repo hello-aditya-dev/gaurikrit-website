@@ -448,6 +448,7 @@ $HERO_SIZES = '(min-width: 1200px) 58vw, (min-width: 900px) 50vw, calc(100vw - 2
           <p class="resource-step__desc">
             The resource is studied, processed and developed into useful working materials &mdash; from coatings to fuel formats.
           </p>
+          <p class="resource-step__qualifier">Illustrative processing concept &mdash; not a photograph of Gaurikrit&rsquo;s facility.</p>
         </div>
       </article>
       <article class="resource-step">

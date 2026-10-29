@@ -95,8 +95,8 @@ $PRODUCTS = [
         // (replaces the low-res pair-graphic cutout that showed pink edge remnants).
         'officialImage' => '/assets/images/client/prakritik-emulsion-single-cut.png',
         'officialImageWebp' => '/assets/images/client/prakritik-emulsion-single-cut.webp',
-        'officialImageW' => 410,
-        'officialImageH' => 526,
+        'officialImageW' => 1536,
+        'officialImageH' => 1024,
         'image'         => 'prakritik-emulsion',
         'accent'        => 'haldi',
         'route'         => '/products/prakritik-emulsion/',

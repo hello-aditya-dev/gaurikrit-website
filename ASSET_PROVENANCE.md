@@ -529,3 +529,38 @@ family".
 All availability-implying language has been removed. The client-supplied
 artwork for both directions is preserved byte-for-byte; status wording
 appears only as separate HTML text, never edited into the images.
+
+### V22.3 — Emulsion image correction + Stage 02 conceptual qualifier
+
+**Emulsion image**: The previous V22.1 cutout (from WhatsApp Image
+2026-10-16 at 7.45.04 AM.jpeg) had defective bottom edges — jagged
+outline, torn/peeling label remnants, and cutout artifacts confirmed
+by VLM inspection. Per the audit requirement to "stop iterating on a
+defective cutout" and "prefer a clean intact product photograph," the
+Emulsion image is now derived from `GBP Paint Bucket.png` (1536×1024)
+from the 2026-10-29 OneDrive archive.
+
+- **Source**: `source-assets/client-originals/2026-10-29-update/GBP Paint Bucket.png`
+- **SHA-256**: `69d2c6e0ba3fc0d2...` (full hash in client-originals)
+- **Intrinsic dimensions**: 1536 × 1024 (3:2 landscape)
+- **Content**: Professional photograph showing the Prakritik Paint range
+  (Emulsion, Distemper, Emulsion) on a wooden surface with white brick
+  wall background. Clean natural bottom edges — no cutout artifacts.
+- **Derivatives**: `prakritik-emulsion-{640,960,1280,1536}.{avif,webp,jpg}`
+- **Panel**: 4:3 aspect-ratio with `object-fit: contain` (image is 3:2,
+  so small top/bottom letterboxing appears — acceptable as a matted look)
+- **Alt text**: "Prakritik Emulsion paint pack — the Prakritik Paint
+  range with the Emulsion bucket visible on the right"
+- **VLM-verified**: Clean professional photograph, no defects, complete
+  buckets with clean edges, no cutout artifacts.
+
+The Distemper image remains unchanged (clean cutout from the 2026-09-27
+pair photo, VLM-verified as clean with no defects).
+
+**Stage 02 Processing & Innovation**: Added a visible italic qualifier
+caption "Illustrative processing concept — not a photograph of Gaurikrit's
+facility." below the stage description. This ensures the conceptual
+`Natural waste processing.png` artwork cannot be mistaken for a
+photograph of Gaurikrit's actual operations. The alt text already said
+"Conceptual visual" but the audit required a visible qualifier.
+CSS: `.resource-step__qualifier` (0.6875rem, italic, muted, opacity 0.8).

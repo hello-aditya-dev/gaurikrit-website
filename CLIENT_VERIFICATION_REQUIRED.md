@@ -219,3 +219,43 @@ The Bio-Briquettes and Eco Utility Products client-supplied artwork is
 used unchanged. No status wording has been inserted into the images
 themselves; all status labels are separate HTML text displayed around or
 immediately below the artwork.
+
+## 8. Brochure approval status
+
+The repository contains `prakritik-paint-brochure.pdf` (1,577,971 bytes,
+4 pages, valid PDF 1.3) at `dist-hostinger/assets/documents/`. This file
+was supplied by the client but has not been explicitly confirmed as the
+approved public edition. The brochure cover image
+(`prakritik-paint-brochure-cover.jpg`) and the download link are
+functional. The Downloads page uses a `data-brochure-detect` attribute
+that checks for the PDF's presence and shows/hides the download card
+accordingly.
+
+**Client action required**: Confirm that `prakritik-paint-brochure.pdf`
+is the approved public edition, or supply the corrected version.
+
+## 9. Stage 03 Product Portfolio image filename
+
+The client requested `Biodegradable Product Showcase.png` from the shared
+folder. The OneDrive_2026-10-29.zip archive does NOT contain a file with
+that exact name. The closest content match is `GBP Futureline Products
+Showcase-2.png` — a 4-product biodegradable portfolio (Dhoop Cups,
+Cow-Dung Diyas, Biodegradable Disposable Plates, Eco Glasses) that
+literally contains the word "Biodegradable" in its embedded product
+label. VLM-verified as the intended biodegradable product showcase.
+
+**Client action required**: Confirm that `GBP Futureline Products
+Showcase-2.png` is the intended substitute for the requested
+`Biodegradable Product Showcase.png`, or supply the exact file.
+
+## 10. Premium shade count
+
+The supplied premium-shades artwork headline states "24 SHADES" but the
+illustrated grid appears to show 30 shades (GK-201 through GK-230). The
+website currently displays all 30 shade codes without asserting a
+numeric count in the visible text. The section heading says "Premium
+Collection" without a number.
+
+**Client action required**: Confirm the correct premium shade count
+(24 or 30) and supply a definitive shade specification sheet if the
+current artwork is ambiguous.
