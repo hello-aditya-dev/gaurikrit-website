@@ -55,5 +55,100 @@
       "dist-hostinger/assets/images/ecosystem/flow-portfolio-960.webp",
       "dist-hostinger/assets/images/ecosystem/flow-portfolio-960.jpg"
     ]
+  },
+  "gbp-bio-briquettes": {
+    "source": "source-assets/client-originals/2026-10-29-update/GBP Bio-Briquettes.jpeg",
+    "source_sha256": "d7dbccdec95b10fd79409bdc82bc3cdd9caa3812745642ce787c251fb8aa9edf",
+    "intrinsic": [
+      1024,
+      1024
+    ],
+    "widths": [
+      640,
+      960,
+      1024
+    ]
+  },
+  "gbp-cow-dung-logs": {
+    "source": "source-assets/client-originals/2026-10-29-update/GBP Cow-Dung Logs.jpeg",
+    "source_sha256": "117abbd6e8763e4a8d0a4a6f92753cd2a3711d4cee1f66f992a27419f2e11e12",
+    "intrinsic": [
+      1024,
+      1024
+    ],
+    "widths": [
+      640,
+      960,
+      1024
+    ]
+  },
+  "showcase-utility": {
+    "source": "source-assets/client-originals/2026-10-29-update/GBP Futureline Products Showcase-1.png",
+    "source_sha256": "54d3ed50020296c16aa86010c9bf3ca6e48eabd72d7e9d30d80c70dfa055a9a5",
+    "intrinsic": [
+      1022,
+      1095
+    ],
+    "widths": [
+      640,
+      960,
+      1022
+    ]
+  },
+  "showcase-innovation": {
+    "source": "source-assets/client-originals/2026-10-29-update/GBP Futureline Products Showcase-3.png",
+    "source_sha256": "4ae26176560eeb035f7d74812149470edae1ababa1424cad7c560bc34f0e6c62",
+    "intrinsic": [
+      1254,
+      1254
+    ],
+    "widths": [
+      640,
+      960,
+      1254
+    ]
+  },
+  "products-banner": {
+    "source": "source-assets/client-originals/2026-10-29-update/GBP Products Banner.png",
+    "source_sha256": "b93ef22c099fb11eb8a89134df60b4f3421a6c217bb969dce728978afcc13a6f",
+    "intrinsic": [
+      1536,
+      1024
+    ],
+    "widths": [
+      640,
+      960,
+      1280,
+      1536
+    ]
+  },
+  "journey-greener": {
+    "source": "source-assets/client-originals/2026-10-29-update/From Cow Dung to a Greener Future.png",
+    "source_sha256": "09921554a0364734c22df451286b2eab04e47620593cc9458681784c88233f55",
+    "intrinsic": [
+      1672,
+      941
+    ],
+    "widths": [
+      640,
+      960,
+      1280,
+      1672
+    ]
+  },
+  "journey-sustainable": {
+    "source": "source-assets/client-originals/2026-10-29-update/From Cow Dung to Sustainable Solutions-1.png",
+    "source_sha256": "d41698f88b112f7141c9137113dc332df27e203f73bbbded926e505bc0f0edac",
+    "intrinsic": [
+      1983,
+      793
+    ],
+    "widths": [
+      640,
+      960,
+      1280,
+      1600,
+      1983
+    ]
   }
 }

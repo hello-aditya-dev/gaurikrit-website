@@ -179,6 +179,19 @@ $methodItems = [
           </picture>
           <figcaption>Prakritik Distemper and Emulsion — the documented Eco-Paints family.</figcaption>
         </figure>
+        <figure class="story-chapter__visual" style="margin-top: 2rem;">
+          <picture>
+            <source type="image/avif" srcset="<?= eco_srcset('showcase-innovation', [640, 960, 1254]) ?>"
+                    sizes="(min-width: 1024px) 42vw, calc(100vw - 2.5rem)">
+            <source type="image/webp" srcset="<?= eco_srcset_webp('showcase-innovation', [640, 960, 1254]) ?>"
+                    sizes="(min-width: 1024px) 42vw, calc(100vw - 2.5rem)">
+            <img src="<?= asset_url('/assets/images/ecosystem/showcase-innovation-960.jpg') ?>"
+                 alt="Client-supplied material study — Prakritik Paint and Dhoop Cups shown together as an exploratory material direction. Illustrative, not a verified production process."
+                 width="1254" height="1254"
+                 loading="lazy" decoding="async">
+          </picture>
+          <figcaption>Client-supplied material study &mdash; exploratory direction. Bio-Briquettes and Eco Utility Products shown elsewhere are Futureline products, not yet in production.</figcaption>
+        </figure>
         <div style="margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 0.75rem;">
           <a class="btn btn--secondary" href="/products/#eco-paints">Explore Eco-Paints</a>
           <a class="btn btn--outline" href="/why-prakritik/">Why Prakritik</a>

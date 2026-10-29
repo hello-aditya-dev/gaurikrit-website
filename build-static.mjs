@@ -1614,11 +1614,12 @@ ${items}
         </div>`;
     }).join('\n');
 
-    const familySection = (num, id, aliasId, name, line, desc, themes, note, photoStem, photoWidths, photoFb, photoW, photoH, photoAlt, photoCaption, interest, reverse, hlevel, statusBadge) => {
+    const familySection = (num, id, aliasId, name, line, desc, themes, note, photoStem, photoWidths, photoFb, photoW, photoH, photoAlt, photoCaption, interest, reverse, hlevel, statusBadge, poster) => {
         const themeList = themes.map((t) => `          <li>${e(t)}</li>`).join('\n');
         const rev = reverse ? ' family-section--reverse' : '';
         const aliasSpan = aliasId ? `\n<span id="${aliasId}" aria-hidden="true"></span>` : '';
         const badge = statusBadge ? `\n        <p class="family-section__status"><span class="status-badge status-badge--futureline" title="${e(statusBadge)}">${e(statusBadge)}</span></p>` : '';
+        const posterBlock = poster ? `\n    <div class="family-section__poster" data-reveal>\n      <figure class="family-section__poster-figure">\n        ${ecoPic(poster.stem, poster.widths, '(min-width: 1024px) 30vw, calc(100vw - 2.5rem)', poster.fb, poster.w, poster.h, poster.alt, depth)}\n        <figcaption>${e(poster.caption)}</figcaption>\n      </figure>\n    </div>` : '';
         return `${aliasSpan}
 <!-- ============================================================
      ${num}. ${name.toUpperCase()} — development direction
@@ -1647,7 +1648,7 @@ ${themeList}
         ${ecoPic(photoStem, photoWidths, '(min-width: 1024px) 42vw, calc(100vw - 2.5rem)', photoFb, photoW, photoH, photoAlt, depth)}
         <figcaption>${e(photoCaption)}</figcaption>
       </figure>
-    </div>
+    </div>${posterBlock}
   </div>
 </section>`;
     };
@@ -1691,6 +1692,12 @@ ${themeList}
         </div>
       </div>
     </div>
+    <div class="family-section__poster" data-reveal>
+      <figure class="family-section__poster-figure">
+        ${ecoPic('gbp-cow-dung-logs', [640, 960, 1024], '(min-width: 1024px) 30vw, calc(100vw - 2.5rem)', 1024, 1024, 1024, 'Gaurikrit Cow-Dung Logs product poster — stacked biomass fuel logs. Development direction.', depth)}
+        <figcaption>Client-supplied Cow-Dung Logs product poster.</figcaption>
+      </figure>
+    </div>
   </div>
 </section>`;
 
@@ -1702,7 +1709,8 @@ ${themeList}
         'carousel-bio-briquettes', [640, 960, 1280, 1920], 1280, 1920, 1080,
         'Gaurikrit Bio-Briquettes — client-supplied product artwork for a Futureline product direction not yet in production',
         'Client-supplied Bio-Briquettes product artwork. Futureline — not yet in production.',
-        'bio-coal-logs', true, '2', 'Futureline · Not yet in production');
+        'bio-coal-logs', true, '2', 'Futureline · Not yet in production',
+        {stem:'gbp-bio-briquettes', widths:[640,960,1024], fb:1024, w:1024, h:1024, alt:'Gaurikrit Bio-Briquettes product poster — cylindrical biomass fuel logs. Futureline product, not yet in production.', caption:'Client-supplied Bio-Briquettes product poster.'});
 
     const utilitySection = familySection('04', 'utility-products', null, 'Eco Utility Products',
         'A natural-material utility direction.',
@@ -1712,7 +1720,8 @@ ${themeList}
         'carousel-eco-utility-products', [640, 960, 1280, 1920], 1280, 1920, 1080,
         'Gaurikrit Eco Utility Products — client-supplied product artwork for a Futureline product direction not yet in production: dhoop cups, cow-dung diyas, biodegradable plates and eco glasses',
         'Client-supplied Eco Utility Products product artwork. Futureline — not yet in production.',
-        'utility-products', false, '2', 'Futureline · Not yet in production');
+        'utility-products', false, '2', 'Futureline · Not yet in production',
+        {stem:'showcase-utility', widths:[640,960,1022], fb:1022, w:1022, h:1095, alt:'Gaurikrit Eco Utility Products showcase — dhoop cups and cow-dung diyas. Futureline product, not yet in production.', caption:'Client-supplied Eco Utility Products showcase — Dhoop Cups and Cow-Dung Diyas.'});
 
     const ashtaItems = ASHTA_LAABH.map((benefit, i) => `        <li class="benefits-grid__item">
           <span class="benefits-grid__num" aria-hidden="true">${pad2(i + 1)}</span>
@@ -1783,6 +1792,36 @@ ${themeList}
   .family-section__photo figcaption {
     padding: 0.625rem 1rem; font-size: 0.75rem; color: var(--fg-muted);
     border-top: 1px solid var(--border); letter-spacing: 0.02em;
+  }
+  .family-section__poster {
+    margin-top: 2rem; max-width: 28rem; margin-left: auto; margin-right: auto;
+  }
+  @media (min-width: 768px) {
+    .family-section__poster { margin-left: 0; margin-right: 0; }
+  }
+  .family-section__poster-figure {
+    margin: 0; background: var(--paper-warm); border: 1px solid var(--border);
+    border-radius: var(--r-card); overflow: hidden;
+  }
+  .family-section__poster-figure picture {
+    display: block; aspect-ratio: 1 / 1; width: 100%;
+  }
+  .family-section__poster-figure img {
+    width: 100%; height: 100%; object-fit: contain; display: block;
+  }
+  .family-section__poster-figure figcaption {
+    padding: 0.625rem 1rem; font-size: 0.75rem; color: var(--fg-muted);
+    border-top: 1px solid var(--border); letter-spacing: 0.02em;
+  }
+  .journey-infographic {
+    margin: 0; border: 1px solid var(--border); border-radius: var(--r-panel);
+    overflow: hidden; background: var(--paper-warm);
+  }
+  .journey-infographic picture { display: block; }
+  .journey-infographic img { width: 100%; height: auto; display: block; }
+  .journey-infographic figcaption {
+    padding: 0.75rem 1.25rem; font-size: 0.75rem; color: var(--fg-muted);
+    border-top: 1px solid var(--border); letter-spacing: 0.02em; font-style: italic;
   }
 
   /* ===== 2. ECO-PAINTS FAMILY SECTION ===== */
@@ -1881,6 +1920,25 @@ ${themeList}
         ${ecoPic('eco-paints-pair', [640, 960, 1280, 1600, 1920], '(min-width: 1200px) 52vw, (min-width: 900px) 48vw, calc(100vw - 2.5rem)', 1280, 1280, 800, 'Prakritik Distemper and Emulsion paint packs — the documented Eco-Paints family', depth, 'class="hero-group-photo" loading="eager" fetchpriority="high" ')}
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     1b. CLIENT ECOSYSTEM BANNER — GBP Products Banner
+     ============================================================ -->
+<section class="section section--paper" aria-labelledby="ecosystem-banner-title" style="padding-block: clamp(2rem, 4vw, 3rem);">
+  <div class="container">
+    <div class="section-heading section-heading--left" data-reveal style="max-width: 48rem; margin-bottom: 1.5rem;">
+      <span class="section-heading__eyebrow">Client Ecosystem Banner</span>
+      <h2 class="section-heading__title" id="ecosystem-banner-title" style="font-size: clamp(1.5rem, 3vw, 2rem);">The Gaurikrit product range.</h2>
+      <p class="section-heading__desc">
+        A client-supplied banner showing the product directions. Eco-Paints is the documented family; Cow-Dung Logs is a development direction; Bio-Briquettes and Eco Utility Products are Futureline product directions, not yet in production.
+      </p>
+    </div>
+    <figure class="journey-infographic" data-reveal>
+      ${ecoPic('products-banner', [640, 960, 1280, 1536], '(min-width: 1024px) 80vw, calc(100vw - 2.5rem)', 1280, 1536, 1024, 'Client-supplied Gaurikrit product range banner — Eco-Paints, Cow-Dung Logs, Bio-Briquettes (Futureline) and Eco Utility Products (Futureline). The Futureline products are not yet in production.', depth)}
+      <figcaption>Client-supplied ecosystem banner &mdash; Bio-Briquettes and Eco Utility Products are Futureline products, not yet in production.</figcaption>
+    </figure>
   </div>
 </section>
 
@@ -3164,6 +3222,16 @@ function aboutBody(depth) {
   /* V18 §47B: white-ground client photography in a deliberate plate. */
   .resource-step__figure--plate { background: #fff; display: flex; align-items: center; justify-content: center; padding: clamp(0.5rem, 1vw, 0.75rem); }
   .resource-step__figure--plate img { position: static; inset: auto; width: auto; max-width: 100%; max-height: 100%; height: auto; object-fit: contain; }
+  .journey-infographic {
+    margin: 0; border: 1px solid var(--border); border-radius: var(--r-panel);
+    overflow: hidden; background: var(--paper-warm);
+  }
+  .journey-infographic picture { display: block; }
+  .journey-infographic img { width: 100%; height: auto; display: block; }
+  .journey-infographic figcaption {
+    padding: 0.75rem 1.25rem; font-size: 0.75rem; color: var(--fg-muted);
+    border-top: 1px solid var(--border); letter-spacing: 0.02em; font-style: italic;
+  }
 
   /* ===== COMPANY PLATE ===== */
   .company-plate-section { padding-block: clamp(3rem, 6vw, 5rem); }
@@ -3434,6 +3502,25 @@ ${phoneRows}
       <a class="btn btn--primary" href="${relUrl('/contact/', depth)}">Talk to Us</a>
       <a class="btn btn--outline" href="${relUrl('/for-business/', depth)}">Partners</a>
     </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     09. CLIENT INFOGRAPHIC — From Cow Dung to Sustainable Solutions
+     ============================================================ -->
+<section class="section section--paper" aria-labelledby="about-journey-title">
+  <div class="container">
+    <div class="section-heading section-heading--left" data-reveal style="max-width: 48rem; margin-bottom: 2rem;">
+      <span class="section-heading__eyebrow">Client Material Journey</span>
+      <h2 class="section-heading__title" id="about-journey-title">From Cow Dung to Sustainable Solutions.</h2>
+      <p class="section-heading__desc">
+        A client-supplied infographic illustrating the material journey from cow dung to sustainable consumer products. Illustrative direction &mdash; not a verified production process or measured environmental outcome.
+      </p>
+    </div>
+    <figure class="journey-infographic" data-reveal>
+      ${ecoPic('journey-sustainable', [640, 960, 1280, 1600, 1983], '(min-width: 1024px) 80vw, calc(100vw - 2.5rem)', 1600, 1983, 793, 'Client-supplied infographic: From Cow Dung to Sustainable Solutions — the material journey from cow dung to biodegradable consumer products. Illustrative direction, not a verified production process.', depth)}
+      <figcaption>Client-supplied infographic &mdash; illustrative material journey. Not a verified production process or measured environmental outcome.</figcaption>
+    </figure>
   </div>
 </section>
 `;
@@ -4753,6 +4840,16 @@ ${items}
   /* V18 §47B: white-ground client imagery in a deliberate plate. */
   .resource-step__figure--plate { background: #fff; display: flex; align-items: center; justify-content: center; padding: clamp(0.5rem, 1vw, 0.75rem); }
   .resource-step__figure--plate img { position: static; inset: auto; width: auto; max-width: 100%; max-height: 100%; height: auto; object-fit: contain; }
+  .journey-infographic {
+    margin: 0; border: 1px solid var(--border); border-radius: var(--r-panel);
+    overflow: hidden; background: var(--paper-warm);
+  }
+  .journey-infographic picture { display: block; }
+  .journey-infographic img { width: 100%; height: auto; display: block; }
+  .journey-infographic figcaption {
+    padding: 0.75rem 1.25rem; font-size: 0.75rem; color: var(--fg-muted);
+    border-top: 1px solid var(--border); letter-spacing: 0.02em; font-style: italic;
+  }
 </style>
 
 <!-- ============================================================
@@ -4809,6 +4906,25 @@ ${circularStages}
       </svg>
       <span class="circular__loop-label" aria-hidden="true">Resource regeneration</span>
     </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     S1b. CLIENT INFOGRAPHIC — From Cow Dung to a Greener Future
+     ============================================================ -->
+<section class="section section--paper" aria-labelledby="journey-infographic-title">
+  <div class="container">
+    <div class="section-heading section-heading--left" data-reveal style="max-width: 48rem; margin-bottom: 2rem;">
+      <span class="section-heading__eyebrow">Client Journey Diagram</span>
+      <h2 class="section-heading__title" id="journey-infographic-title">From Cow Dung to a Greener Future.</h2>
+      <p class="section-heading__desc">
+        A client-supplied infographic illustrating the material journey from raw cow dung to finished products. Illustrative direction &mdash; not a verified production process or measured environmental outcome.
+      </p>
+    </div>
+    <figure class="journey-infographic" data-reveal>
+      ${ecoPic('journey-greener', [640, 960, 1280, 1672], '(min-width: 1024px) 80vw, calc(100vw - 2.5rem)', 1280, 1672, 941, 'Client-supplied infographic: From Cow Dung to a Greener Future — the material journey from raw cow dung to eco-friendly products. Illustrative direction, not a verified production process.', depth)}
+      <figcaption>Client-supplied infographic &mdash; illustrative material journey. Not a verified production process or measured environmental outcome.</figcaption>
+    </figure>
   </div>
 </section>
 
@@ -5088,6 +5204,10 @@ ${methodItems}
         <figure class="story-chapter__visual">
           ${ecoPic('eco-paints-pair', [640, 960, 1280, 1920], '(min-width: 1024px) 42vw, calc(100vw - 2.5rem)', 1280, 1280, 800, 'Prakritik Distemper and Emulsion paint packs — the documented Eco-Paints outcome', depth)}
           <figcaption>Prakritik Distemper and Emulsion — the documented Eco-Paints family.</figcaption>
+        </figure>
+        <figure class="story-chapter__visual" style="margin-top: 2rem;">
+          ${ecoPic('showcase-innovation', [640, 960, 1254], '(min-width: 1024px) 42vw, calc(100vw - 2.5rem)', 960, 1254, 1254, 'Client-supplied material study — Prakritik Paint and Dhoop Cups shown together as an exploratory material direction. Illustrative, not a verified production process.', depth)}
+          <figcaption>Client-supplied material study &mdash; exploratory direction. Bio-Briquettes and Eco Utility Products shown elsewhere are Futureline products, not yet in production.</figcaption>
         </figure>
         <div style="margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 0.75rem;">
           <a class="btn btn--secondary" href="${relUrl('/products/', depth)}#eco-paints">Explore Eco-Paints</a>

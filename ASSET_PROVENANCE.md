@@ -564,3 +564,51 @@ facility." below the stage description. This ensures the conceptual
 photograph of Gaurikrit's actual operations. The alt text already said
 "Conceptual visual" but the audit required a visible qualifier.
 CSS: `.resource-step__qualifier` (0.6875rem, italic, muted, opacity 0.8).
+
+### V23 — Complete client asset integration
+
+All 19 original assets from OneDrive_2026-10-29.zip are now accounted
+for and implemented. This section records the 7 assets that were
+previously unused or underused and have now been integrated.
+
+| # | Original file | Stem | Placement | Derivatives |
+|---|---|---|---|---|
+| 8 | GBP Bio-Briquettes.jpeg | `gbp-bio-briquettes` | Products page, Bio-Briquettes section poster | 640, 960, 1024 |
+| 9 | GBP Cow-Dung Logs.jpeg | `gbp-cow-dung-logs` | Products page, Cow-Dung Logs section poster | 640, 960, 1024 |
+| 10 | GBP Futureline Products Showcase-1.png | `showcase-utility` | Products page, Eco Utility Products section poster | 640, 960, 1022 |
+| 12 | GBP Futureline Products Showcase-3.png | `showcase-innovation` | Innovation page, documented-outcome section | 640, 960, 1254 |
+| 14 | GBP Products Banner.png | `products-banner` | Products page, ecosystem banner after hero | 640, 960, 1280, 1536 |
+| 7 | From Cow Dung to a Greener Future.png | `journey-greener` | Sustainability page, after circular-economy section | 640, 960, 1280, 1672 |
+| 6 | From Cow Dung to Sustainable Solutions-1.png | `journey-sustainable` | About page, after company-info section | 640, 960, 1280, 1600, 1983 |
+
+All infographics and banners carry visible italic qualifiers:
+"Illustrative direction — not a verified production process or measured
+environmental outcome." The GBP Products Banner caption explicitly
+states "Bio-Briquettes and Eco Utility Products are Futureline products,
+not yet in production."
+
+**Logo transparency**: The existing logo files
+(`gaurikrit-logo-mark.png`, `gaurikrit-logo-mark-sm.png`,
+`gaurikrit-logo-full.png`) already have genuine alpha-channel
+transparency (verified: corner pixels alpha=0, edge samples 95%+
+transparent). No background-removal was needed. The header's
+`.brand__mark` uses `background: var(--paper)` which matches the site's
+paper background, so the logo blends naturally without a visible
+rectangular tile. VLM-confirmed: "blends naturally into the page
+background... no visible white or off-white rectangular background
+tile."
+
+**Asset coverage summary (all 19)**:
+- 4 cow-dung pile photos: Home (pile-3), About (pile-2), Sustainability (pile-4), Why Prakritik (pile-1)
+- 4 carousel artworks: Homepage hero carousel (all 4)
+- Earth globe: Homepage Stage 04 (flow-impact)
+- Natural waste processing: Homepage Stage 02 (flow-processing)
+- GBP Paint Bucket: Emulsion product page (prakritik-emulsion)
+- GBP Futureline Products Showcase-2: Homepage Stage 03 (flow-portfolio)
+- GBP Bio-Briquettes: Products page Bio-Briquettes poster
+- GBP Cow-Dung Logs: Products page Cow-Dung Logs poster
+- GBP Futureline Products Showcase-1: Products page Eco Utility poster
+- GBP Futureline Products Showcase-3: Innovation page material study
+- GBP Products Banner: Products page ecosystem banner
+- From Cow Dung to a Greener Future: Sustainability page infographic
+- From Cow Dung to Sustainable Solutions-1: About page infographic

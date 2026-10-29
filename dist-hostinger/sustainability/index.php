@@ -68,6 +68,19 @@ $measurementItems = [
     position: static; inset: auto; width: auto; max-width: 100%;
     max-height: 100%; height: auto; object-fit: contain;
   }
+  .journey-infographic {
+    margin: 0; border: 1px solid var(--border); border-radius: var(--r-panel);
+    overflow: hidden; background: var(--paper-warm);
+  }
+  .journey-infographic picture { display: block; }
+  .journey-infographic img {
+    width: 100%; height: auto; display: block;
+  }
+  .journey-infographic figcaption {
+    padding: 0.75rem 1.25rem; font-size: 0.75rem; color: var(--fg-muted);
+    border-top: 1px solid var(--border); letter-spacing: 0.02em;
+    font-style: italic;
+  }
 </style>
 
 <!-- ============================================================
@@ -139,6 +152,34 @@ $measurementItems = [
       </svg>
       <span class="circular__loop-label" aria-hidden="true">Resource regeneration</span>
     </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     S1b. CLIENT INFOGRAPHIC — From Cow Dung to a Greener Future
+     Client-supplied journey diagram illustrating the circular model.
+     ============================================================ -->
+<section class="section section--paper" aria-labelledby="journey-infographic-title">
+  <div class="container">
+    <div class="section-heading section-heading--left" data-reveal style="max-width: 48rem; margin-bottom: 2rem;">
+      <span class="section-heading__eyebrow">Client Journey Diagram</span>
+      <h2 class="section-heading__title" id="journey-infographic-title">From Cow Dung to a Greener Future.</h2>
+      <p class="section-heading__desc">
+        A client-supplied infographic illustrating the material journey from raw cow dung to finished products. Illustrative direction &mdash; not a verified production process or measured environmental outcome.
+      </p>
+    </div>
+    <figure class="journey-infographic" data-reveal>
+      <picture>
+        <source type="image/avif" srcset="<?= eco_srcset('journey-greener', [640, 960, 1280, 1672]) ?>"
+                sizes="(min-width: 1024px) 80vw, calc(100vw - 2.5rem)">
+        <source type="image/webp" srcset="<?= eco_srcset_webp('journey-greener', [640, 960, 1280, 1672]) ?>"
+                sizes="(min-width: 1024px) 80vw, calc(100vw - 2.5rem)">
+        <img src="<?= asset_url('/assets/images/ecosystem/journey-greener-1280.jpg') ?>"
+             alt="Client-supplied infographic: From Cow Dung to a Greener Future — the material journey from raw cow dung to eco-friendly products. Illustrative direction, not a verified production process."
+             width="1672" height="941" loading="lazy" decoding="async">
+      </picture>
+      <figcaption>Client-supplied infographic &mdash; illustrative material journey. Not a verified production process or measured environmental outcome.</figcaption>
+    </figure>
   </div>
 </section>
 
