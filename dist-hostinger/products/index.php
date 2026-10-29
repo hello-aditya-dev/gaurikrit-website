@@ -310,8 +310,9 @@ $emulsion    = get_product('prakritik-emulsion');
         <h1 class="products-hero__title" id="products-hero-title">One natural resource. Multiple useful applications.</h1>
         <p class="products-hero__sub">
           Cow dung is the shared material beginning. Gaurikrit develops it in
-          four directions — Eco-Paints is the documented family; Cow-Dung Logs,
-          Bio-Briquettes and Eco Utility Products are development directions.
+          four directions — Eco-Paints is the documented family; Cow-Dung Logs
+          is a development direction; Bio-Briquettes and Eco Utility Products
+          are Futureline product directions, not yet in production.
         </p>
       </div>
       <div class="products-hero__visual" data-reveal>
@@ -659,9 +660,10 @@ $emulsion    = get_product('prakritik-emulsion');
         <span class="family-section__num" aria-hidden="true">03</span>
         <h2 class="family-section__name" id="biobriquettes-title">Bio-Briquettes</h2>
         <p class="family-section__line">A bio-based fuel material direction.</p>
+        <p class="family-section__status"><span class="status-badge status-badge--futureline" title="Futureline · Not yet in production">Futureline · Not yet in production</span></p>
         <p class="family-section__desc">
-          Biomass-based fuel briquettes — a development direction exploring how
-          natural material streams could serve fuel applications.
+          Biomass-based fuel briquettes — a Futureline product direction exploring how
+          natural material streams could serve fuel applications. Not yet in production.
         </p>
         <ul class="family-section__themes">
           <li>Bio-based fuel material</li>
@@ -670,7 +672,7 @@ $emulsion    = get_product('prakritik-emulsion');
           <li>Circular material use</li>
         </ul>
         <p class="family-section__note">
-          Bio-Briquettes is a development direction. Composition, calorific value
+          Bio-Briquettes is a Futureline product — not yet in production. Composition, calorific value
           and test data will be published when the client supplies verified
           information.
         </p>
@@ -685,10 +687,10 @@ $emulsion    = get_product('prakritik-emulsion');
           <source type="image/webp" srcset="<?= eco_srcset_webp('carousel-bio-briquettes', [640, 960, 1280, 1920]) ?>"
                   sizes="(min-width: 1024px) 42vw, calc(100vw - 2.5rem)">
           <img src="<?= asset_url('/assets/images/ecosystem/carousel-bio-briquettes-1280.jpg') ?>"
-               alt="Gaurikrit Bio-Briquettes — client-supplied product artwork, premium renewable biomass fuel"
+               alt="Gaurikrit Bio-Briquettes — client-supplied product artwork for a Futureline product direction not yet in production"
                width="1920" height="1080" loading="lazy" decoding="async">
         </picture>
-        <figcaption>Client-supplied Bio-Briquettes product artwork.</figcaption>
+        <figcaption>Client-supplied Bio-Briquettes product artwork. Futureline — not yet in production.</figcaption>
       </figure>
     </div>
   </div>
@@ -705,9 +707,10 @@ $emulsion    = get_product('prakritik-emulsion');
         <span class="family-section__num" aria-hidden="true">04</span>
         <h2 class="family-section__name" id="utility-title">Eco Utility Products</h2>
         <p class="family-section__line">A natural-material utility direction.</p>
+        <p class="family-section__status"><span class="status-badge status-badge--futureline" title="Futureline · Not yet in production">Futureline · Not yet in production</span></p>
         <p class="family-section__desc">
           Practical daily-use products from naturally derived materials — a
-          development direction for homes, gardens and everyday routines.
+          Futureline product direction for homes, gardens and everyday routines. Not yet in production.
         </p>
         <ul class="family-section__themes">
           <li>Natural-material utility direction</li>
@@ -716,7 +719,7 @@ $emulsion    = get_product('prakritik-emulsion');
           <li>Circular-economy direction</li>
         </ul>
         <p class="family-section__note">
-          Eco Utility Products is a development direction. A confirmed product
+          Eco Utility Products is a Futureline product — not yet in production. A confirmed product
           list will be published when the client supplies verified information.
         </p>
         <div class="family-section__cta">
@@ -730,10 +733,10 @@ $emulsion    = get_product('prakritik-emulsion');
           <source type="image/webp" srcset="<?= eco_srcset_webp('carousel-eco-utility-products', [640, 960, 1280, 1920]) ?>"
                   sizes="(min-width: 1024px) 42vw, calc(100vw - 2.5rem)">
           <img src="<?= asset_url('/assets/images/ecosystem/carousel-eco-utility-products-1280.jpg') ?>"
-               alt="Gaurikrit Eco Utility Products — client-supplied product artwork: dhoop cups, cow-dung diyas, biodegradable plates and eco glasses"
+               alt="Gaurikrit Eco Utility Products — client-supplied product artwork for a Futureline product direction not yet in production: dhoop cups, cow-dung diyas, biodegradable plates and eco glasses"
                width="1920" height="1080" loading="lazy" decoding="async">
         </picture>
-        <figcaption>Client-supplied Eco Utility Products product artwork.</figcaption>
+        <figcaption>Client-supplied Eco Utility Products product artwork. Futureline — not yet in production.</figcaption>
       </figure>
     </div>
   </div>

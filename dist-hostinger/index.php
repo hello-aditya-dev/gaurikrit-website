@@ -55,14 +55,14 @@ $HERO_SLIDES = [
    'label'=>'Eco-Paints',          'sub'=>'Prakritik Paint family',
    'alt'=>'Gaurikrit Prakritik Paint — eco-friendly cow dung paint, Distemper and Emulsion buckets with natural backdrop'],
   ['stem'=>'carousel-bio-briquettes',       'widths'=>[640,960,1280,1920], 'w'=>1920,'h'=>1080,
-   'label'=>'Bio-Briquettes',      'sub'=>'Premium biomass fuel',
-   'alt'=>'Gaurikrit Bio-Briquettes — premium renewable biomass fuel, cylindrical hollow briquettes on wood'],
+   'label'=>'Bio-Briquettes',      'sub'=>'Futureline · Not yet in production',
+   'alt'=>'Gaurikrit Bio-Briquettes — a Futureline product direction shown as client-supplied product artwork; not yet in production'],
   ['stem'=>'carousel-cow-dung-logs',        'widths'=>[640,960,1280],      'w'=>1672,'h'=>941,
-   'label'=>'Cow-Dung Logs',       'sub'=>'Premium biomass fuel',
-   'alt'=>'Gaurikrit Cow-Dung Logs — premium biomass fuel logs stacked on wood with rural backdrop'],
+   'label'=>'Cow-Dung Logs',       'sub'=>'Development direction',
+   'alt'=>'Gaurikrit Cow-Dung Logs — a development direction shown as client-supplied product artwork'],
   ['stem'=>'carousel-eco-utility-products', 'widths'=>[640,960,1280,1920], 'w'=>1920,'h'=>1080,
-   'label'=>'Eco Utility Products','sub'=>'Dhoop, diyas, plates, cups',
-   'alt'=>'Gaurikrit Eco Utility Products — dhoop cups, cow-dung diyas, biodegradable plates and eco glasses'],
+   'label'=>'Eco Utility Products','sub'=>'Futureline · Not yet in production',
+   'alt'=>'Gaurikrit Eco Utility Products — dhoop cups, cow-dung diyas, biodegradable plates and eco glasses shown as client-supplied product artwork; a Futureline product not yet in production'],
 ];
 $HERO_SIZES = '(min-width: 1200px) 58vw, (min-width: 900px) 50vw, calc(100vw - 2.5rem)';
 ?>
@@ -503,8 +503,9 @@ $HERO_SIZES = '(min-width: 1200px) 58vw, (min-width: 900px) 50vw, calc(100vw - 2
       <h2 class="section-heading__title" id="families-title">One resource. Four solutions.</h2>
       <p class="section-heading__desc">
         Cow dung is the shared material beginning. Gaurikrit develops it in four
-        directions &mdash; Eco-Paints is the documented family; the others are
-        development directions presented without invented products.
+        directions &mdash; Eco-Paints is the documented family; Cow-Dung Logs is
+        a development direction; Bio-Briquettes and Eco Utility Products are
+        Futureline product directions, not yet in production.
       </p>
       <p class="section-heading__desc">
         Every product we create contributes to a circular economy where waste becomes value and sustainability becomes practical.
@@ -556,7 +557,12 @@ $HERO_SIZES = '(min-width: 1200px) 58vw, (min-width: 900px) 50vw, calc(100vw - 2
           <p class="family__line"><?= e($family['line']) ?></p>
           <p class="family__desc"><?= e($family['desc']) ?></p>
           <p class="family__meta">
-            <span class="family__status<?= $family['status'] === 'Documented family' ? '' : ' family__status--direction' ?>">
+            <?php
+              $variant = $family['statusVariant'] ?? ($family['status'] === 'Documented family' ? 'documented' : 'development');
+              $statusClass = $variant === 'documented' ? '' : ($variant === 'futureline' ? ' family__status--futureline' : ' family__status--direction');
+              $titleAttr = $variant === 'futureline' ? ' title="Futureline product — not yet in production"' : '';
+            ?>
+            <span class="family__status<?= $statusClass ?>"<?= $titleAttr ?>>
               <?= e($family['status']) ?>
             </span>
           </p>

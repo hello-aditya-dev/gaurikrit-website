@@ -252,6 +252,7 @@ const FAMILIES = [
         line: 'Healthy walls inspired by nature.',
         desc: 'Cow dung-based wall coatings in Distemper and Emulsion formats — the most developed family in the Gaurikrit ecosystem, documented with full product specifications.',
         status: 'Documented family',
+        statusVariant: 'documented',
         themes: ['Eco-conscious formulation', 'Sustainable building applications', 'Natural-finish positioning'],
         href: '/products/#eco-paints',
     },
@@ -260,6 +261,7 @@ const FAMILIES = [
         line: 'Saving trees without changing traditions.',
         desc: 'A dense log format developed as an alternative to conventional wood — directed at ceremonial and traditional applications where wood has long been the default.',
         status: 'Development direction',
+        statusVariant: 'development',
         themes: ['Alternative to conventional wood', 'Ceremonial applications', 'Forest-conservation direction'],
         href: '/products/#gocast-logs',
     },
@@ -267,7 +269,8 @@ const FAMILIES = [
         num: '03', id: 'bio-coal-logs', name: 'Bio-Briquettes',
         line: 'Renewable energy from natural biomass.',
         desc: 'Biomass-based fuel logs — a renewable energy direction that explores how natural material streams can reduce reliance on fossil fuels.',
-        status: 'Development direction',
+        status: 'Futureline · Not yet in production',
+        statusVariant: 'futureline',
         themes: ['Biomass energy', 'Reduced fossil-fuel reliance direction', 'Sustainable fuel applications'],
         href: '/products/#bio-coal-logs',
     },
@@ -275,7 +278,8 @@ const FAMILIES = [
         num: '04', id: 'utility-products', name: 'Eco Utility Products',
         line: 'Sustainable products for everyday living.',
         desc: 'Practical daily-use products from naturally derived materials — a plastic-reducing direction for homes, gardens and everyday routines.',
-        status: 'Development direction',
+        status: 'Futureline · Not yet in production',
+        statusVariant: 'futureline',
         themes: ['Plastic-reducing alternatives', 'Practical daily-use applications', 'Circular-economy solutions'],
         href: '/products/#utility-products',
     },
@@ -914,7 +918,8 @@ function homeBody(depth) {
                 ${ecoPic(spec.stem, spec.widths, '(min-width: 768px) 45vw, calc(100vw - 2.5rem)', spec.fb, spec.w, spec.h, spec.alt, depth)}
             </figure>`;
         const themes = family.themes.map((t) => `              <li>${e(t)}</li>`).join('\n');
-        const statusClass = family.status === 'Documented family' ? '' : ' family__status--direction';
+        const variant = family.statusVariant || (family.status === 'Documented family' ? 'documented' : 'development');
+        const statusClass = variant === 'documented' ? '' : (variant === 'futureline' ? ' family__status--futureline' : ' family__status--direction');
         return `        <article class="family" id="family-${e(family.id)}">
 ${media}
 
@@ -925,7 +930,7 @@ ${media}
           <p class="family__line">${e(family.line)}</p>
           <p class="family__desc">${e(family.desc)}</p>
           <p class="family__meta">
-            <span class="family__status${statusClass}">
+            <span class="family__status${statusClass}"${variant === 'futureline' ? ' title="Futureline product — not yet in production"' : ''}>
               ${e(family.status)}
             </span>
           </p>
@@ -997,14 +1002,14 @@ ${items}
        label:'Eco-Paints',          sub:'Prakritik Paint family',
        alt:'Gaurikrit Prakritik Paint — eco-friendly cow dung paint, Distemper and Emulsion buckets with natural backdrop'},
       {stem:'carousel-bio-briquettes',       widths:[640,960,1280,1920], w:1920, h:1080,
-       label:'Bio-Briquettes',      sub:'Premium biomass fuel',
-       alt:'Gaurikrit Bio-Briquettes — premium renewable biomass fuel, cylindrical hollow briquettes on wood'},
+       label:'Bio-Briquettes',      sub:'Futureline · Not yet in production',
+       alt:'Gaurikrit Bio-Briquettes — a Futureline product direction shown as client-supplied product artwork; not yet in production'},
       {stem:'carousel-cow-dung-logs',        widths:[640,960,1280],      w:1672, h:941,
-       label:'Cow-Dung Logs',       sub:'Premium biomass fuel',
-       alt:'Gaurikrit Cow-Dung Logs — premium biomass fuel logs stacked on wood with rural backdrop'},
+       label:'Cow-Dung Logs',       sub:'Development direction',
+       alt:'Gaurikrit Cow-Dung Logs — a development direction shown as client-supplied product artwork'},
       {stem:'carousel-eco-utility-products', widths:[640,960,1280,1920], w:1920, h:1080,
-       label:'Eco Utility Products', sub:'Dhoop, diyas, plates, cups',
-       alt:'Gaurikrit Eco Utility Products — dhoop cups, cow-dung diyas, biodegradable plates and eco glasses'},
+       label:'Eco Utility Products', sub:'Futureline · Not yet in production',
+       alt:'Gaurikrit Eco Utility Products — dhoop cups, cow-dung diyas, biodegradable plates and eco glasses shown as client-supplied product artwork; a Futureline product not yet in production'},
     ];
     const HERO_SIZES = '(min-width: 1200px) 58vw, (min-width: 900px) 50vw, calc(100vw - 2.5rem)';
     const heroSlides = HERO_SLIDES.map((s, i) => {
@@ -1417,8 +1422,9 @@ ${heroDots}
       <h2 class="section-heading__title" id="families-title">One resource. Four solutions.</h2>
       <p class="section-heading__desc">
         Cow dung is the shared material beginning. Gaurikrit develops it in four
-        directions &mdash; Eco-Paints is the documented family; the others are
-        development directions presented without invented products.
+        directions &mdash; Eco-Paints is the documented family; Cow-Dung Logs is
+        a development direction; Bio-Briquettes and Eco Utility Products are
+        Futureline product directions, not yet in production.
       </p>
       <p class="section-heading__desc">
         Every product we create contributes to a circular economy where waste becomes value and sustainability becomes practical.
@@ -1607,10 +1613,11 @@ ${items}
         </div>`;
     }).join('\n');
 
-    const familySection = (num, id, aliasId, name, line, desc, themes, note, photoStem, photoWidths, photoFb, photoW, photoH, photoAlt, photoCaption, interest, reverse, hlevel) => {
+    const familySection = (num, id, aliasId, name, line, desc, themes, note, photoStem, photoWidths, photoFb, photoW, photoH, photoAlt, photoCaption, interest, reverse, hlevel, statusBadge) => {
         const themeList = themes.map((t) => `          <li>${e(t)}</li>`).join('\n');
         const rev = reverse ? ' family-section--reverse' : '';
         const aliasSpan = aliasId ? `\n<span id="${aliasId}" aria-hidden="true"></span>` : '';
+        const badge = statusBadge ? `\n        <p class="family-section__status"><span class="status-badge status-badge--futureline" title="${e(statusBadge)}">${e(statusBadge)}</span></p>` : '';
         return `${aliasSpan}
 <!-- ============================================================
      ${num}. ${name.toUpperCase()} — development direction
@@ -1621,7 +1628,7 @@ ${items}
       <div class="family-section__copy">
         <span class="family-section__num" aria-hidden="true">${num}</span>
         <h${hlevel} class="family-section__name" id="${id}-title">${e(name)}</h${hlevel}>
-        <p class="family-section__line">${e(line)}</p>
+        <p class="family-section__line">${e(line)}</p>${badge}
         <p class="family-section__desc">
           ${e(desc)}
         </p>
@@ -1688,23 +1695,23 @@ ${themeList}
 
     const biocoalSection = familySection('03', 'bio-briquettes', 'bio-coal-logs', 'Bio-Briquettes',
         'A bio-based fuel material direction.',
-        'Biomass-based fuel briquettes — a development direction exploring how natural material streams could serve fuel applications.',
+        'Biomass-based fuel briquettes — a Futureline product direction exploring how natural material streams could serve fuel applications. Not yet in production.',
         ['Bio-based fuel material', 'Biomass applications', 'Fuel-material direction', 'Circular material use'],
-        'Bio-Briquettes is a development direction. Composition, calorific value and test data will be published when the client supplies verified information.',
+        'Bio-Briquettes is a Futureline product — not yet in production. Composition, calorific value and test data will be published when the client supplies verified information.',
         'carousel-bio-briquettes', [640, 960, 1280, 1920], 1280, 1920, 1080,
-        'Gaurikrit Bio-Briquettes — client-supplied product artwork, premium renewable biomass fuel',
-        'Client-supplied Bio-Briquettes product artwork.',
-        'bio-coal-logs', true, '2');
+        'Gaurikrit Bio-Briquettes — client-supplied product artwork for a Futureline product direction not yet in production',
+        'Client-supplied Bio-Briquettes product artwork. Futureline — not yet in production.',
+        'bio-coal-logs', true, '2', 'Futureline · Not yet in production');
 
     const utilitySection = familySection('04', 'utility-products', null, 'Eco Utility Products',
         'A natural-material utility direction.',
-        'Practical daily-use products from naturally derived materials — a development direction for homes, gardens and everyday routines.',
+        'Practical daily-use products from naturally derived materials — a Futureline product direction for homes, gardens and everyday routines. Not yet in production.',
         ['Natural-material utility direction', 'Moulded material forms', 'Home / garden / lifestyle direction', 'Circular-economy direction'],
-        'Eco Utility Products is a development direction. A confirmed product list will be published when the client supplies verified information.',
+        'Eco Utility Products is a Futureline product — not yet in production. A confirmed product list will be published when the client supplies verified information.',
         'carousel-eco-utility-products', [640, 960, 1280, 1920], 1280, 1920, 1080,
-        'Gaurikrit Eco Utility Products — client-supplied product artwork: dhoop cups, cow-dung diyas, biodegradable plates and eco glasses',
-        'Client-supplied Eco Utility Products product artwork.',
-        'utility-products', false, '2');
+        'Gaurikrit Eco Utility Products — client-supplied product artwork for a Futureline product direction not yet in production: dhoop cups, cow-dung diyas, biodegradable plates and eco glasses',
+        'Client-supplied Eco Utility Products product artwork. Futureline — not yet in production.',
+        'utility-products', false, '2', 'Futureline · Not yet in production');
 
     const ashtaItems = ASHTA_LAABH.map((benefit, i) => `        <li class="benefits-grid__item">
           <span class="benefits-grid__num" aria-hidden="true">${pad2(i + 1)}</span>
@@ -1866,7 +1873,7 @@ ${themeList}
         <p class="products-hero__sub">
           Cow dung is the shared material beginning. Gaurikrit develops it in
           four directions — Eco-Paints is the documented family; Cow-Dung Logs,
-          Bio-Briquettes and Eco Utility Products are development directions.
+          Bio-Briquettes and Eco Utility Products are Futureline product directions, not yet in production.
         </p>
       </div>
       <div class="products-hero__visual" data-reveal>
@@ -3610,8 +3617,9 @@ ${bizTiles.map((stem) => `          <figure class="biz-hero__tile">
         <p class="biz-hero__sub">
           For distributors, dealers, architects, contractors, institutions,
           industries and sustainability partners. Talk to us about
-          Eco-Paints today — and the Cow-Dung Logs, Bio-Briquettes and utility directions
-          as they develop.
+          Eco-Paints today — and the Cow-Dung Logs, Bio-Briquettes and Eco Utility Products
+          directions as they develop. Bio-Briquettes and Eco Utility Products
+          are Futureline product directions, not yet in production.
         </p>
         <div class="biz-hero__ctas">
           <a class="btn btn--primary btn--lg" href="#enquire">Discuss a Project</a>
@@ -5497,7 +5505,7 @@ const PAGES = [
         pageMeta: {
             title: 'Products — Eco-Paints, Biomass & Sustainable Material Solutions | Gaurikrit',
             description:
-                'The Gaurikrit product ecosystem: Eco-Paints (Prakritik Distemper and Emulsion, fully documented) plus Cow-Dung Logs, Bio-Briquettes and Eco Utility Products development directions — one natural resource, multiple applications.',
+                'The Gaurikrit product ecosystem: Eco-Paints (Prakritik Distemper and Emulsion, fully documented) plus Cow-Dung Logs (development direction) and Bio-Briquettes and Eco Utility Products (Futureline product directions, not yet in production) — one natural resource, multiple applications.',
             canonical: '/products/',
             pageClass: 'products',
         },

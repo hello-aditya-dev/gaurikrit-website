@@ -504,3 +504,28 @@ and the heading `One resource. Four directions.` have been removed from
 active templates and data definitions. Legacy HTML IDs, URL anchors and
 form submission values (`gocast-logs`, `bio-coal-logs`, `utility-products`)
 are preserved for compatibility; only visible labels changed.
+
+### V22.2 — Futureline product status (client-confirmed, 2026-10-29)
+
+The client confirmed that Bio-Briquettes and Eco Utility Products are
+Futureline products, not yet in production. The `FAMILIES` data in both
+`build-static.mjs` and `dist-hostinger/includes/data.php` now carries a
+`statusVariant` field with three values: `documented` (Eco-Paints),
+`development` (Cow-Dung Logs), and `futureline` (Bio-Briquettes and
+Eco Utility Products).
+
+The `status` display text for the two Futureline directions is
+"Futureline · Not yet in production". CSS variants
+`.family__status--futureline` and `.status-badge--futureline` render
+this with the haldi accent and forest-green text — consistent with the
+existing design system, legible on desktop and mobile, and accessible
+via `title` attributes on the badges.
+
+The hero carousel sub-captions for Bio-Briquettes and Eco Utility
+Products now read "Futureline · Not yet in production"; Cow-Dung Logs
+reads "Development direction"; Eco-Paints reads "Prakritik Paint
+family".
+
+All availability-implying language has been removed. The client-supplied
+artwork for both directions is preserved byte-for-byte; status wording
+appears only as separate HTML text, never edited into the images.

@@ -176,3 +176,46 @@ Confirm that `https://gaurikrit.com` is the final owned production domain before
 - `Earth globe with green leaf arrows` (Stage 04) is a 3D render used for the circular-economy direction — no quantified impact claims accompany it.
 - `Cow-Dung pile-3.png` (Stage 01) is a real photograph of raw cow dung in a rural setting — [ ] Client to confirm it may be shown as representative raw-material photography.
 - Marketing copy embedded inside the client's product artworks (e.g. "premium renewable biomass fuel", "havan, crematorium, boiler and industrial use") is shown ONLY as artwork pixels — it has NOT been converted into unqualified HTML text on the site.
+
+## 7. Futureline product status (client-confirmed, 2026-10-29)
+
+The client has explicitly confirmed that the following two product
+directions are **Futureline products and are not yet in production**:
+
+1. **Bio-Briquettes**
+2. **Eco Utility Products** (shown as "Utility Products" in the supplied
+   artwork)
+
+The client supplied promotional artwork showing these products, but the
+existence of that artwork must not be interpreted as evidence that
+production has started or that the products are commercially available.
+
+### Implementation (V22.2)
+
+- Both product directions carry a visible **"Futureline · Not yet in
+  production"** status label on the homepage family cards, the Products
+  page family sections, and in the hero carousel sub-captions.
+- The For Business page hero sub-text explicitly states that
+  Bio-Briquettes and Eco Utility Products are Futureline product
+  directions, not yet in production.
+- The Products page hero sub-text distinguishes Eco-Paints (documented
+  family), Cow-Dung Logs (development direction), and Bio-Briquettes +
+  Eco Utility Products (Futureline, not yet in production).
+- CSS: `.family__status--futureline` and `.status-badge--futureline`
+  use the haldi accent with a forest-green text colour — legible and
+  unobtrusive.
+- Accessibility: Futureline badges carry `title` attributes for screen
+  readers ("Futureline product — not yet in production").
+- Language throughout the site has been corrected: no claims of
+  "in stock", "ready to ship", "available for purchase", "manufactured",
+  or "production capacity" for these two directions.
+- Cow-Dung Logs retains its separately documented "Development direction"
+  status — the Futureline confirmation does not change its status.
+- Eco-Paints remains the documented product family.
+
+### Client originals preserved
+
+The Bio-Briquettes and Eco Utility Products client-supplied artwork is
+used unchanged. No status wording has been inserted into the images
+themselves; all status labels are separate HTML text displayed around or
+immediately below the artwork.
