@@ -159,8 +159,9 @@ $specRows = [
         <h1 class="product-detail__name" id="emulsion-title"><?= e($product['name']) ?></h1>
         <p class="product-detail__descriptor"><?= e($product['descriptor']) ?></p>
         <p class="emulsion-hero__body">
-          Cow dung-based paint listed for interior and exterior
-          walls. Supplied in <?= e($product['packagingShort']) ?> packs.
+          The emulsion format of the Prakritik Paint family — supplied in
+          <?= e($product['packagingShort']) ?> packs, with a listed coverage of
+          <?= e(str_replace('**', '', $product['coverage'])) ?>.
         </p>
         <div class="emulsion-hero__cta-row">
           <a class="btn btn--primary btn--lg"
@@ -222,7 +223,7 @@ $specRows = [
     <p class="spec-plan" data-reveal style="margin-top: 0.5rem;">
       <span class="spec-plan__label">Explore colours</span>
       <a class="spec-plan__link" href="/colours/">
-        Explore supplied shade references
+        Explore the shade collections
         <span class="spec-plan__arrow" aria-hidden="true">→</span>
       </a>
     </p>
@@ -236,7 +237,7 @@ $specRows = [
       <span class="section-heading__eyebrow">Ashta Laabh — अष्ट लाभ</span>
       <h2 class="section-heading__title" id="emulsion-ashta-title">Eight benefits of Prakritik Paint.</h2>
       <p class="section-heading__desc">
-        Benefits listed in the supplied Prakritik Paint material.
+        Benefits as listed in the Prakritik Paint brochure.
       </p>
     </div>
 

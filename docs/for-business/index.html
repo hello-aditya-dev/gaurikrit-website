@@ -264,7 +264,7 @@
   @media (min-width: 1024px) { .biz-hero { padding-bottom: 2.5rem; } }
   .biz-hero__container { display: grid; gap: 2rem; align-items: center; }
   @media (min-width: 1024px) {
-    .biz-hero__container { grid-template-columns: 5fr 7fr; gap: 3rem; }
+    .biz-hero__container { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 3rem; }
   }
   .biz-hero__lockup { max-width: 42rem; }
   .biz-hero__art { padding: 0; background: none; border: 0; }
@@ -272,7 +272,7 @@
      same reading as the homepage portfolio; nothing cropped (16:9 tiles
      + object-fit:contain keep every label/claim fully visible). */
   .biz-hero__ecosystem {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 4px;
+    display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 4px;
   }
   .biz-hero__tile {
     margin: 0; overflow: hidden;
@@ -296,7 +296,7 @@
     display: grid; gap: 2rem; align-items: start;
   }
   @media (min-width: 768px) {
-    .biz-practical__grid { grid-template-columns: 5fr 7fr; gap: 3rem; }
+    .biz-practical__grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 3rem; }
   }
   .biz-practical__head { max-width: 36rem; }
   .biz-practical__title {
@@ -313,7 +313,7 @@
   .biz-practical__item {
     display: grid; gap: 0.5rem; padding: 1rem 0;
     border-bottom: 1px solid var(--border);
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
   @media (min-width: 768px) {
     .biz-practical__item { grid-template-columns: 14rem 1fr; gap: 1rem; align-items: baseline; }
@@ -500,7 +500,7 @@
           <dd><a href="tel:+919999624446">+91 9999624446</a></dd>
         </div>
         <div class="biz-aside-card__row">
-          <dt>Phone</dt>
+          <dt>Phone (alternate)</dt>
           <dd><a href="tel:+919837638842">+91 9837638842</a></dd>
         </div>
           <div class="biz-aside-card__row">
@@ -714,12 +714,13 @@
                     <span class="brand__name">Gaurikrit</span>
                 </a>
                 <p class="site-footer__brandline">Good for Nature. Good for Life.</p>
-                <p class="site-footer__legal-name">Gaurikrit Bio Products (OPC) Private Limited</p>
+                <p class="site-footer__legal-name">Khurja, District Bulandshahr, Uttar Pradesh – 203131</p>
             </div>
             <nav class="site-footer__col site-footer__col--company" aria-label="Company">
                 <h4 class="site-footer__heading">Company</h4>
                 <a href="../">Home</a>
                 <a href="../about/">Our Story</a>
+                <a href="../colours/">Colours</a>
                 <a href="../sustainability/">Sustainability</a>
                 <a href="../innovation/">Innovation</a>
             </nav>
@@ -728,7 +729,6 @@
                 <a href="../products/#eco-paints">Eco-Paints</a>
                 <a href="../products/prakritik-distemper/">Prakritik Distemper</a>
                 <a href="../products/prakritik-emulsion/">Prakritik Emulsion</a>
-                <a href="../colours/">Colours</a>
                 <a href="../products/#gocast-logs">Cow-Dung Logs</a>
                 <a href="../products/#bio-coal-logs">Bio-Briquettes</a>
                 <a href="../products/#utility-products">Eco Utility Products</a>
@@ -753,6 +753,7 @@
         <div class="site-footer__bottom">
             <div class="container site-footer__bottom-inner">
                 <p>© 2026 Gaurikrit Bio Products (OPC) Private Limited. GSTIN: 09AAMCG8400F1ZK.</p>
+                <p class="site-footer__bottom-deva" lang="hi" aria-label="Prakriti se, deewaron tak">प्रकृति से, दीवारों तक.</p>
             </div>
         </div>
     </footer>

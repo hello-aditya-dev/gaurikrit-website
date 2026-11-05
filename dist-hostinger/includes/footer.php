@@ -23,12 +23,13 @@ $addr = $COMPANY['address'] ?? [];
                     <span class="brand__name">Gaurikrit</span>
                 </a>
                 <p class="site-footer__brandline"><?= e($COMPANY['brandLine']) ?></p>
-                <p class="site-footer__legal-name"><?= e($COMPANY['legalName']) ?></p>
+                <p class="site-footer__legal-name"><?= e(implode(', ', array_slice($COMPANY['address'], 3, 3))) ?></p>
             </div>
             <nav class="site-footer__col site-footer__col--company" aria-label="Company">
                 <h4 class="site-footer__heading">Company</h4>
                 <a href="/">Home</a>
                 <a href="/about/">Our Story</a>
+                <a href="/colours/">Colours</a>
                 <a href="/sustainability/">Sustainability</a>
                 <a href="/innovation/">Innovation</a>
             </nav>
@@ -61,6 +62,7 @@ $addr = $COMPANY['address'] ?? [];
         <div class="site-footer__bottom">
             <div class="container site-footer__bottom-inner">
                 <p>© <?= date('Y') ?> <?= e($COMPANY['legalName']) ?>. GSTIN: <?= e($COMPANY['gstin']) ?>.</p>
+                <p class="site-footer__bottom-deva" lang="hi" aria-label="Prakriti se, deewaron tak"><?= e($COMPANY['hindiTagline']) ?></p>
             </div>
         </div>
     </footer>

@@ -232,7 +232,7 @@
     <main id="main" class="site-main">
 <style>
   .error-page {
-    min-height: 80vh; display: flex; align-items: center; justify-content: flex-start;
+    min-height: 80vh; min-height: 80dvh; display: flex; align-items: center; justify-content: flex-start;
     text-align: left; padding-block: clamp(3rem, 8vw, 6rem);
     padding-top: calc(var(--header-h) + 3rem);
     position: relative; overflow: hidden;
@@ -255,7 +255,7 @@
     position: relative;
     width: 4rem; height: 4rem; margin: 0 0 1.5rem;
     display: flex; align-items: center; justify-content: center;
-    background: radial-gradient(circle at 50% 45%, #f9f5eb, #e7ebdf);
+    background: transparent; /* V26: the official mark carries genuine alpha — no plate */
     border-radius: var(--r-card);
     overflow: hidden;
   }
@@ -647,12 +647,13 @@
                     <span class="brand__name">Gaurikrit</span>
                 </a>
                 <p class="site-footer__brandline">Good for Nature. Good for Life.</p>
-                <p class="site-footer__legal-name">Gaurikrit Bio Products (OPC) Private Limited</p>
+                <p class="site-footer__legal-name">Khurja, District Bulandshahr, Uttar Pradesh – 203131</p>
             </div>
             <nav class="site-footer__col site-footer__col--company" aria-label="Company">
                 <h4 class="site-footer__heading">Company</h4>
                 <a href="./">Home</a>
                 <a href="./about/">Our Story</a>
+                <a href="./colours/">Colours</a>
                 <a href="./sustainability/">Sustainability</a>
                 <a href="./innovation/">Innovation</a>
             </nav>
@@ -661,7 +662,6 @@
                 <a href="./products/#eco-paints">Eco-Paints</a>
                 <a href="./products/prakritik-distemper/">Prakritik Distemper</a>
                 <a href="./products/prakritik-emulsion/">Prakritik Emulsion</a>
-                <a href="./colours/">Colours</a>
                 <a href="./products/#gocast-logs">Cow-Dung Logs</a>
                 <a href="./products/#bio-coal-logs">Bio-Briquettes</a>
                 <a href="./products/#utility-products">Eco Utility Products</a>
@@ -686,6 +686,7 @@
         <div class="site-footer__bottom">
             <div class="container site-footer__bottom-inner">
                 <p>© 2026 Gaurikrit Bio Products (OPC) Private Limited. GSTIN: 09AAMCG8400F1ZK.</p>
+                <p class="site-footer__bottom-deva" lang="hi" aria-label="Prakriti se, deewaron tak">प्रकृति से, दीवारों तक.</p>
             </div>
         </div>
     </footer>

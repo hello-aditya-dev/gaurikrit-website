@@ -365,7 +365,6 @@ const FOOTER_PRODUCTS = [
     { label: 'Eco-Paints', href: '/products/#eco-paints' },
     { label: 'Prakritik Distemper', href: '/products/prakritik-distemper/' },
     { label: 'Prakritik Emulsion', href: '/products/prakritik-emulsion/' },
-    { label: 'Colours', href: '/colours/' },
     { label: 'Cow-Dung Logs', href: '/products/#gocast-logs' },
     { label: 'Bio-Briquettes', href: '/products/#bio-coal-logs' },
     { label: 'Eco Utility Products', href: '/products/#utility-products' },
@@ -816,12 +815,13 @@ function renderFooter(depth) {
                     <span class="brand__name">Gaurikrit</span>
                 </a>
                 <p class="site-footer__brandline">${e(COMPANY.brandLine)}</p>
-                <p class="site-footer__legal-name">${e(COMPANY.legalName)}</p>
+                <p class="site-footer__legal-name">${e(COMPANY.address.slice(3, 6).join(', '))}</p>
             </div>
             <nav class="site-footer__col site-footer__col--company" aria-label="Company">
                 <h4 class="site-footer__heading">Company</h4>
                 <a href="${relUrl('/', depth)}">Home</a>
                 <a href="${relUrl('/about/', depth)}">Our Story</a>
+                <a href="${relUrl('/colours/', depth)}">Colours</a>
                 <a href="${relUrl('/sustainability/', depth)}">Sustainability</a>
                 <a href="${relUrl('/innovation/', depth)}">Innovation</a>
             </nav>
@@ -848,6 +848,7 @@ ${phoneLinks}
         <div class="site-footer__bottom">
             <div class="container site-footer__bottom-inner">
                 <p>© ${year} ${e(COMPANY.legalName)}. GSTIN: ${e(COMPANY.gstin)}.</p>
+                <p class="site-footer__bottom-deva" lang="hi" aria-label="Prakriti se, deewaron tak">${e(COMPANY.hindiTagline)}</p>
             </div>
         </div>
     </footer>
@@ -1003,13 +1004,13 @@ ${items}
        alt:'Gaurikrit Prakritik Paint — eco-friendly cow dung paint, Distemper and Emulsion buckets with natural backdrop'},
       {stem:'carousel-bio-briquettes',       widths:[640,960,1280,1920], w:1920, h:1080,
        label:'Bio-Briquettes',      sub:'Futureline · Not yet in production',
-       alt:'Gaurikrit Bio-Briquettes — a Futureline product direction shown as client-supplied product artwork; not yet in production'},
+       alt:'Gaurikrit Bio-Briquettes — a Futureline product direction shown in official Gaurikrit artwork; not yet in production'},
       {stem:'carousel-cow-dung-logs',        widths:[640,960,1280],      w:1672, h:941,
        label:'Cow-Dung Logs',       sub:'Development direction',
-       alt:'Gaurikrit Cow-Dung Logs — a development direction shown as client-supplied product artwork'},
+       alt:'Gaurikrit Cow-Dung Logs — a development direction shown in official Gaurikrit artwork'},
       {stem:'carousel-eco-utility-products', widths:[640,960,1280,1920], w:1920, h:1080,
        label:'Eco Utility Products', sub:'Futureline · Not yet in production',
-       alt:'Gaurikrit Eco Utility Products — dhoop cups, cow-dung diyas, biodegradable plates and eco glasses shown as client-supplied product artwork; a Futureline product not yet in production'},
+       alt:'Gaurikrit Eco Utility Products — dhoop cups, cow-dung diyas, biodegradable plates and eco glasses shown in official Gaurikrit artwork; a Futureline product not yet in production'},
     ];
     const HERO_SIZES = '(min-width: 1200px) 58vw, (min-width: 900px) 50vw, calc(100vw - 2.5rem)';
     const heroSlides = HERO_SLIDES.map((s, i) => {
@@ -1050,13 +1051,13 @@ ${items}
   }
   .hero__grid { align-items: center; position: relative; }
   @media (min-width: 1200px) {
-    .hero__grid { grid-template-columns: 5fr 7fr; gap: clamp(2rem, 4vw, 4rem); }
+    .hero__grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(2rem, 4vw, 4rem); }
   }
   @media (min-width: 900px) and (max-width: 1199px) {
-    .hero__grid { grid-template-columns: 6fr 6fr; gap: clamp(1.5rem, 3vw, 3rem); }
+    .hero__grid { grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); gap: clamp(1.5rem, 3vw, 3rem); }
   }
   @media (max-width: 899px) {
-    .hero__grid { grid-template-columns: 1fr; }
+    .hero__grid { grid-template-columns: minmax(0, 1fr); }
     .hero__visual { order: 5; }
   }
   .hero__eyebrow-chip { margin-bottom: 0.875rem; }
@@ -1120,6 +1121,11 @@ ${items}
   .hero-showcase__controls {
     display: flex; align-items: center; justify-content: space-between;
     gap: 0.75rem 1.25rem; margin-top: 1rem; flex-wrap: wrap;
+    position: relative;
+  }
+  /* V26: dots optically centred under the frame on desktop */
+  @media (min-width: 561px) {
+    .hero-showcase__dots { position: absolute; left: 50%; transform: translateX(-50%); }
   }
   .hero-showcase__caption { display: flex; flex-direction: column; gap: 0.0625rem; min-width: 0; }
   .hero-showcase__label {
@@ -1132,12 +1138,13 @@ ${items}
   }
   .hero-showcase__dots { display: flex; gap: 0.4375rem; align-items: center; }
   .hero-showcase__dot {
-    width: 0.5rem; height: 0.5rem; padding: 0; margin: 0; border: 0;
+    width: 1.5rem; height: 0.5rem; padding: 0; margin: 0; border: 0;
     border-radius: 999px; background: var(--border-strong);
+    transform: scaleX(0.34); transform-origin: center; /* V26: transform, not width — and a larger touch target */
     cursor: pointer; appearance: none; -webkit-appearance: none;
-    transition: background 0.3s ease, width 0.3s ease;
+    transition: background 0.3s ease, transform 0.3s ease;
   }
-  .hero-showcase__dot[aria-selected="true"] { background: var(--forest); width: 1.5rem; }
+  .hero-showcase__dot[aria-selected="true"] { background: var(--forest); transform: scaleX(1); }
   .hero-showcase__dot:focus-visible { outline: 2px solid var(--haldi); outline-offset: 3px; }
   .hero-showcase__arrows { display: flex; gap: 0.5rem; align-items: center; }
   .hero-showcase__arrow {
@@ -1171,11 +1178,11 @@ ${items}
   @media (max-width: 560px) {
     .hero-showcase__controls { flex-direction: column; align-items: center; gap: 0.875rem; }
     .hero-showcase__caption { order: 1; align-items: center; }
-    .hero-showcase__dots { order: 2; }
+    .hero-showcase__dots { order: 2; position: static; transform: none; }
     .hero-showcase__arrows { order: 3; }
     .hero-showcase__arrow, .hero-showcase__toggle { width: 2.75rem; height: 2.75rem; }
-    .hero-showcase__dot { width: 0.625rem; height: 0.625rem; }
-    .hero-showcase__dot[aria-selected="true"] { width: 1.75rem; }
+    .hero-showcase__dot { height: 0.625rem; transform: scaleX(0.42); }
+    .hero-showcase__dot[aria-selected="true"] { transform: scaleX(1); }
   }
 
   /* V21 — mission statement callout inside the story section */
@@ -1234,9 +1241,9 @@ ${items}
 
   /* ===== 06. INNOVATION TEASER — one research composition (§33) ===== */
   .innov-teaser__grid {
-    display: grid; grid-template-columns: 1fr; gap: 2.5rem; align-items: center;
+    display: grid; grid-template-columns: minmax(0, 1fr); gap: 2.5rem; align-items: center;
   }
-  @media (min-width: 1024px) { .innov-teaser__grid { grid-template-columns: 5fr 7fr; gap: 3.5rem; } }
+  @media (min-width: 1024px) { .innov-teaser__grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 3.5rem; } }
   .innov-composition { margin: 0; }
   .innov-composition img {
     width: 100%; height: auto; display: block; border-radius: 0.1875rem;
@@ -1644,7 +1651,7 @@ ${themeList}
           <a class="btn btn--outline" href="${relUrl('/contact/', depth)}?interest=${interest}">Enquire About ${e(name.replace('Eco-Friendly ', ''))}</a>
         </div>
       </div>
-      <figure class="family-section__photo" aria-label="${e(name)} — client-supplied product artwork">
+      <figure class="family-section__photo" aria-label="${e(name)} — official Gaurikrit product artwork">
         ${ecoPic(photoStem, photoWidths, '(min-width: 1024px) 42vw, calc(100vw - 2.5rem)', photoFb, photoW, photoH, photoAlt, depth)}
         <figcaption>${e(photoCaption)}</figcaption>
       </figure>
@@ -1665,8 +1672,8 @@ ${themeList}
   <div class="container">
     <div class="gocast-feature" data-reveal>
       <figure class="gocast-feature__figure">
-        ${ecoPic('carousel-cow-dung-logs', [640, 960, 1280], '(min-width: 1024px) 45vw, calc(100vw - 2.5rem)', 1280, 1672, 941, 'Gaurikrit Cow-Dung Logs — client-supplied product artwork, premium biomass fuel', depth)}
-        <figcaption>Client-supplied Cow-Dung Logs product artwork.</figcaption>
+        ${ecoPic('carousel-cow-dung-logs', [640, 960, 1280], '(min-width: 1024px) 45vw, calc(100vw - 2.5rem)', 1280, 1672, 941, 'Gaurikrit Cow-Dung Logs — official product artwork, premium biomass fuel', depth)}
+        <figcaption>Cow-Dung Logs — official product artwork.</figcaption>
       </figure>
       <div class="gocast-feature__copy">
         <span class="family-section__num" aria-hidden="true">02</span>
@@ -1695,7 +1702,7 @@ ${themeList}
     <div class="family-section__poster" data-reveal>
       <figure class="family-section__poster-figure">
         ${ecoPic('gbp-cow-dung-logs', [640, 960, 1024], '(min-width: 1024px) 30vw, calc(100vw - 2.5rem)', 1024, 1024, 1024, 'Gaurikrit Cow-Dung Logs product poster — stacked biomass fuel logs. Development direction.', depth)}
-        <figcaption>Client-supplied Cow-Dung Logs product poster.</figcaption>
+        <figcaption>Cow-Dung Logs — official product poster.</figcaption>
       </figure>
     </div>
   </div>
@@ -1707,10 +1714,10 @@ ${themeList}
         ['Bio-based fuel material', 'Biomass applications', 'Fuel-material direction', 'Circular material use'],
         'Bio-Briquettes is a Futureline product — not yet in production. Composition, calorific value and test data will be published when the client supplies verified information.',
         'carousel-bio-briquettes', [640, 960, 1280, 1920], 1280, 1920, 1080,
-        'Gaurikrit Bio-Briquettes — client-supplied product artwork for a Futureline product direction not yet in production',
-        'Client-supplied Bio-Briquettes product artwork. Futureline — not yet in production.',
+        'Gaurikrit Bio-Briquettes — official Gaurikrit artwork for a Futureline product direction not yet in production',
+        'Bio-Briquettes official artwork. Futureline — not yet in production.',
         'bio-coal-logs', true, '2', 'Futureline · Not yet in production',
-        {stem:'gbp-bio-briquettes', widths:[640,960,1024], fb:1024, w:1024, h:1024, alt:'Gaurikrit Bio-Briquettes product poster — cylindrical biomass fuel logs. Futureline product, not yet in production.', caption:'Client-supplied Bio-Briquettes product poster.'});
+        {stem:'gbp-bio-briquettes', widths:[640,960,1024], fb:1024, w:1024, h:1024, alt:'Gaurikrit Bio-Briquettes product poster — cylindrical biomass fuel logs. Futureline product, not yet in production.', caption:'Bio-Briquettes — official product poster. Futureline, not yet in production.'});
 
     const utilitySection = familySection('04', 'utility-products', null, 'Eco Utility Products',
         'A natural-material utility direction.',
@@ -1718,10 +1725,10 @@ ${themeList}
         ['Natural-material utility direction', 'Moulded material forms', 'Home / garden / lifestyle direction', 'Circular-economy direction'],
         'Eco Utility Products is a Futureline product — not yet in production. A confirmed product list will be published when the client supplies verified information.',
         'carousel-eco-utility-products', [640, 960, 1280, 1920], 1280, 1920, 1080,
-        'Gaurikrit Eco Utility Products — client-supplied product artwork for a Futureline product direction not yet in production: dhoop cups, cow-dung diyas, biodegradable plates and eco glasses',
-        'Client-supplied Eco Utility Products product artwork. Futureline — not yet in production.',
+        'Gaurikrit Eco Utility Products — official Gaurikrit artwork for a Futureline product direction not yet in production: dhoop cups, cow-dung diyas, biodegradable plates and eco glasses',
+        'Eco Utility Products official artwork. Futureline — not yet in production.',
         'utility-products', false, '2', 'Futureline · Not yet in production',
-        {stem:'showcase-utility', widths:[640,960,1022], fb:1022, w:1022, h:1095, alt:'Gaurikrit Eco Utility Products showcase — dhoop cups and cow-dung diyas. Futureline product, not yet in production.', caption:'Client-supplied Eco Utility Products showcase — Dhoop Cups and Cow-Dung Diyas.'});
+        {stem:'showcase-utility', widths:[640,960,1022], fb:1022, w:1022, h:1095, alt:'Gaurikrit Eco Utility Products showcase — dhoop cups and cow-dung diyas. Futureline product, not yet in production.', caption:'Eco Utility Products showcase — dhoop cups and cow-dung diyas. Futureline, not yet in production.'});
 
     const ashtaItems = ASHTA_LAABH.map((benefit, i) => `        <li class="benefits-grid__item">
           <span class="benefits-grid__num" aria-hidden="true">${pad2(i + 1)}</span>
@@ -1773,8 +1780,8 @@ ${themeList}
 
   /* ===== 1. ECOSYSTEM HERO ===== */
   .products-hero { padding-top: calc(var(--header-h) + 2rem); padding-bottom: 1.5rem; }
-  .products-hero__grid { display: grid; gap: 2.5rem; align-items: center; grid-template-columns: 1fr; }
-  @media (min-width: 1024px) { .products-hero__grid { grid-template-columns: 45fr 55fr; gap: clamp(2rem, 4vw, 4rem); } }
+  .products-hero__grid { display: grid; gap: 2.5rem; align-items: center; grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 1024px) { .products-hero__grid { grid-template-columns: minmax(0, 45fr) minmax(0, 55fr); gap: clamp(2rem, 4vw, 4rem); } }
   .products-hero__lockup { max-width: 42rem; }
   .products-hero__visual { position: relative; width: 100%; overflow: hidden; }
   .products-hero__visual .hero-group-photo { display: block; width: 100%; height: auto; border-radius: 0.1875rem; }
@@ -1826,8 +1833,8 @@ ${themeList}
 
   /* ===== 2. ECO-PAINTS FAMILY SECTION ===== */
   .eco-family { padding-block: clamp(3rem, 6vw, 5rem); }
-  .eco-family__grid { display: grid; gap: 2.5rem; align-items: center; grid-template-columns: 1fr; }
-  @media (min-width: 1024px) { .eco-family__grid { grid-template-columns: 5fr 7fr; gap: clamp(2rem, 4vw, 4rem); } }
+  .eco-family__grid { display: grid; gap: 2.5rem; align-items: center; grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 1024px) { .eco-family__grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(2rem, 4vw, 4rem); } }
   .eco-family__plate { background: none; border: 0; border-radius: 0; padding: 0; }
   .eco-family__plate img { display: block; width: 100%; height: auto; }
   .eco-family__head { display: flex; align-items: baseline; gap: 0.875rem; }
@@ -1839,10 +1846,10 @@ ${themeList}
 
   /* ===== UNDOCUMENTED FAMILY SECTIONS ===== */
   .family-section { padding-block: clamp(3rem, 6vw, 5rem); }
-  .family-section__grid { display: grid; gap: 2.5rem; align-items: center; grid-template-columns: 1fr; }
+  .family-section__grid { display: grid; gap: 2.5rem; align-items: center; grid-template-columns: minmax(0, 1fr); }
   @media (min-width: 1024px) {
-    .family-section__grid { grid-template-columns: 7fr 5fr; gap: clamp(2.5rem, 5vw, 4.5rem); }
-    .family-section--reverse .family-section__grid { grid-template-columns: 5fr 7fr; }
+    .family-section__grid { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(2.5rem, 5vw, 4.5rem); }
+    .family-section--reverse .family-section__grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }
     .family-section--reverse .family-section__copy { order: 2; }
   }
   .family-section__num { font-family: var(--font-display); font-size: clamp(2rem, 3vw, 2.75rem); font-weight: 700; color: var(--haldi-deep); line-height: 1; font-variant-numeric: tabular-nums; }
@@ -1864,14 +1871,14 @@ ${themeList}
   .spec-matrix-section { padding-block: clamp(3rem, 6vw, 5rem); }
   .spec-matrix-section__head { max-width: 48rem; margin-bottom: 2.5rem; }
   .spec-matrix { border: 1px solid var(--border); border-radius: var(--r-panel); overflow: hidden; background: var(--paper); }
-  .spec-matrix__row { grid-template-columns: 1fr; gap: 0.75rem; padding: 1.75rem 1.25rem; border-bottom: 1px solid var(--border); }
+  .spec-matrix__row { grid-template-columns: minmax(0, 1fr); gap: 0.75rem; padding: 1.75rem 1.25rem; border-bottom: 1px solid var(--border); }
   @media (min-width: 768px) { .spec-matrix__row { grid-template-columns: 12rem 1fr 1fr; gap: 1.5rem; padding: 1.75rem 1.5rem; } }
   .spec-matrix__row:nth-child(even) { background: color-mix(in srgb, var(--haldi) 3%, transparent); }
   .spec-matrix__row:first-child { border-bottom: 2px solid var(--forest); background: color-mix(in srgb, var(--limewash) 80%, var(--paper)); }
   .spec-matrix__row:last-child { border-bottom: 0; }
   .spec-matrix__col-head { font-size: 0.8125rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--forest); }
   .spec-matrix__col-head--distemper { color: var(--indigo); }
-  .spec-matrix__col-head--emulsion { color: var(--leaf); }
+  .spec-matrix__col-head--emulsion { color: var(--leaf-deep); }
   .spec-matrix__label { font-weight: 700 !important; font-size: 0.875rem !important; color: var(--fg) !important; letter-spacing: 0.02em; }
   .spec-matrix__value { font-weight: 600 !important; color: var(--fg) !important; }
   .spec-matrix-mobile { display: none; }
@@ -1924,20 +1931,22 @@ ${themeList}
 </section>
 
 <!-- ============================================================
-     1b. CLIENT ECOSYSTEM BANNER — GBP Products Banner
+     1b. PRODUCT RANGE BANNER — GBP Products Banner
      ============================================================ -->
 <section class="section section--paper" aria-labelledby="ecosystem-banner-title" style="padding-block: clamp(2rem, 4vw, 3rem);">
   <div class="container">
     <div class="section-heading section-heading--left" data-reveal style="max-width: 48rem; margin-bottom: 1.5rem;">
-      <span class="section-heading__eyebrow">Client Ecosystem Banner</span>
+      <span class="section-heading__eyebrow">Product Directions</span>
       <h2 class="section-heading__title" id="ecosystem-banner-title" style="font-size: clamp(1.5rem, 3vw, 2rem);">The Gaurikrit product range.</h2>
       <p class="section-heading__desc">
-        A client-supplied banner showing the product directions. Eco-Paints is the documented family; Cow-Dung Logs is a development direction; Bio-Briquettes and Eco Utility Products are Futureline product directions, not yet in production.
+        All four Gaurikrit product directions in one view — from the
+        documented Eco-Paints family to the Futureline directions still
+        in development.
       </p>
     </div>
     <figure class="journey-infographic" data-reveal>
-      ${ecoPic('products-banner', [640, 960, 1280, 1536], '(min-width: 1024px) 80vw, calc(100vw - 2.5rem)', 1280, 1536, 1024, 'Client-supplied Gaurikrit product range banner — Eco-Paints, Cow-Dung Logs, Bio-Briquettes (Futureline) and Eco Utility Products (Futureline). The Futureline products are not yet in production.', depth)}
-      <figcaption>Client-supplied ecosystem banner &mdash; Bio-Briquettes and Eco Utility Products are Futureline products, not yet in production.</figcaption>
+      ${ecoPic('products-banner', [640, 960, 1280, 1536], '(min-width: 1024px) 80vw, calc(100vw - 2.5rem)', 1280, 1536, 1024, 'Official Gaurikrit product range banner — Eco-Paints, Cow-Dung Logs, Bio-Briquettes (Futureline) and Eco Utility Products (Futureline). The Futureline products are not yet in production.', depth)}
+      <figcaption>The official Gaurikrit product range &mdash; Bio-Briquettes and Eco Utility Products are Futureline products, not yet in production.</figcaption>
     </figure>
   </div>
 </section>
@@ -2250,7 +2259,7 @@ function distemperBody(depth) {
   }
   @media (min-width: 1024px) {
     .product-detail__hero {
-      grid-template-columns: 5fr 7fr; gap: clamp(2.5rem, 5vw, 4rem);
+      grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(2.5rem, 5vw, 4rem);
     }
   }
   /* V12: media is ONE designed catalogue panel (same language as the home
@@ -2291,7 +2300,7 @@ function distemperBody(depth) {
   .distemper-specs-section { padding-block: clamp(3rem, 6vw, 5rem); }
   .spec-sheet__head { margin-bottom: 1.5rem; }
   .spec-sheet__list {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   /* ===== COVERAGE DISCLAIMER ===== */
@@ -2317,8 +2326,9 @@ function distemperBody(depth) {
         <h1 class="product-detail__name" id="distemper-title">${e(product.name)}</h1>
         <p class="product-detail__descriptor">${e(product.descriptor)}</p>
         <p class="distemper-hero__body">
-          Cow dung-based paint listed for interior and exterior
-          walls. Supplied in ${e(product.packagingShort)} packs.
+          The distemper format of the Prakritik Paint family — supplied in
+          ${e(product.packagingShort)} packs, with a listed coverage of
+          ${e(product.coverage.replace('**', ''))}.
         </p>
         <div class="distemper-hero__cta-row">
           <a class="btn btn--primary btn--lg"
@@ -2376,7 +2386,7 @@ ${specItems}
     <p class="spec-plan" data-reveal style="margin-top: 0.5rem;">
       <span class="spec-plan__label">Explore colours</span>
       <a class="spec-plan__link" href="${relUrl('/colours/', depth)}">
-        Explore supplied shade references
+        Explore the shade collections
         <span class="spec-plan__arrow" aria-hidden="true">→</span>
       </a>
     </p>
@@ -2390,7 +2400,7 @@ ${specItems}
       <span class="section-heading__eyebrow">Ashta Laabh — अष्ट लाभ</span>
       <h2 class="section-heading__title" id="distemper-ashta-title">Eight benefits of Prakritik Paint.</h2>
       <p class="section-heading__desc">
-        Benefits listed in the supplied Prakritik Paint material.
+        Benefits as listed in the Prakritik Paint brochure.
       </p>
     </div>
 
@@ -2483,7 +2493,7 @@ function emulsionBody(depth) {
   }
   @media (min-width: 1024px) {
     .product-detail__hero {
-      grid-template-columns: 11fr 9fr; gap: clamp(2.5rem, 5vw, 4rem);
+      grid-template-columns: minmax(0, 11fr) minmax(0, 9fr); gap: clamp(2.5rem, 5vw, 4rem);
     }
     /* Reversed: product is the first child, on the left. */
     .product-detail--warm .product-detail__hero > :first-child { order: 1; }
@@ -2526,7 +2536,7 @@ function emulsionBody(depth) {
   /* ===== SPEC SHEET ===== */
   .emulsion-specs-section { padding-block: clamp(3rem, 6vw, 5rem); }
   .spec-sheet__head { margin-bottom: 1.5rem; }
-  .spec-sheet__list { grid-template-columns: 1fr; }
+  .spec-sheet__list { grid-template-columns: minmax(0, 1fr); }
 
   /* ===== COVERAGE DISCLAIMER ===== */
   .coverage-disclaimer { margin-top: 2rem; border-left-color: var(--leaf); }
@@ -2560,8 +2570,9 @@ function emulsionBody(depth) {
         <h1 class="product-detail__name" id="emulsion-title">${e(product.name)}</h1>
         <p class="product-detail__descriptor">${e(product.descriptor)}</p>
         <p class="emulsion-hero__body">
-          Cow dung-based paint listed for interior and exterior
-          walls. Supplied in ${e(product.packagingShort)} packs.
+          The emulsion format of the Prakritik Paint family — supplied in
+          ${e(product.packagingShort)} packs, with a listed coverage of
+          ${e(product.coverage.replace('**', ''))}.
         </p>
         <div class="emulsion-hero__cta-row">
           <a class="btn btn--primary btn--lg"
@@ -2610,7 +2621,7 @@ ${specItems}
     <p class="spec-plan" data-reveal style="margin-top: 0.5rem;">
       <span class="spec-plan__label">Explore colours</span>
       <a class="spec-plan__link" href="${relUrl('/colours/', depth)}">
-        Explore supplied shade references
+        Explore the shade collections
         <span class="spec-plan__arrow" aria-hidden="true">→</span>
       </a>
     </p>
@@ -2624,7 +2635,7 @@ ${specItems}
       <span class="section-heading__eyebrow">Ashta Laabh — अष्ट लाभ</span>
       <h2 class="section-heading__title" id="emulsion-ashta-title">Eight benefits of Prakritik Paint.</h2>
       <p class="section-heading__desc">
-        Benefits listed in the supplied Prakritik Paint material.
+        Benefits as listed in the Prakritik Paint brochure.
       </p>
     </div>
 
@@ -2729,7 +2740,7 @@ function whyPrakritikBody(depth) {
   .why-hero { padding-top: calc(var(--header-h) + 2rem); padding-bottom: 1.5rem; }
   .why-hero__container { display: grid; gap: 2rem; align-items: center; }
   @media (min-width: 1024px) {
-    .why-hero__container { grid-template-columns: 5fr 7fr; gap: 3rem; }
+    .why-hero__container { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 3rem; }
   }
   .why-hero__lockup { max-width: 42rem; }
   .why-hero__art {
@@ -2749,13 +2760,13 @@ function whyPrakritikBody(depth) {
     display: grid; gap: 2rem; padding-block: clamp(3.5rem, 6vw, 5rem);
   }
   @media (min-width: 1024px) {
-    .why-chapter { grid-template-columns: 4fr 8fr; gap: 3rem; align-items: start; }
+    .why-chapter { grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: 3rem; align-items: start; }
   }
   /* V12: Section 02 TRADITION — the courtyard elevation is the chapter's
      dominant visual: copy ~45 / image ~55 on desktop; copy first, image
      second at every breakpoint. */
   @media (min-width: 1024px) {
-    .why-chapter--wide-art { grid-template-columns: 45fr 55fr; gap: 3rem; align-items: center; }
+    .why-chapter--wide-art { grid-template-columns: minmax(0, 45fr) minmax(0, 55fr); gap: 3rem; align-items: center; }
   }
   .why-chapter__num {
     font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 4rem);
@@ -2763,16 +2774,16 @@ function whyPrakritikBody(depth) {
   }
   .why-chapter__eyebrow {
     display: block; margin-top: 0.875rem; font-size: 0.75rem;
-    font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
+    font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
     color: var(--primary);
   }
   .why-chapter__title {
-    margin-top: 0.5rem; font-family: var(--font-display);
+    margin-top: 1rem; font-family: var(--font-display); /* V26 hallmark 71: nearer what it heads */
     font-size: clamp(1.75rem, 4vw, 2.75rem); line-height: 1.1;
     letter-spacing: -0.02em; text-wrap: balance;
   }
   .why-chapter__body {
-    margin-top: 1.25rem; color: var(--fg-muted);
+    margin-top: 0.75rem; color: var(--fg-muted);
     font-size: 1.0625rem; line-height: 1.75; max-width: 60ch;
   }
   .why-chapter__body p + p { margin-top: 1.25rem; }
@@ -2821,7 +2832,7 @@ function whyPrakritikBody(depth) {
   .why-formats {
     display: grid; gap: 2rem; margin-top: 2rem;
   }
-  @media (min-width: 768px) { .why-formats { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 768px) { .why-formats { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
   .why-format-card {
     position: relative;
     background: color-mix(in srgb, var(--paper-cool) 25%, var(--paper));
@@ -2846,7 +2857,7 @@ function whyPrakritikBody(depth) {
     border-radius: var(--r-pill); font-size: 0.8125rem; font-weight: 600;
   }
   .why-format-card--distemper .why-format-card__caption { color: var(--indigo); }
-  .why-format-card--emulsion  .why-format-card__caption { color: var(--leaf); }
+  .why-format-card--emulsion  .why-format-card__caption { color: var(--leaf-deep); }
 
   /* === Chapter 06 — CONTEXT: typographic band (V20 §68: the generated
      rural-landscape engraving is retired; ruled facts carry the region.) === */
@@ -2859,7 +2870,7 @@ function whyPrakritikBody(depth) {
   .why-context-facts > div {
     display: grid; gap: 0.25rem; padding: 0.875rem 0;
     border-bottom: 1px solid var(--border);
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
   @media (min-width: 640px) {
     .why-context-facts > div { grid-template-columns: 10rem 1fr; gap: 1rem; align-items: baseline; }
@@ -3066,7 +3077,7 @@ function whyPrakritikBody(depth) {
       <span class="section-heading__eyebrow">Ashta Laabh — अष्ट लाभ</span>
       <h2 class="section-heading__title" id="chapter-04-title">Eight benefits of Prakritik Paint.</h2>
       <p class="section-heading__desc">
-        Benefits listed in the supplied Prakritik Paint material.
+        Benefits as listed in the Prakritik Paint brochure.
       </p>
     </div>
     <ol class="benefits-grid" data-reveal-stagger>
@@ -3119,7 +3130,7 @@ ${ashtaItems}
         <span class="colour-cta__eyebrow">Colour Collections</span>
         <h3 class="colour-cta__title">Colours Inspired by Nature.</h3>
         <p class="colour-cta__body">
-          Two client-supplied collections — <strong>12 Signature shades</strong>
+          Two shade collections — <strong>12 Signature shades</strong>
           and a <strong>Premium collection in five groups</strong> — previewed
           live on the wall.
         </p>
@@ -3189,8 +3200,8 @@ function aboutBody(depth) {
     const addressLine = address.slice(0, 6).join('\n');
     const groupImage = assetUrl('/assets/products/prakritik-group.jpg', depth);
 
-    const phoneRows = COMPANY.phones.map((phone) => `      <div class="company-plate__row">
-        <dt>Phone</dt>
+    const phoneRows = COMPANY.phones.map((phone, i) => `      <div class="company-plate__row">
+        <dt>${i === 0 ? 'Phone' : 'Phone (alternate)'}</dt>
         <dd>
           <a href="tel:${e(phone.replace(/ /g, ''))}">${e(phone)}</a>
         </dd>
@@ -3199,11 +3210,11 @@ function aboutBody(depth) {
     return `<style>
   /* ===== STORY HERO — brand identity left, real product plate right ===== */
   .about-hero { padding-top: calc(var(--header-h) + 2rem); padding-bottom: 1.5rem; }
-  .about-hero__container { display: grid; gap: clamp(2rem, 4vw, 4rem); align-items: center; grid-template-columns: 1fr; }
-  @media (min-width: 1024px) { .about-hero__container { grid-template-columns: 5fr 7fr; } }
+  .about-hero__container { display: grid; gap: clamp(2rem, 4vw, 4rem); align-items: center; grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 1024px) { .about-hero__container { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); } }
   .about-hero__lockup { display: flex; flex-direction: column; gap: 0.75rem; }
   .about-hero__deva { font-family: var(--font-deva); font-size: 1.75rem; color: var(--primary); line-height: 1.2; }
-  .about-hero__brand-sub { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--fg-muted); }
+  .about-hero__brand-sub { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--fg-muted); }
   .about-hero__title { font-family: var(--font-display); font-size: clamp(2.25rem, 4.5vw, 3.75rem); line-height: 1.06; letter-spacing: -0.02em; }
   .about-hero__body { max-width: 38rem; font-size: 1.0625rem; line-height: 1.65; color: var(--fg-muted); }
   .about-hero__plate { background: var(--paper); border: 1px solid var(--border); border-radius: var(--r-panel); padding: clamp(1rem, 2vw, 1.5rem); display: flex; flex-direction: column; gap: 1rem; }
@@ -3312,7 +3323,7 @@ function aboutBody(depth) {
         </div>
         <figure class="story-chapter__visual">
           ${ecoPic('rawmat-shed', [640, 960, 1280], '(min-width: 1024px) 42vw, calc(100vw - 2.5rem)', 1280, 1280, 853, 'Raw cow dung — the natural material starting point', depth)}
-          <figcaption>Cow dung — the raw material, client-supplied photograph.</figcaption>
+          <figcaption>Cow dung — the raw material.</figcaption>
         </figure>
       </div>
     </article>
@@ -3411,7 +3422,7 @@ function aboutBody(depth) {
               <span class="resource-step__kicker">Stage 03 — Widening</span>
               <h3 class="resource-step__title">Expanding directions</h3>
               <p class="resource-step__desc">
-                Client-supplied cow-dung log material — fuel, traditional and
+                Cow-dung log material — fuel, traditional and
                 utility directions in development.
               </p>
             </div>
@@ -3511,15 +3522,12 @@ ${phoneRows}
 <section class="section section--paper" aria-labelledby="about-journey-title">
   <div class="container">
     <div class="section-heading section-heading--left" data-reveal style="max-width: 48rem; margin-bottom: 2rem;">
-      <span class="section-heading__eyebrow">Client Material Journey</span>
+      <span class="section-heading__eyebrow">Material Journey</span>
       <h2 class="section-heading__title" id="about-journey-title">From Cow Dung to Sustainable Solutions.</h2>
-      <p class="section-heading__desc">
-        A client-supplied infographic illustrating the material journey from cow dung to sustainable consumer products. Illustrative direction &mdash; not a verified production process or measured environmental outcome.
-      </p>
     </div>
     <figure class="journey-infographic" data-reveal>
-      ${ecoPic('journey-sustainable', [640, 960, 1280, 1600, 1983], '(min-width: 1024px) 80vw, calc(100vw - 2.5rem)', 1600, 1983, 793, 'Client-supplied infographic: From Cow Dung to Sustainable Solutions — the material journey from cow dung to biodegradable consumer products. Illustrative direction, not a verified production process.', depth)}
-      <figcaption>Client-supplied infographic &mdash; illustrative material journey. Not a verified production process or measured environmental outcome.</figcaption>
+      ${ecoPic('journey-sustainable', [640, 960, 1280, 1600, 1983], '(min-width: 1024px) 80vw, calc(100vw - 2.5rem)', 1600, 1983, 793, 'Infographic: From Cow Dung to Sustainable Solutions — the material journey from cow dung to biodegradable consumer products. Illustrative direction, not a verified production process.', depth)}
+      <figcaption>Illustrative material journey &mdash; not a verified production process or measured environmental outcome.</figcaption>
     </figure>
   </div>
 </section>
@@ -3561,8 +3569,8 @@ function forBusinessBody(depth) {
           <span class="biz-practical__item-hint">${e(item.hint)}</span>
         </li>`).join('\n');
 
-    const phoneAsideRows = phones.map((phone) => `        <div class="biz-aside-card__row">
-          <dt>Phone</dt>
+    const phoneAsideRows = phones.map((phone, i) => `        <div class="biz-aside-card__row">
+          <dt>${i === 0 ? 'Phone' : 'Phone (alternate)'}</dt>
           <dd><a href="tel:${e(phone.replace(/ /g, ''))}">${e(phone)}</a></dd>
         </div>`).join('\n');
 
@@ -3598,7 +3606,7 @@ ${bizTiles.map((stem) => `          <figure class="biz-hero__tile">
   @media (min-width: 1024px) { .biz-hero { padding-bottom: 2.5rem; } }
   .biz-hero__container { display: grid; gap: 2rem; align-items: center; }
   @media (min-width: 1024px) {
-    .biz-hero__container { grid-template-columns: 5fr 7fr; gap: 3rem; }
+    .biz-hero__container { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 3rem; }
   }
   .biz-hero__lockup { max-width: 42rem; }
   .biz-hero__art { padding: 0; background: none; border: 0; }
@@ -3606,7 +3614,7 @@ ${bizTiles.map((stem) => `          <figure class="biz-hero__tile">
      same reading as the homepage portfolio; nothing cropped (16:9 tiles
      + object-fit:contain keep every label/claim fully visible). */
   .biz-hero__ecosystem {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 4px;
+    display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 4px;
   }
   .biz-hero__tile {
     margin: 0; overflow: hidden;
@@ -3630,7 +3638,7 @@ ${bizTiles.map((stem) => `          <figure class="biz-hero__tile">
     display: grid; gap: 2rem; align-items: start;
   }
   @media (min-width: 768px) {
-    .biz-practical__grid { grid-template-columns: 5fr 7fr; gap: 3rem; }
+    .biz-practical__grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 3rem; }
   }
   .biz-practical__head { max-width: 36rem; }
   .biz-practical__title {
@@ -3647,7 +3655,7 @@ ${bizTiles.map((stem) => `          <figure class="biz-hero__tile">
   .biz-practical__item {
     display: grid; gap: 0.5rem; padding: 1rem 0;
     border-bottom: 1px solid var(--border);
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
   @media (min-width: 768px) {
     .biz-practical__item { grid-template-columns: 14rem 1fr; gap: 1rem; align-items: baseline; }
@@ -3908,9 +3916,9 @@ function paintCalculatorBody(depth) {
   .calc-hero { padding-top: calc(var(--header-h) + 2rem); padding-bottom: 1.5rem; }
   .calc-hero__grid {
     display: grid; gap: clamp(1.5rem, 3vw, 3rem);
-    grid-template-columns: 1fr; align-items: center;
+    grid-template-columns: minmax(0, 1fr); align-items: center;
   }
-  @media (min-width: 1024px) { .calc-hero__grid { grid-template-columns: 7fr 5fr; } }
+  @media (min-width: 1024px) { .calc-hero__grid { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); } }
   @media (max-width: 1023px) { .calc-hero__plate { order: 5; max-width: 34rem; } }
   .calc-hero__plate { margin: 0; }
   .calc-hero__plate img {
@@ -3920,7 +3928,7 @@ function paintCalculatorBody(depth) {
   .calc-hero__inner { display: grid; gap: 1rem; max-width: 60rem; }
   .calc-hero__eyebrow {
     display: inline-flex; align-items: center; gap: 0.5rem;
-    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.22em;
+    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em;
     text-transform: uppercase; color: var(--primary);
   }
   .calc-hero__eyebrow-dot {
@@ -3952,7 +3960,7 @@ function paintCalculatorBody(depth) {
   .calculator-page__steps { display: grid; gap: 1.5rem; }
 
   .calc__cards { display: grid; gap: 0.875rem; margin-top: 1rem; }
-  @media (min-width: 640px) { .calc__cards { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 640px) { .calc__cards { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
   .calc__card {
     padding: 1.25rem 1.5rem;
     border: 2px solid var(--border-strong);
@@ -4154,7 +4162,7 @@ function downloadsBody(depth) {
   .dl-hero__inner { display: grid; gap: 1rem; max-width: 60rem; }
   .dl-hero__eyebrow {
     display: inline-flex; align-items: center; gap: 0.5rem;
-    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.22em;
+    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em;
     text-transform: uppercase; color: var(--primary);
   }
   .dl-hero__eyebrow-dot {
@@ -4353,13 +4361,9 @@ function contactBody(depth) {
     const phones = COMPANY.phones;
     const addressLine = address.join('\n');
 
-    const phoneRows = phones.map((phone) => `          <div class="contact-info__row">
-            <dt>Phone</dt>
-            <dd>
-              <a href="tel:${e(phone.replace(/ /g, ''))}">${e(phone)}</a>
-            </dd>
-          </div>`).join('\n');
-
+    // V26: the hero card already shows email + both phones with copy
+    // buttons — the lower registered-company panel keeps ONLY the legal
+    // facts (matching the PHP template; no on-screen duplication).
     const interestOptions = Object.entries(INTEREST_OPTIONS).map(
         ([key, label]) => `                <option value="${e(key)}">${e(label)}</option>`,
     ).join('\n');
@@ -4369,7 +4373,7 @@ function contactBody(depth) {
   .contact-hero { padding-top: calc(var(--header-h) + clamp(1.25rem, 3vw, 2rem)); padding-bottom: clamp(1.25rem, 3vw, 2rem); }
   .contact-hero__container { display: grid; gap: clamp(1.5rem, 4vw, 3rem); align-items: start; }
   @media (min-width: 1024px) {
-    .contact-hero__container { grid-template-columns: 7fr 5fr; align-items: center; }
+    .contact-hero__container { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); align-items: center; }
   }
   .contact-hero__lockup { max-width: 42rem; }
   .contact-hero__title {
@@ -4401,12 +4405,12 @@ function contactBody(depth) {
   }
   .contact-direct__brand small {
     display: block; font-family: var(--font-sans); font-size: 0.625rem;
-    font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
+    font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
     color: var(--fg-muted); margin-top: 0.125rem;
   }
   .contact-direct__row {
     padding: 0.875rem 0; border-bottom: 1px solid var(--border);
-    display: grid; grid-template-columns: 1fr; gap: 0.125rem;
+    display: grid; grid-template-columns: minmax(0, 1fr); gap: 0.125rem;
   }
   .contact-direct__row:last-child { border-bottom: 0; }
   .contact-direct__row dt {
@@ -4430,7 +4434,7 @@ function contactBody(depth) {
   }
   .contact-info__row {
     padding-block: 1.125rem; border-bottom: 1px solid var(--border);
-    display: grid; grid-template-columns: 1fr; gap: 0.25rem;
+    display: grid; grid-template-columns: minmax(0, 1fr); gap: 0.25rem;
     align-items: baseline;
   }
   @media (min-width: 640px) {
@@ -4544,7 +4548,7 @@ function contactBody(depth) {
           </dd>
         </div>
         <div class="contact-direct__row">
-          <dt>Phone</dt>
+          <dt>Phone (alternate)</dt>
           <dd>
             <a href="tel:${e(phones[1].replace(/ /g, ''))}">${e(phones[1])}</a>
             <button type="button" class="copy-btn" data-copy="${e(phones[1].replace(/ /g, ''))}" aria-label="Copy phone number">
@@ -4577,18 +4581,15 @@ function contactBody(depth) {
             <dd>${e(COMPANY.legalName)}</dd>
           </div>
           <div class="contact-info__row">
+            <dt>Brand name</dt>
+            <dd>${e(COMPANY.name)}</dd>
+          </div>
+          <div class="contact-info__row">
             <dt>GSTIN</dt>
             <dd>${e(COMPANY.gstin)}</dd>
           </div>
           <div class="contact-info__row">
-            <dt>Email</dt>
-            <dd>
-              <a href="mailto:${e(COMPANY.email)}">${e(COMPANY.email)}</a>
-            </dd>
-          </div>
-${phoneRows}
-          <div class="contact-info__row">
-            <dt>Address</dt>
+            <dt>Registered address</dt>
             <dd class="contact-info__address">${e(addressLine)}</dd>
           </div>
         </dl>
@@ -4670,7 +4671,7 @@ ${interestOptions}
 function error404Body(depth) {
     return `<style>
   .error-page {
-    min-height: 80vh; display: flex; align-items: center; justify-content: flex-start;
+    min-height: 80vh; min-height: 80dvh; display: flex; align-items: center; justify-content: flex-start;
     text-align: left; padding-block: clamp(3rem, 8vw, 6rem);
     padding-top: calc(var(--header-h) + 3rem);
     position: relative; overflow: hidden;
@@ -4693,7 +4694,7 @@ function error404Body(depth) {
     position: relative;
     width: 4rem; height: 4rem; margin: 0 0 1.5rem;
     display: flex; align-items: center; justify-content: center;
-    background: radial-gradient(circle at 50% 45%, #f9f5eb, #e7ebdf);
+    background: transparent; /* V26: the official mark carries genuine alpha — no plate */
     border-radius: var(--r-card);
     overflow: hidden;
   }
@@ -4821,9 +4822,9 @@ ${items}
   /* ===== PAGE HERO — story-hero (shared §42.11) + material plate ===== */
   .sustain-hero__grid {
     display: grid; gap: clamp(2rem, 4vw, 4rem); align-items: center;
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
-  @media (min-width: 1024px) { .sustain-hero__grid { grid-template-columns: 7fr 5fr; } }
+  @media (min-width: 1024px) { .sustain-hero__grid { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); } }
   .sustain-hero__plate {
     position: relative; aspect-ratio: 4 / 3;
     border: 1px solid var(--border); border-radius: var(--r-panel);
@@ -4910,20 +4911,17 @@ ${circularStages}
 </section>
 
 <!-- ============================================================
-     S1b. CLIENT INFOGRAPHIC — From Cow Dung to a Greener Future
+     S1b. LIFECYCLE INFOGRAPHIC — From Cow Dung to a Greener Future
      ============================================================ -->
 <section class="section section--paper" aria-labelledby="journey-infographic-title">
   <div class="container">
     <div class="section-heading section-heading--left" data-reveal style="max-width: 48rem; margin-bottom: 2rem;">
-      <span class="section-heading__eyebrow">Client Journey Diagram</span>
+      <span class="section-heading__eyebrow">Material Journey</span>
       <h2 class="section-heading__title" id="journey-infographic-title">From Cow Dung to a Greener Future.</h2>
-      <p class="section-heading__desc">
-        A client-supplied infographic illustrating the material journey from raw cow dung to finished products. Illustrative direction &mdash; not a verified production process or measured environmental outcome.
-      </p>
     </div>
     <figure class="journey-infographic" data-reveal>
-      ${ecoPic('journey-greener', [640, 960, 1280, 1672], '(min-width: 1024px) 80vw, calc(100vw - 2.5rem)', 1280, 1672, 941, 'Client-supplied infographic: From Cow Dung to a Greener Future — the material journey from raw cow dung to eco-friendly products. Illustrative direction, not a verified production process.', depth)}
-      <figcaption>Client-supplied infographic &mdash; illustrative material journey. Not a verified production process or measured environmental outcome.</figcaption>
+      ${ecoPic('journey-greener', [640, 960, 1280, 1672], '(min-width: 1024px) 80vw, calc(100vw - 2.5rem)', 1280, 1672, 941, 'Infographic: From Cow Dung to a Greener Future — the material journey from raw cow dung to eco-friendly products. Illustrative direction, not a verified production process.', depth)}
+      <figcaption>Illustrative material journey &mdash; not a verified production process or measured environmental outcome.</figcaption>
     </figure>
   </div>
 </section>
@@ -4959,12 +4957,12 @@ ${circularStages}
       </article>
       <article class="resource-step">
         <figure class="resource-step__figure">
-          ${ecoPic('gocast-material', [640, 960, 1280], '(min-width: 1024px) 30vw, (min-width: 640px) 45vw, calc(100vw - 2.5rem)', 960, 960, 640, 'Client-supplied cow-dung log material — the fuel and log application direction', depth)}
+          ${ecoPic('gocast-material', [640, 960, 1280], '(min-width: 1024px) 30vw, (min-width: 640px) 45vw, calc(100vw - 2.5rem)', 960, 960, 640, 'Cow-dung log material — the fuel and log application direction', depth)}
         </figure>
         <div class="resource-step__caption">
           <span class="resource-step__kicker">Outcome — Fuel &amp; Log Application</span>
           <h3 class="resource-step__title">Cow-dung log material</h3>
-          <p class="resource-step__desc">Client-supplied log material for fuel and traditional applications, in development.</p>
+          <p class="resource-step__desc">Log material for fuel and traditional applications, in development.</p>
         </div>
       </article>
       <article class="resource-step">
@@ -5101,9 +5099,9 @@ function innovationBody(depth) {
   /* ===== PAGE HERO — story-hero + research composition ===== */
   .innov-hero__grid {
     display: grid; gap: clamp(2rem, 4vw, 4rem); align-items: center;
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
-  @media (min-width: 1024px) { .innov-hero__grid { grid-template-columns: 6fr 6fr; } }
+  @media (min-width: 1024px) { .innov-hero__grid { grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); } }
   .innov-hero__composition { margin: 0; position: relative; }
   .innov-hero__composition img {
     display: block; width: 100%; height: auto; border-radius: 0.1875rem;
@@ -5206,8 +5204,8 @@ ${methodItems}
           <figcaption>Prakritik Distemper and Emulsion — the documented Eco-Paints family.</figcaption>
         </figure>
         <figure class="story-chapter__visual" style="margin-top: 2rem;">
-          ${ecoPic('showcase-innovation', [640, 960, 1254], '(min-width: 1024px) 42vw, calc(100vw - 2.5rem)', 960, 1254, 1254, 'Client-supplied material study — Prakritik Paint and Dhoop Cups shown together as an exploratory material direction. Illustrative, not a verified production process.', depth)}
-          <figcaption>Client-supplied material study &mdash; exploratory direction. Bio-Briquettes and Eco Utility Products shown elsewhere are Futureline products, not yet in production.</figcaption>
+          ${ecoPic('showcase-innovation', [640, 960, 1254], '(min-width: 1024px) 42vw, calc(100vw - 2.5rem)', 960, 1254, 1254, 'Material study — Prakritik Paint and dhoop cups shown together as an exploratory material direction. Illustrative, not a verified production process.', depth)}
+          <figcaption>Material study &mdash; exploratory direction. Bio-Briquettes and Eco Utility Products shown elsewhere are Futureline products, not yet in production.</figcaption>
         </figure>
         <div style="margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 0.75rem;">
           <a class="btn btn--secondary" href="${relUrl('/products/', depth)}#eco-paints">Explore Eco-Paints</a>
@@ -5298,9 +5296,9 @@ ${group.shades.map(shadeBtn).join('\n')}
   /* ===== V18 §43-45 — Colours page (page-local structures only). ===== */
   .colours-hero__grid {
     display: grid; gap: clamp(1.5rem, 3vw, 3rem); align-items: center;
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
-  @media (min-width: 1024px) { .colours-hero__grid { grid-template-columns: 7fr 5fr; } }
+  @media (min-width: 1024px) { .colours-hero__grid { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); } }
   .story-hero__ctas { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.75rem; }
   .colours-hero__ribbon { display: flex; gap: 0.5rem; margin-top: 0; }
   .colours-hero__stroke {
@@ -5312,8 +5310,8 @@ ${group.shades.map(shadeBtn).join('\n')}
   .colours-hero__stroke:nth-child(even) { transform: translateY(-0.2rem) rotate(0.5deg); }
 
   .colour-experience { position: relative; }
-  .colour-unit { display: grid; gap: clamp(1.5rem, 3vw, 3rem); grid-template-columns: 1fr; }
-  @media (min-width: 1024px) { .colour-unit { grid-template-columns: 7fr 5fr; align-items: start; } }
+  .colour-unit { display: grid; gap: clamp(1.5rem, 3vw, 3rem); grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 1024px) { .colour-unit { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); align-items: start; } }
   .colour-unit .colours-wall { border: 1px solid var(--border); border-radius: var(--r-panel); }
 
   .colour-readout { display: flex; flex-direction: column; gap: 1.25rem; }
@@ -5411,9 +5409,9 @@ ${group.shades.map(shadeBtn).join('\n')}
 
   .colours-cta__grid {
     display: grid; gap: clamp(1.5rem, 3vw, 3rem); align-items: center;
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
-  @media (min-width: 1024px) { .colours-cta__grid { grid-template-columns: 7fr 5fr; } }
+  @media (min-width: 1024px) { .colours-cta__grid { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); } }
   .colours-cta__actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
   .colours-cta__actions .btn { min-width: 12rem; }
 
@@ -5506,7 +5504,7 @@ ${heroStrokes}
             </div>
           </div>
           <p class="colour-readout__hint">
-            Signature and Premium are two separate client-supplied collections.
+            Signature and Premium are two separate shade collections.
             Every swatch shows the shade name and its card code.
           </p>
           <p class="colours-share">

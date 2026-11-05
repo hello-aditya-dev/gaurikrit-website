@@ -263,9 +263,9 @@
   .calc-hero { padding-top: calc(var(--header-h) + 2rem); padding-bottom: 1.5rem; }
   .calc-hero__grid {
     display: grid; gap: clamp(1.5rem, 3vw, 3rem);
-    grid-template-columns: 1fr; align-items: center;
+    grid-template-columns: minmax(0, 1fr); align-items: center;
   }
-  @media (min-width: 1024px) { .calc-hero__grid { grid-template-columns: 7fr 5fr; } }
+  @media (min-width: 1024px) { .calc-hero__grid { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); } }
   @media (max-width: 1023px) { .calc-hero__plate { order: 5; max-width: 34rem; } }
   .calc-hero__plate { margin: 0; }
   .calc-hero__plate img {
@@ -275,7 +275,7 @@
   .calc-hero__inner { display: grid; gap: 1rem; max-width: 60rem; }
   .calc-hero__eyebrow {
     display: inline-flex; align-items: center; gap: 0.5rem;
-    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.22em;
+    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em;
     text-transform: uppercase; color: var(--primary);
   }
   .calc-hero__eyebrow-dot {
@@ -307,7 +307,7 @@
   .calculator-page__steps { display: grid; gap: 1.5rem; }
 
   .calc__cards { display: grid; gap: 0.875rem; margin-top: 1rem; }
-  @media (min-width: 640px) { .calc__cards { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 640px) { .calc__cards { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
   .calc__card {
     padding: 1.25rem 1.5rem;
     border: 2px solid var(--border-strong);
@@ -588,12 +588,13 @@
                     <span class="brand__name">Gaurikrit</span>
                 </a>
                 <p class="site-footer__brandline">Good for Nature. Good for Life.</p>
-                <p class="site-footer__legal-name">Gaurikrit Bio Products (OPC) Private Limited</p>
+                <p class="site-footer__legal-name">Khurja, District Bulandshahr, Uttar Pradesh – 203131</p>
             </div>
             <nav class="site-footer__col site-footer__col--company" aria-label="Company">
                 <h4 class="site-footer__heading">Company</h4>
                 <a href="../">Home</a>
                 <a href="../about/">Our Story</a>
+                <a href="../colours/">Colours</a>
                 <a href="../sustainability/">Sustainability</a>
                 <a href="../innovation/">Innovation</a>
             </nav>
@@ -602,7 +603,6 @@
                 <a href="../products/#eco-paints">Eco-Paints</a>
                 <a href="../products/prakritik-distemper/">Prakritik Distemper</a>
                 <a href="../products/prakritik-emulsion/">Prakritik Emulsion</a>
-                <a href="../colours/">Colours</a>
                 <a href="../products/#gocast-logs">Cow-Dung Logs</a>
                 <a href="../products/#bio-coal-logs">Bio-Briquettes</a>
                 <a href="../products/#utility-products">Eco Utility Products</a>
@@ -627,6 +627,7 @@
         <div class="site-footer__bottom">
             <div class="container site-footer__bottom-inner">
                 <p>© 2026 Gaurikrit Bio Products (OPC) Private Limited. GSTIN: 09AAMCG8400F1ZK.</p>
+                <p class="site-footer__bottom-deva" lang="hi" aria-label="Prakriti se, deewaron tak">प्रकृति से, दीवारों तक.</p>
             </div>
         </div>
     </footer>

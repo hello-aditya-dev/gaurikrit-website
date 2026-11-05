@@ -40,9 +40,9 @@ global $SHADE_SIGNATURE, $SHADE_PREMIUM_GROUPS;
   /* Hero shade ribbon — a restrained colour composition (§7). */
   .colours-hero__grid {
     display: grid; gap: clamp(1.5rem, 3vw, 3rem); align-items: center;
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
-  @media (min-width: 1024px) { .colours-hero__grid { grid-template-columns: 7fr 5fr; } }
+  @media (min-width: 1024px) { .colours-hero__grid { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); } }
   .story-hero__ctas { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.75rem; }
   .colours-hero__ribbon { display: flex; gap: 0.5rem; margin-top: 0; }
   .colours-hero__stroke {
@@ -55,8 +55,8 @@ global $SHADE_SIGNATURE, $SHADE_PREMIUM_GROUPS;
 
   /* The interactive unit: wall left / readout right (§12). */
   .colour-experience { position: relative; }
-  .colour-unit { display: grid; gap: clamp(1.5rem, 3vw, 3rem); grid-template-columns: 1fr; }
-  @media (min-width: 1024px) { .colour-unit { grid-template-columns: 7fr 5fr; align-items: start; } }
+  .colour-unit { display: grid; gap: clamp(1.5rem, 3vw, 3rem); grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 1024px) { .colour-unit { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); align-items: start; } }
   .colour-unit .colours-wall { border: 1px solid var(--border); border-radius: var(--r-panel); }
 
   .colour-readout { display: flex; flex-direction: column; gap: 1.25rem; }
@@ -160,9 +160,9 @@ global $SHADE_SIGNATURE, $SHADE_PREMIUM_GROUPS;
   /* Forest CTA layout (§42.06). */
   .colours-cta__grid {
     display: grid; gap: clamp(1.5rem, 3vw, 3rem); align-items: center;
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
-  @media (min-width: 1024px) { .colours-cta__grid { grid-template-columns: 7fr 5fr; } }
+  @media (min-width: 1024px) { .colours-cta__grid { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); } }
   .colours-cta__actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
   .colours-cta__actions .btn { min-width: 12rem; }
 
@@ -275,7 +275,7 @@ global $SHADE_SIGNATURE, $SHADE_PREMIUM_GROUPS;
             </div>
           </div>
           <p class="colour-readout__hint">
-            Signature and Premium are two separate client-supplied collections.
+            Signature and Premium are two separate shade collections.
             Every swatch shows the shade name and its card code.
           </p>
           <p class="colours-share">
@@ -297,7 +297,7 @@ global $SHADE_SIGNATURE, $SHADE_PREMIUM_GROUPS;
         <span class="section-heading__eyebrow">Signature Collection</span>
         <h2 class="section-heading__title" id="signature-title">Twelve signature shades.</h2>
         <p class="section-heading__desc">
-          The Signature Collection, transcribed from the supplied shade references —
+          The Signature Collection — names and codes as printed on the shade card,
           codes GK-101 to GK-112.
         </p>
       </div>

@@ -24,7 +24,7 @@ global $COMPANY;
 ?>
 <style>
   .error-page {
-    min-height: 80vh; display: flex; align-items: center; justify-content: flex-start;
+    min-height: 80vh; min-height: 80dvh; display: flex; align-items: center; justify-content: flex-start;
     text-align: left; padding-block: clamp(3rem, 8vw, 6rem);
     padding-top: calc(var(--header-h) + 3rem);
     position: relative; overflow: hidden;
@@ -47,7 +47,7 @@ global $COMPANY;
     position: relative;
     width: 4rem; height: 4rem; margin: 0 0 1.5rem;
     display: flex; align-items: center; justify-content: center;
-    background: radial-gradient(circle at 50% 45%, #f9f5eb, #e7ebdf);
+    background: transparent; /* V26: the official mark carries genuine alpha — no plate */
     border-radius: var(--r-card);
     overflow: hidden;
   }

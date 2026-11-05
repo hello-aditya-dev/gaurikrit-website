@@ -254,9 +254,9 @@
   /* ===== V18 §43-45 — Colours page (page-local structures only). ===== */
   .colours-hero__grid {
     display: grid; gap: clamp(1.5rem, 3vw, 3rem); align-items: center;
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
-  @media (min-width: 1024px) { .colours-hero__grid { grid-template-columns: 7fr 5fr; } }
+  @media (min-width: 1024px) { .colours-hero__grid { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); } }
   .story-hero__ctas { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.75rem; }
   .colours-hero__ribbon { display: flex; gap: 0.5rem; margin-top: 0; }
   .colours-hero__stroke {
@@ -268,8 +268,8 @@
   .colours-hero__stroke:nth-child(even) { transform: translateY(-0.2rem) rotate(0.5deg); }
 
   .colour-experience { position: relative; }
-  .colour-unit { display: grid; gap: clamp(1.5rem, 3vw, 3rem); grid-template-columns: 1fr; }
-  @media (min-width: 1024px) { .colour-unit { grid-template-columns: 7fr 5fr; align-items: start; } }
+  .colour-unit { display: grid; gap: clamp(1.5rem, 3vw, 3rem); grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 1024px) { .colour-unit { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); align-items: start; } }
   .colour-unit .colours-wall { border: 1px solid var(--border); border-radius: var(--r-panel); }
 
   .colour-readout { display: flex; flex-direction: column; gap: 1.25rem; }
@@ -367,9 +367,9 @@
 
   .colours-cta__grid {
     display: grid; gap: clamp(1.5rem, 3vw, 3rem); align-items: center;
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
-  @media (min-width: 1024px) { .colours-cta__grid { grid-template-columns: 7fr 5fr; } }
+  @media (min-width: 1024px) { .colours-cta__grid { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); } }
   .colours-cta__actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
   .colours-cta__actions .btn { min-width: 12rem; }
 
@@ -467,7 +467,7 @@
             </div>
           </div>
           <p class="colour-readout__hint">
-            Signature and Premium are two separate client-supplied collections.
+            Signature and Premium are two separate shade collections.
             Every swatch shows the shade name and its card code.
           </p>
           <p class="colours-share">
@@ -1132,12 +1132,13 @@
                     <span class="brand__name">Gaurikrit</span>
                 </a>
                 <p class="site-footer__brandline">Good for Nature. Good for Life.</p>
-                <p class="site-footer__legal-name">Gaurikrit Bio Products (OPC) Private Limited</p>
+                <p class="site-footer__legal-name">Khurja, District Bulandshahr, Uttar Pradesh – 203131</p>
             </div>
             <nav class="site-footer__col site-footer__col--company" aria-label="Company">
                 <h4 class="site-footer__heading">Company</h4>
                 <a href="../">Home</a>
                 <a href="../about/">Our Story</a>
+                <a href="../colours/">Colours</a>
                 <a href="../sustainability/">Sustainability</a>
                 <a href="../innovation/">Innovation</a>
             </nav>
@@ -1146,7 +1147,6 @@
                 <a href="../products/#eco-paints">Eco-Paints</a>
                 <a href="../products/prakritik-distemper/">Prakritik Distemper</a>
                 <a href="../products/prakritik-emulsion/">Prakritik Emulsion</a>
-                <a href="../colours/">Colours</a>
                 <a href="../products/#gocast-logs">Cow-Dung Logs</a>
                 <a href="../products/#bio-coal-logs">Bio-Briquettes</a>
                 <a href="../products/#utility-products">Eco Utility Products</a>
@@ -1171,6 +1171,7 @@
         <div class="site-footer__bottom">
             <div class="container site-footer__bottom-inner">
                 <p>© 2026 Gaurikrit Bio Products (OPC) Private Limited. GSTIN: 09AAMCG8400F1ZK.</p>
+                <p class="site-footer__bottom-deva" lang="hi" aria-label="Prakriti se, deewaron tak">प्रकृति से, दीवारों तक.</p>
             </div>
         </div>
     </footer>

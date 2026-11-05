@@ -56,11 +56,11 @@ if ($interestParam !== '' && array_key_exists($interestParam, $INTEREST_OPTIONS)
     display: grid; gap: clamp(1.5rem, 4vw, 3rem); align-items: start;
   }
   @media (min-width: 1024px) {
-    .contact-hero__container { grid-template-columns: 7fr 5fr; align-items: center; }
+    .contact-hero__container { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); align-items: center; }
   }
   .contact-hero__lockup { max-width: 42rem; display: flex; flex-direction: column; gap: 0.625rem; }
   .contact-hero__eyebrow {
-    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.22em;
+    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em;
     text-transform: uppercase; color: var(--primary);
   }
   .contact-hero__title {
@@ -94,12 +94,12 @@ if ($interestParam !== '' && array_key_exists($interestParam, $INTEREST_OPTIONS)
   }
   .contact-direct__brand small {
     display: block; font-family: var(--font-sans); font-size: 0.625rem;
-    font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
+    font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
     color: var(--fg-muted); margin-top: 0.125rem;
   }
   .contact-direct__row {
     padding: 0.875rem 0; border-bottom: 1px solid var(--border);
-    display: grid; grid-template-columns: 1fr; gap: 0.125rem;
+    display: grid; grid-template-columns: minmax(0, 1fr); gap: 0.125rem;
   }
   .contact-direct__row:last-child { border-bottom: 0; }
   .contact-direct__row dt {
@@ -123,7 +123,7 @@ if ($interestParam !== '' && array_key_exists($interestParam, $INTEREST_OPTIONS)
   }
   .contact-info__row {
     padding-block: 1.125rem; border-bottom: 1px solid var(--border);
-    display: grid; grid-template-columns: 1fr; gap: 0.25rem;
+    display: grid; grid-template-columns: minmax(0, 1fr); gap: 0.25rem;
     align-items: baseline;
   }
   @media (min-width: 640px) {
@@ -230,9 +230,9 @@ if ($interestParam !== '' && array_key_exists($interestParam, $INTEREST_OPTIONS)
             </button>
           </dd>
         </div>
-        <?php foreach ($phones as $phone): ?>
+        <?php foreach ($phones as $i => $phone): ?>
           <div class="contact-direct__row">
-            <dt>Phone</dt>
+            <dt><?= $i === 0 ? 'Phone' : 'Phone (alternate)' ?></dt>
             <dd>
               <a href="tel:<?= e(str_replace(' ', '', $phone)) ?>"><?= e($phone) ?></a>
               <button type="button" class="copy-btn" data-copy="<?= e(str_replace(' ', '', $phone)) ?>" aria-label="Copy phone number">

@@ -38,7 +38,7 @@ $hasBrochure = is_file($brochurePath);
   .dl-hero__inner { display: grid; gap: 1rem; max-width: 60rem; }
   .dl-hero__eyebrow {
     display: inline-flex; align-items: center; gap: 0.5rem;
-    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.22em;
+    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em;
     text-transform: uppercase; color: var(--primary);
   }
   .dl-hero__eyebrow-dot {

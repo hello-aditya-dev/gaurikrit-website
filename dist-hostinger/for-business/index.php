@@ -66,7 +66,7 @@ $helpfulInclude = [
   @media (min-width: 1024px) { .biz-hero { padding-bottom: 2.5rem; } }
   .biz-hero__container { display: grid; gap: 2rem; align-items: center; }
   @media (min-width: 1024px) {
-    .biz-hero__container { grid-template-columns: 5fr 7fr; gap: 3rem; }
+    .biz-hero__container { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 3rem; }
   }
   .biz-hero__lockup { max-width: 42rem; }
   .biz-hero__art { padding: 0; background: none; border: 0; }
@@ -74,7 +74,7 @@ $helpfulInclude = [
      same reading as the homepage portfolio; nothing cropped (16:9 tiles
      + object-fit:contain keep every label/claim fully visible). */
   .biz-hero__ecosystem {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 4px;
+    display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 4px;
   }
   .biz-hero__tile {
     margin: 0; overflow: hidden;
@@ -100,7 +100,7 @@ $helpfulInclude = [
     display: grid; gap: 2rem; align-items: start;
   }
   @media (min-width: 768px) {
-    .biz-practical__grid { grid-template-columns: 5fr 7fr; gap: 3rem; }
+    .biz-practical__grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 3rem; }
   }
   .biz-practical__head { max-width: 36rem; }
   .biz-practical__title {
@@ -117,7 +117,7 @@ $helpfulInclude = [
   .biz-practical__item {
     display: grid; gap: 0.5rem; padding: 1rem 0;
     border-bottom: 1px solid var(--border);
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
   @media (min-width: 768px) {
     .biz-practical__item { grid-template-columns: 14rem 1fr; gap: 1rem; align-items: baseline; }
@@ -299,9 +299,9 @@ $helpfulInclude = [
         </div>
 
         <dl class="biz-aside-card">
-          <?php foreach ($phones as $phone): ?>
+          <?php foreach ($phones as $i => $phone): ?>
             <div class="biz-aside-card__row">
-              <dt>Phone</dt>
+              <dt><?= $i === 0 ? 'Phone' : 'Phone (alternate)' ?></dt>
               <dd><a href="tel:<?= e(str_replace(' ', '', $phone)) ?>"><?= e($phone) ?></a></dd>
             </div>
           <?php endforeach; ?>

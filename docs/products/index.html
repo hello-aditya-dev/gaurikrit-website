@@ -256,8 +256,8 @@
 
   /* ===== 1. ECOSYSTEM HERO ===== */
   .products-hero { padding-top: calc(var(--header-h) + 2rem); padding-bottom: 1.5rem; }
-  .products-hero__grid { display: grid; gap: 2.5rem; align-items: center; grid-template-columns: 1fr; }
-  @media (min-width: 1024px) { .products-hero__grid { grid-template-columns: 45fr 55fr; gap: clamp(2rem, 4vw, 4rem); } }
+  .products-hero__grid { display: grid; gap: 2.5rem; align-items: center; grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 1024px) { .products-hero__grid { grid-template-columns: minmax(0, 45fr) minmax(0, 55fr); gap: clamp(2rem, 4vw, 4rem); } }
   .products-hero__lockup { max-width: 42rem; }
   .products-hero__visual { position: relative; width: 100%; overflow: hidden; }
   .products-hero__visual .hero-group-photo { display: block; width: 100%; height: auto; border-radius: 0.1875rem; }
@@ -309,8 +309,8 @@
 
   /* ===== 2. ECO-PAINTS FAMILY SECTION ===== */
   .eco-family { padding-block: clamp(3rem, 6vw, 5rem); }
-  .eco-family__grid { display: grid; gap: 2.5rem; align-items: center; grid-template-columns: 1fr; }
-  @media (min-width: 1024px) { .eco-family__grid { grid-template-columns: 5fr 7fr; gap: clamp(2rem, 4vw, 4rem); } }
+  .eco-family__grid { display: grid; gap: 2.5rem; align-items: center; grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 1024px) { .eco-family__grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(2rem, 4vw, 4rem); } }
   .eco-family__plate { background: none; border: 0; border-radius: 0; padding: 0; }
   .eco-family__plate img { display: block; width: 100%; height: auto; }
   .eco-family__head { display: flex; align-items: baseline; gap: 0.875rem; }
@@ -322,10 +322,10 @@
 
   /* ===== UNDOCUMENTED FAMILY SECTIONS ===== */
   .family-section { padding-block: clamp(3rem, 6vw, 5rem); }
-  .family-section__grid { display: grid; gap: 2.5rem; align-items: center; grid-template-columns: 1fr; }
+  .family-section__grid { display: grid; gap: 2.5rem; align-items: center; grid-template-columns: minmax(0, 1fr); }
   @media (min-width: 1024px) {
-    .family-section__grid { grid-template-columns: 7fr 5fr; gap: clamp(2.5rem, 5vw, 4.5rem); }
-    .family-section--reverse .family-section__grid { grid-template-columns: 5fr 7fr; }
+    .family-section__grid { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(2.5rem, 5vw, 4.5rem); }
+    .family-section--reverse .family-section__grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }
     .family-section--reverse .family-section__copy { order: 2; }
   }
   .family-section__num { font-family: var(--font-display); font-size: clamp(2rem, 3vw, 2.75rem); font-weight: 700; color: var(--haldi-deep); line-height: 1; font-variant-numeric: tabular-nums; }
@@ -347,14 +347,14 @@
   .spec-matrix-section { padding-block: clamp(3rem, 6vw, 5rem); }
   .spec-matrix-section__head { max-width: 48rem; margin-bottom: 2.5rem; }
   .spec-matrix { border: 1px solid var(--border); border-radius: var(--r-panel); overflow: hidden; background: var(--paper); }
-  .spec-matrix__row { grid-template-columns: 1fr; gap: 0.75rem; padding: 1.75rem 1.25rem; border-bottom: 1px solid var(--border); }
+  .spec-matrix__row { grid-template-columns: minmax(0, 1fr); gap: 0.75rem; padding: 1.75rem 1.25rem; border-bottom: 1px solid var(--border); }
   @media (min-width: 768px) { .spec-matrix__row { grid-template-columns: 12rem 1fr 1fr; gap: 1.5rem; padding: 1.75rem 1.5rem; } }
   .spec-matrix__row:nth-child(even) { background: color-mix(in srgb, var(--haldi) 3%, transparent); }
   .spec-matrix__row:first-child { border-bottom: 2px solid var(--forest); background: color-mix(in srgb, var(--limewash) 80%, var(--paper)); }
   .spec-matrix__row:last-child { border-bottom: 0; }
   .spec-matrix__col-head { font-size: 0.8125rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--forest); }
   .spec-matrix__col-head--distemper { color: var(--indigo); }
-  .spec-matrix__col-head--emulsion { color: var(--leaf); }
+  .spec-matrix__col-head--emulsion { color: var(--leaf-deep); }
   .spec-matrix__label { font-weight: 700 !important; font-size: 0.875rem !important; color: var(--fg) !important; letter-spacing: 0.02em; }
   .spec-matrix__value { font-weight: 600 !important; color: var(--fg) !important; }
   .spec-matrix-mobile { display: none; }
@@ -407,20 +407,22 @@
 </section>
 
 <!-- ============================================================
-     1b. CLIENT ECOSYSTEM BANNER — GBP Products Banner
+     1b. PRODUCT RANGE BANNER — GBP Products Banner
      ============================================================ -->
 <section class="section section--paper" aria-labelledby="ecosystem-banner-title" style="padding-block: clamp(2rem, 4vw, 3rem);">
   <div class="container">
     <div class="section-heading section-heading--left" data-reveal style="max-width: 48rem; margin-bottom: 1.5rem;">
-      <span class="section-heading__eyebrow">Client Ecosystem Banner</span>
+      <span class="section-heading__eyebrow">Product Directions</span>
       <h2 class="section-heading__title" id="ecosystem-banner-title" style="font-size: clamp(1.5rem, 3vw, 2rem);">The Gaurikrit product range.</h2>
       <p class="section-heading__desc">
-        A client-supplied banner showing the product directions. Eco-Paints is the documented family; Cow-Dung Logs is a development direction; Bio-Briquettes and Eco Utility Products are Futureline product directions, not yet in production.
+        All four Gaurikrit product directions in one view — from the
+        documented Eco-Paints family to the Futureline directions still
+        in development.
       </p>
     </div>
     <figure class="journey-infographic" data-reveal>
-      <picture><source type="image/avif" srcset="../assets/images/ecosystem/products-banner-640.avif 640w, ../assets/images/ecosystem/products-banner-960.avif 960w, ../assets/images/ecosystem/products-banner-1280.avif 1280w, ../assets/images/ecosystem/products-banner-1536.avif 1536w" sizes="(min-width: 1024px) 80vw, calc(100vw - 2.5rem)"><source type="image/webp" srcset="../assets/images/ecosystem/products-banner-640.webp 640w, ../assets/images/ecosystem/products-banner-960.webp 960w, ../assets/images/ecosystem/products-banner-1280.webp 1280w, ../assets/images/ecosystem/products-banner-1536.webp 1536w" sizes="(min-width: 1024px) 80vw, calc(100vw - 2.5rem)"><img  src="../assets/images/ecosystem/products-banner-1280.jpg" alt="Client-supplied Gaurikrit product range banner — Eco-Paints, Cow-Dung Logs, Bio-Briquettes (Futureline) and Eco Utility Products (Futureline). The Futureline products are not yet in production." width="1536" height="1024" loading="lazy" decoding="async"></picture>
-      <figcaption>Client-supplied ecosystem banner &mdash; Bio-Briquettes and Eco Utility Products are Futureline products, not yet in production.</figcaption>
+      <picture><source type="image/avif" srcset="../assets/images/ecosystem/products-banner-640.avif 640w, ../assets/images/ecosystem/products-banner-960.avif 960w, ../assets/images/ecosystem/products-banner-1280.avif 1280w, ../assets/images/ecosystem/products-banner-1536.avif 1536w" sizes="(min-width: 1024px) 80vw, calc(100vw - 2.5rem)"><source type="image/webp" srcset="../assets/images/ecosystem/products-banner-640.webp 640w, ../assets/images/ecosystem/products-banner-960.webp 960w, ../assets/images/ecosystem/products-banner-1280.webp 1280w, ../assets/images/ecosystem/products-banner-1536.webp 1536w" sizes="(min-width: 1024px) 80vw, calc(100vw - 2.5rem)"><img  src="../assets/images/ecosystem/products-banner-1280.jpg" alt="Official Gaurikrit product range banner — Eco-Paints, Cow-Dung Logs, Bio-Briquettes (Futureline) and Eco Utility Products (Futureline). The Futureline products are not yet in production." width="1536" height="1024" loading="lazy" decoding="async"></picture>
+      <figcaption>The official Gaurikrit product range &mdash; Bio-Briquettes and Eco Utility Products are Futureline products, not yet in production.</figcaption>
     </figure>
   </div>
 </section>
@@ -683,8 +685,8 @@
   <div class="container">
     <div class="gocast-feature" data-reveal>
       <figure class="gocast-feature__figure">
-        <picture><source type="image/avif" srcset="../assets/images/ecosystem/carousel-cow-dung-logs-640.avif 640w, ../assets/images/ecosystem/carousel-cow-dung-logs-960.avif 960w, ../assets/images/ecosystem/carousel-cow-dung-logs-1280.avif 1280w" sizes="(min-width: 1024px) 45vw, calc(100vw - 2.5rem)"><source type="image/webp" srcset="../assets/images/ecosystem/carousel-cow-dung-logs-640.webp 640w, ../assets/images/ecosystem/carousel-cow-dung-logs-960.webp 960w, ../assets/images/ecosystem/carousel-cow-dung-logs-1280.webp 1280w" sizes="(min-width: 1024px) 45vw, calc(100vw - 2.5rem)"><img  src="../assets/images/ecosystem/carousel-cow-dung-logs-1280.jpg" alt="Gaurikrit Cow-Dung Logs — client-supplied product artwork, premium biomass fuel" width="1672" height="941" loading="lazy" decoding="async"></picture>
-        <figcaption>Client-supplied Cow-Dung Logs product artwork.</figcaption>
+        <picture><source type="image/avif" srcset="../assets/images/ecosystem/carousel-cow-dung-logs-640.avif 640w, ../assets/images/ecosystem/carousel-cow-dung-logs-960.avif 960w, ../assets/images/ecosystem/carousel-cow-dung-logs-1280.avif 1280w" sizes="(min-width: 1024px) 45vw, calc(100vw - 2.5rem)"><source type="image/webp" srcset="../assets/images/ecosystem/carousel-cow-dung-logs-640.webp 640w, ../assets/images/ecosystem/carousel-cow-dung-logs-960.webp 960w, ../assets/images/ecosystem/carousel-cow-dung-logs-1280.webp 1280w" sizes="(min-width: 1024px) 45vw, calc(100vw - 2.5rem)"><img  src="../assets/images/ecosystem/carousel-cow-dung-logs-1280.jpg" alt="Gaurikrit Cow-Dung Logs — official product artwork, premium biomass fuel" width="1672" height="941" loading="lazy" decoding="async"></picture>
+        <figcaption>Cow-Dung Logs — official product artwork.</figcaption>
       </figure>
       <div class="gocast-feature__copy">
         <span class="family-section__num" aria-hidden="true">02</span>
@@ -713,7 +715,7 @@
     <div class="family-section__poster" data-reveal>
       <figure class="family-section__poster-figure">
         <picture><source type="image/avif" srcset="../assets/images/ecosystem/gbp-cow-dung-logs-640.avif 640w, ../assets/images/ecosystem/gbp-cow-dung-logs-960.avif 960w, ../assets/images/ecosystem/gbp-cow-dung-logs-1024.avif 1024w" sizes="(min-width: 1024px) 30vw, calc(100vw - 2.5rem)"><source type="image/webp" srcset="../assets/images/ecosystem/gbp-cow-dung-logs-640.webp 640w, ../assets/images/ecosystem/gbp-cow-dung-logs-960.webp 960w, ../assets/images/ecosystem/gbp-cow-dung-logs-1024.webp 1024w" sizes="(min-width: 1024px) 30vw, calc(100vw - 2.5rem)"><img  src="../assets/images/ecosystem/gbp-cow-dung-logs-1024.jpg" alt="Gaurikrit Cow-Dung Logs product poster — stacked biomass fuel logs. Development direction." width="1024" height="1024" loading="lazy" decoding="async"></picture>
-        <figcaption>Client-supplied Cow-Dung Logs product poster.</figcaption>
+        <figcaption>Cow-Dung Logs — official product poster.</figcaption>
       </figure>
     </div>
   </div>
@@ -748,15 +750,15 @@
           <a class="btn btn--outline" href="../contact/?interest=bio-coal-logs">Enquire About Bio-Briquettes</a>
         </div>
       </div>
-      <figure class="family-section__photo" aria-label="Bio-Briquettes — client-supplied product artwork">
-        <picture><source type="image/avif" srcset="../assets/images/ecosystem/carousel-bio-briquettes-640.avif 640w, ../assets/images/ecosystem/carousel-bio-briquettes-960.avif 960w, ../assets/images/ecosystem/carousel-bio-briquettes-1280.avif 1280w, ../assets/images/ecosystem/carousel-bio-briquettes-1920.avif 1920w" sizes="(min-width: 1024px) 42vw, calc(100vw - 2.5rem)"><source type="image/webp" srcset="../assets/images/ecosystem/carousel-bio-briquettes-640.webp 640w, ../assets/images/ecosystem/carousel-bio-briquettes-960.webp 960w, ../assets/images/ecosystem/carousel-bio-briquettes-1280.webp 1280w, ../assets/images/ecosystem/carousel-bio-briquettes-1920.webp 1920w" sizes="(min-width: 1024px) 42vw, calc(100vw - 2.5rem)"><img  src="../assets/images/ecosystem/carousel-bio-briquettes-1280.jpg" alt="Gaurikrit Bio-Briquettes — client-supplied product artwork for a Futureline product direction not yet in production" width="1920" height="1080" loading="lazy" decoding="async"></picture>
-        <figcaption>Client-supplied Bio-Briquettes product artwork. Futureline — not yet in production.</figcaption>
+      <figure class="family-section__photo" aria-label="Bio-Briquettes — official Gaurikrit product artwork">
+        <picture><source type="image/avif" srcset="../assets/images/ecosystem/carousel-bio-briquettes-640.avif 640w, ../assets/images/ecosystem/carousel-bio-briquettes-960.avif 960w, ../assets/images/ecosystem/carousel-bio-briquettes-1280.avif 1280w, ../assets/images/ecosystem/carousel-bio-briquettes-1920.avif 1920w" sizes="(min-width: 1024px) 42vw, calc(100vw - 2.5rem)"><source type="image/webp" srcset="../assets/images/ecosystem/carousel-bio-briquettes-640.webp 640w, ../assets/images/ecosystem/carousel-bio-briquettes-960.webp 960w, ../assets/images/ecosystem/carousel-bio-briquettes-1280.webp 1280w, ../assets/images/ecosystem/carousel-bio-briquettes-1920.webp 1920w" sizes="(min-width: 1024px) 42vw, calc(100vw - 2.5rem)"><img  src="../assets/images/ecosystem/carousel-bio-briquettes-1280.jpg" alt="Gaurikrit Bio-Briquettes — official Gaurikrit artwork for a Futureline product direction not yet in production" width="1920" height="1080" loading="lazy" decoding="async"></picture>
+        <figcaption>Bio-Briquettes official artwork. Futureline — not yet in production.</figcaption>
       </figure>
     </div>
     <div class="family-section__poster" data-reveal>
       <figure class="family-section__poster-figure">
         <picture><source type="image/avif" srcset="../assets/images/ecosystem/gbp-bio-briquettes-640.avif 640w, ../assets/images/ecosystem/gbp-bio-briquettes-960.avif 960w, ../assets/images/ecosystem/gbp-bio-briquettes-1024.avif 1024w" sizes="(min-width: 1024px) 30vw, calc(100vw - 2.5rem)"><source type="image/webp" srcset="../assets/images/ecosystem/gbp-bio-briquettes-640.webp 640w, ../assets/images/ecosystem/gbp-bio-briquettes-960.webp 960w, ../assets/images/ecosystem/gbp-bio-briquettes-1024.webp 1024w" sizes="(min-width: 1024px) 30vw, calc(100vw - 2.5rem)"><img  src="../assets/images/ecosystem/gbp-bio-briquettes-1024.jpg" alt="Gaurikrit Bio-Briquettes product poster — cylindrical biomass fuel logs. Futureline product, not yet in production." width="1024" height="1024" loading="lazy" decoding="async"></picture>
-        <figcaption>Client-supplied Bio-Briquettes product poster.</figcaption>
+        <figcaption>Bio-Briquettes — official product poster. Futureline, not yet in production.</figcaption>
       </figure>
     </div>
   </div>
@@ -790,15 +792,15 @@
           <a class="btn btn--outline" href="../contact/?interest=utility-products">Enquire About Eco Utility Products</a>
         </div>
       </div>
-      <figure class="family-section__photo" aria-label="Eco Utility Products — client-supplied product artwork">
-        <picture><source type="image/avif" srcset="../assets/images/ecosystem/carousel-eco-utility-products-640.avif 640w, ../assets/images/ecosystem/carousel-eco-utility-products-960.avif 960w, ../assets/images/ecosystem/carousel-eco-utility-products-1280.avif 1280w, ../assets/images/ecosystem/carousel-eco-utility-products-1920.avif 1920w" sizes="(min-width: 1024px) 42vw, calc(100vw - 2.5rem)"><source type="image/webp" srcset="../assets/images/ecosystem/carousel-eco-utility-products-640.webp 640w, ../assets/images/ecosystem/carousel-eco-utility-products-960.webp 960w, ../assets/images/ecosystem/carousel-eco-utility-products-1280.webp 1280w, ../assets/images/ecosystem/carousel-eco-utility-products-1920.webp 1920w" sizes="(min-width: 1024px) 42vw, calc(100vw - 2.5rem)"><img  src="../assets/images/ecosystem/carousel-eco-utility-products-1280.jpg" alt="Gaurikrit Eco Utility Products — client-supplied product artwork for a Futureline product direction not yet in production: dhoop cups, cow-dung diyas, biodegradable plates and eco glasses" width="1920" height="1080" loading="lazy" decoding="async"></picture>
-        <figcaption>Client-supplied Eco Utility Products product artwork. Futureline — not yet in production.</figcaption>
+      <figure class="family-section__photo" aria-label="Eco Utility Products — official Gaurikrit product artwork">
+        <picture><source type="image/avif" srcset="../assets/images/ecosystem/carousel-eco-utility-products-640.avif 640w, ../assets/images/ecosystem/carousel-eco-utility-products-960.avif 960w, ../assets/images/ecosystem/carousel-eco-utility-products-1280.avif 1280w, ../assets/images/ecosystem/carousel-eco-utility-products-1920.avif 1920w" sizes="(min-width: 1024px) 42vw, calc(100vw - 2.5rem)"><source type="image/webp" srcset="../assets/images/ecosystem/carousel-eco-utility-products-640.webp 640w, ../assets/images/ecosystem/carousel-eco-utility-products-960.webp 960w, ../assets/images/ecosystem/carousel-eco-utility-products-1280.webp 1280w, ../assets/images/ecosystem/carousel-eco-utility-products-1920.webp 1920w" sizes="(min-width: 1024px) 42vw, calc(100vw - 2.5rem)"><img  src="../assets/images/ecosystem/carousel-eco-utility-products-1280.jpg" alt="Gaurikrit Eco Utility Products — official Gaurikrit artwork for a Futureline product direction not yet in production: dhoop cups, cow-dung diyas, biodegradable plates and eco glasses" width="1920" height="1080" loading="lazy" decoding="async"></picture>
+        <figcaption>Eco Utility Products official artwork. Futureline — not yet in production.</figcaption>
       </figure>
     </div>
     <div class="family-section__poster" data-reveal>
       <figure class="family-section__poster-figure">
         <picture><source type="image/avif" srcset="../assets/images/ecosystem/showcase-utility-640.avif 640w, ../assets/images/ecosystem/showcase-utility-960.avif 960w, ../assets/images/ecosystem/showcase-utility-1022.avif 1022w" sizes="(min-width: 1024px) 30vw, calc(100vw - 2.5rem)"><source type="image/webp" srcset="../assets/images/ecosystem/showcase-utility-640.webp 640w, ../assets/images/ecosystem/showcase-utility-960.webp 960w, ../assets/images/ecosystem/showcase-utility-1022.webp 1022w" sizes="(min-width: 1024px) 30vw, calc(100vw - 2.5rem)"><img  src="../assets/images/ecosystem/showcase-utility-1022.jpg" alt="Gaurikrit Eco Utility Products showcase — dhoop cups and cow-dung diyas. Futureline product, not yet in production." width="1022" height="1095" loading="lazy" decoding="async"></picture>
-        <figcaption>Client-supplied Eco Utility Products showcase — Dhoop Cups and Cow-Dung Diyas.</figcaption>
+        <figcaption>Eco Utility Products showcase — dhoop cups and cow-dung diyas. Futureline, not yet in production.</figcaption>
       </figure>
     </div>
   </div>
@@ -996,12 +998,13 @@
                     <span class="brand__name">Gaurikrit</span>
                 </a>
                 <p class="site-footer__brandline">Good for Nature. Good for Life.</p>
-                <p class="site-footer__legal-name">Gaurikrit Bio Products (OPC) Private Limited</p>
+                <p class="site-footer__legal-name">Khurja, District Bulandshahr, Uttar Pradesh – 203131</p>
             </div>
             <nav class="site-footer__col site-footer__col--company" aria-label="Company">
                 <h4 class="site-footer__heading">Company</h4>
                 <a href="../">Home</a>
                 <a href="../about/">Our Story</a>
+                <a href="../colours/">Colours</a>
                 <a href="../sustainability/">Sustainability</a>
                 <a href="../innovation/">Innovation</a>
             </nav>
@@ -1010,7 +1013,6 @@
                 <a href="../products/#eco-paints">Eco-Paints</a>
                 <a href="../products/prakritik-distemper/">Prakritik Distemper</a>
                 <a href="../products/prakritik-emulsion/">Prakritik Emulsion</a>
-                <a href="../colours/">Colours</a>
                 <a href="../products/#gocast-logs">Cow-Dung Logs</a>
                 <a href="../products/#bio-coal-logs">Bio-Briquettes</a>
                 <a href="../products/#utility-products">Eco Utility Products</a>
@@ -1035,6 +1037,7 @@
         <div class="site-footer__bottom">
             <div class="container site-footer__bottom-inner">
                 <p>© 2026 Gaurikrit Bio Products (OPC) Private Limited. GSTIN: 09AAMCG8400F1ZK.</p>
+                <p class="site-footer__bottom-deva" lang="hi" aria-label="Prakriti se, deewaron tak">प्रकृति से, दीवारों तक.</p>
             </div>
         </div>
     </footer>

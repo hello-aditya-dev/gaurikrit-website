@@ -40,9 +40,9 @@ $measurementItems = [
   /* ===== PAGE HERO — story-hero (shared §42.11) + material plate ===== */
   .sustain-hero__grid {
     display: grid; gap: clamp(2rem, 4vw, 4rem); align-items: center;
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
-  @media (min-width: 1024px) { .sustain-hero__grid { grid-template-columns: 7fr 5fr; } }
+  @media (min-width: 1024px) { .sustain-hero__grid { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); } }
   .sustain-hero__plate {
     position: relative; aspect-ratio: 4 / 3;
     border: 1px solid var(--border); border-radius: var(--r-panel);
@@ -162,11 +162,8 @@ $measurementItems = [
 <section class="section section--paper" aria-labelledby="journey-infographic-title">
   <div class="container">
     <div class="section-heading section-heading--left" data-reveal style="max-width: 48rem; margin-bottom: 2rem;">
-      <span class="section-heading__eyebrow">Client Journey Diagram</span>
+      <span class="section-heading__eyebrow">Material Journey</span>
       <h2 class="section-heading__title" id="journey-infographic-title">From Cow Dung to a Greener Future.</h2>
-      <p class="section-heading__desc">
-        A client-supplied infographic illustrating the material journey from raw cow dung to finished products. Illustrative direction &mdash; not a verified production process or measured environmental outcome.
-      </p>
     </div>
     <figure class="journey-infographic" data-reveal>
       <picture>
@@ -175,10 +172,10 @@ $measurementItems = [
         <source type="image/webp" srcset="<?= eco_srcset_webp('journey-greener', [640, 960, 1280, 1672]) ?>"
                 sizes="(min-width: 1024px) 80vw, calc(100vw - 2.5rem)">
         <img src="<?= asset_url('/assets/images/ecosystem/journey-greener-1280.jpg') ?>"
-             alt="Client-supplied infographic: From Cow Dung to a Greener Future — the material journey from raw cow dung to eco-friendly products. Illustrative direction, not a verified production process."
+             alt="Infographic: From Cow Dung to a Greener Future — the material journey from raw cow dung to eco-friendly products. Illustrative direction, not a verified production process."
              width="1672" height="941" loading="lazy" decoding="async">
       </picture>
-      <figcaption>Client-supplied infographic &mdash; illustrative material journey. Not a verified production process or measured environmental outcome.</figcaption>
+      <figcaption>Illustrative material journey &mdash; not a verified production process or measured environmental outcome.</figcaption>
     </figure>
   </div>
 </section>
@@ -228,14 +225,14 @@ $measurementItems = [
             <source type="image/webp" srcset="<?= eco_srcset_webp('gocast-material', [640, 960, 1280]) ?>"
                     sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, calc(100vw - 2.5rem)">
             <img src="<?= asset_url('/assets/images/ecosystem/gocast-material-960.jpg') ?>"
-                 alt="Client-supplied cow-dung log material — the fuel and log application direction"
+                 alt="Cow-dung log material — the fuel and log application direction"
                  width="960" height="640" loading="lazy" decoding="async">
           </picture>
         </figure>
         <div class="resource-step__caption">
           <span class="resource-step__kicker">Outcome — Fuel &amp; Log Application</span>
           <h3 class="resource-step__title">Cow-dung log material</h3>
-          <p class="resource-step__desc">Client-supplied log material for fuel and traditional applications, in development.</p>
+          <p class="resource-step__desc">Log material for fuel and traditional applications, in development.</p>
         </div>
       </article>
       <article class="resource-step">

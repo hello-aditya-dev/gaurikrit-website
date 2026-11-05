@@ -48,9 +48,9 @@ $calcConfigJson = json_encode($calcConfig, JSON_UNESCAPED_SLASHES | JSON_UNESCAP
   @media (min-width: 1024px) { .calc-hero { padding-top: calc(var(--header-h) + 1.5rem); padding-bottom: 1.5rem; } }
   .calc-hero__grid {
     display: grid; gap: clamp(1.5rem, 3vw, 3rem);
-    grid-template-columns: 1fr; align-items: center;
+    grid-template-columns: minmax(0, 1fr); align-items: center;
   }
-  @media (min-width: 1024px) { .calc-hero__grid { grid-template-columns: 7fr 5fr; } }
+  @media (min-width: 1024px) { .calc-hero__grid { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); } }
   @media (max-width: 1023px) { .calc-hero__plate { order: 5; max-width: 34rem; } }
   .calc-hero__plate { margin: 0; }
   .calc-hero__plate img {
@@ -60,7 +60,7 @@ $calcConfigJson = json_encode($calcConfig, JSON_UNESCAPED_SLASHES | JSON_UNESCAP
   .calc-hero__inner { display: grid; gap: 1rem; max-width: 60rem; }
   .calc-hero__eyebrow {
     display: inline-flex; align-items: center; gap: 0.5rem;
-    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.22em;
+    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em;
     text-transform: uppercase; color: var(--primary);
   }
   .calc-hero__eyebrow-dot {
@@ -93,7 +93,7 @@ $calcConfigJson = json_encode($calcConfig, JSON_UNESCAPED_SLASHES | JSON_UNESCAP
   .calculator-page__steps { display: grid; gap: 1.5rem; }
 
   .calc__cards { display: grid; gap: 0.875rem; margin-top: 1rem; }
-  @media (min-width: 640px) { .calc__cards { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 640px) { .calc__cards { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
   .calc__card {
     padding: 1.25rem 1.5rem;  /* V5: was 1rem 1.25rem */
     border: 2px solid var(--border-strong);  /* V5: was 1.5px */

@@ -40,9 +40,9 @@ $methodItems = [
   /* ===== PAGE HERO — story-hero (shared §42.11) + research composition ===== */
   .innov-hero__grid {
     display: grid; gap: clamp(2rem, 4vw, 4rem); align-items: center;
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
-  @media (min-width: 1024px) { .innov-hero__grid { grid-template-columns: 6fr 6fr; } }
+  @media (min-width: 1024px) { .innov-hero__grid { grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); } }
   .innov-hero__composition { margin: 0; position: relative; }
   .innov-hero__composition img {
     display: block; width: 100%; height: auto; border-radius: 0.1875rem;
@@ -186,11 +186,11 @@ $methodItems = [
             <source type="image/webp" srcset="<?= eco_srcset_webp('showcase-innovation', [640, 960, 1254]) ?>"
                     sizes="(min-width: 1024px) 42vw, calc(100vw - 2.5rem)">
             <img src="<?= asset_url('/assets/images/ecosystem/showcase-innovation-960.jpg') ?>"
-                 alt="Client-supplied material study — Prakritik Paint and Dhoop Cups shown together as an exploratory material direction. Illustrative, not a verified production process."
+                 alt="Material study — Prakritik Paint and dhoop cups shown together as an exploratory material direction. Illustrative, not a verified production process."
                  width="1254" height="1254"
                  loading="lazy" decoding="async">
           </picture>
-          <figcaption>Client-supplied material study &mdash; exploratory direction. Bio-Briquettes and Eco Utility Products shown elsewhere are Futureline products, not yet in production.</figcaption>
+          <figcaption>Material study &mdash; exploratory direction. Bio-Briquettes and Eco Utility Products shown elsewhere are Futureline products, not yet in production.</figcaption>
         </figure>
         <div style="margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 0.75rem;">
           <a class="btn btn--secondary" href="/products/#eco-paints">Explore Eco-Paints</a>

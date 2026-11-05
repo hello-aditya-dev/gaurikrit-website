@@ -60,10 +60,10 @@ $emulsion    = get_product('prakritik-emulsion');
   }
   .products-hero__grid {
     display: grid; gap: 2.5rem; align-items: center;
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
   @media (min-width: 1024px) {
-    .products-hero__grid { grid-template-columns: 45fr 55fr; gap: clamp(2rem, 4vw, 4rem); }
+    .products-hero__grid { grid-template-columns: minmax(0, 45fr) minmax(0, 55fr); gap: clamp(2rem, 4vw, 4rem); }
   }
   .products-hero__lockup { max-width: 42rem; }
   /* V19: the pair master carries its own sweep — full-bleed, no box. */
@@ -119,10 +119,10 @@ $emulsion    = get_product('prakritik-emulsion');
   .eco-family { padding-block: clamp(3rem, 6vw, 5rem); }
   .eco-family__grid {
     display: grid; gap: 2.5rem; align-items: center;
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
   @media (min-width: 1024px) {
-    .eco-family__grid { grid-template-columns: 5fr 7fr; gap: clamp(2rem, 4vw, 4rem); }
+    .eco-family__grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(2rem, 4vw, 4rem); }
   }
   .eco-family__plate {
     background: none;
@@ -157,11 +157,11 @@ $emulsion    = get_product('prakritik-emulsion');
   .family-section { padding-block: clamp(3rem, 6vw, 5rem); }
   .family-section__grid {
     display: grid; gap: 2.5rem; align-items: center;
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
   @media (min-width: 1024px) {
-    .family-section__grid { grid-template-columns: 7fr 5fr; gap: clamp(2.5rem, 5vw, 4.5rem); }
-    .family-section--reverse .family-section__grid { grid-template-columns: 5fr 7fr; }
+    .family-section__grid { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(2.5rem, 5vw, 4.5rem); }
+    .family-section--reverse .family-section__grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }
     .family-section--reverse .family-section__copy { order: 2; }
   }
   .family-section__num {
@@ -229,7 +229,7 @@ $emulsion    = get_product('prakritik-emulsion');
     background: var(--paper);
   }
   .spec-matrix__row {
-    grid-template-columns: 1fr; gap: 0.75rem;
+    grid-template-columns: minmax(0, 1fr); gap: 0.75rem;
     padding: 1.75rem 1.25rem;
     border-bottom: 1px solid var(--border);
   }
@@ -361,10 +361,12 @@ $emulsion    = get_product('prakritik-emulsion');
 <section class="section section--paper" aria-labelledby="ecosystem-banner-title" style="padding-block: clamp(2rem, 4vw, 3rem);">
   <div class="container">
     <div class="section-heading section-heading--left" data-reveal style="max-width: 48rem; margin-bottom: 1.5rem;">
-      <span class="section-heading__eyebrow">Client Ecosystem Banner</span>
+      <span class="section-heading__eyebrow">Product Directions</span>
       <h2 class="section-heading__title" id="ecosystem-banner-title" style="font-size: clamp(1.5rem, 3vw, 2rem);">The Gaurikrit product range.</h2>
       <p class="section-heading__desc">
-        A client-supplied banner showing the product directions. Eco-Paints is the documented family; Cow-Dung Logs is a development direction; Bio-Briquettes and Eco Utility Products are Futureline product directions, not yet in production.
+        All four Gaurikrit product directions in one view — from the
+        documented Eco-Paints family to the Futureline directions still
+        in development.
       </p>
     </div>
     <figure class="journey-infographic" data-reveal>
@@ -374,10 +376,10 @@ $emulsion    = get_product('prakritik-emulsion');
         <source type="image/webp" srcset="<?= eco_srcset_webp('products-banner', [640, 960, 1280, 1536]) ?>"
                 sizes="(min-width: 1024px) 80vw, calc(100vw - 2.5rem)">
         <img src="<?= asset_url('/assets/images/ecosystem/products-banner-1280.jpg') ?>"
-             alt="Client-supplied Gaurikrit product range banner — Eco-Paints, Cow-Dung Logs, Bio-Briquettes (Futureline) and Eco Utility Products (Futureline). The Futureline products are not yet in production."
+             alt="Official Gaurikrit product range banner — Eco-Paints, Cow-Dung Logs, Bio-Briquettes (Futureline) and Eco Utility Products (Futureline). The Futureline products are not yet in production."
              width="1536" height="1024" loading="lazy" decoding="async">
       </picture>
-      <figcaption>Client-supplied ecosystem banner &mdash; Bio-Briquettes and Eco Utility Products are Futureline products, not yet in production.</figcaption>
+      <figcaption>The official Gaurikrit product range &mdash; Bio-Briquettes and Eco Utility Products are Futureline products, not yet in production.</figcaption>
     </figure>
   </div>
 </section>
@@ -663,10 +665,10 @@ $emulsion    = get_product('prakritik-emulsion');
           <source type="image/webp" srcset="<?= eco_srcset_webp('carousel-cow-dung-logs', [640, 960, 1280]) ?>"
                   sizes="(min-width: 1024px) 45vw, calc(100vw - 2.5rem)">
           <img src="<?= asset_url('/assets/images/ecosystem/carousel-cow-dung-logs-1280.jpg') ?>"
-               alt="Gaurikrit Cow-Dung Logs — client-supplied product artwork, premium biomass fuel"
+               alt="Gaurikrit Cow-Dung Logs — official product artwork, premium biomass fuel"
                width="1672" height="941" loading="lazy" decoding="async">
         </picture>
-        <figcaption>Client-supplied Cow-Dung Logs product artwork.</figcaption>
+        <figcaption>Cow-Dung Logs — official product artwork.</figcaption>
       </figure>
       <div class="gocast-feature__copy">
         <span class="family-section__num" aria-hidden="true">02</span>
@@ -703,7 +705,7 @@ $emulsion    = get_product('prakritik-emulsion');
                alt="Gaurikrit Cow-Dung Logs product poster — stacked biomass fuel logs. Development direction."
                width="1024" height="1024" loading="lazy" decoding="async">
         </picture>
-        <figcaption>Client-supplied Cow-Dung Logs product poster.</figcaption>
+        <figcaption>Cow-Dung Logs — official product poster.</figcaption>
       </figure>
     </div>
   </div>
@@ -744,17 +746,17 @@ $emulsion    = get_product('prakritik-emulsion');
           <a class="btn btn--outline" href="/contact/?interest=bio-coal-logs">Enquire About Bio-Briquettes</a>
         </div>
       </div>
-      <figure class="family-section__photo" aria-label="Bio-Briquettes — client-supplied product artwork">
+      <figure class="family-section__photo" aria-label="Bio-Briquettes — official Gaurikrit product artwork">
         <picture>
           <source type="image/avif" srcset="<?= eco_srcset('carousel-bio-briquettes', [640, 960, 1280, 1920]) ?>"
                   sizes="(min-width: 1024px) 42vw, calc(100vw - 2.5rem)">
           <source type="image/webp" srcset="<?= eco_srcset_webp('carousel-bio-briquettes', [640, 960, 1280, 1920]) ?>"
                   sizes="(min-width: 1024px) 42vw, calc(100vw - 2.5rem)">
           <img src="<?= asset_url('/assets/images/ecosystem/carousel-bio-briquettes-1280.jpg') ?>"
-               alt="Gaurikrit Bio-Briquettes — client-supplied product artwork for a Futureline product direction not yet in production"
+               alt="Gaurikrit Bio-Briquettes — official Gaurikrit artwork for a Futureline product direction not yet in production"
                width="1920" height="1080" loading="lazy" decoding="async">
         </picture>
-        <figcaption>Client-supplied Bio-Briquettes product artwork. Futureline — not yet in production.</figcaption>
+        <figcaption>Bio-Briquettes official artwork. Futureline — not yet in production.</figcaption>
       </figure>
     </div>
     <div class="family-section__poster" data-reveal>
@@ -768,7 +770,7 @@ $emulsion    = get_product('prakritik-emulsion');
                alt="Gaurikrit Bio-Briquettes product poster — cylindrical biomass fuel logs. Futureline product, not yet in production."
                width="1024" height="1024" loading="lazy" decoding="async">
         </picture>
-        <figcaption>Client-supplied Bio-Briquettes product poster.</figcaption>
+        <figcaption>Bio-Briquettes — official product poster. Futureline, not yet in production.</figcaption>
       </figure>
     </div>
   </div>
@@ -804,17 +806,17 @@ $emulsion    = get_product('prakritik-emulsion');
           <a class="btn btn--outline" href="/contact/?interest=utility-products">Enquire About Eco Utility Products</a>
         </div>
       </div>
-      <figure class="family-section__photo" aria-label="Eco Utility Products — client-supplied product artwork">
+      <figure class="family-section__photo" aria-label="Eco Utility Products — official Gaurikrit product artwork">
         <picture>
           <source type="image/avif" srcset="<?= eco_srcset('carousel-eco-utility-products', [640, 960, 1280, 1920]) ?>"
                   sizes="(min-width: 1024px) 42vw, calc(100vw - 2.5rem)">
           <source type="image/webp" srcset="<?= eco_srcset_webp('carousel-eco-utility-products', [640, 960, 1280, 1920]) ?>"
                   sizes="(min-width: 1024px) 42vw, calc(100vw - 2.5rem)">
           <img src="<?= asset_url('/assets/images/ecosystem/carousel-eco-utility-products-1280.jpg') ?>"
-               alt="Gaurikrit Eco Utility Products — client-supplied product artwork for a Futureline product direction not yet in production: dhoop cups, cow-dung diyas, biodegradable plates and eco glasses"
+               alt="Gaurikrit Eco Utility Products — official Gaurikrit artwork for a Futureline product direction not yet in production: dhoop cups, cow-dung diyas, biodegradable plates and eco glasses"
                width="1920" height="1080" loading="lazy" decoding="async">
         </picture>
-        <figcaption>Client-supplied Eco Utility Products product artwork. Futureline — not yet in production.</figcaption>
+        <figcaption>Eco Utility Products official artwork. Futureline — not yet in production.</figcaption>
       </figure>
     </div>
     <div class="family-section__poster" data-reveal>
@@ -828,7 +830,7 @@ $emulsion    = get_product('prakritik-emulsion');
                alt="Gaurikrit Eco Utility Products showcase — dhoop cups and cow-dung diyas. Futureline product, not yet in production."
                width="1022" height="1095" loading="lazy" decoding="async">
         </picture>
-        <figcaption>Client-supplied Eco Utility Products showcase — Dhoop Cups and Cow-Dung Diyas.</figcaption>
+        <figcaption>Eco Utility Products showcase — dhoop cups and cow-dung diyas. Futureline, not yet in production.</figcaption>
       </figure>
     </div>
   </div>

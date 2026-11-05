@@ -259,3 +259,24 @@ Collection" without a number.
 **Client action required**: Confirm the correct premium shade count
 (24 or 30) and supply a definitive shade specification sheet if the
 current artwork is ambiguous.
+
+---
+
+## V26 status note (5 November 2026 — final acceptance pass)
+
+The V26 polish pass is complete and pushed. The items above remain the complete
+list of open client decisions — none were guessed or closed silently. Additional
+V26-observed items for the client's attention (no action taken without approval):
+
+- **Stage 03 Product Portfolio source**: the exact requested file
+  `Biodegradable Product Showcase.png` was never located in the supplied
+  archive; `GBP Futureline Products Showcase-2.png` remains the substitute.
+- **Emulsion packshot**: the derived paint-range photograph (from
+  `GBP Paint Bucket.png`) contains a pink/magenta shadow artefact under the
+  bucket in the source artwork. A cleaner packshot would improve the page.
+- **Logo source**: the raster mark shows slight softness at very small sizes;
+  an SVG or @2x official version would sharpen it. The current PNG files carry
+  genuine alpha transparency and are used without background plates everywhere.
+- **Artwork micro-text**: several official posters/infographics carry text that
+  is illegible at web display sizes (documented in the V26 report). Larger
+  display or dedicated web crops would help if the client can supply them.

@@ -56,13 +56,13 @@ $HERO_SLIDES = [
    'alt'=>'Gaurikrit Prakritik Paint — eco-friendly cow dung paint, Distemper and Emulsion buckets with natural backdrop'],
   ['stem'=>'carousel-bio-briquettes',       'widths'=>[640,960,1280,1920], 'w'=>1920,'h'=>1080,
    'label'=>'Bio-Briquettes',      'sub'=>'Futureline · Not yet in production',
-   'alt'=>'Gaurikrit Bio-Briquettes — a Futureline product direction shown as client-supplied product artwork; not yet in production'],
+   'alt'=>'Gaurikrit Bio-Briquettes — a Futureline product direction shown in official Gaurikrit artwork; not yet in production'],
   ['stem'=>'carousel-cow-dung-logs',        'widths'=>[640,960,1280],      'w'=>1672,'h'=>941,
    'label'=>'Cow-Dung Logs',       'sub'=>'Development direction',
-   'alt'=>'Gaurikrit Cow-Dung Logs — a development direction shown as client-supplied product artwork'],
+   'alt'=>'Gaurikrit Cow-Dung Logs — a development direction shown in official Gaurikrit artwork'],
   ['stem'=>'carousel-eco-utility-products', 'widths'=>[640,960,1280,1920], 'w'=>1920,'h'=>1080,
    'label'=>'Eco Utility Products','sub'=>'Futureline · Not yet in production',
-   'alt'=>'Gaurikrit Eco Utility Products — dhoop cups, cow-dung diyas, biodegradable plates and eco glasses shown as client-supplied product artwork; a Futureline product not yet in production'],
+   'alt'=>'Gaurikrit Eco Utility Products — dhoop cups, cow-dung diyas, biodegradable plates and eco glasses shown in official Gaurikrit artwork; a Futureline product not yet in production'],
 ];
 $HERO_SIZES = '(min-width: 1200px) 58vw, (min-width: 900px) 50vw, calc(100vw - 2.5rem)';
 ?>
@@ -75,13 +75,13 @@ $HERO_SIZES = '(min-width: 1200px) 58vw, (min-width: 900px) 50vw, calc(100vw - 2
   }
   .hero__grid { align-items: center; position: relative; }
   @media (min-width: 1200px) {
-    .hero__grid { grid-template-columns: 5fr 7fr; gap: clamp(2rem, 4vw, 4rem); }
+    .hero__grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(2rem, 4vw, 4rem); }
   }
   @media (min-width: 900px) and (max-width: 1199px) {
-    .hero__grid { grid-template-columns: 6fr 6fr; gap: clamp(1.5rem, 3vw, 3rem); }
+    .hero__grid { grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); gap: clamp(1.5rem, 3vw, 3rem); }
   }
   @media (max-width: 899px) {
-    .hero__grid { grid-template-columns: 1fr; }
+    .hero__grid { grid-template-columns: minmax(0, 1fr); }
     .hero__visual { order: 5; }
   }
   .hero__eyebrow-chip { margin-bottom: 0.875rem; }
@@ -145,6 +145,11 @@ $HERO_SIZES = '(min-width: 1200px) 58vw, (min-width: 900px) 50vw, calc(100vw - 2
   .hero-showcase__controls {
     display: flex; align-items: center; justify-content: space-between;
     gap: 0.75rem 1.25rem; margin-top: 1rem; flex-wrap: wrap;
+    position: relative;
+  }
+  /* V26: dots optically centred under the frame on desktop */
+  @media (min-width: 561px) {
+    .hero-showcase__dots { position: absolute; left: 50%; transform: translateX(-50%); }
   }
   .hero-showcase__caption { display: flex; flex-direction: column; gap: 0.0625rem; min-width: 0; }
   .hero-showcase__label {
@@ -157,12 +162,13 @@ $HERO_SIZES = '(min-width: 1200px) 58vw, (min-width: 900px) 50vw, calc(100vw - 2
   }
   .hero-showcase__dots { display: flex; gap: 0.4375rem; align-items: center; }
   .hero-showcase__dot {
-    width: 0.5rem; height: 0.5rem; padding: 0; margin: 0; border: 0;
+    width: 1.5rem; height: 0.5rem; padding: 0; margin: 0; border: 0;
     border-radius: 999px; background: var(--border-strong);
+    transform: scaleX(0.34); transform-origin: center; /* V26: transform, not width — larger touch target */
     cursor: pointer; appearance: none; -webkit-appearance: none;
-    transition: background 0.3s ease, width 0.3s ease;
+    transition: background 0.3s ease, transform 0.3s ease;
   }
-  .hero-showcase__dot[aria-selected="true"] { background: var(--forest); width: 1.5rem; }
+  .hero-showcase__dot[aria-selected="true"] { background: var(--forest); transform: scaleX(1); }
   .hero-showcase__dot:focus-visible { outline: 2px solid var(--haldi); outline-offset: 3px; }
   .hero-showcase__arrows { display: flex; gap: 0.5rem; align-items: center; }
   .hero-showcase__arrow {
@@ -196,11 +202,11 @@ $HERO_SIZES = '(min-width: 1200px) 58vw, (min-width: 900px) 50vw, calc(100vw - 2
   @media (max-width: 560px) {
     .hero-showcase__controls { flex-direction: column; align-items: center; gap: 0.875rem; }
     .hero-showcase__caption { order: 1; align-items: center; }
-    .hero-showcase__dots { order: 2; }
+    .hero-showcase__dots { order: 2; position: static; transform: none; }
     .hero-showcase__arrows { order: 3; }
     .hero-showcase__arrow, .hero-showcase__toggle { width: 2.75rem; height: 2.75rem; }
-    .hero-showcase__dot { width: 0.625rem; height: 0.625rem; }
-    .hero-showcase__dot[aria-selected="true"] { width: 1.75rem; }
+    .hero-showcase__dot { height: 0.625rem; transform: scaleX(0.42); }
+    .hero-showcase__dot[aria-selected="true"] { transform: scaleX(1); }
   }
 
   /* V21 — mission statement callout inside the story section */
@@ -259,9 +265,9 @@ $HERO_SIZES = '(min-width: 1200px) 58vw, (min-width: 900px) 50vw, calc(100vw - 2
 
   /* ===== 06. INNOVATION TEASER — one research composition (§33) ===== */
   .innov-teaser__grid {
-    display: grid; grid-template-columns: 1fr; gap: 2.5rem; align-items: center;
+    display: grid; grid-template-columns: minmax(0, 1fr); gap: 2.5rem; align-items: center;
   }
-  @media (min-width: 1024px) { .innov-teaser__grid { grid-template-columns: 5fr 7fr; gap: 3.5rem; } }
+  @media (min-width: 1024px) { .innov-teaser__grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 3.5rem; } }
   .innov-composition { margin: 0; }
   .innov-composition img {
     width: 100%; height: auto; display: block; border-radius: 0.1875rem;

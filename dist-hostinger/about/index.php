@@ -39,10 +39,10 @@ $groupImage = '/assets/products/prakritik-group.jpg';
   }
   .about-hero__container {
     display: grid; gap: clamp(2rem, 4vw, 4rem); align-items: center;
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
   @media (min-width: 1024px) {
-    .about-hero__container { grid-template-columns: 5fr 7fr; }
+    .about-hero__container { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }
   }
   .about-hero__lockup { display: flex; flex-direction: column; gap: 0.75rem; }
   .about-hero__deva {
@@ -50,7 +50,7 @@ $groupImage = '/assets/products/prakritik-group.jpg';
     font-size: 1.75rem; color: var(--primary); line-height: 1.2;
   }
   .about-hero__brand-sub {
-    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.22em;
+    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em;
     text-transform: uppercase; color: var(--fg-muted);
   }
   .about-hero__title {
@@ -221,7 +221,7 @@ $groupImage = '/assets/products/prakritik-group.jpg';
                  width="1280" height="853"
                  loading="lazy" decoding="async">
           </picture>
-          <figcaption>Cow dung — the raw material, client-supplied photograph.</figcaption>
+          <figcaption>Cow dung — the raw material.</figcaption>
         </figure>
       </div>
     </article>
@@ -347,7 +347,7 @@ $groupImage = '/assets/products/prakritik-group.jpg';
                   <source type="image/webp" srcset="<?= eco_srcset_webp('gocast-material', [640, 960, 1280]) ?>"
                           sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, calc(100vw - 2.5rem)">
                   <img src="<?= asset_url('/assets/images/ecosystem/gocast-material-960.jpg') ?>"
-                       alt="Client-supplied cow-dung log material — the widening direction"
+                       alt="Cow-dung log material — the widening direction"
                        width="960" height="640"
                        loading="lazy" decoding="async">
                 </picture>
@@ -356,7 +356,7 @@ $groupImage = '/assets/products/prakritik-group.jpg';
               <span class="resource-step__kicker">Stage 03 — Widening</span>
               <h3 class="resource-step__title">Expanding directions</h3>
               <p class="resource-step__desc">
-                Client-supplied cow-dung log material — fuel, traditional and
+                Cow-dung log material — fuel, traditional and
                 utility directions in development.
               </p>
             </div>
@@ -436,9 +436,9 @@ $groupImage = '/assets/products/prakritik-group.jpg';
           <a href="mailto:<?= e($COMPANY['email']) ?>"><?= e($COMPANY['email']) ?></a>
         </dd>
       </div>
-      <?php foreach ($COMPANY['phones'] as $phone): ?>
+      <?php foreach ($COMPANY['phones'] as $i => $phone): ?>
         <div class="company-plate__row">
-          <dt>Phone</dt>
+          <dt><?= $i === 0 ? 'Phone' : 'Phone (alternate)' ?></dt>
           <dd>
             <a href="tel:<?= e(str_replace(' ', '', $phone)) ?>"><?= e($phone) ?></a>
           </dd>
@@ -464,11 +464,8 @@ $groupImage = '/assets/products/prakritik-group.jpg';
 <section class="section section--paper" aria-labelledby="about-journey-title">
   <div class="container">
     <div class="section-heading section-heading--left" data-reveal style="max-width: 48rem; margin-bottom: 2rem;">
-      <span class="section-heading__eyebrow">Client Material Journey</span>
+      <span class="section-heading__eyebrow">Material Journey</span>
       <h2 class="section-heading__title" id="about-journey-title">From Cow Dung to Sustainable Solutions.</h2>
-      <p class="section-heading__desc">
-        A client-supplied infographic illustrating the material journey from cow dung to sustainable consumer products. Illustrative direction &mdash; not a verified production process or measured environmental outcome.
-      </p>
     </div>
     <figure class="journey-infographic" data-reveal>
       <picture>
@@ -477,10 +474,10 @@ $groupImage = '/assets/products/prakritik-group.jpg';
         <source type="image/webp" srcset="<?= eco_srcset_webp('journey-sustainable', [640, 960, 1280, 1600, 1983]) ?>"
                 sizes="(min-width: 1024px) 80vw, calc(100vw - 2.5rem)">
         <img src="<?= asset_url('/assets/images/ecosystem/journey-sustainable-1600.jpg') ?>"
-             alt="Client-supplied infographic: From Cow Dung to Sustainable Solutions — the material journey from cow dung to biodegradable consumer products. Illustrative direction, not a verified production process."
+             alt="Infographic: From Cow Dung to Sustainable Solutions — the material journey from cow dung to biodegradable consumer products. Illustrative direction, not a verified production process."
              width="1983" height="793" loading="lazy" decoding="async">
       </picture>
-      <figcaption>Client-supplied infographic &mdash; illustrative material journey. Not a verified production process or measured environmental outcome.</figcaption>
+      <figcaption>Illustrative material journey &mdash; not a verified production process or measured environmental outcome.</figcaption>
     </figure>
   </div>
 </section>

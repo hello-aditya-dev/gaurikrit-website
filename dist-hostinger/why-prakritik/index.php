@@ -44,7 +44,7 @@ $emulsion  = get_product('prakritik-emulsion');
   .why-hero { padding-top: calc(var(--header-h) + 2rem); padding-bottom: 1.5rem; }
   .why-hero__container { display: grid; gap: 2rem; align-items: center; }
   @media (min-width: 1024px) {
-    .why-hero__container { grid-template-columns: 5fr 7fr; gap: 3rem; }
+    .why-hero__container { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 3rem; }
   }
   .why-hero__lockup { max-width: 42rem; }
   .why-hero__art {
@@ -78,13 +78,13 @@ $emulsion  = get_product('prakritik-emulsion');
     display: grid; gap: 2rem; padding-block: clamp(3.5rem, 6vw, 5rem);
   }
   @media (min-width: 1024px) {
-    .why-chapter { grid-template-columns: 4fr 8fr; gap: 3rem; align-items: start; }
+    .why-chapter { grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: 3rem; align-items: start; }
   }
   /* V12: Section 02 TRADITION — the courtyard elevation is the chapter's
      dominant visual: copy ~45 / image ~55 on desktop (image large enough
      to matter); copy first, image second at every breakpoint. */
   @media (min-width: 1024px) {
-    .why-chapter--wide-art { grid-template-columns: 45fr 55fr; gap: 3rem; align-items: center; }
+    .why-chapter--wide-art { grid-template-columns: minmax(0, 45fr) minmax(0, 55fr); gap: 3rem; align-items: center; }
   }
   .why-chapter__num {
     font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 4rem);
@@ -92,16 +92,16 @@ $emulsion  = get_product('prakritik-emulsion');
   }
   .why-chapter__eyebrow {
     display: block; margin-top: 0.875rem; font-size: 0.75rem;
-    font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
+    font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
     color: var(--primary);
   }
   .why-chapter__title {
-    margin-top: 0.5rem; font-family: var(--font-display);
+    margin-top: 1rem; font-family: var(--font-display); /* V26 hallmark 71: nearer what it heads */
     font-size: clamp(1.75rem, 4vw, 2.75rem); line-height: 1.1;
     letter-spacing: -0.02em; text-wrap: balance;
   }
   .why-chapter__body {
-    margin-top: 1.25rem; color: var(--fg-muted);
+    margin-top: 0.75rem; color: var(--fg-muted);
     font-size: 1.0625rem; line-height: 1.75; max-width: 60ch;
   }
   .why-chapter__body p + p { margin-top: 1.25rem; }
@@ -152,7 +152,7 @@ $emulsion  = get_product('prakritik-emulsion');
   .why-formats {
     display: grid; gap: 2rem; margin-top: 2rem;
   }
-  @media (min-width: 768px) { .why-formats { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 768px) { .why-formats { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
   .why-format-card {
     position: relative;
     background: color-mix(in srgb, var(--paper-cool) 25%, var(--paper));
@@ -190,7 +190,7 @@ $emulsion  = get_product('prakritik-emulsion');
   .why-context-facts > div {
     display: grid; gap: 0.25rem; padding: 0.875rem 0;
     border-bottom: 1px solid var(--border);
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
   @media (min-width: 640px) {
     .why-context-facts > div { grid-template-columns: 10rem 1fr; gap: 1rem; align-items: baseline; }
@@ -435,7 +435,7 @@ $emulsion  = get_product('prakritik-emulsion');
       <span class="section-heading__eyebrow">Ashta Laabh — अष्ट लाभ</span>
       <h2 class="section-heading__title" id="chapter-04-title">Eight benefits of Prakritik Paint.</h2>
       <p class="section-heading__desc">
-        Benefits listed in the supplied Prakritik Paint material.
+        Benefits as listed in the Prakritik Paint brochure.
       </p>
     </div>
     <ol class="benefits-grid" data-reveal-stagger>
@@ -495,7 +495,7 @@ $emulsion  = get_product('prakritik-emulsion');
         <span class="colour-cta__eyebrow">Colour Collections</span>
         <h3 class="colour-cta__title">Colours Inspired by Nature.</h3>
         <p class="colour-cta__body">
-          Two client-supplied collections — <strong>12 Signature shades</strong>
+          Two shade collections — <strong>12 Signature shades</strong>
           and a <strong>Premium collection in five groups</strong> — previewed
           live on the wall.
         </p>

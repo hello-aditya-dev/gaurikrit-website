@@ -255,7 +255,7 @@
   .contact-hero { padding-top: calc(var(--header-h) + clamp(1.25rem, 3vw, 2rem)); padding-bottom: clamp(1.25rem, 3vw, 2rem); }
   .contact-hero__container { display: grid; gap: clamp(1.5rem, 4vw, 3rem); align-items: start; }
   @media (min-width: 1024px) {
-    .contact-hero__container { grid-template-columns: 7fr 5fr; align-items: center; }
+    .contact-hero__container { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); align-items: center; }
   }
   .contact-hero__lockup { max-width: 42rem; }
   .contact-hero__title {
@@ -287,12 +287,12 @@
   }
   .contact-direct__brand small {
     display: block; font-family: var(--font-sans); font-size: 0.625rem;
-    font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
+    font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
     color: var(--fg-muted); margin-top: 0.125rem;
   }
   .contact-direct__row {
     padding: 0.875rem 0; border-bottom: 1px solid var(--border);
-    display: grid; grid-template-columns: 1fr; gap: 0.125rem;
+    display: grid; grid-template-columns: minmax(0, 1fr); gap: 0.125rem;
   }
   .contact-direct__row:last-child { border-bottom: 0; }
   .contact-direct__row dt {
@@ -316,7 +316,7 @@
   }
   .contact-info__row {
     padding-block: 1.125rem; border-bottom: 1px solid var(--border);
-    display: grid; grid-template-columns: 1fr; gap: 0.25rem;
+    display: grid; grid-template-columns: minmax(0, 1fr); gap: 0.25rem;
     align-items: baseline;
   }
   @media (min-width: 640px) {
@@ -430,7 +430,7 @@
           </dd>
         </div>
         <div class="contact-direct__row">
-          <dt>Phone</dt>
+          <dt>Phone (alternate)</dt>
           <dd>
             <a href="tel:+919837638842">+91 9837638842</a>
             <button type="button" class="copy-btn" data-copy="+919837638842" aria-label="Copy phone number">
@@ -463,29 +463,15 @@
             <dd>Gaurikrit Bio Products (OPC) Private Limited</dd>
           </div>
           <div class="contact-info__row">
+            <dt>Brand name</dt>
+            <dd>Gaurikrit</dd>
+          </div>
+          <div class="contact-info__row">
             <dt>GSTIN</dt>
             <dd>09AAMCG8400F1ZK</dd>
           </div>
           <div class="contact-info__row">
-            <dt>Email</dt>
-            <dd>
-              <a href="mailto:seva@gaurikrit.com">seva@gaurikrit.com</a>
-            </dd>
-          </div>
-          <div class="contact-info__row">
-            <dt>Phone</dt>
-            <dd>
-              <a href="tel:+919999624446">+91 9999624446</a>
-            </dd>
-          </div>
-          <div class="contact-info__row">
-            <dt>Phone</dt>
-            <dd>
-              <a href="tel:+919837638842">+91 9837638842</a>
-            </dd>
-          </div>
-          <div class="contact-info__row">
-            <dt>Address</dt>
+            <dt>Registered address</dt>
             <dd class="contact-info__address">House No. 55
 Village Khuriyawali
 Post Arniya
@@ -670,12 +656,13 @@ India</dd>
                     <span class="brand__name">Gaurikrit</span>
                 </a>
                 <p class="site-footer__brandline">Good for Nature. Good for Life.</p>
-                <p class="site-footer__legal-name">Gaurikrit Bio Products (OPC) Private Limited</p>
+                <p class="site-footer__legal-name">Khurja, District Bulandshahr, Uttar Pradesh – 203131</p>
             </div>
             <nav class="site-footer__col site-footer__col--company" aria-label="Company">
                 <h4 class="site-footer__heading">Company</h4>
                 <a href="../">Home</a>
                 <a href="../about/">Our Story</a>
+                <a href="../colours/">Colours</a>
                 <a href="../sustainability/">Sustainability</a>
                 <a href="../innovation/">Innovation</a>
             </nav>
@@ -684,7 +671,6 @@ India</dd>
                 <a href="../products/#eco-paints">Eco-Paints</a>
                 <a href="../products/prakritik-distemper/">Prakritik Distemper</a>
                 <a href="../products/prakritik-emulsion/">Prakritik Emulsion</a>
-                <a href="../colours/">Colours</a>
                 <a href="../products/#gocast-logs">Cow-Dung Logs</a>
                 <a href="../products/#bio-coal-logs">Bio-Briquettes</a>
                 <a href="../products/#utility-products">Eco Utility Products</a>
@@ -709,6 +695,7 @@ India</dd>
         <div class="site-footer__bottom">
             <div class="container site-footer__bottom-inner">
                 <p>© 2026 Gaurikrit Bio Products (OPC) Private Limited. GSTIN: 09AAMCG8400F1ZK.</p>
+                <p class="site-footer__bottom-deva" lang="hi" aria-label="Prakriti se, deewaron tak">प्रकृति से, दीवारों तक.</p>
             </div>
         </div>
     </footer>
