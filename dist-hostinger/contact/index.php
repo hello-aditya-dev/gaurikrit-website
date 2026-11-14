@@ -202,7 +202,7 @@ if ($interestParam !== '' && array_key_exists($interestParam, $INTEREST_OPTIONS)
           Get in touch
         </span>
         <hr class="contact-hero__rule">
-        <h1 class="contact-hero__title" id="contact-title">Talk to Gaurikrit.</h1>
+        <h1 class="contact-hero__title" id="contact-title">Talk to Gaurikrit </h1>
         <p class="contact-hero__sub">
           For product questions, project requirements or partnership enquiries,
           contact Gaurikrit directly or send a message below.
@@ -261,7 +261,7 @@ if ($interestParam !== '' && array_key_exists($interestParam, $INTEREST_OPTIONS)
         <!-- V20 §62-63: the hero plate above already surfaces email,
              phones and address with copy buttons — this lower panel keeps
              ONLY the registered-company facts (no duplication). -->
-        <h2 class="spec-sheet__title" style="margin-top: 0.5rem;">Registered company.</h2>
+        <h2 class="spec-sheet__title" style="margin-top: 0.5rem;">Registered company </h2>
 
         <dl class="contact-info">
           <div class="contact-info__row">

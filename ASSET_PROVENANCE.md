@@ -612,3 +612,55 @@ tile."
 - GBP Products Banner: Products page ecosystem banner
 - From Cow Dung to a Greener Future: Sustainability page infographic
 - From Cow Dung to Sustainable Solutions-1: About page infographic
+
+### V29 — Complete client asset integration + Story1.1 Our Story page
+
+**New client assets (2026-11-14 archive)**: 27 entries verified (25 images +
+2 docx). PNG originals converted to WebP quality 95 for delivery; original
+SHA-256 hashes recorded in `ASSET_MANIFEST.csv`. All originals preserved in
+`source-assets/client-originals/2026-11-14-update/`.
+
+**Homepage changes**:
+- Removed "Eco-Paints, documented end to end" section (homepage only)
+- Removed "Where Tradition Meets Technology" section (homepage only)
+- Section order: Hero → From Waste to Resource → One Resource, Four Solutions
+  → Circular → Vision/Mission → Partnership
+- Stage 03 image replaced: `flow-portfolio` now uses Biodegradable Product
+  Showcase (was Showcase-2). The Biodegradable Product Showcase is
+  byte-identical to GBP Futureline Products Showcase-3 (confirmed by SHA-256).
+- All heading terminal full stops removed across all 14 routes.
+
+**Our Story page** (`/about/`): Completely rebuilt with Story1.1 content:
+- Opening: "When Reverence Becomes Responsibility" + Gir cow/calf image
+- Section 1: Restoring the Dignity of Gau Mata + Tender Moment image
+- Section 2: Giving Farmers a Reason to Care + Product Showcase image
+- Section 3: Saving Trees by Rethinking Fuel + cattle-shelter image (extracted
+  from Story1.1.docx, no standalone equivalent)
+- Section 4: Cleaner Streets + campus image (embedded image5 from docx,
+  qualified as "Concept visual — artist's impression")
+- Section 5: From India's Traditions to India's Tomorrow (forest section)
+- Closing: "She Gave Us a Lifetime of Nourishment. We Owe Her a Lifetime of
+  Dignity" (Story1.1's closing, NOT Story2's alternate quote)
+- Product statuses preserved: Bio-Briquettes + Eco Utility = Futureline;
+  Cow-Dung Logs = development direction
+- Grammar fixes: "bi-products" → "by-products"; "becoming" → "becomes"
+- Go-Cast naming: used neutral "Cow-Dung Logs" (pending client confirmation)
+- Story2 purchasing claim NOT included
+- Company-info section preserved at bottom
+
+**Story image derivatives**:
+- `story-gir-cow-calf` ← Golden-Hour Gir Cow and Calf-2.webp (1254×1254)
+- `story-tender-moment` ← Tender Moment with a Resting Cow.webp (1224×1285)
+- `story-product-showcase` ← Biodegradable Product Showcase.webp (1254×1254)
+- `story-cattle-shelter` ← image4.png extracted from Story1.1.docx (1028×1188)
+- `story-campus` ← image5.jpeg extracted from Story1.1.docx (1101×618)
+- `flow-portfolio` ← Biodegradable Product Showcase.webp (1254×1254, replaces
+  old Showcase-2 derivatives)
+
+**Unused but inventoried assets**:
+- `Golden-Hour Gir Cow and Calf.webp` (portrait, 1122×1402) — alternate shot,
+  not used (avoid duplicate of the -2 variant)
+- `Gaurikrit Bio Products at Sunrise.webp` — distinct from Campus at Sunrise,
+  no Story1.1 section references it; placement TBD
+- `GBP Futureline Products Showcase-2.webp` — retired from homepage Stage 03;
+  still exists in repo for provenance

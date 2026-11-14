@@ -175,7 +175,7 @@ $helpfulInclude = [
       <div class="biz-hero__lockup">
         <span class="biz-hero__eyebrow"><span class="biz-hero__eyebrow-dot" aria-hidden="true"></span>Partners</span>
         <hr class="biz-hero__rule">
-        <h1 class="biz-hero__title" id="biz-title">Build with Gaurikrit.</h1>
+        <h1 class="biz-hero__title" id="biz-title">Build with Gaurikrit </h1>
         <p class="biz-hero__sub">
           For distributors, dealers, architects, contractors, institutions,
           industries and sustainability partners. Talk to us about
@@ -230,7 +230,7 @@ $helpfulInclude = [
   <div class="container">
     <div class="biz-audiences__head section-heading section-heading--left" data-reveal>
       <span class="section-heading__eyebrow">Who this is for</span>
-      <h2 class="section-heading__title" id="audiences-title">Partner with a material ecosystem.</h2>
+      <h2 class="section-heading__title" id="audiences-title">Partner with a material ecosystem </h2>
     </div>
 
     <!-- V20 §57: the small horizontal audience strip is REMOVED — the
@@ -253,7 +253,7 @@ $helpfulInclude = [
     <div class="biz-practical__grid" data-reveal>
       <div class="biz-practical__head">
         <span class="biz-hero__eyebrow"><span class="biz-hero__eyebrow-dot" aria-hidden="true"></span>Practical</span>
-        <h2 class="biz-practical__title" id="include-title">Include these details for a faster response.</h2>
+        <h2 class="biz-practical__title" id="include-title">Include these details for a faster response </h2>
         <p class="biz-practical__body">
           A few practical details up front let us respond with what we can
           supply — for paint projects, pack sizes and format; for the other
@@ -280,7 +280,7 @@ $helpfulInclude = [
       <aside class="biz-form-layout__aside">
         <div>
           <span class="biz-form-card__eyebrow">Project enquiry</span>
-          <h2 class="biz-form-card__title" id="form-title">Discuss a Project.</h2>
+          <h2 class="biz-form-card__title" id="form-title">Discuss a Project </h2>
           <p class="biz-form-card__note">
             Tell us about the project or the partnership. We will respond with
             what we can practically supply — for paint projects, pack sizes

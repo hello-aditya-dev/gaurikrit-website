@@ -303,7 +303,7 @@ $HERO_SIZES = '(min-width: 1200px) 58vw, (min-width: 900px) 50vw, calc(100vw - 2
         </div>
         <span class="hero__devanagari" aria-hidden="true"><?= e($COMPANY['devanagari']) ?></span>
         <h1 class="hero__title" id="hero-title">
-          Reimagining Cow-Dung<br>as a Resource for Sustainable Living.
+          Reimagining Cow-Dung<br>as a Resource for Sustainable Living
         </h1>
         <p class="hero__body">
           Nature provides the resource. Gaurikrit explores how natural waste
@@ -400,7 +400,7 @@ $HERO_SIZES = '(min-width: 1200px) 58vw, (min-width: 900px) 50vw, calc(100vw - 2
   <div class="container">
     <div class="resource-section__head section-heading section-heading--left" data-reveal>
       <span class="section-heading__eyebrow">The Gaurikrit Story</span>
-      <h2 class="section-heading__title" id="resource-title">From Waste to Resource.</h2>
+      <h2 class="section-heading__title" id="resource-title">From Waste to Resource</h2>
       <p class="section-heading__desc">
         Traditional India has long recognised cow dung as a useful material.
         Gaurikrit's direction is to carry that resource into practical
@@ -460,10 +460,10 @@ $HERO_SIZES = '(min-width: 1200px) 58vw, (min-width: 900px) 50vw, calc(100vw - 2
       <article class="resource-step">
         <figure class="resource-step__figure resource-step__figure--poster" aria-label="Gaurikrit biodegradable product showcase">
           <picture>
-            <source type="image/avif" srcset="<?= asset_url('/assets/images/ecosystem/flow-portfolio-640.avif') ?> 640w, <?= asset_url('/assets/images/ecosystem/flow-portfolio-960.avif') ?> 960w" sizes="(min-width: 1100px) 22vw, (min-width: 768px) 45vw, calc(100vw - 2.5rem)">
-            <source type="image/webp" srcset="<?= asset_url('/assets/images/ecosystem/flow-portfolio-640.webp') ?> 640w, <?= asset_url('/assets/images/ecosystem/flow-portfolio-960.webp') ?> 960w" sizes="(min-width: 1100px) 22vw, (min-width: 768px) 45vw, calc(100vw - 2.5rem)">
+            <source type="image/avif" srcset="<?= asset_url('/assets/images/ecosystem/flow-portfolio-640.avif') ?> 640w, <?= asset_url('/assets/images/ecosystem/flow-portfolio-960.avif') ?> 960w, <?= asset_url('/assets/images/ecosystem/flow-portfolio-1254.avif') ?> 1254w" sizes="(min-width: 1100px) 22vw, (min-width: 768px) 45vw, calc(100vw - 2.5rem)">
+            <source type="image/webp" srcset="<?= asset_url('/assets/images/ecosystem/flow-portfolio-640.webp') ?> 640w, <?= asset_url('/assets/images/ecosystem/flow-portfolio-960.webp') ?> 960w, <?= asset_url('/assets/images/ecosystem/flow-portfolio-1254.webp') ?> 1254w" sizes="(min-width: 1100px) 22vw, (min-width: 768px) 45vw, calc(100vw - 2.5rem)">
             <img src="<?= asset_url('/assets/images/ecosystem/flow-portfolio-960.jpg') ?>"
-                 alt="Gaurikrit biodegradable product showcase &mdash; dhoop cups, cow-dung diyas, biodegradable plates and eco glasses" width="960" height="1440" loading="lazy" decoding="async">
+                 alt="Gaurikrit Biodegradable Product Showcase — Prakritik Paint and dhoop cups shown as client-supplied product artwork" width="1254" height="1254" loading="lazy" decoding="async">
           </picture>
         </figure>
         <div class="resource-step__caption">
@@ -507,7 +507,7 @@ $HERO_SIZES = '(min-width: 1200px) 58vw, (min-width: 900px) 50vw, calc(100vw - 2
   <div class="container">
     <div class="families-section__head section-heading section-heading--left" data-reveal>
       <span class="section-heading__eyebrow">The Gaurikrit Ecosystem</span>
-      <h2 class="section-heading__title" id="families-title">One resource. Four solutions.</h2>
+      <h2 class="section-heading__title" id="families-title">One Resource, Four Solutions</h2>
       <p class="section-heading__desc">
         Cow dung is the shared material beginning. Gaurikrit develops it in four
         directions &mdash; Eco-Paints is the documented family; Cow-Dung Logs is
@@ -598,7 +598,7 @@ $HERO_SIZES = '(min-width: 1200px) 58vw, (min-width: 900px) 50vw, calc(100vw - 2
   <div class="container">
     <div class="circular-section__head section-heading section-heading--left" data-reveal>
       <span class="section-heading__eyebrow">The Circular Model</span>
-      <h2 class="section-heading__title" id="circular-title">A Circular Material Direction.</h2>
+      <h2 class="section-heading__title" id="circular-title">A Circular Material Direction </h2>
       <p class="section-heading__desc">
         The stages above repeat as one continuous cycle: the resource enters,
         is developed, becomes useful products &mdash; and further material
@@ -612,109 +612,6 @@ $HERO_SIZES = '(min-width: 1200px) 58vw, (min-width: 900px) 50vw, calc(100vw - 2
 </section>
 
 <!-- ============================================================
-     05. THE DOCUMENTED ECO-PAINT FAMILY (V18 §39.05)
-     The proven outcome: real pair photography + the two documented
-     formats with their supplied specifications + colour + tool links.
-     Ruled editorial rows, NOT a product-card grid.
-     ============================================================ -->
-<section class="section section--cool eco-documented" aria-labelledby="eco-documented-title">
-  <div class="container">
-    <div class="section-heading section-heading--left" data-reveal>
-      <span class="section-heading__eyebrow">The Documented Family</span>
-      <h2 class="section-heading__title" id="eco-documented-title">
-        Eco-Paints, documented end to end.
-      </h2>
-      <p class="section-heading__desc">
-        The one family with full product documentation — two formats, supplied
-        specifications, real client photography and a shade catalogue.
-      </p>
-    </div>
-
-    <div class="eco-documented__grid" data-reveal-stagger>
-      <figure class="eco-documented__plate">
-        <picture>
-          <source type="image/avif" srcset="<?= eco_srcset('eco-paints-pair', [640, 960, 1280, 1920]) ?>"
-                  sizes="(min-width: 1024px) 40vw, calc(100vw - 2.5rem)">
-          <source type="image/webp" srcset="<?= eco_srcset_webp('eco-paints-pair', [640, 960, 1280, 1920]) ?>"
-                  sizes="(min-width: 1024px) 40vw, calc(100vw - 2.5rem)">
-          <img src="<?= asset_url('/assets/images/ecosystem/eco-paints-pair-1280.jpg') ?>"
-               alt="Prakritik Distemper and Prakritik Emulsion paint packs"
-               width="1280" height="800" loading="lazy" decoding="async">
-        </picture>
-      </figure>
-
-      <div class="eco-documented__rows">
-        <?php foreach ($PRODUCTS as $product): ?>
-          <div class="eco-documented__row">
-            <h3 class="eco-documented__row-name">
-              <a href="<?= e($product['route']) ?>"><?= e($product['name']) ?></a>
-            </h3>
-            <p class="eco-documented__row-meta">
-              <strong><?= e($product['packagingShort']) ?></strong> ·
-              <?= e($product['colour']) ?> · <?= e($product['finish']) ?> ·
-              <?= e($product['coverage']) ?>
-            </p>
-            <a class="eco-documented__row-cta" href="<?= e($product['route']) ?>">
-              View specifications <span aria-hidden="true">→</span>
-            </a>
-          </div>
-        <?php endforeach; ?>
-        <div class="eco-documented__links">
-          <a href="/colours/">Explore Colours</a>
-          <a href="/paint-calculator/">Painting Calculator</a>
-          <a href="/why-prakritik/">Why Prakritik?</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     06. RESEARCH & INNOVATION — focus areas teaser (§25 / §28)
-     Real material samples — paint + cow-dung log material — showing
-     material → application.
-     ============================================================ -->
-<section class="section section--limewash innov-teaser" aria-labelledby="innov-title">
-  <div class="container">
-    <div class="section-heading section-heading--left" data-reveal>
-      <span class="section-heading__eyebrow">Research &amp; Innovation</span>
-      <h2 class="section-heading__title" id="innov-title">Where Tradition Meets Technology.</h2>
-    </div>
-    <div class="innov-teaser__grid" data-reveal>
-      <figure class="innov-composition" aria-label="Material research samples — raw biomass, processed log and finished coating">
-        <picture>
-          <source type="image/avif" srcset="<?= eco_srcset('innovation-research', [640, 960, 1280, 1920]) ?>"
-                  sizes="(min-width: 1024px) 40vw, calc(100vw - 2.5rem)">
-          <source type="image/webp" srcset="<?= eco_srcset_webp('innovation-research', [640, 960, 1280, 1920]) ?>"
-                  sizes="(min-width: 1024px) 40vw, calc(100vw - 2.5rem)">
-          <img src="<?= asset_url('/assets/images/ecosystem/innovation-research-1280.jpg') ?>"
-               alt="Material research samples — raw biomass, processed log and finished coating"
-               width="1280" height="800" loading="lazy" decoding="async">
-        </picture>
-        <figcaption class="innov-composition__captions">
-          <span class="innov-composition__caption">Raw material<em>biomass sample</em></span>
-          <span class="innov-composition__caption">Processed<em>log sample</em></span>
-          <span class="innov-composition__caption">Coating<em>finished sample</em></span>
-        </figcaption>
-      </figure>
-      <div class="focus-rows">
-        <?php foreach ($INNOVATION_AREAS as $focus): ?>
-          <div class="focus-row">
-            <span class="focus-row__num" aria-hidden="true"><?= e($focus['num']) ?></span>
-            <h3 class="focus-row__name"><?= e($focus['name']) ?></h3>
-            <p class="focus-row__desc"><?= e($focus['desc']) ?></p>
-          </div>
-        <?php endforeach; ?>
-        <p class="impact-note" style="margin-top:1.25rem;">
-          These are FOCUS AREAS — research directions, not proven
-          accomplishments. <a href="/innovation/">Explore Innovation →</a>
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
      07. VISION + MISSION — strong Forest section (§26)
      ============================================================ -->
 <section class="section section--forest vision-mission" aria-labelledby="vision-title">
@@ -723,7 +620,7 @@ $HERO_SIZES = '(min-width: 1200px) 58vw, (min-width: 900px) 50vw, calc(100vw - 2
       <div class="vision-mission__col">
         <span class="vision-mission__eyebrow">Vision</span>
         <h2 class="vision-mission__title" id="vision-title">
-          A circular-economy company in the making.
+          A circular-economy company in the making
         </h2>
         <p class="vision-mission__text">
           <?= e($COMPANY['vision']) ?>
@@ -732,7 +629,7 @@ $HERO_SIZES = '(min-width: 1200px) 58vw, (min-width: 900px) 50vw, calc(100vw - 2
       <div class="vision-mission__col vision-mission__col--mission">
         <span class="vision-mission__eyebrow">Mission</span>
         <h2 class="vision-mission__title">
-          Practical alternatives, responsibly made.
+          Practical alternatives, responsibly made
         </h2>
         <p class="vision-mission__text">
           To develop practical, accessible and environmentally responsible
@@ -752,7 +649,7 @@ $HERO_SIZES = '(min-width: 1200px) 58vw, (min-width: 900px) 50vw, calc(100vw - 2
   <div class="container">
     <div class="partnership__head section-heading section-heading--left" data-reveal>
       <span class="section-heading__eyebrow">Partnership</span>
-      <h2 class="section-heading__title" id="partnership-title">Let's Build a Greener Future Together.</h2>
+      <h2 class="section-heading__title" id="partnership-title">Let's Build a Greener Future Together</h2>
     </div>
     <div class="partner-strip" data-reveal>
       <ul class="partner-strip__list">

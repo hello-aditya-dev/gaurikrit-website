@@ -280,3 +280,30 @@ V26-observed items for the client's attention (no action taken without approval)
 - **Artwork micro-text**: several official posters/infographics carry text that
   is illegible at web display sizes (documented in the V26 report). Larger
   display or dedicated web crops would help if the client can supply them.
+
+## 11. Go-Cast naming (V29)
+
+Story1.1 uses "Go-Cast Cow-Dung Logs". The existing site uses "Cow-Dung Logs".
+**Question**: Is "Go-Cast" an approved current product brand/name?
+**Interim**: Using neutral "Cow-Dung Logs" wording until confirmed.
+
+## 12. Campus/sunrise images (V29)
+
+Two standalone campus images exist:
+- `Gaurikrit Sustainable Bioproducts Campus at Sunrise` (1672×941)
+- `Gaurikrit Bio Products at Sunrise` (1672×941)
+
+VLM found the embedded Story1.1 image5 is a DIFFERENT crop/angle from both
+standalone images. The Our Story page uses the embedded image5 as the
+default (it belongs to the selected document).
+**Question**: Are any of these genuine photographs of an existing operational
+GAURIKRIT facility, or are they all conceptual visualisations?
+**Interim**: All campus images are qualified as "Concept visual — artist's
+impression" until the client confirms an actual operational facility.
+
+## 13. Story2 purchasing claim (V29)
+
+Story2 contains: "By purchasing cow dung from farmers, we aim to create a
+continuing source of income." This claim is NOT in Story1.1.
+**Question**: Should this purchasing claim be included on the website?
+**Interim**: NOT included. Story1.1 (client-selected primary source) is used.

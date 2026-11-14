@@ -1,0 +1,108 @@
+{
+  "flow-portfolio": {
+    "source": "source-assets/client-originals/2026-11-14-update/Biodegradable Product Showcase.webp",
+    "source_sha256": "1b7fd1f39d46b4b1188a802827e800c6a07fe4e1b24d34dfb68638883c134613",
+    "intrinsic": [
+      1254,
+      1254
+    ],
+    "widths": [
+      640,
+      960,
+      1254
+    ]
+  },
+  "story-gir-cow-calf": {
+    "source": "source-assets/client-originals/2026-11-14-update/Golden-Hour Gir Cow and Calf-2.webp",
+    "source_sha256": "fbcda791facf898393d15e89378012b285c24e2d7322b95c642299990cde8bb4",
+    "intrinsic": [
+      1254,
+      1254
+    ],
+    "widths": [
+      640,
+      960,
+      1254
+    ]
+  },
+  "story-tender-moment": {
+    "source": "source-assets/client-originals/2026-11-14-update/Tender Moment with a Resting Cow.webp",
+    "source_sha256": "363b45bf9398ddb528de2b71468cfae4033c3c80ddfb49d22ac6eb8ab0237c6a",
+    "intrinsic": [
+      1224,
+      1285
+    ],
+    "widths": [
+      640,
+      960,
+      1224
+    ]
+  },
+  "story-product-showcase": {
+    "source": "source-assets/client-originals/2026-11-14-update/Biodegradable Product Showcase.webp",
+    "source_sha256": "1b7fd1f39d46b4b1188a802827e800c6a07fe4e1b24d34dfb68638883c134613",
+    "intrinsic": [
+      1254,
+      1254
+    ],
+    "widths": [
+      640,
+      960,
+      1254
+    ]
+  },
+  "story-cattle-shelter": {
+    "source": "source-assets/client-originals/2026-11-14-update/story1.1-cattle-shelter-embedded.png",
+    "source_sha256": "f219c7ba945a416b7d4cd85ecfb3f2589677a115ef7f12af8fef08b6b39bdbc5",
+    "intrinsic": [
+      1028,
+      1188
+    ],
+    "widths": [
+      640,
+      960,
+      1028
+    ]
+  },
+  "story-campus": {
+    "source": "source-assets/client-originals/2026-11-14-update/story1.1-campus-embedded.jpeg",
+    "source_sha256": "29b6f0a1f4efe6e8e63060d8a02545204b8dbc32a123aca2d8c946ac95152b48",
+    "intrinsic": [
+      1101,
+      618
+    ],
+    "widths": [
+      640,
+      960,
+      1101
+    ]
+  },
+  "campus-sunrise": {
+    "source": "source-assets/client-originals/2026-11-14-update/Gaurikrit Sustainable Bioproducts Campus at Sunrise.webp",
+    "source_sha256": "b1160a090ae5e8c482c596484e85d2c50cb7a36a288c237ea023ab715561b4fd",
+    "intrinsic": [
+      1672,
+      941
+    ],
+    "widths": [
+      640,
+      960,
+      1280,
+      1672
+    ]
+  },
+  "bio-products-sunrise": {
+    "source": "source-assets/client-originals/2026-11-14-update/Gaurikrit Bio Products at Sunrise.webp",
+    "source_sha256": "84d9c0be1a08092c80d76bee549c0e90b5c092c3264a2aed0d13d912be29f955",
+    "intrinsic": [
+      1672,
+      941
+    ],
+    "widths": [
+      640,
+      960,
+      1280,
+      1672
+    ]
+  }
+}

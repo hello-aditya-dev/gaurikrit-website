@@ -327,7 +327,7 @@ $emulsion    = get_product('prakritik-emulsion');
       <div class="products-hero__lockup" data-reveal>
         <span class="eyebrow"><span class="products-hero__eyebrow-dot" aria-hidden="true"></span>The Gaurikrit Product Ecosystem</span>
         <hr class="products-hero__rule">
-        <h1 class="products-hero__title" id="products-hero-title">One natural resource. Multiple useful applications.</h1>
+        <h1 class="products-hero__title" id="products-hero-title">One natural resource. Multiple useful applications </h1>
         <p class="products-hero__sub">
           Cow dung is the shared material beginning. Gaurikrit develops it in
           four directions — Eco-Paints is the documented family; Cow-Dung Logs
@@ -362,7 +362,7 @@ $emulsion    = get_product('prakritik-emulsion');
   <div class="container">
     <div class="section-heading section-heading--left" data-reveal style="max-width: 48rem; margin-bottom: 1.5rem;">
       <span class="section-heading__eyebrow">Product Directions</span>
-      <h2 class="section-heading__title" id="ecosystem-banner-title" style="font-size: clamp(1.5rem, 3vw, 2rem);">The Gaurikrit product range.</h2>
+      <h2 class="section-heading__title" id="ecosystem-banner-title" style="font-size: clamp(1.5rem, 3vw, 2rem);">The Gaurikrit product range </h2>
       <p class="section-heading__desc">
         All four Gaurikrit product directions in one view — from the
         documented Eco-Paints family to the Futureline directions still
@@ -537,7 +537,7 @@ $emulsion    = get_product('prakritik-emulsion');
   <div class="container">
     <div class="spec-matrix-section__head section-heading section-heading--left" data-reveal>
       <span class="section-heading__eyebrow">Eco-Paints — side by side</span>
-      <h2 class="section-heading__title" id="compare-title">Compare the two formats.</h2>
+      <h2 class="section-heading__title" id="compare-title">Compare the two formats </h2>
     </div>
 
     <div class="spec-matrix" data-reveal>
@@ -843,7 +843,7 @@ $emulsion    = get_product('prakritik-emulsion');
   <div class="container">
     <div class="appmap-section__head section-heading section-heading--left" data-reveal>
       <span class="section-heading__eyebrow">Application map</span>
-      <h2 class="section-heading__title" id="appmap-title">Where the Ecosystem Works.</h2>
+      <h2 class="section-heading__title" id="appmap-title">Where the Ecosystem Works </h2>
     </div>
     <div class="app-matrix" data-reveal-stagger>
       <?php foreach ($APPLICATION_GROUPS as $group): ?>
@@ -879,7 +879,7 @@ $emulsion    = get_product('prakritik-emulsion');
   <div class="container">
     <div class="why-cta" data-reveal>
       <span class="why-cta__eyebrow">Still deciding?</span>
-      <h2 class="why-cta__title" id="choose-cta-title">Need help choosing? Talk to Gaurikrit.</h2>
+      <h2 class="why-cta__title" id="choose-cta-title">Need help choosing? Talk to Gaurikrit </h2>
       <p class="why-cta__sub">
         We can walk through your project — interior or exterior, fresh walls or
         repainting — and help you pick the right Prakritik format.

@@ -1279,7 +1279,7 @@ ${items}
         </div>
         <span class="hero__devanagari" aria-hidden="true">${e(COMPANY.devanagari)}</span>
         <h1 class="hero__title" id="hero-title">
-          Reimagining Cow-Dung<br>as a Resource for Sustainable Living.
+          Reimagining Cow-Dung<br>as a Resource for Sustainable Living
         </h1>
         <p class="hero__body">
           Nature provides the resource. Gaurikrit explores how natural waste
@@ -1349,7 +1349,7 @@ ${heroDots}
   <div class="container">
     <div class="resource-section__head section-heading section-heading--left" data-reveal>
       <span class="section-heading__eyebrow">The Gaurikrit Story</span>
-      <h2 class="section-heading__title" id="resource-title">From Waste to Resource.</h2>
+      <h2 class="section-heading__title" id="resource-title">From Waste to Resource</h2>
       <p class="section-heading__desc">
         Traditional India has long recognised cow dung as a useful material.
         Gaurikrit's direction is to carry that resource into practical
@@ -1392,7 +1392,7 @@ ${heroDots}
       </article>
       <article class="resource-step">
         <figure class="resource-step__figure resource-step__figure--poster" aria-label="Gaurikrit biodegradable product showcase">
-          ${ecoPic('flow-portfolio', [640, 960], STAGE_SIZES, 960, 960, 1440, 'Gaurikrit biodegradable product showcase — dhoop cups, cow-dung diyas, biodegradable plates and eco glasses', depth)}
+          ${ecoPic('flow-portfolio', [640, 960, 1254], STAGE_SIZES, 960, 1254, 1254, 'Gaurikrit Biodegradable Product Showcase — Prakritik Paint and dhoop cups shown as client-supplied product artwork', depth)}
         </figure>
         <div class="resource-step__caption">
           <span class="resource-step__kicker">Stage 03</span>
@@ -1427,7 +1427,7 @@ ${heroDots}
   <div class="container">
     <div class="families-section__head section-heading section-heading--left" data-reveal>
       <span class="section-heading__eyebrow">The Gaurikrit Ecosystem</span>
-      <h2 class="section-heading__title" id="families-title">One resource. Four solutions.</h2>
+      <h2 class="section-heading__title" id="families-title">One Resource, Four Solutions</h2>
       <p class="section-heading__desc">
         Cow dung is the shared material beginning. Gaurikrit develops it in four
         directions &mdash; Eco-Paints is the documented family; Cow-Dung Logs is
@@ -1456,7 +1456,7 @@ ${familiesMarkup}
   <div class="container">
     <div class="circular-section__head section-heading section-heading--left" data-reveal>
       <span class="section-heading__eyebrow">The Circular Model</span>
-      <h2 class="section-heading__title" id="circular-title">A Circular Material Direction.</h2>
+      <h2 class="section-heading__title" id="circular-title">A Circular Material Direction </h2>
       <p class="section-heading__desc">
         The stages above repeat as one continuous cycle: the resource enters,
         is developed, becomes useful products &mdash; and further material
@@ -1470,82 +1470,7 @@ ${familiesMarkup}
 </section>
 
 <!-- ============================================================
-     05. THE DOCUMENTED ECO-PAINT FAMILY (V18 §39.05)
-     ============================================================ -->
-<section class="section section--cool eco-documented" aria-labelledby="eco-documented-title">
-  <div class="container">
-    <div class="section-heading section-heading--left" data-reveal>
-      <span class="section-heading__eyebrow">The Documented Family</span>
-      <h2 class="section-heading__title" id="eco-documented-title">
-        Eco-Paints, documented end to end.
-      </h2>
-      <p class="section-heading__desc">
-        The one family with full product documentation — two formats, supplied
-        specifications, real client photography and a shade catalogue.
-      </p>
-    </div>
-
-    <div class="eco-documented__grid" data-reveal-stagger>
-      <figure class="eco-documented__plate">
-        ${ecoPic('eco-paints-pair', [640, 960, 1280, 1920], '(min-width: 1024px) 40vw, calc(100vw - 2.5rem)', 1280, 1280, 800, 'Prakritik Distemper and Prakritik Emulsion paint packs', depth)}
-      </figure>
-
-      <div class="eco-documented__rows">
-${PRODUCTS.map((product) => `          <div class="eco-documented__row">
-            <h3 class="eco-documented__row-name">
-              <a href="${relUrl(product.route, depth)}">${e(product.name)}</a>
-            </h3>
-            <p class="eco-documented__row-meta">
-              <strong>${e(product.packagingShort)}</strong> ·
-              ${e(product.colour)} · ${e(product.finish)} ·
-              ${e(product.coverage)}
-            </p>
-            <a class="eco-documented__row-cta" href="${relUrl(product.route, depth)}">
-              View specifications <span aria-hidden="true">→</span>
-            </a>
-          </div>`).join('\n')}
-        <div class="eco-documented__links">
-          <a href="${relUrl('/colours/', depth)}">Explore Colours</a>
-          <a href="${relUrl('/paint-calculator/', depth)}">Painting Calculator</a>
-          <a href="${relUrl('/why-prakritik/', depth)}">Why Prakritik?</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     06. RESEARCH & INNOVATION — focus areas teaser (§25 / §28)
-     Real material samples — paint surface + cow-dung log material.
-     ============================================================ -->
-<section class="section section--limewash innov-teaser" aria-labelledby="innov-title">
-  <div class="container">
-    <div class="section-heading section-heading--left" data-reveal>
-      <span class="section-heading__eyebrow">Research &amp; Innovation</span>
-      <h2 class="section-heading__title" id="innov-title">Where Tradition Meets Technology.</h2>
-    </div>
-    <div class="innov-teaser__grid" data-reveal>
-      <figure class="innov-composition" aria-label="Material research samples — raw biomass, processed log and finished coating">
-        ${ecoPic('innovation-research', [640, 960, 1280, 1920], '(min-width: 1024px) 40vw, calc(100vw - 2.5rem)', 1280, 1280, 800, 'Material research samples — raw biomass, processed log and finished coating', depth)}
-        <figcaption class="innov-composition__captions">
-          <span class="innov-composition__caption">Raw material<em>biomass sample</em></span>
-          <span class="innov-composition__caption">Processed<em>log sample</em></span>
-          <span class="innov-composition__caption">Coating<em>finished sample</em></span>
-        </figcaption>
-      </figure>
-      <div class="focus-rows">
-${focusRows}
-        <p class="impact-note" style="margin-top:1.25rem;">
-          These are FOCUS AREAS — research directions, not proven
-          accomplishments. <a href="${relUrl('/innovation/', depth)}">Explore Innovation →</a>
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     07. VISION + MISSION — strong Forest section (§26)
+     05. VISION + MISSION — strong Forest section (§26)
      ============================================================ -->
 <section class="section section--forest vision-mission" aria-labelledby="vision-title">
   <div class="container">
@@ -1553,7 +1478,7 @@ ${focusRows}
       <div class="vision-mission__col">
         <span class="vision-mission__eyebrow">Vision</span>
         <h2 class="vision-mission__title" id="vision-title">
-          A circular-economy company in the making.
+          A circular-economy company in the making
         </h2>
         <p class="vision-mission__text">
           ${e(COMPANY.vision)}
@@ -1562,7 +1487,7 @@ ${focusRows}
       <div class="vision-mission__col vision-mission__col--mission">
         <span class="vision-mission__eyebrow">Mission</span>
         <h2 class="vision-mission__title">
-          Practical alternatives, responsibly made.
+          Practical alternatives, responsibly made
         </h2>
         <p class="vision-mission__text">
           To develop practical, accessible and environmentally responsible
@@ -1582,7 +1507,7 @@ ${focusRows}
   <div class="container">
     <div class="partnership__head section-heading section-heading--left" data-reveal>
       <span class="section-heading__eyebrow">Partnership</span>
-      <h2 class="section-heading__title" id="partnership-title">Let's Build a Greener Future Together.</h2>
+      <h2 class="section-heading__title" id="partnership-title">Let's Build a Greener Future Together</h2>
     </div>
     <div class="partner-strip" data-reveal>
       <ul class="partner-strip__list">
@@ -1916,7 +1841,7 @@ ${themeList}
       <div class="products-hero__lockup" data-reveal>
         <span class="eyebrow"><span class="products-hero__eyebrow-dot" aria-hidden="true"></span>The Gaurikrit Product Ecosystem</span>
         <hr class="products-hero__rule">
-        <h1 class="products-hero__title" id="products-hero-title">One natural resource. Multiple useful applications.</h1>
+        <h1 class="products-hero__title" id="products-hero-title">One natural resource. Multiple useful applications </h1>
         <p class="products-hero__sub">
           Cow dung is the shared material beginning. Gaurikrit develops it in
           four directions — Eco-Paints is the documented family; Cow-Dung Logs,
@@ -1937,7 +1862,7 @@ ${themeList}
   <div class="container">
     <div class="section-heading section-heading--left" data-reveal style="max-width: 48rem; margin-bottom: 1.5rem;">
       <span class="section-heading__eyebrow">Product Directions</span>
-      <h2 class="section-heading__title" id="ecosystem-banner-title" style="font-size: clamp(1.5rem, 3vw, 2rem);">The Gaurikrit product range.</h2>
+      <h2 class="section-heading__title" id="ecosystem-banner-title" style="font-size: clamp(1.5rem, 3vw, 2rem);">The Gaurikrit product range </h2>
       <p class="section-heading__desc">
         All four Gaurikrit product directions in one view — from the
         documented Eco-Paints family to the Futureline directions still
@@ -2093,7 +2018,7 @@ ${themeList}
   <div class="container">
     <div class="spec-matrix-section__head section-heading section-heading--left" data-reveal>
       <span class="section-heading__eyebrow">Eco-Paints — side by side</span>
-      <h2 class="section-heading__title" id="compare-title">Compare the two formats.</h2>
+      <h2 class="section-heading__title" id="compare-title">Compare the two formats </h2>
     </div>
 
     <div class="spec-matrix" data-reveal>
@@ -2167,7 +2092,7 @@ ${utilitySection}
   <div class="container">
     <div class="appmap-section__head section-heading section-heading--left" data-reveal>
       <span class="section-heading__eyebrow">Application map</span>
-      <h2 class="section-heading__title" id="appmap-title">Where the Ecosystem Works.</h2>
+      <h2 class="section-heading__title" id="appmap-title">Where the Ecosystem Works </h2>
     </div>
     <div class="app-matrix" data-reveal-stagger>
 ${appGroups}
@@ -2186,7 +2111,7 @@ ${appGroups}
   <div class="container">
     <div class="why-cta" data-reveal>
       <span class="why-cta__eyebrow">Still deciding?</span>
-      <h2 class="why-cta__title" id="choose-cta-title">Need help choosing? Talk to Gaurikrit.</h2>
+      <h2 class="why-cta__title" id="choose-cta-title">Need help choosing? Talk to Gaurikrit </h2>
       <p class="why-cta__sub">
         We can walk through your project — interior or exterior, fresh walls or
         repainting — and help you pick the right Prakritik format.
@@ -2354,7 +2279,7 @@ function distemperBody(depth) {
   <div class="container">
     <div class="spec-sheet__head section-heading section-heading--left" data-reveal>
       <span class="spec-sheet__eyebrow">Specifications</span>
-      <h2 class="spec-sheet__title" id="specs-title">Product specifications.</h2>
+      <h2 class="spec-sheet__title" id="specs-title">Product specifications </h2>
       <!-- V9: print affordance — window.print() + the app.css §36 print
            stylesheet turns this page into a printable spec sheet. -->
       <button type="button" class="spec-sheet__print" data-print-spec>
@@ -2398,7 +2323,7 @@ ${specItems}
   <div class="container">
     <div class="distemper-ashta-section__head section-heading section-heading--left" data-reveal>
       <span class="section-heading__eyebrow">Ashta Laabh — अष्ट लाभ</span>
-      <h2 class="section-heading__title" id="distemper-ashta-title">Eight benefits of Prakritik Paint.</h2>
+      <h2 class="section-heading__title" id="distemper-ashta-title">Eight benefits of Prakritik Paint </h2>
       <p class="section-heading__desc">
         Benefits as listed in the Prakritik Paint brochure.
       </p>
@@ -2417,7 +2342,7 @@ ${ashtaItems}
       <div class="distemper-cta__inner">
         <div>
           <span class="distemper-hero__eyebrow">Looking at the other format?</span>
-          <h2 class="distemper-cta__title" id="cross-title">Prakritik Emulsion.</h2>
+          <h2 class="distemper-cta__title" id="cross-title">Prakritik Emulsion </h2>
           <p class="distemper-cta__body">
             Cow dung-based Emulsion Paint. Coverage ${e(emulsion.coverage)}.
             Supplied in ${e(emulsion.packagingShort)} packs.
@@ -2589,7 +2514,7 @@ function emulsionBody(depth) {
   <div class="container">
     <div class="spec-sheet__head section-heading section-heading--left" data-reveal>
       <span class="spec-sheet__eyebrow">Specifications</span>
-      <h2 class="spec-sheet__title" id="specs-title">Product specifications.</h2>
+      <h2 class="spec-sheet__title" id="specs-title">Product specifications </h2>
       <!-- V9: print affordance — window.print() + the app.css §36 print
            stylesheet turns this page into a printable spec sheet. -->
       <button type="button" class="spec-sheet__print" data-print-spec>
@@ -2633,7 +2558,7 @@ ${specItems}
   <div class="container">
     <div class="emulsion-ashta-section__head section-heading section-heading--left" data-reveal>
       <span class="section-heading__eyebrow">Ashta Laabh — अष्ट लाभ</span>
-      <h2 class="section-heading__title" id="emulsion-ashta-title">Eight benefits of Prakritik Paint.</h2>
+      <h2 class="section-heading__title" id="emulsion-ashta-title">Eight benefits of Prakritik Paint </h2>
       <p class="section-heading__desc">
         Benefits as listed in the Prakritik Paint brochure.
       </p>
@@ -2652,7 +2577,7 @@ ${ashtaItems}
       <div class="emulsion-cta__inner">
         <div>
           <span class="emulsion-hero__eyebrow">Looking at the other format?</span>
-          <h2 class="emulsion-cta__title" id="cross-title">Prakritik Distemper.</h2>
+          <h2 class="emulsion-cta__title" id="cross-title">Prakritik Distemper </h2>
           <p class="emulsion-cta__body">
             Cow dung-based Distemper Paint. Coverage ${e(distemper.coverage)}.
             Supplied in ${e(distemper.packagingShort)} packs.
@@ -2893,7 +2818,7 @@ function whyPrakritikBody(depth) {
       <div class="why-hero__lockup">
         <span class="why-hero__eyebrow"><span class="why-hero__eyebrow-dot" aria-hidden="true"></span>An old Indian material idea</span>
         <hr class="why-hero__rule">
-        <h1 class="why-hero__title" id="why-title">An old material idea, reconsidered for modern walls.</h1>
+        <h1 class="why-hero__title" id="why-title">An old material idea, reconsidered for modern walls </h1>
         <p class="why-hero__sub">
           Traditional Indian homes have long used cow-dung-based coatings on
           walls and floors. Prakritik Paint brings that material idea into a
@@ -2972,7 +2897,7 @@ function whyPrakritikBody(depth) {
       <div>
         <span class="why-chapter__num">01</span>
         <span class="why-chapter__eyebrow">The material</span>
-        <h2 class="why-chapter__title" id="chapter-01-title">A natural material for modern walls.</h2>
+        <h2 class="why-chapter__title" id="chapter-01-title">A natural material for modern walls </h2>
         <div class="why-chapter__body">
           <p>
             Cow dung has a long history of use on walls and floors in India.
@@ -2999,7 +2924,7 @@ function whyPrakritikBody(depth) {
       <div>
         <span class="why-chapter__num">02</span>
         <span class="why-chapter__eyebrow">The tradition</span>
-        <h2 class="why-chapter__title" id="chapter-02-title">Limewashed walls, courtyard elevations.</h2>
+        <h2 class="why-chapter__title" id="chapter-02-title">Limewashed walls, courtyard elevations </h2>
         <div class="why-chapter__body">
           <p>
             Indian vernacular architecture is full of limewashed walls, plinths,
@@ -3023,7 +2948,7 @@ function whyPrakritikBody(depth) {
     <div data-reveal>
       <span class="why-chapter__num">03</span>
       <span class="why-chapter__eyebrow">Material to wall</span>
-      <h2 class="why-chapter__title" id="chapter-03-title">From a natural material to a finished wall.</h2>
+      <h2 class="why-chapter__title" id="chapter-03-title">From a natural material to a finished wall </h2>
       <p class="why-chapter__body">
         Natural material, Prakritik Paint, finished walls.
       </p>
@@ -3075,7 +3000,7 @@ function whyPrakritikBody(depth) {
   <div class="container">
     <div class="why-ashta-section__head section-heading section-heading--left" data-reveal>
       <span class="section-heading__eyebrow">Ashta Laabh — अष्ट लाभ</span>
-      <h2 class="section-heading__title" id="chapter-04-title">Eight benefits of Prakritik Paint.</h2>
+      <h2 class="section-heading__title" id="chapter-04-title">Eight benefits of Prakritik Paint </h2>
       <p class="section-heading__desc">
         Benefits as listed in the Prakritik Paint brochure.
       </p>
@@ -3092,7 +3017,7 @@ ${ashtaItems}
     <div data-reveal>
       <span class="why-chapter__num">05</span>
       <span class="why-chapter__eyebrow">Two formats</span>
-      <h2 class="why-chapter__title" id="chapter-05-title">Distemper and Emulsion.</h2>
+      <h2 class="why-chapter__title" id="chapter-05-title">Distemper and Emulsion </h2>
       <p class="why-chapter__body">
         Two paint formats, one material idea. Both are listed for
         interior and exterior walls.
@@ -3128,7 +3053,7 @@ ${ashtaItems}
     <div class="colour-cta" data-reveal style="margin-top: 2rem;">
       <div>
         <span class="colour-cta__eyebrow">Colour Collections</span>
-        <h3 class="colour-cta__title">Colours Inspired by Nature.</h3>
+        <h3 class="colour-cta__title">Colours Inspired by Nature </h3>
         <p class="colour-cta__body">
           Two shade collections — <strong>12 Signature shades</strong>
           and a <strong>Premium collection in five groups</strong> — previewed
@@ -3156,7 +3081,7 @@ ${ashtaItems}
       <div>
         <span class="why-chapter__num">06</span>
         <span class="why-chapter__eyebrow">Context</span>
-        <h2 class="why-chapter__title" id="chapter-06-title">From Bulandshahr, Uttar Pradesh.</h2>
+        <h2 class="why-chapter__title" id="chapter-06-title">From Bulandshahr, Uttar Pradesh </h2>
         <div class="why-chapter__body">
           <p>
             Prakritik Paint is made by ${e(COMPANY.legalName)}, in
@@ -3198,291 +3123,266 @@ ${ashtaItems}
 function aboutBody(depth) {
     const address = COMPANY.address;
     const addressLine = address.slice(0, 6).join('\n');
-    const groupImage = assetUrl('/assets/products/prakritik-group.jpg', depth);
-
-    const phoneRows = COMPANY.phones.map((phone, i) => `      <div class="company-plate__row">
-        <dt>${i === 0 ? 'Phone' : 'Phone (alternate)'}</dt>
-        <dd>
-          <a href="tel:${e(phone.replace(/ /g, ''))}">${e(phone)}</a>
-        </dd>
-      </div>`).join('\n');
 
     return `<style>
-  /* ===== STORY HERO — brand identity left, real product plate right ===== */
-  .about-hero { padding-top: calc(var(--header-h) + 2rem); padding-bottom: 1.5rem; }
-  .about-hero__container { display: grid; gap: clamp(2rem, 4vw, 4rem); align-items: center; grid-template-columns: minmax(0, 1fr); }
-  @media (min-width: 1024px) { .about-hero__container { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); } }
-  .about-hero__lockup { display: flex; flex-direction: column; gap: 0.75rem; }
-  .about-hero__deva { font-family: var(--font-deva); font-size: 1.75rem; color: var(--primary); line-height: 1.2; }
-  .about-hero__brand-sub { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--fg-muted); }
-  .about-hero__title { font-family: var(--font-display); font-size: clamp(2.25rem, 4.5vw, 3.75rem); line-height: 1.06; letter-spacing: -0.02em; }
-  .about-hero__body { max-width: 38rem; font-size: 1.0625rem; line-height: 1.65; color: var(--fg-muted); }
-  .about-hero__plate { background: var(--paper); border: 1px solid var(--border); border-radius: var(--r-panel); padding: clamp(1rem, 2vw, 1.5rem); display: flex; flex-direction: column; gap: 1rem; }
-  .about-hero__plate-head { display: flex; align-items: center; gap: 0.875rem; padding-bottom: 0.875rem; border-bottom: 1px solid var(--border); }
-  .about-hero__plate-mark { border-radius: 6px; }
-  .about-hero__plate-brand { font-family: var(--font-deva); font-size: 1.25rem; color: var(--primary); line-height: 1.2; display: flex; flex-direction: column; gap: 0.125rem; }
-  .about-hero__plate-brand small { font-family: var(--font-sans); font-size: 0.5625rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--fg-muted); }
-  .about-hero__plate-photo { display: block; width: 100%; height: auto; object-fit: contain; }
-
-  /* ===== STORY WRAP ===== */
-  .story-wrap { padding-block: clamp(3.5rem, 6vw, 5.5rem); }
-  .story-wrap--first { padding-top: clamp(3rem, 5vw, 4.5rem); }
-
-  /* ===== ECOSYSTEM (compact families, no media) ===== */
-  .story-families { margin-top: 2rem; }
-  /* V18 §47B: white-ground client photography in a deliberate plate. */
-  .resource-step__figure--plate { background: #fff; display: flex; align-items: center; justify-content: center; padding: clamp(0.5rem, 1vw, 0.75rem); }
-  .resource-step__figure--plate img { position: static; inset: auto; width: auto; max-width: 100%; max-height: 100%; height: auto; object-fit: contain; }
-  .journey-infographic {
-    margin: 0; border: 1px solid var(--border); border-radius: var(--r-panel);
-    overflow: hidden; background: var(--paper-warm);
+  .story-page { padding-top: calc(var(--header-h) + 1.5rem); padding-bottom: 1rem; }
+  .story-hero {
+    display: grid; gap: clamp(2rem, 5vw, 4rem); align-items: center;
+    grid-template-columns: minmax(0, 1fr);
   }
-  .journey-infographic picture { display: block; }
-  .journey-infographic img { width: 100%; height: auto; display: block; }
-  .journey-infographic figcaption {
+  @media (min-width: 1024px) {
+    .story-hero { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(2.5rem, 5vw, 5rem); }
+  }
+  .story-hero__lockup { display: flex; flex-direction: column; gap: 1rem; }
+  .story-hero__quote {
+    font-family: var(--font-display); font-size: clamp(1rem, 2vw, 1.25rem);
+    font-style: italic; color: var(--forest); line-height: 1.5;
+    border-left: 3px solid var(--haldi); padding-left: 1rem; max-width: 36rem;
+  }
+  .story-hero__title {
+    font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700; letter-spacing: -0.02em; line-height: 1.1;
+    text-wrap: balance; color: var(--primary);
+  }
+  .story-hero__subtitle {
+    font-size: clamp(1rem, 2vw, 1.25rem); color: var(--fg-muted);
+    line-height: 1.4; max-width: 36rem;
+  }
+  .story-hero__image {
+    position: relative; aspect-ratio: 1 / 1; overflow: hidden;
+    border-radius: var(--r-panel); background: var(--paper-warm);
+  }
+  .story-hero__image img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .story-section { padding-block: clamp(2.5rem, 5vw, 4.5rem); }
+  .story-section__inner { max-width: 48rem; margin: 0 auto; }
+  .story-section__num {
+    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--haldi); margin-bottom: 0.5rem;
+  }
+  .story-section__title {
+    font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2.25rem);
+    font-weight: 700; letter-spacing: -0.01em; line-height: 1.2;
+    margin-bottom: 1.25rem; text-wrap: balance;
+  }
+  .story-section__body {
+    font-size: clamp(1rem, 1.5vw, 1.125rem); line-height: 1.75;
+    color: var(--fg); max-width: 42rem;
+  }
+  .story-section__body p { margin-bottom: 1rem; }
+  .story-section__body p:last-child { margin-bottom: 0; }
+  .story-section__image {
+    margin-top: 2rem; position: relative; overflow: hidden;
+    border-radius: var(--r-panel); background: var(--paper-warm);
+  }
+  .story-section__image picture { display: block; }
+  .story-section__image img { width: 100%; height: auto; display: block; }
+  .story-section__image--contain img { object-fit: contain; max-height: 32rem; }
+  .story-section__image figcaption {
     padding: 0.75rem 1.25rem; font-size: 0.75rem; color: var(--fg-muted);
     border-top: 1px solid var(--border); letter-spacing: 0.02em; font-style: italic;
   }
-
-  /* ===== COMPANY PLATE ===== */
-  .company-plate-section { padding-block: clamp(3rem, 6vw, 5rem); }
-  .company-plate__head { max-width: 48rem; margin-bottom: 2.5rem; }
-  .company-plate { display: grid; gap: 0; border: 1px solid var(--border); border-radius: var(--r-panel); background: var(--paper); overflow: hidden; max-width: 56rem; }
-  .company-plate__row { display: grid; gap: 0.75rem; padding: 1.125rem 1.5rem; border-bottom: 1px solid var(--border); }
-  .company-plate__row:last-child { border-bottom: 0; }
-  @media (min-width: 768px) { .company-plate__row { grid-template-columns: 12rem 1fr; align-items: baseline; } }
-  .company-plate dt { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--fg-muted); }
-  .company-plate dd { color: var(--fg); }
-  .company-plate__address { white-space: pre-line; }
+  .story-section--alt .story-section__inner {
+    display: grid; gap: clamp(1.5rem, 4vw, 3rem); align-items: center;
+    grid-template-columns: minmax(0, 1fr);
+  }
+  @media (min-width: 1024px) {
+    .story-section--alt .story-section__inner { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+    .story-section--alt-reverse .story-section__inner { direction: rtl; }
+    .story-section--alt-reverse .story-section__inner > * { direction: ltr; }
+  }
+  .story-section--alt .story-section__copy { order: 1; }
+  .story-section--alt .story-section__image { order: 2; margin-top: 0; }
+  .story-section--alt-reverse .story-section__copy { order: 2; }
+  .story-section--alt-reverse .story-section__image { order: 1; margin-top: 0; }
+  .story-closing { padding-block: clamp(3rem, 6vw, 5rem); text-align: center; }
+  .story-closing__statement {
+    font-family: var(--font-display); font-size: clamp(1.25rem, 3vw, 2rem);
+    font-weight: 600; font-style: italic; line-height: 1.4;
+    color: var(--forest); max-width: 36rem; margin: 0 auto; text-wrap: balance;
+  }
+  .story-closing__divider { width: 3rem; height: 2px; background: var(--haldi); margin: 2rem auto; }
+  .concept-qualifier {
+    display: inline-block; font-size: 0.6875rem; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--fg-muted);
+    background: color-mix(in srgb, var(--haldi) 10%, transparent);
+    padding: 0.25rem 0.625rem; border-radius: 0.1875rem; margin-bottom: 1rem;
+    border: 1px solid color-mix(in srgb, var(--haldi) 30%, transparent);
+  }
+  .product-status-inline {
+    font-size: 0.75rem; font-weight: 600; color: var(--forest);
+    background: color-mix(in srgb, var(--haldi) 12%, transparent);
+    padding: 0.125rem 0.5rem; border-radius: 0.1875rem; white-space: nowrap;
+  }
 </style>
 
-<!-- ===== STORY HERO ===== -->
-<section class="about-hero bg-limewash" aria-labelledby="about-title">
+<section class="story-page bg-limewash" aria-labelledby="story-hero-title">
   <div class="container">
     <nav class="breadcrumb" aria-label="Breadcrumb">
-      <a href="${relUrl('/', depth)}">Home</a><span>›</span>
+      <a href="${relUrl('/', depth)}">Home</a><span>&rsaquo;</span>
       <span>Our Story</span>
     </nav>
-    <div class="about-hero__container" data-reveal>
-      <div class="about-hero__lockup">
-        <span class="about-hero__deva">${e(COMPANY.devanagari)}</span>
-        <span class="about-hero__brand-sub">Gaurikrit Bio Products</span>
-        <h1 class="about-hero__title" id="about-title">One resource. One idea. A widening material story.</h1>
-        <p class="about-hero__body">
-          ${e(COMPANY.legalName)} builds a material ecosystem around one
-          natural resource — cow dung — from Prakritik Paint to fuel and utility
-          directions. Based in ${e(address[3] || '')},
-          ${e(address[4] || '')}, Uttar Pradesh.
+    <div class="story-hero" data-reveal>
+      <div class="story-hero__lockup">
+        <p class="story-hero__quote">
+          &ldquo;The cow that nourished us for years should never lose her worth when she stops giving milk&rdquo;
         </p>
+        <h1 class="story-hero__title" id="story-hero-title">When Reverence Becomes Responsibility</h1>
+        <p class="story-hero__subtitle">A Story of Compassion, Circularity &amp; a Sustainable India</p>
       </div>
-      <div class="about-hero__plate">
-        <div class="about-hero__plate-head">
-          <img class="about-hero__plate-mark"
-               src="${assetUrl('/assets/brand/gaurikrit-logo-mark-sm.png', depth)}"
-               alt="Gaurikrit brand mark"
-               width="40" height="40"
-               loading="eager" decoding="async">
-          <div class="about-hero__plate-brand">
-            गौरीकृत
-            <small>Prakritik Paint</small>
-          </div>
-        </div>
-        <img class="about-hero__plate-photo"
-             src="${groupImage}"
-             alt="Prakritik Distemper and Emulsion paint packs — the documented Eco-Paints family"
-             width="1280" height="621"
-             loading="eager" fetchpriority="high" decoding="async">
+      <figure class="story-hero__image">
+        ${ecoPic('story-gir-cow-calf', [640, 960, 1254], '(min-width: 1024px) 50vw, calc(100vw - 2.5rem)', 960, 1254, 1254, 'A Gir cow and calf at golden hour — the opening image of the Gaurikrit story', depth, 'fetchpriority="high" ')}
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="section section--paper story-section">
+  <div class="container">
+    <div class="story-section__inner">
+      <div class="story-section__body">
+        <p>For centuries, we have worshipped the cow as a mother. But somewhere along the journey of modernization, we began to forget what it truly means to care for her.</p>
+        <p>In Indian civilization, the cow has never been merely an animal. She has been revered as <em>Gau Mata</em> &mdash; a symbol of nourishment, compassion, abundance. Deeply woven into our traditions, she has been associated with divine presence, agricultural prosperity, and the very foundation of rural life.</p>
+        <p>She gave us so much. Yet today, we must ask ourselves one uncomfortable question:</p>
+        <p><strong>What happens to Gau Mata when she can no longer give us milk?</strong></p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============================================================
-     01. THE RESOURCE — cow dung as a traditionally useful material
-     ============================================================ -->
-<section class="section section--paper story-wrap story-wrap--first" id="the-resource" aria-labelledby="resource-ch-title">
+<section class="section section--limewash story-section story-section--alt">
   <div class="container">
-    <article class="story-chapter" data-reveal>
-      <div>
-        <span class="story-chapter__num" aria-hidden="true">01</span>
-        <span class="story-chapter__kicker">The Resource</span>
-      </div>
-      <div>
-        <h2 class="story-chapter__title" id="resource-ch-title">A material long used in Indian homes.</h2>
-        <div class="story-chapter__body">
-          <p>
-            Cow dung has long been used in traditional Indian wall and floor
-            coatings — valued in daily rural life and treated as a useful
-            material rather than a waste.
-          </p>
-          <p class="muted">
-            Gaurikrit begins from that recognition: a natural material already
-            embedded in Indian material culture. Its Prakritik Paint carries
-            that material idea into a contemporary paint format.
-          </p>
+    <div class="story-section__inner">
+      <div class="story-section__copy">
+        <span class="story-section__num">Section 1</span>
+        <h2 class="story-section__title">Restoring the Dignity of Gau Mata</h2>
+        <div class="story-section__body">
+          <p>Across India, countless cows face abandonment when they grow old or stop producing milk.</p>
+          <p>For a farmer struggling with rising costs, maintaining a non-milking cow can become an economic burden. Fodder, shelter, veterinary care and daily maintenance continue, even when income from milk stops.</p>
+          <p>And so, an animal once considered an essential part of the family may find herself wandering through crowded streets, searching for food among garbage, exposed to traffic, disease and neglect.</p>
+          <p><em>How can an animal we worship become an animal we abandon?</em></p>
+          <p>We believe that reverence must be expressed not only through rituals and traditions, but through meaningful action.</p>
+          <p>A cow&rsquo;s dignity should never depend on her ability to produce milk. Her value must continue throughout her life.</p>
         </div>
-        <figure class="story-chapter__visual">
-          ${ecoPic('rawmat-shed', [640, 960, 1280], '(min-width: 1024px) 42vw, calc(100vw - 2.5rem)', 1280, 1280, 853, 'Raw cow dung — the natural material starting point', depth)}
-          <figcaption>Cow dung — the raw material.</figcaption>
-        </figure>
       </div>
-    </article>
+      <figure class="story-section__image">
+        ${ecoPic('story-tender-moment', [640, 960, 1224], '(min-width: 1024px) 45vw, calc(100vw - 2.5rem)', 960, 1224, 1285, 'A person sits beside a resting cow, caring for her tenderly — representing compassion for Gau Mata', depth)}
+        <figcaption>A moment of compassion &mdash; caring for a cow beyond her milk-producing years.</figcaption>
+      </figure>
+    </div>
   </div>
 </section>
 
-<!-- ============================================================
-     02. THE IDEA — from resource to practical applications
-     ============================================================ -->
-<section class="section section--limewash story-wrap" id="the-idea" aria-labelledby="idea-ch-title">
+<section class="section section--paper story-section story-section--alt story-section--alt-reverse">
   <div class="container">
-    <article class="story-chapter" data-reveal>
-      <div>
-        <span class="story-chapter__num" aria-hidden="true">02</span>
-        <span class="story-chapter__kicker">The Idea</span>
-      </div>
-      <div>
-        <h2 class="story-chapter__title" id="idea-ch-title">Carry the resource into contemporary applications.</h2>
-        <div class="story-chapter__body">
+    <div class="story-section__inner">
+      <div class="story-section__copy">
+        <span class="story-section__num">Section 2</span>
+        <h2 class="story-section__title">Giving Farmers a Reason to Care &mdash; Turning Compassion into Livelihood</h2>
+        <div class="story-section__body">
+          <p>Through modern innovation, GAURIKRIT&reg; transforms natural resources into sustainable products &mdash; including cow-dung logs, bio-briquettes, eco-friendly paints, and biodegradable utility products.</p>
+          <p>Our biomass fuel solutions aim to reduce dependence on conventional firewood, help protect trees, and promote responsible energy alternatives.</p>
+          <p>What was once considered waste becomes a resource. What was once a burden becomes an opportunity.</p>
           <p>
-            The idea is directional, not nostalgic: take a material India already
-            understands and develop it into practical contemporary products —
-            from naturally derived wall coatings to fuel and utility directions.
-          </p>
-          <p class="muted">
-            From naturally derived material to products for walls, energy and
-            everyday use.
+            <span class="product-status-inline">Bio-Briquettes: Futureline &middot; Not yet in production</span><br>
+            <span class="product-status-inline">Eco Utility Products: Futureline &middot; Not yet in production</span><br>
+            <span class="product-status-inline">Cow-Dung Logs: Development direction</span>
           </p>
         </div>
-        <figure class="story-chapter__visual">
-          ${ecoPic('innovation-research', [640, 960, 1280, 1920], '(min-width: 1024px) 42vw, calc(100vw - 2.5rem)', 960, 960, 600, 'Material research samples — raw biomass, processed log and finished coating', depth)}
-          <figcaption>Developed material study — the resource carried into a finished surface.</figcaption>
-        </figure>
       </div>
-    </article>
+      <figure class="story-section__image story-section__image--contain">
+        ${ecoPic('story-product-showcase', [640, 960, 1254], '(min-width: 1024px) 45vw, calc(100vw - 2.5rem)', 960, 1254, 1254, 'Gaurikrit product showcase — Prakritik Paint and dhoop cups representing the product ecosystem. Bio-Briquettes and Eco Utility Products are Futureline directions, not yet in production.', depth)}
+        <figcaption>Client-supplied product artwork. Bio-Briquettes and Eco Utility Products are Futureline directions, not yet in production.</figcaption>
+      </figure>
+    </div>
   </div>
 </section>
 
-<!-- ============================================================
-     03. FROM RESOURCE TO APPLICATION (V18 §40 / §25)
-     The story's widening, told with REAL assets: the client-supplied
-     photograph of the actual raw material, the documented application
-     (real paint), the expanding direction (client-supplied cow-dung
-     logs). NOT the same beige plaster three times; NOT the kraft-box
-     mockup. The journey is stages, not dates.
-     ============================================================ -->
-<section class="section section--paper story-wrap" id="from-resource-to-application" aria-labelledby="application-ch-title">
+<section class="section section--limewash story-section story-section--alt">
   <div class="container">
-    <article class="story-chapter" data-reveal>
-      <div>
-        <span class="story-chapter__num" aria-hidden="true">03</span>
-        <span class="story-chapter__kicker">From Resource to Application</span>
-      </div>
-      <div>
-        <h2 class="story-chapter__title" id="application-ch-title">
-          A journey of material stages — not dates.
-        </h2>
-        <div class="story-chapter__body">
-          <p>
-            Gaurikrit's story is told through what the material became, not when.
-            The resource became a documented wall coating — and the same material
-            now widens into fuel and utility directions.
-          </p>
+    <div class="story-section__inner">
+      <div class="story-section__copy">
+        <span class="story-section__num">Section 3</span>
+        <h2 class="story-section__title">Saving Trees by Rethinking Fuel &mdash; From Cow Dung to Green Energy</h2>
+        <div class="story-section__body">
+          <p>Every tree has a story. It absorbs carbon dioxide, supports biodiversity, protects soil, and provides life-sustaining ecological services.</p>
+          <p>Yet wood continues to be consumed as fuel in many traditional and commercial applications, adding pressure to forest and tree resources.</p>
+          <p>Why should valuable trees be cut for fuel when agricultural and livestock by-products can be transformed into useful alternatives?</p>
+          <p>This thinking inspired our focus on renewable biomass-based fuel solutions.</p>
+          <p>Through products such as Cow-Dung Logs, Bio-Briquettes, and other biomass fuels, GAURIKRIT&reg; aims to provide alternatives to conventional firewood and selected fossil-based fuels wherever technically and environmentally appropriate.</p>
+          <p>Our vision is to help reduce dependence on wood-based fuel, promote responsible biomass utilization, and encourage cleaner, more resource-efficient energy practices.</p>
+          <p>We believe that the future of energy should not come at the cost of our forests. Every responsible alternative to harvested firewood is an opportunity to protect trees. Every underutilized natural resource transformed into a useful product is a step toward a more circular economy. And every innovation that reduces unnecessary resource extraction brings us closer to a sustainable tomorrow.</p>
         </div>
-
-        <div class="resource-steps" data-reveal-stagger>
-          <article class="resource-step">
-            <figure class="resource-step__figure">
-              ${ecoPic('rawmat-shed', [640, 960, 1280], '(min-width: 1024px) 30vw, (min-width: 640px) 45vw, calc(100vw - 2.5rem)', 1280, 1280, 853, 'Raw cow dung — the natural material starting point', depth)}
-            </figure>
-            <div class="resource-step__caption">
-              <span class="resource-step__kicker">Stage 01 — Resource</span>
-              <h3 class="resource-step__title">The natural material</h3>
-              <p class="resource-step__desc">
-                Cow dung — a material long used in traditional Indian homes.
-              </p>
-            </div>
-          </article>
-          <article class="resource-step">
-            <figure class="resource-step__figure">
-              ${ecoPic('eco-paints-pair', [640, 960, 1280], '(min-width: 1024px) 30vw, (min-width: 640px) 45vw, calc(100vw - 2.5rem)', 960, 960, 600, 'Prakritik Distemper and Prakritik Emulsion paint packs — the documented application', depth)}
-            </figure>
-            <div class="resource-step__caption">
-              <span class="resource-step__kicker">Stage 02 — Application</span>
-              <h3 class="resource-step__title">Prakritik Paint</h3>
-              <p class="resource-step__desc">
-                The documented family — Distemper and Emulsion, walls done.
-              </p>
-            </div>
-          </article>
-          <article class="resource-step">
-            <figure class="resource-step__figure resource-step__figure--plate">
-              ${ecoPic('gocast-material', [640, 960, 1280], '(min-width: 1024px) 30vw, (min-width: 640px) 45vw, calc(100vw - 2.5rem)', 960, 960, 640, 'Client-supplied cow-dung log material — the widening direction', depth)}
-            </figure>
-            <div class="resource-step__caption">
-              <span class="resource-step__kicker">Stage 03 — Widening</span>
-              <h3 class="resource-step__title">Expanding directions</h3>
-              <p class="resource-step__desc">
-                Cow-dung log material — fuel, traditional and
-                utility directions in development.
-              </p>
-            </div>
-          </article>
-        </div>
-
-        <p class="impact-note" style="margin-top: 1.75rem;">
-          The four-direction ecosystem lives on
-          <a href="${relUrl('/products/', depth)}">Products →</a> — the circular framework on
-          <a href="${relUrl('/sustainability/', depth)}">Sustainability →</a>
-        </p>
       </div>
-    </article>
+      <figure class="story-section__image">
+        ${ecoPic('story-cattle-shelter', [640, 960, 1028], '(min-width: 1024px) 45vw, calc(100vw - 2.5rem)', 960, 1028, 1188, 'A cattle shelter with cows and a caretaker — representing organized cattle care and the connection to biomass fuel alternatives', depth)}
+        <figcaption>Organized cattle care connects to biomass fuel alternatives &mdash; an illustrative direction, not a verified GAURIKRIT facility.</figcaption>
+      </figure>
+    </div>
   </div>
 </section>
 
-<!-- ============================================================
-     06 + 07. VISION + MISSION — forest two-column (§26 language)
-     ============================================================ -->
-<section class="section section--forest vision-mission" aria-labelledby="story-vision-title">
+<section class="section section--paper story-section story-section--alt story-section--alt-reverse">
   <div class="container">
-    <div class="vision-mission__grid">
-      <div class="vision-mission__col">
-        <span class="vision-mission__eyebrow">Vision</span>
-        <h2 class="vision-mission__title" id="story-vision-title">
-          A circular-economy company in the making.
-        </h2>
-        <p class="vision-mission__text">
-          ${e(COMPANY.vision)}
-        </p>
-      </div>
-      <div class="vision-mission__col vision-mission__col--mission">
-        <span class="vision-mission__eyebrow">Mission</span>
-        <h2 class="vision-mission__title">
-          Practical alternatives, responsibly made.
-        </h2>
-        <p class="vision-mission__text">
-          To develop practical, accessible and environmentally responsible
-          material solutions — and to evaluate every direction for its
-          environmental responsibility.
-        </p>
-        <div style="margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 0.75rem;">
-          <a class="btn btn--haldi" href="${relUrl('/products/', depth)}">Explore the Ecosystem</a>
-          <a class="btn btn--secondary" href="${relUrl('/contact/', depth)}">Talk to Us</a>
+    <div class="story-section__inner">
+      <div class="story-section__copy">
+        <span class="story-section__num">Section 4</span>
+        <h2 class="story-section__title">Cleaner Streets, Healthier Communities &mdash; Giving Waste a Purpose</h2>
+        <span class="concept-qualifier">Concept visual &mdash; not a photograph of an operational facility</span>
+        <div class="story-section__body">
+          <p>In many Indian towns and cities, abandoned cattle are a familiar sight. They wander along roads, gather near garbage dumps, and sometimes feed on plastic and contaminated waste.</p>
+          <p>Their unmanaged dung and urine can contribute to sanitation problems in public spaces, while their presence on busy roads creates risks for both animals and people.</p>
+          <p>But the problem is not the cow. The problem is a system that has failed to recognize the value of what she naturally produces.</p>
+          <p>We envision a different approach. What was once left unattended can become an input for useful products. What was once considered a sanitation burden can become a source of livelihood. What was once discarded can become part of a sustainable manufacturing ecosystem.</p>
+          <p>We do not see cow dung as waste. We see an opportunity waiting to be transformed.</p>
+          <p>Our aspiration is to support cleaner communities, healthier surroundings, and a more dignified existence for cattle.</p>
         </div>
+      </div>
+      <figure class="story-section__image">
+        ${ecoPic('story-campus', [640, 960, 1101], '(min-width: 1024px) 45vw, calc(100vw - 2.5rem)', 960, 1101, 618, 'Conceptual visual of a sustainable bioproducts campus at sunrise — an artist\'s impression, not a photograph of an existing operational GAURIKRIT facility', depth)}
+        <figcaption>Concept visual &mdash; artist&rsquo;s impression. Not a photograph of an operational GAURIKRIT facility unless the client confirms otherwise.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="section section--forest story-section">
+  <div class="container">
+    <div class="story-section__inner" style="color: var(--paper);">
+      <span class="story-section__num" style="color: var(--haldi);">Section 5</span>
+      <h2 class="story-section__title" style="color: var(--paper);">From India&rsquo;s Traditions to India&rsquo;s Tomorrow &mdash; Building a Circular Economy</h2>
+      <div class="story-section__body" style="color: var(--paper); opacity: 0.9;">
+        <p>India has always understood something that the modern world is rediscovering: Nature operates in cycles, not in waste. What comes from the earth can often return to the earth or be transformed into something useful.</p>
+        <p>Through cow-dung-based products, renewable biomass fuels, eco-friendly paints, biodegradable utility products, and future sustainable technologies, we envision an ecosystem where natural resources are continuously reimagined for productive use.</p>
+        <p>An ecosystem that connects:</p>
+        <p style="text-align: center; font-weight: 600; font-size: 1.125em; line-height: 1.6;">
+          Animal Welfare &rarr; Farmer Livelihoods &rarr; Resource Recovery &rarr; Sustainable Products &rarr; Environmental Responsibility &rarr; National Growth
+        </p>
+        <p>This is the circular economy we want to help build. One where farmers become stakeholders in sustainability. One where rural resource creates new economic opportunities. One where innovation supports resource conservation and responsible energy production. One where traditional Indian knowledge becomes the foundation for modern sustainable enterprise. And one where India&rsquo;s economic progress can advance alongside environmental stewardship.</p>
+        <p>We aspire to contribute to a more self-reliant, resource-efficient, and environmentally responsible India. Not merely by manufacturing products, but by helping create value from resources that society has overlooked.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============================================================
-     08. COMPANY INFORMATION — verified legal ledger (retained)
-     ============================================================ -->
+<section class="section section--paper story-closing">
+  <div class="container">
+    <p class="story-closing__statement">
+      &ldquo;She Gave Us a Lifetime of Nourishment.<br>
+      We Owe Her a Lifetime of Dignity&rdquo;
+    </p>
+    <div class="story-closing__divider"></div>
+    <p style="font-size: 0.875rem; color: var(--fg-muted); letter-spacing: 0.1em; text-transform: uppercase;">
+      GAURIKRIT&reg; &mdash; Redefining Resources. Regenerating the Future.
+    </p>
+  </div>
+</section>
+
 <section class="section section--paper company-plate-section" aria-labelledby="company-info-title">
   <div class="container">
     <div class="company-plate__head section-heading section-heading--left" data-reveal>
       <span class="section-heading__eyebrow">Company information</span>
-      <h2 class="section-heading__title" id="company-info-title">A registered Indian company.</h2>
+      <h2 class="section-heading__title" id="company-info-title">A registered Indian company</h2>
     </div>
-
     <dl class="company-plate" data-reveal>
       <div class="company-plate__row">
         <dt>Legal name</dt>
@@ -3490,7 +3390,7 @@ function aboutBody(depth) {
       </div>
       <div class="company-plate__row">
         <dt>Brand name</dt>
-        <dd>${e(COMPANY.name)} · ${e(COMPANY.devanagari)}</dd>
+        <dd>${e(COMPANY.name)} &middot; ${e(COMPANY.devanagari)}</dd>
       </div>
       <div class="company-plate__row">
         <dt>GSTIN</dt>
@@ -3498,41 +3398,27 @@ function aboutBody(depth) {
       </div>
       <div class="company-plate__row">
         <dt>Email</dt>
-        <dd>
-          <a href="mailto:${e(COMPANY.email)}">${e(COMPANY.email)}</a>
-        </dd>
+        <dd><a href="mailto:${e(COMPANY.email)}">${e(COMPANY.email)}</a></dd>
       </div>
-${phoneRows}
+      ${COMPANY.phones.map((phone, i) => `      <div class="company-plate__row">
+        <dt>${i === 0 ? 'Phone' : 'Phone (alternate)'}</dt>
+        <dd><a href="tel:${e(phone.replace(/ /g, ''))}">${e(phone)}</a></dd>
+      </div>`).join('\n')}
       <div class="company-plate__row">
         <dt>Registered address</dt>
         <dd class="company-plate__address">${e(addressLine)}</dd>
       </div>
     </dl>
-
     <div class="company-info__actions" style="margin-top: 2.5rem;">
       <a class="btn btn--primary" href="${relUrl('/contact/', depth)}">Talk to Us</a>
       <a class="btn btn--outline" href="${relUrl('/for-business/', depth)}">Partners</a>
+      <a class="btn btn--outline" href="${relUrl('/products/', depth)}">Explore the Ecosystem</a>
     </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     09. CLIENT INFOGRAPHIC — From Cow Dung to Sustainable Solutions
-     ============================================================ -->
-<section class="section section--paper" aria-labelledby="about-journey-title">
-  <div class="container">
-    <div class="section-heading section-heading--left" data-reveal style="max-width: 48rem; margin-bottom: 2rem;">
-      <span class="section-heading__eyebrow">Material Journey</span>
-      <h2 class="section-heading__title" id="about-journey-title">From Cow Dung to Sustainable Solutions.</h2>
-    </div>
-    <figure class="journey-infographic" data-reveal>
-      ${ecoPic('journey-sustainable', [640, 960, 1280, 1600, 1983], '(min-width: 1024px) 80vw, calc(100vw - 2.5rem)', 1600, 1983, 793, 'Infographic: From Cow Dung to Sustainable Solutions — the material journey from cow dung to biodegradable consumer products. Illustrative direction, not a verified production process.', depth)}
-      <figcaption>Illustrative material journey &mdash; not a verified production process or measured environmental outcome.</figcaption>
-    </figure>
   </div>
 </section>
 `;
 }
+
 
 function forBusinessBody(depth) {
     const phones = COMPANY.phones;
@@ -3709,7 +3595,7 @@ ${bizTiles.map((stem) => `          <figure class="biz-hero__tile">
       <div class="biz-hero__lockup">
         <span class="biz-hero__eyebrow"><span class="biz-hero__eyebrow-dot" aria-hidden="true"></span>Partners</span>
         <hr class="biz-hero__rule">
-        <h1 class="biz-hero__title" id="biz-title">Build with Gaurikrit.</h1>
+        <h1 class="biz-hero__title" id="biz-title">Build with Gaurikrit </h1>
         <p class="biz-hero__sub">
           For distributors, dealers, architects, contractors, institutions,
           industries and sustainability partners. Talk to us about
@@ -3734,7 +3620,7 @@ ${bizTiles.map((stem) => `          <figure class="biz-hero__tile">
   <div class="container">
     <div class="biz-audiences__head section-heading section-heading--left" data-reveal>
       <span class="section-heading__eyebrow">Who this is for</span>
-      <h2 class="section-heading__title" id="audiences-title">Partner with a material ecosystem.</h2>
+      <h2 class="section-heading__title" id="audiences-title">Partner with a material ecosystem </h2>
     </div>
 
     <div class="biz-audiences" data-reveal-stagger>
@@ -3749,7 +3635,7 @@ ${audienceCards}
     <div class="biz-practical__grid" data-reveal>
       <div class="biz-practical__head">
         <span class="biz-hero__eyebrow"><span class="biz-hero__eyebrow-dot" aria-hidden="true"></span>Practical</span>
-        <h2 class="biz-practical__title" id="include-title">Include these details for a faster response.</h2>
+        <h2 class="biz-practical__title" id="include-title">Include these details for a faster response </h2>
         <p class="biz-practical__body">
           A few practical details up front let us respond with what we can
           supply — for paint projects, pack sizes and format; for the other
@@ -3771,7 +3657,7 @@ ${helpfulItems}
       <aside class="biz-form-layout__aside">
         <div>
           <span class="biz-form-card__eyebrow">Project enquiry</span>
-          <h2 class="biz-form-card__title" id="form-title">Discuss a Project.</h2>
+          <h2 class="biz-form-card__title" id="form-title">Discuss a Project </h2>
           <p class="biz-form-card__note">
             Tell us about the project or the partnership. We will respond with
             what we can practically supply — for paint projects, pack sizes
@@ -4270,7 +4156,7 @@ function downloadsBody(depth) {
         Brochure
       </span>
       <hr class="dl-hero__rule">
-      <h1 class="dl-hero__title" id="dl-title">Prakritik Paint brochure.</h1>
+      <h1 class="dl-hero__title" id="dl-title">Prakritik Paint brochure </h1>
       <p class="dl-hero__sub">
         Browse the supplied Prakritik Paint brochure or download a copy.
       </p>
@@ -4304,7 +4190,7 @@ function downloadsBody(depth) {
       <div class="dl-card" data-brochure-detect="${e(brochurePdf)}" data-brochure-state="unknown">
         <div data-brochure-if-available>
           <span class="brochure__detail-eyebrow">Current edition</span>
-          <h2 class="brochure__detail-title">Prakritik Paint — product brochure.</h2>
+          <h2 class="brochure__detail-title">Prakritik Paint — product brochure </h2>
           <p class="brochure__detail-desc">
             The brochure covers both Prakritik Distemper and Prakritik Emulsion:
             pack sizes, listed specifications, finish, drying time, coverage,
@@ -4336,7 +4222,7 @@ function downloadsBody(depth) {
         </div>
         <div data-brochure-if-missing>
           <span class="brochure__detail-eyebrow">Brochure pending</span>
-          <h2 class="brochure__detail-title">The current brochure is not yet published here.</h2>
+          <h2 class="brochure__detail-title">The current brochure is not yet published here </h2>
           <p class="brochure__detail-desc">
             Please contact Gaurikrit for a copy of the product brochure.
           </p>
@@ -4509,7 +4395,7 @@ function contactBody(depth) {
           Get in touch
         </span>
         <hr class="contact-hero__rule">
-        <h1 class="contact-hero__title" id="contact-title">Talk to Gaurikrit.</h1>
+        <h1 class="contact-hero__title" id="contact-title">Talk to Gaurikrit </h1>
         <p class="contact-hero__sub">
           For product questions, project requirements or partnership enquiries,
           contact Gaurikrit directly or send a message below.
@@ -4573,7 +4459,7 @@ function contactBody(depth) {
       <!-- LEFT — company info / contact plate -->
       <aside>
         <span class="contact-hero__eyebrow">Direct lines</span>
-        <h2 class="spec-sheet__title" style="margin-top: 0.5rem;">Company &amp; contact.</h2>
+        <h2 class="spec-sheet__title" style="margin-top: 0.5rem;">Company &amp; contact </h2>
 
         <dl class="contact-info">
           <div class="contact-info__row">
@@ -4865,7 +4751,7 @@ ${items}
     <div class="sustain-hero__grid" data-reveal>
       <div>
         <span class="eyebrow">Sustainability &amp; Circular Economy</span>
-        <h1 class="story-hero__title" id="sustain-title">One Resource. A Wider Material Cycle.</h1>
+        <h1 class="story-hero__title" id="sustain-title">One Resource. A Wider Material Cycle </h1>
         <p class="story-hero__lead">
           Gaurikrit's sustainability approach is a material system, not a
           marketing dashboard: one natural resource, developed into useful
@@ -4890,7 +4776,7 @@ ${items}
   <div class="container">
     <div class="sustain-section__head section-heading section-heading--left" data-reveal>
       <span class="section-heading__eyebrow">Section 01 — Circular Economy</span>
-      <h2 class="section-heading__title" id="circ-title">The cycle is the product system.</h2>
+      <h2 class="section-heading__title" id="circ-title">The cycle is the product system </h2>
       <p class="section-heading__desc">
         Gaurikrit's circular model describes how the resource enters, is
         developed, becomes useful products &mdash; and how the material cycle
@@ -4917,7 +4803,7 @@ ${circularStages}
   <div class="container">
     <div class="section-heading section-heading--left" data-reveal style="max-width: 48rem; margin-bottom: 2rem;">
       <span class="section-heading__eyebrow">Material Journey</span>
-      <h2 class="section-heading__title" id="journey-infographic-title">From Cow Dung to a Greener Future.</h2>
+      <h2 class="section-heading__title" id="journey-infographic-title">From Cow Dung to a Greener Future </h2>
     </div>
     <figure class="journey-infographic" data-reveal>
       ${ecoPic('journey-greener', [640, 960, 1280, 1672], '(min-width: 1024px) 80vw, calc(100vw - 2.5rem)', 1280, 1672, 941, 'Infographic: From Cow Dung to a Greener Future — the material journey from raw cow dung to eco-friendly products. Illustrative direction, not a verified production process.', depth)}
@@ -4933,7 +4819,7 @@ ${circularStages}
   <div class="container">
     <div class="sustain-section__head section-heading section-heading--left" data-reveal>
       <span class="section-heading__eyebrow">Section 02 — Resource Utilisation</span>
-      <h2 class="section-heading__title" id="util-title">One resource, used many ways.</h2>
+      <h2 class="section-heading__title" id="util-title">One resource, used many ways </h2>
       <p class="section-heading__desc">
         The same natural material base is developed into wall coatings, fuel
         directions and utility directions &mdash; value multiplied by application,
@@ -4986,7 +4872,7 @@ ${circularStages}
   <div class="container">
     <div class="sustain-section__head section-heading section-heading--left" data-reveal>
       <span class="section-heading__eyebrow">Section 03 — Impact Areas</span>
-      <h2 class="section-heading__title" id="imp-title">Impact areas to evaluate.</h2>
+      <h2 class="section-heading__title" id="imp-title">Impact areas to evaluate </h2>
       <p class="section-heading__desc">
         Five areas, described qualitatively &mdash; no numbers until verified data
         exists.
@@ -5009,7 +4895,7 @@ ${impactRows}
   <div class="container">
     <div class="sustain-section__head section-heading section-heading--left" data-reveal>
       <span class="section-heading__eyebrow">Section 04 — Applications</span>
-      <h2 class="section-heading__title" id="rep-title">Application directions.</h2>
+      <h2 class="section-heading__title" id="rep-title">Application directions </h2>
       <p class="section-heading__desc">
         Each ecosystem direction explores a practical alternative to
         conventional, resource-intensive materials.
@@ -5032,7 +4918,7 @@ ${appGroups}
         <span class="story-chapter__kicker">Rural Value Creation</span>
       </div>
       <div>
-        <h2 class="story-chapter__title" id="rural-title">Value created where the resource already is.</h2>
+        <h2 class="story-chapter__title" id="rural-title">Value created where the resource already is </h2>
         <div class="story-chapter__body">
           <p>
             Cow dung is gathered in rural and agricultural ecosystems. Developing
@@ -5059,7 +4945,7 @@ ${appGroups}
   <div class="container">
     <div class="sustain-section__head section-heading section-heading--left" data-reveal>
       <span class="section-heading__eyebrow">Section 06 — Measurement Framework</span>
-      <h2 class="section-heading__title" id="meas-title">How progress can be measured.</h2>
+      <h2 class="section-heading__title" id="meas-title">How progress can be measured </h2>
       <p class="section-heading__desc">
         Quantified impact is published only when verified project data exists.
         Nothing on this page is a projected, estimated or aspirational number.
@@ -5125,7 +5011,7 @@ function innovationBody(depth) {
     <div class="innov-hero__grid" data-reveal>
       <div>
         <span class="eyebrow">Research &amp; Innovation</span>
-        <h1 class="story-hero__title" id="innov-title">Where Tradition Meets Technology.</h1>
+        <h1 class="story-hero__title" id="innov-title">Where Tradition Meets Technology </h1>
         <p class="story-hero__lead">
           Gaurikrit's research direction explores how a natural material
           understood by tradition can be developed with contemporary methods —
@@ -5152,7 +5038,7 @@ function innovationBody(depth) {
   <div class="container">
     <div class="innov-section__head section-heading section-heading--left" data-reveal>
       <span class="section-heading__eyebrow">Focus Areas</span>
-      <h2 class="section-heading__title" id="focus-title">Five directions under exploration.</h2>
+      <h2 class="section-heading__title" id="focus-title">Five directions under exploration </h2>
       <p class="section-heading__desc">
         These are FOCUS AREAS — research directions. They are not presented as
         proven accomplishments, patents or facilities.
@@ -5171,7 +5057,7 @@ ${focusRows}
   <div class="container">
     <div class="innov-section__head section-heading section-heading--left" data-reveal>
       <span class="section-heading__eyebrow">How we explore</span>
-      <h2 class="section-heading__title" id="method-title">Material-first, application-led.</h2>
+      <h2 class="section-heading__title" id="method-title">Material-first, application-led </h2>
     </div>
     <div class="measure-list" data-reveal-stagger>
 ${methodItems}
@@ -5190,7 +5076,7 @@ ${methodItems}
         <span class="story-chapter__kicker">Documented outcome</span>
       </div>
       <div>
-        <h2 class="story-chapter__title" id="doc-title">Eco-Paints — where the direction became products.</h2>
+        <h2 class="story-chapter__title" id="doc-title">Eco-Paints — where the direction became products </h2>
         <div class="story-chapter__body">
           <p>
             The natural-coatings focus is the most developed: Prakritik
@@ -5223,7 +5109,7 @@ ${methodItems}
   <div class="container">
     <div class="why-cta" data-reveal>
       <span class="why-cta__eyebrow">Collaboration</span>
-      <h2 class="why-cta__title" id="collab-title">Discuss a Collaboration.</h2>
+      <h2 class="why-cta__title" id="collab-title">Discuss a Collaboration </h2>
       <p class="why-cta__sub">
         Research programmes, institutions and sustainability partners —
         talk to Gaurikrit about material directions and collaboration.
@@ -5433,7 +5319,7 @@ ${group.shades.map(shadeBtn).join('\n')}
     <div class="colours-hero__grid" data-reveal>
       <div>
         <span class="eyebrow">Prakritik Paint</span>
-        <h1 class="story-hero__title" id="colours-title">Colours Inspired by Nature.</h1>
+        <h1 class="story-hero__title" id="colours-title">Colours Inspired by Nature </h1>
         <p class="story-hero__lead">
           Explore the Signature and Premium shade collections supplied for
           Gaurikrit Prakritik Paint — every shade name and code exactly as
@@ -5466,7 +5352,7 @@ ${heroStrokes}
     <div class="container">
       <div class="section-heading section-heading--left" data-reveal>
         <span class="section-heading__eyebrow">Wall Preview</span>
-        <h2 class="section-heading__title" id="wall-preview-title">See a shade on the wall.</h2>
+        <h2 class="section-heading__title" id="wall-preview-title">See a shade on the wall </h2>
         <p class="section-heading__desc">
           Select any shade below — only the wall plane changes. The door,
           window and surroundings stay exactly as they are.
@@ -5523,7 +5409,7 @@ ${heroStrokes}
     <div class="container">
       <div class="section-heading section-heading--left" data-reveal>
         <span class="section-heading__eyebrow">Signature Collection</span>
-        <h2 class="section-heading__title" id="signature-title">Twelve signature shades.</h2>
+        <h2 class="section-heading__title" id="signature-title">Twelve signature shades </h2>
         <p class="section-heading__desc">
           The Signature Collection as printed on the client shade card —
           codes GK-101 to GK-112.
@@ -5539,7 +5425,7 @@ ${signatureShades}
     <div class="container">
       <div class="section-heading section-heading--left" data-reveal>
         <span class="section-heading__eyebrow">Premium Collection</span>
-        <h2 class="section-heading__title" id="premium-title">The Premium Collection, in five groups.</h2>
+        <h2 class="section-heading__title" id="premium-title">The Premium Collection, in five groups </h2>
         <p class="section-heading__desc">
           As printed on the client shade card — Natural Neutrals, Sunshine,
           Nature Greens, Sky &amp; Water and Earth &amp; Heritage, codes

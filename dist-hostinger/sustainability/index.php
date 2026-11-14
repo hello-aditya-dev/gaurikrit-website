@@ -95,7 +95,7 @@ $measurementItems = [
     <div class="sustain-hero__grid" data-reveal>
       <div>
         <span class="eyebrow">Sustainability &amp; Circular Economy</span>
-        <h1 class="story-hero__title" id="sustain-title">One Resource. A Wider Material Cycle.</h1>
+        <h1 class="story-hero__title" id="sustain-title">One Resource. A Wider Material Cycle </h1>
         <p class="story-hero__lead">
           Gaurikrit's sustainability approach is a material system, not a
           marketing dashboard: one natural resource, developed into useful
@@ -129,7 +129,7 @@ $measurementItems = [
   <div class="container">
     <div class="sustain-section__head section-heading section-heading--left" data-reveal>
       <span class="section-heading__eyebrow">Section 01 — Circular Economy</span>
-      <h2 class="section-heading__title" id="circ-title">The cycle is the product system.</h2>
+      <h2 class="section-heading__title" id="circ-title">The cycle is the product system </h2>
       <p class="section-heading__desc">
         Gaurikrit's circular model describes how the resource enters, is
         developed, becomes useful products — and how the material cycle
@@ -163,7 +163,7 @@ $measurementItems = [
   <div class="container">
     <div class="section-heading section-heading--left" data-reveal style="max-width: 48rem; margin-bottom: 2rem;">
       <span class="section-heading__eyebrow">Material Journey</span>
-      <h2 class="section-heading__title" id="journey-infographic-title">From Cow Dung to a Greener Future.</h2>
+      <h2 class="section-heading__title" id="journey-infographic-title">From Cow Dung to a Greener Future </h2>
     </div>
     <figure class="journey-infographic" data-reveal>
       <picture>
@@ -187,7 +187,7 @@ $measurementItems = [
   <div class="container">
     <div class="sustain-section__head section-heading section-heading--left" data-reveal>
       <span class="section-heading__eyebrow">Section 02 — Resource Utilisation</span>
-      <h2 class="section-heading__title" id="util-title">One resource, used many ways.</h2>
+      <h2 class="section-heading__title" id="util-title">One resource, used many ways </h2>
       <p class="section-heading__desc">
         The same natural material base is developed into wall coatings, fuel
         directions and utility directions — value multiplied by application,
@@ -258,7 +258,7 @@ $measurementItems = [
   <div class="container">
     <div class="sustain-section__head section-heading section-heading--left" data-reveal>
       <span class="section-heading__eyebrow">Section 03 — Impact Areas</span>
-      <h2 class="section-heading__title" id="imp-title">Impact areas to evaluate.</h2>
+      <h2 class="section-heading__title" id="imp-title">Impact areas to evaluate </h2>
       <p class="section-heading__desc">
         Five areas, described qualitatively — no numbers until verified data
         exists.
@@ -287,7 +287,7 @@ $measurementItems = [
   <div class="container">
     <div class="sustain-section__head section-heading section-heading--left" data-reveal>
       <span class="section-heading__eyebrow">Section 04 — Applications</span>
-      <h2 class="section-heading__title" id="rep-title">Application directions.</h2>
+      <h2 class="section-heading__title" id="rep-title">Application directions </h2>
       <p class="section-heading__desc">
         Each ecosystem direction explores a practical alternative to
         conventional, resource-intensive materials.
@@ -326,7 +326,7 @@ $measurementItems = [
         <span class="story-chapter__kicker">Rural Value Creation</span>
       </div>
       <div>
-        <h2 class="story-chapter__title" id="rural-title">Value created where the resource already is.</h2>
+        <h2 class="story-chapter__title" id="rural-title">Value created where the resource already is </h2>
         <div class="story-chapter__body">
           <p>
             Cow dung is gathered in rural and agricultural ecosystems. Developing
@@ -353,7 +353,7 @@ $measurementItems = [
   <div class="container">
     <div class="sustain-section__head section-heading section-heading--left" data-reveal>
       <span class="section-heading__eyebrow">Section 06 — Measurement Framework</span>
-      <h2 class="section-heading__title" id="meas-title">How progress can be measured.</h2>
+      <h2 class="section-heading__title" id="meas-title">How progress can be measured </h2>
       <p class="section-heading__desc">
         Quantified impact is published only when verified project data exists.
         Nothing on this page is a projected, estimated or aspirational number.

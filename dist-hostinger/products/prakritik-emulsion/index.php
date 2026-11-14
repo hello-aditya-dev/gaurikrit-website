@@ -178,7 +178,7 @@ $specRows = [
   <div class="container">
     <div class="spec-sheet__head section-heading section-heading--left" data-reveal>
       <span class="spec-sheet__eyebrow">Specifications</span>
-      <h2 class="spec-sheet__title" id="specs-title">Product specifications.</h2>
+      <h2 class="spec-sheet__title" id="specs-title">Product specifications </h2>
       <!-- V9: print affordance — window.print() + the app.css §36 print
            stylesheet turns this page into a printable spec sheet. -->
       <button type="button" class="spec-sheet__print" data-print-spec>
@@ -235,7 +235,7 @@ $specRows = [
   <div class="container">
     <div class="emulsion-ashta-section__head section-heading section-heading--left" data-reveal>
       <span class="section-heading__eyebrow">Ashta Laabh — अष्ट लाभ</span>
-      <h2 class="section-heading__title" id="emulsion-ashta-title">Eight benefits of Prakritik Paint.</h2>
+      <h2 class="section-heading__title" id="emulsion-ashta-title">Eight benefits of Prakritik Paint </h2>
       <p class="section-heading__desc">
         Benefits as listed in the Prakritik Paint brochure.
       </p>
@@ -260,7 +260,7 @@ $specRows = [
       <div class="emulsion-cta__inner">
         <div>
           <span class="emulsion-hero__eyebrow">Looking at the other format?</span>
-          <h2 class="emulsion-cta__title" id="cross-title">Prakritik Distemper.</h2>
+          <h2 class="emulsion-cta__title" id="cross-title">Prakritik Distemper </h2>
           <p class="emulsion-cta__body">
             Cow dung-based Distemper Paint. Coverage <?= e($distemper['coverage']) ?>.
             Supplied in <?= e($distemper['packagingShort']) ?> packs.
