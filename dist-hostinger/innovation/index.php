@@ -273,7 +273,7 @@ $methodItems = [
           into coatings, fuels, composites and building materials.
         </p>
         <div class="innov-hero__ctas">
-          <a class="btn btn--haldi" href="#focus-areas">The Five Focus Areas</a>
+          <a class="btn btn--primary" href="#focus-areas">The Five Focus Areas</a>
           <a class="btn btn--secondary" href="/sustainability/">Sustainability</a>
         </div>
       </div>
@@ -464,7 +464,7 @@ $methodItems = [
         talk to Gaurikrit about material directions and collaboration.
       </p>
       <div class="innov-cta__actions">
-        <a class="btn btn--haldi" href="/for-business/">Become a Partner</a>
+        <a class="btn btn--primary" href="/for-business/">Become a Partner</a>
         <a class="btn btn--secondary" href="/contact/">Contact Gaurikrit</a>
       </div>
     </div>

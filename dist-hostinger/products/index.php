@@ -883,7 +883,7 @@ $emulsion    = get_product('prakritik-emulsion');
         repainting — and help you pick the right Prakritik format.
       </p>
       <div class="why-cta__actions">
-        <a class="btn btn--haldi" href="/contact/">Talk to Us</a>
+        <a class="btn btn--primary" href="/contact/">Talk to Us</a>
         <a class="btn btn--secondary" href="/paint-calculator/">Painting Calculator</a>
       </div>
     </div>

@@ -104,7 +104,7 @@ $addressLine = implode("\n", array_slice($address, 0, 6));
     font-style: italic;
   }
 
-  /* Alternating layouts for visual rhythm */
+  /* Alternating layouts for visual rhythm — V37: explicit grid order, no direction:rtl */
   .story-section--alt .story-section__inner {
     max-width: none; display: grid; gap: clamp(2rem, 5vw, 4rem); align-items: center;
     grid-template-columns: minmax(0, 1fr);
@@ -113,15 +113,30 @@ $addressLine = implode("\n", array_slice($address, 0, 6));
     .story-section--alt .story-section__inner {
       grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
     }
-    .story-section--alt-reverse .story-section__inner { direction: rtl; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
-      direction: rtl;
+    .story-section--alt-reverse .story-section__inner {
+      grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
     }
-    .story-section--alt-reverse .story-section__inner > * { direction: ltr; }
   }
+  /* Mobile: copy first, image second for ALL sections (predictable reading order) */
   .story-section--alt .story-section__copy { order: 1; }
   .story-section--alt .story-section__image { order: 2; margin-top: 0; }
-  .story-section--alt-reverse .story-section__copy { order: 2; }
-  .story-section--alt-reverse .story-section__image { order: 1; margin-top: 0; }
+  /* Desktop: reverse sections swap copy/image via grid order, not direction */
+  @media (min-width: 1024px) {
+    .story-section--alt-reverse .story-section__copy { order: 2; }
+    .story-section--alt-reverse .story-section__image { order: 1; margin-top: 0; }
+  }
+
+  /* Forest section scoped classes (V37: replaced inline styles) */
+  .story-section__inner--forest { color: var(--paper); }
+  .story-section__num--forest { color: var(--haldi); }
+  .story-section__title--forest { color: var(--paper); }
+  .story-section__body--forest { color: var(--paper); opacity: 0.9; }
+  .story-section__sequence {
+    text-align: center; font-weight: 600; font-size: 1.125em; line-height: 1.6;
+  }
+  @media (max-width: 768px) {
+    .story-section__sequence { font-size: 0.875em; line-height: 1.8; }
+  }
 
   /* Closing statement */
   .story-closing {
@@ -347,16 +362,16 @@ $addressLine = implode("\n", array_slice($address, 0, 6));
 <!-- ============================================================
      Section 5 — From India's Traditions to India's Tomorrow
      ============================================================ -->
-<section class="section section--forest story-section">
+<section class="section section--forest story-section story-section--forest">
   <div class="container">
-    <div class="story-section__inner" style="color: var(--paper);">
-      <span class="story-section__num" style="color: var(--haldi);">Section 5</span>
-      <h2 class="story-section__title" style="color: var(--paper);">From India&rsquo;s Traditions to India&rsquo;s Tomorrow &mdash; Building a Circular Economy</h2>
-      <div class="story-section__body" style="color: var(--paper); opacity: 0.9;">
+    <div class="story-section__inner story-section__inner--forest">
+      <span class="story-section__num story-section__num--forest">Section 5</span>
+      <h2 class="story-section__title story-section__title--forest">From India&rsquo;s Traditions to India&rsquo;s Tomorrow &mdash; Building a Circular Economy</h2>
+      <div class="story-section__body story-section__body--forest">
         <p>India has always understood something that the modern world is rediscovering: Nature operates in cycles, not in waste. What comes from the earth can often return to the earth or be transformed into something useful.</p>
         <p>Through cow-dung-based products, renewable biomass fuels, eco-friendly paints, biodegradable utility products, and future sustainable technologies, we envision an ecosystem where natural resources are continuously reimagined for productive use.</p>
         <p>An ecosystem that connects:</p>
-        <p style="text-align: center; font-weight: 600; font-size: 1.125em; line-height: 1.6;">
+        <p class="story-section__sequence">
           Animal Welfare &rarr; Farmer Livelihoods &rarr; Resource Recovery &rarr; Sustainable Products &rarr; Environmental Responsibility &rarr; National Growth
         </p>
         <p>This is the circular economy we want to help build. One where farmers become stakeholders in sustainability. One where rural resource creates new economic opportunities. One where innovation supports resource conservation and responsible energy production. One where traditional Indian knowledge becomes the foundation for modern sustainable enterprise. And one where India&rsquo;s economic progress can advance alongside environmental stewardship.</p>
@@ -427,8 +442,8 @@ $addressLine = implode("\n", array_slice($address, 0, 6));
 
     <div class="company-info__actions" style="margin-top: 2.5rem;">
       <a class="btn btn--primary" href="/contact/">Talk to Us</a>
-      <a class="btn btn--outline" href="/for-business/">Partners</a>
-      <a class="btn btn--outline" href="/products/">Explore the Ecosystem</a>
+      <a class="btn btn--secondary" href="/for-business/">Partners</a>
+      <a class="btn btn--secondary" href="/products/">Explore the Ecosystem</a>
     </div>
   </div>
 </section>

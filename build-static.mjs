@@ -2108,7 +2108,7 @@ ${appGroups}
         repainting — and help you pick the right Prakritik format.
       </p>
       <div class="why-cta__actions">
-        <a class="btn btn--haldi" href="${relUrl('/contact/', depth)}">Talk to Us</a>
+        <a class="btn btn--primary" href="${relUrl("/contact/", depth)}">Talk to Us</a>
         <a class="btn btn--secondary" href="${relUrl('/paint-calculator/', depth)}">Painting Calculator</a>
       </div>
     </div>
@@ -3180,13 +3180,16 @@ function aboutBody(depth) {
   }
   @media (min-width: 1024px) {
     .story-section--alt .story-section__inner { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }
-    .story-section--alt-reverse .story-section__inner { direction: rtl; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); }
-    .story-section--alt-reverse .story-section__inner > * { direction: ltr; }
+    .story-section--alt-reverse .story-section__inner { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); }
   }
   .story-section--alt .story-section__copy { order: 1; }
   .story-section--alt .story-section__image { order: 2; margin-top: 0; }
-  .story-section--alt-reverse .story-section__copy { order: 2; }
-  .story-section--alt-reverse .story-section__image { order: 1; margin-top: 0; }
+  .story-section--alt .story-section__copy { order: 1; }
+  .story-section--alt .story-section__image { order: 2; margin-top: 0; }
+  @media (min-width: 1024px) {
+    .story-section--alt-reverse .story-section__copy { order: 2; }
+    .story-section--alt-reverse .story-section__image { order: 1; margin-top: 0; }
+  }
   .story-closing { padding-block: clamp(3rem, 6vw, 5rem); text-align: center; }
   .story-closing__statement {
     font-family: var(--font-display); font-size: clamp(1.25rem, 3vw, 2rem);
@@ -3340,14 +3343,14 @@ function aboutBody(depth) {
 
 <section class="section section--forest story-section">
   <div class="container">
-    <div class="story-section__inner" style="color: var(--paper);">
-      <span class="story-section__num" style="color: var(--haldi);">Section 5</span>
-      <h2 class="story-section__title" style="color: var(--paper);">From India&rsquo;s Traditions to India&rsquo;s Tomorrow &mdash; Building a Circular Economy</h2>
-      <div class="story-section__body" style="color: var(--paper); opacity: 0.9;">
+    <div class="story-section__inner story-section__inner--forest">
+      <span class="story-section__num story-section__num--forest">Section 5</span>
+      <h2 class="story-section__title story-section__title--forest">From India&rsquo;s Traditions to India&rsquo;s Tomorrow &mdash; Building a Circular Economy</h2>
+      <div class="story-section__body story-section__body--forest">
         <p>India has always understood something that the modern world is rediscovering: Nature operates in cycles, not in waste. What comes from the earth can often return to the earth or be transformed into something useful.</p>
         <p>Through cow-dung-based products, renewable biomass fuels, eco-friendly paints, biodegradable utility products, and future sustainable technologies, we envision an ecosystem where natural resources are continuously reimagined for productive use.</p>
         <p>An ecosystem that connects:</p>
-        <p style="text-align: center; font-weight: 600; font-size: 1.125em; line-height: 1.6;">
+        <p class="story-section__sequence">
           Animal Welfare &rarr; Farmer Livelihoods &rarr; Resource Recovery &rarr; Sustainable Products &rarr; Environmental Responsibility &rarr; National Growth
         </p>
         <p>This is the circular economy we want to help build. One where farmers become stakeholders in sustainability. One where rural resource creates new economic opportunities. One where innovation supports resource conservation and responsible energy production. One where traditional Indian knowledge becomes the foundation for modern sustainable enterprise. And one where India&rsquo;s economic progress can advance alongside environmental stewardship.</p>
@@ -3404,8 +3407,8 @@ function aboutBody(depth) {
     </dl>
     <div class="company-info__actions" style="margin-top: 2.5rem;">
       <a class="btn btn--primary" href="${relUrl('/contact/', depth)}">Talk to Us</a>
-      <a class="btn btn--outline" href="${relUrl('/for-business/', depth)}">Partners</a>
-      <a class="btn btn--outline" href="${relUrl('/products/', depth)}">Explore the Ecosystem</a>
+      <a class="btn btn--secondary" href="${relUrl('/for-business/', depth)}">Partners</a>
+      <a class="btn btn--secondary" href="${relUrl('/products/', depth)}">Explore the Ecosystem</a>
     </div>
   </div>
 </section>
@@ -3598,7 +3601,7 @@ ${bizTiles.map((t) => `          <figure class="biz-hero__tile">
         </p>
         <div class="biz-hero__ctas">
           <a class="btn btn--primary btn--lg" href="#enquire">Discuss a Project</a>
-          <a class="btn btn--outline" href="${relUrl('/products/', depth)}">Explore the Ecosystem</a>
+          <a class="btn btn--secondary" href="${relUrl('/products/', depth)}">Explore the Ecosystem</a>
         </div>
       </div>
       <div class="biz-hero__art" aria-hidden="true">
@@ -5071,7 +5074,7 @@ function innovationBody(depth) {
           into coatings, fuels, composites and building materials.
         </p>
         <div class="innov-hero__ctas">
-          <a class="btn btn--haldi" href="#focus-areas">The Five Focus Areas</a>
+          <a class="btn btn--primary" href="#focus-areas">The Five Focus Areas</a>
           <a class="btn btn--secondary" href="${relUrl('/sustainability/', depth)}">Sustainability</a>
         </div>
       </div>
@@ -5210,7 +5213,7 @@ ${methodGrid}
         talk to Gaurikrit about material directions and collaboration.
       </p>
       <div class="innov-cta__actions">
-        <a class="btn btn--haldi" href="${relUrl('/for-business/', depth)}">Become a Partner</a>
+        <a class="btn btn--primary" href="${relUrl("/for-business/", depth)}">Become a Partner</a>
         <a class="btn btn--secondary" href="${relUrl('/contact/', depth)}">Contact Gaurikrit</a>
       </div>
     </div>
