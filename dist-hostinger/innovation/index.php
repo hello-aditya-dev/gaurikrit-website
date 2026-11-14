@@ -81,19 +81,18 @@ $methodItems = [
           <a class="btn btn--secondary" href="/sustainability/">Sustainability</a>
         </div>
       </div>
-      <figure class="innov-hero__composition" role="img"
-              aria-label="Material research samples — raw biomass, processed log and finished coating on one studio sweep">
+      <figure class="innov-hero__composition">
         <picture>
           <source type="image/avif" srcset="<?= eco_srcset('innovation-research', [960, 1280, 1920, 2560]) ?>"
                   sizes="(min-width: 1024px) 48vw, calc(100vw - 2.5rem)">
           <source type="image/webp" srcset="<?= eco_srcset_webp('innovation-research', [960, 1280, 1920, 2560]) ?>"
                   sizes="(min-width: 1024px) 48vw, calc(100vw - 2.5rem)">
           <img src="<?= asset_url('/assets/images/ecosystem/innovation-research-1280.jpg') ?>"
-               alt="Material research samples — raw biomass, processed log and finished coating"
+               alt="Illustrative material study — exploring the relationship between raw materials, processing concepts and finished applications. Not a photograph of a Gaurikrit facility or verified production line."
                width="1280" height="800"
                loading="eager" fetchpriority="high" decoding="async">
         </picture>
-        <figcaption>Raw material · processed biomass · finished coating — one research line.</figcaption>
+        <figcaption>Illustrative material study &mdash; exploring the relationship between raw materials, processing concepts and finished applications. Not a photograph of a Gaurikrit facility or verified production line.</figcaption>
       </figure>
     </div>
   </div>
@@ -186,11 +185,11 @@ $methodItems = [
             <source type="image/webp" srcset="<?= eco_srcset_webp('showcase-innovation', [640, 960, 1254]) ?>"
                     sizes="(min-width: 1024px) 42vw, calc(100vw - 2.5rem)">
             <img src="<?= asset_url('/assets/images/ecosystem/showcase-innovation-960.jpg') ?>"
-                 alt="Material study — Prakritik Paint and dhoop cups shown together as an exploratory material direction. Illustrative, not a verified production process."
+                 alt="Client-supplied material showcase — Prakritik Paint and dhoop cups shown together as an exploratory product direction. Bio-Briquettes and Eco Utility Products remain Futureline products, not yet in production."
                  width="1254" height="1254"
                  loading="lazy" decoding="async">
           </picture>
-          <figcaption>Material study &mdash; exploratory direction. Bio-Briquettes and Eco Utility Products shown elsewhere are Futureline products, not yet in production.</figcaption>
+          <figcaption>Client-supplied material showcase &mdash; an exploratory product direction. Bio-Briquettes and Eco Utility Products remain Futureline products and are not yet in production.</figcaption>
         </figure>
         <div style="margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 0.75rem;">
           <a class="btn btn--secondary" href="/products/#eco-paints">Explore Eco-Paints</a>

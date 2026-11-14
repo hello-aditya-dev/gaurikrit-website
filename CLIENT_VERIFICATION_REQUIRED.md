@@ -234,19 +234,19 @@ accordingly.
 **Client action required**: Confirm that `prakritik-paint-brochure.pdf`
 is the approved public edition, or supply the corrected version.
 
-## 9. Stage 03 Product Portfolio image filename
+## 9. Stage 03 Product Portfolio image — RESOLVED
 
 The client requested `Biodegradable Product Showcase.png` from the shared
-folder. The OneDrive_2026-10-29.zip archive does NOT contain a file with
-that exact name. The closest content match is `GBP Futureline Products
-Showcase-2.png` — a 4-product biodegradable portfolio (Dhoop Cups,
-Cow-Dung Diyas, Biodegradable Disposable Plates, Eco Glasses) that
-literally contains the word "Biodegradable" in its embedded product
-label. VLM-verified as the intended biodegradable product showcase.
+folder. The complete 2026-11-14 asset pack now includes this file as
+`Biodegradable Product Showcase.webp` (converted from the original PNG at
+quality 95). It is byte-identical to `GBP Futureline Products Showcase-3.png`
+(confirmed by SHA-256 `4ae26176560eeb03`).
 
-**Client action required**: Confirm that `GBP Futureline Products
-Showcase-2.png` is the intended substitute for the requested
-`Biodegradable Product Showcase.png`, or supply the exact file.
+The website now uses this exact artwork for:
+- Homepage Stage 03 (Product Portfolio) — stem `flow-portfolio`
+- Our Story Section 2 — stem `story-product-showcase`
+
+**Status**: RESOLVED. The exact client-requested image is implemented.
 
 ## 10. Premium shade count
 
@@ -268,9 +268,9 @@ The V26 polish pass is complete and pushed. The items above remain the complete
 list of open client decisions — none were guessed or closed silently. Additional
 V26-observed items for the client's attention (no action taken without approval):
 
-- **Stage 03 Product Portfolio source**: the exact requested file
-  `Biodegradable Product Showcase.png` was never located in the supplied
-  archive; `GBP Futureline Products Showcase-2.png` remains the substitute.
+- ~~**Stage 03 Product Portfolio source**~~: RESOLVED — the exact
+  `Biodegradable Product Showcase` file is now available in the 2026-11-14
+  asset pack and is implemented on the homepage Stage 03 and Our Story page.
 - **Emulsion packshot**: the derived paint-range photograph (from
   `GBP Paint Bucket.png`) contains a pink/magenta shadow artefact under the
   bucket in the source artwork. A cleaner packshot would improve the page.
