@@ -5076,11 +5076,18 @@ function innovationBody(depth) {
         </div>
       </div>
       <figure class="innov-hero__composition">
-        ${ecoPic('innovation-research', [960, 1280, 1920, 2560], '(min-width: 1024px) 40vw, calc(100vw - 2.5rem)', 1280, 1280, 800, 'Illustrative material study — exploring the relationship between raw materials, processing concepts and finished applications. Not a photograph of a Gaurikrit facility or verified production line.', depth, 'loading="eager" fetchpriority="high" ')}
+        <picture>
+          <source type="image/webp" srcset="${assetUrl('/assets/images/ecosystem/innovation-material-study-640.webp', depth)} 640w, ${assetUrl('/assets/images/ecosystem/innovation-material-study-960.webp', depth)} 960w, ${assetUrl('/assets/images/ecosystem/innovation-material-study-1280.webp', depth)} 1280w, ${assetUrl('/assets/images/ecosystem/innovation-material-study-1536.webp', depth)} 1536w"
+                  sizes="(min-width: 1024px) 40vw, calc(100vw - 2.5rem)">
+          <img src="${assetUrl('/assets/images/ecosystem/innovation-material-study-1280.jpg', depth)}"
+               alt="Illustrative still-life of straw, compressed organic-fibre forms and a mineral-textured surface, exploring natural materials and contemporary applications"
+               width="1536" height="960"
+               loading="eager" fetchpriority="high" decoding="async">
+        </picture>
       </figure>
     </div>
     <p class="innov-hero__caption">
-      Illustrative material study &mdash; exploring the relationship between raw materials, processing concepts and finished applications. Not a photograph of a Gaurikrit facility or verified production line.
+      Illustrative material study &mdash; an editorial visual, not a photograph of Gaurikrit products, a production line or an operational facility.
     </p>
   </div>
 </section>

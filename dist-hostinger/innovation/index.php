@@ -279,19 +279,17 @@ $methodItems = [
       </div>
       <figure class="innov-hero__composition">
         <picture>
-          <source type="image/avif" srcset="<?= eco_srcset('innovation-research', [960, 1280, 1920, 2560]) ?>"
+          <source type="image/webp" srcset="<?= asset_url('/assets/images/ecosystem/innovation-material-study-640.webp') ?> 640w, <?= asset_url('/assets/images/ecosystem/innovation-material-study-960.webp') ?> 960w, <?= asset_url('/assets/images/ecosystem/innovation-material-study-1280.webp') ?> 1280w, <?= asset_url('/assets/images/ecosystem/innovation-material-study-1536.webp') ?> 1536w"
                   sizes="(min-width: 1024px) 40vw, calc(100vw - 2.5rem)">
-          <source type="image/webp" srcset="<?= eco_srcset_webp('innovation-research', [960, 1280, 1920, 2560]) ?>"
-                  sizes="(min-width: 1024px) 40vw, calc(100vw - 2.5rem)">
-          <img src="<?= asset_url('/assets/images/ecosystem/innovation-research-1280.jpg') ?>"
-               alt="Illustrative material study — exploring the relationship between raw materials, processing concepts and finished applications. Not a photograph of a Gaurikrit facility or verified production line."
-               width="1280" height="800"
+          <img src="<?= asset_url('/assets/images/ecosystem/innovation-material-study-1280.jpg') ?>"
+               alt="Illustrative still-life of straw, compressed organic-fibre forms and a mineral-textured surface, exploring natural materials and contemporary applications"
+               width="1536" height="960"
                loading="eager" fetchpriority="high" decoding="async">
         </picture>
       </figure>
     </div>
     <p class="innov-hero__caption">
-      Illustrative material study &mdash; exploring the relationship between raw materials, processing concepts and finished applications. Not a photograph of a Gaurikrit facility or verified production line.
+      Illustrative material study &mdash; an editorial visual, not a photograph of Gaurikrit products, a production line or an operational facility.
     </p>
   </div>
 </section>
