@@ -37,6 +37,11 @@
             return;
         }
 
+        // Only activate hidden reveal states AFTER confirming IntersectionObserver
+        // is available and the observer is about to be attached. This ensures
+        // content remains visible if this module fails before reaching this point.
+        document.documentElement.className += ' reveal-ready';
+
         var observer = new IntersectionObserver(function (entries) {
             entries.forEach(function (entry) {
                 if (entry.isIntersecting) {

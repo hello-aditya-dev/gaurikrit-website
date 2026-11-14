@@ -696,7 +696,6 @@ ${subLinks}
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script>document.documentElement.className += ' js-enabled';</script>
     <link rel="icon" href="${faviconHref}" sizes="any">
     <link rel="icon" href="${assetUrl('/favicon-32x32.png', depth)}" type="image/png" sizes="32x32">
     <link rel="icon" href="${assetUrl('/favicon-16x16.png', depth)}" type="image/png" sizes="16x16">
@@ -912,11 +911,18 @@ function homeBody(depth) {
         const mediaSpec = {
             'eco-paints':       { stem: 'eco-paints-pair', alt: 'Prakritik Distemper and Emulsion paint packs — the documented Eco-Paints family', widths: [640, 960, 1280, 1920], fb: 1280, w: 1280, h: 800 },
             'gocast-logs':      { stem: 'gocast-material', alt: 'Client-supplied cow-dung log material — the development direction for Cow-Dung Logs', widths: [640, 960, 1280], fb: 960, w: 960, h: 640 },
-            'bio-coal-logs':    { stem: 'gbp-bio-briquettes', alt: 'Client-supplied Bio-Briquettes product poster — a Futureline product direction, not yet in production', widths: [640, 960, 1024], fb: 1024, w: 1024, h: 1024 },
-            'utility-products': { stem: 'showcase-utility', alt: 'Client-supplied Eco Utility Products showcase — dhoop cups and cow-dung diyas. A Futureline product direction, not yet in production.', widths: [640, 960, 1022], fb: 1022, w: 1022, h: 1095 },
+            'bio-coal-logs':    { futureline: true },
+            'utility-products': { futureline: true },
         };
         const spec = mediaSpec[family.id];
-        const media = `            <figure class="family__media family__media--photo">
+        const media = spec.futureline
+            ? `            <figure class="family__media family__media--futureline">
+                <div class="family__futureline-panel">
+                  <span class="status-badge status-badge--futureline" title="Futureline · Not yet in production">Futureline · Not yet in production</span>
+                  <p class="family__futureline-note">Product direction under exploration. Promotional artwork contains claims awaiting client approval.</p>
+                </div>
+              </figure>`
+            : `            <figure class="family__media family__media--photo">
                 ${ecoPic(spec.stem, spec.widths, '(min-width: 768px) 45vw, calc(100vw - 2.5rem)', spec.fb, spec.w, spec.h, spec.alt, depth)}
             </figure>`;
         const themes = family.themes.map((t) => `              <li>${e(t)}</li>`).join('\n');

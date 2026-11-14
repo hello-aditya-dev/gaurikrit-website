@@ -4185,6 +4185,9 @@ ul, ol { list-style: none; }
 
 /* ==========================================================================
    34. Reveal-on-scroll animations (fail-open: content visible without JS)
+   Only hidden when .reveal-ready is set by animations.js AFTER successful
+   IntersectionObserver initialization. If JS fails, IO is unavailable, or
+   reduced motion is preferred — content remains fully visible.
    ========================================================================== */
 [data-reveal] {
   opacity: 1;
@@ -4193,7 +4196,7 @@ ul, ol { list-style: none; }
     opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
     transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
-.js-enabled [data-reveal] {
+.reveal-ready [data-reveal] {
   opacity: 0;
   transform: translateY(24px);
 }
@@ -4208,7 +4211,7 @@ ul, ol { list-style: none; }
     opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
     transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
-.js-enabled [data-reveal-stagger] > * {
+.reveal-ready [data-reveal-stagger] > * {
   opacity: 0;
   transform: translateY(20px);
 }
@@ -5010,6 +5013,18 @@ p, li, dd, blockquote { text-wrap: pretty; }
 .family__media--photo img { border-radius: calc(var(--r-card) - 0.1875rem); }
 .family:hover .family__media--photo img,
 .family:focus-within .family__media--photo img { transform: scale(1.02); }
+.family__media--futureline {
+  padding: clamp(1.5rem, 3vw, 2.5rem); background: var(--paper-warm);
+  border-radius: var(--r-card); border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center; min-height: 12rem;
+}
+.family__futureline-panel {
+  display: flex; flex-direction: column; gap: 0.75rem; align-items: center;
+  text-align: center; max-width: 24rem;
+}
+.family__futureline-note {
+  font-size: 0.8125rem; line-height: 1.5; color: var(--fg-muted); margin: 0;
+}
 /* Quiet honesty tag on representative category visuals (§58). */
 .family__media-note {
   position: absolute; right: 0.625rem; bottom: 0.625rem;

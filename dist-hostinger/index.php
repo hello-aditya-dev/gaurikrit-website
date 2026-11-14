@@ -430,16 +430,20 @@ $HERO_SIZES = '(min-width: 1200px) 58vw, (min-width: 900px) 50vw, calc(100vw - 2
           'cow-dung-logs'     => ['stem' => 'gocast-material', 'ladder' => [640, 960, 1280],
                                   'w' => 960, 'h' => 640,
                                   'alt' => 'Client-supplied cow-dung log material — the development direction for Cow-Dung Logs'],
-          'bio-briquettes'    => ['stem' => 'gbp-bio-briquettes', 'ladder' => [640, 960, 1024],
-                                  'w' => 1024, 'h' => 1024,
-                                  'alt' => 'Client-supplied Bio-Briquettes product poster — a Futureline product direction, not yet in production'],
-          'utility-products'  => ['stem' => 'showcase-utility', 'ladder' => [640, 960, 1022],
-                                  'w' => 1022, 'h' => 1095,
-                                  'alt' => 'Client-supplied Eco Utility Products showcase — dhoop cups and cow-dung diyas. A Futureline product direction, not yet in production.'],
+          'bio-briquettes'    => ['futureline' => true],
+          'utility-products'  => ['futureline' => true],
       ];
       foreach ($FAMILIES as $family): ?>
         <article class="family" id="family-<?= e($family['id']) ?>">
-          <?php $m = $familyMedia[$family['id']]; ?>
+          <?php $m = $familyMedia[$family['id']];
+          if (isset($m['futureline']) && $m['futureline']): ?>
+          <figure class="family__media family__media--futureline">
+            <div class="family__futureline-panel">
+              <span class="status-badge status-badge--futureline" title="Futureline · Not yet in production">Futureline · Not yet in production</span>
+              <p class="family__futureline-note">Product direction under exploration. Promotional artwork contains claims awaiting client approval.</p>
+            </div>
+          </figure>
+          <?php else: ?>
           <figure class="family__media family__media--photo">
             <picture>
               <source type="image/avif" srcset="<?= eco_srcset($m['stem'], $m['ladder']) ?>"
@@ -451,6 +455,7 @@ $HERO_SIZES = '(min-width: 1200px) 58vw, (min-width: 900px) 50vw, calc(100vw - 2
                    width="<?= $m['w'] ?>" height="<?= $m['h'] ?>" loading="lazy" decoding="async">
             </picture>
           </figure>
+          <?php endif; ?>
 
           <div class="family__head">
             <span class="family__num" aria-hidden="true"><?= e($family['num']) ?></span>
