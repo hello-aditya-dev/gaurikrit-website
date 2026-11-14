@@ -4976,155 +4976,222 @@ ${measurementItems}
 
 // ---- Innovation (V16 NEW route /innovation/) ----
 function innovationBody(depth) {
-    const focusRows = INNOVATION_AREAS.map((focus) => `        <div class="focus-row">
-          <span class="focus-row__num" aria-hidden="true">${e(focus.num)}</span>
-          <h3 class="focus-row__name">${e(focus.name)}</h3>
-          <p class="focus-row__desc">${e(focus.desc)}</p>
+    const methodItems = [
+        { num: '01', name: 'Material-first',  desc: 'Each direction begins with a natural material and its properties, not a market template.' },
+        { num: '02', name: 'Application-led', desc: 'Research is guided by real applications \u2014 walls, fuel, ritual and daily use.' },
+        { num: '03', name: 'Tradition-aware', desc: 'Indian material traditions inform where technologies should serve, not erase.' },
+        { num: '04', name: 'Verified before published', desc: 'Directions are shared as directions. Results are shared only once verified.' },
+    ];
+
+    const focusItems = INNOVATION_AREAS.map((focus) => `        <div class="innov-focus__item">
+          <span class="innov-focus__num" aria-hidden="true">${e(focus.num)}</span>
+          <h3 class="innov-focus__name">${e(focus.name)}</h3>
+          <p class="innov-focus__desc">${e(focus.desc)}</p>
         </div>`).join('\n');
 
-    const methodItems = [
-        ['Material-first', 'Each direction begins with a natural material and its properties, not a market template.'],
-        ['Application-led', 'Research is guided by real applications — walls, fuel, ritual and daily use.'],
-        ['Tradition-aware', 'Indian material traditions inform where technologies should serve, not erase.'],
-        ['Verified before published', 'Directions are shared as directions. Results are shared only once verified.'],
-    ].map(([name, desc]) => `        <div class="measure-item">
-          <span class="measure-item__name">${e(name)}</span>
-          <p class="measure-item__desc">${e(desc)}</p>
+    const methodGrid = methodItems.map((item) => `        <div class="innov-method__item">
+          <span class="innov-method__num" aria-hidden="true">${e(item.num)}</span>
+          <h3 class="innov-method__name">${e(item.name)}</h3>
+          <p class="innov-method__desc">${e(item.desc)}</p>
         </div>`).join('\n');
 
     return `<style>
-  /* ===== PAGE HERO — story-hero + research composition ===== */
-  .innov-hero__grid {
-    display: grid; gap: clamp(2rem, 4vw, 4rem); align-items: center;
-    grid-template-columns: minmax(0, 1fr);
-  }
-  @media (min-width: 1024px) { .innov-hero__grid { grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); } }
-  .innov-hero__composition { margin: 0; position: relative; }
-  .innov-hero__composition img {
-    display: block; width: 100%; height: auto; border-radius: 0.1875rem;
-  }
-  .innov-hero__composition figcaption {
-    margin-top: 0.875rem; font-size: 0.75rem; color: var(--fg-muted);
-    letter-spacing: 0.02em;
-  }
-  .innov-section__head { max-width: 48rem; margin-bottom: 2.5rem; }
+  .innov-hero { background: var(--forest); color: var(--paper); padding-top: calc(var(--header-h) + 2rem); padding-bottom: clamp(3rem, 6vw, 5rem); }
+  .innov-hero__grid { display: grid; gap: clamp(2rem, 5vw, 4rem); align-items: center; grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 1024px) { .innov-hero__grid { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); } }
+  .innov-hero__eyebrow { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--haldi); margin-bottom: 1.25rem; }
+  .innov-hero__eyebrow::before { content: ""; width: 2rem; height: 1px; background: var(--haldi); }
+  .innov-hero__title { font-family: var(--font-display); font-size: clamp(2.25rem, 6vw, 4.5rem); font-weight: 700; letter-spacing: -0.025em; line-height: 1.05; text-wrap: balance; margin-bottom: 1.5rem; color: var(--paper); }
+  .innov-hero__lead { font-size: clamp(1.0625rem, 1.5vw, 1.25rem); line-height: 1.6; color: var(--paper); opacity: 0.85; max-width: 36rem; margin-bottom: 2rem; }
+  .innov-hero__ctas { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+  .innov-hero__composition { margin: 0; position: relative; overflow: hidden; border-radius: 0.25rem; aspect-ratio: 8 / 5; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3); }
+  .innov-hero__composition img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .innov-hero__caption { margin-top: 0.875rem; font-size: 0.6875rem; color: var(--paper); opacity: 0.6; letter-spacing: 0.02em; line-height: 1.5; font-style: italic; }
+  .innov-focus { padding-block: clamp(3rem, 6vw, 5rem); }
+  .innov-focus__head { max-width: 48rem; margin-bottom: 3rem; }
+  .innov-focus__grid { display: grid; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 0.25rem; overflow: hidden; }
+  @media (min-width: 768px) { .innov-focus__grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .innov-focus__grid { grid-template-columns: repeat(3, 1fr); } }
+  .innov-focus__item { background: var(--paper); padding: clamp(1.75rem, 3vw, 2.5rem); display: flex; flex-direction: column; gap: 0.75rem; transition: background-color var(--dur) var(--ease); }
+  .innov-focus__item:hover { background: var(--paper-warm); }
+  .innov-focus__num { font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 3.75rem); font-weight: 700; color: var(--haldi); line-height: 1; letter-spacing: -0.03em; }
+  .innov-focus__name { font-family: var(--font-display); font-size: clamp(1.125rem, 2vw, 1.5rem); font-weight: 700; color: var(--primary); letter-spacing: -0.01em; line-height: 1.2; }
+  .innov-focus__desc { font-size: 0.875rem; line-height: 1.6; color: var(--fg-muted); }
+  .innov-focus__disclaimer { margin-top: 2rem; padding: 1rem 1.25rem; background: color-mix(in srgb, var(--haldi) 8%, transparent); border-left: 3px solid var(--haldi); border-radius: 0 0.1875rem 0.1875rem 0; font-size: 0.8125rem; color: var(--fg-muted); line-height: 1.5; }
+  .innov-method { background: var(--limewash); padding-block: clamp(3rem, 6vw, 5rem); }
+  .innov-method__head { max-width: 48rem; margin-bottom: 3rem; }
+  .innov-method__grid { display: grid; gap: clamp(1.5rem, 3vw, 2.5rem); grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 768px) { .innov-method__grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .innov-method__grid { grid-template-columns: repeat(4, 1fr); } }
+  .innov-method__item { position: relative; padding-top: 2rem; border-top: 2px solid var(--haldi); }
+  .innov-method__num { position: absolute; top: -0.75rem; left: 0; font-family: var(--font-display); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em; color: var(--haldi); background: var(--limewash); padding-right: 0.5rem; }
+  .innov-method__name { font-family: var(--font-display); font-size: clamp(1.125rem, 2vw, 1.375rem); font-weight: 700; color: var(--primary); margin-bottom: 0.5rem; letter-spacing: -0.01em; line-height: 1.2; }
+  .innov-method__desc { font-size: 0.875rem; line-height: 1.6; color: var(--fg-muted); }
+  .innov-documented { padding-block: clamp(3rem, 6vw, 5rem); }
+  .innov-documented__grid { display: grid; gap: clamp(2rem, 5vw, 4rem); align-items: center; grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 1024px) { .innov-documented__grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); } }
+  .innov-documented__label { display: inline-block; font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--forest); background: color-mix(in srgb, var(--forest) 8%, transparent); padding: 0.3125rem 0.75rem; border-radius: 0.1875rem; margin-bottom: 1rem; }
+  .innov-documented__title { font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2.25rem); font-weight: 700; letter-spacing: -0.01em; line-height: 1.2; margin-bottom: 1rem; text-wrap: balance; }
+  .innov-documented__body { font-size: 1rem; line-height: 1.7; color: var(--fg); max-width: 36rem; margin-bottom: 1.5rem; }
+  .innov-documented__links { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+  .innov-documented__image { position: relative; overflow: hidden; border-radius: 0.25rem; box-shadow: 0 4px 20px rgba(16, 47, 32, 0.1); }
+  .innov-documented__image img { width: 100%; height: auto; display: block; }
+  .innov-exploratory { background: var(--paper-warm); padding-block: clamp(3rem, 6vw, 5rem); }
+  .innov-exploratory__grid { display: grid; gap: clamp(2rem, 5vw, 4rem); align-items: center; grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 1024px) { .innov-exploratory__grid { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); } }
+  .innov-exploratory__label { display: inline-block; font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--haldi); background: color-mix(in srgb, var(--haldi) 12%, transparent); border: 1px solid color-mix(in srgb, var(--haldi) 30%, transparent); padding: 0.3125rem 0.75rem; border-radius: 0.1875rem; margin-bottom: 1rem; }
+  .innov-exploratory__title { font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2.25rem); font-weight: 700; letter-spacing: -0.01em; line-height: 1.2; margin-bottom: 1rem; text-wrap: balance; }
+  .innov-exploratory__body { font-size: 1rem; line-height: 1.7; color: var(--fg); max-width: 36rem; margin-bottom: 1.5rem; }
+  .innov-exploratory__statuses { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.5rem; }
+  .innov-exploratory__status { font-size: 0.8125rem; font-weight: 600; color: var(--forest); background: color-mix(in srgb, var(--haldi) 10%, transparent); padding: 0.375rem 0.75rem; border-radius: 0.1875rem; width: fit-content; }
+  .innov-exploratory__image { position: relative; overflow: hidden; border-radius: 0.25rem; background: var(--paper); box-shadow: 0 4px 20px rgba(16, 47, 32, 0.08); }
+  .innov-exploratory__image img { width: 100%; height: auto; display: block; }
+  .innov-exploratory__caption { padding: 0.75rem 1.25rem; font-size: 0.75rem; color: var(--fg-muted); border-top: 1px solid var(--border); font-style: italic; line-height: 1.5; }
+  .innov-cta { background: #102F20; color: var(--paper); padding-block: clamp(3rem, 6vw, 5rem); text-align: center; }
+  .innov-cta__eyebrow { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--haldi); margin-bottom: 1rem; }
+  .innov-cta__title { font-family: var(--font-display); font-size: clamp(1.75rem, 4vw, 3rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 1rem; text-wrap: balance; color: var(--paper); }
+  .innov-cta__sub { font-size: 1.0625rem; line-height: 1.6; color: var(--paper); opacity: 0.8; max-width: 36rem; margin: 0 auto 2rem; }
+  .innov-cta__actions { display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center; }
 </style>
 
-<!-- ============================================================
-     HERO — Where Tradition Meets Technology.
-     ============================================================ -->
-<section class="story-hero bg-limewash" aria-labelledby="innov-title">
+<section class="innov-hero" aria-labelledby="innov-title">
   <div class="container">
-    <nav class="breadcrumb" aria-label="Breadcrumb">
-      <a href="${relUrl('/', depth)}">Home</a><span>›</span>
-      <span>Innovation</span>
+    <nav class="breadcrumb" aria-label="Breadcrumb" style="margin-bottom: 1.5rem;">
+      <a href="${relUrl('/', depth)}" style="color: var(--paper); opacity: 0.6;">Home</a>
+      <span style="color: var(--paper); opacity: 0.4;">&rsaquo;</span>
+      <span style="color: var(--paper);">Innovation</span>
     </nav>
     <div class="innov-hero__grid" data-reveal>
       <div>
-        <span class="eyebrow">Research &amp; Innovation</span>
-        <h1 class="story-hero__title" id="innov-title">Where Tradition Meets Technology</h1>
-        <p class="story-hero__lead">
-          Gaurikrit's research direction explores how a natural material
-          understood by tradition can be developed with contemporary methods —
+        <span class="innov-hero__eyebrow">Research &amp; Innovation</span>
+        <h1 class="innov-hero__title" id="innov-title">Where Tradition Meets Technology</h1>
+        <p class="innov-hero__lead">
+          Gaurikrit&rsquo;s research direction explores how a natural material
+          understood by tradition can be developed with contemporary methods &mdash;
           into coatings, fuels, composites and building materials.
         </p>
-        <div style="margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 0.75rem;">
-          <a class="btn btn--primary" href="#focus-areas">The Five Focus Areas</a>
+        <div class="innov-hero__ctas">
+          <a class="btn btn--haldi" href="#focus-areas">The Five Focus Areas</a>
           <a class="btn btn--secondary" href="${relUrl('/sustainability/', depth)}">Sustainability</a>
         </div>
       </div>
       <figure class="innov-hero__composition">
-        ${ecoPic('innovation-research', [960, 1280, 1920, 2560], '(min-width: 1024px) 48vw, calc(100vw - 2.5rem)', 1280, 1280, 800, 'Illustrative material study — exploring the relationship between raw materials, processing concepts and finished applications. Not a photograph of a Gaurikrit facility or verified production line.', depth, 'loading="eager" fetchpriority="high" ')}
-        <figcaption>Illustrative material study &mdash; exploring the relationship between raw materials, processing concepts and finished applications. Not a photograph of a Gaurikrit facility or verified production line.</figcaption>
+        ${ecoPic('innovation-research', [960, 1280, 1920, 2560], '(min-width: 1024px) 40vw, calc(100vw - 2.5rem)', 1280, 1280, 800, 'Illustrative material study — exploring the relationship between raw materials, processing concepts and finished applications. Not a photograph of a Gaurikrit facility or verified production line.', depth, 'loading="eager" fetchpriority="high" ')}
+      </figure>
+    </div>
+    <p class="innov-hero__caption">
+      Illustrative material study &mdash; exploring the relationship between raw materials, processing concepts and finished applications. Not a photograph of a Gaurikrit facility or verified production line.
+    </p>
+  </div>
+</section>
+
+<section class="section section--paper innov-focus" id="focus-areas" aria-labelledby="focus-title">
+  <div class="container">
+    <div class="innov-focus__head section-heading section-heading--left" data-reveal>
+      <span class="section-heading__eyebrow">Focus Areas</span>
+      <h2 class="section-heading__title" id="focus-title">Five directions under exploration</h2>
+      <p class="section-heading__desc">
+        These are research directions &mdash; not proven accomplishments, patents or facilities.
+        Each explores how a natural material could serve a contemporary application.
+      </p>
+    </div>
+    <div class="innov-focus__grid" data-reveal-stagger>
+${focusItems}
+    </div>
+    <p class="innov-focus__disclaimer" data-reveal>
+      These focus areas represent research directions only. They are not presented as
+      proven accomplishments, completed research, operational capabilities or
+      commercially available products unless separately documented.
+    </p>
+  </div>
+</section>
+
+<section class="innov-method" id="method" aria-labelledby="method-title">
+  <div class="container">
+    <div class="innov-method__head section-heading section-heading--left" data-reveal>
+      <span class="section-heading__eyebrow">How we explore</span>
+      <h2 class="section-heading__title" id="method-title">Material-first, application-led</h2>
+      <p class="section-heading__desc">
+        Four principles guide how Gaurikrit approaches each research direction.
+      </p>
+    </div>
+    <div class="innov-method__grid" data-reveal-stagger>
+${methodGrid}
+    </div>
+  </div>
+</section>
+
+<section class="section section--paper innov-documented" id="documented" aria-labelledby="doc-title">
+  <div class="container">
+    <div class="innov-documented__grid" data-reveal>
+      <div>
+        <span class="innov-documented__label">Documented product family</span>
+        <h2 class="innov-documented__title" id="doc-title">Eco-Paints &mdash; where the direction became products</h2>
+        <p class="innov-documented__body">
+          The natural-coatings focus is the most developed: Prakritik Distemper
+          and Prakritik Emulsion are documented, specified products with real
+          client photography &mdash; the reference point for how a research
+          direction becomes a Gaurikrit family.
+        </p>
+        <div class="innov-documented__links">
+          <a class="btn btn--primary" href="${relUrl('/products/prakritik-distemper/', depth)}">Prakritik Distemper</a>
+          <a class="btn btn--secondary" href="${relUrl('/products/prakritik-emulsion/', depth)}">Prakritik Emulsion</a>
+          <a class="btn btn--outline" href="${relUrl('/products/', depth)}#eco-paints">Explore Eco-Paints</a>
+        </div>
+      </div>
+      <figure class="innov-documented__image">
+        ${ecoPic('eco-paints-pair', [640, 960, 1280, 1920], '(min-width: 1024px) 55vw, calc(100vw - 2.5rem)', 1280, 1280, 800, 'Prakritik Distemper and Emulsion paint packs — the documented Eco-Paints product family', depth)}
+        <figcaption style="padding: 0.75rem 1.25rem; font-size: 0.75rem; color: var(--fg-muted); border-top: 1px solid var(--border); font-style: italic;">
+          Prakritik Distemper and Emulsion &mdash; the documented Eco-Paints family.
+        </figcaption>
       </figure>
     </div>
   </div>
 </section>
 
-<!-- ============================================================
-     FOCUS AREAS — five horizontal rows
-     ============================================================ -->
-<section class="section section--paper" id="focus-areas" aria-labelledby="focus-title">
+<section class="innov-exploratory" id="exploratory" aria-labelledby="expl-title">
   <div class="container">
-    <div class="innov-section__head section-heading section-heading--left" data-reveal>
-      <span class="section-heading__eyebrow">Focus Areas</span>
-      <h2 class="section-heading__title" id="focus-title">Five directions under exploration</h2>
-      <p class="section-heading__desc">
-        These are FOCUS AREAS — research directions. They are not presented as
-        proven accomplishments, patents or facilities.
-      </p>
-    </div>
-    <div class="focus-rows" data-reveal-stagger>
-${focusRows}
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     METHOD — how Gaurikrit explores materials
-     ============================================================ -->
-<section class="section section--haldi-wash" id="method" aria-labelledby="method-title">
-  <div class="container">
-    <div class="innov-section__head section-heading section-heading--left" data-reveal>
-      <span class="section-heading__eyebrow">How we explore</span>
-      <h2 class="section-heading__title" id="method-title">Material-first, application-led</h2>
-    </div>
-    <div class="measure-list" data-reveal-stagger>
-${methodItems}
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     ECO-PAINTS CONTEXT — the documented research outcome
-     ============================================================ -->
-<section class="section section--paper" id="documented" aria-labelledby="doc-title">
-  <div class="container">
-    <article class="story-chapter" data-reveal>
+    <div class="innov-exploratory__grid" data-reveal>
       <div>
-        <span class="story-chapter__num" aria-hidden="true">01</span>
-        <span class="story-chapter__kicker">Documented outcome</span>
-      </div>
-      <div>
-        <h2 class="story-chapter__title" id="doc-title">Eco-Paints — where the direction became products</h2>
-        <div class="story-chapter__body">
-          <p>
-            The natural-coatings focus is the most developed: Prakritik
-            Distemper and Prakritik Emulsion are documented, specified
-            products — the reference point for how a research direction
-            becomes a Gaurikrit family.
-          </p>
+        <span class="innov-exploratory__label">Exploratory product directions</span>
+        <h2 class="innov-exploratory__title" id="expl-title">Futureline directions &mdash; not yet in production</h2>
+        <p class="innov-exploratory__body">
+          Beyond the documented Eco-Paints family, Gaurikrit explores additional
+          product directions from the same natural resource base. These are
+          Futureline directions &mdash; client-supplied artwork shows the intended
+          product concepts, but they are not yet in production.
+        </p>
+        <div class="innov-exploratory__statuses">
+          <span class="innov-exploratory__status">Bio-Briquettes: Futureline &middot; Not yet in production</span>
+          <span class="innov-exploratory__status">Eco Utility Products: Futureline &middot; Not yet in production</span>
         </div>
-        <figure class="story-chapter__visual">
-          ${ecoPic('eco-paints-pair', [640, 960, 1280, 1920], '(min-width: 1024px) 42vw, calc(100vw - 2.5rem)', 1280, 1280, 800, 'Prakritik Distemper and Emulsion paint packs — the documented Eco-Paints outcome', depth)}
-          <figcaption>Prakritik Distemper and Emulsion — the documented Eco-Paints family.</figcaption>
-        </figure>
-        <figure class="story-chapter__visual" style="margin-top: 2rem;">
-          ${ecoPic('showcase-innovation', [640, 960, 1254], '(min-width: 1024px) 42vw, calc(100vw - 2.5rem)', 960, 1254, 1254, 'Client-supplied material showcase — Prakritik Paint and dhoop cups shown together as an exploratory product direction. Bio-Briquettes and Eco Utility Products remain Futureline products, not yet in production.', depth)}
-          <figcaption>Client-supplied material showcase &mdash; an exploratory product direction. Bio-Briquettes and Eco Utility Products remain Futureline products and are not yet in production.</figcaption>
-        </figure>
-        <div style="margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 0.75rem;">
-          <a class="btn btn--secondary" href="${relUrl('/products/', depth)}#eco-paints">Explore Eco-Paints</a>
-          <a class="btn btn--outline" href="${relUrl('/why-prakritik/', depth)}">Why Prakritik</a>
+        <div class="innov-documented__links">
+          <a class="btn btn--outline" href="${relUrl('/products/', depth)}#bio-briquettes">Bio-Briquettes direction</a>
+          <a class="btn btn--outline" href="${relUrl('/products/', depth)}#utility-products">Eco Utility Products direction</a>
         </div>
       </div>
-    </article>
+      <figure class="innov-exploratory__image">
+        ${ecoPic('showcase-innovation', [640, 960, 1254], '(min-width: 1024px) 40vw, calc(100vw - 2.5rem)', 960, 1254, 1254, 'Client-supplied material showcase — Prakritik Paint and dhoop cups shown together as an exploratory product direction. Bio-Briquettes and Eco Utility Products remain Futureline products, not yet in production.', depth)}
+        <figcaption class="innov-exploratory__caption">
+          Client-supplied material showcase &mdash; an exploratory product direction.
+          Bio-Briquettes and Eco Utility Products remain Futureline products and
+          are not yet in production.
+        </figcaption>
+      </figure>
+    </div>
   </div>
 </section>
 
-<!-- ============================================================
-     CTA — Discuss a Collaboration
-     ============================================================ -->
-<section class="section section--forest" aria-labelledby="collab-title">
+<section class="innov-cta" aria-labelledby="collab-title">
   <div class="container">
-    <div class="why-cta" data-reveal>
-      <span class="why-cta__eyebrow">Collaboration</span>
-      <h2 class="why-cta__title" id="collab-title">Discuss a Collaboration</h2>
-      <p class="why-cta__sub">
-        Research programmes, institutions and sustainability partners —
+    <div data-reveal>
+      <span class="innov-cta__eyebrow">Collaboration</span>
+      <h2 class="innov-cta__title" id="collab-title">Discuss a Collaboration</h2>
+      <p class="innov-cta__sub">
+        Research programmes, institutions and sustainability partners &mdash;
         talk to Gaurikrit about material directions and collaboration.
       </p>
-      <div class="why-cta__actions">
+      <div class="innov-cta__actions">
         <a class="btn btn--haldi" href="${relUrl('/for-business/', depth)}">Become a Partner</a>
         <a class="btn btn--secondary" href="${relUrl('/contact/', depth)}">Contact Gaurikrit</a>
       </div>
@@ -5133,6 +5200,7 @@ ${methodItems}
 </section>
 `;
 }
+
 
 // ============================================================
 // 5. BUILD ORCHESTRATION
