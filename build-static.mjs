@@ -911,18 +911,11 @@ function homeBody(depth) {
         const mediaSpec = {
             'eco-paints':       { stem: 'eco-paints-pair', alt: 'Prakritik Distemper and Emulsion paint packs — the documented Eco-Paints family', widths: [640, 960, 1280, 1920], fb: 1280, w: 1280, h: 800 },
             'gocast-logs':      { stem: 'gocast-material', alt: 'Client-supplied cow-dung log material — the development direction for Cow-Dung Logs', widths: [640, 960, 1280], fb: 960, w: 960, h: 640 },
-            'bio-coal-logs':    { futureline: true },
-            'utility-products': { futureline: true },
+            'bio-coal-logs':    { stem: 'carousel-bio-briquettes', alt: 'Gaurikrit Bio-Briquettes — client-supplied product artwork. A Futureline product direction, not yet in production.', widths: [640, 960, 1280, 1920], fb: 1920, w: 1920, h: 1080 },
+            'utility-products': { stem: 'carousel-eco-utility-products', alt: 'Gaurikrit Eco Utility Products — client-supplied product artwork. A Futureline product direction, not yet in production.', widths: [640, 960, 1280, 1920], fb: 1920, w: 1920, h: 1080 },
         };
         const spec = mediaSpec[family.id];
-        const media = spec.futureline
-            ? `            <figure class="family__media family__media--futureline">
-                <div class="family__futureline-panel">
-                  <span class="status-badge status-badge--futureline" title="Futureline · Not yet in production">Futureline · Not yet in production</span>
-                  <p class="family__futureline-note">Product direction under exploration. Promotional artwork contains claims awaiting client approval.</p>
-                </div>
-              </figure>`
-            : `            <figure class="family__media family__media--photo">
+        const media = `            <figure class="family__media family__media--photo">
                 ${ecoPic(spec.stem, spec.widths, '(min-width: 768px) 45vw, calc(100vw - 2.5rem)', spec.fb, spec.w, spec.h, spec.alt, depth)}
             </figure>`;
         const themes = family.themes.map((t) => `              <li>${e(t)}</li>`).join('\n');
@@ -5018,7 +5011,7 @@ function innovationBody(depth) {
   .innov-focus__head { max-width: 48rem; margin-bottom: 3rem; }
   .innov-focus__grid { display: grid; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 0.25rem; overflow: hidden; }
   @media (min-width: 768px) { .innov-focus__grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (min-width: 1024px) { .innov-focus__grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (min-width: 1024px) { .innov-focus__grid { grid-template-columns: repeat(6, 1fr); } .innov-focus__item:nth-child(-n+3) { grid-column: span 2; } .innov-focus__item:nth-child(4) { grid-column: 2 / span 2; } .innov-focus__item:nth-child(5) { grid-column: span 2; } }
   .innov-focus__item { background: var(--paper); padding: clamp(1.75rem, 3vw, 2.5rem); display: flex; flex-direction: column; gap: 0.75rem; transition: background-color var(--dur) var(--ease); }
   .innov-focus__item:hover { background: var(--paper-warm); }
   .innov-focus__num { font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 3.75rem); font-weight: 700; color: var(--haldi); line-height: 1; letter-spacing: -0.03em; }
@@ -5044,16 +5037,16 @@ function innovationBody(depth) {
   .innov-documented__image { position: relative; overflow: hidden; border-radius: 0.25rem; box-shadow: 0 4px 20px rgba(16, 47, 32, 0.1); }
   .innov-documented__image img { width: 100%; height: auto; display: block; }
   .innov-exploratory { background: var(--paper-warm); padding-block: clamp(3rem, 6vw, 5rem); }
-  .innov-exploratory__grid { display: grid; gap: clamp(2rem, 5vw, 4rem); align-items: center; grid-template-columns: minmax(0, 1fr); }
-  @media (min-width: 1024px) { .innov-exploratory__grid { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); } }
-  .innov-exploratory__label { display: inline-block; font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--haldi); background: color-mix(in srgb, var(--haldi) 12%, transparent); border: 1px solid color-mix(in srgb, var(--haldi) 30%, transparent); padding: 0.3125rem 0.75rem; border-radius: 0.1875rem; margin-bottom: 1rem; }
-  .innov-exploratory__title { font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2.25rem); font-weight: 700; letter-spacing: -0.01em; line-height: 1.2; margin-bottom: 1rem; text-wrap: balance; }
-  .innov-exploratory__body { font-size: 1rem; line-height: 1.7; color: var(--fg); max-width: 36rem; margin-bottom: 1.5rem; }
-  .innov-exploratory__statuses { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.5rem; }
-  .innov-exploratory__status { font-size: 0.8125rem; font-weight: 600; color: var(--forest); background: color-mix(in srgb, var(--haldi) 10%, transparent); padding: 0.375rem 0.75rem; border-radius: 0.1875rem; width: fit-content; }
-  .innov-exploratory__image { position: relative; overflow: hidden; border-radius: 0.25rem; background: var(--paper); box-shadow: 0 4px 20px rgba(16, 47, 32, 0.08); }
-  .innov-exploratory__image img { width: 100%; height: auto; display: block; }
-  .innov-exploratory__caption { padding: 0.75rem 1.25rem; font-size: 0.75rem; color: var(--fg-muted); border-top: 1px solid var(--border); font-style: italic; line-height: 1.5; }
+  .innov-exploratory__head { max-width: 48rem; margin-bottom: 2.5rem; }
+  .innov-exploratory__cards { display: grid; gap: clamp(1.5rem, 3vw, 2.5rem); grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 768px) { .innov-exploratory__cards { grid-template-columns: repeat(2, 1fr); } }
+  .innov-exploratory__card { background: var(--paper); border-radius: 0.25rem; overflow: hidden; box-shadow: 0 2px 12px rgba(16, 47, 32, 0.06); display: flex; flex-direction: column; }
+  .innov-exploratory__card-figure { aspect-ratio: 16 / 9; overflow: hidden; background: var(--paper-warm); }
+  .innov-exploratory__card-figure img { width: 100%; height: 100%; object-fit: contain; display: block; }
+  .innov-exploratory__card-body { padding: clamp(1.25rem, 2vw, 1.75rem); display: flex; flex-direction: column; gap: 0.75rem; }
+  .innov-exploratory__card-name { font-family: var(--font-display); font-size: clamp(1.125rem, 2vw, 1.375rem); font-weight: 700; color: var(--primary); letter-spacing: -0.01em; }
+  .innov-exploratory__card-desc { font-size: 0.875rem; line-height: 1.6; color: var(--fg-muted); }
+  .innov-exploratory__card-status { font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--forest); background: color-mix(in srgb, var(--haldi) 10%, transparent); padding: 0.25rem 0.625rem; border-radius: 0.1875rem; width: fit-content; border: 1px solid color-mix(in srgb, var(--haldi) 30%, transparent); }
   .innov-cta { background: var(--forest-deep); color: var(--paper); padding-block: clamp(3rem, 6vw, 5rem); text-align: center; }
   .innov-cta__eyebrow { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--haldi); margin-bottom: 1rem; }
   .innov-cta__title { font-family: var(--font-display); font-size: clamp(1.75rem, 4vw, 3rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 1rem; text-wrap: balance; color: var(--paper); }
@@ -5158,33 +5151,44 @@ ${methodGrid}
 
 <section class="innov-exploratory" id="exploratory" aria-labelledby="expl-title">
   <div class="container">
-    <div class="innov-exploratory__grid" data-reveal>
-      <div>
-        <span class="innov-exploratory__label">Exploratory product directions</span>
-        <h2 class="innov-exploratory__title" id="expl-title">Futureline directions &mdash; not yet in production</h2>
-        <p class="innov-exploratory__body">
-          Beyond the documented Eco-Paints family, Gaurikrit explores additional
-          product directions from the same natural resource base. These are
-          Futureline directions &mdash; client-supplied artwork shows the intended
-          product concepts, but they are not yet in production.
-        </p>
-        <div class="innov-exploratory__statuses">
-          <span class="innov-exploratory__status">Bio-Briquettes: Futureline &middot; Not yet in production</span>
-          <span class="innov-exploratory__status">Eco Utility Products: Futureline &middot; Not yet in production</span>
+    <div class="innov-exploratory__head section-heading section-heading--left" data-reveal>
+      <span class="section-heading__eyebrow">Futureline</span>
+      <h2 class="section-heading__title" id="expl-title">Futureline directions &mdash; not yet in production</h2>
+      <p class="section-heading__desc">
+        Beyond the documented Eco-Paints family, Gaurikrit explores additional
+        product directions. These are Futureline directions &mdash; not yet in production.
+      </p>
+    </div>
+    <div class="innov-exploratory__cards" data-reveal-stagger>
+      <article class="innov-exploratory__card">
+        <figure class="innov-exploratory__card-figure">
+          ${ecoPic('carousel-bio-briquettes', [640, 960, 1280], '(min-width: 768px) 45vw, calc(100vw - 2.5rem)', 1280, 1920, 1080, 'Gaurikrit Bio-Briquettes — client-supplied product artwork for a Futureline biomass fuel direction, not yet in production', depth)}
+        </figure>
+        <div class="innov-exploratory__card-body">
+          <span class="innov-exploratory__card-status">Futureline · Not yet in production</span>
+          <h3 class="innov-exploratory__card-name">Bio-Briquettes</h3>
+          <p class="innov-exploratory__card-desc">
+            A biomass-based fuel direction exploring how natural material streams
+            could serve fuel applications. Not yet in production.
+          </p>
+          <a class="btn btn--outline" href="${relUrl('/products/', depth)}#bio-briquettes">Explore the direction</a>
         </div>
-        <div class="innov-documented__links">
-          <a class="btn btn--outline" href="${relUrl('/products/', depth)}#bio-briquettes">Bio-Briquettes direction</a>
-          <a class="btn btn--outline" href="${relUrl('/products/', depth)}#utility-products">Eco Utility Products direction</a>
+      </article>
+      <article class="innov-exploratory__card">
+        <figure class="innov-exploratory__card-figure">
+          ${ecoPic('carousel-eco-utility-products', [640, 960, 1280], '(min-width: 768px) 45vw, calc(100vw - 2.5rem)', 1280, 1920, 1080, 'Gaurikrit Eco Utility Products — client-supplied product artwork for a Futureline utility products direction, not yet in production', depth)}
+        </figure>
+        <div class="innov-exploratory__card-body">
+          <span class="innov-exploratory__card-status">Futureline · Not yet in production</span>
+          <h3 class="innov-exploratory__card-name">Eco Utility Products</h3>
+          <p class="innov-exploratory__card-desc">
+            Practical daily-use products from naturally derived materials &mdash;
+            a plastic-reducing direction for homes, gardens and everyday routines.
+            Not yet in production.
+          </p>
+          <a class="btn btn--outline" href="${relUrl('/products/', depth)}#utility-products">Explore the direction</a>
         </div>
-      </div>
-      <figure class="innov-exploratory__image">
-        ${ecoPic('showcase-innovation', [640, 960, 1254], '(min-width: 1024px) 40vw, calc(100vw - 2.5rem)', 960, 1254, 1254, 'Client-supplied material showcase — Prakritik Paint and dhoop cups shown together as an exploratory product direction. Bio-Briquettes and Eco Utility Products remain Futureline products, not yet in production.', depth)}
-        <figcaption class="innov-exploratory__caption">
-          Client-supplied material showcase &mdash; an exploratory product direction.
-          Bio-Briquettes and Eco Utility Products remain Futureline products and
-          are not yet in production.
-        </figcaption>
-      </figure>
+      </article>
     </div>
   </div>
 </section>

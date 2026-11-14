@@ -572,6 +572,25 @@ ul, ol { list-style: none; }
   border-bottom-color: var(--border);
   box-shadow: var(--shadow-soft);
 }
+/* Dark-hero pages: light header text when transparent (not scrolled) */
+.page-innovation .site-header:not([data-scrolled="true"]) .brand__name,
+.page-innovation .site-header:not([data-scrolled="true"]) .brand__sub,
+.page-innovation .site-header:not([data-scrolled="true"]) .site-nav__link,
+.page-innovation .site-header:not([data-scrolled="true"]) .skip-link {
+  color: var(--paper);
+}
+.page-innovation .site-header:not([data-scrolled="true"]) .site-nav__link:hover {
+  color: var(--haldi);
+}
+.page-innovation .site-header:not([data-scrolled="true"]) .site-nav__link::after {
+  background: var(--haldi);
+}
+.page-innovation .site-header:not([data-scrolled="true"]) .btn--secondary {
+  background: transparent; border-color: var(--paper); color: var(--paper);
+}
+.page-innovation .site-header:not([data-scrolled="true"]) .btn--secondary:hover {
+  background: var(--paper); color: var(--forest);
+}
 
 .site-header__inner {
   display: flex;
