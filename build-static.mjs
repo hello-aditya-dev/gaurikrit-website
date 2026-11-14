@@ -3190,6 +3190,22 @@ function aboutBody(depth) {
     .story-section--alt-reverse .story-section__copy { order: 2; }
     .story-section--alt-reverse .story-section__image { order: 1; margin-top: 0; }
   }
+  /* Forest section scoped classes (V38: explicit contrast — no opacity dimming) */
+  .story-section__inner--forest { color: var(--paper); }
+  .story-section__num--forest { color: var(--haldi); }
+  .story-section__title--forest { color: var(--paper); }
+  .story-section__body--forest { color: var(--paper); }
+  .story-section__body--forest p { color: var(--paper); }
+  .story-section__body--forest strong,
+  .story-section__body--forest em { color: var(--paper); }
+  .story-section__sequence {
+    text-align: center; font-weight: 600; font-size: 1.125em; line-height: 1.6;
+    color: var(--paper); padding: 1rem 0; border-top: 1px solid color-mix(in srgb, var(--paper) 20%, transparent); border-bottom: 1px solid color-mix(in srgb, var(--paper) 20%, transparent);
+  }
+  @media (max-width: 768px) {
+    .story-section__sequence { font-size: 0.875em; line-height: 1.8; }
+  }
+
   .story-closing { padding-block: clamp(3rem, 6vw, 5rem); text-align: center; }
   .story-closing__statement {
     font-family: var(--font-display); font-size: clamp(1.25rem, 3vw, 2rem);
