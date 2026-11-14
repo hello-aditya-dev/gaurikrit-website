@@ -237,7 +237,7 @@ $methodItems = [
 
   /* ===== 06. CTA — Collaboration ===== */
   .innov-cta {
-    background: #102F20; color: var(--paper);
+    background: var(--forest-deep); color: var(--paper);
     padding-block: clamp(3rem, 6vw, 5rem); text-align: center;
   }
   .innov-cta__eyebrow {

@@ -189,33 +189,33 @@ $helpfulInclude = [
         </div>
       </div>
       <div class="biz-hero__art" aria-hidden="true">
-        <div class="biz-hero__ecosystem" role="img" aria-label="The Gaurikrit material ecosystem — Eco-Paints, Cow-Dung Logs, Bio-Briquettes and Eco Utility Products client artwork">
+        <div class="biz-hero__ecosystem" role="img" aria-label="The Gaurikrit material ecosystem — Eco-Paints, Cow-Dung Logs, Bio-Briquettes (Futureline) and Eco Utility Products (Futureline)">
           <figure class="biz-hero__tile">
             <picture>
-              <source type="image/avif" srcset="<?= eco_srcset('carousel-eco-paints', [640, 960, 1280]) ?>" sizes="(min-width: 1024px) 34vw, calc(100vw - 2.5rem)">
-              <source type="image/webp" srcset="<?= eco_srcset_webp('carousel-eco-paints', [640, 960, 1280]) ?>" sizes="(min-width: 1024px) 34vw, calc(100vw - 2.5rem)">
-              <img src="<?= asset_url('/assets/images/ecosystem/carousel-eco-paints-1280.jpg') ?>" alt="" width="1280" height="720" loading="lazy" decoding="async">
+              <source type="image/avif" srcset="<?= eco_srcset('eco-paints-pair', [640, 960, 1280]) ?>" sizes="(min-width: 1024px) 34vw, calc(100vw - 2.5rem)">
+              <source type="image/webp" srcset="<?= eco_srcset_webp('eco-paints-pair', [640, 960, 1280]) ?>" sizes="(min-width: 1024px) 34vw, calc(100vw - 2.5rem)">
+              <img src="<?= asset_url('/assets/images/ecosystem/eco-paints-pair-1280.jpg') ?>" alt="" width="1280" height="800" loading="lazy" decoding="async">
             </picture>
           </figure>
           <figure class="biz-hero__tile">
             <picture>
-              <source type="image/avif" srcset="<?= eco_srcset('carousel-cow-dung-logs', [640, 960, 1280]) ?>" sizes="(min-width: 1024px) 34vw, calc(100vw - 2.5rem)">
-              <source type="image/webp" srcset="<?= eco_srcset_webp('carousel-cow-dung-logs', [640, 960, 1280]) ?>" sizes="(min-width: 1024px) 34vw, calc(100vw - 2.5rem)">
-              <img src="<?= asset_url('/assets/images/ecosystem/carousel-cow-dung-logs-1280.jpg') ?>" alt="" width="1280" height="720" loading="lazy" decoding="async">
+              <source type="image/avif" srcset="<?= eco_srcset('gocast-material', [640, 960]) ?>" sizes="(min-width: 1024px) 34vw, calc(100vw - 2.5rem)">
+              <source type="image/webp" srcset="<?= eco_srcset_webp('gocast-material', [640, 960]) ?>" sizes="(min-width: 1024px) 34vw, calc(100vw - 2.5rem)">
+              <img src="<?= asset_url('/assets/images/ecosystem/gocast-material-960.jpg') ?>" alt="" width="960" height="640" loading="lazy" decoding="async">
             </picture>
           </figure>
           <figure class="biz-hero__tile">
             <picture>
-              <source type="image/avif" srcset="<?= eco_srcset('carousel-bio-briquettes', [640, 960, 1280]) ?>" sizes="(min-width: 1024px) 34vw, calc(100vw - 2.5rem)">
-              <source type="image/webp" srcset="<?= eco_srcset_webp('carousel-bio-briquettes', [640, 960, 1280]) ?>" sizes="(min-width: 1024px) 34vw, calc(100vw - 2.5rem)">
-              <img src="<?= asset_url('/assets/images/ecosystem/carousel-bio-briquettes-1280.jpg') ?>" alt="" width="1280" height="720" loading="lazy" decoding="async">
+              <source type="image/avif" srcset="<?= eco_srcset('gbp-bio-briquettes', [640, 960, 1024]) ?>" sizes="(min-width: 1024px) 34vw, calc(100vw - 2.5rem)">
+              <source type="image/webp" srcset="<?= eco_srcset_webp('gbp-bio-briquettes', [640, 960, 1024]) ?>" sizes="(min-width: 1024px) 34vw, calc(100vw - 2.5rem)">
+              <img src="<?= asset_url('/assets/images/ecosystem/gbp-bio-briquettes-1024.jpg') ?>" alt="" width="1024" height="1024" loading="lazy" decoding="async">
             </picture>
           </figure>
           <figure class="biz-hero__tile">
             <picture>
-              <source type="image/avif" srcset="<?= eco_srcset('carousel-eco-utility-products', [640, 960, 1280]) ?>" sizes="(min-width: 1024px) 34vw, calc(100vw - 2.5rem)">
-              <source type="image/webp" srcset="<?= eco_srcset_webp('carousel-eco-utility-products', [640, 960, 1280]) ?>" sizes="(min-width: 1024px) 34vw, calc(100vw - 2.5rem)">
-              <img src="<?= asset_url('/assets/images/ecosystem/carousel-eco-utility-products-1280.jpg') ?>" alt="" width="1280" height="720" loading="lazy" decoding="async">
+              <source type="image/avif" srcset="<?= eco_srcset('showcase-utility', [640, 960, 1022]) ?>" sizes="(min-width: 1024px) 34vw, calc(100vw - 2.5rem)">
+              <source type="image/webp" srcset="<?= eco_srcset_webp('showcase-utility', [640, 960, 1022]) ?>" sizes="(min-width: 1024px) 34vw, calc(100vw - 2.5rem)">
+              <img src="<?= asset_url('/assets/images/ecosystem/showcase-utility-1022.jpg') ?>" alt="" width="1022" height="1095" loading="lazy" decoding="async">
             </picture>
           </figure>
         </div>

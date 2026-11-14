@@ -424,18 +424,18 @@ $HERO_SIZES = '(min-width: 1200px) 58vw, (min-width: 900px) 50vw, calc(100vw - 2
       // (formerly GoCast Logs) and "Bio-Briquettes" (formerly Bio-Coal
       // Logs) — see data.php and ASSET_PROVENANCE.md.
       $familyMedia = [
-          'eco-paints'        => ['stem' => 'carousel-eco-paints', 'ladder' => [640, 960, 1280, 1920],
-                                  'w' => 1920, 'h' => 1080,
-                                  'alt' => 'Gaurikrit Eco-Paints — Prakritik Paint artwork, the documented product family'],
-          'cow-dung-logs'     => ['stem' => 'carousel-cow-dung-logs', 'ladder' => [640, 960, 1280],
-                                  'w' => 1672, 'h' => 941,
-                                  'alt' => 'Gaurikrit Cow-Dung Logs — premium biomass fuel artwork'],
-          'bio-briquettes'    => ['stem' => 'carousel-bio-briquettes', 'ladder' => [640, 960, 1280, 1920],
-                                  'w' => 1920, 'h' => 1080,
-                                  'alt' => 'Gaurikrit Bio-Briquettes — premium renewable biomass fuel artwork'],
-          'utility-products'  => ['stem' => 'carousel-eco-utility-products', 'ladder' => [640, 960, 1280, 1920],
-                                  'w' => 1920, 'h' => 1080,
-                                  'alt' => 'Gaurikrit Eco Utility Products — dhoop cups, cow-dung diyas, biodegradable plates and eco glasses artwork'],
+          'eco-paints'        => ['stem' => 'eco-paints-pair', 'ladder' => [640, 960, 1280, 1920],
+                                  'w' => 1280, 'h' => 800,
+                                  'alt' => 'Prakritik Distemper and Emulsion paint packs — the documented Eco-Paints family'],
+          'cow-dung-logs'     => ['stem' => 'gocast-material', 'ladder' => [640, 960, 1280],
+                                  'w' => 960, 'h' => 640,
+                                  'alt' => 'Client-supplied cow-dung log material — the development direction for Cow-Dung Logs'],
+          'bio-briquettes'    => ['stem' => 'gbp-bio-briquettes', 'ladder' => [640, 960, 1024],
+                                  'w' => 1024, 'h' => 1024,
+                                  'alt' => 'Client-supplied Bio-Briquettes product poster — a Futureline product direction, not yet in production'],
+          'utility-products'  => ['stem' => 'showcase-utility', 'ladder' => [640, 960, 1022],
+                                  'w' => 1022, 'h' => 1095,
+                                  'alt' => 'Client-supplied Eco Utility Products showcase — dhoop cups and cow-dung diyas. A Futureline product direction, not yet in production.'],
       ];
       foreach ($FAMILIES as $family): ?>
         <article class="family" id="family-<?= e($family['id']) ?>">

@@ -696,6 +696,7 @@ ${subLinks}
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script>document.documentElement.className += ' js-enabled';</script>
     <link rel="icon" href="${faviconHref}" sizes="any">
     <link rel="icon" href="${assetUrl('/favicon-32x32.png', depth)}" type="image/png" sizes="32x32">
     <link rel="icon" href="${assetUrl('/favicon-16x16.png', depth)}" type="image/png" sizes="16x16">
@@ -909,10 +910,10 @@ function homeBody(depth) {
         // (formerly GoCast Logs) and "Bio-Briquettes" (formerly Bio-Coal
         // Logs) — see data.php and ASSET_PROVENANCE.md.
         const mediaSpec = {
-            'eco-paints':       { stem: 'carousel-eco-paints', alt: 'Gaurikrit Eco-Paints — Prakritik Paint artwork, the documented product family', widths: [640, 960, 1280, 1920], fb: 1920, w: 1920, h: 1080 },
-            'gocast-logs':      { stem: 'carousel-cow-dung-logs', alt: 'Gaurikrit Cow-Dung Logs — premium biomass fuel artwork', widths: [640, 960, 1280], fb: 1280, w: 1672, h: 941 },
-            'bio-coal-logs':    { stem: 'carousel-bio-briquettes', alt: 'Gaurikrit Bio-Briquettes — premium renewable biomass fuel artwork', widths: [640, 960, 1280, 1920], fb: 1920, w: 1920, h: 1080 },
-            'utility-products': { stem: 'carousel-eco-utility-products', alt: 'Gaurikrit Eco Utility Products — dhoop cups, cow-dung diyas, biodegradable plates and eco glasses artwork', widths: [640, 960, 1280, 1920], fb: 1920, w: 1920, h: 1080 },
+            'eco-paints':       { stem: 'eco-paints-pair', alt: 'Prakritik Distemper and Emulsion paint packs — the documented Eco-Paints family', widths: [640, 960, 1280, 1920], fb: 1280, w: 1280, h: 800 },
+            'gocast-logs':      { stem: 'gocast-material', alt: 'Client-supplied cow-dung log material — the development direction for Cow-Dung Logs', widths: [640, 960, 1280], fb: 960, w: 960, h: 640 },
+            'bio-coal-logs':    { stem: 'gbp-bio-briquettes', alt: 'Client-supplied Bio-Briquettes product poster — a Futureline product direction, not yet in production', widths: [640, 960, 1024], fb: 1024, w: 1024, h: 1024 },
+            'utility-products': { stem: 'showcase-utility', alt: 'Client-supplied Eco Utility Products showcase — dhoop cups and cow-dung diyas. A Futureline product direction, not yet in production.', widths: [640, 960, 1022], fb: 1022, w: 1022, h: 1095 },
         };
         const spec = mediaSpec[family.id];
         const media = `            <figure class="family__media family__media--photo">
@@ -3456,14 +3457,14 @@ function forBusinessBody(depth) {
     // V23: four client-supplied product artworks in a 2x2 mat grid —
     // the same official product posters as the hero carousel.
     const bizTiles = [
-        'carousel-eco-paints',
-        'carousel-cow-dung-logs',
-        'carousel-bio-briquettes',
-        'carousel-eco-utility-products',
+        { stem: 'eco-paints-pair', w: 1280, h: 800 },
+        { stem: 'gocast-material', w: 960, h: 640 },
+        { stem: 'gbp-bio-briquettes', w: 1024, h: 1024 },
+        { stem: 'showcase-utility', w: 1022, h: 1095 },
     ];
-    const bizHeroPic = `<div class="biz-hero__ecosystem" role="img" aria-label="The Gaurikrit material ecosystem — Eco-Paints, Cow-Dung Logs, Bio-Briquettes and Eco Utility Products client artwork">
-${bizTiles.map((stem) => `          <figure class="biz-hero__tile">
-            ${ecoPic(stem, [640, 960, 1280], '(min-width: 1024px) 34vw, calc(100vw - 2.5rem)', 1280, 1280, 720, '', depth)}
+    const bizHeroPic = `<div class="biz-hero__ecosystem" role="img" aria-label="The Gaurikrit material ecosystem — Eco-Paints, Cow-Dung Logs, Bio-Briquettes (Futureline) and Eco Utility Products (Futureline)">
+${bizTiles.map((t) => `          <figure class="biz-hero__tile">
+            ${ecoPic(t.stem, [640, 960], '(min-width: 1024px) 34vw, calc(100vw - 2.5rem)', 960, t.w, t.h, '', depth)}
           </figure>`).join('\n')}
         </div>`;
 
@@ -5047,7 +5048,7 @@ function innovationBody(depth) {
   .innov-exploratory__image { position: relative; overflow: hidden; border-radius: 0.25rem; background: var(--paper); box-shadow: 0 4px 20px rgba(16, 47, 32, 0.08); }
   .innov-exploratory__image img { width: 100%; height: auto; display: block; }
   .innov-exploratory__caption { padding: 0.75rem 1.25rem; font-size: 0.75rem; color: var(--fg-muted); border-top: 1px solid var(--border); font-style: italic; line-height: 1.5; }
-  .innov-cta { background: #102F20; color: var(--paper); padding-block: clamp(3rem, 6vw, 5rem); text-align: center; }
+  .innov-cta { background: var(--forest-deep); color: var(--paper); padding-block: clamp(3rem, 6vw, 5rem); text-align: center; }
   .innov-cta__eyebrow { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--haldi); margin-bottom: 1rem; }
   .innov-cta__title { font-family: var(--font-display); font-size: clamp(1.75rem, 4vw, 3rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 1rem; text-wrap: balance; color: var(--paper); }
   .innov-cta__sub { font-size: 1.0625rem; line-height: 1.6; color: var(--paper); opacity: 0.8; max-width: 36rem; margin: 0 auto 2rem; }
