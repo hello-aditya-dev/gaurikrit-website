@@ -139,7 +139,7 @@ $hasBrochure = is_file($brochurePath);
         Brochure
       </span>
       <hr class="dl-hero__rule">
-      <h1 class="dl-hero__title" id="dl-title">Prakritik Paint brochure </h1>
+      <h1 class="dl-hero__title" id="dl-title">Prakritik Paint brochure</h1>
       <p class="dl-hero__sub">
         Browse the supplied Prakritik Paint brochure or download a copy.
       </p>
@@ -168,7 +168,7 @@ $hasBrochure = is_file($brochurePath);
         <?php if ($hasBrochure): ?>
           <div data-brochure-if-available>
             <span class="brochure__detail-eyebrow">Current edition</span>
-            <h2 class="brochure__detail-title">Prakritik Paint — product brochure </h2>
+            <h2 class="brochure__detail-title">Prakritik Paint — product brochure</h2>
             <p class="brochure__detail-desc">
               The brochure covers both Prakritik Distemper and Prakritik Emulsion:
               pack sizes, listed specifications, finish, drying time, coverage,
@@ -201,7 +201,7 @@ $hasBrochure = is_file($brochurePath);
         <?php else: ?>
           <div data-brochure-if-missing>
             <span class="brochure__detail-eyebrow">Brochure pending</span>
-            <h2 class="brochure__detail-title">The current brochure is not yet published here </h2>
+            <h2 class="brochure__detail-title">The current brochure is not yet published here</h2>
             <p class="brochure__detail-desc">
               Please contact Gaurikrit for a copy of the product brochure.
             </p>

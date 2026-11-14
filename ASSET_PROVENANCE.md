@@ -616,9 +616,15 @@ tile."
 ### V29 — Complete client asset integration + Story1.1 Our Story page
 
 **New client assets (2026-11-14 archive)**: 27 entries verified (25 images +
-2 docx). PNG originals converted to WebP quality 95 for delivery; original
-SHA-256 hashes recorded in `ASSET_MANIFEST.csv`. All originals preserved in
-`source-assets/client-originals/2026-11-14-update/`.
+2 docx). The delivered pack contains WebP quality-95 derivatives of the
+original PNG files (not byte-identical originals). The original PNG byte
+streams are NOT in this repository. Original filenames and SHA-256 hashes
+are recorded in `source-assets/client-originals/2026-11-14-update/ASSET_MANIFEST.csv`
+(copied from the client pack). JPEG and existing WebP files were copied
+byte-for-byte unchanged. Both DOCX files were copied byte-for-byte unchanged.
+The WebP derivatives in `source-assets/client-originals/2026-11-14-update/`
+are the highest-quality available sources for the new standalone images;
+they are optimized derivatives, not original PNGs.
 
 **Homepage changes**:
 - Removed "Eco-Paints, documented end to end" section (homepage only)

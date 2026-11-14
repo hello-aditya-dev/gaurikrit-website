@@ -598,7 +598,7 @@ $HERO_SIZES = '(min-width: 1200px) 58vw, (min-width: 900px) 50vw, calc(100vw - 2
   <div class="container">
     <div class="circular-section__head section-heading section-heading--left" data-reveal>
       <span class="section-heading__eyebrow">The Circular Model</span>
-      <h2 class="section-heading__title" id="circular-title">A Circular Material Direction </h2>
+      <h2 class="section-heading__title" id="circular-title">A Circular Material Direction</h2>
       <p class="section-heading__desc">
         The stages above repeat as one continuous cycle: the resource enters,
         is developed, becomes useful products &mdash; and further material
@@ -619,18 +619,14 @@ $HERO_SIZES = '(min-width: 1200px) 58vw, (min-width: 900px) 50vw, calc(100vw - 2
     <div class="vision-mission__grid">
       <div class="vision-mission__col">
         <span class="vision-mission__eyebrow">Vision</span>
-        <h2 class="vision-mission__title" id="vision-title">
-          A circular-economy company in the making
-        </h2>
+        <h2 class="vision-mission__title" id="vision-title">A circular-economy company in the making</h2>
         <p class="vision-mission__text">
           <?= e($COMPANY['vision']) ?>
         </p>
       </div>
       <div class="vision-mission__col vision-mission__col--mission">
         <span class="vision-mission__eyebrow">Mission</span>
-        <h2 class="vision-mission__title">
-          Practical alternatives, responsibly made
-        </h2>
+        <h2 class="vision-mission__title">Practical alternatives, responsibly made</h2>
         <p class="vision-mission__text">
           To develop practical, accessible and environmentally responsible
           material solutions &mdash; and to evaluate every direction for its

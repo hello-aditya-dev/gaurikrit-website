@@ -1456,7 +1456,7 @@ ${familiesMarkup}
   <div class="container">
     <div class="circular-section__head section-heading section-heading--left" data-reveal>
       <span class="section-heading__eyebrow">The Circular Model</span>
-      <h2 class="section-heading__title" id="circular-title">A Circular Material Direction </h2>
+      <h2 class="section-heading__title" id="circular-title">A Circular Material Direction</h2>
       <p class="section-heading__desc">
         The stages above repeat as one continuous cycle: the resource enters,
         is developed, becomes useful products &mdash; and further material
@@ -1477,18 +1477,14 @@ ${familiesMarkup}
     <div class="vision-mission__grid">
       <div class="vision-mission__col">
         <span class="vision-mission__eyebrow">Vision</span>
-        <h2 class="vision-mission__title" id="vision-title">
-          A circular-economy company in the making
-        </h2>
+        <h2 class="vision-mission__title" id="vision-title">A circular-economy company in the making</h2>
         <p class="vision-mission__text">
           ${e(COMPANY.vision)}
         </p>
       </div>
       <div class="vision-mission__col vision-mission__col--mission">
         <span class="vision-mission__eyebrow">Mission</span>
-        <h2 class="vision-mission__title">
-          Practical alternatives, responsibly made
-        </h2>
+        <h2 class="vision-mission__title">Practical alternatives, responsibly made</h2>
         <p class="vision-mission__text">
           To develop practical, accessible and environmentally responsible
           material solutions &mdash; and to evaluate every direction for its
@@ -1841,7 +1837,7 @@ ${themeList}
       <div class="products-hero__lockup" data-reveal>
         <span class="eyebrow"><span class="products-hero__eyebrow-dot" aria-hidden="true"></span>The Gaurikrit Product Ecosystem</span>
         <hr class="products-hero__rule">
-        <h1 class="products-hero__title" id="products-hero-title">One natural resource. Multiple useful applications </h1>
+        <h1 class="products-hero__title" id="products-hero-title">One Natural Resource, Multiple Useful Applications</h1>
         <p class="products-hero__sub">
           Cow dung is the shared material beginning. Gaurikrit develops it in
           four directions — Eco-Paints is the documented family; Cow-Dung Logs,
@@ -1862,7 +1858,7 @@ ${themeList}
   <div class="container">
     <div class="section-heading section-heading--left" data-reveal style="max-width: 48rem; margin-bottom: 1.5rem;">
       <span class="section-heading__eyebrow">Product Directions</span>
-      <h2 class="section-heading__title" id="ecosystem-banner-title" style="font-size: clamp(1.5rem, 3vw, 2rem);">The Gaurikrit product range </h2>
+      <h2 class="section-heading__title" id="ecosystem-banner-title" style="font-size: clamp(1.5rem, 3vw, 2rem);">The Gaurikrit product range</h2>
       <p class="section-heading__desc">
         All four Gaurikrit product directions in one view — from the
         documented Eco-Paints family to the Futureline directions still
@@ -1937,9 +1933,7 @@ ${themeList}
       </figure>
       <div class="product-chapter__copy">
         <span class="product-chapter__eyebrow">Eco-Paints — Distemper</span>
-        <h2 class="product-chapter__name" id="distemper-chapter-title">
-          ${e(distemper.name)}
-        </h2>
+        <h2 class="product-chapter__name" id="distemper-chapter-title">${e(distemper.name)}</h2>
         <p class="product-chapter__desc">
           ${e(distemper.descriptor)}. A paint listed for
           interior and exterior walls. Supplied in ${e(distemper.packagingShort)} packs.
@@ -1989,9 +1983,7 @@ ${themeList}
       </figure>
       <div class="product-chapter__copy">
         <span class="product-chapter__eyebrow">Eco-Paints — Emulsion</span>
-        <h2 class="product-chapter__name" id="emulsion-chapter-title">
-          ${e(emulsion.name)}
-        </h2>
+        <h2 class="product-chapter__name" id="emulsion-chapter-title">${e(emulsion.name)}</h2>
         <p class="product-chapter__desc">
           ${e(emulsion.descriptor)}. A paint listed for
           interior and exterior walls. Supplied in ${e(emulsion.packagingShort)} packs.
@@ -2018,7 +2010,7 @@ ${themeList}
   <div class="container">
     <div class="spec-matrix-section__head section-heading section-heading--left" data-reveal>
       <span class="section-heading__eyebrow">Eco-Paints — side by side</span>
-      <h2 class="section-heading__title" id="compare-title">Compare the two formats </h2>
+      <h2 class="section-heading__title" id="compare-title">Compare the two formats</h2>
     </div>
 
     <div class="spec-matrix" data-reveal>
@@ -2057,9 +2049,7 @@ ${specMobile(emulsion)}
     <div class="colour-cta" data-reveal>
       <div>
         <span class="colour-cta__eyebrow">Colour Collections</span>
-        <h3 class="colour-cta__title" id="colour-cta-title">
-          Two shade collections, inspired by nature.
-        </h3>
+        <h3 class="colour-cta__title" id="colour-cta-title">Two Shade Collections, Inspired by Nature</h3>
         <p class="colour-cta__body">
           <strong>12 Signature shades</strong> and a <strong>Premium
           collection in five groups</strong> — names and codes exactly as
@@ -2092,7 +2082,7 @@ ${utilitySection}
   <div class="container">
     <div class="appmap-section__head section-heading section-heading--left" data-reveal>
       <span class="section-heading__eyebrow">Application map</span>
-      <h2 class="section-heading__title" id="appmap-title">Where the Ecosystem Works </h2>
+      <h2 class="section-heading__title" id="appmap-title">Where the Ecosystem Works</h2>
     </div>
     <div class="app-matrix" data-reveal-stagger>
 ${appGroups}
@@ -2111,7 +2101,7 @@ ${appGroups}
   <div class="container">
     <div class="why-cta" data-reveal>
       <span class="why-cta__eyebrow">Still deciding?</span>
-      <h2 class="why-cta__title" id="choose-cta-title">Need help choosing? Talk to Gaurikrit </h2>
+      <h2 class="why-cta__title" id="choose-cta-title">Need help choosing? Talk to Gaurikrit</h2>
       <p class="why-cta__sub">
         We can walk through your project — interior or exterior, fresh walls or
         repainting — and help you pick the right Prakritik format.
@@ -2279,7 +2269,7 @@ function distemperBody(depth) {
   <div class="container">
     <div class="spec-sheet__head section-heading section-heading--left" data-reveal>
       <span class="spec-sheet__eyebrow">Specifications</span>
-      <h2 class="spec-sheet__title" id="specs-title">Product specifications </h2>
+      <h2 class="spec-sheet__title" id="specs-title">Product specifications</h2>
       <!-- V9: print affordance — window.print() + the app.css §36 print
            stylesheet turns this page into a printable spec sheet. -->
       <button type="button" class="spec-sheet__print" data-print-spec>
@@ -2323,7 +2313,7 @@ ${specItems}
   <div class="container">
     <div class="distemper-ashta-section__head section-heading section-heading--left" data-reveal>
       <span class="section-heading__eyebrow">Ashta Laabh — अष्ट लाभ</span>
-      <h2 class="section-heading__title" id="distemper-ashta-title">Eight benefits of Prakritik Paint </h2>
+      <h2 class="section-heading__title" id="distemper-ashta-title">Eight benefits of Prakritik Paint</h2>
       <p class="section-heading__desc">
         Benefits as listed in the Prakritik Paint brochure.
       </p>
@@ -2342,7 +2332,7 @@ ${ashtaItems}
       <div class="distemper-cta__inner">
         <div>
           <span class="distemper-hero__eyebrow">Looking at the other format?</span>
-          <h2 class="distemper-cta__title" id="cross-title">Prakritik Emulsion </h2>
+          <h2 class="distemper-cta__title" id="cross-title">Prakritik Emulsion</h2>
           <p class="distemper-cta__body">
             Cow dung-based Emulsion Paint. Coverage ${e(emulsion.coverage)}.
             Supplied in ${e(emulsion.packagingShort)} packs.
@@ -2514,7 +2504,7 @@ function emulsionBody(depth) {
   <div class="container">
     <div class="spec-sheet__head section-heading section-heading--left" data-reveal>
       <span class="spec-sheet__eyebrow">Specifications</span>
-      <h2 class="spec-sheet__title" id="specs-title">Product specifications </h2>
+      <h2 class="spec-sheet__title" id="specs-title">Product specifications</h2>
       <!-- V9: print affordance — window.print() + the app.css §36 print
            stylesheet turns this page into a printable spec sheet. -->
       <button type="button" class="spec-sheet__print" data-print-spec>
@@ -2558,7 +2548,7 @@ ${specItems}
   <div class="container">
     <div class="emulsion-ashta-section__head section-heading section-heading--left" data-reveal>
       <span class="section-heading__eyebrow">Ashta Laabh — अष्ट लाभ</span>
-      <h2 class="section-heading__title" id="emulsion-ashta-title">Eight benefits of Prakritik Paint </h2>
+      <h2 class="section-heading__title" id="emulsion-ashta-title">Eight benefits of Prakritik Paint</h2>
       <p class="section-heading__desc">
         Benefits as listed in the Prakritik Paint brochure.
       </p>
@@ -2577,7 +2567,7 @@ ${ashtaItems}
       <div class="emulsion-cta__inner">
         <div>
           <span class="emulsion-hero__eyebrow">Looking at the other format?</span>
-          <h2 class="emulsion-cta__title" id="cross-title">Prakritik Distemper </h2>
+          <h2 class="emulsion-cta__title" id="cross-title">Prakritik Distemper</h2>
           <p class="emulsion-cta__body">
             Cow dung-based Distemper Paint. Coverage ${e(distemper.coverage)}.
             Supplied in ${e(distemper.packagingShort)} packs.
@@ -2818,7 +2808,7 @@ function whyPrakritikBody(depth) {
       <div class="why-hero__lockup">
         <span class="why-hero__eyebrow"><span class="why-hero__eyebrow-dot" aria-hidden="true"></span>An old Indian material idea</span>
         <hr class="why-hero__rule">
-        <h1 class="why-hero__title" id="why-title">An old material idea, reconsidered for modern walls </h1>
+        <h1 class="why-hero__title" id="why-title">An old material idea, reconsidered for modern walls</h1>
         <p class="why-hero__sub">
           Traditional Indian homes have long used cow-dung-based coatings on
           walls and floors. Prakritik Paint brings that material idea into a
@@ -2897,7 +2887,7 @@ function whyPrakritikBody(depth) {
       <div>
         <span class="why-chapter__num">01</span>
         <span class="why-chapter__eyebrow">The material</span>
-        <h2 class="why-chapter__title" id="chapter-01-title">A natural material for modern walls </h2>
+        <h2 class="why-chapter__title" id="chapter-01-title">A natural material for modern walls</h2>
         <div class="why-chapter__body">
           <p>
             Cow dung has a long history of use on walls and floors in India.
@@ -2924,7 +2914,7 @@ function whyPrakritikBody(depth) {
       <div>
         <span class="why-chapter__num">02</span>
         <span class="why-chapter__eyebrow">The tradition</span>
-        <h2 class="why-chapter__title" id="chapter-02-title">Limewashed walls, courtyard elevations </h2>
+        <h2 class="why-chapter__title" id="chapter-02-title">Limewashed walls, courtyard elevations</h2>
         <div class="why-chapter__body">
           <p>
             Indian vernacular architecture is full of limewashed walls, plinths,
@@ -2948,7 +2938,7 @@ function whyPrakritikBody(depth) {
     <div data-reveal>
       <span class="why-chapter__num">03</span>
       <span class="why-chapter__eyebrow">Material to wall</span>
-      <h2 class="why-chapter__title" id="chapter-03-title">From a natural material to a finished wall </h2>
+      <h2 class="why-chapter__title" id="chapter-03-title">From a natural material to a finished wall</h2>
       <p class="why-chapter__body">
         Natural material, Prakritik Paint, finished walls.
       </p>
@@ -3000,7 +2990,7 @@ function whyPrakritikBody(depth) {
   <div class="container">
     <div class="why-ashta-section__head section-heading section-heading--left" data-reveal>
       <span class="section-heading__eyebrow">Ashta Laabh — अष्ट लाभ</span>
-      <h2 class="section-heading__title" id="chapter-04-title">Eight benefits of Prakritik Paint </h2>
+      <h2 class="section-heading__title" id="chapter-04-title">Eight benefits of Prakritik Paint</h2>
       <p class="section-heading__desc">
         Benefits as listed in the Prakritik Paint brochure.
       </p>
@@ -3017,7 +3007,7 @@ ${ashtaItems}
     <div data-reveal>
       <span class="why-chapter__num">05</span>
       <span class="why-chapter__eyebrow">Two formats</span>
-      <h2 class="why-chapter__title" id="chapter-05-title">Distemper and Emulsion </h2>
+      <h2 class="why-chapter__title" id="chapter-05-title">Distemper and Emulsion</h2>
       <p class="why-chapter__body">
         Two paint formats, one material idea. Both are listed for
         interior and exterior walls.
@@ -3053,7 +3043,7 @@ ${ashtaItems}
     <div class="colour-cta" data-reveal style="margin-top: 2rem;">
       <div>
         <span class="colour-cta__eyebrow">Colour Collections</span>
-        <h3 class="colour-cta__title">Colours Inspired by Nature </h3>
+        <h3 class="colour-cta__title">Colours Inspired by Nature</h3>
         <p class="colour-cta__body">
           Two shade collections — <strong>12 Signature shades</strong>
           and a <strong>Premium collection in five groups</strong> — previewed
@@ -3081,7 +3071,7 @@ ${ashtaItems}
       <div>
         <span class="why-chapter__num">06</span>
         <span class="why-chapter__eyebrow">Context</span>
-        <h2 class="why-chapter__title" id="chapter-06-title">From Bulandshahr, Uttar Pradesh </h2>
+        <h2 class="why-chapter__title" id="chapter-06-title">From Bulandshahr, Uttar Pradesh</h2>
         <div class="why-chapter__body">
           <p>
             Prakritik Paint is made by ${e(COMPANY.legalName)}, in
@@ -3595,7 +3585,7 @@ ${bizTiles.map((stem) => `          <figure class="biz-hero__tile">
       <div class="biz-hero__lockup">
         <span class="biz-hero__eyebrow"><span class="biz-hero__eyebrow-dot" aria-hidden="true"></span>Partners</span>
         <hr class="biz-hero__rule">
-        <h1 class="biz-hero__title" id="biz-title">Build with Gaurikrit </h1>
+        <h1 class="biz-hero__title" id="biz-title">Build with Gaurikrit</h1>
         <p class="biz-hero__sub">
           For distributors, dealers, architects, contractors, institutions,
           industries and sustainability partners. Talk to us about
@@ -3620,7 +3610,7 @@ ${bizTiles.map((stem) => `          <figure class="biz-hero__tile">
   <div class="container">
     <div class="biz-audiences__head section-heading section-heading--left" data-reveal>
       <span class="section-heading__eyebrow">Who this is for</span>
-      <h2 class="section-heading__title" id="audiences-title">Partner with a material ecosystem </h2>
+      <h2 class="section-heading__title" id="audiences-title">Partner with a material ecosystem</h2>
     </div>
 
     <div class="biz-audiences" data-reveal-stagger>
@@ -3635,7 +3625,7 @@ ${audienceCards}
     <div class="biz-practical__grid" data-reveal>
       <div class="biz-practical__head">
         <span class="biz-hero__eyebrow"><span class="biz-hero__eyebrow-dot" aria-hidden="true"></span>Practical</span>
-        <h2 class="biz-practical__title" id="include-title">Include these details for a faster response </h2>
+        <h2 class="biz-practical__title" id="include-title">Include these details for a faster response</h2>
         <p class="biz-practical__body">
           A few practical details up front let us respond with what we can
           supply — for paint projects, pack sizes and format; for the other
@@ -3657,7 +3647,7 @@ ${helpfulItems}
       <aside class="biz-form-layout__aside">
         <div>
           <span class="biz-form-card__eyebrow">Project enquiry</span>
-          <h2 class="biz-form-card__title" id="form-title">Discuss a Project </h2>
+          <h2 class="biz-form-card__title" id="form-title">Discuss a Project</h2>
           <p class="biz-form-card__note">
             Tell us about the project or the partnership. We will respond with
             what we can practically supply — for paint projects, pack sizes
@@ -4156,7 +4146,7 @@ function downloadsBody(depth) {
         Brochure
       </span>
       <hr class="dl-hero__rule">
-      <h1 class="dl-hero__title" id="dl-title">Prakritik Paint brochure </h1>
+      <h1 class="dl-hero__title" id="dl-title">Prakritik Paint brochure</h1>
       <p class="dl-hero__sub">
         Browse the supplied Prakritik Paint brochure or download a copy.
       </p>
@@ -4190,7 +4180,7 @@ function downloadsBody(depth) {
       <div class="dl-card" data-brochure-detect="${e(brochurePdf)}" data-brochure-state="unknown">
         <div data-brochure-if-available>
           <span class="brochure__detail-eyebrow">Current edition</span>
-          <h2 class="brochure__detail-title">Prakritik Paint — product brochure </h2>
+          <h2 class="brochure__detail-title">Prakritik Paint — product brochure</h2>
           <p class="brochure__detail-desc">
             The brochure covers both Prakritik Distemper and Prakritik Emulsion:
             pack sizes, listed specifications, finish, drying time, coverage,
@@ -4222,7 +4212,7 @@ function downloadsBody(depth) {
         </div>
         <div data-brochure-if-missing>
           <span class="brochure__detail-eyebrow">Brochure pending</span>
-          <h2 class="brochure__detail-title">The current brochure is not yet published here </h2>
+          <h2 class="brochure__detail-title">The current brochure is not yet published here</h2>
           <p class="brochure__detail-desc">
             Please contact Gaurikrit for a copy of the product brochure.
           </p>
@@ -4395,7 +4385,7 @@ function contactBody(depth) {
           Get in touch
         </span>
         <hr class="contact-hero__rule">
-        <h1 class="contact-hero__title" id="contact-title">Talk to Gaurikrit </h1>
+        <h1 class="contact-hero__title" id="contact-title">Talk to Gaurikrit</h1>
         <p class="contact-hero__sub">
           For product questions, project requirements or partnership enquiries,
           contact Gaurikrit directly or send a message below.
@@ -4459,7 +4449,7 @@ function contactBody(depth) {
       <!-- LEFT — company info / contact plate -->
       <aside>
         <span class="contact-hero__eyebrow">Direct lines</span>
-        <h2 class="spec-sheet__title" style="margin-top: 0.5rem;">Company &amp; contact </h2>
+        <h2 class="spec-sheet__title" style="margin-top: 0.5rem;">Company &amp; contact</h2>
 
         <dl class="contact-info">
           <div class="contact-info__row">
@@ -4642,9 +4632,7 @@ function error404Body(depth) {
       </div>
       <p class="error-page__code">404</p>
       <p class="error-page__deva">${e(COMPANY.devanagari)}</p>
-      <h1 class="error-page__msg" id="error-title">
-        This wall hasn't been painted yet.
-      </h1>
+      <h1 class="error-page__msg" id="error-title">This Wall Hasn't Been Painted Yet</h1>
       <p class="error-page__sub">
         The page you were looking for is not here. The wall it would have
         painted hasn't been finished — or the URL has moved. Head back to the
@@ -4751,7 +4739,7 @@ ${items}
     <div class="sustain-hero__grid" data-reveal>
       <div>
         <span class="eyebrow">Sustainability &amp; Circular Economy</span>
-        <h1 class="story-hero__title" id="sustain-title">One Resource. A Wider Material Cycle </h1>
+        <h1 class="story-hero__title" id="sustain-title">One Resource — A Wider Material Cycle</h1>
         <p class="story-hero__lead">
           Gaurikrit's sustainability approach is a material system, not a
           marketing dashboard: one natural resource, developed into useful
@@ -4776,7 +4764,7 @@ ${items}
   <div class="container">
     <div class="sustain-section__head section-heading section-heading--left" data-reveal>
       <span class="section-heading__eyebrow">Section 01 — Circular Economy</span>
-      <h2 class="section-heading__title" id="circ-title">The cycle is the product system </h2>
+      <h2 class="section-heading__title" id="circ-title">The cycle is the product system</h2>
       <p class="section-heading__desc">
         Gaurikrit's circular model describes how the resource enters, is
         developed, becomes useful products &mdash; and how the material cycle
@@ -4803,7 +4791,7 @@ ${circularStages}
   <div class="container">
     <div class="section-heading section-heading--left" data-reveal style="max-width: 48rem; margin-bottom: 2rem;">
       <span class="section-heading__eyebrow">Material Journey</span>
-      <h2 class="section-heading__title" id="journey-infographic-title">From Cow Dung to a Greener Future </h2>
+      <h2 class="section-heading__title" id="journey-infographic-title">From Cow Dung to a Greener Future</h2>
     </div>
     <figure class="journey-infographic" data-reveal>
       ${ecoPic('journey-greener', [640, 960, 1280, 1672], '(min-width: 1024px) 80vw, calc(100vw - 2.5rem)', 1280, 1672, 941, 'Infographic: From Cow Dung to a Greener Future — the material journey from raw cow dung to eco-friendly products. Illustrative direction, not a verified production process.', depth)}
@@ -4819,7 +4807,7 @@ ${circularStages}
   <div class="container">
     <div class="sustain-section__head section-heading section-heading--left" data-reveal>
       <span class="section-heading__eyebrow">Section 02 — Resource Utilisation</span>
-      <h2 class="section-heading__title" id="util-title">One resource, used many ways </h2>
+      <h2 class="section-heading__title" id="util-title">One resource, used many ways</h2>
       <p class="section-heading__desc">
         The same natural material base is developed into wall coatings, fuel
         directions and utility directions &mdash; value multiplied by application,
@@ -4872,7 +4860,7 @@ ${circularStages}
   <div class="container">
     <div class="sustain-section__head section-heading section-heading--left" data-reveal>
       <span class="section-heading__eyebrow">Section 03 — Impact Areas</span>
-      <h2 class="section-heading__title" id="imp-title">Impact areas to evaluate </h2>
+      <h2 class="section-heading__title" id="imp-title">Impact areas to evaluate</h2>
       <p class="section-heading__desc">
         Five areas, described qualitatively &mdash; no numbers until verified data
         exists.
@@ -4895,7 +4883,7 @@ ${impactRows}
   <div class="container">
     <div class="sustain-section__head section-heading section-heading--left" data-reveal>
       <span class="section-heading__eyebrow">Section 04 — Applications</span>
-      <h2 class="section-heading__title" id="rep-title">Application directions </h2>
+      <h2 class="section-heading__title" id="rep-title">Application directions</h2>
       <p class="section-heading__desc">
         Each ecosystem direction explores a practical alternative to
         conventional, resource-intensive materials.
@@ -4918,7 +4906,7 @@ ${appGroups}
         <span class="story-chapter__kicker">Rural Value Creation</span>
       </div>
       <div>
-        <h2 class="story-chapter__title" id="rural-title">Value created where the resource already is </h2>
+        <h2 class="story-chapter__title" id="rural-title">Value created where the resource already is</h2>
         <div class="story-chapter__body">
           <p>
             Cow dung is gathered in rural and agricultural ecosystems. Developing
@@ -4945,7 +4933,7 @@ ${appGroups}
   <div class="container">
     <div class="sustain-section__head section-heading section-heading--left" data-reveal>
       <span class="section-heading__eyebrow">Section 06 — Measurement Framework</span>
-      <h2 class="section-heading__title" id="meas-title">How progress can be measured </h2>
+      <h2 class="section-heading__title" id="meas-title">How progress can be measured</h2>
       <p class="section-heading__desc">
         Quantified impact is published only when verified project data exists.
         Nothing on this page is a projected, estimated or aspirational number.
@@ -5011,7 +4999,7 @@ function innovationBody(depth) {
     <div class="innov-hero__grid" data-reveal>
       <div>
         <span class="eyebrow">Research &amp; Innovation</span>
-        <h1 class="story-hero__title" id="innov-title">Where Tradition Meets Technology </h1>
+        <h1 class="story-hero__title" id="innov-title">Where Tradition Meets Technology</h1>
         <p class="story-hero__lead">
           Gaurikrit's research direction explores how a natural material
           understood by tradition can be developed with contemporary methods —
@@ -5038,7 +5026,7 @@ function innovationBody(depth) {
   <div class="container">
     <div class="innov-section__head section-heading section-heading--left" data-reveal>
       <span class="section-heading__eyebrow">Focus Areas</span>
-      <h2 class="section-heading__title" id="focus-title">Five directions under exploration </h2>
+      <h2 class="section-heading__title" id="focus-title">Five directions under exploration</h2>
       <p class="section-heading__desc">
         These are FOCUS AREAS — research directions. They are not presented as
         proven accomplishments, patents or facilities.
@@ -5057,7 +5045,7 @@ ${focusRows}
   <div class="container">
     <div class="innov-section__head section-heading section-heading--left" data-reveal>
       <span class="section-heading__eyebrow">How we explore</span>
-      <h2 class="section-heading__title" id="method-title">Material-first, application-led </h2>
+      <h2 class="section-heading__title" id="method-title">Material-first, application-led</h2>
     </div>
     <div class="measure-list" data-reveal-stagger>
 ${methodItems}
@@ -5076,7 +5064,7 @@ ${methodItems}
         <span class="story-chapter__kicker">Documented outcome</span>
       </div>
       <div>
-        <h2 class="story-chapter__title" id="doc-title">Eco-Paints — where the direction became products </h2>
+        <h2 class="story-chapter__title" id="doc-title">Eco-Paints — where the direction became products</h2>
         <div class="story-chapter__body">
           <p>
             The natural-coatings focus is the most developed: Prakritik
@@ -5109,7 +5097,7 @@ ${methodItems}
   <div class="container">
     <div class="why-cta" data-reveal>
       <span class="why-cta__eyebrow">Collaboration</span>
-      <h2 class="why-cta__title" id="collab-title">Discuss a Collaboration </h2>
+      <h2 class="why-cta__title" id="collab-title">Discuss a Collaboration</h2>
       <p class="why-cta__sub">
         Research programmes, institutions and sustainability partners —
         talk to Gaurikrit about material directions and collaboration.
@@ -5319,7 +5307,7 @@ ${group.shades.map(shadeBtn).join('\n')}
     <div class="colours-hero__grid" data-reveal>
       <div>
         <span class="eyebrow">Prakritik Paint</span>
-        <h1 class="story-hero__title" id="colours-title">Colours Inspired by Nature </h1>
+        <h1 class="story-hero__title" id="colours-title">Colours Inspired by Nature</h1>
         <p class="story-hero__lead">
           Explore the Signature and Premium shade collections supplied for
           Gaurikrit Prakritik Paint — every shade name and code exactly as
@@ -5352,7 +5340,7 @@ ${heroStrokes}
     <div class="container">
       <div class="section-heading section-heading--left" data-reveal>
         <span class="section-heading__eyebrow">Wall Preview</span>
-        <h2 class="section-heading__title" id="wall-preview-title">See a shade on the wall </h2>
+        <h2 class="section-heading__title" id="wall-preview-title">See a shade on the wall</h2>
         <p class="section-heading__desc">
           Select any shade below — only the wall plane changes. The door,
           window and surroundings stay exactly as they are.
@@ -5409,7 +5397,7 @@ ${heroStrokes}
     <div class="container">
       <div class="section-heading section-heading--left" data-reveal>
         <span class="section-heading__eyebrow">Signature Collection</span>
-        <h2 class="section-heading__title" id="signature-title">Twelve signature shades </h2>
+        <h2 class="section-heading__title" id="signature-title">Twelve signature shades</h2>
         <p class="section-heading__desc">
           The Signature Collection as printed on the client shade card —
           codes GK-101 to GK-112.
@@ -5425,7 +5413,7 @@ ${signatureShades}
     <div class="container">
       <div class="section-heading section-heading--left" data-reveal>
         <span class="section-heading__eyebrow">Premium Collection</span>
-        <h2 class="section-heading__title" id="premium-title">The Premium Collection, in five groups </h2>
+        <h2 class="section-heading__title" id="premium-title">The Premium Collection, in five groups</h2>
         <p class="section-heading__desc">
           As printed on the client shade card — Natural Neutrals, Sunshine,
           Nature Greens, Sky &amp; Water and Earth &amp; Heritage, codes
@@ -5472,9 +5460,7 @@ ${premiumGroups}
     <div class="colours-cta__grid" data-reveal>
       <div>
         <span class="section-heading__eyebrow">The Documented Family</span>
-        <h2 class="vision-mission__title" id="colours-cta-title">
-          Colours for the Eco-Paints family.
-        </h2>
+        <h2 class="vision-mission__title" id="colours-cta-title">Colours for the Eco-Paints Family</h2>
         <p class="vision-mission__text">
           These collections belong to Gaurikrit's documented Eco-Paints
           direction — Prakritik Distemper and Prakritik Emulsion, finished in

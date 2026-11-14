@@ -184,7 +184,7 @@ global $SHADE_SIGNATURE, $SHADE_PREMIUM_GROUPS;
     <div class="colours-hero__grid" data-reveal>
       <div>
         <span class="eyebrow">Prakritik Paint</span>
-        <h1 class="story-hero__title" id="colours-title">Colours Inspired by Nature </h1>
+        <h1 class="story-hero__title" id="colours-title">Colours Inspired by Nature</h1>
         <p class="story-hero__lead">
           Explore the Signature and Premium shade collections supplied for
           Gaurikrit Prakritik Paint. Shade names and codes are transcribed
@@ -227,7 +227,7 @@ global $SHADE_SIGNATURE, $SHADE_PREMIUM_GROUPS;
     <div class="container">
       <div class="section-heading section-heading--left" data-reveal>
         <span class="section-heading__eyebrow">Wall Preview</span>
-        <h2 class="section-heading__title" id="wall-preview-title">See a shade on the wall </h2>
+        <h2 class="section-heading__title" id="wall-preview-title">See a shade on the wall</h2>
         <p class="section-heading__desc">
           Select any shade below — only the wall plane changes. The door,
           window and surroundings stay exactly as they are.
@@ -295,7 +295,7 @@ global $SHADE_SIGNATURE, $SHADE_PREMIUM_GROUPS;
     <div class="container">
       <div class="section-heading section-heading--left" data-reveal>
         <span class="section-heading__eyebrow">Signature Collection</span>
-        <h2 class="section-heading__title" id="signature-title">Twelve signature shades </h2>
+        <h2 class="section-heading__title" id="signature-title">Twelve signature shades</h2>
         <p class="section-heading__desc">
           The Signature Collection — names and codes as printed on the shade card,
           codes GK-101 to GK-112.
@@ -323,7 +323,7 @@ global $SHADE_SIGNATURE, $SHADE_PREMIUM_GROUPS;
     <div class="container">
       <div class="section-heading section-heading--left" data-reveal>
         <span class="section-heading__eyebrow">Premium Collection</span>
-        <h2 class="section-heading__title" id="premium-title">The Premium Collection, in five groups </h2>
+        <h2 class="section-heading__title" id="premium-title">The Premium Collection, in five groups</h2>
         <p class="section-heading__desc">
           Five supplied groups — Natural Neutrals, Sunshine,
           Nature Greens, Sky &amp; Water and Earth &amp; Heritage, codes
@@ -396,9 +396,7 @@ global $SHADE_SIGNATURE, $SHADE_PREMIUM_GROUPS;
     <div class="colours-cta__grid" data-reveal>
       <div>
         <span class="section-heading__eyebrow">The Documented Family</span>
-        <h2 class="vision-mission__title" id="colours-cta-title">
-          Colours for the Eco-Paints family.
-        </h2>
+        <h2 class="vision-mission__title" id="colours-cta-title">Colours for the Eco-Paints Family</h2>
         <p class="vision-mission__text">
           These collections belong to Gaurikrit's documented Eco-Paints
           direction — Prakritik Distemper and Prakritik Emulsion, finished in

@@ -213,7 +213,7 @@ $emulsion  = get_product('prakritik-emulsion');
       <div class="why-hero__lockup">
         <span class="why-hero__eyebrow"><span class="why-hero__eyebrow-dot" aria-hidden="true"></span>An old Indian material idea</span>
         <hr class="why-hero__rule">
-        <h1 class="why-hero__title" id="why-title">An old material idea, reconsidered for modern walls </h1>
+        <h1 class="why-hero__title" id="why-title">An old material idea, reconsidered for modern walls</h1>
         <p class="why-hero__sub">
           Traditional Indian homes have long used cow-dung-based coatings on
           walls and floors. Prakritik Paint brings that material idea into a
@@ -299,7 +299,7 @@ $emulsion  = get_product('prakritik-emulsion');
       <div>
         <span class="why-chapter__num">01</span>
         <span class="why-chapter__eyebrow">The material</span>
-        <h2 class="why-chapter__title" id="chapter-01-title">A natural material for modern walls </h2>
+        <h2 class="why-chapter__title" id="chapter-01-title">A natural material for modern walls</h2>
         <div class="why-chapter__body">
           <p>
             Cow dung has a long history of use on walls and floors in India.
@@ -333,7 +333,7 @@ $emulsion  = get_product('prakritik-emulsion');
       <div>
         <span class="why-chapter__num">02</span>
         <span class="why-chapter__eyebrow">The tradition</span>
-        <h2 class="why-chapter__title" id="chapter-02-title">Limewashed walls, courtyard elevations </h2>
+        <h2 class="why-chapter__title" id="chapter-02-title">Limewashed walls, courtyard elevations</h2>
         <div class="why-chapter__body">
           <p>
             Indian vernacular architecture is full of limewashed walls, plinths,
@@ -364,7 +364,7 @@ $emulsion  = get_product('prakritik-emulsion');
     <div data-reveal>
       <span class="why-chapter__num">03</span>
       <span class="why-chapter__eyebrow">Material to wall</span>
-      <h2 class="why-chapter__title" id="chapter-03-title">From a natural material to a finished wall </h2>
+      <h2 class="why-chapter__title" id="chapter-03-title">From a natural material to a finished wall</h2>
       <p class="why-chapter__body">
         Natural material, Prakritik Paint, finished walls.
       </p>
@@ -433,7 +433,7 @@ $emulsion  = get_product('prakritik-emulsion');
   <div class="container">
     <div class="why-ashta-section__head section-heading section-heading--left" data-reveal>
       <span class="section-heading__eyebrow">Ashta Laabh — अष्ट लाभ</span>
-      <h2 class="section-heading__title" id="chapter-04-title">Eight benefits of Prakritik Paint </h2>
+      <h2 class="section-heading__title" id="chapter-04-title">Eight benefits of Prakritik Paint</h2>
       <p class="section-heading__desc">
         Benefits as listed in the Prakritik Paint brochure.
       </p>
@@ -456,7 +456,7 @@ $emulsion  = get_product('prakritik-emulsion');
     <div data-reveal>
       <span class="why-chapter__num">05</span>
       <span class="why-chapter__eyebrow">Two formats</span>
-      <h2 class="why-chapter__title" id="chapter-05-title">Distemper and Emulsion </h2>
+      <h2 class="why-chapter__title" id="chapter-05-title">Distemper and Emulsion</h2>
       <p class="why-chapter__body">
         Two paint formats, one material idea. Both are listed for
         interior and exterior walls.
@@ -493,7 +493,7 @@ $emulsion  = get_product('prakritik-emulsion');
     <div class="colour-cta" data-reveal style="margin-top: 2rem;">
       <div>
         <span class="colour-cta__eyebrow">Colour Collections</span>
-        <h3 class="colour-cta__title">Colours Inspired by Nature </h3>
+        <h3 class="colour-cta__title">Colours Inspired by Nature</h3>
         <p class="colour-cta__body">
           Two shade collections — <strong>12 Signature shades</strong>
           and a <strong>Premium collection in five groups</strong> — previewed
@@ -521,7 +521,7 @@ $emulsion  = get_product('prakritik-emulsion');
       <div>
         <span class="why-chapter__num">06</span>
         <span class="why-chapter__eyebrow">Context</span>
-        <h2 class="why-chapter__title" id="chapter-06-title">From Bulandshahr, Uttar Pradesh </h2>
+        <h2 class="why-chapter__title" id="chapter-06-title">From Bulandshahr, Uttar Pradesh</h2>
         <div class="why-chapter__body">
           <p>
             Prakritik Paint is made by <?= e($COMPANY['legalName']) ?>, in
