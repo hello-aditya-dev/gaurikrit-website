@@ -1343,7 +1343,35 @@ ${heroDots}
 </section>
 
 <!-- ============================================================
-     02. FROM WASTE TO RESOURCE — the Gaurikrit story (§15-16)
+     02. ONE RESOURCE, FOUR SOLUTIONS — the ecosystem (§17-18)
+     Editorial chapters, NOT SaaS cards. Eco-Paints uses REAL
+     photography; the other families are honest type/material plates.
+     ============================================================ -->
+<section class="section section--haldi-wash families-section" aria-labelledby="families-title">
+  <div class="container">
+    <div class="families-section__head section-heading section-heading--left" data-reveal>
+      <span class="section-heading__eyebrow">The Gaurikrit Ecosystem</span>
+      <h2 class="section-heading__title" id="families-title">One Resource, Four Solutions</h2>
+      <p class="section-heading__desc">
+        Cow dung is the shared material beginning. Gaurikrit develops it in four
+        directions &mdash; Eco-Paints is the documented family; Cow-Dung Logs is
+        a development direction; Bio-Briquettes and Eco Utility Products are
+        Futureline product directions, not yet in production.
+      </p>
+      <p class="section-heading__desc">
+        Every product we create contributes to a circular economy where waste becomes value and sustainability becomes practical.
+      </p>
+    </div>
+
+    <div class="families" data-reveal-stagger>
+${familiesMarkup}
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+
+     03. FROM WASTE TO RESOURCE — the Gaurikrit story (§15-16)
      ============================================================ -->
 <section class="section section--paper resource-section" aria-labelledby="resource-title">
   <div class="container">
@@ -1414,33 +1442,6 @@ ${heroDots}
           </p>
         </div>
       </article>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     03. ONE RESOURCE, FOUR SOLUTIONS — the ecosystem (§17-18)
-     Editorial chapters, NOT SaaS cards. Eco-Paints uses REAL
-     photography; the other families are honest type/material plates.
-     ============================================================ -->
-<section class="section section--haldi-wash families-section" aria-labelledby="families-title">
-  <div class="container">
-    <div class="families-section__head section-heading section-heading--left" data-reveal>
-      <span class="section-heading__eyebrow">The Gaurikrit Ecosystem</span>
-      <h2 class="section-heading__title" id="families-title">One Resource, Four Solutions</h2>
-      <p class="section-heading__desc">
-        Cow dung is the shared material beginning. Gaurikrit develops it in four
-        directions &mdash; Eco-Paints is the documented family; Cow-Dung Logs is
-        a development direction; Bio-Briquettes and Eco Utility Products are
-        Futureline product directions, not yet in production.
-      </p>
-      <p class="section-heading__desc">
-        Every product we create contributes to a circular economy where waste becomes value and sustainability becomes practical.
-      </p>
-    </div>
-
-    <div class="families" data-reveal-stagger>
-${familiesMarkup}
     </div>
   </div>
 </section>
@@ -3139,8 +3140,9 @@ function aboutBody(depth) {
     line-height: 1.4; max-width: 36rem;
   }
   .story-hero__image {
-    position: relative; aspect-ratio: 1 / 1; overflow: hidden;
+    position: relative; aspect-ratio: 5 / 4; overflow: hidden;
     border-radius: var(--r-panel); background: var(--paper-warm);
+    box-shadow: 0 4px 24px rgba(16, 47, 32, 0.12);
   }
   .story-hero__image img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .story-section { padding-block: clamp(2.5rem, 5vw, 4.5rem); }
@@ -3163,21 +3165,22 @@ function aboutBody(depth) {
   .story-section__image {
     margin-top: 2rem; position: relative; overflow: hidden;
     border-radius: var(--r-panel); background: var(--paper-warm);
+    box-shadow: 0 2px 16px rgba(16, 47, 32, 0.08);
   }
   .story-section__image picture { display: block; }
   .story-section__image img { width: 100%; height: auto; display: block; }
-  .story-section__image--contain img { object-fit: contain; max-height: 32rem; }
+  .story-section__image--contain img { object-fit: contain; max-height: 36rem; }
   .story-section__image figcaption {
     padding: 0.75rem 1.25rem; font-size: 0.75rem; color: var(--fg-muted);
     border-top: 1px solid var(--border); letter-spacing: 0.02em; font-style: italic;
   }
   .story-section--alt .story-section__inner {
-    display: grid; gap: clamp(1.5rem, 4vw, 3rem); align-items: center;
+    max-width: none; display: grid; gap: clamp(2rem, 5vw, 4rem); align-items: center;
     grid-template-columns: minmax(0, 1fr);
   }
   @media (min-width: 1024px) {
-    .story-section--alt .story-section__inner { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
-    .story-section--alt-reverse .story-section__inner { direction: rtl; }
+    .story-section--alt .story-section__inner { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }
+    .story-section--alt-reverse .story-section__inner { direction: rtl; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); }
     .story-section--alt-reverse .story-section__inner > * { direction: ltr; }
   }
   .story-section--alt .story-section__copy { order: 1; }

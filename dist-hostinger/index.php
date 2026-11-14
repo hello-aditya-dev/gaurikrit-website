@@ -394,7 +394,96 @@ $HERO_SIZES = '(min-width: 1200px) 58vw, (min-width: 900px) 50vw, calc(100vw - 2
 </section>
 
 <!-- ============================================================
-     02. FROM WASTE TO RESOURCE — the Gaurikrit story (§15–16)
+     02. ONE RESOURCE, FOUR SOLUTIONS — the ecosystem (§17–18)
+     Editorial chapters, NOT SaaS cards. Eco-Paints uses REAL
+     photography; the other families are honest type/material plates.
+     ============================================================ -->
+<section class="section section--haldi-wash families-section" aria-labelledby="families-title">
+  <div class="container">
+    <div class="families-section__head section-heading section-heading--left" data-reveal>
+      <span class="section-heading__eyebrow">The Gaurikrit Ecosystem</span>
+      <h2 class="section-heading__title" id="families-title">One Resource, Four Solutions</h2>
+      <p class="section-heading__desc">
+        Cow dung is the shared material beginning. Gaurikrit develops it in four
+        directions &mdash; Eco-Paints is the documented family; Cow-Dung Logs is
+        a development direction; Bio-Briquettes and Eco Utility Products are
+        Futureline product directions, not yet in production.
+      </p>
+      <p class="section-heading__desc">
+        Every product we create contributes to a circular economy where waste becomes value and sustainability becomes practical.
+      </p>
+    </div>
+
+    <div class="families" data-reveal-stagger>
+<?php
+      // V22: every family carries the final client-supplied landscape
+      // artworks from the 2026-10-29 batch (the same official product
+      // posters as the hero carousel — browser-cached, so no extra
+      // download). 16:9 frames with object-fit:contain preserve product
+      // identity and label text. Client terminology: "Cow-Dung Logs"
+      // (formerly GoCast Logs) and "Bio-Briquettes" (formerly Bio-Coal
+      // Logs) — see data.php and ASSET_PROVENANCE.md.
+      $familyMedia = [
+          'eco-paints'        => ['stem' => 'carousel-eco-paints', 'ladder' => [640, 960, 1280, 1920],
+                                  'w' => 1920, 'h' => 1080,
+                                  'alt' => 'Gaurikrit Eco-Paints — Prakritik Paint artwork, the documented product family'],
+          'cow-dung-logs'     => ['stem' => 'carousel-cow-dung-logs', 'ladder' => [640, 960, 1280],
+                                  'w' => 1672, 'h' => 941,
+                                  'alt' => 'Gaurikrit Cow-Dung Logs — premium biomass fuel artwork'],
+          'bio-briquettes'    => ['stem' => 'carousel-bio-briquettes', 'ladder' => [640, 960, 1280, 1920],
+                                  'w' => 1920, 'h' => 1080,
+                                  'alt' => 'Gaurikrit Bio-Briquettes — premium renewable biomass fuel artwork'],
+          'utility-products'  => ['stem' => 'carousel-eco-utility-products', 'ladder' => [640, 960, 1280, 1920],
+                                  'w' => 1920, 'h' => 1080,
+                                  'alt' => 'Gaurikrit Eco Utility Products — dhoop cups, cow-dung diyas, biodegradable plates and eco glasses artwork'],
+      ];
+      foreach ($FAMILIES as $family): ?>
+        <article class="family" id="family-<?= e($family['id']) ?>">
+          <?php $m = $familyMedia[$family['id']]; ?>
+          <figure class="family__media family__media--photo">
+            <picture>
+              <source type="image/avif" srcset="<?= eco_srcset($m['stem'], $m['ladder']) ?>"
+                      sizes="(min-width: 768px) 45vw, calc(100vw - 2.5rem)">
+              <source type="image/webp" srcset="<?= eco_srcset_webp($m['stem'], $m['ladder']) ?>"
+                      sizes="(min-width: 768px) 45vw, calc(100vw - 2.5rem)">
+              <img src="<?= asset_url('/assets/images/ecosystem/' . $m['stem'] . '-' . end($m['ladder']) . '.jpg') ?>"
+                   alt="<?= e($m['alt']) ?>"
+                   width="<?= $m['w'] ?>" height="<?= $m['h'] ?>" loading="lazy" decoding="async">
+            </picture>
+          </figure>
+
+          <div class="family__head">
+            <span class="family__num" aria-hidden="true"><?= e($family['num']) ?></span>
+            <h3 class="family__name"><?= e($family['name']) ?></h3>
+          </div>
+          <p class="family__line"><?= e($family['line']) ?></p>
+          <p class="family__desc"><?= e($family['desc']) ?></p>
+          <p class="family__meta">
+            <?php
+              $variant = $family['statusVariant'] ?? ($family['status'] === 'Documented family' ? 'documented' : 'development');
+              $statusClass = $variant === 'documented' ? '' : ($variant === 'futureline' ? ' family__status--futureline' : ' family__status--direction');
+              $titleAttr = $variant === 'futureline' ? ' title="Futureline product — not yet in production"' : '';
+            ?>
+            <span class="family__status<?= $statusClass ?>"<?= $titleAttr ?>>
+              <?= e($family['status']) ?>
+            </span>
+          </p>
+          <ul class="family__themes">
+            <?php foreach ($family['themes'] as $theme): ?>
+              <li><?= e($theme) ?></li>
+            <?php endforeach; ?>
+          </ul>
+          <a class="family__cta" href="<?= e($family['href']) ?>">
+            Explore <?= e($family['name']) ?> <span aria-hidden="true">→</span>
+          </a>
+        </article>
+      <?php endforeach; ?>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     03. FROM WASTE TO RESOURCE — the Gaurikrit story (§15–16)
      ============================================================ -->
 <section class="section section--paper resource-section" aria-labelledby="resource-title">
   <div class="container">
@@ -498,94 +587,6 @@ $HERO_SIZES = '(min-width: 1200px) 58vw, (min-width: 900px) 50vw, calc(100vw - 2
   </div>
 </section>
 
-<!-- ============================================================
-     03. ONE RESOURCE, FOUR SOLUTIONS — the ecosystem (§17–18)
-     Editorial chapters, NOT SaaS cards. Eco-Paints uses REAL
-     photography; the other families are honest type/material plates.
-     ============================================================ -->
-<section class="section section--haldi-wash families-section" aria-labelledby="families-title">
-  <div class="container">
-    <div class="families-section__head section-heading section-heading--left" data-reveal>
-      <span class="section-heading__eyebrow">The Gaurikrit Ecosystem</span>
-      <h2 class="section-heading__title" id="families-title">One Resource, Four Solutions</h2>
-      <p class="section-heading__desc">
-        Cow dung is the shared material beginning. Gaurikrit develops it in four
-        directions &mdash; Eco-Paints is the documented family; Cow-Dung Logs is
-        a development direction; Bio-Briquettes and Eco Utility Products are
-        Futureline product directions, not yet in production.
-      </p>
-      <p class="section-heading__desc">
-        Every product we create contributes to a circular economy where waste becomes value and sustainability becomes practical.
-      </p>
-    </div>
-
-    <div class="families" data-reveal-stagger>
-<?php
-      // V22: every family carries the final client-supplied landscape
-      // artworks from the 2026-10-29 batch (the same official product
-      // posters as the hero carousel — browser-cached, so no extra
-      // download). 16:9 frames with object-fit:contain preserve product
-      // identity and label text. Client terminology: "Cow-Dung Logs"
-      // (formerly GoCast Logs) and "Bio-Briquettes" (formerly Bio-Coal
-      // Logs) — see data.php and ASSET_PROVENANCE.md.
-      $familyMedia = [
-          'eco-paints'        => ['stem' => 'carousel-eco-paints', 'ladder' => [640, 960, 1280, 1920],
-                                  'w' => 1920, 'h' => 1080,
-                                  'alt' => 'Gaurikrit Eco-Paints — Prakritik Paint artwork, the documented product family'],
-          'cow-dung-logs'     => ['stem' => 'carousel-cow-dung-logs', 'ladder' => [640, 960, 1280],
-                                  'w' => 1672, 'h' => 941,
-                                  'alt' => 'Gaurikrit Cow-Dung Logs — premium biomass fuel artwork'],
-          'bio-briquettes'    => ['stem' => 'carousel-bio-briquettes', 'ladder' => [640, 960, 1280, 1920],
-                                  'w' => 1920, 'h' => 1080,
-                                  'alt' => 'Gaurikrit Bio-Briquettes — premium renewable biomass fuel artwork'],
-          'utility-products'  => ['stem' => 'carousel-eco-utility-products', 'ladder' => [640, 960, 1280, 1920],
-                                  'w' => 1920, 'h' => 1080,
-                                  'alt' => 'Gaurikrit Eco Utility Products — dhoop cups, cow-dung diyas, biodegradable plates and eco glasses artwork'],
-      ];
-      foreach ($FAMILIES as $family): ?>
-        <article class="family" id="family-<?= e($family['id']) ?>">
-          <?php $m = $familyMedia[$family['id']]; ?>
-          <figure class="family__media family__media--photo">
-            <picture>
-              <source type="image/avif" srcset="<?= eco_srcset($m['stem'], $m['ladder']) ?>"
-                      sizes="(min-width: 768px) 45vw, calc(100vw - 2.5rem)">
-              <source type="image/webp" srcset="<?= eco_srcset_webp($m['stem'], $m['ladder']) ?>"
-                      sizes="(min-width: 768px) 45vw, calc(100vw - 2.5rem)">
-              <img src="<?= asset_url('/assets/images/ecosystem/' . $m['stem'] . '-' . end($m['ladder']) . '.jpg') ?>"
-                   alt="<?= e($m['alt']) ?>"
-                   width="<?= $m['w'] ?>" height="<?= $m['h'] ?>" loading="lazy" decoding="async">
-            </picture>
-          </figure>
-
-          <div class="family__head">
-            <span class="family__num" aria-hidden="true"><?= e($family['num']) ?></span>
-            <h3 class="family__name"><?= e($family['name']) ?></h3>
-          </div>
-          <p class="family__line"><?= e($family['line']) ?></p>
-          <p class="family__desc"><?= e($family['desc']) ?></p>
-          <p class="family__meta">
-            <?php
-              $variant = $family['statusVariant'] ?? ($family['status'] === 'Documented family' ? 'documented' : 'development');
-              $statusClass = $variant === 'documented' ? '' : ($variant === 'futureline' ? ' family__status--futureline' : ' family__status--direction');
-              $titleAttr = $variant === 'futureline' ? ' title="Futureline product — not yet in production"' : '';
-            ?>
-            <span class="family__status<?= $statusClass ?>"<?= $titleAttr ?>>
-              <?= e($family['status']) ?>
-            </span>
-          </p>
-          <ul class="family__themes">
-            <?php foreach ($family['themes'] as $theme): ?>
-              <li><?= e($theme) ?></li>
-            <?php endforeach; ?>
-          </ul>
-          <a class="family__cta" href="<?= e($family['href']) ?>">
-            Explore <?= e($family['name']) ?> <span aria-hidden="true">→</span>
-          </a>
-        </article>
-      <?php endforeach; ?>
-    </div>
-  </div>
-</section>
 
 <!-- ============================================================
      04. A CIRCULAR MATERIAL DIRECTION — compact cycle summary
