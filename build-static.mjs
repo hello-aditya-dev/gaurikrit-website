@@ -1596,8 +1596,8 @@ ${themeList}
   <div class="container">
     <div class="gocast-feature" data-reveal>
       <figure class="gocast-feature__figure">
-        ${ecoPic('carousel-cow-dung-logs', [640, 960, 1280], '(min-width: 1024px) 45vw, calc(100vw - 2.5rem)', 1280, 1672, 941, 'Gaurikrit Cow-Dung Logs — official product artwork, premium biomass fuel', depth)}
-        <figcaption>Cow-Dung Logs — official product artwork.</figcaption>
+        ${ecoPic('gocast-material', [640, 960, 1280], '(min-width: 1024px) 45vw, calc(100vw - 2.5rem)', 1280, 1280, 853, 'Gaurikrit Cow-Dung Logs — actual processed log product on a neutral background. Development direction.', depth)}
+        <figcaption>Cow-Dung Logs — actual product photograph. Development direction.</figcaption>
       </figure>
       <div class="gocast-feature__copy">
         <span class="family-section__num" aria-hidden="true">02</span>
@@ -1623,12 +1623,7 @@ ${themeList}
         </div>
       </div>
     </div>
-    <div class="family-section__poster" data-reveal>
-      <figure class="family-section__poster-figure">
-        ${ecoPic('gbp-cow-dung-logs', [640, 960, 1024], '(min-width: 1024px) 30vw, calc(100vw - 2.5rem)', 1024, 1024, 1024, 'Gaurikrit Cow-Dung Logs product poster — stacked biomass fuel logs. Development direction.', depth)}
-        <figcaption>Cow-Dung Logs — official product poster.</figcaption>
-      </figure>
-    </div>
+    <!-- V42: removed Cow-Dung Logs promotional poster; clean product photo above is the sole visual -->
   </div>
 </section>`;
 
@@ -1637,22 +1632,22 @@ ${themeList}
         'Biomass-based fuel briquettes — a Futureline product direction exploring how natural material streams could serve fuel applications. Not yet in production.',
         ['Bio-based fuel material', 'Biomass applications', 'Fuel-material direction', 'Circular material use'],
         'Bio-Briquettes is a Futureline product — not yet in production. Composition, calorific value and test data will be published when the client supplies verified information.',
-        'carousel-bio-briquettes', [640, 960, 1280, 1920], 1280, 1920, 1080,
-        'Gaurikrit Bio-Briquettes — official Gaurikrit artwork for a Futureline product direction not yet in production',
-        'Bio-Briquettes official artwork. Futureline — not yet in production.',
+        'bio-briquettes-clean', [640, 960, 1024], 1024, 635, 389,
+        'Gaurikrit Bio-Briquettes — actual briquette product on a neutral background. Futureline product, not yet in production.',
+        'Bio-Briquettes — actual product photograph. Futureline, not yet in production.',
         'bio-coal-logs', true, '2', 'Futureline · Not yet in production',
-        {stem:'gbp-bio-briquettes', widths:[640,960,1024], fb:1024, w:1024, h:1024, alt:'Gaurikrit Bio-Briquettes product poster — cylindrical biomass fuel logs. Futureline product, not yet in production.', caption:'Bio-Briquettes — official product poster. Futureline, not yet in production.'});
+        null);
 
     const utilitySection = familySection('04', 'utility-products', null, 'Eco Utility Products',
         'A natural-material utility direction.',
         'Practical daily-use products from naturally derived materials — a Futureline product direction for homes, gardens and everyday routines. Not yet in production.',
         ['Natural-material utility direction', 'Moulded material forms', 'Home / garden / lifestyle direction', 'Circular-economy direction'],
         'Eco Utility Products is a Futureline product — not yet in production. A confirmed product list will be published when the client supplies verified information.',
-        'carousel-eco-utility-products', [640, 960, 1280, 1920], 1280, 1920, 1080,
-        'Gaurikrit Eco Utility Products — official Gaurikrit artwork for a Futureline product direction not yet in production: dhoop cups, cow-dung diyas, biodegradable plates and eco glasses',
-        'Eco Utility Products official artwork. Futureline — not yet in production.',
+        'eco-utility-box', [640, 960, 1280], 1280, 1280, 1024,
+        'Gaurikrit Eco Utility Products — kraft packaging on a natural background. Futureline product direction, not yet in production.',
+        'Eco Utility Products — actual product photograph. Futureline, not yet in production.',
         'utility-products', false, '2', 'Futureline · Not yet in production',
-        {stem:'showcase-utility', widths:[640,960,1022], fb:1022, w:1022, h:1095, alt:'Gaurikrit Eco Utility Products showcase — dhoop cups and cow-dung diyas. Futureline product, not yet in production.', caption:'Eco Utility Products showcase — dhoop cups and cow-dung diyas. Futureline, not yet in production.'});
+        null);
 
     const ashtaItems = ASHTA_LAABH.map((benefit, i) => `        <li class="benefits-grid__item">
           <span class="benefits-grid__num" aria-hidden="true">${pad2(i + 1)}</span>
@@ -1848,7 +1843,7 @@ ${themeList}
         </p>
       </div>
       <div class="products-hero__visual" data-reveal>
-        ${ecoPic('eco-paints-pair', [640, 960, 1280, 1600, 1920], '(min-width: 1200px) 52vw, (min-width: 900px) 48vw, calc(100vw - 2.5rem)', 1280, 1280, 800, 'Prakritik Distemper and Emulsion paint packs — the documented Eco-Paints family', depth, 'class="hero-group-photo" loading="eager" fetchpriority="high" ')}
+        ${ecoPic('gbp-paint-bucket', [640, 960, 1280, 1536], '(min-width: 1200px) 52vw, (min-width: 900px) 48vw, calc(100vw - 2.5rem)', 1536, 1536, 1024, 'Prakritik Distemper and Emulsion paint packs — the actual Eco-Paints product from the client asset pack', depth, 'class="hero-group-photo" loading="eager" fetchpriority="high" ')}
       </div>
     </div>
   </div>
@@ -1880,7 +1875,7 @@ ${themeList}
      ============================================================ -->
 <section class="section section--paper eco-family" id="eco-paints" aria-labelledby="eco-family-title">
   <div class="container">
-    <div class="eco-family__grid" data-reveal>
+    <div class="eco-family__grid" data-reveal style="display:block">
       <div class="eco-family__copy">
         <div class="eco-family__head">
           <span class="eco-family__num" aria-hidden="true">01</span>
@@ -1899,9 +1894,7 @@ ${themeList}
           <a class="btn btn--outline" href="${relUrl('/why-prakritik/', depth)}">Why Prakritik?</a>
         </div>
       </div>
-      <div class="eco-family__plate" data-reveal>
-        ${ecoPic('eco-paints-pair', [640, 960, 1280, 1920], '(min-width: 1024px) 45vw, calc(100vw - 2.5rem)', 1280, 1280, 800, 'Prakritik Distemper and Emulsion paint packs — real Eco-Paints product photography', depth)}
-      </div>
+      <!-- V42: eco-family plate removed (hero carries the group photo; chapters carry individual products) -->
     </div>
   </div>
 </section>
@@ -1923,16 +1916,7 @@ ${themeList}
                  loading="lazy" decoding="async">
           </picture>
         </div>
-        <div class="product-chapter__strip" aria-hidden="true">
-          <picture>
-            <source type="image/webp" srcset="${assetUrl('/assets/editorial/interior-finish-study.webp', depth)}">
-            <img class="chapter-strip"
-                 src="${assetUrl('/assets/editorial/interior-finish-study.jpg', depth)}"
-                 alt=""
-                 width="1344" height="768"
-                 loading="lazy" decoding="async">
-          </picture>
-        </div>
+        <!-- V42: removed editorial interior-finish-study strip (invented wall image) -->
       </figure>
       <div class="product-chapter__copy">
         <span class="product-chapter__eyebrow">Eco-Paints — Distemper</span>
@@ -1973,16 +1957,7 @@ ${themeList}
                  loading="lazy" decoding="async">
           </picture>
         </div>
-        <div class="product-chapter__strip" aria-hidden="true">
-          <picture>
-            <source type="image/webp" srcset="${assetUrl('/assets/editorial/exterior-finish-study.webp', depth)}">
-            <img class="chapter-strip"
-                 src="${assetUrl('/assets/editorial/exterior-finish-study.jpg', depth)}"
-                 alt=""
-                 width="1344" height="768"
-                 loading="lazy" decoding="async">
-          </picture>
-        </div>
+        <!-- V42: removed editorial exterior-finish-study strip (invented wall image) -->
       </figure>
       <div class="product-chapter__copy">
         <span class="product-chapter__eyebrow">Eco-Paints — Emulsion</span>

@@ -337,14 +337,14 @@ $emulsion    = get_product('prakritik-emulsion');
       </div>
       <div class="products-hero__visual" data-reveal>
         <picture>
-          <source type="image/avif" srcset="<?= eco_srcset('eco-paints-pair', [640, 960, 1280, 1600, 1920]) ?>"
+          <source type="image/avif" srcset="<?= eco_srcset('gbp-paint-bucket', [640, 960, 1280, 1536]) ?>"
                   sizes="(min-width: 1200px) 52vw, (min-width: 900px) 48vw, calc(100vw - 2.5rem)">
-          <source type="image/webp" srcset="<?= eco_srcset_webp('eco-paints-pair', [640, 960, 1280, 1600, 1920]) ?>"
+          <source type="image/webp" srcset="<?= eco_srcset_webp('gbp-paint-bucket', [640, 960, 1280, 1536]) ?>"
                   sizes="(min-width: 1200px) 52vw, (min-width: 900px) 48vw, calc(100vw - 2.5rem)">
           <img class="hero-group-photo"
-               src="<?= asset_url('/assets/images/ecosystem/eco-paints-pair-1280.jpg') ?>"
-               alt="Prakritik Distemper and Emulsion paint packs — the documented Eco-Paints family"
-               width="1280" height="800"
+               src="<?= asset_url('/assets/images/ecosystem/gbp-paint-bucket-1536.jpg') ?>"
+               alt="Prakritik Distemper and Emulsion paint packs — the actual Eco-Paints product from the client asset pack"
+               width="1536" height="1024"
                loading="eager" fetchpriority="high" decoding="async">
         </picture>
       </div>
@@ -390,7 +390,7 @@ $emulsion    = get_product('prakritik-emulsion');
      ============================================================ -->
 <section class="section section--paper eco-family" id="eco-paints" aria-labelledby="eco-family-title">
   <div class="container">
-    <div class="eco-family__grid" data-reveal>
+    <div class="eco-family__grid" data-reveal style="display:block">
       <div class="eco-family__copy">
         <div class="eco-family__head">
           <span class="eco-family__num" aria-hidden="true">01</span>
@@ -409,18 +409,9 @@ $emulsion    = get_product('prakritik-emulsion');
           <a class="btn btn--outline" href="/why-prakritik/">Why Prakritik?</a>
         </div>
       </div>
-      <div class="eco-family__plate" data-reveal>
-        <picture>
-          <source type="image/avif" srcset="<?= eco_srcset('eco-paints-pair', [640, 960, 1280, 1920]) ?>"
-                  sizes="(min-width: 1024px) 45vw, calc(100vw - 2.5rem)">
-          <source type="image/webp" srcset="<?= eco_srcset_webp('eco-paints-pair', [640, 960, 1280, 1920]) ?>"
-                  sizes="(min-width: 1024px) 45vw, calc(100vw - 2.5rem)">
-          <img src="<?= asset_url('/assets/images/ecosystem/eco-paints-pair-1280.jpg') ?>"
-               alt="Prakritik Distemper and Emulsion paint packs — real Eco-Paints product photography"
-               width="1280" height="800"
-               loading="lazy" decoding="async">
-        </picture>
-      </div>
+      <!-- V42: eco-family plate image removed — the hero above now carries the Eco-Paints
+           group photo (gbp-paint-bucket), and the Distemper/Emulsion chapters below carry
+           the individual product photographs. Removes the cross-section image repetition. -->
     </div>
   </div>
 </section>
@@ -443,16 +434,9 @@ $emulsion    = get_product('prakritik-emulsion');
                  loading="lazy" decoding="async">
           </picture>
         </div>
-        <div class="product-chapter__strip" aria-hidden="true">
-          <picture>
-            <source type="image/webp" srcset="<?= asset_url('/assets/editorial/interior-finish-study.webp') ?>">
-            <img class="chapter-strip"
-                 src="<?= asset_url('/assets/editorial/interior-finish-study.jpg') ?>"
-                 alt=""
-                 width="1344" height="768"
-                 loading="lazy" decoding="async">
-          </picture>
-        </div>
+        <!-- V42: removed editorial interior-finish-study strip (invented wall image, not
+             client-supplied wall photography). The product photograph above is the sole
+             visual, per the premium-catalogue art direction. -->
       </figure>
       <div class="product-chapter__copy">
         <span class="product-chapter__eyebrow">Eco-Paints — Distemper</span>
@@ -495,16 +479,9 @@ $emulsion    = get_product('prakritik-emulsion');
                  loading="lazy" decoding="async">
           </picture>
         </div>
-        <div class="product-chapter__strip" aria-hidden="true">
-          <picture>
-            <source type="image/webp" srcset="<?= asset_url('/assets/editorial/exterior-finish-study.webp') ?>">
-            <img class="chapter-strip"
-                 src="<?= asset_url('/assets/editorial/exterior-finish-study.jpg') ?>"
-                 alt=""
-                 width="1344" height="768"
-                 loading="lazy" decoding="async">
-          </picture>
-        </div>
+        <!-- V42: removed editorial exterior-finish-study strip (invented wall image, not
+             client-supplied wall photography). The product photograph above is the sole
+             visual, per the premium-catalogue art direction. -->
       </figure>
       <div class="product-chapter__copy">
         <span class="product-chapter__eyebrow">Eco-Paints — Emulsion</span>
@@ -658,15 +635,15 @@ $emulsion    = get_product('prakritik-emulsion');
     <div class="gocast-feature" data-reveal>
       <figure class="gocast-feature__figure">
         <picture>
-          <source type="image/avif" srcset="<?= eco_srcset('carousel-cow-dung-logs', [640, 960, 1280]) ?>"
+          <source type="image/avif" srcset="<?= eco_srcset('gocast-material', [640, 960, 1280]) ?>"
                   sizes="(min-width: 1024px) 45vw, calc(100vw - 2.5rem)">
-          <source type="image/webp" srcset="<?= eco_srcset_webp('carousel-cow-dung-logs', [640, 960, 1280]) ?>"
+          <source type="image/webp" srcset="<?= eco_srcset_webp('gocast-material', [640, 960, 1280]) ?>"
                   sizes="(min-width: 1024px) 45vw, calc(100vw - 2.5rem)">
-          <img src="<?= asset_url('/assets/images/ecosystem/carousel-cow-dung-logs-1280.jpg') ?>"
-               alt="Gaurikrit Cow-Dung Logs — official product artwork, premium biomass fuel"
-               width="1672" height="941" loading="lazy" decoding="async">
+          <img src="<?= asset_url('/assets/images/ecosystem/gocast-material-1280.jpg') ?>"
+               alt="Gaurikrit Cow-Dung Logs — actual processed log product on a neutral background. Development direction."
+               width="1280" height="853" loading="lazy" decoding="async">
         </picture>
-        <figcaption>Cow-Dung Logs — official product artwork.</figcaption>
+        <figcaption>Cow-Dung Logs — actual product photograph. Development direction.</figcaption>
       </figure>
       <div class="gocast-feature__copy">
         <span class="family-section__num" aria-hidden="true">02</span>
@@ -692,20 +669,9 @@ $emulsion    = get_product('prakritik-emulsion');
         </div>
       </div>
     </div>
-    <div class="family-section__poster" data-reveal>
-      <figure class="family-section__poster-figure">
-        <picture>
-          <source type="image/avif" srcset="<?= eco_srcset('gbp-cow-dung-logs', [640, 960, 1024]) ?>"
-                  sizes="(min-width: 1024px) 30vw, calc(100vw - 2.5rem)">
-          <source type="image/webp" srcset="<?= eco_srcset_webp('gbp-cow-dung-logs', [640, 960, 1024]) ?>"
-                  sizes="(min-width: 1024px) 30vw, calc(100vw - 2.5rem)">
-          <img src="<?= asset_url('/assets/images/ecosystem/gbp-cow-dung-logs-1024.jpg') ?>"
-               alt="Gaurikrit Cow-Dung Logs product poster — stacked biomass fuel logs. Development direction."
-               width="1024" height="1024" loading="lazy" decoding="async">
-        </picture>
-        <figcaption>Cow-Dung Logs — official product poster.</figcaption>
-      </figure>
-    </div>
+    <!-- V42: removed Cow-Dung Logs promotional poster (gbp-cow-dung-logs). The clean
+         product photograph above (gocast-material, actual log stack on neutral background)
+         is the sole visual. Development-direction status is stated in the copy. -->
   </div>
 </section>
 
@@ -744,33 +710,22 @@ $emulsion    = get_product('prakritik-emulsion');
           <a class="btn btn--outline" href="/contact/?interest=bio-coal-logs">Enquire About Bio-Briquettes</a>
         </div>
       </div>
-      <figure class="family-section__photo" aria-label="Bio-Briquettes — official Gaurikrit product artwork">
+      <figure class="family-section__photo" aria-label="Bio-Briquettes — actual product photograph">
         <picture>
-          <source type="image/avif" srcset="<?= eco_srcset('carousel-bio-briquettes', [640, 960, 1280, 1920]) ?>"
+          <source type="image/avif" srcset="<?= eco_srcset('bio-briquettes-clean', [640, 960, 1024]) ?>"
                   sizes="(min-width: 1024px) 42vw, calc(100vw - 2.5rem)">
-          <source type="image/webp" srcset="<?= eco_srcset_webp('carousel-bio-briquettes', [640, 960, 1280, 1920]) ?>"
+          <source type="image/webp" srcset="<?= eco_srcset_webp('bio-briquettes-clean', [640, 960, 1024]) ?>"
                   sizes="(min-width: 1024px) 42vw, calc(100vw - 2.5rem)">
-          <img src="<?= asset_url('/assets/images/ecosystem/carousel-bio-briquettes-1280.jpg') ?>"
-               alt="Gaurikrit Bio-Briquettes — official Gaurikrit artwork for a Futureline product direction not yet in production"
-               width="1920" height="1080" loading="lazy" decoding="async">
+          <img src="<?= asset_url('/assets/images/ecosystem/bio-briquettes-clean-1024.jpg') ?>"
+               alt="Gaurikrit Bio-Briquettes — actual briquette product on a neutral background. Futureline product, not yet in production."
+               width="635" height="389" loading="lazy" decoding="async">
         </picture>
-        <figcaption>Bio-Briquettes official artwork. Futureline — not yet in production.</figcaption>
+        <figcaption>Bio-Briquettes — actual product photograph. Futureline, not yet in production.</figcaption>
       </figure>
     </div>
-    <div class="family-section__poster" data-reveal>
-      <figure class="family-section__poster-figure">
-        <picture>
-          <source type="image/avif" srcset="<?= eco_srcset('gbp-bio-briquettes', [640, 960, 1024]) ?>"
-                  sizes="(min-width: 1024px) 30vw, calc(100vw - 2.5rem)">
-          <source type="image/webp" srcset="<?= eco_srcset_webp('gbp-bio-briquettes', [640, 960, 1024]) ?>"
-                  sizes="(min-width: 1024px) 30vw, calc(100vw - 2.5rem)">
-          <img src="<?= asset_url('/assets/images/ecosystem/gbp-bio-briquettes-1024.jpg') ?>"
-               alt="Gaurikrit Bio-Briquettes product poster — cylindrical biomass fuel logs. Futureline product, not yet in production."
-               width="1024" height="1024" loading="lazy" decoding="async">
-        </picture>
-        <figcaption>Bio-Briquettes — official product poster. Futureline, not yet in production.</figcaption>
-      </figure>
-    </div>
+    <!-- V42: removed Bio-Briquettes promotional poster (gbp-bio-briquettes). The clean
+         briquette crop above (bio-briquettes-clean, actual briquettes on neutral background,
+         no marketing text/icons) is the sole visual. Futureline status is stated in the copy. -->
   </div>
 </section>
 
@@ -804,33 +759,22 @@ $emulsion    = get_product('prakritik-emulsion');
           <a class="btn btn--outline" href="/contact/?interest=utility-products">Enquire About Eco Utility Products</a>
         </div>
       </div>
-      <figure class="family-section__photo" aria-label="Eco Utility Products — official Gaurikrit product artwork">
+      <figure class="family-section__photo" aria-label="Eco Utility Products — actual product photograph">
         <picture>
-          <source type="image/avif" srcset="<?= eco_srcset('carousel-eco-utility-products', [640, 960, 1280, 1920]) ?>"
+          <source type="image/avif" srcset="<?= eco_srcset('eco-utility-box', [640, 960, 1280]) ?>"
                   sizes="(min-width: 1024px) 42vw, calc(100vw - 2.5rem)">
-          <source type="image/webp" srcset="<?= eco_srcset_webp('carousel-eco-utility-products', [640, 960, 1280, 1920]) ?>"
+          <source type="image/webp" srcset="<?= eco_srcset_webp('eco-utility-box', [640, 960, 1280]) ?>"
                   sizes="(min-width: 1024px) 42vw, calc(100vw - 2.5rem)">
-          <img src="<?= asset_url('/assets/images/ecosystem/carousel-eco-utility-products-1280.jpg') ?>"
-               alt="Gaurikrit Eco Utility Products — official Gaurikrit artwork for a Futureline product direction not yet in production: dhoop cups, cow-dung diyas, biodegradable plates and eco glasses"
-               width="1920" height="1080" loading="lazy" decoding="async">
+          <img src="<?= asset_url('/assets/images/ecosystem/eco-utility-box-1280.jpg') ?>"
+               alt="Gaurikrit Eco Utility Products — kraft packaging on a natural background. Futureline product direction, not yet in production."
+               width="1280" height="1024" loading="lazy" decoding="async">
         </picture>
-        <figcaption>Eco Utility Products official artwork. Futureline — not yet in production.</figcaption>
+        <figcaption>Eco Utility Products — actual product photograph. Futureline, not yet in production.</figcaption>
       </figure>
     </div>
-    <div class="family-section__poster" data-reveal>
-      <figure class="family-section__poster-figure">
-        <picture>
-          <source type="image/avif" srcset="<?= eco_srcset('showcase-utility', [640, 960, 1022]) ?>"
-                  sizes="(min-width: 1024px) 30vw, calc(100vw - 2.5rem)">
-          <source type="image/webp" srcset="<?= eco_srcset_webp('showcase-utility', [640, 960, 1022]) ?>"
-                  sizes="(min-width: 1024px) 30vw, calc(100vw - 2.5rem)">
-          <img src="<?= asset_url('/assets/images/ecosystem/showcase-utility-1022.jpg') ?>"
-               alt="Gaurikrit Eco Utility Products showcase — dhoop cups and cow-dung diyas. Futureline product, not yet in production."
-               width="1022" height="1095" loading="lazy" decoding="async">
-        </picture>
-        <figcaption>Eco Utility Products showcase — dhoop cups and cow-dung diyas. Futureline, not yet in production.</figcaption>
-      </figure>
-    </div>
+    <!-- V42: removed Eco Utility promotional poster (showcase-utility). The clean kraft-box
+         photograph above (eco-utility-box, actual packaging on natural background) is the
+         sole visual. Futureline status is stated in the copy. No invented dhoop/diya scenes. -->
   </div>
 </section>
 
