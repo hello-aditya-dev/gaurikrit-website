@@ -669,9 +669,20 @@ $emulsion    = get_product('prakritik-emulsion');
         </div>
       </div>
     </div>
-    <!-- V42: removed Cow-Dung Logs promotional poster (gbp-cow-dung-logs). The clean
-         product photograph above (gocast-material, actual log stack on neutral background)
-         is the sole visual. Development-direction status is stated in the copy. -->
+    <div class="family-section__poster" data-reveal>
+      <figure class="family-section__poster-figure">
+        <picture>
+          <source type="image/avif" srcset="<?= eco_srcset('gbp-cow-dung-logs', [640, 960, 1024]) ?>"
+                  sizes="(min-width: 1024px) 30vw, calc(100vw - 2.5rem)">
+          <source type="image/webp" srcset="<?= eco_srcset_webp('gbp-cow-dung-logs', [640, 960, 1024]) ?>"
+                  sizes="(min-width: 1024px) 30vw, calc(100vw - 2.5rem)">
+          <img src="<?= asset_url('/assets/images/ecosystem/gbp-cow-dung-logs-1024.jpg') ?>"
+               alt="Gaurikrit Cow-Dung Logs product poster — stacked biomass fuel logs. Development direction."
+               width="1024" height="1024" loading="lazy" decoding="async">
+        </picture>
+        <figcaption>Cow-Dung Logs — official product poster.</figcaption>
+      </figure>
+    </div>
   </div>
 </section>
 

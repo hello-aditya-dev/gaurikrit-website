@@ -1623,7 +1623,12 @@ ${themeList}
         </div>
       </div>
     </div>
-    <!-- V42: removed Cow-Dung Logs promotional poster; clean product photo above is the sole visual -->
+    <div class="family-section__poster" data-reveal>
+      <figure class="family-section__poster-figure">
+        ${ecoPic('gbp-cow-dung-logs', [640, 960, 1024], '(min-width: 1024px) 30vw, calc(100vw - 2.5rem)', 1024, 1024, 1024, 'Gaurikrit Cow-Dung Logs product poster — stacked biomass fuel logs. Development direction.', depth)}
+        <figcaption>Cow-Dung Logs — official product poster.</figcaption>
+      </figure>
+    </div>
   </div>
 </section>`;
 
