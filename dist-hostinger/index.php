@@ -416,20 +416,24 @@ $HERO_SIZES = '(min-width: 1200px) 58vw, (min-width: 900px) 50vw, calc(100vw - 2
 
     <div class="families" data-reveal-stagger>
 <?php
-      // V22: every family carries the final client-supplied landscape
-      // artworks from the 2026-10-29 batch (the same official product
-      // posters as the hero carousel — browser-cached, so no extra
-      // download). 16:9 frames with object-fit:contain preserve product
-      // identity and label text. Client terminology: "Cow-Dung Logs"
-      // (formerly GoCast Logs) and "Bio-Briquettes" (formerly Bio-Coal
-      // Logs) — see data.php and ASSET_PROVENANCE.md.
+      // V40 (2026-11-14 pack): Eco-Paints and Cow-Dung Logs family cards
+      // now use the ACTUAL product images sourced exclusively from the
+      // GAURIKRIT_Full_Asset_Pack_2026-11-14 ZIP — distinct from the
+      // preceding hero carousel (which uses the carousel-* artworks) and
+      // from the 4-stage flow (flow-* stems). Eco-Paints → GBP Paint
+      // Bucket (1536×1024, real product photo); Cow-Dung Logs → GBP
+      // Cow-Dung Logs (1024×1024, actual processed log product). Bio-
+      // Briquettes and Eco Utility keep the carousel artworks (Futureline
+      // product artwork, not yet in production). Client terminology:
+      // "Cow-Dung Logs" (formerly GoCast Logs) and "Bio-Briquettes"
+      // (formerly Bio-Coal Logs) — see data.php and ASSET_PROVENANCE.md.
       $familyMedia = [
-          'eco-paints'        => ['stem' => 'eco-paints-pair', 'ladder' => [640, 960, 1280, 1920],
-                                  'w' => 1280, 'h' => 800,
-                                  'alt' => 'Prakritik Distemper and Emulsion paint packs — the documented Eco-Paints family'],
-          'cow-dung-logs'     => ['stem' => 'gocast-material', 'ladder' => [640, 960, 1280],
-                                  'w' => 960, 'h' => 640,
-                                  'alt' => 'Client-supplied cow-dung log material — the development direction for Cow-Dung Logs'],
+          'eco-paints'        => ['stem' => 'gbp-paint-bucket', 'ladder' => [640, 960, 1280, 1536],
+                                  'w' => 1536, 'h' => 1024,
+                                  'alt' => 'Prakritik Distemper and Emulsion paint packs — the actual Eco-Paints product from the 2026-11-14 client asset pack'],
+          'cow-dung-logs'     => ['stem' => 'gbp-cow-dung-logs', 'ladder' => [640, 960, 1024],
+                                  'w' => 1024, 'h' => 1024,
+                                  'alt' => 'Gaurikrit Cow-Dung Logs — the actual processed log product from the 2026-11-14 client asset pack'],
           'bio-briquettes'    => ['stem' => 'carousel-bio-briquettes', 'ladder' => [640, 960, 1280, 1920],
                                   'w' => 1920, 'h' => 1080,
                                   'alt' => 'Gaurikrit Bio-Briquettes — client-supplied product artwork. A Futureline product direction, not yet in production.'],

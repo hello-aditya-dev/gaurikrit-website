@@ -901,16 +901,18 @@ function homeBody(depth) {
     const stageImpact = ecoPic('flow-impact', [640, 960], STAGE_SIZES, 960, 960, 960, 'Earth encircled by a leaf recycling symbol — a circular-economy direction', depth);
 
     const familiesMarkup = FAMILIES.map((family) => {
-        // V22: every family carries the final client-supplied landscape
-        // artworks from the 2026-10-29 batch (the same official product
-        // posters as the hero carousel — browser-cached, so no extra
-        // download). 16:9 frames with object-fit:contain preserve product
-        // identity and label text. Client terminology: "Cow-Dung Logs"
-        // (formerly GoCast Logs) and "Bio-Briquettes" (formerly Bio-Coal
-        // Logs) — see data.php and ASSET_PROVENANCE.md.
+        // V40 (2026-11-14 pack): Eco-Paints and Cow-Dung Logs family cards
+        // now use the ACTUAL product images sourced exclusively from the
+        // GAURIKRIT_Full_Asset_Pack_2026-11-14 ZIP — distinct from the
+        // preceding hero carousel (carousel-* artworks) and the 4-stage
+        // flow (flow-* stems). Eco-Paints → GBP Paint Bucket (1536×1024);
+        // Cow-Dung Logs → GBP Cow-Dung Logs (1024×1024). Bio-Briquettes
+        // and Eco Utility keep the carousel artworks (Futureline, not yet
+        // in production). Client terminology: "Cow-Dung Logs" (formerly
+        // GoCast Logs) and "Bio-Briquettes" (formerly Bio-Coal Logs).
         const mediaSpec = {
-            'eco-paints':       { stem: 'eco-paints-pair', alt: 'Prakritik Distemper and Emulsion paint packs — the documented Eco-Paints family', widths: [640, 960, 1280, 1920], fb: 1280, w: 1280, h: 800 },
-            'gocast-logs':      { stem: 'gocast-material', alt: 'Client-supplied cow-dung log material — the development direction for Cow-Dung Logs', widths: [640, 960, 1280], fb: 960, w: 960, h: 640 },
+            'eco-paints':       { stem: 'gbp-paint-bucket', alt: 'Prakritik Distemper and Emulsion paint packs — the actual Eco-Paints product from the 2026-11-14 client asset pack', widths: [640, 960, 1280, 1536], fb: 1536, w: 1536, h: 1024 },
+            'gocast-logs':      { stem: 'gbp-cow-dung-logs', alt: 'Gaurikrit Cow-Dung Logs — the actual processed log product from the 2026-11-14 client asset pack', widths: [640, 960, 1024], fb: 1024, w: 1024, h: 1024 },
             'bio-coal-logs':    { stem: 'carousel-bio-briquettes', alt: 'Gaurikrit Bio-Briquettes — client-supplied product artwork. A Futureline product direction, not yet in production.', widths: [640, 960, 1280, 1920], fb: 1920, w: 1920, h: 1080 },
             'utility-products': { stem: 'carousel-eco-utility-products', alt: 'Gaurikrit Eco Utility Products — client-supplied product artwork. A Futureline product direction, not yet in production.', widths: [640, 960, 1280, 1920], fb: 1920, w: 1920, h: 1080 },
         };

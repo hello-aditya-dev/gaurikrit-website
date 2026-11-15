@@ -5038,14 +5038,17 @@ p, li, dd, blockquote { text-wrap: pretty; }
   border: 1px solid var(--border); border-radius: var(--r-card);
   background: var(--paper); overflow: hidden;
 }
-/* V22 §30: full-bleed 16:9 editorial frame matching the client's four
-   ~16:9 landscape product artworks (2026-10-29 batch). object-fit:contain
-   preserves embedded labels, logos and packaging text. One art-direction
-   system for all four families. */
+/* V40 §30: each family card image uses its INTRINSIC aspect ratio (from the
+   width/height attributes) so every product sits in a frame matching its
+   natural proportions — Eco-Paints (3:2), Cow-Dung Logs (1:1), Bio-Briquettes
+   and Eco Utility (16:9 Futureline artworks). object-fit:contain preserves
+   embedded labels, logos and packaging text without cropping. Removes the
+   letterboxing that occurred when square/portrait product images were forced
+   into a uniform 16:9 frame. */
 .family__media--photo { padding: 0; }
 .family__media--photo picture,
 .family__media--photo img {
-  display: block; width: 100%; height: auto; aspect-ratio: 16 / 9;
+  display: block; width: 100%; height: auto;
   object-fit: contain; background: var(--paper-warm);
   transition: transform var(--dur) var(--ease);
 }
