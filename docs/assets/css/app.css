@@ -159,7 +159,7 @@ html {
   scroll-padding-top: calc(var(--header-h) + 1rem);
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
-  overflow-x: clip; /* V26 hallmark 34: clip, never hidden */
+  overflow-x: clip; /* V26 hallmark 34: clip, never hidden (V41 confirmed sufficient for html) */
 }
 
 body {
@@ -274,7 +274,7 @@ ul, ol { list-style: none; }
   max-width: 1320px;
   margin-inline: auto;
   padding-inline: clamp(1rem, 3vw, 3rem);
-  overflow-x: hidden;
+  overflow-x: clip; /* V41: was hidden — computed overflow-y to auto, clipping the Products dropdown panel (absolute, below the 80px header). clip prevents horizontal overflow WITHOUT clipping descendants. Fixes the Product dropdown. */
 }
 @media (min-width: 768px)  { .container { padding-inline: 2rem; } }    /* 32px tablet */
 @media (min-width: 1024px) { .container { padding-inline: 3rem; } }    /* 48px desktop */
