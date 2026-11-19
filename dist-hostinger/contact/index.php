@@ -31,7 +31,7 @@ $pageClass        = 'contact';
 require_once __DIR__ . '/../includes/bootstrap.php';
 require ROOT_PATH . '/includes/header.php';
 
-global $COMPANY, $INTEREST_OPTIONS;
+global $COMPANY, $INTEREST_OPTIONS, $PARTNER_AUDIENCES;
 
 $phones = $COMPANY['phones'] ?? [];
 $address = $COMPANY['address'] ?? [];
@@ -358,6 +358,30 @@ if ($interestParam !== '' && array_key_exists($interestParam, $INTEREST_OPTIONS)
         </p>
       </form>
     </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PARTNERSHIPS — merged from /for-business/ (V48)
+     The partner audience list, brought into the Contact page.
+     ============================================================ -->
+<section class="section section--paper" aria-labelledby="partner-audiences-title">
+  <div class="container">
+    <div class="section-heading section-heading--left" data-reveal style="max-width: 48rem; margin-bottom: 2rem;">
+      <span class="section-heading__eyebrow">Partnerships</span>
+      <h2 class="section-heading__title" id="partner-audiences-title">Who Gaurikrit works with</h2>
+      <p class="section-heading__desc">
+        Distribution, dealership, architecture, contracting, institutional, industrial and sustainability partnerships around the Gaurikrit material ecosystem.
+      </p>
+    </div>
+    <div data-reveal-stagger style="display: flex; flex-wrap: wrap; gap: 0.75rem;">
+      <?php foreach ($PARTNER_AUDIENCES as $audience): ?>
+        <span style="display: inline-flex; align-items: center; padding: 0.625rem 1.25rem; background: var(--paper-warm); border: 1px solid var(--border); border-radius: var(--r-pill); font-size: 0.875rem; font-weight: 600; color: var(--forest);"><?= e($audience) ?></span>
+      <?php endforeach; ?>
+    </div>
+    <p style="margin-top: 1.5rem; font-size: 0.875rem; color: var(--fg-muted); line-height: 1.6; text-align: justify;">
+      For bulk enquiries, distribution partnerships, institutional procurement or Gaushala collaboration, use the enquiry form above and select the relevant interest area. Gaurikrit responds to all legitimate business enquiries.
+    </p>
   </div>
 </section>
 <?php require ROOT_PATH . '/includes/footer.php';

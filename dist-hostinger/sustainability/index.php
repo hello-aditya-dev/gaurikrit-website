@@ -26,7 +26,7 @@ $pageClass       = 'sustainability';
 require_once __DIR__ . '/../../includes/bootstrap.php';
 require ROOT_PATH . '/includes/header.php';
 
-global $COMPANY, $CIRCULAR_STAGES, $IMPACT_AREAS, $APPLICATION_GROUPS;
+global $COMPANY, $CIRCULAR_STAGES, $IMPACT_AREAS, $APPLICATION_GROUPS, $INNOVATION_AREAS;
 
 $measurementItems = [
     ['name' => 'Trees / Resource conservation', 'desc' => 'Trees saved through Cow-Dung Logs and material directions — measured when verified project data is available.'],
@@ -399,6 +399,35 @@ $measurementItems = [
       </picture>
       <figcaption>Illustrative campus concept &mdash; artist&rsquo;s impression. Not a photograph of an operational Gaurikrit facility unless the client confirms otherwise.</figcaption>
     </figure>
+  </div>
+</section>
+<!-- ============================================================
+     RESEARCH & INNOVATION — merged from /innovation/ (V48)
+     Five research focus areas — directions, not proven accomplishments.
+     ============================================================ -->
+<section class="section section--paper" aria-labelledby="innov-focus-title">
+  <div class="container">
+    <div class="section-heading section-heading--left" data-reveal style="max-width: 48rem; margin-bottom: 2.5rem;">
+      <span class="section-heading__eyebrow">Research &amp; Innovation</span>
+      <h2 class="section-heading__title" id="innov-focus-title">Five directions under exploration</h2>
+      <p class="section-heading__desc">
+        These are research directions &mdash; not proven accomplishments, patents or facilities.
+        Each explores how a natural material could serve a contemporary application.
+      </p>
+    </div>
+    <div data-reveal-stagger style="display: grid; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: var(--r-panel); overflow: hidden; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));">
+      <?php foreach ($INNOVATION_AREAS as $focus): ?>
+        <div style="background: var(--paper); padding: clamp(1.5rem, 3vw, 2.5rem); display: flex; flex-direction: column; gap: 0.5rem;">
+          <span style="font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; color: var(--haldi); line-height: 1;" aria-hidden="true"><?= e($focus['num']) ?></span>
+          <h3 style="font-family: var(--font-display); font-size: clamp(1.125rem, 2vw, 1.375rem); font-weight: 700; color: var(--forest); margin: 0;"><?= e($focus['name']) ?></h3>
+          <p style="font-size: 0.875rem; line-height: 1.6; color: var(--fg-muted); margin: 0; text-align: justify;"><?= e($focus['desc']) ?></p>
+        </div>
+      <?php endforeach; ?>
+    </div>
+    <p style="margin-top: 1.5rem; padding: 1rem 1.25rem; background: color-mix(in srgb, var(--haldi) 8%, transparent); border-left: 3px solid var(--haldi); border-radius: 0 var(--r-panel) var(--r-panel) 0; font-size: 0.8125rem; color: var(--fg-muted); line-height: 1.5;">
+      Research directions, not proven accomplishments. No patents, facilities or test results are claimed.
+      Each direction will be documented with verified information when the client supplies it.
+    </p>
   </div>
 </section>
 <?php require ROOT_PATH . '/includes/footer.php';
