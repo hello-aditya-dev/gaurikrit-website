@@ -489,8 +489,6 @@ $NAV = [
     ['label' => 'Our Story',      'href' => '/about/'],
     ['label' => 'Products',       'href' => '/products/'],
     ['label' => 'Sustainability', 'href' => '/sustainability/'],
-    ['label' => 'Innovation',     'href' => '/innovation/'],
-    ['label' => 'Partners',       'href' => '/for-business/'],
     ['label' => 'Contact',        'href' => '/contact/'],
 ];
 

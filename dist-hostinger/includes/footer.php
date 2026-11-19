@@ -31,7 +31,7 @@ $addr = $COMPANY['address'] ?? [];
                 <a href="/about/">Our Story</a>
                 <a href="/colours/">Colours</a>
                 <a href="/sustainability/">Sustainability</a>
-                <a href="/innovation/">Innovation</a>
+                <a href="/sustainability/">Innovation</a>
             </nav>
             <nav class="site-footer__col" aria-label="Products">
                 <h4 class="site-footer__heading">Products</h4>
@@ -41,7 +41,7 @@ $addr = $COMPANY['address'] ?? [];
             </nav>
             <nav class="site-footer__col site-footer__col--work" aria-label="Work with us">
                 <h4 class="site-footer__heading">Work With Us</h4>
-                <a href="/for-business/">Partners</a>
+                <a href="/contact/">Partners</a>
                 <a href="/paint-calculator/">Painting Calculator</a>
                 <a href="/downloads/">Downloads</a>
                 <a href="/contact/">Contact</a>

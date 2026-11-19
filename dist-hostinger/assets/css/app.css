@@ -164,15 +164,26 @@ html {
 
 body {
   font-family: var(--font-sans);
+  font-size: clamp(1rem, 2vw, 1.125rem);
   background: var(--bg);
   color: var(--fg);
-  line-height: 1.6;
+  line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: clip; /* V26 hallmark 34: clip (was hidden — broke position: sticky) */
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+}
+
+/* V47: Global text justification — every page, every section.
+   Justify all body paragraphs; override for non-body elements that should stay left. */
+p { text-align: justify; hyphens: auto; -webkit-hyphens: auto; }
+figcaption, .muted, .status-badge, .breadcrumb, .btn, .site-nav__link,
+.nav-menu__link, .family__status, .product-status-inline, .concept-qualifier,
+.skip-link, .mobile-menu__link, .partner-strip__item, .family-section__note,
+.resource-step__qualifier, .section-heading__eyebrow {
+  text-align: left; hyphens: manual;
 }
 
 h1, h2, h3, h4, h5, h6 {

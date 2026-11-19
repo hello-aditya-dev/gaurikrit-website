@@ -236,8 +236,6 @@ const NAV = [
     { label: 'Our Story', href: '/about/' },
     { label: 'Products', href: '/products/' },
     { label: 'Sustainability', href: '/sustainability/' },
-    { label: 'Innovation', href: '/innovation/' },
-    { label: 'Partners', href: '/for-business/' },
     { label: 'Contact', href: '/contact/' },
 ];
 
@@ -559,8 +557,8 @@ function renderHeader(pageMeta, depth) {
         '/products/prakritik-distemper/':'distemper',
         '/products/prakritik-emulsion/':'emulsion',
         '/why-prakritik/':'why-prakritik','/about/':'about',
-        '/sustainability/':'sustainability','/innovation/':'innovation',
-        '/for-business/':'for-business','/paint-calculator/':'calculator',
+        '/sustainability/':'sustainability','/sustainability/':'innovation',
+        '/contact/':'for-business','/paint-calculator/':'calculator',
         '/downloads/':'downloads','/contact/':'contact',
         '/colours/':'colours'})[pageMeta.canonical] || 'home';
     const ogImage = SITE_URL.replace(/\/$/, '') + '/assets/social/og-' + socialSlug + '.jpg';
@@ -598,8 +596,8 @@ function renderHeader(pageMeta, depth) {
         '/why-prakritik/': 'Why Prakritik',
         '/about/': 'Our Story',
         '/sustainability/': 'Sustainability',
-        '/innovation/': 'Innovation',
-        '/for-business/': 'Partners',
+        '/sustainability/': 'Innovation',
+        '/contact/': 'Partners',
         '/paint-calculator/': 'Paint Calculator',
         '/downloads/': 'Downloads',
         '/contact/': 'Contact',
@@ -823,7 +821,7 @@ function renderFooter(depth) {
                 <a href="${relUrl('/about/', depth)}">Our Story</a>
                 <a href="${relUrl('/colours/', depth)}">Colours</a>
                 <a href="${relUrl('/sustainability/', depth)}">Sustainability</a>
-                <a href="${relUrl('/innovation/', depth)}">Innovation</a>
+                <a href="${relUrl('/sustainability/', depth)}">Innovation</a>
             </nav>
             <nav class="site-footer__col" aria-label="Products">
                 <h4 class="site-footer__heading">Products</h4>
@@ -831,7 +829,7 @@ ${productLinks}
             </nav>
             <nav class="site-footer__col site-footer__col--work" aria-label="Work with us">
                 <h4 class="site-footer__heading">Work With Us</h4>
-                <a href="${relUrl('/for-business/', depth)}">Partners</a>
+                <a href="${relUrl('/contact/', depth)}">Partners</a>
                 <a href="${relUrl('/paint-calculator/', depth)}">Painting Calculator</a>
                 <a href="${relUrl('/downloads/', depth)}">Downloads</a>
                 <a href="${relUrl('/contact/', depth)}">Contact</a>
@@ -1513,7 +1511,7 @@ ${familiesMarkup}
 ${audienceItems}
       </ul>
       <div class="partner-strip__ctas">
-        <a class="btn btn--primary" href="${relUrl('/for-business/', depth)}">Become a Partner</a>
+        <a class="btn btn--primary" href="${relUrl('/contact/', depth)}">Become a Partner</a>
         <a class="btn btn--secondary" href="${relUrl('/contact/', depth)}">Request Product Information</a>
       </div>
     </div>
@@ -3429,7 +3427,7 @@ function aboutBody(depth) {
     </dl>
     <div class="company-info__actions" style="margin-top: 2.5rem;">
       <a class="btn btn--primary" href="${relUrl('/contact/', depth)}">Talk to Us</a>
-      <a class="btn btn--secondary" href="${relUrl('/for-business/', depth)}">Partners</a>
+      <a class="btn btn--secondary" href="${relUrl('/contact/', depth)}">Partners</a>
       <a class="btn btn--secondary" href="${relUrl('/products/', depth)}">Explore the Ecosystem</a>
     </div>
   </div>
@@ -4500,7 +4498,7 @@ function contactBody(depth) {
 
         <!-- V7: one subtle link row instead of competing CTA buttons. -->
         <p class="contact-info__links">
-          <a href="${relUrl('/for-business/', depth)}">For Business</a>
+          <a href="${relUrl('/contact/', depth)}">For Business</a>
           <span aria-hidden="true">·</span>
           <a href="${relUrl('/paint-calculator/', depth)}">Painting Calculator</a>
         </p>
@@ -4560,7 +4558,7 @@ ${interestOptions}
         <!-- V5: supporting CTAs as small text links below the form — no
              longer competing as buttons with the form's submit. -->
         <p class="contact-form__foot-links">
-          <a href="${relUrl('/for-business/', depth)}">For Business</a>
+          <a href="${relUrl('/contact/', depth)}">For Business</a>
           <span aria-hidden="true">·</span>
           <a href="${relUrl('/paint-calculator/', depth)}">Estimate Your Project</a>
         </p>
@@ -4944,7 +4942,7 @@ ${appGroups}
           </p>
           <p class="muted">
             Gaurikrit works with Gaushalas and institutions exploring
-            cow-dung-based bio-products &mdash; see <a href="${relUrl('/for-business/', depth)}">Partners</a>.
+            cow-dung-based bio-products &mdash; see <a href="${relUrl('/contact/', depth)}">Partners</a>.
           </p>
         </div>
         <!-- V20 §49: the generated rural-landscape illustration is retired —
@@ -4971,7 +4969,7 @@ ${appGroups}
 ${measurementItems}
     </div>
     <div style="margin-top: 2.5rem; display: flex; flex-wrap: wrap; gap: 0.75rem;" data-reveal>
-      <a class="btn btn--primary" href="${relUrl('/innovation/', depth)}">Research &amp; Innovation</a>
+      <a class="btn btn--primary" href="${relUrl('/sustainability/', depth)}">Research &amp; Innovation</a>
       <a class="btn btn--outline" href="${relUrl('/contact/', depth)}">Discuss a Collaboration</a>
     </div>
   </div>
@@ -4999,7 +4997,7 @@ ${measurementItems}
 `;
 }
 
-// ---- Innovation (V16 NEW route /innovation/) ----
+// ---- Innovation (V16 NEW route /sustainability/) ----
 function innovationBody(depth) {
     const methodItems = [
         { num: '01', name: 'Material-first',  desc: 'Each direction begins with a natural material and its properties, not a market template.' },
@@ -5235,7 +5233,7 @@ ${methodGrid}
         talk to Gaurikrit about material directions and collaboration.
       </p>
       <div class="innov-cta__actions">
-        <a class="btn btn--primary" href="${relUrl("/for-business/", depth)}">Become a Partner</a>
+        <a class="btn btn--primary" href="${relUrl("/contact/", depth)}">Become a Partner</a>
         <a class="btn btn--secondary" href="${relUrl('/contact/', depth)}">Contact Gaurikrit</a>
       </div>
     </div>
@@ -5714,7 +5712,7 @@ const PAGES = [
             title: 'Research & Innovation — Gaurikrit',
             description:
                 "Gaurikrit's research focus areas: natural coatings, biomass energy, bio-composites, carbon reduction technologies and sustainable building materials — where tradition meets technology.",
-            canonical: '/innovation/',
+            canonical: '/sustainability/',
             pageClass: 'innovation',
         },
         body: innovationBody,
@@ -5726,7 +5724,7 @@ const PAGES = [
             title: 'Partners & Business Enquiries — Gaurikrit',
             description:
                 'Build with Gaurikrit: distribution, dealership, architecture, contracting, institutional, industrial and sustainability partnerships around the Gaurikrit material ecosystem — Eco-Paints, Cow-Dung Logs, Bio-Briquettes and Eco Utility Products directions.',
-            canonical: '/for-business/',
+            canonical: '/contact/',
             pageClass: 'for-business',
         },
         body: forBusinessBody,

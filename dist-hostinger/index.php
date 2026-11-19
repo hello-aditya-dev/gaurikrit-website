@@ -20,7 +20,7 @@
  *   05 DOCUMENTED ECO-PAINT    cool-wash     real pair plate + the two
  *      FAMILY                                documented formats + colour &
  *                                           tool links
- *   06 RESEARCH & INNOVATION   limewash      5 focus areas → /innovation/;
+ *   06 RESEARCH & INNOVATION   limewash      5 focus areas → /sustainability/;
  *                                           real material samples
  *   07 VISION + MISSION        forest        two columns
  *   08 PARTNERSHIP CTA         paper         audience strip + 2 CTAs
@@ -659,7 +659,7 @@ $HERO_SIZES = '(min-width: 1200px) 58vw, (min-width: 900px) 50vw, calc(100vw - 2
         <?php endforeach; ?>
       </ul>
       <div class="partner-strip__ctas">
-        <a class="btn btn--primary" href="/for-business/">Become a Partner</a>
+        <a class="btn btn--primary" href="/contact/">Become a Partner</a>
         <a class="btn btn--secondary" href="/contact/">Request Product Information</a>
       </div>
     </div>

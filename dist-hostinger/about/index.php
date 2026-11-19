@@ -481,7 +481,7 @@ $addressLine = implode("\n", array_slice($address, 0, 6));
 
     <div class="company-info__actions" style="margin-top: 2.5rem;">
       <a class="btn btn--primary" href="/contact/">Talk to Us</a>
-      <a class="btn btn--secondary" href="/for-business/">Partners</a>
+      <a class="btn btn--secondary" href="/contact/">Partners</a>
       <a class="btn btn--secondary" href="/products/">Explore the Ecosystem</a>
     </div>
   </div>

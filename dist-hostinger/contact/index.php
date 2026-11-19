@@ -284,7 +284,7 @@ if ($interestParam !== '' && array_key_exists($interestParam, $INTEREST_OPTIONS)
 
         <!-- V20 §94: canonical public labels — Partners, Painting Calculator. -->
         <p class="contact-info__links">
-          <a href="/for-business/">Partners</a>
+          <a href="/contact/">Partners</a>
           <span aria-hidden="true">·</span>
           <a href="/paint-calculator/">Painting Calculator</a>
         </p>
@@ -352,7 +352,7 @@ if ($interestParam !== '' && array_key_exists($interestParam, $INTEREST_OPTIONS)
         <!-- V5: supporting CTAs as small text links below the form — no
              longer competing as buttons with the form's submit. -->
         <p class="contact-form__foot-links">
-          <a href="/for-business/">Partners</a>
+          <a href="/contact/">Partners</a>
           <span aria-hidden="true">·</span>
           <a href="/paint-calculator/">Painting Calculator</a>
         </p>

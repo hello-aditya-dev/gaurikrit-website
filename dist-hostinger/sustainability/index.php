@@ -336,7 +336,7 @@ $measurementItems = [
           </p>
           <p class="muted">
             Gaurikrit works with Gaushalas and institutions exploring
-            cow-dung-based bio-products — see <a href="/for-business/">Partners</a>.
+            cow-dung-based bio-products — see <a href="/contact/">Partners</a>.
           </p>
         </div>
         <!-- V20 §49: the generated rural-landscape illustration is retired —
@@ -368,7 +368,7 @@ $measurementItems = [
       <?php endforeach; ?>
     </div>
     <div style="margin-top: 2.5rem; display: flex; flex-wrap: wrap; gap: 0.75rem;" data-reveal>
-      <a class="btn btn--primary" href="/innovation/">Research &amp; Innovation</a>
+      <a class="btn btn--primary" href="/sustainability/">Research &amp; Innovation</a>
       <a class="btn btn--outline" href="/contact/">Discuss a Collaboration</a>
     </div>
   </div>
