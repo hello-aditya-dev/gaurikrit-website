@@ -3142,7 +3142,10 @@ function aboutBody(depth) {
     font-size: clamp(1rem, 1.5vw, 1.125rem); line-height: 1.75;
     color: var(--fg); max-width: 42rem;
   }
-  .story-section__body p { margin-bottom: 1rem; }
+  .story-section__body p { margin-bottom: 1rem; text-align: justify; hyphens: auto; }
+  .story-section__list { list-style: none; padding: 0; margin: 0 0 1rem 0; }
+  .story-section__list li { position: relative; padding-left: 1.5rem; margin-bottom: 0.625rem; text-align: justify; line-height: 1.6; }
+  .story-section__list li::before { content: ''; position: absolute; left: 0; top: 0.55em; width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--haldi); }
   .story-section__body p:last-child { margin-bottom: 0; }
   .story-section__image {
     margin-top: 2rem; position: relative; overflow: hidden;
@@ -3190,9 +3193,13 @@ function aboutBody(depth) {
 
   .story-closing { padding-block: clamp(3rem, 6vw, 5rem); text-align: center; }
   .story-closing__statement {
-    font-family: var(--font-display); font-size: clamp(1.25rem, 3vw, 2rem);
-    font-weight: 600; font-style: italic; line-height: 1.4;
-    color: var(--forest); max-width: 36rem; margin: 0 auto; text-wrap: balance;
+    font-family: var(--font-display); font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-weight: 700; font-style: italic; line-height: 1.35;
+    color: var(--forest); max-width: 42rem; margin: 0 auto; text-wrap: balance;
+    padding: clamp(1.5rem, 3vw, 2.5rem) clamp(1rem, 3vw, 3rem);
+    background: color-mix(in srgb, var(--haldi) 8%, var(--paper));
+    border-left: 3px solid var(--haldi);
+    border-radius: var(--r-card);
   }
   .story-closing__divider { width: 3rem; height: 2px; background: var(--haldi); margin: 2rem auto; }
   .concept-qualifier {
@@ -3220,7 +3227,7 @@ function aboutBody(depth) {
         <p class="story-hero__quote">
           &ldquo;The cow that nourished us for years should never lose her worth when she stops giving milk&rdquo;
         </p>
-        <h1 class="story-hero__title" id="story-hero-title">When Reverence Becomes Responsibility</h1>
+        <h1 class="story-hero__title" id="story-hero-title">When Reverence<br>Becomes Responsibility</h1>
         <p class="story-hero__subtitle">A Story of Compassion, Circularity &amp; a Sustainable India</p>
       </div>
       <figure class="story-hero__image">
@@ -3351,7 +3358,14 @@ function aboutBody(depth) {
         <p class="story-section__sequence">
           Animal Welfare &rarr; Farmer Livelihoods &rarr; Resource Recovery &rarr; Sustainable Products &rarr; Environmental Responsibility &rarr; National Growth
         </p>
-        <p>This is the circular economy we want to help build. One where farmers become stakeholders in sustainability. One where rural resource creates new economic opportunities. One where innovation supports resource conservation and responsible energy production. One where traditional Indian knowledge becomes the foundation for modern sustainable enterprise. And one where India&rsquo;s economic progress can advance alongside environmental stewardship.</p>
+        <p>This is the circular economy we want to help build:</p>
+        <ul class="story-section__list">
+          <li>One where farmers become stakeholders in sustainability.</li>
+          <li>One where rural resource creates new economic opportunities.</li>
+          <li>One where innovation supports resource conservation and responsible energy production.</li>
+          <li>One where traditional Indian knowledge becomes the foundation for modern sustainable enterprise.</li>
+          <li>And one where India&rsquo;s economic progress can advance alongside environmental stewardship.</li>
+        </ul>
         <p>We aspire to contribute to a more self-reliant, resource-efficient, and environmentally responsible India. Not merely by manufacturing products, but by helping create value from resources that society has overlooked.</p>
       </div>
     </div>
