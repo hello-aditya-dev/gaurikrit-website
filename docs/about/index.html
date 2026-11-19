@@ -328,6 +328,19 @@
     .story-section--alt-reverse .story-section__copy { order: 2; }
     .story-section--alt-reverse .story-section__image { order: 1; margin-top: 0; }
   }
+  /* V44 PDF p11: headline full width, then body+image side by side */
+  @media (min-width: 1024px) {
+    .story-section--alt .story-section__inner { align-items: start; }
+    .story-section--alt .story-section__copy { display: contents; }
+    .story-section--alt .story-section__num,
+    .story-section--alt .story-section__title,
+    .story-section--alt .concept-qualifier { grid-column: 1 / -1; }
+    .story-section--alt .story-section__title { max-width: none; }
+    .story-section--alt .story-section__body { grid-column: 1; max-width: none; }
+    .story-section--alt .story-section__image { grid-column: 2; margin-top: 0; }
+    .story-section--alt-reverse .story-section__body { grid-column: 2; }
+    .story-section--alt-reverse .story-section__image { grid-column: 1; }
+  }
   /* Forest section scoped classes (V38: explicit contrast — no opacity dimming) */
   .story-section__inner--forest { color: var(--paper); }
   .story-section__num--forest { color: var(--haldi); }

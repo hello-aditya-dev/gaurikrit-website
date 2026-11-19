@@ -130,6 +130,24 @@ $addressLine = implode("\n", array_slice($address, 0, 6));
     .story-section--alt-reverse .story-section__image { order: 1; margin-top: 0; }
   }
 
+  /* V44 PDF p11: "Section and headline has to cover the full page width and then
+     from next line image and text content has to justify side by side, in all the
+     sections across story." display:contents makes the copy div's children (num,
+     title, body) direct grid items — num+title span full width (grid-column 1/-1),
+     body+image sit side by side below. */
+  @media (min-width: 1024px) {
+    .story-section--alt .story-section__inner { align-items: start; }
+    .story-section--alt .story-section__copy { display: contents; }
+    .story-section--alt .story-section__num,
+    .story-section--alt .story-section__title,
+    .story-section--alt .concept-qualifier { grid-column: 1 / -1; }
+    .story-section--alt .story-section__title { max-width: none; }
+    .story-section--alt .story-section__body { grid-column: 1; max-width: none; }
+    .story-section--alt .story-section__image { grid-column: 2; margin-top: 0; }
+    .story-section--alt-reverse .story-section__body { grid-column: 2; }
+    .story-section--alt-reverse .story-section__image { grid-column: 1; }
+  }
+
   /* Forest section scoped classes (V38: explicit contrast — no opacity dimming) */
   .story-section__inner--forest { color: var(--paper); }
   .story-section__num--forest { color: var(--haldi); }
