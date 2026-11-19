@@ -222,12 +222,13 @@ $emulsion  = get_product('prakritik-emulsion');
       </div>
       <div class="why-hero__art">
         <picture>
-          <source type="image/webp" srcset="<?= asset_url('/assets/editorial/interior-finish-study.webp') ?>">
+          <source type="image/avif" srcset="<?= eco_srcset('wall-cream', [640, 960, 1280, 1600]) ?>" sizes="(min-width: 1024px) 50vw, calc(100vw - 2.5rem)">
+          <source type="image/webp" srcset="<?= eco_srcset_webp('wall-cream', [640, 960, 1280, 1600]) ?>" sizes="(min-width: 1024px) 50vw, calc(100vw - 2.5rem)">
           <img class="why-hero__img"
-               src="<?= asset_url('/assets/editorial/interior-finish-study.jpg') ?>"
-               alt="Quiet interior wall with a matte mineral finish"
-               width="1344" height="768"
-               loading="eager" decoding="async">
+               src="<?= asset_url('/assets/images/ecosystem/wall-cream-1280.jpg') ?>"
+               alt="A freshly painted wall in warm cream — Prakritik Paint's natural matte finish"
+               width="1280" height="800"
+               loading="eager" fetchpriority="high" decoding="async">
         </picture>
       </div>
     </div>
@@ -314,11 +315,12 @@ $emulsion  = get_product('prakritik-emulsion');
       </div>
       <div class="why-material-sample">
         <picture>
-          <source type="image/webp" srcset="<?= asset_url('/assets/editorial/raw-material-study.webp') ?>">
+          <source type="image/avif" srcset="<?= eco_srcset('wall-forest', [640, 960, 1280, 1600]) ?>" sizes="(min-width: 1024px) 45vw, calc(100vw - 2.5rem)">
+          <source type="image/webp" srcset="<?= eco_srcset_webp('wall-forest', [640, 960, 1280, 1600]) ?>" sizes="(min-width: 1024px) 45vw, calc(100vw - 2.5rem)">
           <img class="editorial-image"
-               src="<?= asset_url('/assets/editorial/raw-material-study.jpg') ?>"
-               alt="Raw lime-plastered wall surface — natural material"
-               width="1344" height="768"
+               src="<?= asset_url('/assets/images/ecosystem/wall-forest-1280.jpg') ?>"
+               alt="A freshly painted wall in forest green — Prakritik Paint's natural matte finish"
+               width="1280" height="800"
                loading="lazy" decoding="async">
         </picture>
       </div>
@@ -410,11 +412,12 @@ $emulsion  = get_product('prakritik-emulsion');
       <article class="material-step">
         <figure class="material-step__figure">
           <picture>
-            <source type="image/webp" srcset="<?= asset_url('/assets/editorial/finished-surface-study.webp') ?>">
+            <source type="image/avif" srcset="<?= eco_srcset('wall-leaf', [640, 960, 1280, 1600]) ?>" sizes="(min-width: 1024px) 22vw, (min-width: 768px) 45vw, calc(100vw - 2.5rem)">
+            <source type="image/webp" srcset="<?= eco_srcset_webp('wall-leaf', [640, 960, 1280, 1600]) ?>" sizes="(min-width: 1024px) 22vw, (min-width: 768px) 45vw, calc(100vw - 2.5rem)">
             <img class="editorial-image"
-                 src="<?= asset_url('/assets/editorial/finished-surface-study.jpg') ?>"
-                 alt="Finished matte limewash wall surface"
-                 width="1344" height="768"
+                 src="<?= asset_url('/assets/images/ecosystem/wall-leaf-1280.jpg') ?>"
+                 alt="A freshly painted wall in leaf green — Prakritik Paint's natural matte finish"
+                 width="1280" height="800"
                  loading="lazy" decoding="async">
           </picture>
         </figure>
