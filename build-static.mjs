@@ -894,7 +894,7 @@ function homeBody(depth) {
     // flow-processing (1:1), flow-portfolio (2:3 portrait, poster frame)
     // and flow-impact (1:1).
     const STAGE_SIZES = '(min-width: 1100px) 22vw, (min-width: 768px) 45vw, calc(100vw - 2.5rem)';
-    const stageCowDung = ecoPic('cow-dung-pile2', [640, 960, 1280, 1536], STAGE_SIZES, 960, 1536, 1024, 'Cow dung at a rural farm — the natural material starting point for every Gaurikrit direction', depth);
+    const stageCowDung = ecoPic('cattle-yard-v70', [640, 960, 1280, 1536], STAGE_SIZES, 960, 1536, 864, 'A rural cattle yard at golden hour &mdash; open thatched-roof shelters among green trees under a blue sky, the natural material setting', depth);
     const stageProcessing = ecoPic('flow-processing', [640, 960], STAGE_SIZES, 960, 960, 960, 'Conceptual visual of natural-waste processing — biomass handling and material development', depth);
     const stageImpact = ecoPic('flow-impact', [640, 960], STAGE_SIZES, 960, 960, 960, 'Earth encircled by a leaf recycling symbol — a circular-economy direction', depth);
 
@@ -2449,7 +2449,7 @@ function emulsionBody(depth) {
     <div class="product-detail__hero" data-reveal>
       <figure class="product-detail__media">
         <div class="product-detail__panel">
-          ${ecoPic('prakritik-emulsion', [640, 960, 1280, 1536], '(min-width: 1200px) 630px, (min-width: 1024px) 55vw, calc(100vw - 2.5rem)', 1280, 1536, 1024, 'Prakritik Emulsion paint pack — the Prakritik Paint range with the Emulsion bucket visible on the right', depth, 'class="media-product" loading="eager" fetchpriority="high" ')}
+          ${ecoPic('prakritik-emulsion-solo-v70', [640, 960], '(min-width: 1200px) 630px, (min-width: 1024px) 55vw, calc(100vw - 2.5rem)', 960, 960, 1199, 'Prakritik Emulsion paint pack — a clean single Emulsion bucket from the Prakritik Paint range', depth, 'class="media-product" loading="eager" fetchpriority="high" ')}
         </div>
         <div class="product-detail__strip" aria-hidden="true">
           ${exteriorFinishStripPic}
@@ -2929,14 +2929,7 @@ function whyPrakritikBody(depth) {
       </article>
       <article class="material-step material-step--product">
         <figure class="material-step__figure">
-          <picture>
-            <source type="image/webp" srcset="${assetUrl(distemper.officialImageWebp, depth)}">
-            <img class="material-step__product"
-                 src="${assetUrl(distemper.officialImage, depth)}"
-                 alt="Prakritik Paint — Distemper and Emulsion"
-                 width="${distemper.officialImageW}" height="${distemper.officialImageH}"
-                 loading="lazy" decoding="async">
-          </picture>
+          ${ecoPic('gbp-bucket-pair-v70', [640, 960, 1280, 1536], '(min-width: 1024px) 28vw, (min-width: 640px) 42vw, calc(100vw - 2.5rem)', 960, 1536, 770, 'Prakritik Distemper and Emulsion paint buckets — the two-bucket product pair', depth, 'class="material-step__product" ')}
         </figure>
         <div class="material-step__caption">
           <span class="material-step__num">02</span>
@@ -2989,25 +2982,11 @@ ${ashtaItems}
 
     <div class="why-formats" data-reveal-stagger>
       <div class="why-format-card why-format-card--distemper">
-        <picture>
-          <source type="image/webp" srcset="${assetUrl(distemper.officialImageWebp, depth)}">
-          <img class="format-product"
-               src="${assetUrl(distemper.officialImage, depth)}"
-               alt="${e(distemper.name)}"
-               width="${distemper.officialImageW}" height="${distemper.officialImageH}"
-               loading="lazy" decoding="async">
-        </picture>
+        ${ecoPic('gbp-bucket-trio-v70', [640, 960, 1280, 1536], '(min-width: 768px) 45vw, calc(100vw - 2.5rem)', 1280, 1536, 1024, 'Prakritik Distemper and Emulsion paint buckets — the three-bucket product group on a wooden floor', depth, 'class="format-product" ')}
         <span class="why-format-card__caption">${e(distemper.packagingShort)} packs</span>
       </div>
       <div class="why-format-card why-format-card--emulsion">
-        <picture>
-          <source type="image/webp" srcset="${assetUrl(emulsion.officialImageWebp, depth)}">
-          <img class="format-product"
-               src="${assetUrl(emulsion.officialImage, depth)}"
-               alt="${e(emulsion.name)}"
-               width="${emulsion.officialImageW}" height="${emulsion.officialImageH}"
-               loading="lazy" decoding="async">
-        </picture>
+        ${ecoPic('gbp-bucket-trio-v70', [640, 960, 1280, 1536], '(min-width: 768px) 45vw, calc(100vw - 2.5rem)', 1280, 1536, 1024, 'Prakritik Distemper and Emulsion paint buckets — the three-bucket product group on a wooden floor', depth, 'class="format-product" ')}
         <span class="why-format-card__caption">${e(emulsion.packagingShort)} packs</span>
       </div>
     </div>
@@ -3094,7 +3073,8 @@ function aboutBody(depth) {
     grid-template-columns: minmax(0, 1fr);
   }
   @media (min-width: 1024px) {
-    .story-hero { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(2.5rem, 5vw, 5rem); }
+    /* V70: widen text column from 5fr to 7fr so hero title fits on 2 lines (PDF p9) */
+    .story-hero { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(2.5rem, 5vw, 5rem); }
   }
   .story-hero__lockup { display: flex; flex-direction: column; gap: 1rem; }
   .story-hero__quote {

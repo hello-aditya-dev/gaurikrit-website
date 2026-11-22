@@ -1,0 +1,60 @@
+[
+  {
+    "stem": "gbp-bucket-pair-v70",
+    "source": "/home/z/my-project/gaurikrit-work/new-content/Website Content/GBP Paint Bucket-3.png",
+    "source_name": "GBP Paint Bucket-3.png",
+    "widths": [
+      640,
+      960,
+      1280,
+      1536
+    ],
+    "intrinsic": [
+      1772,
+      888
+    ]
+  },
+  {
+    "stem": "gbp-bucket-trio-v70",
+    "source": "/home/z/my-project/gaurikrit-work/new-content/Website Content/GBP Paint Bucket-1.png",
+    "source_name": "GBP Paint Bucket-1.png",
+    "widths": [
+      640,
+      960,
+      1280,
+      1536
+    ],
+    "intrinsic": [
+      1536,
+      1024
+    ]
+  },
+  {
+    "stem": "prakritik-emulsion-solo-v70",
+    "source": "/home/z/my-project/gaurikrit-work/new-content/Website Content/GBP Paint Bucket-2.png",
+    "source_name": "GBP Paint Bucket-2.png",
+    "widths": [
+      640,
+      960
+    ],
+    "intrinsic": [
+      1122,
+      1402
+    ]
+  },
+  {
+    "stem": "cattle-yard-v70",
+    "source": "/home/z/my-project/gaurikrit-work/new-content/Website Content/Golden Morning Cattle Yard.png",
+    "source_name": "Golden Morning Cattle Yard.png",
+    "widths": [
+      640,
+      960,
+      1280,
+      1536
+    ],
+    "intrinsic": [
+      1672,
+      941
+    ]
+  }
+]

@@ -131,14 +131,14 @@ $specRows = [
       <figure class="product-detail__media">
         <div class="product-detail__panel">
           <picture>
-            <source type="image/avif" srcset="<?= eco_srcset('prakritik-emulsion', [640, 960, 1280, 1536]) ?>"
+            <source type="image/avif" srcset="<?= eco_srcset('prakritik-emulsion-solo-v70', [640, 960]) ?>"
                     sizes="(min-width: 1200px) 630px, (min-width: 1024px) 55vw, calc(100vw - 2.5rem)">
-            <source type="image/webp" srcset="<?= eco_srcset_webp('prakritik-emulsion', [640, 960, 1280, 1536]) ?>"
+            <source type="image/webp" srcset="<?= eco_srcset_webp('prakritik-emulsion-solo-v70', [640, 960]) ?>"
                     sizes="(min-width: 1200px) 630px, (min-width: 1024px) 55vw, calc(100vw - 2.5rem)">
             <img class="media-product"
-                 src="<?= asset_url('/assets/images/ecosystem/prakritik-emulsion-1280.jpg') ?>"
-                 alt="Prakritik Emulsion paint pack — the Prakritik Paint range with the Emulsion bucket visible on the right"
-                 width="1536" height="1024"
+                 src="<?= asset_url('/assets/images/ecosystem/prakritik-emulsion-solo-v70-960.jpg') ?>"
+                 alt="Prakritik Emulsion paint pack — a clean single Emulsion bucket from the Prakritik Paint range"
+                 width="960" height="1199"
                  loading="eager" fetchpriority="high" decoding="async">
           </picture>
         </div>

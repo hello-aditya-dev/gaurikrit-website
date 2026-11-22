@@ -395,11 +395,14 @@ $emulsion  = get_product('prakritik-emulsion');
       <article class="material-step material-step--product">
         <figure class="material-step__figure">
           <picture>
-            <source type="image/webp" srcset="<?= asset_url($distemper['officialImageWebp']) ?>">
+            <source type="image/avif" srcset="<?= eco_srcset('gbp-bucket-pair-v70', [640, 960, 1280, 1536]) ?>"
+                    sizes="(min-width: 1024px) 28vw, (min-width: 640px) 42vw, calc(100vw - 2.5rem)">
+            <source type="image/webp" srcset="<?= eco_srcset_webp('gbp-bucket-pair-v70', [640, 960, 1280, 1536]) ?>"
+                    sizes="(min-width: 1024px) 28vw, (min-width: 640px) 42vw, calc(100vw - 2.5rem)">
             <img class="material-step__product"
-                 src="<?= asset_url($distemper['officialImage']) ?>"
-                 alt="Prakritik Paint — Distemper and Emulsion"
-                 width="<?= $distemper['officialImageW'] ?>" height="<?= $distemper['officialImageH'] ?>"
+                 src="<?= asset_url('/assets/images/ecosystem/gbp-bucket-pair-v70-960.jpg') ?>"
+                 alt="Prakritik Distemper and Emulsion paint buckets — the two-bucket product pair"
+                 width="1536" height="770"
                  loading="lazy" decoding="async">
           </picture>
         </figure>
@@ -469,22 +472,28 @@ $emulsion  = get_product('prakritik-emulsion');
     <div class="why-formats" data-reveal-stagger>
       <div class="why-format-card why-format-card--distemper">
         <picture>
-          <source type="image/webp" srcset="<?= asset_url($distemper['officialImageWebp']) ?>">
+          <source type="image/avif" srcset="<?= eco_srcset('gbp-bucket-trio-v70', [640, 960, 1280, 1536]) ?>"
+                  sizes="(min-width: 768px) 45vw, calc(100vw - 2.5rem)">
+          <source type="image/webp" srcset="<?= eco_srcset_webp('gbp-bucket-trio-v70', [640, 960, 1280, 1536]) ?>"
+                  sizes="(min-width: 768px) 45vw, calc(100vw - 2.5rem)">
           <img class="format-product"
-               src="<?= asset_url($distemper['officialImage']) ?>"
-               alt="<?= e($distemper['name']) ?>"
-               width="<?= $distemper['officialImageW'] ?>" height="<?= $distemper['officialImageH'] ?>"
+               src="<?= asset_url('/assets/images/ecosystem/gbp-bucket-trio-v70-1280.jpg') ?>"
+               alt="Prakritik Distemper and Emulsion paint buckets — the three-bucket product group on a wooden floor"
+               width="1536" height="1024"
                loading="lazy" decoding="async">
         </picture>
         <span class="why-format-card__caption"><?= e($distemper['packagingShort']) ?> packs</span>
       </div>
       <div class="why-format-card why-format-card--emulsion">
         <picture>
-          <source type="image/webp" srcset="<?= asset_url($emulsion['officialImageWebp']) ?>">
+          <source type="image/avif" srcset="<?= eco_srcset('gbp-bucket-trio-v70', [640, 960, 1280, 1536]) ?>"
+                  sizes="(min-width: 768px) 45vw, calc(100vw - 2.5rem)">
+          <source type="image/webp" srcset="<?= eco_srcset_webp('gbp-bucket-trio-v70', [640, 960, 1280, 1536]) ?>"
+                  sizes="(min-width: 768px) 45vw, calc(100vw - 2.5rem)">
           <img class="format-product"
-               src="<?= asset_url($emulsion['officialImage']) ?>"
-               alt="<?= e($emulsion['name']) ?>"
-               width="<?= $emulsion['officialImageW'] ?>" height="<?= $emulsion['officialImageH'] ?>"
+               src="<?= asset_url('/assets/images/ecosystem/gbp-bucket-trio-v70-1280.jpg') ?>"
+               alt="Prakritik Distemper and Emulsion paint buckets — the three-bucket product group on a wooden floor"
+               width="1536" height="1024"
                loading="lazy" decoding="async">
         </picture>
         <span class="why-format-card__caption"><?= e($emulsion['packagingShort']) ?> packs</span>
