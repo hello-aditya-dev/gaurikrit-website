@@ -3108,7 +3108,7 @@ function aboutBody(depth) {
     border-left: 3px solid var(--haldi); padding-left: 1rem; max-width: 36rem;
   }
   .story-hero__title {
-    font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.5rem);
+    font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3rem);
     font-weight: 700; letter-spacing: -0.02em; line-height: 1.1;
     text-wrap: balance; color: var(--primary);
   }
@@ -3839,7 +3839,7 @@ function paintCalculatorBody(depth) {
   }
   .calc-hero__title {
     margin-top: 0.5rem; font-family: var(--font-display);
-    font-size: clamp(2.2rem, 5vw, 4rem); letter-spacing: -0.02em;
+    font-size: clamp(2rem, 5vw, 3rem); letter-spacing: -0.02em;
     text-wrap: balance; line-height: 1.05;
   }
   .calc-hero__sub {
@@ -4073,7 +4073,7 @@ function downloadsBody(depth) {
   }
   .dl-hero__title {
     margin-top: 0.5rem; font-family: var(--font-display);
-    font-size: clamp(2.2rem, 5vw, 4rem); letter-spacing: -0.02em;
+    font-size: clamp(2rem, 5vw, 3rem); letter-spacing: -0.02em;
     text-wrap: balance; line-height: 1.05;
   }
   .dl-hero__sub {
@@ -4279,7 +4279,7 @@ function contactBody(depth) {
   }
   .contact-hero__lockup { max-width: 42rem; }
   .contact-hero__title {
-    font-family: var(--font-display); font-size: clamp(2.2rem, 5vw, 4rem);
+    font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3rem);
     line-height: 1.05; letter-spacing: -0.02em; text-wrap: balance;
     margin-top: 0.5rem;
   }

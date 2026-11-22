@@ -46,7 +46,7 @@ $addressLine = implode("\n", array_slice($address, 0, 6));
     max-width: 36rem;
   }
   .story-hero__title {
-    font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.5rem);
+    font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3rem);
     font-weight: 700; letter-spacing: -0.02em; line-height: 1.1;
     text-wrap: balance; color: var(--primary);
   }
