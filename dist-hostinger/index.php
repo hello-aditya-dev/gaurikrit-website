@@ -85,7 +85,7 @@ $HERO_SIZES = '(min-width: 1200px) 58vw, (min-width: 900px) 50vw, calc(100vw - 2
     .hero__visual { order: 5; }
   }
   .hero__eyebrow-chip { margin-bottom: 0.875rem; }
-  .hero__title { font-size: clamp(1.75rem, 3vw, 2.5rem); line-height: 1.12; letter-spacing: -0.015em; }
+  /* V48: hero title font-size now standardized in app.css — removed page-local override */
   .hero__body { max-width: 40rem; }
   .hero__ctas { margin-top: 2.25rem; }
 

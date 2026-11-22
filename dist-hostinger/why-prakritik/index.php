@@ -71,7 +71,7 @@ $emulsion  = get_product('prakritik-emulsion');
      why-material-sample / why-tradition-art / etc.) */
   .why-material-sample .editorial-image,
   .why-tradition-art .editorial-image { display: block; }
-  .why-hero__title { font-size: clamp(2.2rem, 5vw, 4rem); }
+  .why-hero__title { line-height: 1.1; letter-spacing: -0.02em; } /* V48: font-size standardized in app.css */
 
   /* ===== NUMBERED CHAPTERS ===== */
   .why-chapter {

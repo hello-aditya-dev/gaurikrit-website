@@ -1067,7 +1067,7 @@ ${items}
   .hero__brand-desc { font-size: 0.5625rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fg-muted); }
   .hero__strapline { margin-top: 1.25rem; font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.04em; color: var(--forest); font-style: italic; }
 
-  .hero__title { font-size: clamp(1.75rem, 3vw, 2.5rem); line-height: 1.12; letter-spacing: -0.015em; }
+  /* V48: hero title font-size now standardized in app.css — removed page-local override */
   .hero__body { max-width: 40rem; }
   .hero__ctas { margin-top: 2.25rem; }
 
@@ -2646,7 +2646,7 @@ function whyPrakritikBody(depth) {
     position: absolute; inset: 0; width: 100%; height: 100%;
     object-fit: cover; display: block;
   }
-  .why-hero__title { font-size: clamp(2.2rem, 5vw, 4rem); }
+  .why-hero__title { line-height: 1.1; letter-spacing: -0.02em; } /* V48: font-size standardized in app.css */
 
   /* ===== NUMBERED CHAPTERS ===== */
   .why-chapter {

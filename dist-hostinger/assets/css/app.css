@@ -1047,13 +1047,17 @@ ul, ol { list-style: none; }
   margin-top: 1.25rem;
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: clamp(2.7rem, 7vw, 6.5rem);
-  line-height: 1.02;
-  letter-spacing: -0.025em;
+  font-size: clamp(2rem, 5vw, 3rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
   text-wrap: balance;
 }
+/* V48: standardized hero title — every page hero uses the same scale */
+.why-hero__title, .story-hero__title, .products-hero__title, .contact-hero__title {
+  font-size: clamp(2rem, 5vw, 3rem); line-height: 1.1; letter-spacing: -0.02em; text-wrap: balance;
+}
 @media (max-width: 768px) {
-  .hero__title { font-size: clamp(2.7rem, 9vw, 3.5rem); }
+  .hero__title, .why-hero__title, .story-hero__title, .products-hero__title, .contact-hero__title { font-size: clamp(1.75rem, 6vw, 2.5rem); }
 }
 
 .hero__body,
@@ -4326,7 +4330,7 @@ ul, ol { list-style: none; }
 @media (max-width: 412px) {
   :root { --header-h: 3.5rem; }
   .container { padding-inline: 1rem; }
-  .hero__title { font-size: clamp(2.5rem, 9vw, 3rem); }
+  .hero__title { font-size: clamp(1.5rem, 7vw, 2rem); }
   .hero__ctas { gap: 0.625rem; }
   .hero__ctas .btn { width: 100%; }
   .hero__ctas .btn--sm { width: auto; }
@@ -4362,7 +4366,7 @@ ul, ol { list-style: none; }
 
 /* --- XL desktop (1440) --- */
 @media (min-width: 1440px) {
-  .hero__title { font-size: clamp(3.75rem, 6vw, 6.5rem); }
+  .hero__title { font-size: clamp(2.5rem, 4vw, 3.5rem); }
 }
 
 /* --- 1920 — cap content, avoid huge empty side gutters --- */
