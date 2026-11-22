@@ -290,15 +290,15 @@ $addressLine = implode("\n", array_slice($address, 0, 6));
       </div>
       <figure class="story-section__image">
         <picture>
-          <source type="image/avif" srcset="<?= eco_srcset('story-farmer-cow-4', [640, 864]) ?>"
+          <source type="image/avif" srcset="<?= eco_srcset('story-farmer-maroon', [640, 960, 1224]) ?>"
                   sizes="(min-width: 1024px) 45vw, calc(100vw - 2.5rem)">
-          <source type="image/webp" srcset="<?= eco_srcset_webp('story-farmer-cow-4', [640, 864]) ?>"
+          <source type="image/webp" srcset="<?= eco_srcset_webp('story-farmer-maroon', [640, 960, 1224]) ?>"
                   sizes="(min-width: 1024px) 45vw, calc(100vw - 2.5rem)">
-          <img src="<?= asset_url('/assets/images/ecosystem/story-farmer-cow-4-864.jpg') ?>"
-               alt="A farmer caring for a cow at a rural farm — representing the dignity and compassion central to Gau Mata welfare"
-               width="864" height="1152" loading="eager" decoding="async">
+          <img src="<?= asset_url('/assets/images/ecosystem/story-farmer-maroon-960.jpg') ?>"
+               alt="A man in a maroon jacket tenderly attending to a cow under a bare tree &mdash; representing compassion for abandoned cattle"
+               width="1224" height="1285" loading="eager" decoding="async">
         </picture>
-        <figcaption>A moment of compassion — caring for a cow at a rural farm.</figcaption>
+        <figcaption>A quiet moment of compassion &mdash; caring for a cow at a rural farm.</figcaption>
       </figure>
     </div>
   </div>
@@ -395,15 +395,15 @@ $addressLine = implode("\n", array_slice($address, 0, 6));
       </div>
       <figure class="story-section__image">
         <picture>
-          <source type="image/avif" srcset="<?= eco_srcset('cow-dung-pile2', [640, 960, 1280, 1536]) ?>"
+          <source type="image/avif" srcset="<?= eco_srcset('story-farmer-cow-4', [640, 864]) ?>"
                   sizes="(min-width: 1024px) 45vw, calc(100vw - 2.5rem)">
-          <source type="image/webp" srcset="<?= eco_srcset_webp('cow-dung-pile2', [640, 960, 1280, 1536]) ?>"
+          <source type="image/webp" srcset="<?= eco_srcset_webp('story-farmer-cow-4', [640, 864]) ?>"
                   sizes="(min-width: 1024px) 45vw, calc(100vw - 2.5rem)">
-          <img src="<?= asset_url('/assets/images/ecosystem/cow-dung-pile2-960.jpg') ?>"
-               alt="Cow dung — the natural material that becomes a resource instead of waste"
-               width="1536" height="1024" loading="eager" decoding="async">
+          <img src="<?= asset_url('/assets/images/ecosystem/story-farmer-cow-4-864.jpg') ?>"
+               alt="A farmer gently tending to a cow wearing a bell and beaded collar &mdash; representing dignified care for cattle in rural communities"
+               width="864" height="1152" loading="eager" decoding="async">
         </picture>
-        <figcaption>Cow dung — once seen as waste, now a resource for sustainable products.</figcaption>
+        <figcaption>A farmer caring for a cow &mdash; dignified human-animal partnership in rural India.</figcaption>
       </figure>
     </div>
   </div>
