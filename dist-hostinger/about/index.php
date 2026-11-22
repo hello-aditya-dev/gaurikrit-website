@@ -36,7 +36,8 @@ $addressLine = implode("\n", array_slice($address, 0, 6));
     grid-template-columns: minmax(0, 1fr);
   }
   @media (min-width: 1024px) {
-    .story-hero { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(2.5rem, 5vw, 5rem); }
+    /* V70: widen text column from 5fr to 7fr so hero title fits on 2 lines (PDF p9) */
+    .story-hero { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(2.5rem, 5vw, 5rem); }
   }
   .story-hero__lockup { display: flex; flex-direction: column; gap: 1rem; }
   .story-hero__quote {
