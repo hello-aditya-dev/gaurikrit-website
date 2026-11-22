@@ -4820,7 +4820,7 @@ ${circularStages}
       </p>
     </div>
     <!-- V18 §26: three REAL outcomes — wall coatings (real paint), fuel /
-         log application (client-supplied cow-dung logs), wider material
+         log application (cow-dung logs), wider material
          directions. The log imagery appears ONCE on this page (never at
          the same large scale elsewhere). -->
     <div class="resource-steps" data-reveal-stagger>
