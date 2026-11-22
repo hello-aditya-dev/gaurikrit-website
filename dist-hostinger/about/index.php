@@ -70,7 +70,9 @@ $addressLine = implode("\n", array_slice($address, 0, 6));
   .story-section__inner {
     max-width: 48rem; margin: 0 auto;
   }
-  .story-section__inner--wide { max-width: 60rem; }
+  /* V68: opening narrative — widen to fill page width */
+  .story-section__inner--wide { max-width: 72rem; }
+  .story-section__inner--wide .story-section__body { max-width: none; }
   .story-section__num {
     font-size: 0.75rem; font-weight: 700; letter-spacing: 0.2em;
     text-transform: uppercase; color: var(--haldi); margin-bottom: 0.5rem;
@@ -231,11 +233,11 @@ $addressLine = implode("\n", array_slice($address, 0, 6));
 </section>
 
 <!-- ============================================================
-     Opening narrative
+     Opening narrative — V68: widened to fill page width
      ============================================================ -->
 <section class="section section--paper story-section">
   <div class="container">
-    <div class="story-section__inner">
+    <div class="story-section__inner story-section__inner--wide">
       <div class="story-section__body">
         <p>For centuries, we have worshipped the cow as a mother. But somewhere along the journey of modernization, we began to forget what it truly means to care for her.</p>
         <p>In Indian civilization, the cow has never been merely an animal. She has been revered as <em>Gau Mata</em> &mdash; a symbol of nourishment, compassion, abundance. Deeply woven into our traditions, she has been associated with divine presence, agricultural prosperity, and the very foundation of rural life.</p>
