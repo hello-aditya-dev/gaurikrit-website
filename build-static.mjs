@@ -3274,7 +3274,7 @@ function aboutBody(depth) {
         </div>
       </div>
       <figure class="story-section__image">
-        ${ecoPic('story-tender-moment', [640, 960, 1224], '(min-width: 1024px) 45vw, calc(100vw - 2.5rem)', 960, 1224, 1285, 'A person sits beside a resting cow, caring for her tenderly — representing compassion for Gau Mata', depth)}
+        ${ecoPic('story-tender-moment', [640, 960, 1224], '(min-width: 1024px) 45vw, calc(100vw - 2.5rem)', 960, 1224, 1285, 'A person sits beside a resting cow, caring for her tenderly — representing compassion for Gau Mata', depth, 'loading="eager"')}
         <figcaption>A moment of compassion &mdash; caring for a cow beyond her milk-producing years.</figcaption>
       </figure>
     </div>
@@ -3299,7 +3299,7 @@ function aboutBody(depth) {
         </div>
       </div>
       <figure class="story-section__image story-section__image--contain">
-        ${ecoPic('story-cattle-yard', [640, 960, 1280, 1672], '(min-width: 1024px) 45vw, calc(100vw - 2.5rem)', 960, 1672, 941, 'Cattle yard at golden morning — representing how organized cattle care creates farmer livelihoods', depth)}
+        ${ecoPic('story-cattle-yard', [640, 960, 1280, 1672], '(min-width: 1024px) 45vw, calc(100vw - 2.5rem)', 960, 1672, 941, 'Cattle yard at golden morning — representing how organized cattle care creates farmer livelihoods', depth, 'loading="eager"')}
         <figcaption>Organized cattle care connects farmers to sustainable livelihoods.</figcaption>
       </figure>
     </div>
@@ -3323,7 +3323,7 @@ function aboutBody(depth) {
         </div>
       </div>
       <figure class="story-section__image">
-        ${ecoPic('story-product-showcase', [640, 960, 1254], '(min-width: 1024px) 45vw, calc(100vw - 2.5rem)', 960, 1254, 1254, 'Gaurikrit product range — Prakritik Paint, cow-dung logs, bio-briquettes and eco utility products', depth)}
+        ${ecoPic('story-product-showcase', [640, 960, 1254], '(min-width: 1024px) 45vw, calc(100vw - 2.5rem)', 960, 1254, 1254, 'Gaurikrit product range — Prakritik Paint, cow-dung logs, bio-briquettes and eco utility products', depth, 'loading="eager"')}
         <figcaption>The Gaurikrit product range — alternatives to conventional firewood and materials.</figcaption>
       </figure>
     </div>
@@ -3346,7 +3346,7 @@ function aboutBody(depth) {
         </div>
       </div>
       <figure class="story-section__image">
-        ${ecoPic('flow-cow-dung', [640, 960, 1280], '(min-width: 1024px) 45vw, calc(100vw - 2.5rem)', 960, 960, 540, 'Cow dung in a rural setting — the natural material that becomes a resource instead of waste', depth)}
+        ${ecoPic('flow-cow-dung', [640, 960, 1280], '(min-width: 1024px) 45vw, calc(100vw - 2.5rem)', 960, 960, 540, 'Cow dung in a rural setting — the natural material that becomes a resource instead of waste', depth, 'loading="eager"')}
         <figcaption>Cow dung — once seen as waste, now a resource for sustainable products.</figcaption>
       </figure>
     </div>

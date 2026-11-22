@@ -277,7 +277,7 @@ $addressLine = implode("\n", array_slice($address, 0, 6));
                   sizes="(min-width: 1024px) 45vw, calc(100vw - 2.5rem)">
           <img src="<?= asset_url('/assets/images/ecosystem/story-tender-moment-960.jpg') ?>"
                alt="A person sits beside a resting cow, caring for her tenderly — representing compassion for Gau Mata"
-               width="1224" height="1285" loading="lazy" decoding="async">
+               width="1224" height="1285" loading="eager" decoding="async">
         </picture>
         <figcaption>A moment of compassion &mdash; caring for a cow beyond her milk-producing years.</figcaption>
       </figure>
@@ -313,7 +313,7 @@ $addressLine = implode("\n", array_slice($address, 0, 6));
                   sizes="(min-width: 1024px) 45vw, calc(100vw - 2.5rem)">
           <img src="<?= asset_url('/assets/images/ecosystem/story-cattle-yard-960.jpg') ?>"
                alt="Cattle yard at golden morning — representing how organized cattle care creates farmer livelihoods"
-               width="1672" height="941" loading="lazy" decoding="async">
+               width="1672" height="941" loading="eager" decoding="async">
         </picture>
         <figcaption>Organized cattle care connects farmers to sustainable livelihoods.</figcaption>
       </figure>
@@ -348,7 +348,7 @@ $addressLine = implode("\n", array_slice($address, 0, 6));
                   sizes="(min-width: 1024px) 45vw, calc(100vw - 2.5rem)">
           <img src="<?= asset_url('/assets/images/ecosystem/story-product-showcase-960.jpg') ?>"
                alt="Gaurikrit product range — Prakritik Paint, cow-dung logs, bio-briquettes and eco utility products"
-               width="1254" height="1254" loading="lazy" decoding="async">
+               width="1254" height="1254" loading="eager" decoding="async">
         </picture>
         <figcaption>The Gaurikrit product range — alternatives to conventional firewood and materials.</figcaption>
       </figure>
@@ -382,7 +382,7 @@ $addressLine = implode("\n", array_slice($address, 0, 6));
                   sizes="(min-width: 1024px) 45vw, calc(100vw - 2.5rem)">
           <img src="<?= asset_url('/assets/images/ecosystem/flow-cow-dung-960.jpg') ?>"
                alt="Cow dung in a rural setting — the natural material that becomes a resource instead of waste"
-               width="960" height="540" loading="lazy" decoding="async">
+               width="960" height="540" loading="eager" decoding="async">
         </picture>
         <figcaption>Cow dung — once seen as waste, now a resource for sustainable products.</figcaption>
       </figure>
