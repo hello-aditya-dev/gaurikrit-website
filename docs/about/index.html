@@ -285,7 +285,7 @@
   .story-section__title {
     font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2.25rem);
     font-weight: 700; letter-spacing: -0.01em; line-height: 1.2;
-    margin-bottom: 1.25rem; text-wrap: balance;
+    margin-bottom: 0.5rem; text-wrap: balance;
   }
   .story-section__body {
     font-size: clamp(1rem, 1.5vw, 1.125rem); line-height: 1.75;
@@ -326,7 +326,7 @@
   }
   /* V44 PDF p11: headline full width, then body+image side by side */
   @media (min-width: 1024px) {
-    .story-section--alt .story-section__inner { align-items: start; }
+    .story-section--alt .story-section__inner { align-items: stretch; }
     .story-section--alt .story-section__copy { display: contents; }
     .story-section--alt .story-section__num,
     .story-section--alt .story-section__title,
@@ -452,8 +452,8 @@
           </p>
         </div>
       </div>
-      <figure class="story-section__image story-section__image--contain">
-        <picture><source type="image/avif" srcset="../assets/images/ecosystem/story-cattle-yard-640.avif 640w, ../assets/images/ecosystem/story-cattle-yard-960.avif 960w, ../assets/images/ecosystem/story-cattle-yard-1280.avif 1280w, ../assets/images/ecosystem/story-cattle-yard-1672.avif 1672w" sizes="(min-width: 1024px) 45vw, calc(100vw - 2.5rem)"><source type="image/webp" srcset="../assets/images/ecosystem/story-cattle-yard-640.webp 640w, ../assets/images/ecosystem/story-cattle-yard-960.webp 960w, ../assets/images/ecosystem/story-cattle-yard-1280.webp 1280w, ../assets/images/ecosystem/story-cattle-yard-1672.webp 1672w" sizes="(min-width: 1024px) 45vw, calc(100vw - 2.5rem)"><img loading="eager" src="../assets/images/ecosystem/story-cattle-yard-960.jpg" alt="Cattle yard at golden morning — representing how organized cattle care creates farmer livelihoods" width="1672" height="941" decoding="async"></picture>
+      <figure class="story-section__image">
+        <picture><source type="image/avif" srcset="../assets/images/ecosystem/story-farmer-cow-640.avif 640w, ../assets/images/ecosystem/story-farmer-cow-960.avif 960w, ../assets/images/ecosystem/story-farmer-cow-1199.avif 1199w" sizes="(min-width: 1024px) 45vw, calc(100vw - 2.5rem)"><source type="image/webp" srcset="../assets/images/ecosystem/story-farmer-cow-640.webp 640w, ../assets/images/ecosystem/story-farmer-cow-960.webp 960w, ../assets/images/ecosystem/story-farmer-cow-1199.webp 1199w" sizes="(min-width: 1024px) 45vw, calc(100vw - 2.5rem)"><img loading="eager" src="../assets/images/ecosystem/story-farmer-cow-960.jpg" alt="A farmer caring for a cow — representing how compassion creates livelihood opportunities" width="1199" height="1312" decoding="async"></picture>
         <figcaption>Organized cattle care connects farmers to sustainable livelihoods.</figcaption>
       </figure>
     </div>
@@ -500,7 +500,7 @@
         </div>
       </div>
       <figure class="story-section__image">
-        <picture><source type="image/avif" srcset="../assets/images/ecosystem/flow-cow-dung-640.avif 640w, ../assets/images/ecosystem/flow-cow-dung-960.avif 960w, ../assets/images/ecosystem/flow-cow-dung-1280.avif 1280w" sizes="(min-width: 1024px) 45vw, calc(100vw - 2.5rem)"><source type="image/webp" srcset="../assets/images/ecosystem/flow-cow-dung-640.webp 640w, ../assets/images/ecosystem/flow-cow-dung-960.webp 960w, ../assets/images/ecosystem/flow-cow-dung-1280.webp 1280w" sizes="(min-width: 1024px) 45vw, calc(100vw - 2.5rem)"><img loading="eager" src="../assets/images/ecosystem/flow-cow-dung-960.jpg" alt="Cow dung in a rural setting — the natural material that becomes a resource instead of waste" width="960" height="540" decoding="async"></picture>
+        <picture><source type="image/avif" srcset="../assets/images/ecosystem/rawmat-tree-640.avif 640w, ../assets/images/ecosystem/rawmat-tree-960.avif 960w" sizes="(min-width: 1024px) 45vw, calc(100vw - 2.5rem)"><source type="image/webp" srcset="../assets/images/ecosystem/rawmat-tree-640.webp 640w, ../assets/images/ecosystem/rawmat-tree-960.webp 960w" sizes="(min-width: 1024px) 45vw, calc(100vw - 2.5rem)"><img loading="eager" src="../assets/images/ecosystem/rawmat-tree-960.jpg" alt="Cow dung — the natural material that becomes a resource instead of waste" width="960" height="960" decoding="async"></picture>
         <figcaption>Cow dung — once seen as waste, now a resource for sustainable products.</figcaption>
       </figure>
     </div>

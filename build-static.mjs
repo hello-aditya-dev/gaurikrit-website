@@ -3131,7 +3131,7 @@ function aboutBody(depth) {
   .story-section__title {
     font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2.25rem);
     font-weight: 700; letter-spacing: -0.01em; line-height: 1.2;
-    margin-bottom: 1.25rem; text-wrap: balance;
+    margin-bottom: 0.5rem; text-wrap: balance;
   }
   .story-section__body {
     font-size: clamp(1rem, 1.5vw, 1.125rem); line-height: 1.75;
@@ -3172,7 +3172,7 @@ function aboutBody(depth) {
   }
   /* V44 PDF p11: headline full width, then body+image side by side */
   @media (min-width: 1024px) {
-    .story-section--alt .story-section__inner { align-items: start; }
+    .story-section--alt .story-section__inner { align-items: stretch; }
     .story-section--alt .story-section__copy { display: contents; }
     .story-section--alt .story-section__num,
     .story-section--alt .story-section__title,
@@ -3298,8 +3298,8 @@ function aboutBody(depth) {
           </p>
         </div>
       </div>
-      <figure class="story-section__image story-section__image--contain">
-        ${ecoPic('story-cattle-yard', [640, 960, 1280, 1672], '(min-width: 1024px) 45vw, calc(100vw - 2.5rem)', 960, 1672, 941, 'Cattle yard at golden morning — representing how organized cattle care creates farmer livelihoods', depth, 'loading="eager"')}
+      <figure class="story-section__image">
+        ${ecoPic('story-farmer-cow', [640, 960, 1199], '(min-width: 1024px) 45vw, calc(100vw - 2.5rem)', 960, 1199, 1312, 'A farmer caring for a cow — representing how compassion creates livelihood opportunities', depth, 'loading="eager"')}
         <figcaption>Organized cattle care connects farmers to sustainable livelihoods.</figcaption>
       </figure>
     </div>
@@ -3346,7 +3346,7 @@ function aboutBody(depth) {
         </div>
       </div>
       <figure class="story-section__image">
-        ${ecoPic('flow-cow-dung', [640, 960, 1280], '(min-width: 1024px) 45vw, calc(100vw - 2.5rem)', 960, 960, 540, 'Cow dung in a rural setting — the natural material that becomes a resource instead of waste', depth, 'loading="eager"')}
+        ${ecoPic('rawmat-tree', [640, 960], '(min-width: 1024px) 45vw, calc(100vw - 2.5rem)', 960, 960, 960, 'Cow dung — the natural material that becomes a resource instead of waste', depth, 'loading="eager"')}
         <figcaption>Cow dung — once seen as waste, now a resource for sustainable products.</figcaption>
       </figure>
     </div>
@@ -3918,7 +3918,7 @@ function paintCalculatorBody(depth) {
     margin-bottom: 0.5rem;
   }
   .calc__step-help { color: var(--fg-muted); margin-bottom: 1rem; font-size: 0.9375rem; }
-  .calc__field { margin-bottom: 1.25rem; }
+  .calc__field { margin-bottom: 0.5rem; }
   .calc__result-eyebrow { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--haldi); }
   .calc__result-list { display: grid; gap: 0; margin-top: 1rem; }
   .calc__result-row {
@@ -5018,7 +5018,7 @@ function innovationBody(depth) {
   .innov-hero { background: var(--forest); color: var(--paper); padding-top: calc(var(--header-h) + 2rem); padding-bottom: clamp(3rem, 6vw, 5rem); }
   .innov-hero__grid { display: grid; gap: clamp(2rem, 5vw, 4rem); align-items: center; grid-template-columns: minmax(0, 1fr); }
   @media (min-width: 1024px) { .innov-hero__grid { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); } }
-  .innov-hero__eyebrow { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--haldi); margin-bottom: 1.25rem; }
+  .innov-hero__eyebrow { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--haldi); margin-bottom: 0.5rem; }
   .innov-hero__eyebrow::before { content: ""; width: 2rem; height: 1px; background: var(--haldi); }
   .innov-hero__title { font-family: var(--font-display); font-size: clamp(2.25rem, 6vw, 4.5rem); font-weight: 700; letter-spacing: -0.025em; line-height: 1.05; text-wrap: balance; margin-bottom: 1.5rem; color: var(--paper); }
   .innov-hero__lead { font-size: clamp(1.0625rem, 1.5vw, 1.25rem); line-height: 1.6; color: var(--paper); opacity: 0.85; max-width: 36rem; margin-bottom: 2rem; }
@@ -5374,7 +5374,7 @@ ${group.shades.map(shadeBtn).join('\n')}
 
   .premium-groups { display: flex; flex-direction: column; gap: clamp(2rem, 4vw, 3.25rem); }
   .premium-group__head {
-    border-top: 1px solid var(--border); padding-top: 1rem; margin-bottom: 1.25rem;
+    border-top: 1px solid var(--border); padding-top: 1rem; margin-bottom: 0.5rem;
     display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
   }
   .premium-group__name {

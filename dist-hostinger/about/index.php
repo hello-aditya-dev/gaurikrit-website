@@ -78,7 +78,7 @@ $addressLine = implode("\n", array_slice($address, 0, 6));
   .story-section__title {
     font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2.25rem);
     font-weight: 700; letter-spacing: -0.01em; line-height: 1.2;
-    margin-bottom: 1.25rem; text-wrap: balance;
+    margin-bottom: 0.5rem; text-wrap: balance;
   }
   .story-section__body {
     font-size: clamp(1rem, 1.5vw, 1.125rem); line-height: 1.75;
@@ -91,12 +91,14 @@ $addressLine = implode("\n", array_slice($address, 0, 6));
   .story-section__body--forest .story-section__list li::before { background: var(--haldi); }
   .story-section__body p:last-child { margin-bottom: 0; }
   .story-section__image {
+  min-height: 400px;
     margin-top: 2rem; position: relative; overflow: hidden;
     border-radius: var(--r-panel); background: var(--paper-warm);
     box-shadow: 0 2px 16px rgba(16, 47, 32, 0.08);
   }
   .story-section__image picture { display: block; }
   .story-section__image img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
     width: 100%; height: auto; display: block;
   }
   .story-section__image--contain img {
@@ -136,7 +138,7 @@ $addressLine = implode("\n", array_slice($address, 0, 6));
      title, body) direct grid items — num+title span full width (grid-column 1/-1),
      body+image sit side by side below. */
   @media (min-width: 1024px) {
-    .story-section--alt .story-section__inner { align-items: start; }
+    .story-section--alt .story-section__inner { align-items: stretch; }
     .story-section--alt .story-section__copy { display: contents; }
     .story-section--alt .story-section__num,
     .story-section--alt .story-section__title,
@@ -305,15 +307,15 @@ $addressLine = implode("\n", array_slice($address, 0, 6));
           </p>
         </div>
       </div>
-      <figure class="story-section__image story-section__image--contain">
+      <figure class="story-section__image">
         <picture>
-          <source type="image/avif" srcset="<?= eco_srcset('story-cattle-yard', [640, 960, 1280, 1672]) ?>"
+          <source type="image/avif" srcset="<?= eco_srcset('story-farmer-cow', [640, 960, 1199]) ?>"
                   sizes="(min-width: 1024px) 45vw, calc(100vw - 2.5rem)">
-          <source type="image/webp" srcset="<?= eco_srcset_webp('story-cattle-yard', [640, 960, 1280, 1672]) ?>"
+          <source type="image/webp" srcset="<?= eco_srcset_webp('story-farmer-cow', [640, 960, 1199]) ?>"
                   sizes="(min-width: 1024px) 45vw, calc(100vw - 2.5rem)">
-          <img src="<?= asset_url('/assets/images/ecosystem/story-cattle-yard-960.jpg') ?>"
-               alt="Cattle yard at golden morning — representing how organized cattle care creates farmer livelihoods"
-               width="1672" height="941" loading="eager" decoding="async">
+          <img src="<?= asset_url('/assets/images/ecosystem/story-farmer-cow-960.jpg') ?>"
+               alt="A farmer caring for a cow — representing how compassion creates livelihood opportunities"
+               width="1199" height="1312" loading="eager" decoding="async">
         </picture>
         <figcaption>Organized cattle care connects farmers to sustainable livelihoods.</figcaption>
       </figure>
@@ -376,13 +378,13 @@ $addressLine = implode("\n", array_slice($address, 0, 6));
       </div>
       <figure class="story-section__image">
         <picture>
-          <source type="image/avif" srcset="<?= eco_srcset('flow-cow-dung', [640, 960, 1280]) ?>"
+          <source type="image/avif" srcset="<?= eco_srcset('rawmat-tree', [640, 960]) ?>"
                   sizes="(min-width: 1024px) 45vw, calc(100vw - 2.5rem)">
-          <source type="image/webp" srcset="<?= eco_srcset_webp('flow-cow-dung', [640, 960, 1280]) ?>"
+          <source type="image/webp" srcset="<?= eco_srcset_webp('rawmat-tree', [640, 960]) ?>"
                   sizes="(min-width: 1024px) 45vw, calc(100vw - 2.5rem)">
-          <img src="<?= asset_url('/assets/images/ecosystem/flow-cow-dung-960.jpg') ?>"
-               alt="Cow dung in a rural setting — the natural material that becomes a resource instead of waste"
-               width="960" height="540" loading="eager" decoding="async">
+          <img src="<?= asset_url('/assets/images/ecosystem/rawmat-tree-960.jpg') ?>"
+               alt="Cow dung — the natural material that becomes a resource instead of waste"
+               width="960" height="960" loading="eager" decoding="async">
         </picture>
         <figcaption>Cow dung — once seen as waste, now a resource for sustainable products.</figcaption>
       </figure>
