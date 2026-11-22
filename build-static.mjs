@@ -910,7 +910,7 @@ function homeBody(depth) {
         // GoCast Logs) and "Bio-Briquettes" (formerly Bio-Coal Logs).
         const mediaSpec = {
             'eco-paints':       { stem: 'gbp-paint-bucket', alt: 'Prakritik Distemper and Emulsion paint packs — the actual Eco-Paints product from the 2026-11-14 client asset pack', widths: [640, 960, 1280, 1536], fb: 1536, w: 1536, h: 1024 },
-            'gocast-logs':      { stem: 'gbp-cow-dung-logs', alt: 'Gaurikrit Cow-Dung Logs — the actual processed log product from the 2026-11-14 client asset pack', widths: [640, 960, 1024], fb: 1024, w: 1024, h: 1024 },
+            'gocast-logs':      { stem: 'homepage-cow-dung-logs', alt: 'Gaurikrit Cow-Dung Logs — premium biomass fuel. Development direction.', widths: [640, 960], fb: 960, w: 960, h: 540 },
             'bio-coal-logs':    { stem: 'carousel-bio-briquettes', alt: 'Gaurikrit Bio-Briquettes — A Futureline product direction, not yet in production.', widths: [640, 960, 1280, 1920], fb: 1920, w: 1920, h: 1080 },
             'utility-products': { stem: 'carousel-eco-utility-products', alt: 'Gaurikrit Eco Utility Products — A Futureline product direction, not yet in production.', widths: [640, 960, 1280, 1920], fb: 1920, w: 1920, h: 1080 },
         };
