@@ -1,0 +1,35 @@
+[
+  {
+    "stem": "prakritik-distemper-single-cut",
+    "kind": "cutout",
+    "source": "GBP Paint Bucket-4.png",
+    "size": [
+      1269,
+      1240
+    ],
+    "mode": "RGBA"
+  },
+  {
+    "stem": "prakritik-emulsion-single-cut",
+    "kind": "cutout",
+    "source": "GBP Paint Bucket-2.png",
+    "size": [
+      1122,
+      1402
+    ],
+    "mode": "RGBA"
+  },
+  {
+    "stem": "prakritik-distemper-solo-v79",
+    "kind": "ecosystem-ladder",
+    "source": "GBP Paint Bucket-4.png",
+    "widths": [
+      640,
+      960
+    ],
+    "intrinsic": [
+      1269,
+      1240
+    ]
+  }
+]

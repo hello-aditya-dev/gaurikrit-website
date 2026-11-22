@@ -122,12 +122,13 @@ const PRODUCTS = [
         coverage: '200 sq.ft.**',
         voc: 'Negligible',
         usage: 'Interior & Exterior',
-        // V18: the sharp client-supplied single-bucket cutout (blue
-        // Distemper configuration) — mirrors data.php.
-        officialImage: '/assets/images/ecosystem/gbp-paint-bucket-2-960.jpg',
-        officialImageWebp: '/assets/images/ecosystem/gbp-paint-bucket-2-960.webp',
-        officialImageW: 801,
-        officialImageH: 1044,
+        // V79: single-bucket cutout from the client's 2026-11-14 ZIP
+        // (GBP Paint Bucket-4.png — blue Distemper, Khadi India branded).
+        // Mirrors data.php. Replaces the stale gbp-paint-bucket-2 ref.
+        officialImage: '/assets/images/client/prakritik-distemper-single-cut.png',
+        officialImageWebp: '/assets/images/client/prakritik-distemper-single-cut.webp',
+        officialImageW: 1269,
+        officialImageH: 1240,
         image: 'prakritik-distemper',
         accent: 'indigo',
         route: '/products/prakritik-distemper/',
@@ -145,10 +146,13 @@ const PRODUCTS = [
         coverage: '300 sq.ft.**',
         voc: 'Negligible',
         usage: 'Interior & Exterior',
-        officialImage: '/assets/products/prakritik-emulsion-from-pair.png',
-        officialImageWebp: '/assets/products/prakritik-emulsion-from-pair.webp',
-        officialImageW: 638,
-        officialImageH: 612,
+        // V79: single-bucket cutout from the client's 2026-11-14 ZIP
+        // (GBP Paint Bucket-2.png — yellow-green Emulsion, Khadi India branded).
+        // Mirrors data.php. Replaces the stale from-pair ref.
+        officialImage: '/assets/images/client/prakritik-emulsion-single-cut.png',
+        officialImageWebp: '/assets/images/client/prakritik-emulsion-single-cut.webp',
+        officialImageW: 1122,
+        officialImageH: 1402,
         image: 'prakritik-emulsion',
         accent: 'haldi',
         route: '/products/prakritik-emulsion/',
@@ -2231,7 +2235,7 @@ function distemperBody(depth) {
 
       <figure class="product-detail__media">
         <div class="product-detail__panel">
-          ${ecoPic('prakritik-distemper', [640, 960, 1280, 1600], '(min-width: 1200px) 630px, (min-width: 1024px) 55vw, calc(100vw - 2.5rem)', 1280, 1280, 960, 'Prakritik Paint — Distemper and Emulsion — complete label and pack photograph', depth, 'class="media-product" loading="eager" fetchpriority="high" ')}
+          ${ecoPic('prakritik-distemper-solo-v79', [640, 960], '(min-width: 1200px) 630px, (min-width: 1024px) 55vw, calc(100vw - 2.5rem)', 960, 960, 941, 'Prakritik Distemper paint pack — single Distemper bucket, complete label and pack photograph', depth, 'class="media-product" loading="eager" fetchpriority="high" ')}
         </div>
         <div class="product-detail__strip" aria-hidden="true">
           ${interiorFinishStripPic}
