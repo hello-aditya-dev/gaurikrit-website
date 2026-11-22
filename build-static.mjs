@@ -3272,8 +3272,8 @@ function aboutBody(depth) {
         </div>
       </div>
       <figure class="story-section__image">
-        ${ecoPic('story-farmer-maroon', [640, 960, 1224], '(min-width: 1024px) 45vw, calc(100vw - 2.5rem)', 960, 1224, 1285, 'A man in a maroon jacket tenderly attending to a cow under a bare tree — representing compassion for abandoned cattle', depth, 'loading="eager"')}
-        <figcaption>A quiet moment of compassion — caring for a cow at a rural farm.</figcaption>
+        ${ecoPic('story-farmer-cow-4', [640, 864], '(min-width: 1024px) 45vw, calc(100vw - 2.5rem)', 864, 864, 1152, 'A farmer caring for a cow at a rural farm — representing the dignity and compassion central to Gau Mata welfare', depth, 'loading="eager"')}
+        <figcaption>A moment of compassion — caring for a cow at a rural farm.</figcaption>
       </figure>
     </div>
   </div>
@@ -3344,8 +3344,8 @@ function aboutBody(depth) {
         </div>
       </div>
       <figure class="story-section__image">
-        ${ecoPic('story-farmer-cow-4', [640, 864], '(min-width: 1024px) 45vw, calc(100vw - 2.5rem)', 864, 864, 1152, 'A farmer gently tending to a cow wearing a bell and beaded collar — representing dignified care for cattle in rural communities', depth, 'loading="eager"')}
-        <figcaption>A farmer caring for a cow — dignified human-animal partnership in rural India.</figcaption>
+        ${ecoPic('cow-dung-pile2', [640, 960, 1280, 1536], '(min-width: 1024px) 45vw, calc(100vw - 2.5rem)', 960, 1536, 1024, 'Cow dung — the natural material that becomes a resource instead of waste', depth, 'loading="eager"')}
+        <figcaption>Cow dung — once seen as waste, now a resource for sustainable products.</figcaption>
       </figure>
     </div>
   </div>
