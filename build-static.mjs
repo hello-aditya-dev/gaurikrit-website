@@ -3282,8 +3282,8 @@ function aboutBody(depth) {
         </div>
       </div>
       <figure class="story-section__image">
-        ${ecoPic('story-farmer-cow', [640, 960, 1199], '(min-width: 1024px) 45vw, calc(100vw - 2.5rem)', 960, 1199, 1312, 'A farmer caring for a cow — representing how compassion creates livelihood opportunities', depth, 'loading="eager"')}
-        <figcaption>Organized cattle care connects farmers to sustainable livelihoods.</figcaption>
+        ${ecoPic('story-cow-calf-2', [640, 960, 1254], '(min-width: 1024px) 45vw, calc(100vw - 2.5rem)', 960, 1254, 1254, 'A Gir cow and calf at golden hour — representing the natural bond that sustains rural livelihoods', depth, 'loading="eager"')}
+        <figcaption>A Gir cow and calf at golden hour — the natural bond that sustains rural livelihoods.</figcaption>
       </figure>
     </div>
   </div>

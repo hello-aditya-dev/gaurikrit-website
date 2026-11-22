@@ -302,15 +302,15 @@ $addressLine = implode("\n", array_slice($address, 0, 6));
       </div>
       <figure class="story-section__image">
         <picture>
-          <source type="image/avif" srcset="<?= eco_srcset('story-farmer-cow', [640, 960, 1199]) ?>"
+          <source type="image/avif" srcset="<?= eco_srcset('story-cow-calf-2', [640, 960, 1254]) ?>"
                   sizes="(min-width: 1024px) 45vw, calc(100vw - 2.5rem)">
-          <source type="image/webp" srcset="<?= eco_srcset_webp('story-farmer-cow', [640, 960, 1199]) ?>"
+          <source type="image/webp" srcset="<?= eco_srcset_webp('story-cow-calf-2', [640, 960, 1254]) ?>"
                   sizes="(min-width: 1024px) 45vw, calc(100vw - 2.5rem)">
-          <img src="<?= asset_url('/assets/images/ecosystem/story-farmer-cow-960.jpg') ?>"
-               alt="A farmer caring for a cow — representing how compassion creates livelihood opportunities"
-               width="1199" height="1312" loading="eager" decoding="async">
+          <img src="<?= asset_url('/assets/images/ecosystem/story-cow-calf-2-960.jpg') ?>"
+               alt="A Gir cow and calf at golden hour — representing the natural bond that sustains rural livelihoods"
+               width="1254" height="1254" loading="eager" decoding="async">
         </picture>
-        <figcaption>Organized cattle care connects farmers to sustainable livelihoods.</figcaption>
+        <figcaption>A Gir cow and calf at golden hour — the natural bond that sustains rural livelihoods.</figcaption>
       </figure>
     </div>
   </div>
