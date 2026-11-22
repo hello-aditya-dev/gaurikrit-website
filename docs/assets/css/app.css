@@ -5732,3 +5732,13 @@ p, li, dd, blockquote { text-wrap: pretty; }
 @media (prefers-reduced-motion: reduce) {
   .site-nav__chevron { transition: none; }
 }
+
+/* V51: definitive hero title XL override — placed at END of file so it wins
+   the cascade over all individual hero title declarations above. Ensures
+   every page hero title is the same size at every breakpoint. */
+@media (min-width: 1440px) {
+  .hero__title, .why-hero__title, .story-hero__title, .products-hero__title, .contact-hero__title { font-size: clamp(2.5rem, 4vw, 3.5rem) !important; }
+}
+@media (max-width: 412px) {
+  .hero__title, .why-hero__title, .story-hero__title, .products-hero__title, .contact-hero__title { font-size: clamp(1.5rem, 7vw, 2rem) !important; }
+}
