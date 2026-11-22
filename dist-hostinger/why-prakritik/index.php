@@ -222,11 +222,11 @@ $emulsion  = get_product('prakritik-emulsion');
       </div>
       <div class="why-hero__art">
         <picture>
-          <source type="image/avif" srcset="<?= eco_srcset('wall-cream', [640, 960, 1280, 1600]) ?>" sizes="(min-width: 1024px) 50vw, calc(100vw - 2.5rem)">
-          <source type="image/webp" srcset="<?= eco_srcset_webp('wall-cream', [640, 960, 1280, 1600]) ?>" sizes="(min-width: 1024px) 50vw, calc(100vw - 2.5rem)">
+          <source type="image/avif" srcset="<?= eco_srcset('real-wall-pearl', [640, 960, 1280, 1600]) ?>" sizes="(min-width: 1024px) 50vw, calc(100vw - 2.5rem)">
+          <source type="image/webp" srcset="<?= eco_srcset_webp('real-wall-pearl', [640, 960, 1280, 1600]) ?>" sizes="(min-width: 1024px) 50vw, calc(100vw - 2.5rem)">
           <img class="why-hero__img"
-               src="<?= asset_url('/assets/images/ecosystem/wall-cream-1280.jpg') ?>"
-               alt="A freshly painted wall in warm cream — Prakritik Paint's natural matte finish"
+               src="<?= asset_url('/assets/images/ecosystem/real-wall-pearl-1280.jpg') ?>"
+               alt="A freshly painted wall in pearl cream — Prakritik Paint's natural matte finish"
                width="1280" height="800"
                loading="eager" fetchpriority="high" decoding="async">
         </picture>
@@ -315,10 +315,10 @@ $emulsion  = get_product('prakritik-emulsion');
       </div>
       <div class="why-material-sample">
         <picture>
-          <source type="image/avif" srcset="<?= eco_srcset('wall-forest', [640, 960, 1280, 1600]) ?>" sizes="(min-width: 1024px) 45vw, calc(100vw - 2.5rem)">
-          <source type="image/webp" srcset="<?= eco_srcset_webp('wall-forest', [640, 960, 1280, 1600]) ?>" sizes="(min-width: 1024px) 45vw, calc(100vw - 2.5rem)">
+          <source type="image/avif" srcset="<?= eco_srcset('real-wall-forest', [640, 960, 1280, 1600]) ?>" sizes="(min-width: 1024px) 45vw, calc(100vw - 2.5rem)">
+          <source type="image/webp" srcset="<?= eco_srcset_webp('real-wall-forest', [640, 960, 1280, 1600]) ?>" sizes="(min-width: 1024px) 45vw, calc(100vw - 2.5rem)">
           <img class="editorial-image"
-               src="<?= asset_url('/assets/images/ecosystem/wall-forest-1280.jpg') ?>"
+               src="<?= asset_url('/assets/images/ecosystem/real-wall-forest-1280.jpg') ?>"
                alt="A freshly painted wall in forest green — Prakritik Paint's natural matte finish"
                width="1280" height="800"
                loading="lazy" decoding="async">
@@ -412,11 +412,11 @@ $emulsion  = get_product('prakritik-emulsion');
       <article class="material-step">
         <figure class="material-step__figure">
           <picture>
-            <source type="image/avif" srcset="<?= eco_srcset('wall-leaf', [640, 960, 1280, 1600]) ?>" sizes="(min-width: 1024px) 22vw, (min-width: 768px) 45vw, calc(100vw - 2.5rem)">
-            <source type="image/webp" srcset="<?= eco_srcset_webp('wall-leaf', [640, 960, 1280, 1600]) ?>" sizes="(min-width: 1024px) 22vw, (min-width: 768px) 45vw, calc(100vw - 2.5rem)">
+            <source type="image/avif" srcset="<?= eco_srcset('real-wall-neem', [640, 960, 1280, 1600]) ?>" sizes="(min-width: 1024px) 22vw, (min-width: 768px) 45vw, calc(100vw - 2.5rem)">
+            <source type="image/webp" srcset="<?= eco_srcset_webp('real-wall-neem', [640, 960, 1280, 1600]) ?>" sizes="(min-width: 1024px) 22vw, (min-width: 768px) 45vw, calc(100vw - 2.5rem)">
             <img class="editorial-image"
-                 src="<?= asset_url('/assets/images/ecosystem/wall-leaf-1280.jpg') ?>"
-                 alt="A freshly painted wall in leaf green — Prakritik Paint's natural matte finish"
+                 src="<?= asset_url('/assets/images/ecosystem/real-wall-neem-1280.jpg') ?>"
+                 alt="A freshly painted wall in neem green — Prakritik Paint's natural matte finish"
                  width="1280" height="800"
                  loading="lazy" decoding="async">
           </picture>

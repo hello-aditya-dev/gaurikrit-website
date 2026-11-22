@@ -307,13 +307,13 @@ $addressLine = implode("\n", array_slice($address, 0, 6));
       </div>
       <figure class="story-section__image story-section__image--contain">
         <picture>
-          <source type="image/avif" srcset="<?= eco_srcset('story-cattle-shelter', [640, 960, 1028]) ?>"
+          <source type="image/avif" srcset="<?= eco_srcset('story-cattle-yard', [640, 960, 1280, 1672]) ?>"
                   sizes="(min-width: 1024px) 45vw, calc(100vw - 2.5rem)">
-          <source type="image/webp" srcset="<?= eco_srcset_webp('story-cattle-shelter', [640, 960, 1028]) ?>"
+          <source type="image/webp" srcset="<?= eco_srcset_webp('story-cattle-yard', [640, 960, 1280, 1672]) ?>"
                   sizes="(min-width: 1024px) 45vw, calc(100vw - 2.5rem)">
-          <img src="<?= asset_url('/assets/images/ecosystem/story-cattle-shelter-960.jpg') ?>"
-               alt="Cattle shelter with cows and a caretaker — representing how organized cattle care creates livelihood opportunities"
-               width="1028" height="1188" loading="lazy" decoding="async">
+          <img src="<?= asset_url('/assets/images/ecosystem/story-cattle-yard-960.jpg') ?>"
+               alt="Cattle yard at golden morning — representing how organized cattle care creates farmer livelihoods"
+               width="1672" height="941" loading="lazy" decoding="async">
         </picture>
         <figcaption>Organized cattle care connects farmers to sustainable livelihoods.</figcaption>
       </figure>

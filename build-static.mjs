@@ -2583,14 +2583,14 @@ function whyPrakritikBody(depth) {
     // shows a single quiet finished-wall study; Section 01 grounds the
     // material in a raw plaster surface; Section 03 uses the shared step
     // cards (raw material / paint / finished wall).
-    const heroFinishPic = ecoPic('wall-cream', [640, 960, 1280, 1600], '(min-width: 1024px) 50vw, calc(100vw - 2.5rem)', 1280, 1280, 800, "A freshly painted wall in warm cream — Prakritik Paint's natural matte finish", depth, 'class="why-hero__img" loading="eager" fetchpriority="high"');
-    const rawMaterialCh1Pic = ecoPic('wall-forest', [640, 960, 1280, 1600], '(min-width: 1024px) 45vw, calc(100vw - 2.5rem)', 1280, 1280, 800, "A freshly painted wall in forest green — Prakritik Paint's natural matte finish", depth, 'class="editorial-image"');
+    const heroFinishPic = ecoPic('real-wall-pearl', [640, 960, 1280, 1600], '(min-width: 1024px) 50vw, calc(100vw - 2.5rem)', 1280, 1280, 800, "A freshly painted wall in warm cream — Prakritik Paint's natural matte finish", depth, 'class="why-hero__img" loading="eager" fetchpriority="high"');
+    const rawMaterialCh1Pic = ecoPic('real-wall-forest', [640, 960, 1280, 1600], '(min-width: 1024px) 45vw, calc(100vw - 2.5rem)', 1280, 1280, 800, "A freshly painted wall in forest green — Prakritik Paint's natural matte finish", depth, 'class="editorial-image"');
     const courtyardCh2Pic = pic('/assets/editorial/courtyard-study.webp', '/assets/editorial/courtyard-study.jpg',
         'Indian limewashed courtyard elevation', 1942, 809, depth, 'class="editorial-image"');
     const rawMaterialFlowPic = ecoPic('rawmat-tree', [640, 960],
         '(min-width: 1024px) 28vw, (min-width: 640px) 42vw, calc(100vw - 2.5rem)', 960, 960, 960,
         'Cow dung — the shared starting material for every Gaurikrit direction', depth, 'class="editorial-image"');
-    const finishedSurfaceFlowPic = ecoPic('wall-leaf', [640, 960, 1280, 1600], '(min-width: 1024px) 22vw, (min-width: 768px) 45vw, calc(100vw - 2.5rem)', 1280, 1280, 800, "A freshly painted wall in leaf green — Prakritik Paint's natural matte finish", depth, 'class="editorial-image"');
+    const finishedSurfaceFlowPic = ecoPic('real-wall-neem', [640, 960, 1280, 1600], '(min-width: 1024px) 22vw, (min-width: 768px) 45vw, calc(100vw - 2.5rem)', 1280, 1280, 800, "A freshly painted wall in leaf green — Prakritik Paint's natural matte finish", depth, 'class="editorial-image"');
 
     // V16: the Colours of India study moved here from Home (Eco-Paints
     // educational context, §64). Wall-only SVG paint mask + swatches.
@@ -3299,7 +3299,7 @@ function aboutBody(depth) {
         </div>
       </div>
       <figure class="story-section__image story-section__image--contain">
-        ${ecoPic('story-cattle-shelter', [640, 960, 1028], '(min-width: 1024px) 45vw, calc(100vw - 2.5rem)', 960, 1028, 1188, 'Cattle shelter with cows and a caretaker — representing how organized cattle care creates livelihood opportunities', depth)}
+        ${ecoPic('story-cattle-yard', [640, 960, 1280, 1672], '(min-width: 1024px) 45vw, calc(100vw - 2.5rem)', 960, 1672, 941, 'Cattle yard at golden morning — representing how organized cattle care creates farmer livelihoods', depth)}
         <figcaption>Organized cattle care connects farmers to sustainable livelihoods.</figcaption>
       </figure>
     </div>
