@@ -513,12 +513,12 @@ $HERO_SIZES = '(min-width: 1200px) 58vw, (min-width: 900px) 50vw, calc(100vw - 2
       <article class="resource-step">
         <figure class="resource-step__figure">
           <picture>
-            <source type="image/avif" srcset="<?= eco_srcset('cattle-yard-v70', [640, 960, 1280, 1536]) ?>"
+            <source type="image/avif" srcset="<?= eco_srcset('cow-dung-pile3', [640, 960, 1280, 1536]) ?>"
                     sizes="(min-width: 1100px) 22vw, (min-width: 768px) 45vw, calc(100vw - 2.5rem)">
-            <source type="image/webp" srcset="<?= eco_srcset_webp('cattle-yard-v70', [640, 960, 1280, 1536]) ?>"
+            <source type="image/webp" srcset="<?= eco_srcset_webp('cow-dung-pile3', [640, 960, 1280, 1536]) ?>"
                     sizes="(min-width: 1100px) 22vw, (min-width: 768px) 45vw, calc(100vw - 2.5rem)">
-            <img src="<?= asset_url('/assets/images/ecosystem/cattle-yard-v70-960.jpg') ?>"
-                 alt="A rural cattle yard at golden hour &mdash; open thatched-roof shelters among green trees under a blue sky, the natural material setting"
+            <img src="<?= asset_url('/assets/images/ecosystem/cow-dung-pile3-960.jpg') ?>"
+                 alt="A large mound of cow dung with cows near a rural shelter &mdash; the natural material starting point for every Gaurikrit direction"
                  width="1536" height="864" loading="lazy" decoding="async">
           </picture>
         </figure>

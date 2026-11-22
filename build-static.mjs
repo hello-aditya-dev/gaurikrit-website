@@ -894,7 +894,7 @@ function homeBody(depth) {
     // flow-processing (1:1), flow-portfolio (2:3 portrait, poster frame)
     // and flow-impact (1:1).
     const STAGE_SIZES = '(min-width: 1100px) 22vw, (min-width: 768px) 45vw, calc(100vw - 2.5rem)';
-    const stageCowDung = ecoPic('cattle-yard-v70', [640, 960, 1280, 1536], STAGE_SIZES, 960, 1536, 864, 'A rural cattle yard at golden hour &mdash; open thatched-roof shelters among green trees under a blue sky, the natural material setting', depth);
+    const stageCowDung = ecoPic('cow-dung-pile3', [640, 960, 1280, 1536], STAGE_SIZES, 960, 1536, 864, 'A large mound of cow dung with cows near a rural shelter &mdash; the natural material starting point for every Gaurikrit direction', depth);
     const stageProcessing = ecoPic('flow-processing', [640, 960], STAGE_SIZES, 960, 960, 960, 'Conceptual visual of natural-waste processing — biomass handling and material development', depth);
     const stageImpact = ecoPic('flow-impact', [640, 960], STAGE_SIZES, 960, 960, 960, 'Earth encircled by a leaf recycling symbol — a circular-economy direction', depth);
 
