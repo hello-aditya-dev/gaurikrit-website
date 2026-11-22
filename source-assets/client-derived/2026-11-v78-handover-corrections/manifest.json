@@ -1,0 +1,30 @@
+[
+  {
+    "stem": "colours-wall",
+    "source": "/home/z/gaurikrit-website/source-assets/client-originals/2026-11-14-update/wall-8 Pearl cream.png",
+    "source_name": "wall-8 Pearl cream.png",
+    "widths": [
+      640,
+      960,
+      1280,
+      1600
+    ],
+    "intrinsic": [
+      1672,
+      941
+    ]
+  },
+  {
+    "stem": "story-farmer-cow-14",
+    "source": "/home/z/gaurikrit-website/source-assets/client-originals/2026-11-14-update/Img Frmr-14.png",
+    "source_name": "Img Frmr-14.png",
+    "widths": [
+      640,
+      864
+    ],
+    "intrinsic": [
+      1199,
+      1312
+    ]
+  }
+]

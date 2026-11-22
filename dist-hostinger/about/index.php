@@ -146,10 +146,16 @@ $addressLine = implode("\n", array_slice($address, 0, 6));
   .story-section--alt .story-section__title,
   .story-section--alt .concept-qualifier { grid-column: 1 / -1; }
   .story-section--alt .story-section__title { max-width: none; }
-  .story-section--alt .story-section__body { grid-column: 1; grid-row: 3; max-width: none; }
-  .story-section--alt .story-section__image { grid-column: 2; grid-row: 3; margin-top: 0; }
-  .story-section--alt-reverse .story-section__body { grid-column: 2; }
-  .story-section--alt-reverse .story-section__image { grid-column: 1; }
+  /* V78: the 2-column body/image placement is DESKTOP-ONLY. At mobile the
+     1-column grid must let body + image stack naturally — the previous
+     unconditional grid-column:2 on the image forced an implicit 0px track
+     that collapsed the text column to ~0 width. */
+  @media (min-width: 1024px) {
+    .story-section--alt .story-section__body { grid-column: 1; grid-row: 3; max-width: none; }
+    .story-section--alt .story-section__image { grid-column: 2; grid-row: 3; margin-top: 0; }
+    .story-section--alt-reverse .story-section__body { grid-column: 2; }
+    .story-section--alt-reverse .story-section__image { grid-column: 1; }
+  }
 
   /* V71: highlighted closing line for story paragraphs (PDF p11) */
   .story-section__body > p.story-section__closing {
@@ -296,13 +302,13 @@ $addressLine = implode("\n", array_slice($address, 0, 6));
       </div>
       <figure class="story-section__image">
         <picture>
-          <source type="image/avif" srcset="<?= eco_srcset('story-farmer-cow-4', [640, 864]) ?>"
+          <source type="image/avif" srcset="<?= eco_srcset('story-farmer-cow-14', [640, 864]) ?>"
                   sizes="(min-width: 1024px) 45vw, calc(100vw - 2.5rem)">
-          <source type="image/webp" srcset="<?= eco_srcset_webp('story-farmer-cow-4', [640, 864]) ?>"
+          <source type="image/webp" srcset="<?= eco_srcset_webp('story-farmer-cow-14', [640, 864]) ?>"
                   sizes="(min-width: 1024px) 45vw, calc(100vw - 2.5rem)">
-          <img src="<?= asset_url('/assets/images/ecosystem/story-farmer-cow-4-864.jpg') ?>"
-               alt="A farmer caring for a cow at a rural farm — representing the dignity and compassion central to Gau Mata welfare"
-               width="864" height="1152" loading="eager" decoding="async">
+          <img src="<?= asset_url('/assets/images/ecosystem/story-farmer-cow-14-864.jpg') ?>"
+               alt="A man gently caring for a cow at golden hour beside a rural hut — representing the dignity and compassion central to Gau Mata welfare"
+               width="864" height="945" loading="eager" decoding="async">
         </picture>
         <figcaption>A moment of compassion — caring for a cow at a rural farm.</figcaption>
       </figure>
@@ -405,13 +411,13 @@ $addressLine = implode("\n", array_slice($address, 0, 6));
       </div>
       <figure class="story-section__image">
         <picture>
-          <source type="image/avif" srcset="<?= eco_srcset('cow-dung-pile2', [640, 960, 1280, 1536]) ?>"
+          <source type="image/avif" srcset="<?= eco_srcset('cow-dung-pile3', [640, 960, 1280, 1536]) ?>"
                   sizes="(min-width: 1024px) 45vw, calc(100vw - 2.5rem)">
-          <source type="image/webp" srcset="<?= eco_srcset_webp('cow-dung-pile2', [640, 960, 1280, 1536]) ?>"
+          <source type="image/webp" srcset="<?= eco_srcset_webp('cow-dung-pile3', [640, 960, 1280, 1536]) ?>"
                   sizes="(min-width: 1024px) 45vw, calc(100vw - 2.5rem)">
-          <img src="<?= asset_url('/assets/images/ecosystem/cow-dung-pile2-960.jpg') ?>"
-               alt="Cow dung — the natural material that becomes a resource instead of waste"
-               width="1536" height="1024" loading="eager" decoding="async">
+          <img src="<?= asset_url('/assets/images/ecosystem/cow-dung-pile3-960.jpg') ?>"
+               alt="A cow-dung pile with straw at a rural setting — the natural material that becomes a resource instead of waste"
+               width="1536" height="864" loading="eager" decoding="async">
         </picture>
         <figcaption>Cow dung — once seen as waste, now a resource for sustainable products.</figcaption>
       </figure>

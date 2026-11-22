@@ -3161,10 +3161,16 @@ function aboutBody(depth) {
   .story-section--alt .story-section__title,
   .story-section--alt .concept-qualifier { grid-column: 1 / -1; }
   .story-section--alt .story-section__title { max-width: none; }
-  .story-section--alt .story-section__body { grid-column: 1; grid-row: 3; max-width: none; }
-  .story-section--alt .story-section__image { grid-column: 2; grid-row: 3; margin-top: 0; }
-  .story-section--alt-reverse .story-section__body { grid-column: 2; }
-  .story-section--alt-reverse .story-section__image { grid-column: 1; }
+  /* V78: the 2-column body/image placement is DESKTOP-ONLY. At mobile the
+     1-column grid must let body + image stack naturally — the previous
+     unconditional grid-column:2 on the image forced an implicit 0px track
+     that collapsed the text column to ~0 width. */
+  @media (min-width: 1024px) {
+    .story-section--alt .story-section__body { grid-column: 1; grid-row: 3; max-width: none; }
+    .story-section--alt .story-section__image { grid-column: 2; grid-row: 3; margin-top: 0; }
+    .story-section--alt-reverse .story-section__body { grid-column: 2; }
+    .story-section--alt-reverse .story-section__image { grid-column: 1; }
+  }
 
   /* V71: highlighted closing line for story paragraphs (PDF p11) */
   .story-section__body > p.story-section__closing {
@@ -3278,7 +3284,7 @@ function aboutBody(depth) {
         </div>
       </div>
       <figure class="story-section__image">
-        ${ecoPic('story-farmer-cow-4', [640, 864], '(min-width: 1024px) 45vw, calc(100vw - 2.5rem)', 864, 864, 1152, 'A farmer caring for a cow at a rural farm — representing the dignity and compassion central to Gau Mata welfare', depth, 'loading="eager"')}
+        ${ecoPic('story-farmer-cow-14', [640, 864], '(min-width: 1024px) 45vw, calc(100vw - 2.5rem)', 864, 864, 945, 'A man gently caring for a cow at golden hour beside a rural hut — representing the dignity and compassion central to Gau Mata welfare', depth, 'loading="eager"')}
         <figcaption>A moment of compassion — caring for a cow at a rural farm.</figcaption>
       </figure>
     </div>
@@ -3354,7 +3360,7 @@ function aboutBody(depth) {
         </div>
       </div>
       <figure class="story-section__image">
-        ${ecoPic('cow-dung-pile2', [640, 960, 1280, 1536], '(min-width: 1024px) 45vw, calc(100vw - 2.5rem)', 960, 1536, 1024, 'Cow dung — the natural material that becomes a resource instead of waste', depth, 'loading="eager"')}
+        ${ecoPic('cow-dung-pile3', [640, 960, 1280, 1536], '(min-width: 1024px) 45vw, calc(100vw - 2.5rem)', 960, 1536, 864, 'A cow-dung pile with straw at a rural setting — the natural material that becomes a resource instead of waste', depth, 'loading="eager"')}
         <figcaption>Cow dung — once seen as waste, now a resource for sustainable products.</figcaption>
       </figure>
     </div>
@@ -5270,9 +5276,9 @@ ${methodGrid}
 // ============================================================
 
 function coloursBody(depth) {
-    const wallPic = ecoPic('colours-wall', [960, 1280, 1920, 2560],
-        '(min-width: 1024px) 56vw, calc(100vw - 2.5rem)', 1280, 1280, 731,
-        'Minimal interior with a large flat limewash wall above a wooden bench and jute rug', depth,
+    const wallPic = ecoPic('colours-wall', [960, 1280, 1600],
+        '(min-width: 1024px) 56vw, calc(100vw - 2.5rem)', 1280, 1280, 720,
+        'A plain freshly painted pearl cream wall — the base surface for shade previews', depth,
         'class="colours-wall__art" loading="eager" ');
 
     const shadeBtn = (shade) => `          <button type="button" class="shade" role="radio" aria-checked="false"

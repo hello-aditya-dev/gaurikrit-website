@@ -237,14 +237,14 @@ global $SHADE_SIGNATURE, $SHADE_PREMIUM_GROUPS;
       <div class="colour-unit" data-reveal>
         <div class="colours-wall" data-colour-wall>
           <picture>
-            <source type="image/avif" srcset="<?= eco_srcset('colours-wall', [960, 1280, 1920, 2560]) ?>"
+            <source type="image/avif" srcset="<?= eco_srcset('colours-wall', [960, 1280, 1600]) ?>"
                     sizes="(min-width: 1024px) 56vw, calc(100vw - 2.5rem)">
-            <source type="image/webp" srcset="<?= eco_srcset_webp('colours-wall', [960, 1280, 1920, 2560]) ?>"
+            <source type="image/webp" srcset="<?= eco_srcset_webp('colours-wall', [960, 1280, 1600]) ?>"
                     sizes="(min-width: 1024px) 56vw, calc(100vw - 2.5rem)">
             <img class="colours-wall__art"
                  src="<?= asset_url('/assets/images/ecosystem/colours-wall-1280.jpg') ?>"
-                 alt="Minimal interior with a large flat limewash wall above a wooden bench and jute rug"
-                 width="1280" height="731"
+                 alt="A plain freshly painted pearl cream wall — the base surface for shade previews"
+                 width="1280" height="720"
                  loading="eager" decoding="async">
           </picture>
           <svg class="colours-wall__tint" viewBox="0 0 1344 768"
