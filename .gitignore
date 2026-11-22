@@ -70,3 +70,5 @@ verify-*.png
 preview-server.log
 /verify-*.png
 vlm_pack/
+pdf_replacements/
+pdf_pages*/

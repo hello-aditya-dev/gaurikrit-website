@@ -124,8 +124,8 @@ const PRODUCTS = [
         usage: 'Interior & Exterior',
         // V18: the sharp client-supplied single-bucket cutout (blue
         // Distemper configuration) — mirrors data.php.
-        officialImage: '/assets/images/client/prakritik-distemper-single-cut.png',
-        officialImageWebp: '/assets/images/client/prakritik-distemper-single-cut.webp',
+        officialImage: '/assets/images/ecosystem/gbp-paint-bucket-2-960.jpg',
+        officialImageWebp: '/assets/images/ecosystem/gbp-paint-bucket-2-960.webp',
         officialImageW: 801,
         officialImageH: 1044,
         image: 'prakritik-distemper',
@@ -2230,7 +2230,7 @@ function distemperBody(depth) {
 
       <figure class="product-detail__media">
         <div class="product-detail__panel">
-          ${ecoPic('prakritik-distemper', [640, 960, 1280, 1600], '(min-width: 1200px) 630px, (min-width: 1024px) 55vw, calc(100vw - 2.5rem)', 1280, 1280, 960, 'Prakritik Distemper paint pack — complete label and pack photograph', depth, 'class="media-product" loading="eager" fetchpriority="high" ')}
+          ${ecoPic('prakritik-distemper', [640, 960, 1280, 1600], '(min-width: 1200px) 630px, (min-width: 1024px) 55vw, calc(100vw - 2.5rem)', 1280, 1280, 960, 'Prakritik Paint — Distemper and Emulsion — complete label and pack photograph', depth, 'class="media-product" loading="eager" fetchpriority="high" ')}
         </div>
         <div class="product-detail__strip" aria-hidden="true">
           ${interiorFinishStripPic}
@@ -2933,7 +2933,7 @@ function whyPrakritikBody(depth) {
             <source type="image/webp" srcset="${assetUrl(distemper.officialImageWebp, depth)}">
             <img class="material-step__product"
                  src="${assetUrl(distemper.officialImage, depth)}"
-                 alt="Prakritik Distemper paint pack"
+                 alt="Prakritik Paint — Distemper and Emulsion"
                  width="${distemper.officialImageW}" height="${distemper.officialImageH}"
                  loading="lazy" decoding="async">
           </picture>
@@ -4826,7 +4826,7 @@ ${circularStages}
     <div class="resource-steps" data-reveal-stagger>
       <article class="resource-step">
         <figure class="resource-step__figure resource-step__figure--plate">
-          ${ecoPic('prakritik-distemper', [640, 960, 1280], '(min-width: 1024px) 30vw, (min-width: 640px) 45vw, calc(100vw - 2.5rem)', 960, 960, 1173, 'Prakritik Distemper paint pack — the documented wall-coating outcome', depth)}
+          ${ecoPic('prakritik-distemper', [640, 960, 1280], '(min-width: 1024px) 30vw, (min-width: 640px) 45vw, calc(100vw - 2.5rem)', 960, 960, 1173, 'Prakritik Paint — Distemper and Emulsion — the documented wall-coating outcome', depth)}
         </figure>
         <div class="resource-step__caption">
           <span class="resource-step__kicker">Outcome — Wall Coatings</span>
