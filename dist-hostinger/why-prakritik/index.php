@@ -398,7 +398,7 @@ $emulsion  = get_product('prakritik-emulsion');
             <source type="image/webp" srcset="<?= asset_url($distemper['officialImageWebp']) ?>">
             <img class="material-step__product"
                  src="<?= asset_url($distemper['officialImage']) ?>"
-                 alt="Prakritik Distemper paint pack"
+                 alt="Prakritik Paint — Distemper and Emulsion"
                  width="<?= $distemper['officialImageW'] ?>" height="<?= $distemper['officialImageH'] ?>"
                  loading="lazy" decoding="async">
           </picture>

@@ -371,13 +371,13 @@ $addressLine = implode("\n", array_slice($address, 0, 6));
       </div>
       <figure class="story-section__image">
         <picture>
-          <source type="image/avif" srcset="<?= eco_srcset('rawmat-tree', [640, 960]) ?>"
+          <source type="image/avif" srcset="<?= eco_srcset('cow-dung-pile2', [640, 960, 1280, 1536]) ?>"
                   sizes="(min-width: 1024px) 45vw, calc(100vw - 2.5rem)">
-          <source type="image/webp" srcset="<?= eco_srcset_webp('rawmat-tree', [640, 960]) ?>"
+          <source type="image/webp" srcset="<?= eco_srcset_webp('cow-dung-pile2', [640, 960, 1280, 1536]) ?>"
                   sizes="(min-width: 1024px) 45vw, calc(100vw - 2.5rem)">
-          <img src="<?= asset_url('/assets/images/ecosystem/rawmat-tree-960.jpg') ?>"
+          <img src="<?= asset_url('/assets/images/ecosystem/cow-dung-pile2-960.jpg') ?>"
                alt="Cow dung — the natural material that becomes a resource instead of waste"
-               width="960" height="960" loading="eager" decoding="async">
+               width="1536" height="1024" loading="eager" decoding="async">
         </picture>
         <figcaption>Cow dung — once seen as waste, now a resource for sustainable products.</figcaption>
       </figure>

@@ -894,7 +894,7 @@ function homeBody(depth) {
     // flow-processing (1:1), flow-portfolio (2:3 portrait, poster frame)
     // and flow-impact (1:1).
     const STAGE_SIZES = '(min-width: 1100px) 22vw, (min-width: 768px) 45vw, calc(100vw - 2.5rem)';
-    const stageCowDung = ecoPic('rawmat-shed', [640, 960], STAGE_SIZES, 960, 960, 640, 'Cow dung at a cattle shed — the natural material starting point for every Gaurikrit direction', depth);
+    const stageCowDung = ecoPic('cow-dung-pile2', [640, 960, 1280, 1536], STAGE_SIZES, 960, 1536, 1024, 'Cow dung at a rural farm — the natural material starting point for every Gaurikrit direction', depth);
     const stageProcessing = ecoPic('flow-processing', [640, 960], STAGE_SIZES, 960, 960, 960, 'Conceptual visual of natural-waste processing — biomass handling and material development', depth);
     const stageImpact = ecoPic('flow-impact', [640, 960], STAGE_SIZES, 960, 960, 960, 'Earth encircled by a leaf recycling symbol — a circular-economy direction', depth);
 
@@ -3329,7 +3329,7 @@ function aboutBody(depth) {
         </div>
       </div>
       <figure class="story-section__image">
-        ${ecoPic('rawmat-tree', [640, 960], '(min-width: 1024px) 45vw, calc(100vw - 2.5rem)', 960, 960, 960, 'Cow dung — the natural material that becomes a resource instead of waste', depth, 'loading="eager"')}
+        ${ecoPic('cow-dung-pile2', [640, 960, 1280, 1536], '(min-width: 1024px) 45vw, calc(100vw - 2.5rem)', 960, 1536, 1024, 'Cow dung — the natural material that becomes a resource instead of waste', depth, 'loading="eager"')}
         <figcaption>Cow dung — once seen as waste, now a resource for sustainable products.</figcaption>
       </figure>
     </div>
