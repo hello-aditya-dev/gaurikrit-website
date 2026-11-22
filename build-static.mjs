@@ -1594,8 +1594,8 @@ ${themeList}
   <div class="container">
     <div class="gocast-feature" data-reveal>
       <figure class="gocast-feature__figure">
-        ${ecoPic('gocast-material', [640, 960, 1280], '(min-width: 1024px) 45vw, calc(100vw - 2.5rem)', 1280, 1280, 853, 'Gaurikrit Cow-Dung Logs — actual processed log product on a neutral background. Development direction.', depth)}
-        <figcaption>Cow-Dung Logs — actual product photograph. Development direction.</figcaption>
+        ${ecoPic('gbp-cow-dung-logs', [640, 960, 1024], '(min-width: 1024px) 45vw, calc(100vw - 2.5rem)', 1024, 1024, 1024, 'Gaurikrit Cow-Dung Logs — premium biomass fuel. Development direction.', depth)}
+        <figcaption>Cow-Dung Logs — premium biomass fuel. Development direction.</figcaption>
       </figure>
       <div class="gocast-feature__copy">
         <span class="family-section__num" aria-hidden="true">02</span>
@@ -1621,12 +1621,7 @@ ${themeList}
         </div>
       </div>
     </div>
-    <div class="family-section__poster" data-reveal>
-      <figure class="family-section__poster-figure">
-        ${ecoPic('gbp-cow-dung-logs', [640, 960, 1024], '(min-width: 1024px) 30vw, calc(100vw - 2.5rem)', 1024, 1024, 1024, 'Gaurikrit Cow-Dung Logs product poster — stacked biomass fuel logs. Development direction.', depth)}
-        <figcaption>Cow-Dung Logs — product poster.</figcaption>
-      </figure>
-    </div>
+    <!-- V58: secondary poster removed — only the GBP Cow-Dung Logs image above is used -->
   </div>
 </section>`;
 
