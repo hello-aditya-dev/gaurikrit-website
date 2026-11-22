@@ -446,6 +446,11 @@ ul, ol { list-style: none; }
   max-width: 65ch;
   text-wrap: balance;
 }
+/* V74: ecosystem section — fill page width, use pretty wrap for cleaner justify */
+.families-section .section-heading__desc {
+  max-width: none;
+  text-wrap: pretty;
+}
 .section--forest .section-heading__eyebrow { color: var(--haldi); }
 .section--forest .section-heading__desc { color: color-mix(in srgb, var(--paper) 78%, transparent); }
 

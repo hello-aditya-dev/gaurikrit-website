@@ -1231,7 +1231,8 @@ ${items}
   .resource-section__head { max-width: 48rem; margin-bottom: 2.5rem; }
 
   /* ===== 03. FOUR SOLUTIONS — page-local rhythm (structure §42.3) ===== */
-  .families-section__head { max-width: 48rem; margin-bottom: 2.75rem; }
+  /* V74: widen head to fill page width (was 48rem, left big empty right margin) */
+  .families-section__head { max-width: none; margin-bottom: 2.75rem; }
 
   /* ===== 04. CIRCULAR MODEL — page-local rhythm (structure §42.4) ===== */
   .circular-section__head { max-width: 48rem; margin-bottom: 2.75rem; }
