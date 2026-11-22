@@ -144,7 +144,7 @@ $addressLine = implode("\n", array_slice($address, 0, 6));
   }
 
   /* Forest section scoped classes (V38: explicit contrast — no opacity dimming) */
-  .story-section__inner--forest { color: var(--paper); }
+  .story-section__inner--forest { color: var(--paper); max-width: 42rem; margin-inline: auto; }
   .story-section__num--forest { color: var(--haldi); }
   .story-section__title--forest { color: var(--paper); }
   .story-section__body--forest { color: var(--paper); }
