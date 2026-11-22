@@ -117,7 +117,7 @@ $addressLine = implode("\n", array_slice($address, 0, 6));
 
   /* Alternating layouts for visual rhythm — V37: explicit grid order, no direction:rtl */
   .story-section--alt .story-section__inner {
-    max-width: none; display: grid; gap: clamp(2rem, 5vw, 4rem); align-items: center;
+    max-width: none; display: grid; gap: clamp(2rem, 5vw, 4rem); align-items: start;
     grid-template-columns: minmax(0, 1fr);
   }
   @media (min-width: 1024px) {
@@ -136,16 +136,35 @@ $addressLine = implode("\n", array_slice($address, 0, 6));
     .story-section--alt-reverse .story-section__copy { order: 2; }
     .story-section--alt-reverse .story-section__image { order: 1; margin-top: 0; }
   }
-  /* V57: reverted V45 display:contents layout */
-    .story-section--alt .story-section__copy { display: contents; }
-    .story-section--alt .story-section__num,
-    .story-section--alt .story-section__title,
-    .story-section--alt .concept-qualifier { grid-column: 1 / -1; }
-    .story-section--alt .story-section__title { max-width: none; }
-    .story-section--alt .story-section__body { grid-column: 1; max-width: none; }
-    .story-section--alt .story-section__image { grid-column: 2; margin-top: 0; }
-    .story-section--alt-reverse .story-section__body { grid-column: 2; }
-    .story-section--alt-reverse .story-section__image { grid-column: 1; }
+  /* V71: re-enabled display:contents layout for full-width section headings (PDF p11)
+     Heading + num span full page width; body + image side-by-side below.
+     Safe now that V66 uses portrait/square images (no landscape gap issue).
+     V71b: explicit grid-row: 3 on body+image — fixes sparse auto-placement bug
+     that put body and image in different rows. */
+  .story-section--alt .story-section__copy { display: contents; }
+  .story-section--alt .story-section__num,
+  .story-section--alt .story-section__title,
+  .story-section--alt .concept-qualifier { grid-column: 1 / -1; }
+  .story-section--alt .story-section__title { max-width: none; }
+  .story-section--alt .story-section__body { grid-column: 1; grid-row: 3; max-width: none; }
+  .story-section--alt .story-section__image { grid-column: 2; grid-row: 3; margin-top: 0; }
+  .story-section--alt-reverse .story-section__body { grid-column: 2; }
+  .story-section--alt-reverse .story-section__image { grid-column: 1; }
+
+  /* V71: highlighted closing line for story paragraphs (PDF p11) */
+  .story-section__body > p.story-section__closing {
+    font-weight: 600;
+    color: var(--forest);
+    background: color-mix(in srgb, var(--haldi) 8%, transparent);
+    border-left: 3px solid var(--haldi);
+    padding: 0.75rem 1rem;
+    margin-top: 1rem;
+    border-radius: 0.25rem;
+  }
+  .story-section__body--forest > p.story-section__closing {
+    color: var(--paper);
+    background: color-mix(in srgb, var(--haldi) 15%, transparent);
+    border-left-color: var(--haldi);
   }
 
   /* Forest section scoped classes (V38: explicit contrast — no opacity dimming) */
@@ -266,7 +285,7 @@ $addressLine = implode("\n", array_slice($address, 0, 6));
           <p>And so, an animal once considered an essential part of the family may find herself wandering through crowded streets, searching for food among garbage, exposed to traffic, disease and neglect.</p>
           <p><em>How can an animal we worship become an animal we abandon?</em></p>
           <p>We believe that reverence must be expressed not only through rituals and traditions, but through meaningful action.</p>
-          <p>A cow&rsquo;s dignity should never depend on her ability to produce milk. Her value must continue throughout her life.</p>
+          <p class="story-section__closing">A cow&rsquo;s dignity should never depend on her ability to produce milk. Her value must continue throughout her life.</p>
         </div>
       </div>
       <figure class="story-section__image">
@@ -371,7 +390,7 @@ $addressLine = implode("\n", array_slice($address, 0, 6));
           <p>But the problem is not the cow. The problem is a system that has failed to recognize the value of what she naturally produces.</p>
           <p>We envision a different approach. What was once left unattended can become an input for useful products. What was once considered a sanitation burden can become a source of livelihood. What was once discarded can become part of a sustainable manufacturing ecosystem.</p>
           <p>We do not see cow dung as waste. We see an opportunity waiting to be transformed.</p>
-          <p>Our aspiration is to support cleaner communities, healthier surroundings, and a more dignified existence for cattle.</p>
+          <p class="story-section__closing">Our aspiration is to support cleaner communities, healthier surroundings, and a more dignified existence for cattle.</p>
         </div>
       </div>
       <figure class="story-section__image">
@@ -411,7 +430,7 @@ $addressLine = implode("\n", array_slice($address, 0, 6));
           <li>Innovation supporting resource conservation.</li>
           <li>Traditional knowledge as the foundation for modern enterprise.</li>
         </ul>
-        <p>This is the circular economy we are building &mdash; one where progress and stewardship advance together.</p>
+        <p class="story-section__closing">This is the circular economy we are building &mdash; one where progress and stewardship advance together.</p>
       </div>
     </div>
   </div>
