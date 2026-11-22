@@ -66,14 +66,13 @@ $PRODUCTS = [
         'coverage'      => '200 sq.ft.**',
         'voc'           => 'Negligible',
         'usage'         => 'Interior & Exterior',
-        // V18: the sharp client-supplied single-bucket cutout (blue
-        // Distemper configuration) replaces the from-pair cutout as the
-        // Distemper feature image. Same deterministic keying pipeline as
-        // V11 — see scripts/derive_client_assets_2026_09_27.py.
+        // V79: single-bucket cutout from the client's 2026-11-14 ZIP
+        // (GBP Paint Bucket-4.png — blue Distemper configuration, Khadi India
+        // branded). Replaces the older V18 2026-09-27 cutout. RGBA preserved.
         'officialImage' => '/assets/images/client/prakritik-distemper-single-cut.png',
         'officialImageWebp' => '/assets/images/client/prakritik-distemper-single-cut.webp',
-        'officialImageW' => 801,
-        'officialImageH' => 1044,
+        'officialImageW' => 1269,
+        'officialImageH' => 1240,
         'image'         => 'prakritik-distemper',
         'accent'        => 'indigo',
         'route'         => '/products/prakritik-distemper/',
@@ -91,12 +90,13 @@ $PRODUCTS = [
         'coverage'      => '300 sq.ft.**',
         'voc'           => 'Negligible',
         'usage'         => 'Interior & Exterior',
-        // V23: clean single-bucket cutout from the client's 2026-10-16 photo
-        // (replaces the low-res pair-graphic cutout that showed pink edge remnants).
+        // V79: single-bucket cutout from the client's 2026-11-14 ZIP
+        // (GBP Paint Bucket-2.png — yellow-green Emulsion configuration,
+        // Khadi India branded). Replaces the older V23 2026-10-16 cutout.
         'officialImage' => '/assets/images/client/prakritik-emulsion-single-cut.png',
         'officialImageWebp' => '/assets/images/client/prakritik-emulsion-single-cut.webp',
-        'officialImageW' => 1536,
-        'officialImageH' => 1024,
+        'officialImageW' => 1122,
+        'officialImageH' => 1402,
         'image'         => 'prakritik-emulsion',
         'accent'        => 'haldi',
         'route'         => '/products/prakritik-emulsion/',

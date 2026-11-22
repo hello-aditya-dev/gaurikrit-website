@@ -145,14 +145,14 @@ $specRows = [
       <figure class="product-detail__media">
         <div class="product-detail__panel">
           <picture>
-            <source type="image/avif" srcset="<?= eco_srcset('prakritik-distemper', [640, 960, 1280, 1600]) ?>"
+            <source type="image/avif" srcset="<?= eco_srcset('prakritik-distemper-solo-v79', [640, 960]) ?>"
                     sizes="(min-width: 1200px) 630px, (min-width: 1024px) 55vw, calc(100vw - 2.5rem)">
-            <source type="image/webp" srcset="<?= eco_srcset_webp('prakritik-distemper', [640, 960, 1280, 1600]) ?>"
+            <source type="image/webp" srcset="<?= eco_srcset_webp('prakritik-distemper-solo-v79', [640, 960]) ?>"
                     sizes="(min-width: 1200px) 630px, (min-width: 1024px) 55vw, calc(100vw - 2.5rem)">
             <img class="media-product"
-                 src="<?= asset_url('/assets/images/ecosystem/prakritik-distemper-1280.jpg') ?>"
-                 alt="Prakritik Distemper paint pack — complete label and pack photograph"
-                 width="1280" height="960"
+                 src="<?= asset_url('/assets/images/ecosystem/prakritik-distemper-solo-v79-960.jpg') ?>"
+                 alt="Prakritik Distemper paint pack — single Distemper bucket, complete label and pack photograph"
+                 width="960" height="941"
                  loading="eager" fetchpriority="high" decoding="async">
           </picture>
         </div>
