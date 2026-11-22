@@ -266,15 +266,15 @@ $addressLine = implode("\n", array_slice($address, 0, 6));
       </div>
       <figure class="story-section__image">
         <picture>
-          <source type="image/avif" srcset="<?= eco_srcset('story-tender-moment', [640, 960, 1224]) ?>"
+          <source type="image/avif" srcset="<?= eco_srcset('story-farmer-cow-4', [640, 864]) ?>"
                   sizes="(min-width: 1024px) 45vw, calc(100vw - 2.5rem)">
-          <source type="image/webp" srcset="<?= eco_srcset_webp('story-tender-moment', [640, 960, 1224]) ?>"
+          <source type="image/webp" srcset="<?= eco_srcset_webp('story-farmer-cow-4', [640, 864]) ?>"
                   sizes="(min-width: 1024px) 45vw, calc(100vw - 2.5rem)">
-          <img src="<?= asset_url('/assets/images/ecosystem/story-tender-moment-960.jpg') ?>"
-               alt="A person sits beside a resting cow, caring for her tenderly — representing compassion for Gau Mata"
-               width="1224" height="1285" loading="eager" decoding="async">
+          <img src="<?= asset_url('/assets/images/ecosystem/story-farmer-cow-4-864.jpg') ?>"
+               alt="A farmer caring for a cow at a rural farm — representing the dignity and compassion central to Gau Mata welfare"
+               width="864" height="1152" loading="eager" decoding="async">
         </picture>
-        <figcaption>A moment of compassion &mdash; caring for a cow beyond her milk-producing years.</figcaption>
+        <figcaption>A moment of compassion — caring for a cow at a rural farm.</figcaption>
       </figure>
     </div>
   </div>
