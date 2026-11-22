@@ -1,0 +1,80 @@
+[
+  {
+    "slug": "home",
+    "line1": "Gaurikrit",
+    "line2": "Bio Products",
+    "art": "/home/z/gaurikrit-website/source-assets/client-originals/2026-11-14-update/GBP Paint Bucket-1.png"
+  },
+  {
+    "slug": "products",
+    "line1": "Prakritik Paint",
+    "line2": "Distemper & Emulsion",
+    "art": "/home/z/gaurikrit-website/source-assets/client-originals/2026-11-14-update/GBP Paint Bucket-3.png"
+  },
+  {
+    "slug": "distemper",
+    "line1": "Prakritik",
+    "line2": "Distemper Paint",
+    "art": "/home/z/gaurikrit-website/source-assets/client-originals/2026-11-14-update/GBP Paint Bucket-4.png"
+  },
+  {
+    "slug": "emulsion",
+    "line1": "Prakritik",
+    "line2": "Emulsion Paint",
+    "art": "/home/z/gaurikrit-website/source-assets/client-originals/2026-11-14-update/GBP Paint Bucket-2.png"
+  },
+  {
+    "slug": "why-prakritik",
+    "line1": "Why Prakritik",
+    "line2": "A natural material",
+    "art": "/home/z/gaurikrit-website/source-assets/client-originals/2026-11-14-update/GBP Paint Bucket-3.png"
+  },
+  {
+    "slug": "about",
+    "line1": "Our Story",
+    "line2": "When Reverence Becomes Responsibility",
+    "art": null
+  },
+  {
+    "slug": "sustainability",
+    "line1": "Sustainability",
+    "line2": "A circular material model",
+    "art": null
+  },
+  {
+    "slug": "innovation",
+    "line1": "Innovation",
+    "line2": "Directions in progress",
+    "art": null
+  },
+  {
+    "slug": "colours",
+    "line1": "Colours",
+    "line2": "Natural colour references",
+    "art": null
+  },
+  {
+    "slug": "calculator",
+    "line1": "Paint Calculator",
+    "line2": "Project summary tool",
+    "art": "/home/z/gaurikrit-website/source-assets/client-originals/2026-11-14-update/GBP Paint Bucket-1.png"
+  },
+  {
+    "slug": "downloads",
+    "line1": "Downloads",
+    "line2": "Documents & references",
+    "art": "/home/z/gaurikrit-website/source-assets/client-originals/2026-11-14-update/GBP Paint Bucket-1.png"
+  },
+  {
+    "slug": "contact",
+    "line1": "Contact",
+    "line2": "Talk to Us",
+    "art": "/home/z/gaurikrit-website/source-assets/client-originals/2026-11-14-update/GBP Paint Bucket-1.png"
+  },
+  {
+    "slug": "for-business",
+    "line1": "For Business",
+    "line2": "Partnership enquiries",
+    "art": "/home/z/gaurikrit-website/source-assets/client-originals/2026-11-14-update/GBP Paint Bucket-1.png"
+  }
+]
