@@ -189,6 +189,11 @@ $addressLine = implode("\n", array_slice($address, 0, 6));
   .story-closing {
     padding-block: clamp(3rem, 6vw, 5rem); text-align: center;
   }
+  .story-closing__intro {
+    text-align: center; font-size: clamp(0.875rem, 1.5vw, 1rem);
+    color: var(--fg-muted); letter-spacing: 0.1em; text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
   .story-closing__statement {
     font-family: var(--font-display); font-size: clamp(1.5rem, 4vw, 2.5rem);
     font-weight: 700; font-style: italic; line-height: 1.35;
@@ -281,11 +286,12 @@ $addressLine = implode("\n", array_slice($address, 0, 6));
         <h2 class="story-section__title">Restoring the Dignity of Gau Mata</h2>
         <div class="story-section__body">
           <p>Across India, countless cows face abandonment when they grow old or stop producing milk.</p>
-          <p>For a farmer struggling with rising costs, maintaining a non-milking cow can become an economic burden. Fodder, shelter, veterinary care and daily maintenance continue, even when income from milk stops.</p>
+          <p>For a farmer struggling with rising costs, maintaining a non-milking cow can become an economic burden. Fodder, shelter, veterinary care and daily maintenance continue, even when income from milk, stops.</p>
           <p>And so, an animal once considered an essential part of the family may find herself wandering through crowded streets, searching for food among garbage, exposed to traffic, disease and neglect.</p>
-          <p><em>How can an animal we worship become an animal we abandon?</em></p>
+          <p><em>How can an animal we worship, become an animal we abandon?</em></p>
           <p>We believe that reverence must be expressed not only through rituals and traditions, but through meaningful action.</p>
-          <p class="story-section__closing">A cow&rsquo;s dignity should never depend on her ability to produce milk. Her value must continue throughout her life.</p>
+          <p>A cow&rsquo;s dignity should never depend on her ability to produce milk.</p>
+          <p class="story-section__closing">Her value must continue throughout her life.</p>
         </div>
       </div>
       <figure class="story-section__image">
@@ -316,7 +322,7 @@ $addressLine = implode("\n", array_slice($address, 0, 6));
         <div class="story-section__body">
           <p>Through modern innovation, GAURIKRIT&reg; transforms natural resources into sustainable products &mdash; including cow-dung logs, bio-briquettes, eco-friendly paints, and biodegradable utility products.</p>
           <p>Our biomass fuel solutions aim to reduce dependence on conventional firewood, help protect trees, and promote responsible energy alternatives.</p>
-          <p>What was once considered waste becomes a resource. What was once a burden becomes an opportunity.</p>
+          <p>What was once considered waste becomes a resource. What was once a burden becoming an opportunity.</p>
           <p>
             <span class="product-status-inline">Bio-Briquettes: Futureline &middot; Not yet in production</span><br>
             <span class="product-status-inline">Eco Utility Products: Futureline &middot; Not yet in production</span><br>
@@ -348,15 +354,14 @@ $addressLine = implode("\n", array_slice($address, 0, 6));
     <div class="story-section__inner">
       <div class="story-section__copy">
         <span class="story-section__num">Section 3</span>
-        <h2 class="story-section__title">Saving Trees by Rethinking Fuel &mdash; From Cow Dung to Green Energy</h2>
+        <h2 class="story-section__title">Saving Trees by Rethinking Fuel: From Cow Dung to Green Energy</h2>
         <div class="story-section__body">
-          <p>Every tree has a story. It absorbs carbon dioxide, supports biodiversity, protects soil, and provides life-sustaining ecological services.</p>
-          <p>Yet wood continues to be consumed as fuel in many traditional and commercial applications, adding pressure to forest and tree resources.</p>
-          <p>Why should valuable trees be cut for fuel when agricultural and livestock by-products can be transformed into useful alternatives?</p>
-          <p>This thinking inspired our focus on renewable biomass-based fuel solutions.</p>
-          <p>Through products such as Cow-Dung Logs, Bio-Briquettes, and other biomass fuels, GAURIKRIT&reg; aims to provide alternatives to conventional firewood and selected fossil-based fuels wherever technically and environmentally appropriate.</p>
-          <p>Our vision is to help reduce dependence on wood-based fuel, promote responsible biomass utilization, and encourage cleaner, more resource-efficient energy practices.</p>
-          <p>We believe that the future of energy should not come at the cost of our forests. Every responsible alternative to harvested firewood is an opportunity to protect trees. Every underutilized natural resource transformed into a useful product is a step toward a more circular economy. And every innovation that reduces unnecessary resource extraction brings us closer to a sustainable tomorrow.</p>
+          <p>Every tree has a story.</p>
+          <p>It absorbs carbon dioxide, supports biodiversity, protects soil, and provides essential ecological benefits.</p>
+          <p>Yet millions of trees continue to be used as fuel, placing increasing pressure on our natural resources. When agricultural and livestock by-products can be transformed into valuable fuel, why depend on firewood?</p>
+          <p>This belief inspired GAURIKRIT&reg; to focus on renewable biomass-based fuel solutions. Through products such as Cow-Dung Logs, Bio-Briquettes, and other biomass fuels, we aim to provide sustainable alternatives to conventional firewood and selected fossil-based fuels wherever technically and environmentally suitable.</p>
+          <p>Our vision is simple: Reduce dependence on wood-based fuel, encourage responsible use of biomass resources, and support cleaner, more efficient energy practices.</p>
+          <p class="story-section__closing">We believe the future of energy should not come at the cost of our forests. Every alternative to harvested firewood helps protect trees, and every underutilized resource transformed into useful energy brings us one step closer to a more sustainable and circular future.</p>
         </div>
       </div>
       <figure class="story-section__image">
@@ -385,10 +390,15 @@ $addressLine = implode("\n", array_slice($address, 0, 6));
         <span class="story-section__num">Section 4</span>
         <h2 class="story-section__title">Cleaner Streets, Healthier Communities &mdash; Giving Waste a Purpose</h2>
         <div class="story-section__body">
-          <p>In many Indian towns and cities, abandoned cattle are a familiar sight. They wander along roads, gather near garbage dumps, and sometimes feed on plastic and contaminated waste.</p>
+          <p>In many Indian towns and cities, abandoned cattle are a familiar sight.</p>
+          <p>They wander along roads, gather near garbage dumps, and sometimes feed on plastic and contaminated waste.</p>
           <p>Their unmanaged dung and urine can contribute to sanitation problems in public spaces, while their presence on busy roads creates risks for both animals and people.</p>
-          <p>But the problem is not the cow. The problem is a system that has failed to recognize the value of what she naturally produces.</p>
-          <p>We envision a different approach. What was once left unattended can become an input for useful products. What was once considered a sanitation burden can become a source of livelihood. What was once discarded can become part of a sustainable manufacturing ecosystem.</p>
+          <p>But the problem is not the cow.</p>
+          <p>The problem is a system that has failed to recognize the value of what she naturally produces.</p>
+          <p>We envision a different approach.</p>
+          <p>What was once left unattended can become an input for useful products.</p>
+          <p>What was once considered a sanitation burden can become a source of livelihood.</p>
+          <p>What was once discarded can become part of a sustainable manufacturing ecosystem.</p>
           <p>We do not see cow dung as waste. We see an opportunity waiting to be transformed.</p>
           <p class="story-section__closing">Our aspiration is to support cleaner communities, healthier surroundings, and a more dignified existence for cattle.</p>
         </div>
@@ -419,18 +429,24 @@ $addressLine = implode("\n", array_slice($address, 0, 6));
       <span class="story-section__num story-section__num--forest">Section 5</span>
       <h2 class="story-section__title story-section__title--forest">From India&rsquo;s Traditions to India&rsquo;s Tomorrow &mdash; Building a Circular Economy</h2>
       <div class="story-section__body story-section__body--forest">
-        <p>India has always understood that nature operates in cycles, not in waste. Through cow-dung-based products, renewable biomass fuels, and eco-friendly paints, we envision an ecosystem where natural resources are continuously reimagined for productive use.</p>
+        <p>India has always understood something that the modern world is rediscovering:</p>
+        <p>Nature operates in cycles, not in waste.</p>
+        <p>What comes from the earth can often return to the earth or be transformed into something useful.</p>
+        <p>Through cow-dung-based products, renewable biomass fuels, eco-friendly paints, biodegradable utility products, and future sustainable technologies, we envision an ecosystem where natural resources are continuously reimagined for productive use.</p>
         <p>An ecosystem that connects:</p>
         <p class="story-section__sequence">
           Animal Welfare &rarr; Farmer Livelihoods &rarr; Resource Recovery &rarr; Sustainable Products &rarr; Environmental Responsibility &rarr; National Growth
         </p>
+        <p>This is the circular economy we want to help build.</p>
         <ul class="story-section__list">
-          <li>Farmers as stakeholders in sustainability.</li>
-          <li>Rural resources creating new economic opportunities.</li>
-          <li>Innovation supporting resource conservation.</li>
-          <li>Traditional knowledge as the foundation for modern enterprise.</li>
+          <li>One where farmers become stakeholders in sustainability.</li>
+          <li>One where rural resource creates new economic opportunities.</li>
+          <li>One where innovation supports resource conservation and responsible energy production.</li>
+          <li>One where traditional Indian knowledge becomes the foundation for modern sustainable enterprise.</li>
+          <li>And one where India&rsquo;s economic progress can advance alongside environmental stewardship.</li>
         </ul>
-        <p class="story-section__closing">This is the circular economy we are building &mdash; one where progress and stewardship advance together.</p>
+        <p>We aspire to contribute to a more self-reliant, resource-efficient, and environmentally responsible India.</p>
+        <p class="story-section__closing">Not merely by manufacturing products, but by helping create value from resources that society has overlooked.</p>
       </div>
     </div>
   </div>
@@ -441,6 +457,7 @@ $addressLine = implode("\n", array_slice($address, 0, 6));
      ============================================================ -->
 <section class="section section--paper story-closing">
   <div class="container">
+    <p class="story-closing__intro">One statement that could define GAURIKRIT&reg; for generations</p>
     <p class="story-closing__statement">
       &ldquo;She Gave Us a Lifetime of Nourishment.<br>
       We Owe Her a Lifetime of Dignity&rdquo;
