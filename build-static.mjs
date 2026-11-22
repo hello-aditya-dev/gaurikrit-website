@@ -3122,6 +3122,8 @@ function aboutBody(depth) {
   /* V68: opening narrative — widen to fill page width */
   .story-section__inner--wide { max-width: 72rem; }
   .story-section__inner--wide .story-section__body { max-width: none; }
+  /* V69: Section 5 — also widen to fill page width (override --forest 42rem cap) */
+  .story-section__inner--wide.story-section__inner--forest { max-width: 72rem; }
   .story-section__num {
     font-size: 0.75rem; font-weight: 700; letter-spacing: 0.2em;
     text-transform: uppercase; color: var(--haldi); margin-bottom: 0.5rem;
@@ -3341,7 +3343,7 @@ function aboutBody(depth) {
 
 <section class="section section--forest story-section">
   <div class="container">
-    <div class="story-section__inner story-section__inner--forest">
+    <div class="story-section__inner story-section__inner--forest story-section__inner--wide">
       <span class="story-section__num story-section__num--forest">Section 5</span>
       <h2 class="story-section__title story-section__title--forest">From India&rsquo;s Traditions to India&rsquo;s Tomorrow &mdash; Building a Circular Economy</h2>
       <div class="story-section__body story-section__body--forest">
