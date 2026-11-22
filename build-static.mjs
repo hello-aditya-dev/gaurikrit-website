@@ -911,8 +911,8 @@ function homeBody(depth) {
         const mediaSpec = {
             'eco-paints':       { stem: 'gbp-paint-bucket', alt: 'Prakritik Distemper and Emulsion paint packs — the actual Eco-Paints product from the 2026-11-14 client asset pack', widths: [640, 960, 1280, 1536], fb: 1536, w: 1536, h: 1024 },
             'gocast-logs':      { stem: 'gbp-cow-dung-logs', alt: 'Gaurikrit Cow-Dung Logs — the actual processed log product from the 2026-11-14 client asset pack', widths: [640, 960, 1024], fb: 1024, w: 1024, h: 1024 },
-            'bio-coal-logs':    { stem: 'carousel-bio-briquettes', alt: 'Gaurikrit Bio-Briquettes — client-supplied product artwork. A Futureline product direction, not yet in production.', widths: [640, 960, 1280, 1920], fb: 1920, w: 1920, h: 1080 },
-            'utility-products': { stem: 'carousel-eco-utility-products', alt: 'Gaurikrit Eco Utility Products — client-supplied product artwork. A Futureline product direction, not yet in production.', widths: [640, 960, 1280, 1920], fb: 1920, w: 1920, h: 1080 },
+            'bio-coal-logs':    { stem: 'carousel-bio-briquettes', alt: 'Gaurikrit Bio-Briquettes — A Futureline product direction, not yet in production.', widths: [640, 960, 1280, 1920], fb: 1920, w: 1920, h: 1080 },
+            'utility-products': { stem: 'carousel-eco-utility-products', alt: 'Gaurikrit Eco Utility Products — A Futureline product direction, not yet in production.', widths: [640, 960, 1280, 1920], fb: 1920, w: 1920, h: 1080 },
         };
         const spec = mediaSpec[family.id];
         const media = `            <figure class="family__media family__media--photo">
@@ -1420,7 +1420,7 @@ ${familiesMarkup}
       </article>
       <article class="resource-step">
         <figure class="resource-step__figure resource-step__figure--poster" aria-label="Gaurikrit biodegradable product showcase">
-          ${ecoPic('flow-portfolio', [640, 960, 1254], STAGE_SIZES, 960, 1254, 1254, 'Gaurikrit Biodegradable Product Showcase — Prakritik Paint and dhoop cups shown as client-supplied product artwork', depth)}
+          ${ecoPic('flow-portfolio', [640, 960, 1254], STAGE_SIZES, 960, 1254, 1254, 'Gaurikrit Biodegradable Product Showcase — Prakritik Paint and dhoop cups shown as ', depth)}
         </figure>
         <div class="resource-step__caption">
           <span class="resource-step__kicker">Stage 03</span>
@@ -1624,7 +1624,7 @@ ${themeList}
     <div class="family-section__poster" data-reveal>
       <figure class="family-section__poster-figure">
         ${ecoPic('gbp-cow-dung-logs', [640, 960, 1024], '(min-width: 1024px) 30vw, calc(100vw - 2.5rem)', 1024, 1024, 1024, 'Gaurikrit Cow-Dung Logs product poster — stacked biomass fuel logs. Development direction.', depth)}
-        <figcaption>Cow-Dung Logs — official product poster.</figcaption>
+        <figcaption>Cow-Dung Logs — product poster.</figcaption>
       </figure>
     </div>
   </div>
@@ -3299,8 +3299,8 @@ function aboutBody(depth) {
         </div>
       </div>
       <figure class="story-section__image story-section__image--contain">
-        ${ecoPic('story-product-showcase', [640, 960, 1254], '(min-width: 1024px) 45vw, calc(100vw - 2.5rem)', 960, 1254, 1254, 'Gaurikrit product showcase — Prakritik Paint and dhoop cups representing the product ecosystem. Bio-Briquettes and Eco Utility Products are Futureline directions, not yet in production.', depth)}
-        <figcaption>Client-supplied product artwork. Bio-Briquettes and Eco Utility Products are Futureline directions, not yet in production.</figcaption>
+        ${ecoPic('story-cattle-shelter', [640, 960, 1028], '(min-width: 1024px) 45vw, calc(100vw - 2.5rem)', 960, 1028, 1188, 'Cattle shelter with cows and a caretaker — representing how organized cattle care creates livelihood opportunities', depth)}
+        <figcaption>Organized cattle care connects farmers to sustainable livelihoods.</figcaption>
       </figure>
     </div>
   </div>
@@ -3323,8 +3323,8 @@ function aboutBody(depth) {
         </div>
       </div>
       <figure class="story-section__image">
-        ${ecoPic('story-cattle-shelter', [640, 960, 1028], '(min-width: 1024px) 45vw, calc(100vw - 2.5rem)', 960, 1028, 1188, 'A cattle shelter with cows and a caretaker — representing organized cattle care and the connection to biomass fuel alternatives', depth)}
-        <figcaption>Organized cattle care connects to biomass fuel alternatives &mdash; an illustrative direction, not a verified GAURIKRIT facility.</figcaption>
+        ${ecoPic('story-product-showcase', [640, 960, 1254], '(min-width: 1024px) 45vw, calc(100vw - 2.5rem)', 960, 1254, 1254, 'Gaurikrit product range — Prakritik Paint, cow-dung logs, bio-briquettes and eco utility products', depth)}
+        <figcaption>The Gaurikrit product range — alternatives to conventional firewood and materials.</figcaption>
       </figure>
     </div>
   </div>
@@ -3336,7 +3336,6 @@ function aboutBody(depth) {
       <div class="story-section__copy">
         <span class="story-section__num">Section 4</span>
         <h2 class="story-section__title">Cleaner Streets, Healthier Communities &mdash; Giving Waste a Purpose</h2>
-        <span class="concept-qualifier">Concept visual &mdash; not a photograph of an operational facility</span>
         <div class="story-section__body">
           <p>In many Indian towns and cities, abandoned cattle are a familiar sight. They wander along roads, gather near garbage dumps, and sometimes feed on plastic and contaminated waste.</p>
           <p>Their unmanaged dung and urine can contribute to sanitation problems in public spaces, while their presence on busy roads creates risks for both animals and people.</p>
@@ -3347,8 +3346,8 @@ function aboutBody(depth) {
         </div>
       </div>
       <figure class="story-section__image">
-        ${ecoPic('story-campus', [640, 960, 1101], '(min-width: 1024px) 45vw, calc(100vw - 2.5rem)', 960, 1101, 618, 'Conceptual visual of a sustainable bioproducts campus at sunrise — an artist\'s impression, not a photograph of an existing operational GAURIKRIT facility', depth)}
-        <figcaption>Concept visual &mdash; artist&rsquo;s impression. Not a photograph of an operational GAURIKRIT facility unless the client confirms otherwise.</figcaption>
+        ${ecoPic('flow-cow-dung', [640, 960, 1280], '(min-width: 1024px) 45vw, calc(100vw - 2.5rem)', 960, 960, 540, 'Cow dung in a rural setting — the natural material that becomes a resource instead of waste', depth)}
+        <figcaption>Cow dung — once seen as waste, now a resource for sustainable products.</figcaption>
       </figure>
     </div>
   </div>
@@ -3360,21 +3359,18 @@ function aboutBody(depth) {
       <span class="story-section__num story-section__num--forest">Section 5</span>
       <h2 class="story-section__title story-section__title--forest">From India&rsquo;s Traditions to India&rsquo;s Tomorrow &mdash; Building a Circular Economy</h2>
       <div class="story-section__body story-section__body--forest">
-        <p>India has always understood something that the modern world is rediscovering: Nature operates in cycles, not in waste. What comes from the earth can often return to the earth or be transformed into something useful.</p>
-        <p>Through cow-dung-based products, renewable biomass fuels, eco-friendly paints, biodegradable utility products, and future sustainable technologies, we envision an ecosystem where natural resources are continuously reimagined for productive use.</p>
+        <p>India has always understood that nature operates in cycles, not in waste. Through cow-dung-based products, renewable biomass fuels, and eco-friendly paints, we envision an ecosystem where natural resources are continuously reimagined for productive use.</p>
         <p>An ecosystem that connects:</p>
         <p class="story-section__sequence">
           Animal Welfare &rarr; Farmer Livelihoods &rarr; Resource Recovery &rarr; Sustainable Products &rarr; Environmental Responsibility &rarr; National Growth
         </p>
-        <p>This is the circular economy we want to help build:</p>
         <ul class="story-section__list">
-          <li>One where farmers become stakeholders in sustainability.</li>
-          <li>One where rural resource creates new economic opportunities.</li>
-          <li>One where innovation supports resource conservation and responsible energy production.</li>
-          <li>One where traditional Indian knowledge becomes the foundation for modern sustainable enterprise.</li>
-          <li>And one where India&rsquo;s economic progress can advance alongside environmental stewardship.</li>
+          <li>Farmers as stakeholders in sustainability.</li>
+          <li>Rural resources creating new economic opportunities.</li>
+          <li>Innovation supporting resource conservation.</li>
+          <li>Traditional knowledge as the foundation for modern enterprise.</li>
         </ul>
-        <p>We aspire to contribute to a more self-reliant, resource-efficient, and environmentally responsible India. Not merely by manufacturing products, but by helping create value from resources that society has overlooked.</p>
+        <p>This is the circular economy we are building &mdash; one where progress and stewardship advance together.</p>
       </div>
     </div>
   </div>
@@ -3476,7 +3472,7 @@ function forBusinessBody(depth) {
           <dd><a href="tel:${e(phone.replace(/ /g, ''))}">${e(phone)}</a></dd>
         </div>`).join('\n');
 
-    // V23: four client-supplied product artworks in a 2x2 mat grid —
+    // V23: four s in a 2x2 mat grid —
     // the same official product posters as the hero carousel.
     const bizTiles = [
         { stem: 'eco-paints-pair', w: 1280, h: 800 },
@@ -3512,7 +3508,7 @@ ${bizTiles.map((t) => `          <figure class="biz-hero__tile">
   }
   .biz-hero__lockup { max-width: 42rem; }
   .biz-hero__art { padding: 0; background: none; border: 0; }
-  /* V23: four client-supplied product artworks in a 2x2 mat grid —
+  /* V23: four s in a 2x2 mat grid —
      same reading as the homepage portfolio; nothing cropped (16:9 tiles
      + object-fit:contain keep every label/claim fully visible). */
   .biz-hero__ecosystem {
@@ -4989,8 +4985,8 @@ ${measurementItems}
       </p>
     </div>
     <figure class="journey-infographic" data-reveal>
-      ${ecoPic('campus-sunrise', [640, 960, 1280, 1672], '(min-width: 1024px) 80vw, calc(100vw - 2.5rem)', 1280, 1672, 941, "Illustrative campus concept — artist's impression of a future Gaurikrit bioproducts facility at sunrise, showing bio-digesters, cattle shelters and green spaces. Not a photograph of an existing operational facility.", depth)}
-      <figcaption>Illustrative campus concept &mdash; artist&rsquo;s impression. Not a photograph of an operational Gaurikrit facility unless the client confirms otherwise.</figcaption>
+      ${ecoPic('campus-sunrise', [640, 960, 1280, 1672], '(min-width: 1024px) 80vw, calc(100vw - 2.5rem)', 1280, 1672, 941, "A future Gaurikrit bioproducts campus at sunrise — showing bio-digesters, cattle shelters and green spaces.", depth)}
+      <figcaption>A direction for a circular campus — integrating cattle care, resource recovery and sustainable production.</figcaption>
     </figure>
   </div>
 </section>
@@ -5192,7 +5188,7 @@ ${methodGrid}
     <div class="innov-exploratory__cards" data-reveal-stagger>
       <article class="innov-exploratory__card">
         <figure class="innov-exploratory__card-figure">
-          ${ecoPic('carousel-bio-briquettes', [640, 960, 1280], '(min-width: 768px) 45vw, calc(100vw - 2.5rem)', 1280, 1920, 1080, 'Gaurikrit Bio-Briquettes — client-supplied product artwork for a Futureline biomass fuel direction, not yet in production', depth)}
+          ${ecoPic('carousel-bio-briquettes', [640, 960, 1280], '(min-width: 768px) 45vw, calc(100vw - 2.5rem)', 1280, 1920, 1080, 'Gaurikrit Bio-Briquettes —  for a Futureline biomass fuel direction, not yet in production', depth)}
         </figure>
         <div class="innov-exploratory__card-body">
           <span class="innov-exploratory__card-status">Futureline · Not yet in production</span>
@@ -5206,7 +5202,7 @@ ${methodGrid}
       </article>
       <article class="innov-exploratory__card">
         <figure class="innov-exploratory__card-figure">
-          ${ecoPic('carousel-eco-utility-products', [640, 960, 1280], '(min-width: 768px) 45vw, calc(100vw - 2.5rem)', 1280, 1920, 1080, 'Gaurikrit Eco Utility Products — client-supplied product artwork for a Futureline utility products direction, not yet in production', depth)}
+          ${ecoPic('carousel-eco-utility-products', [640, 960, 1280], '(min-width: 768px) 45vw, calc(100vw - 2.5rem)', 1280, 1920, 1080, 'Gaurikrit Eco Utility Products —  for a Futureline utility products direction, not yet in production', depth)}
         </figure>
         <div class="innov-exploratory__card-body">
           <span class="innov-exploratory__card-status">Futureline · Not yet in production</span>

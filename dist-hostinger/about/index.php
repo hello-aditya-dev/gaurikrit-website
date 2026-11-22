@@ -307,15 +307,15 @@ $addressLine = implode("\n", array_slice($address, 0, 6));
       </div>
       <figure class="story-section__image story-section__image--contain">
         <picture>
-          <source type="image/avif" srcset="<?= eco_srcset('story-product-showcase', [640, 960, 1254]) ?>"
+          <source type="image/avif" srcset="<?= eco_srcset('story-cattle-shelter', [640, 960, 1028]) ?>"
                   sizes="(min-width: 1024px) 45vw, calc(100vw - 2.5rem)">
-          <source type="image/webp" srcset="<?= eco_srcset_webp('story-product-showcase', [640, 960, 1254]) ?>"
+          <source type="image/webp" srcset="<?= eco_srcset_webp('story-cattle-shelter', [640, 960, 1028]) ?>"
                   sizes="(min-width: 1024px) 45vw, calc(100vw - 2.5rem)">
-          <img src="<?= asset_url('/assets/images/ecosystem/story-product-showcase-960.jpg') ?>"
-               alt="Gaurikrit product showcase — Prakritik Paint and dhoop cups representing the product ecosystem. Bio-Briquettes and Eco Utility Products are Futureline directions, not yet in production."
-               width="1254" height="1254" loading="lazy" decoding="async">
+          <img src="<?= asset_url('/assets/images/ecosystem/story-cattle-shelter-960.jpg') ?>"
+               alt="Cattle shelter with cows and a caretaker — representing how organized cattle care creates livelihood opportunities"
+               width="1028" height="1188" loading="lazy" decoding="async">
         </picture>
-        <figcaption>Client-supplied product artwork. Bio-Briquettes and Eco Utility Products are Futureline directions, not yet in production.</figcaption>
+        <figcaption>Organized cattle care connects farmers to sustainable livelihoods.</figcaption>
       </figure>
     </div>
   </div>
@@ -342,15 +342,15 @@ $addressLine = implode("\n", array_slice($address, 0, 6));
       </div>
       <figure class="story-section__image">
         <picture>
-          <source type="image/avif" srcset="<?= eco_srcset('story-cattle-shelter', [640, 960, 1028]) ?>"
+          <source type="image/avif" srcset="<?= eco_srcset('story-product-showcase', [640, 960, 1254]) ?>"
                   sizes="(min-width: 1024px) 45vw, calc(100vw - 2.5rem)">
-          <source type="image/webp" srcset="<?= eco_srcset_webp('story-cattle-shelter', [640, 960, 1028]) ?>"
+          <source type="image/webp" srcset="<?= eco_srcset_webp('story-product-showcase', [640, 960, 1254]) ?>"
                   sizes="(min-width: 1024px) 45vw, calc(100vw - 2.5rem)">
-          <img src="<?= asset_url('/assets/images/ecosystem/story-cattle-shelter-960.jpg') ?>"
-               alt="A cattle shelter with cows and a caretaker — representing organized cattle care and the connection to biomass fuel alternatives"
-               width="1028" height="1188" loading="lazy" decoding="async">
+          <img src="<?= asset_url('/assets/images/ecosystem/story-product-showcase-960.jpg') ?>"
+               alt="Gaurikrit product range — Prakritik Paint, cow-dung logs, bio-briquettes and eco utility products"
+               width="1254" height="1254" loading="lazy" decoding="async">
         </picture>
-        <figcaption>Organized cattle care connects to biomass fuel alternatives &mdash; an illustrative direction, not a verified GAURIKRIT facility.</figcaption>
+        <figcaption>The Gaurikrit product range — alternatives to conventional firewood and materials.</figcaption>
       </figure>
     </div>
   </div>
@@ -365,7 +365,6 @@ $addressLine = implode("\n", array_slice($address, 0, 6));
       <div class="story-section__copy">
         <span class="story-section__num">Section 4</span>
         <h2 class="story-section__title">Cleaner Streets, Healthier Communities &mdash; Giving Waste a Purpose</h2>
-        <span class="concept-qualifier">Concept visual &mdash; not a photograph of an operational facility</span>
         <div class="story-section__body">
           <p>In many Indian towns and cities, abandoned cattle are a familiar sight. They wander along roads, gather near garbage dumps, and sometimes feed on plastic and contaminated waste.</p>
           <p>Their unmanaged dung and urine can contribute to sanitation problems in public spaces, while their presence on busy roads creates risks for both animals and people.</p>
@@ -377,15 +376,15 @@ $addressLine = implode("\n", array_slice($address, 0, 6));
       </div>
       <figure class="story-section__image">
         <picture>
-          <source type="image/avif" srcset="<?= eco_srcset('story-campus', [640, 960, 1101]) ?>"
+          <source type="image/avif" srcset="<?= eco_srcset('flow-cow-dung', [640, 960, 1280]) ?>"
                   sizes="(min-width: 1024px) 45vw, calc(100vw - 2.5rem)">
-          <source type="image/webp" srcset="<?= eco_srcset_webp('story-campus', [640, 960, 1101]) ?>"
+          <source type="image/webp" srcset="<?= eco_srcset_webp('flow-cow-dung', [640, 960, 1280]) ?>"
                   sizes="(min-width: 1024px) 45vw, calc(100vw - 2.5rem)">
-          <img src="<?= asset_url('/assets/images/ecosystem/story-campus-960.jpg') ?>"
-               alt="Conceptual visual of a sustainable bioproducts campus at sunrise &mdash; an artist's impression, not a photograph of an existing operational GAURIKRIT facility"
-               width="1101" height="618" loading="lazy" decoding="async">
+          <img src="<?= asset_url('/assets/images/ecosystem/flow-cow-dung-960.jpg') ?>"
+               alt="Cow dung in a rural setting — the natural material that becomes a resource instead of waste"
+               width="960" height="540" loading="lazy" decoding="async">
         </picture>
-        <figcaption>Concept visual &mdash; artist&rsquo;s impression. Not a photograph of an operational GAURIKRIT facility unless the client confirms otherwise.</figcaption>
+        <figcaption>Cow dung — once seen as waste, now a resource for sustainable products.</figcaption>
       </figure>
     </div>
   </div>
@@ -400,21 +399,18 @@ $addressLine = implode("\n", array_slice($address, 0, 6));
       <span class="story-section__num story-section__num--forest">Section 5</span>
       <h2 class="story-section__title story-section__title--forest">From India&rsquo;s Traditions to India&rsquo;s Tomorrow &mdash; Building a Circular Economy</h2>
       <div class="story-section__body story-section__body--forest">
-        <p>India has always understood something that the modern world is rediscovering: Nature operates in cycles, not in waste. What comes from the earth can often return to the earth or be transformed into something useful.</p>
-        <p>Through cow-dung-based products, renewable biomass fuels, eco-friendly paints, biodegradable utility products, and future sustainable technologies, we envision an ecosystem where natural resources are continuously reimagined for productive use.</p>
+        <p>India has always understood that nature operates in cycles, not in waste. Through cow-dung-based products, renewable biomass fuels, and eco-friendly paints, we envision an ecosystem where natural resources are continuously reimagined for productive use.</p>
         <p>An ecosystem that connects:</p>
         <p class="story-section__sequence">
           Animal Welfare &rarr; Farmer Livelihoods &rarr; Resource Recovery &rarr; Sustainable Products &rarr; Environmental Responsibility &rarr; National Growth
         </p>
-        <p>This is the circular economy we want to help build:</p>
         <ul class="story-section__list">
-          <li>One where farmers become stakeholders in sustainability.</li>
-          <li>One where rural resource creates new economic opportunities.</li>
-          <li>One where innovation supports resource conservation and responsible energy production.</li>
-          <li>One where traditional Indian knowledge becomes the foundation for modern sustainable enterprise.</li>
-          <li>And one where India&rsquo;s economic progress can advance alongside environmental stewardship.</li>
+          <li>Farmers as stakeholders in sustainability.</li>
+          <li>Rural resources creating new economic opportunities.</li>
+          <li>Innovation supporting resource conservation.</li>
+          <li>Traditional knowledge as the foundation for modern enterprise.</li>
         </ul>
-        <p>We aspire to contribute to a more self-reliant, resource-efficient, and environmentally responsible India. Not merely by manufacturing products, but by helping create value from resources that society has overlooked.</p>
+        <p>This is the circular economy we are building &mdash; one where progress and stewardship advance together.</p>
       </div>
     </div>
   </div>

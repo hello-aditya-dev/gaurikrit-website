@@ -436,10 +436,10 @@ $HERO_SIZES = '(min-width: 1200px) 58vw, (min-width: 900px) 50vw, calc(100vw - 2
                                   'alt' => 'Gaurikrit Cow-Dung Logs — the actual processed log product from the 2026-11-14 client asset pack'],
           'bio-briquettes'    => ['stem' => 'carousel-bio-briquettes', 'ladder' => [640, 960, 1280, 1920],
                                   'w' => 1920, 'h' => 1080,
-                                  'alt' => 'Gaurikrit Bio-Briquettes — client-supplied product artwork. A Futureline product direction, not yet in production.'],
+                                  'alt' => 'Gaurikrit Bio-Briquettes — A Futureline product direction, not yet in production.'],
           'utility-products'  => ['stem' => 'carousel-eco-utility-products', 'ladder' => [640, 960, 1280, 1920],
                                   'w' => 1920, 'h' => 1080,
-                                  'alt' => 'Gaurikrit Eco Utility Products — client-supplied product artwork. A Futureline product direction, not yet in production.'],
+                                  'alt' => 'Gaurikrit Eco Utility Products — A Futureline product direction, not yet in production.'],
       ];
       foreach ($FAMILIES as $family): ?>
         <article class="family" id="family-<?= e($family['id']) ?>">
@@ -547,7 +547,7 @@ $HERO_SIZES = '(min-width: 1200px) 58vw, (min-width: 900px) 50vw, calc(100vw - 2
           <p class="resource-step__desc">
             The resource is studied, processed and developed into useful working materials &mdash; from coatings to fuel formats.
           </p>
-          <p class="resource-step__qualifier">Illustrative processing concept &mdash; not a photograph of Gaurikrit&rsquo;s facility.</p>
+          <p class="resource-step__qualifier">Processing &amp; Innovation stage.</p>
         </div>
       </article>
       <article class="resource-step">
@@ -556,7 +556,7 @@ $HERO_SIZES = '(min-width: 1200px) 58vw, (min-width: 900px) 50vw, calc(100vw - 2
             <source type="image/avif" srcset="<?= asset_url('/assets/images/ecosystem/flow-portfolio-640.avif') ?> 640w, <?= asset_url('/assets/images/ecosystem/flow-portfolio-960.avif') ?> 960w, <?= asset_url('/assets/images/ecosystem/flow-portfolio-1254.avif') ?> 1254w" sizes="(min-width: 1100px) 22vw, (min-width: 768px) 45vw, calc(100vw - 2.5rem)">
             <source type="image/webp" srcset="<?= asset_url('/assets/images/ecosystem/flow-portfolio-640.webp') ?> 640w, <?= asset_url('/assets/images/ecosystem/flow-portfolio-960.webp') ?> 960w, <?= asset_url('/assets/images/ecosystem/flow-portfolio-1254.webp') ?> 1254w" sizes="(min-width: 1100px) 22vw, (min-width: 768px) 45vw, calc(100vw - 2.5rem)">
             <img src="<?= asset_url('/assets/images/ecosystem/flow-portfolio-960.jpg') ?>"
-                 alt="Gaurikrit Biodegradable Product Showcase — Prakritik Paint and dhoop cups shown as client-supplied product artwork" width="1254" height="1254" loading="lazy" decoding="async">
+                 alt="Gaurikrit Biodegradable Product Showcase — Prakritik Paint and dhoop cups shown as " width="1254" height="1254" loading="lazy" decoding="async">
           </picture>
         </figure>
         <div class="resource-step__caption">

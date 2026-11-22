@@ -178,7 +178,7 @@ body {
 
 /* V47: Global text justification — every page, every section.
    Justify all body paragraphs; override for non-body elements that should stay left. */
-p { text-align: justify; hyphens: auto; -webkit-hyphens: auto; }
+p { text-align: justify; hyphens: auto; -webkit-hyphens: auto; text-justify: inter-word; text-wrap: pretty; }
 figcaption, .muted, .status-badge, .breadcrumb, .btn, .site-nav__link,
 .nav-menu__link, .family__status, .product-status-inline, .concept-qualifier,
 .skip-link, .mobile-menu__link, .partner-strip__item, .family-section__note,

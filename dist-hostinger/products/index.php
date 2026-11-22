@@ -680,7 +680,7 @@ $emulsion    = get_product('prakritik-emulsion');
                alt="Gaurikrit Cow-Dung Logs product poster — stacked biomass fuel logs. Development direction."
                width="1024" height="1024" loading="lazy" decoding="async">
         </picture>
-        <figcaption>Cow-Dung Logs — official product poster.</figcaption>
+        <figcaption>Cow-Dung Logs — product poster.</figcaption>
       </figure>
     </div>
   </div>

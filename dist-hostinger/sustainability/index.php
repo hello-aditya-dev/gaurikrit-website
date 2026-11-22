@@ -383,7 +383,7 @@ $measurementItems = [
       <span class="section-heading__eyebrow">Future Vision</span>
       <h2 class="section-heading__title" id="campus-concept-title">A Direction for a Circular Campus</h2>
       <p class="section-heading__desc">
-        An illustrative concept of how a future Gaurikrit campus could integrate
+        A future Gaurikrit campus could integrate
         cattle care, resource recovery and sustainable production.
       </p>
     </div>
@@ -394,10 +394,10 @@ $measurementItems = [
         <source type="image/webp" srcset="<?= eco_srcset_webp('campus-sunrise', [640, 960, 1280, 1672]) ?>"
                 sizes="(min-width: 1024px) 80vw, calc(100vw - 2.5rem)">
         <img src="<?= asset_url('/assets/images/ecosystem/campus-sunrise-1280.jpg') ?>"
-             alt="Illustrative campus concept — artist's impression of a future Gaurikrit bioproducts facility at sunrise, showing bio-digesters, cattle shelters and green spaces. Not a photograph of an existing operational facility."
+             alt="A future Gaurikrit bioproducts campus at sunrise."
              width="1672" height="941" loading="lazy" decoding="async">
       </picture>
-      <figcaption>Illustrative campus concept &mdash; artist&rsquo;s impression. Not a photograph of an operational Gaurikrit facility unless the client confirms otherwise.</figcaption>
+      <figcaption>A direction for a circular campus — integrating cattle care, resource recovery and sustainable production.</figcaption>
     </figure>
   </div>
 </section>
