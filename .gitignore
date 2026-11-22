@@ -69,3 +69,4 @@ agent-ctx/
 verify-*.png
 preview-server.log
 /verify-*.png
+vlm_pack/
